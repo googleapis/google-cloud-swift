@@ -51,6 +51,8 @@
     /// a canary update for more information.
     public var targetSize: FixedOrPercent? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerVersion`.
     public init() {}
 
@@ -65,6 +67,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceTemplate = CodingKeys(stringValue: "instanceTemplate")
+      static let name = CodingKeys(stringValue: "name")
+      static let targetSize = CodingKeys(stringValue: "targetSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceTemplate",
+        "name",
+        "targetSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instanceTemplate = try container.decodeIfPresent(
+        Swift.String.self, forKey: .instanceTemplate)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.targetSize = try container.decodeIfPresent(FixedOrPercent.self, forKey: .targetSize)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.instanceTemplate, forKey: .instanceTemplate)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.targetSize, forKey: .targetSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

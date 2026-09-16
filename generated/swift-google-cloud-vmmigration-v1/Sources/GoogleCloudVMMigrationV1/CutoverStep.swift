@@ -29,6 +29,8 @@ public struct CutoverStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var step: OneOf_Step? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CutoverStep`.
   public init() {}
 
@@ -45,14 +47,29 @@ public struct CutoverStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case previousReplicationCycle = "previousReplicationCycle"
-    case shuttingDownSourceVm = "shuttingDownSourceVm"
-    case finalSync = "finalSync"
-    case preparingVmDisks = "preparingVmDisks"
-    case instantiatingMigratedVm = "instantiatingMigratedVm"
-    case startTime = "startTime"
-    case endTime = "endTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let previousReplicationCycle = CodingKeys(stringValue: "previousReplicationCycle")
+    static let shuttingDownSourceVm = CodingKeys(stringValue: "shuttingDownSourceVm")
+    static let finalSync = CodingKeys(stringValue: "finalSync")
+    static let preparingVmDisks = CodingKeys(stringValue: "preparingVmDisks")
+    static let instantiatingMigratedVm = CodingKeys(stringValue: "instantiatingMigratedVm")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "previousReplicationCycle",
+      "shuttingDownSourceVm",
+      "finalSync",
+      "preparingVmDisks",
+      "instantiatingMigratedVm",
+      "startTime",
+      "endTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -95,12 +112,16 @@ public struct CutoverStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try stepCheckAndSet(.instantiatingMigratedVm(instantiatingMigratedVm))
     }
     self.step = step
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
     if let choice = self.step {
       switch choice {
@@ -115,6 +136,9 @@ public struct CutoverStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .instantiatingMigratedVm(let value):
         try container.encode(value, forKey: .instantiatingMigratedVm)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

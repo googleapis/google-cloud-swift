@@ -460,6 +460,8 @@
     ///    - Global external passthrough Network Load Balancers
     public var target: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ForwardingRule`.
     public init() {}
 
@@ -476,47 +478,96 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ipaddress = "IPAddress"
-      case ipprotocol = "IPProtocol"
-      case allPorts = "allPorts"
-      case allowGlobalAccess = "allowGlobalAccess"
-      case allowPscGlobalAccess = "allowPscGlobalAccess"
-      case attachedExtensions = "attachedExtensions"
-      case backendService = "backendService"
-      case baseForwardingRule = "baseForwardingRule"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case externalManagedBackendBucketMigrationState = "externalManagedBackendBucketMigrationState"
-      case externalManagedBackendBucketMigrationTestingPercentage =
-        "externalManagedBackendBucketMigrationTestingPercentage"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case ipCollection = "ipCollection"
-      case ipVersion = "ipVersion"
-      case isMirroringCollector = "isMirroringCollector"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case loadBalancingScheme = "loadBalancingScheme"
-      case metadataFilters = "metadataFilters"
-      case name = "name"
-      case network = "network"
-      case networkTier = "networkTier"
-      case noAutomateDnsZone = "noAutomateDnsZone"
-      case portRange = "portRange"
-      case ports = "ports"
-      case pscConnectionId = "pscConnectionId"
-      case pscConnectionStatus = "pscConnectionStatus"
-      case region = "region"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case serviceDirectoryRegistrations = "serviceDirectoryRegistrations"
-      case serviceLabel = "serviceLabel"
-      case serviceName = "serviceName"
-      case sourceIpRanges = "sourceIpRanges"
-      case subnetwork = "subnetwork"
-      case target = "target"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipaddress = CodingKeys(stringValue: "IPAddress")
+      static let ipprotocol = CodingKeys(stringValue: "IPProtocol")
+      static let allPorts = CodingKeys(stringValue: "allPorts")
+      static let allowGlobalAccess = CodingKeys(stringValue: "allowGlobalAccess")
+      static let allowPscGlobalAccess = CodingKeys(stringValue: "allowPscGlobalAccess")
+      static let attachedExtensions = CodingKeys(stringValue: "attachedExtensions")
+      static let backendService = CodingKeys(stringValue: "backendService")
+      static let baseForwardingRule = CodingKeys(stringValue: "baseForwardingRule")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let externalManagedBackendBucketMigrationState = CodingKeys(
+        stringValue: "externalManagedBackendBucketMigrationState")
+      static let externalManagedBackendBucketMigrationTestingPercentage = CodingKeys(
+        stringValue: "externalManagedBackendBucketMigrationTestingPercentage")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let ipCollection = CodingKeys(stringValue: "ipCollection")
+      static let ipVersion = CodingKeys(stringValue: "ipVersion")
+      static let isMirroringCollector = CodingKeys(stringValue: "isMirroringCollector")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let loadBalancingScheme = CodingKeys(stringValue: "loadBalancingScheme")
+      static let metadataFilters = CodingKeys(stringValue: "metadataFilters")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let networkTier = CodingKeys(stringValue: "networkTier")
+      static let noAutomateDnsZone = CodingKeys(stringValue: "noAutomateDnsZone")
+      static let portRange = CodingKeys(stringValue: "portRange")
+      static let ports = CodingKeys(stringValue: "ports")
+      static let pscConnectionId = CodingKeys(stringValue: "pscConnectionId")
+      static let pscConnectionStatus = CodingKeys(stringValue: "pscConnectionStatus")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let serviceDirectoryRegistrations = CodingKeys(
+        stringValue: "serviceDirectoryRegistrations")
+      static let serviceLabel = CodingKeys(stringValue: "serviceLabel")
+      static let serviceName = CodingKeys(stringValue: "serviceName")
+      static let sourceIpRanges = CodingKeys(stringValue: "sourceIpRanges")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let target = CodingKeys(stringValue: "target")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "IPAddress",
+        "IPProtocol",
+        "allPorts",
+        "allowGlobalAccess",
+        "allowPscGlobalAccess",
+        "attachedExtensions",
+        "backendService",
+        "baseForwardingRule",
+        "creationTimestamp",
+        "description",
+        "externalManagedBackendBucketMigrationState",
+        "externalManagedBackendBucketMigrationTestingPercentage",
+        "fingerprint",
+        "id",
+        "ipCollection",
+        "ipVersion",
+        "isMirroringCollector",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "loadBalancingScheme",
+        "metadataFilters",
+        "name",
+        "network",
+        "networkTier",
+        "noAutomateDnsZone",
+        "portRange",
+        "ports",
+        "pscConnectionId",
+        "pscConnectionStatus",
+        "region",
+        "selfLink",
+        "selfLinkWithId",
+        "serviceDirectoryRegistrations",
+        "serviceLabel",
+        "serviceName",
+        "sourceIpRanges",
+        "subnetwork",
+        "target",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -529,8 +580,11 @@
         Swift.Bool.self, forKey: .allowGlobalAccess)
       self.allowPscGlobalAccess = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .allowPscGlobalAccess)
-      self.attachedExtensions = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ForwardingRuleAttachedExtension].self, forKey: .attachedExtensions)
+      {
+        self.attachedExtensions = value
+      }
       self.backendService = try container.decodeIfPresent(
         Swift.String.self, forKey: .backendService)
       self.baseForwardingRule = try container.decodeIfPresent(
@@ -568,10 +622,17 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.loadBalancingScheme = try container.decodeIfPresent(
         ForwardingRule.LoadBalancingScheme.self, forKey: .loadBalancingScheme)
-      self.metadataFilters = try container.decode([MetadataFilter].self, forKey: .metadataFilters)
+      if let value = try container.decodeIfPresent([MetadataFilter].self, forKey: .metadataFilters)
+      {
+        self.metadataFilters = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
       self.networkTier = try container.decodeIfPresent(
@@ -579,7 +640,9 @@
       self.noAutomateDnsZone = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .noAutomateDnsZone)
       self.portRange = try container.decodeIfPresent(Swift.String.self, forKey: .portRange)
-      self.ports = try container.decode([Swift.String].self, forKey: .ports)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
+        self.ports = value
+      }
       self.pscConnectionId = try container.decodeIfPresent(
         Swift.UInt64.self, forKey: .pscConnectionId)
       self.pscConnectionStatus = try container.decodeIfPresent(
@@ -588,31 +651,40 @@
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(
         Swift.String.self, forKey: .selfLinkWithId)
-      self.serviceDirectoryRegistrations = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ForwardingRuleServiceDirectoryRegistration].self, forKey: .serviceDirectoryRegistrations)
+      {
+        self.serviceDirectoryRegistrations = value
+      }
       self.serviceLabel = try container.decodeIfPresent(Swift.String.self, forKey: .serviceLabel)
       self.serviceName = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName)
-      self.sourceIpRanges = try container.decode([Swift.String].self, forKey: .sourceIpRanges)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceIpRanges) {
+        self.sourceIpRanges = value
+      }
       self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
       self.target = try container.decodeIfPresent(Swift.String.self, forKey: .target)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.ipaddress, forKey: .ipaddress)
-      try container.encode(self.ipprotocol, forKey: .ipprotocol)
-      try container.encode(self.allPorts, forKey: .allPorts)
-      try container.encode(self.allowGlobalAccess, forKey: .allowGlobalAccess)
-      try container.encode(self.allowPscGlobalAccess, forKey: .allowPscGlobalAccess)
+      try container.encodeIfPresent(self.ipaddress, forKey: .ipaddress)
+      try container.encodeIfPresent(self.ipprotocol, forKey: .ipprotocol)
+      try container.encodeIfPresent(self.allPorts, forKey: .allPorts)
+      try container.encodeIfPresent(self.allowGlobalAccess, forKey: .allowGlobalAccess)
+      try container.encodeIfPresent(self.allowPscGlobalAccess, forKey: .allowPscGlobalAccess)
       try container.encode(self.attachedExtensions, forKey: .attachedExtensions)
-      try container.encode(self.backendService, forKey: .backendService)
-      try container.encode(self.baseForwardingRule, forKey: .baseForwardingRule)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(
+      try container.encodeIfPresent(self.backendService, forKey: .backendService)
+      try container.encodeIfPresent(self.baseForwardingRule, forKey: .baseForwardingRule)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
         self.externalManagedBackendBucketMigrationState,
         forKey: .externalManagedBackendBucketMigrationState)
-      try container.encode(
+      try container.encodeIfPresent(
         self.externalManagedBackendBucketMigrationTestingPercentage,
         forKey: .externalManagedBackendBucketMigrationTestingPercentage)
       if let v = fingerprint {
@@ -620,37 +692,40 @@
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ipCollection, forKey: .ipCollection)
-      try container.encode(self.ipVersion, forKey: .ipVersion)
-      try container.encode(self.isMirroringCollector, forKey: .isMirroringCollector)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ipCollection, forKey: .ipCollection)
+      try container.encodeIfPresent(self.ipVersion, forKey: .ipVersion)
+      try container.encodeIfPresent(self.isMirroringCollector, forKey: .isMirroringCollector)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+      try container.encodeIfPresent(self.loadBalancingScheme, forKey: .loadBalancingScheme)
       try container.encode(self.metadataFilters, forKey: .metadataFilters)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.networkTier, forKey: .networkTier)
-      try container.encode(self.noAutomateDnsZone, forKey: .noAutomateDnsZone)
-      try container.encode(self.portRange, forKey: .portRange)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.networkTier, forKey: .networkTier)
+      try container.encodeIfPresent(self.noAutomateDnsZone, forKey: .noAutomateDnsZone)
+      try container.encodeIfPresent(self.portRange, forKey: .portRange)
       try container.encode(self.ports, forKey: .ports)
-      try container.encode(self.pscConnectionId, forKey: .pscConnectionId)
-      try container.encode(self.pscConnectionStatus, forKey: .pscConnectionStatus)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.pscConnectionId, forKey: .pscConnectionId)
+      try container.encodeIfPresent(self.pscConnectionStatus, forKey: .pscConnectionStatus)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
       try container.encode(
         self.serviceDirectoryRegistrations, forKey: .serviceDirectoryRegistrations)
-      try container.encode(self.serviceLabel, forKey: .serviceLabel)
-      try container.encode(self.serviceName, forKey: .serviceName)
+      try container.encodeIfPresent(self.serviceLabel, forKey: .serviceLabel)
+      try container.encodeIfPresent(self.serviceName, forKey: .serviceName)
       try container.encode(self.sourceIpRanges, forKey: .sourceIpRanges)
-      try container.encode(self.subnetwork, forKey: .subnetwork)
-      try container.encode(self.target, forKey: .target)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      try container.encodeIfPresent(self.target, forKey: .target)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [IPProtocol][google.cloud.compute.v1.ForwardingRule.IPProtocol] field.

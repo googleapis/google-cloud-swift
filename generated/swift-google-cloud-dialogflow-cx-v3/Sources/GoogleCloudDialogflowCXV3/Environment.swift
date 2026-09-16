@@ -59,6 +59,8 @@
     /// The webhook configuration for this environment.
     public var webhookConfig: Environment.WebhookConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Environment`.
     public init() {}
 
@@ -75,6 +77,73 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let versionConfigs = CodingKeys(stringValue: "versionConfigs")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let testCasesConfig = CodingKeys(stringValue: "testCasesConfig")
+      static let webhookConfig = CodingKeys(stringValue: "webhookConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "versionConfigs",
+        "updateTime",
+        "testCasesConfig",
+        "webhookConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Environment.VersionConfig].self, forKey: .versionConfigs)
+      {
+        self.versionConfigs = value
+      }
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.testCasesConfig = try container.decodeIfPresent(
+        Environment.TestCasesConfig.self, forKey: .testCasesConfig)
+      self.webhookConfig = try container.decodeIfPresent(
+        Environment.WebhookConfig.self, forKey: .webhookConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.versionConfigs, forKey: .versionConfigs)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.testCasesConfig, forKey: .testCasesConfig)
+      try container.encodeIfPresent(self.webhookConfig, forKey: .webhookConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Configuration for the version.
     public struct VersionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -87,6 +156,8 @@
       /// Format for tool version:
       /// projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/tools/<ToolID>/versions/<VersionID>.
       public var version: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `VersionConfig`.
       public init() {}
@@ -102,6 +173,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let version = CodingKeys(stringValue: "version")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "version"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+          self.version = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.version, forKey: .version)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -138,6 +241,8 @@
       /// [google.cloud.dialogflow.cx.v3.Environment.TestCasesConfig.test_cases]: <doc:Environment/TestCasesConfig/testCases>
       public var enablePredeploymentRun: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TestCasesConfig`.
       public init() {}
 
@@ -152,6 +257,53 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let testCases = CodingKeys(stringValue: "testCases")
+        static let enableContinuousRun = CodingKeys(stringValue: "enableContinuousRun")
+        static let enablePredeploymentRun = CodingKeys(stringValue: "enablePredeploymentRun")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "testCases",
+          "enableContinuousRun",
+          "enablePredeploymentRun",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .testCases) {
+          self.testCases = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableContinuousRun)
+        {
+          self.enableContinuousRun = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enablePredeploymentRun)
+        {
+          self.enablePredeploymentRun = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.testCases, forKey: .testCases)
+        try container.encode(self.enableContinuousRun, forKey: .enableContinuousRun)
+        try container.encode(self.enablePredeploymentRun, forKey: .enablePredeploymentRun)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -179,6 +331,8 @@
       /// [google.cloud.dialogflow.cx.v3.Webhook.service_directory]: <doc:Webhook/OneOf_Webhook/serviceDirectory(_:)>
       public var webhookOverrides: [Webhook] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `WebhookConfig`.
       public init() {}
 
@@ -193,6 +347,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let webhookOverrides = CodingKeys(stringValue: "webhookOverrides")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "webhookOverrides"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Webhook].self, forKey: .webhookOverrides) {
+          self.webhookOverrides = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.webhookOverrides, forKey: .webhookOverrides)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

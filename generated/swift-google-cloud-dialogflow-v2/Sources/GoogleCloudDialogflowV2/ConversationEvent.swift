@@ -39,6 +39,8 @@
     /// Payload of conversation event.
     public var payload: OneOf_Payload? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationEvent`.
     public init() {}
 
@@ -55,18 +57,36 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case conversation = "conversation"
-      case type = "type"
-      case errorStatus = "errorStatus"
-      case newMessagePayload = "newMessagePayload"
-      case newRecognitionResultPayload = "newRecognitionResultPayload"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversation = CodingKeys(stringValue: "conversation")
+      static let type = CodingKeys(stringValue: "type")
+      static let errorStatus = CodingKeys(stringValue: "errorStatus")
+      static let newMessagePayload = CodingKeys(stringValue: "newMessagePayload")
+      static let newRecognitionResultPayload = CodingKeys(
+        stringValue: "newRecognitionResultPayload")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversation",
+        "type",
+        "errorStatus",
+        "newMessagePayload",
+        "newRecognitionResultPayload",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.conversation = try container.decode(Swift.String.self, forKey: .conversation)
-      self.type = try container.decode(ConversationEvent.Type_.self, forKey: .type)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversation) {
+        self.conversation = value
+      }
+      if let value = try container.decodeIfPresent(ConversationEvent.Type_.self, forKey: .type) {
+        self.type = value
+      }
       self.errorStatus = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .errorStatus)
 
       var payload: OneOf_Payload? = nil
@@ -90,13 +110,17 @@
         try payloadCheckAndSet(.newRecognitionResultPayload(newRecognitionResultPayload))
       }
       self.payload = payload
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.conversation, forKey: .conversation)
       try container.encode(self.type, forKey: .type)
-      try container.encode(self.errorStatus, forKey: .errorStatus)
+      try container.encodeIfPresent(self.errorStatus, forKey: .errorStatus)
 
       if let choice = self.payload {
         switch choice {
@@ -105,6 +129,9 @@
         case .newRecognitionResultPayload(let value):
           try container.encode(value, forKey: .newRecognitionResultPayload)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

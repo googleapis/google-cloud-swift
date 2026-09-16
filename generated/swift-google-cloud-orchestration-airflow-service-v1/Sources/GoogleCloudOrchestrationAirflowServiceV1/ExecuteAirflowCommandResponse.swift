@@ -33,6 +33,8 @@ public struct ExecuteAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT.
   /// Error message. Empty if there was no error.
   public var error: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecuteAirflowCommandResponse`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct ExecuteAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let executionId = CodingKeys(stringValue: "executionId")
+    static let pod = CodingKeys(stringValue: "pod")
+    static let podNamespace = CodingKeys(stringValue: "podNamespace")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "executionId",
+      "pod",
+      "podNamespace",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .executionId) {
+      self.executionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pod) {
+      self.pod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podNamespace) {
+      self.podNamespace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
+      self.error = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.executionId, forKey: .executionId)
+    try container.encode(self.pod, forKey: .pod)
+    try container.encode(self.podNamespace, forKey: .podNamespace)
+    try container.encode(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

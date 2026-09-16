@@ -33,6 +33,8 @@ public struct LogoRecognitionAnnotation: Codable, Equatable, GoogleCloudWKT._Any
   /// multiple instances of the same logo class appearing in one VideoSegment.
   public var segments: [VideoSegment] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogoRecognitionAnnotation`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct LogoRecognitionAnnotation: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entity = CodingKeys(stringValue: "entity")
+    static let tracks = CodingKeys(stringValue: "tracks")
+    static let segments = CodingKeys(stringValue: "segments")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entity",
+      "tracks",
+      "segments",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.entity = try container.decodeIfPresent(Entity.self, forKey: .entity)
+    if let value = try container.decodeIfPresent([Track].self, forKey: .tracks) {
+      self.tracks = value
+    }
+    if let value = try container.decodeIfPresent([VideoSegment].self, forKey: .segments) {
+      self.segments = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.entity, forKey: .entity)
+    try container.encode(self.tracks, forKey: .tracks)
+    try container.encode(self.segments, forKey: .segments)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -33,6 +33,8 @@ public struct Symptom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A string used to uniquely distinguish a worker within a TPU node.
   public var workerId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Symptom`.
   public init() {}
 
@@ -47,6 +49,55 @@ public struct Symptom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let symptomType = CodingKeys(stringValue: "symptomType")
+    static let details = CodingKeys(stringValue: "details")
+    static let workerId = CodingKeys(stringValue: "workerId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "symptomType",
+      "details",
+      "workerId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Symptom.SymptomType.self, forKey: .symptomType) {
+      self.symptomType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+      self.details = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerId) {
+      self.workerId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.symptomType, forKey: .symptomType)
+    try container.encode(self.details, forKey: .details)
+    try container.encode(self.workerId, forKey: .workerId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// SymptomType represents the different types of Symptoms that a TPU can be

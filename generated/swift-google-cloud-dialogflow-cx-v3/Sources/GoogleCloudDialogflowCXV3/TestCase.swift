@@ -56,6 +56,8 @@
     /// The latest test result.
     public var lastTestResult: TestCaseResult? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TestCase`.
     public init() {}
 
@@ -70,6 +72,78 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let notes = CodingKeys(stringValue: "notes")
+      static let testConfig = CodingKeys(stringValue: "testConfig")
+      static let testCaseConversationTurns = CodingKeys(stringValue: "testCaseConversationTurns")
+      static let creationTime = CodingKeys(stringValue: "creationTime")
+      static let lastTestResult = CodingKeys(stringValue: "lastTestResult")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "tags",
+        "displayName",
+        "notes",
+        "testConfig",
+        "testCaseConversationTurns",
+        "creationTime",
+        "lastTestResult",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+        self.tags = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .notes) {
+        self.notes = value
+      }
+      self.testConfig = try container.decodeIfPresent(TestConfig.self, forKey: .testConfig)
+      if let value = try container.decodeIfPresent(
+        [ConversationTurn].self, forKey: .testCaseConversationTurns)
+      {
+        self.testCaseConversationTurns = value
+      }
+      self.creationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .creationTime)
+      self.lastTestResult = try container.decodeIfPresent(
+        TestCaseResult.self, forKey: .lastTestResult)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.tags, forKey: .tags)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.notes, forKey: .notes)
+      try container.encodeIfPresent(self.testConfig, forKey: .testConfig)
+      try container.encode(self.testCaseConversationTurns, forKey: .testCaseConversationTurns)
+      try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+      try container.encodeIfPresent(self.lastTestResult, forKey: .lastTestResult)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

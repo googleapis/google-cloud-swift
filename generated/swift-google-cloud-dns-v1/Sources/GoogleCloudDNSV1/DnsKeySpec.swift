@@ -32,6 +32,8 @@ public struct DnsKeySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var kind: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DnsKeySpec`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct DnsKeySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+    static let keyLength = CodingKeys(stringValue: "keyLength")
+    static let keyType = CodingKeys(stringValue: "keyType")
+    static let kind = CodingKeys(stringValue: "kind")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "algorithm",
+      "keyLength",
+      "keyType",
+      "kind",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.algorithm = try container.decodeIfPresent(DnsKeySpec.Algorithm.self, forKey: .algorithm)
+    self.keyLength = try container.decodeIfPresent(Swift.UInt32.self, forKey: .keyLength)
+    self.keyType = try container.decodeIfPresent(DnsKeySpec.KeyType.self, forKey: .keyType)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.algorithm, forKey: .algorithm)
+    try container.encodeIfPresent(self.keyLength, forKey: .keyLength)
+    try container.encodeIfPresent(self.keyType, forKey: .keyType)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [algorithm][.DnsKeySpec.algorithm] field.

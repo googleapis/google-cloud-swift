@@ -54,6 +54,8 @@
     /// The output response.
     public var response: OneOf_Response? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamingDetectIntentResponse`.
     public init() {}
 
@@ -70,10 +72,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case recognitionResult = "recognitionResult"
-      case detectIntentResponse = "detectIntentResponse"
-      case debuggingInfo = "debuggingInfo"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let recognitionResult = CodingKeys(stringValue: "recognitionResult")
+      static let detectIntentResponse = CodingKeys(stringValue: "detectIntentResponse")
+      static let debuggingInfo = CodingKeys(stringValue: "debuggingInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "recognitionResult",
+        "detectIntentResponse",
+        "debuggingInfo",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -102,11 +115,15 @@
         try responseCheckAndSet(.detectIntentResponse(detectIntentResponse))
       }
       self.response = response
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.debuggingInfo, forKey: .debuggingInfo)
+      try container.encodeIfPresent(self.debuggingInfo, forKey: .debuggingInfo)
 
       if let choice = self.response {
         switch choice {
@@ -115,6 +132,9 @@
         case .detectIntentResponse(let value):
           try container.encode(value, forKey: .detectIntentResponse)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -39,6 +39,8 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Currently supported event types: push, pull_request.
   public var event: OneOf_Event? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubEventsConfig`.
   public init() {}
 
@@ -55,19 +57,38 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case installationId = "installationId"
-    case owner = "owner"
-    case name = "name"
-    case pullRequest = "pullRequest"
-    case push = "push"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let installationId = CodingKeys(stringValue: "installationId")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let name = CodingKeys(stringValue: "name")
+    static let pullRequest = CodingKeys(stringValue: "pullRequest")
+    static let push = CodingKeys(stringValue: "push")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "installationId",
+      "owner",
+      "name",
+      "pullRequest",
+      "push",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.installationId = try container.decode(Swift.Int64.self, forKey: .installationId)
-    self.owner = try container.decode(Swift.String.self, forKey: .owner)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .installationId) {
+      self.installationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .owner) {
+      self.owner = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var event: OneOf_Event? = nil
     let eventCheckAndSet = {
@@ -88,6 +109,10 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try eventCheckAndSet(.push(push))
     }
     self.event = event
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -103,6 +128,9 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .push(let value):
         try container.encode(value, forKey: .push)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

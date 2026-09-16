@@ -30,6 +30,8 @@ public struct NotificationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Notification Event.
   public var event: OneOf_Event? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NotificationMessage`.
   public init() {}
 
@@ -46,16 +48,29 @@ public struct NotificationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case notificationConfigName = "notificationConfigName"
-    case finding = "finding"
-    case resource = "resource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let notificationConfigName = CodingKeys(stringValue: "notificationConfigName")
+    static let finding = CodingKeys(stringValue: "finding")
+    static let resource = CodingKeys(stringValue: "resource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "notificationConfigName",
+      "finding",
+      "resource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.notificationConfigName = try container.decode(
-      Swift.String.self, forKey: .notificationConfigName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .notificationConfigName)
+    {
+      self.notificationConfigName = value
+    }
     self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
 
     var event: OneOf_Event? = nil
@@ -72,18 +87,25 @@ public struct NotificationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try eventCheckAndSet(.finding(finding))
     }
     self.event = event
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.notificationConfigName, forKey: .notificationConfigName)
-    try container.encode(self.resource, forKey: .resource)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
 
     if let choice = self.event {
       switch choice {
       case .finding(let value):
         try container.encode(value, forKey: .finding)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

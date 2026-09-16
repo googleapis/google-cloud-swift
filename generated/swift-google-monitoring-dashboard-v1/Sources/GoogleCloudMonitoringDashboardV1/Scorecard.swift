@@ -70,6 +70,8 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// neither is included - then a default scorecard is shown.
   public var dataView: OneOf_DataView? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Scorecard`.
   public init() {}
 
@@ -86,19 +88,34 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case timeSeriesQuery = "timeSeriesQuery"
-    case gaugeView = "gaugeView"
-    case sparkChartView = "sparkChartView"
-    case blankView = "blankView"
-    case thresholds = "thresholds"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeSeriesQuery = CodingKeys(stringValue: "timeSeriesQuery")
+    static let gaugeView = CodingKeys(stringValue: "gaugeView")
+    static let sparkChartView = CodingKeys(stringValue: "sparkChartView")
+    static let blankView = CodingKeys(stringValue: "blankView")
+    static let thresholds = CodingKeys(stringValue: "thresholds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeSeriesQuery",
+      "gaugeView",
+      "sparkChartView",
+      "blankView",
+      "thresholds",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.timeSeriesQuery = try container.decodeIfPresent(
       TimeSeriesQuery.self, forKey: .timeSeriesQuery)
-    self.thresholds = try container.decode([Threshold].self, forKey: .thresholds)
+    if let value = try container.decodeIfPresent([Threshold].self, forKey: .thresholds) {
+      self.thresholds = value
+    }
 
     var dataView: OneOf_DataView? = nil
     let dataViewCheckAndSet = {
@@ -124,11 +141,15 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataViewCheckAndSet(.blankView(blankView))
     }
     self.dataView = dataView
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.timeSeriesQuery, forKey: .timeSeriesQuery)
+    try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
     try container.encode(self.thresholds, forKey: .thresholds)
 
     if let choice = self.dataView {
@@ -140,6 +161,9 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .blankView(let value):
         try container.encode(value, forKey: .blankView)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -157,6 +181,8 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// always be less than or equal to this.
     public var upperBound: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GaugeView`.
     public init() {}
 
@@ -171,6 +197,44 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lowerBound = CodingKeys(stringValue: "lowerBound")
+      static let upperBound = CodingKeys(stringValue: "upperBound")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lowerBound",
+        "upperBound",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .lowerBound) {
+        self.lowerBound = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .upperBound) {
+        self.upperBound = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lowerBound, forKey: .lowerBound)
+      try container.encode(self.upperBound, forKey: .upperBound)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -201,6 +265,8 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// optional and exists only as a hint.
     public var minAlignmentPeriod: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SparkChartView`.
     public init() {}
 
@@ -215,6 +281,43 @@ public struct Scorecard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sparkChartType = CodingKeys(stringValue: "sparkChartType")
+      static let minAlignmentPeriod = CodingKeys(stringValue: "minAlignmentPeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sparkChartType",
+        "minAlignmentPeriod",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(SparkChartType.self, forKey: .sparkChartType) {
+        self.sparkChartType = value
+      }
+      self.minAlignmentPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minAlignmentPeriod)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sparkChartType, forKey: .sparkChartType)
+      try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

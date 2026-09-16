@@ -86,6 +86,8 @@
     /// Balancing](https://cloud.google.com/load-balancing/docs/internal#tracking-mode).
     public var trackingMode: BackendServiceConnectionTrackingPolicy.TrackingMode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceConnectionTrackingPolicy`.
     public init() {}
 
@@ -100,6 +102,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let connectionPersistenceOnUnhealthyBackends = CodingKeys(
+        stringValue: "connectionPersistenceOnUnhealthyBackends")
+      static let enableStrongAffinity = CodingKeys(stringValue: "enableStrongAffinity")
+      static let idleTimeoutSec = CodingKeys(stringValue: "idleTimeoutSec")
+      static let trackingMode = CodingKeys(stringValue: "trackingMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "connectionPersistenceOnUnhealthyBackends",
+        "enableStrongAffinity",
+        "idleTimeoutSec",
+        "trackingMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.connectionPersistenceOnUnhealthyBackends = try container.decodeIfPresent(
+        BackendServiceConnectionTrackingPolicy.ConnectionPersistenceOnUnhealthyBackends.self,
+        forKey: .connectionPersistenceOnUnhealthyBackends)
+      self.enableStrongAffinity = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableStrongAffinity)
+      self.idleTimeoutSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .idleTimeoutSec)
+      self.trackingMode = try container.decodeIfPresent(
+        BackendServiceConnectionTrackingPolicy.TrackingMode.self, forKey: .trackingMode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.connectionPersistenceOnUnhealthyBackends,
+        forKey: .connectionPersistenceOnUnhealthyBackends)
+      try container.encodeIfPresent(self.enableStrongAffinity, forKey: .enableStrongAffinity)
+      try container.encodeIfPresent(self.idleTimeoutSec, forKey: .idleTimeoutSec)
+      try container.encodeIfPresent(self.trackingMode, forKey: .trackingMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [connectionPersistenceOnUnhealthyBackends][google.cloud.compute.v1.BackendServiceConnectionTrackingPolicy.connectionPersistenceOnUnhealthyBackends] field.

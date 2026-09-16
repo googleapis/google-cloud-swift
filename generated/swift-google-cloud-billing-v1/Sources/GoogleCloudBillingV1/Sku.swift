@@ -51,6 +51,8 @@ public struct Sku: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The geographic taxonomy for this sku.
   public var geoTaxonomy: GeoTaxonomy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Sku`.
   public init() {}
 
@@ -65,6 +67,76 @@ public struct Sku: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let skuId = CodingKeys(stringValue: "skuId")
+    static let description = CodingKeys(stringValue: "description")
+    static let category = CodingKeys(stringValue: "category")
+    static let serviceRegions = CodingKeys(stringValue: "serviceRegions")
+    static let pricingInfo = CodingKeys(stringValue: "pricingInfo")
+    static let serviceProviderName = CodingKeys(stringValue: "serviceProviderName")
+    static let geoTaxonomy = CodingKeys(stringValue: "geoTaxonomy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "skuId",
+      "description",
+      "category",
+      "serviceRegions",
+      "pricingInfo",
+      "serviceProviderName",
+      "geoTaxonomy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skuId) {
+      self.skuId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.category = try container.decodeIfPresent(Category.self, forKey: .category)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serviceRegions) {
+      self.serviceRegions = value
+    }
+    if let value = try container.decodeIfPresent([PricingInfo].self, forKey: .pricingInfo) {
+      self.pricingInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceProviderName) {
+      self.serviceProviderName = value
+    }
+    self.geoTaxonomy = try container.decodeIfPresent(GeoTaxonomy.self, forKey: .geoTaxonomy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.skuId, forKey: .skuId)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.category, forKey: .category)
+    try container.encode(self.serviceRegions, forKey: .serviceRegions)
+    try container.encode(self.pricingInfo, forKey: .pricingInfo)
+    try container.encode(self.serviceProviderName, forKey: .serviceProviderName)
+    try container.encodeIfPresent(self.geoTaxonomy, forKey: .geoTaxonomy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@ public struct ResourceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Maximum amount of the resource in the cluster.
   public var maximum: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceLimit`.
   public init() {}
 
@@ -45,6 +47,50 @@ public struct ResourceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let minimum = CodingKeys(stringValue: "minimum")
+    static let maximum = CodingKeys(stringValue: "maximum")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceType",
+      "minimum",
+      "maximum",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minimum) {
+      self.minimum = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maximum) {
+      self.maximum = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.minimum, forKey: .minimum)
+    try container.encode(self.maximum, forKey: .maximum)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

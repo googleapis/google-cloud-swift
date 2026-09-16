@@ -48,6 +48,8 @@ public struct ImageSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// precedence.
   public var imageUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageSource`.
   public init() {}
 
@@ -62,6 +64,44 @@ public struct ImageSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsImageUri = CodingKeys(stringValue: "gcsImageUri")
+    static let imageUri = CodingKeys(stringValue: "imageUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsImageUri",
+      "imageUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsImageUri) {
+      self.gcsImageUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+      self.imageUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gcsImageUri, forKey: .gcsImageUri)
+    try container.encode(self.imageUri, forKey: .imageUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@ public struct UpdateApiOperationRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// Required. The list of fields to update.
   public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateApiOperationRequest`.
   public init() {}
 
@@ -49,6 +51,41 @@ public struct UpdateApiOperationRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let apiOperation = CodingKeys(stringValue: "apiOperation")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "apiOperation",
+      "updateMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.apiOperation = try container.decodeIfPresent(ApiOperation.self, forKey: .apiOperation)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.apiOperation, forKey: .apiOperation)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

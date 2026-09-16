@@ -24,6 +24,8 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Notification config for Pub/Sub.
   public var pubsub: NotificationConfig.PubSub? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NotificationConfig`.
   public init() {}
 
@@ -38,6 +40,36 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pubsub = CodingKeys(stringValue: "pubsub")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pubsub"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.pubsub = try container.decodeIfPresent(NotificationConfig.PubSub.self, forKey: .pubsub)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.pubsub, forKey: .pubsub)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Pub/Sub specific notification config.
@@ -56,6 +88,8 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// types will be sent
     public var filter: NotificationConfig.Filter? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PubSub`.
     public init() {}
 
@@ -70,6 +104,48 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let topic = CodingKeys(stringValue: "topic")
+      static let filter = CodingKeys(stringValue: "filter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "topic",
+        "filter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .topic) {
+        self.topic = value
+      }
+      self.filter = try container.decodeIfPresent(NotificationConfig.Filter.self, forKey: .filter)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      try container.encode(self.topic, forKey: .topic)
+      try container.encodeIfPresent(self.filter, forKey: .filter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -93,6 +169,8 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Event types to allowlist.
     public var eventType: [NotificationConfig.EventType] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Filter`.
     public init() {}
 
@@ -107,6 +185,40 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eventType = CodingKeys(stringValue: "eventType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eventType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [NotificationConfig.EventType].self, forKey: .eventType)
+      {
+        self.eventType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.eventType, forKey: .eventType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

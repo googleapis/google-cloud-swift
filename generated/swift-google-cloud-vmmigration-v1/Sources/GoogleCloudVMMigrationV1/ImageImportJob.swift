@@ -55,6 +55,8 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the image import.
   public var targetDetails: OneOf_TargetDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageImportJob`.
   public init() {}
 
@@ -71,31 +73,62 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudStorageUri = "cloudStorageUri"
-    case diskImageTargetDetails = "diskImageTargetDetails"
-    case machineImageTargetDetails = "machineImageTargetDetails"
-    case name = "name"
-    case createdResources = "createdResources"
-    case state = "state"
-    case createTime = "createTime"
-    case endTime = "endTime"
-    case errors = "errors"
-    case warnings = "warnings"
-    case steps = "steps"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudStorageUri = CodingKeys(stringValue: "cloudStorageUri")
+    static let diskImageTargetDetails = CodingKeys(stringValue: "diskImageTargetDetails")
+    static let machineImageTargetDetails = CodingKeys(stringValue: "machineImageTargetDetails")
+    static let name = CodingKeys(stringValue: "name")
+    static let createdResources = CodingKeys(stringValue: "createdResources")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let warnings = CodingKeys(stringValue: "warnings")
+    static let steps = CodingKeys(stringValue: "steps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudStorageUri",
+      "diskImageTargetDetails",
+      "machineImageTargetDetails",
+      "name",
+      "createdResources",
+      "state",
+      "createTime",
+      "endTime",
+      "errors",
+      "warnings",
+      "steps",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.createdResources = try container.decode([Swift.String].self, forKey: .createdResources)
-    self.state = try container.decode(ImageImportJob.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .createdResources) {
+      self.createdResources = value
+    }
+    if let value = try container.decodeIfPresent(ImageImportJob.State.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.errors = try container.decode([GoogleRpc.Status].self, forKey: .errors)
-    self.warnings = try container.decode([MigrationWarning].self, forKey: .warnings)
-    self.steps = try container.decode([ImageImportStep].self, forKey: .steps)
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
+      self.errors = value
+    }
+    if let value = try container.decodeIfPresent([MigrationWarning].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    if let value = try container.decodeIfPresent([ImageImportStep].self, forKey: .steps) {
+      self.steps = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -135,6 +168,10 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try targetDetailsCheckAndSet(.machineImageTargetDetails(machineImageTargetDetails))
     }
     self.targetDetails = targetDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -142,8 +179,8 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.createdResources, forKey: .createdResources)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.errors, forKey: .errors)
     try container.encode(self.warnings, forKey: .warnings)
     try container.encode(self.steps, forKey: .steps)
@@ -162,6 +199,9 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .machineImageTargetDetails(let value):
         try container.encode(value, forKey: .machineImageTargetDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

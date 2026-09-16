@@ -27,6 +27,8 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// and client verification and no TLS encryption.
   public var encryptionSetting: OneOf_EncryptionSetting? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostgresqlSslConfig`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case serverVerification = "serverVerification"
-    case serverAndClientVerification = "serverAndClientVerification"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serverVerification = CodingKeys(stringValue: "serverVerification")
+    static let serverAndClientVerification = CodingKeys(stringValue: "serverAndClientVerification")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serverVerification",
+      "serverAndClientVerification",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,6 +84,10 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try encryptionSettingCheckAndSet(.serverAndClientVerification(serverAndClientVerification))
     }
     self.encryptionSetting = encryptionSetting
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +100,9 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .serverAndClientVerification(let value):
         try container.encode(value, forKey: .serverAndClientVerification)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -101,6 +120,8 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// server certificate is not validated.
     public var serverCertificateHostname: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServerVerification`.
     public init() {}
 
@@ -115,6 +136,46 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caCertificate = CodingKeys(stringValue: "caCertificate")
+      static let serverCertificateHostname = CodingKeys(stringValue: "serverCertificateHostname")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caCertificate",
+        "serverCertificateHostname",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+        self.caCertificate = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serverCertificateHostname)
+      {
+        self.serverCertificateHostname = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caCertificate, forKey: .caCertificate)
+      try container.encode(self.serverCertificateHostname, forKey: .serverCertificateHostname)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -157,6 +218,8 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// server certificate is not validated.
     public var serverCertificateHostname: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServerAndClientVerification`.
     public init() {}
 
@@ -171,6 +234,58 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+      static let caCertificate = CodingKeys(stringValue: "caCertificate")
+      static let serverCertificateHostname = CodingKeys(stringValue: "serverCertificateHostname")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientCertificate",
+        "clientKey",
+        "caCertificate",
+        "serverCertificateHostname",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+        self.clientCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+        self.clientKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+        self.caCertificate = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serverCertificateHostname)
+      {
+        self.serverCertificateHostname = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clientCertificate, forKey: .clientCertificate)
+      try container.encode(self.clientKey, forKey: .clientKey)
+      try container.encode(self.caCertificate, forKey: .caCertificate)
+      try container.encode(self.serverCertificateHostname, forKey: .serverCertificateHostname)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

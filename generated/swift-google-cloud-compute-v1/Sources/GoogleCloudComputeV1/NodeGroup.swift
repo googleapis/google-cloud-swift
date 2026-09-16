@@ -95,6 +95,8 @@
     /// such as us-central1-a.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeGroup`.
     public init() {}
 
@@ -111,24 +113,49 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case autoscalingPolicy = "autoscalingPolicy"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case locationHint = "locationHint"
-      case maintenanceInterval = "maintenanceInterval"
-      case maintenancePolicy = "maintenancePolicy"
-      case maintenanceWindow = "maintenanceWindow"
-      case name = "name"
-      case nodeTemplate = "nodeTemplate"
-      case selfLink = "selfLink"
-      case shareSettings = "shareSettings"
-      case size = "size"
-      case status = "status"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoscalingPolicy = CodingKeys(stringValue: "autoscalingPolicy")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let locationHint = CodingKeys(stringValue: "locationHint")
+      static let maintenanceInterval = CodingKeys(stringValue: "maintenanceInterval")
+      static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+      static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+      static let name = CodingKeys(stringValue: "name")
+      static let nodeTemplate = CodingKeys(stringValue: "nodeTemplate")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let shareSettings = CodingKeys(stringValue: "shareSettings")
+      static let size = CodingKeys(stringValue: "size")
+      static let status = CodingKeys(stringValue: "status")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoscalingPolicy",
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "id",
+        "kind",
+        "locationHint",
+        "maintenanceInterval",
+        "maintenancePolicy",
+        "maintenanceWindow",
+        "name",
+        "nodeTemplate",
+        "selfLink",
+        "shareSettings",
+        "size",
+        "status",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -163,31 +190,38 @@
       self.size = try container.decodeIfPresent(Swift.Int32.self, forKey: .size)
       self.status = try container.decodeIfPresent(NodeGroup.Status.self, forKey: .status)
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.autoscalingPolicy, forKey: .autoscalingPolicy)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.autoscalingPolicy, forKey: .autoscalingPolicy)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.locationHint, forKey: .locationHint)
-      try container.encode(self.maintenanceInterval, forKey: .maintenanceInterval)
-      try container.encode(self.maintenancePolicy, forKey: .maintenancePolicy)
-      try container.encode(self.maintenanceWindow, forKey: .maintenanceWindow)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.nodeTemplate, forKey: .nodeTemplate)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.shareSettings, forKey: .shareSettings)
-      try container.encode(self.size, forKey: .size)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.locationHint, forKey: .locationHint)
+      try container.encodeIfPresent(self.maintenanceInterval, forKey: .maintenanceInterval)
+      try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+      try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.nodeTemplate, forKey: .nodeTemplate)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.shareSettings, forKey: .shareSettings)
+      try container.encodeIfPresent(self.size, forKey: .size)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [maintenanceInterval][google.cloud.compute.v1.NodeGroup.maintenanceInterval] field.

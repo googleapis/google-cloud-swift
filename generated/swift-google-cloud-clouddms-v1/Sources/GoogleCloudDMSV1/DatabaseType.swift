@@ -27,6 +27,8 @@ public struct DatabaseType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The database engine.
   public var engine: DatabaseEngine = DatabaseEngine()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseType`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct DatabaseType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let provider = CodingKeys(stringValue: "provider")
+    static let engine = CodingKeys(stringValue: "engine")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "provider",
+      "engine",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DatabaseProvider.self, forKey: .provider) {
+      self.provider = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEngine.self, forKey: .engine) {
+      self.engine = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.provider, forKey: .provider)
+    try container.encode(self.engine, forKey: .engine)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

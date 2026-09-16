@@ -94,6 +94,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the `Job.config` is populated by the `JobTemplate.config`.<br>
   public var jobConfig: OneOf_JobConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -110,44 +112,91 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case inputUri = "inputUri"
-    case outputUri = "outputUri"
-    case templateId = "templateId"
-    case config = "config"
-    case state = "state"
-    case createTime = "createTime"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case ttlAfterCompletionDays = "ttlAfterCompletionDays"
-    case labels = "labels"
-    case error = "error"
-    case mode = "mode"
-    case batchModePriority = "batchModePriority"
-    case optimization = "optimization"
-    case fillContentGaps = "fillContentGaps"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let inputUri = CodingKeys(stringValue: "inputUri")
+    static let outputUri = CodingKeys(stringValue: "outputUri")
+    static let templateId = CodingKeys(stringValue: "templateId")
+    static let config = CodingKeys(stringValue: "config")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let ttlAfterCompletionDays = CodingKeys(stringValue: "ttlAfterCompletionDays")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let error = CodingKeys(stringValue: "error")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let batchModePriority = CodingKeys(stringValue: "batchModePriority")
+    static let optimization = CodingKeys(stringValue: "optimization")
+    static let fillContentGaps = CodingKeys(stringValue: "fillContentGaps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "inputUri",
+      "outputUri",
+      "templateId",
+      "config",
+      "state",
+      "createTime",
+      "startTime",
+      "endTime",
+      "ttlAfterCompletionDays",
+      "labels",
+      "error",
+      "mode",
+      "batchModePriority",
+      "optimization",
+      "fillContentGaps",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.inputUri = try container.decode(Swift.String.self, forKey: .inputUri)
-    self.outputUri = try container.decode(Swift.String.self, forKey: .outputUri)
-    self.state = try container.decode(Job.ProcessingState.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputUri) {
+      self.inputUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+      self.outputUri = value
+    }
+    if let value = try container.decodeIfPresent(Job.ProcessingState.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.ttlAfterCompletionDays = try container.decode(
-      Swift.Int32.self, forKey: .ttlAfterCompletionDays)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ttlAfterCompletionDays)
+    {
+      self.ttlAfterCompletionDays = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.mode = try container.decode(Job.ProcessingMode.self, forKey: .mode)
-    self.batchModePriority = try container.decode(Swift.Int32.self, forKey: .batchModePriority)
-    self.optimization = try container.decode(Job.OptimizationStrategy.self, forKey: .optimization)
-    self.fillContentGaps = try container.decode(Swift.Bool.self, forKey: .fillContentGaps)
+    if let value = try container.decodeIfPresent(Job.ProcessingMode.self, forKey: .mode) {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .batchModePriority) {
+      self.batchModePriority = value
+    }
+    if let value = try container.decodeIfPresent(
+      Job.OptimizationStrategy.self, forKey: .optimization)
+    {
+      self.optimization = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fillContentGaps) {
+      self.fillContentGaps = value
+    }
 
     var jobConfig: OneOf_JobConfig? = nil
     let jobConfigCheckAndSet = {
@@ -166,6 +215,10 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobConfigCheckAndSet(.config(config))
     }
     self.jobConfig = jobConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -174,12 +227,12 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.inputUri, forKey: .inputUri)
     try container.encode(self.outputUri, forKey: .outputUri)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.ttlAfterCompletionDays, forKey: .ttlAfterCompletionDays)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.mode, forKey: .mode)
     try container.encode(self.batchModePriority, forKey: .batchModePriority)
     try container.encode(self.optimization, forKey: .optimization)
@@ -192,6 +245,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .config(let value):
         try container.encode(value, forKey: .config)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

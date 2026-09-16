@@ -42,6 +42,8 @@ public struct DiskPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Sub-partitions.
   public var subPartitions: GoogleCloudWKT.Recursive<DiskPartitionList>? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskPartition`.
   public init() {}
 
@@ -56,6 +58,73 @@ public struct DiskPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let fileSystem = CodingKeys(stringValue: "fileSystem")
+    static let mountPoint = CodingKeys(stringValue: "mountPoint")
+    static let capacityBytes = CodingKeys(stringValue: "capacityBytes")
+    static let freeBytes = CodingKeys(stringValue: "freeBytes")
+    static let uuid = CodingKeys(stringValue: "uuid")
+    static let subPartitions = CodingKeys(stringValue: "subPartitions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "fileSystem",
+      "mountPoint",
+      "capacityBytes",
+      "freeBytes",
+      "uuid",
+      "subPartitions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileSystem) {
+      self.fileSystem = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountPoint) {
+      self.mountPoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityBytes) {
+      self.capacityBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .freeBytes) {
+      self.freeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+      self.uuid = value
+    }
+    self.subPartitions = try container.decodeIfPresent(
+      GoogleCloudWKT.Recursive<DiskPartitionList>.self, forKey: .subPartitions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.fileSystem, forKey: .fileSystem)
+    try container.encode(self.mountPoint, forKey: .mountPoint)
+    try container.encode(self.capacityBytes, forKey: .capacityBytes)
+    try container.encode(self.freeBytes, forKey: .freeBytes)
+    try container.encode(self.uuid, forKey: .uuid)
+    try container.encodeIfPresent(self.subPartitions, forKey: .subPartitions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -216,6 +216,8 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// maintenance exclusion options.
   public var maintenancePolicy: NodePool.NodePoolMaintenancePolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateNodePoolRequest`.
   public init() {}
 
@@ -230,6 +232,244 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let clusterId = CodingKeys(stringValue: "clusterId")
+    static let nodePoolId = CodingKeys(stringValue: "nodePoolId")
+    static let nodeVersion = CodingKeys(stringValue: "nodeVersion")
+    static let imageType = CodingKeys(stringValue: "imageType")
+    static let name = CodingKeys(stringValue: "name")
+    static let image = CodingKeys(stringValue: "image")
+    static let imageProject = CodingKeys(stringValue: "imageProject")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let workloadMetadataConfig = CodingKeys(stringValue: "workloadMetadataConfig")
+    static let upgradeSettings = CodingKeys(stringValue: "upgradeSettings")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let taints = CodingKeys(stringValue: "taints")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let linuxNodeConfig = CodingKeys(stringValue: "linuxNodeConfig")
+    static let kubeletConfig = CodingKeys(stringValue: "kubeletConfig")
+    static let nodeNetworkConfig = CodingKeys(stringValue: "nodeNetworkConfig")
+    static let gcfsConfig = CodingKeys(stringValue: "gcfsConfig")
+    static let confidentialNodes = CodingKeys(stringValue: "confidentialNodes")
+    static let gvnic = CodingKeys(stringValue: "gvnic")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let fastSocket = CodingKeys(stringValue: "fastSocket")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let resourceLabels = CodingKeys(stringValue: "resourceLabels")
+    static let windowsNodeConfig = CodingKeys(stringValue: "windowsNodeConfig")
+    static let accelerators = CodingKeys(stringValue: "accelerators")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+    static let containerdConfig = CodingKeys(stringValue: "containerdConfig")
+    static let queuedProvisioning = CodingKeys(stringValue: "queuedProvisioning")
+    static let storagePools = CodingKeys(stringValue: "storagePools")
+    static let maxRunDuration = CodingKeys(stringValue: "maxRunDuration")
+    static let flexStart = CodingKeys(stringValue: "flexStart")
+    static let bootDisk = CodingKeys(stringValue: "bootDisk")
+    static let nodeDrainConfig = CodingKeys(stringValue: "nodeDrainConfig")
+    static let consolidationDelay = CodingKeys(stringValue: "consolidationDelay")
+    static let taintConfig = CodingKeys(stringValue: "taintConfig")
+    static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "zone",
+      "clusterId",
+      "nodePoolId",
+      "nodeVersion",
+      "imageType",
+      "name",
+      "image",
+      "imageProject",
+      "locations",
+      "workloadMetadataConfig",
+      "upgradeSettings",
+      "tags",
+      "taints",
+      "labels",
+      "linuxNodeConfig",
+      "kubeletConfig",
+      "nodeNetworkConfig",
+      "gcfsConfig",
+      "confidentialNodes",
+      "gvnic",
+      "etag",
+      "fastSocket",
+      "loggingConfig",
+      "resourceLabels",
+      "windowsNodeConfig",
+      "accelerators",
+      "machineType",
+      "diskType",
+      "diskSizeGb",
+      "resourceManagerTags",
+      "containerdConfig",
+      "queuedProvisioning",
+      "storagePools",
+      "maxRunDuration",
+      "flexStart",
+      "bootDisk",
+      "nodeDrainConfig",
+      "consolidationDelay",
+      "taintConfig",
+      "maintenancePolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterId) {
+      self.clusterId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodePoolId) {
+      self.nodePoolId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeVersion) {
+      self.nodeVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageType) {
+      self.imageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .image) {
+      self.image = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageProject) {
+      self.imageProject = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    self.workloadMetadataConfig = try container.decodeIfPresent(
+      WorkloadMetadataConfig.self, forKey: .workloadMetadataConfig)
+    self.upgradeSettings = try container.decodeIfPresent(
+      NodePool.UpgradeSettings.self, forKey: .upgradeSettings)
+    self.tags = try container.decodeIfPresent(NetworkTags.self, forKey: .tags)
+    self.taints = try container.decodeIfPresent(NodeTaints.self, forKey: .taints)
+    self.labels = try container.decodeIfPresent(NodeLabels.self, forKey: .labels)
+    self.linuxNodeConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.self, forKey: .linuxNodeConfig)
+    self.kubeletConfig = try container.decodeIfPresent(
+      NodeKubeletConfig.self, forKey: .kubeletConfig)
+    self.nodeNetworkConfig = try container.decodeIfPresent(
+      NodeNetworkConfig.self, forKey: .nodeNetworkConfig)
+    self.gcfsConfig = try container.decodeIfPresent(GcfsConfig.self, forKey: .gcfsConfig)
+    self.confidentialNodes = try container.decodeIfPresent(
+      ConfidentialNodes.self, forKey: .confidentialNodes)
+    self.gvnic = try container.decodeIfPresent(VirtualNIC.self, forKey: .gvnic)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.fastSocket = try container.decodeIfPresent(FastSocket.self, forKey: .fastSocket)
+    self.loggingConfig = try container.decodeIfPresent(
+      NodePoolLoggingConfig.self, forKey: .loggingConfig)
+    self.resourceLabels = try container.decodeIfPresent(
+      ResourceLabels.self, forKey: .resourceLabels)
+    self.windowsNodeConfig = try container.decodeIfPresent(
+      WindowsNodeConfig.self, forKey: .windowsNodeConfig)
+    if let value = try container.decodeIfPresent([AcceleratorConfig].self, forKey: .accelerators) {
+      self.accelerators = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    self.resourceManagerTags = try container.decodeIfPresent(
+      ResourceManagerTags.self, forKey: .resourceManagerTags)
+    self.containerdConfig = try container.decodeIfPresent(
+      ContainerdConfig.self, forKey: .containerdConfig)
+    self.queuedProvisioning = try container.decodeIfPresent(
+      NodePool.QueuedProvisioning.self, forKey: .queuedProvisioning)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .storagePools) {
+      self.storagePools = value
+    }
+    self.maxRunDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxRunDuration)
+    self.flexStart = try container.decodeIfPresent(Swift.Bool.self, forKey: .flexStart)
+    self.bootDisk = try container.decodeIfPresent(BootDisk.self, forKey: .bootDisk)
+    self.nodeDrainConfig = try container.decodeIfPresent(
+      NodePool.NodeDrainConfig.self, forKey: .nodeDrainConfig)
+    self.consolidationDelay = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .consolidationDelay)
+    self.taintConfig = try container.decodeIfPresent(TaintConfig.self, forKey: .taintConfig)
+    self.maintenancePolicy = try container.decodeIfPresent(
+      NodePool.NodePoolMaintenancePolicy.self, forKey: .maintenancePolicy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.clusterId, forKey: .clusterId)
+    try container.encode(self.nodePoolId, forKey: .nodePoolId)
+    try container.encode(self.nodeVersion, forKey: .nodeVersion)
+    try container.encode(self.imageType, forKey: .imageType)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.image, forKey: .image)
+    try container.encode(self.imageProject, forKey: .imageProject)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encodeIfPresent(self.workloadMetadataConfig, forKey: .workloadMetadataConfig)
+    try container.encodeIfPresent(self.upgradeSettings, forKey: .upgradeSettings)
+    try container.encodeIfPresent(self.tags, forKey: .tags)
+    try container.encodeIfPresent(self.taints, forKey: .taints)
+    try container.encodeIfPresent(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.linuxNodeConfig, forKey: .linuxNodeConfig)
+    try container.encodeIfPresent(self.kubeletConfig, forKey: .kubeletConfig)
+    try container.encodeIfPresent(self.nodeNetworkConfig, forKey: .nodeNetworkConfig)
+    try container.encodeIfPresent(self.gcfsConfig, forKey: .gcfsConfig)
+    try container.encodeIfPresent(self.confidentialNodes, forKey: .confidentialNodes)
+    try container.encodeIfPresent(self.gvnic, forKey: .gvnic)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.fastSocket, forKey: .fastSocket)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.resourceLabels, forKey: .resourceLabels)
+    try container.encodeIfPresent(self.windowsNodeConfig, forKey: .windowsNodeConfig)
+    try container.encode(self.accelerators, forKey: .accelerators)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encodeIfPresent(self.resourceManagerTags, forKey: .resourceManagerTags)
+    try container.encodeIfPresent(self.containerdConfig, forKey: .containerdConfig)
+    try container.encodeIfPresent(self.queuedProvisioning, forKey: .queuedProvisioning)
+    try container.encode(self.storagePools, forKey: .storagePools)
+    try container.encodeIfPresent(self.maxRunDuration, forKey: .maxRunDuration)
+    try container.encodeIfPresent(self.flexStart, forKey: .flexStart)
+    try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
+    try container.encodeIfPresent(self.nodeDrainConfig, forKey: .nodeDrainConfig)
+    try container.encodeIfPresent(self.consolidationDelay, forKey: .consolidationDelay)
+    try container.encodeIfPresent(self.taintConfig, forKey: .taintConfig)
+    try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -133,6 +133,8 @@
     /// Output only. [Output Only] Total size of the storage used by the machine image.
     public var totalStorageBytes: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MachineImage`.
     public init() {}
 
@@ -149,28 +151,57 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case guestFlush = "guestFlush"
-      case id = "id"
-      case instanceProperties = "instanceProperties"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case machineImageEncryptionKey = "machineImageEncryptionKey"
-      case name = "name"
-      case params = "params"
-      case satisfiesPzi = "satisfiesPzi"
-      case satisfiesPzs = "satisfiesPzs"
-      case savedDisks = "savedDisks"
-      case selfLink = "selfLink"
-      case sourceDiskEncryptionKeys = "sourceDiskEncryptionKeys"
-      case sourceInstance = "sourceInstance"
-      case sourceInstanceProperties = "sourceInstanceProperties"
-      case status = "status"
-      case storageLocations = "storageLocations"
-      case totalStorageBytes = "totalStorageBytes"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let guestFlush = CodingKeys(stringValue: "guestFlush")
+      static let id = CodingKeys(stringValue: "id")
+      static let instanceProperties = CodingKeys(stringValue: "instanceProperties")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let machineImageEncryptionKey = CodingKeys(stringValue: "machineImageEncryptionKey")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let savedDisks = CodingKeys(stringValue: "savedDisks")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sourceDiskEncryptionKeys = CodingKeys(stringValue: "sourceDiskEncryptionKeys")
+      static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
+      static let sourceInstanceProperties = CodingKeys(stringValue: "sourceInstanceProperties")
+      static let status = CodingKeys(stringValue: "status")
+      static let storageLocations = CodingKeys(stringValue: "storageLocations")
+      static let totalStorageBytes = CodingKeys(stringValue: "totalStorageBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "guestFlush",
+        "id",
+        "instanceProperties",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "machineImageEncryptionKey",
+        "name",
+        "params",
+        "satisfiesPzi",
+        "satisfiesPzs",
+        "savedDisks",
+        "selfLink",
+        "sourceDiskEncryptionKeys",
+        "sourceInstance",
+        "sourceInstanceProperties",
+        "status",
+        "storageLocations",
+        "totalStorageBytes",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -192,54 +223,74 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.machineImageEncryptionKey = try container.decodeIfPresent(
         CustomerEncryptionKey.self, forKey: .machineImageEncryptionKey)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.params = try container.decodeIfPresent(MachineImageParams.self, forKey: .params)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
-      self.savedDisks = try container.decode([SavedDisk].self, forKey: .savedDisks)
+      if let value = try container.decodeIfPresent([SavedDisk].self, forKey: .savedDisks) {
+        self.savedDisks = value
+      }
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.sourceDiskEncryptionKeys = try container.decode(
+      if let value = try container.decodeIfPresent(
         [SourceDiskEncryptionKey].self, forKey: .sourceDiskEncryptionKeys)
+      {
+        self.sourceDiskEncryptionKeys = value
+      }
       self.sourceInstance = try container.decodeIfPresent(
         Swift.String.self, forKey: .sourceInstance)
       self.sourceInstanceProperties = try container.decodeIfPresent(
         SourceInstanceProperties.self, forKey: .sourceInstanceProperties)
       self.status = try container.decodeIfPresent(MachineImage.Status.self, forKey: .status)
-      self.storageLocations = try container.decode([Swift.String].self, forKey: .storageLocations)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .storageLocations) {
+        self.storageLocations = value
+      }
       self.totalStorageBytes = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .totalStorageBytes)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.guestFlush, forKey: .guestFlush)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.instanceProperties, forKey: .instanceProperties)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.guestFlush, forKey: .guestFlush)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.instanceProperties, forKey: .instanceProperties)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.machineImageEncryptionKey, forKey: .machineImageEncryptionKey)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(
+        self.machineImageEncryptionKey, forKey: .machineImageEncryptionKey)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
       try container.encode(self.savedDisks, forKey: .savedDisks)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encode(self.sourceDiskEncryptionKeys, forKey: .sourceDiskEncryptionKeys)
-      try container.encode(self.sourceInstance, forKey: .sourceInstance)
-      try container.encode(self.sourceInstanceProperties, forKey: .sourceInstanceProperties)
-      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.sourceInstance, forKey: .sourceInstance)
+      try container.encodeIfPresent(
+        self.sourceInstanceProperties, forKey: .sourceInstanceProperties)
+      try container.encodeIfPresent(self.status, forKey: .status)
       try container.encode(self.storageLocations, forKey: .storageLocations)
-      try container.encode(self.totalStorageBytes, forKey: .totalStorageBytes)
+      try container.encodeIfPresent(self.totalStorageBytes, forKey: .totalStorageBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.MachineImage.status] field.

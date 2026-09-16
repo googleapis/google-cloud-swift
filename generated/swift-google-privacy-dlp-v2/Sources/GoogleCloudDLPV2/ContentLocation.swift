@@ -47,6 +47,8 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of the container within the file with location of the finding.
   public var location: OneOf_Location? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContentLocation`.
   public init() {}
 
@@ -63,24 +65,45 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case containerName = "containerName"
-    case recordLocation = "recordLocation"
-    case imageLocation = "imageLocation"
-    case documentLocation = "documentLocation"
-    case metadataLocation = "metadataLocation"
-    case conversationLocation = "conversationLocation"
-    case batchContentLocation = "batchContentLocation"
-    case containerTimestamp = "containerTimestamp"
-    case containerVersion = "containerVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let containerName = CodingKeys(stringValue: "containerName")
+    static let recordLocation = CodingKeys(stringValue: "recordLocation")
+    static let imageLocation = CodingKeys(stringValue: "imageLocation")
+    static let documentLocation = CodingKeys(stringValue: "documentLocation")
+    static let metadataLocation = CodingKeys(stringValue: "metadataLocation")
+    static let conversationLocation = CodingKeys(stringValue: "conversationLocation")
+    static let batchContentLocation = CodingKeys(stringValue: "batchContentLocation")
+    static let containerTimestamp = CodingKeys(stringValue: "containerTimestamp")
+    static let containerVersion = CodingKeys(stringValue: "containerVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "containerName",
+      "recordLocation",
+      "imageLocation",
+      "documentLocation",
+      "metadataLocation",
+      "conversationLocation",
+      "batchContentLocation",
+      "containerTimestamp",
+      "containerVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.containerName = try container.decode(Swift.String.self, forKey: .containerName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerName) {
+      self.containerName = value
+    }
     self.containerTimestamp = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .containerTimestamp)
-    self.containerVersion = try container.decode(Swift.String.self, forKey: .containerVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerVersion) {
+      self.containerVersion = value
+    }
 
     var location: OneOf_Location? = nil
     let locationCheckAndSet = {
@@ -123,12 +146,16 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try locationCheckAndSet(.batchContentLocation(batchContentLocation))
     }
     self.location = location
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.containerName, forKey: .containerName)
-    try container.encode(self.containerTimestamp, forKey: .containerTimestamp)
+    try container.encodeIfPresent(self.containerTimestamp, forKey: .containerTimestamp)
     try container.encode(self.containerVersion, forKey: .containerVersion)
 
     if let choice = self.location {
@@ -146,6 +173,9 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .batchContentLocation(let value):
         try container.encode(value, forKey: .batchContentLocation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

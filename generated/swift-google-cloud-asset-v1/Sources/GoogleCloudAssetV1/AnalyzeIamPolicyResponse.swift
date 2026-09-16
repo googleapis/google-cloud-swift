@@ -44,6 +44,8 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleCloudWKT._AnyP
   /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]: <doc:AnalyzeIamPolicyResponse/serviceAccountImpersonationAnalysis>
   public var fullyExplored: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeIamPolicyResponse`.
   public init() {}
 
@@ -58,6 +60,54 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mainAnalysis = CodingKeys(stringValue: "mainAnalysis")
+    static let serviceAccountImpersonationAnalysis = CodingKeys(
+      stringValue: "serviceAccountImpersonationAnalysis")
+    static let fullyExplored = CodingKeys(stringValue: "fullyExplored")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mainAnalysis",
+      "serviceAccountImpersonationAnalysis",
+      "fullyExplored",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.mainAnalysis = try container.decodeIfPresent(
+      AnalyzeIamPolicyResponse.IamPolicyAnalysis.self, forKey: .mainAnalysis)
+    if let value = try container.decodeIfPresent(
+      [AnalyzeIamPolicyResponse.IamPolicyAnalysis].self,
+      forKey: .serviceAccountImpersonationAnalysis)
+    {
+      self.serviceAccountImpersonationAnalysis = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fullyExplored) {
+      self.fullyExplored = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.mainAnalysis, forKey: .mainAnalysis)
+    try container.encode(
+      self.serviceAccountImpersonationAnalysis, forKey: .serviceAccountImpersonationAnalysis)
+    try container.encode(self.fullyExplored, forKey: .fullyExplored)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An analysis message to group the query and results.
@@ -84,6 +134,8 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     /// A list of non-critical errors happened during the query handling.
     public var nonCriticalErrors: [IamPolicyAnalysisState] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IamPolicyAnalysis`.
     public init() {}
 
@@ -98,6 +150,59 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let analysisQuery = CodingKeys(stringValue: "analysisQuery")
+      static let analysisResults = CodingKeys(stringValue: "analysisResults")
+      static let fullyExplored = CodingKeys(stringValue: "fullyExplored")
+      static let nonCriticalErrors = CodingKeys(stringValue: "nonCriticalErrors")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "analysisQuery",
+        "analysisResults",
+        "fullyExplored",
+        "nonCriticalErrors",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.analysisQuery = try container.decodeIfPresent(
+        IamPolicyAnalysisQuery.self, forKey: .analysisQuery)
+      if let value = try container.decodeIfPresent(
+        [IamPolicyAnalysisResult].self, forKey: .analysisResults)
+      {
+        self.analysisResults = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fullyExplored) {
+        self.fullyExplored = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IamPolicyAnalysisState].self, forKey: .nonCriticalErrors)
+      {
+        self.nonCriticalErrors = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.analysisQuery, forKey: .analysisQuery)
+      try container.encode(self.analysisResults, forKey: .analysisResults)
+      try container.encode(self.fullyExplored, forKey: .fullyExplored)
+      try container.encode(self.nonCriticalErrors, forKey: .nonCriticalErrors)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

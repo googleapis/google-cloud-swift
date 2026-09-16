@@ -90,6 +90,8 @@
     ///  145
     public var uptimeSeconds: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterStatusBgpPeerStatus`.
     public init() {}
 
@@ -104,6 +106,123 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advertisedRoutes = CodingKeys(stringValue: "advertisedRoutes")
+      static let bfdStatus = CodingKeys(stringValue: "bfdStatus")
+      static let enableIpv4 = CodingKeys(stringValue: "enableIpv4")
+      static let enableIpv6 = CodingKeys(stringValue: "enableIpv6")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv4NexthopAddress = CodingKeys(stringValue: "ipv4NexthopAddress")
+      static let ipv6NexthopAddress = CodingKeys(stringValue: "ipv6NexthopAddress")
+      static let linkedVpnTunnel = CodingKeys(stringValue: "linkedVpnTunnel")
+      static let md5AuthEnabled = CodingKeys(stringValue: "md5AuthEnabled")
+      static let name = CodingKeys(stringValue: "name")
+      static let numLearnedRoutes = CodingKeys(stringValue: "numLearnedRoutes")
+      static let peerIpAddress = CodingKeys(stringValue: "peerIpAddress")
+      static let peerIpv4NexthopAddress = CodingKeys(stringValue: "peerIpv4NexthopAddress")
+      static let peerIpv6NexthopAddress = CodingKeys(stringValue: "peerIpv6NexthopAddress")
+      static let routerApplianceInstance = CodingKeys(stringValue: "routerApplianceInstance")
+      static let state = CodingKeys(stringValue: "state")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusReason = CodingKeys(stringValue: "statusReason")
+      static let uptime = CodingKeys(stringValue: "uptime")
+      static let uptimeSeconds = CodingKeys(stringValue: "uptimeSeconds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advertisedRoutes",
+        "bfdStatus",
+        "enableIpv4",
+        "enableIpv6",
+        "ipAddress",
+        "ipv4NexthopAddress",
+        "ipv6NexthopAddress",
+        "linkedVpnTunnel",
+        "md5AuthEnabled",
+        "name",
+        "numLearnedRoutes",
+        "peerIpAddress",
+        "peerIpv4NexthopAddress",
+        "peerIpv6NexthopAddress",
+        "routerApplianceInstance",
+        "state",
+        "status",
+        "statusReason",
+        "uptime",
+        "uptimeSeconds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Route].self, forKey: .advertisedRoutes) {
+        self.advertisedRoutes = value
+      }
+      self.bfdStatus = try container.decodeIfPresent(BfdStatus.self, forKey: .bfdStatus)
+      self.enableIpv4 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv4)
+      self.enableIpv6 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv6)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv4NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .ipv4NexthopAddress)
+      self.ipv6NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .ipv6NexthopAddress)
+      self.linkedVpnTunnel = try container.decodeIfPresent(
+        Swift.String.self, forKey: .linkedVpnTunnel)
+      self.md5AuthEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .md5AuthEnabled)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.numLearnedRoutes = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .numLearnedRoutes)
+      self.peerIpAddress = try container.decodeIfPresent(Swift.String.self, forKey: .peerIpAddress)
+      self.peerIpv4NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerIpv4NexthopAddress)
+      self.peerIpv6NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerIpv6NexthopAddress)
+      self.routerApplianceInstance = try container.decodeIfPresent(
+        Swift.String.self, forKey: .routerApplianceInstance)
+      self.state = try container.decodeIfPresent(Swift.String.self, forKey: .state)
+      self.status = try container.decodeIfPresent(
+        RouterStatusBgpPeerStatus.Status.self, forKey: .status)
+      self.statusReason = try container.decodeIfPresent(
+        RouterStatusBgpPeerStatus.StatusReason.self, forKey: .statusReason)
+      self.uptime = try container.decodeIfPresent(Swift.String.self, forKey: .uptime)
+      self.uptimeSeconds = try container.decodeIfPresent(Swift.String.self, forKey: .uptimeSeconds)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.advertisedRoutes, forKey: .advertisedRoutes)
+      try container.encodeIfPresent(self.bfdStatus, forKey: .bfdStatus)
+      try container.encodeIfPresent(self.enableIpv4, forKey: .enableIpv4)
+      try container.encodeIfPresent(self.enableIpv6, forKey: .enableIpv6)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv4NexthopAddress, forKey: .ipv4NexthopAddress)
+      try container.encodeIfPresent(self.ipv6NexthopAddress, forKey: .ipv6NexthopAddress)
+      try container.encodeIfPresent(self.linkedVpnTunnel, forKey: .linkedVpnTunnel)
+      try container.encodeIfPresent(self.md5AuthEnabled, forKey: .md5AuthEnabled)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.numLearnedRoutes, forKey: .numLearnedRoutes)
+      try container.encodeIfPresent(self.peerIpAddress, forKey: .peerIpAddress)
+      try container.encodeIfPresent(self.peerIpv4NexthopAddress, forKey: .peerIpv4NexthopAddress)
+      try container.encodeIfPresent(self.peerIpv6NexthopAddress, forKey: .peerIpv6NexthopAddress)
+      try container.encodeIfPresent(self.routerApplianceInstance, forKey: .routerApplianceInstance)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.statusReason, forKey: .statusReason)
+      try container.encodeIfPresent(self.uptime, forKey: .uptime)
+      try container.encodeIfPresent(self.uptimeSeconds, forKey: .uptimeSeconds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.RouterStatusBgpPeerStatus.status] field.

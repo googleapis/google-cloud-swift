@@ -76,6 +76,8 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// that use this `WasmPlugin` resource.
   public var usedBy: [WasmPlugin.UsedBy] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WasmPlugin`.
   public init() {}
 
@@ -90,6 +92,85 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let mainVersionId = CodingKeys(stringValue: "mainVersionId")
+    static let logConfig = CodingKeys(stringValue: "logConfig")
+    static let versions = CodingKeys(stringValue: "versions")
+    static let usedBy = CodingKeys(stringValue: "usedBy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "description",
+      "labels",
+      "mainVersionId",
+      "logConfig",
+      "versions",
+      "usedBy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mainVersionId) {
+      self.mainVersionId = value
+    }
+    self.logConfig = try container.decodeIfPresent(WasmPlugin.LogConfig.self, forKey: .logConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: WasmPlugin.VersionDetails].self, forKey: .versions)
+    {
+      self.versions = value
+    }
+    if let value = try container.decodeIfPresent([WasmPlugin.UsedBy].self, forKey: .usedBy) {
+      self.usedBy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.mainVersionId, forKey: .mainVersionId)
+    try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+    try container.encode(self.versions, forKey: .versions)
+    try container.encode(self.usedBy, forKey: .usedBy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details of a `WasmPluginVersion` resource to be inlined in the
@@ -147,6 +228,8 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public var pluginConfigSource: OneOf_PluginConfigSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VersionDetails`.
     public init() {}
 
@@ -163,16 +246,33 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case pluginConfigData = "pluginConfigData"
-      case pluginConfigUri = "pluginConfigUri"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case description = "description"
-      case labels = "labels"
-      case imageUri = "imageUri"
-      case imageDigest = "imageDigest"
-      case pluginConfigDigest = "pluginConfigDigest"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pluginConfigData = CodingKeys(stringValue: "pluginConfigData")
+      static let pluginConfigUri = CodingKeys(stringValue: "pluginConfigUri")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let description = CodingKeys(stringValue: "description")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let imageUri = CodingKeys(stringValue: "imageUri")
+      static let imageDigest = CodingKeys(stringValue: "imageDigest")
+      static let pluginConfigDigest = CodingKeys(stringValue: "pluginConfigDigest")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pluginConfigData",
+        "pluginConfigUri",
+        "createTime",
+        "updateTime",
+        "description",
+        "labels",
+        "imageUri",
+        "imageDigest",
+        "pluginConfigDigest",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -181,11 +281,23 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-      self.imageUri = try container.decode(Swift.String.self, forKey: .imageUri)
-      self.imageDigest = try container.decode(Swift.String.self, forKey: .imageDigest)
-      self.pluginConfigDigest = try container.decode(Swift.String.self, forKey: .pluginConfigDigest)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+        self.imageUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageDigest) {
+        self.imageDigest = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluginConfigDigest) {
+        self.pluginConfigDigest = value
+      }
 
       var pluginConfigSource: OneOf_PluginConfigSource? = nil
       let pluginConfigSourceCheckAndSet = {
@@ -208,12 +320,16 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try pluginConfigSourceCheckAndSet(.pluginConfigUri(pluginConfigUri))
       }
       self.pluginConfigSource = pluginConfigSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.labels, forKey: .labels)
       try container.encode(self.imageUri, forKey: .imageUri)
@@ -227,6 +343,9 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .pluginConfigUri(let value):
           try container.encode(value, forKey: .pluginConfigUri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -304,6 +423,8 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `INFO` by default.
     public var minLogLevel: WasmPlugin.LogConfig.LogLevel = WasmPlugin.LogConfig.LogLevel()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LogConfig`.
     public init() {}
 
@@ -318,6 +439,52 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enable = CodingKeys(stringValue: "enable")
+      static let sampleRate = CodingKeys(stringValue: "sampleRate")
+      static let minLogLevel = CodingKeys(stringValue: "minLogLevel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enable",
+        "sampleRate",
+        "minLogLevel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable) {
+        self.enable = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .sampleRate) {
+        self.sampleRate = value
+      }
+      if let value = try container.decodeIfPresent(
+        WasmPlugin.LogConfig.LogLevel.self, forKey: .minLogLevel)
+      {
+        self.minLogLevel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enable, forKey: .enable)
+      try container.encode(self.sampleRate, forKey: .sampleRate)
+      try container.encode(self.minLogLevel, forKey: .minLogLevel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Possible values to specify the lowest level of logs to be exported to
@@ -474,6 +641,8 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `//networkservices.googleapis.com/projects/{project}/locations/{location}/lbRouteExtensions/{extension}`
     public var name: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UsedBy`.
     public init() {}
 
@@ -488,6 +657,38 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

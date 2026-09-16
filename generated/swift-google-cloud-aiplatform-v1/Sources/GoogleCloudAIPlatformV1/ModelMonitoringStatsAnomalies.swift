@@ -35,6 +35,8 @@
     /// A list of historical Stats and Anomalies generated for all Features.
     public var featureStats: [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelMonitoringStatsAnomalies`.
     public init() {}
 
@@ -49,6 +51,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let objective = CodingKeys(stringValue: "objective")
+      static let deployedModelId = CodingKeys(stringValue: "deployedModelId")
+      static let anomalyCount = CodingKeys(stringValue: "anomalyCount")
+      static let featureStats = CodingKeys(stringValue: "featureStats")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "objective",
+        "deployedModelId",
+        "anomalyCount",
+        "featureStats",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ModelDeploymentMonitoringObjectiveType.self, forKey: .objective)
+      {
+        self.objective = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {
+        self.deployedModelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .anomalyCount) {
+        self.anomalyCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies].self, forKey: .featureStats)
+      {
+        self.featureStats = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.objective, forKey: .objective)
+      try container.encode(self.deployedModelId, forKey: .deployedModelId)
+      try container.encode(self.anomalyCount, forKey: .anomalyCount)
+      try container.encode(self.featureStats, forKey: .featureStats)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Historical Stats (and Anomalies) for a specific Feature.
@@ -68,6 +124,8 @@
       /// Prediction Dataset.
       public var predictionStats: [FeatureStatsAnomaly] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `FeatureHistoricStatsAnomalies`.
       public init() {}
 
@@ -82,6 +140,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let featureDisplayName = CodingKeys(stringValue: "featureDisplayName")
+        static let threshold = CodingKeys(stringValue: "threshold")
+        static let trainingStats = CodingKeys(stringValue: "trainingStats")
+        static let predictionStats = CodingKeys(stringValue: "predictionStats")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "featureDisplayName",
+          "threshold",
+          "trainingStats",
+          "predictionStats",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureDisplayName)
+        {
+          self.featureDisplayName = value
+        }
+        self.threshold = try container.decodeIfPresent(ThresholdConfig.self, forKey: .threshold)
+        self.trainingStats = try container.decodeIfPresent(
+          FeatureStatsAnomaly.self, forKey: .trainingStats)
+        if let value = try container.decodeIfPresent(
+          [FeatureStatsAnomaly].self, forKey: .predictionStats)
+        {
+          self.predictionStats = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.featureDisplayName, forKey: .featureDisplayName)
+        try container.encodeIfPresent(self.threshold, forKey: .threshold)
+        try container.encodeIfPresent(self.trainingStats, forKey: .trainingStats)
+        try container.encode(self.predictionStats, forKey: .predictionStats)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

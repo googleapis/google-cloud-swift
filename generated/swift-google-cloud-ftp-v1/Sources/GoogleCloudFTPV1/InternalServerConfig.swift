@@ -40,6 +40,8 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Output only. Details of endpoints created by the customer.
   public var pscEndpoints: [InternalServerConfig.PscEndpoint] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InternalServerConfig`.
   public init() {}
 
@@ -56,6 +58,62 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+    static let consumerAcceptList = CodingKeys(stringValue: "consumerAcceptList")
+    static let consumerRejectList = CodingKeys(stringValue: "consumerRejectList")
+    static let pscEndpoints = CodingKeys(stringValue: "pscEndpoints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAttachment",
+      "consumerAcceptList",
+      "consumerRejectList",
+      "pscEndpoints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+      self.serviceAttachment = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InternalServerConfig.AllowedConsumer].self, forKey: .consumerAcceptList)
+    {
+      self.consumerAcceptList = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InternalServerConfig.DeniedConsumer].self, forKey: .consumerRejectList)
+    {
+      self.consumerRejectList = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InternalServerConfig.PscEndpoint].self, forKey: .pscEndpoints)
+    {
+      self.pscEndpoints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
+    try container.encode(self.consumerAcceptList, forKey: .consumerAcceptList)
+    try container.encode(self.consumerRejectList, forKey: .consumerRejectList)
+    try container.encode(self.pscEndpoints, forKey: .pscEndpoints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A consumer project or network that is permitted to connect to the server
   /// via PSC.
   public struct AllowedConsumer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -67,6 +125,8 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
     /// Required. Specifies the type of consumer.
     public var consumerType: OneOf_ConsumerType? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AllowedConsumer`.
     public init() {}
@@ -84,14 +144,26 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case project = "project"
-      case connectionLimit = "connectionLimit"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let project = CodingKeys(stringValue: "project")
+      static let connectionLimit = CodingKeys(stringValue: "connectionLimit")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "project",
+        "connectionLimit",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.connectionLimit = try container.decode(Swift.Int64.self, forKey: .connectionLimit)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .connectionLimit) {
+        self.connectionLimit = value
+      }
 
       var consumerType: OneOf_ConsumerType? = nil
       let consumerTypeCheckAndSet = {
@@ -107,6 +179,10 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         try consumerTypeCheckAndSet(.project(project))
       }
       self.consumerType = consumerType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -118,6 +194,9 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         case .project(let value):
           try container.encode(value, forKey: .project)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -147,6 +226,8 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Required. Specifies the type of consumer.
     public var consumerType: OneOf_ConsumerType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeniedConsumer`.
     public init() {}
 
@@ -163,8 +244,17 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case project = "project"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let project = CodingKeys(stringValue: "project")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "project"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -184,6 +274,10 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         try consumerTypeCheckAndSet(.project(project))
       }
       self.consumerType = consumerType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,6 +288,9 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         case .project(let value):
           try container.encode(value, forKey: .project)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -231,6 +328,8 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Output only. The status of the connected endpoint.
     public var status: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PscEndpoint`.
     public init() {}
 
@@ -245,6 +344,50 @@ public struct InternalServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let endpoint = CodingKeys(stringValue: "endpoint")
+      static let network = CodingKeys(stringValue: "network")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "endpoint",
+        "network",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+        self.endpoint = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .status) {
+        self.status = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.endpoint, forKey: .endpoint)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

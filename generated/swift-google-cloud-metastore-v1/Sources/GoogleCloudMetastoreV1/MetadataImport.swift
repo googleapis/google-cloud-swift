@@ -44,6 +44,8 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The metadata to be imported.
   public var metadata: OneOf_Metadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataImport`.
   public init() {}
 
@@ -60,26 +62,47 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case databaseDump = "databaseDump"
-    case name = "name"
-    case description = "description"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case endTime = "endTime"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let databaseDump = CodingKeys(stringValue: "databaseDump")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "databaseDump",
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "endTime",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.state = try container.decode(MetadataImport.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(MetadataImport.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var metadata: OneOf_Metadata? = nil
     let metadataCheckAndSet = {
@@ -97,15 +120,19 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try metadataCheckAndSet(.databaseDump(databaseDump))
     }
     self.metadata = metadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.state, forKey: .state)
 
     if let choice = self.metadata {
@@ -113,6 +140,9 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .databaseDump(let value):
         try container.encode(value, forKey: .databaseDump)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -138,6 +168,8 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `MYSQL`.
     public var type: DatabaseDumpSpec.Type_ = DatabaseDumpSpec.Type_()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DatabaseDump`.
     public init() {}
 
@@ -152,6 +184,58 @@ public struct MetadataImport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let databaseType = CodingKeys(stringValue: "databaseType")
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+      static let sourceDatabase = CodingKeys(stringValue: "sourceDatabase")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "databaseType",
+        "gcsUri",
+        "sourceDatabase",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MetadataImport.DatabaseDump.DatabaseType.self, forKey: .databaseType)
+      {
+        self.databaseType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsUri) {
+        self.gcsUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceDatabase) {
+        self.sourceDatabase = value
+      }
+      if let value = try container.decodeIfPresent(DatabaseDumpSpec.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.databaseType, forKey: .databaseType)
+      try container.encode(self.gcsUri, forKey: .gcsUri)
+      try container.encode(self.sourceDatabase, forKey: .sourceDatabase)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of the database.

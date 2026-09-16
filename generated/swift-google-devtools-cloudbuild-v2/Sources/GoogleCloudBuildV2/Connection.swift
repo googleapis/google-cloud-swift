@@ -55,6 +55,8 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration for the connection depending on the type of provider.
   public var connectionConfig: OneOf_ConnectionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Connection`.
   public init() {}
 
@@ -71,35 +73,68 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case githubConfig = "githubConfig"
-    case githubEnterpriseConfig = "githubEnterpriseConfig"
-    case gitlabConfig = "gitlabConfig"
-    case bitbucketDataCenterConfig = "bitbucketDataCenterConfig"
-    case bitbucketCloudConfig = "bitbucketCloudConfig"
-    case installationState = "installationState"
-    case disabled = "disabled"
-    case reconciling = "reconciling"
-    case annotations = "annotations"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let githubConfig = CodingKeys(stringValue: "githubConfig")
+    static let githubEnterpriseConfig = CodingKeys(stringValue: "githubEnterpriseConfig")
+    static let gitlabConfig = CodingKeys(stringValue: "gitlabConfig")
+    static let bitbucketDataCenterConfig = CodingKeys(stringValue: "bitbucketDataCenterConfig")
+    static let bitbucketCloudConfig = CodingKeys(stringValue: "bitbucketCloudConfig")
+    static let installationState = CodingKeys(stringValue: "installationState")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "githubConfig",
+      "githubEnterpriseConfig",
+      "gitlabConfig",
+      "bitbucketDataCenterConfig",
+      "bitbucketCloudConfig",
+      "installationState",
+      "disabled",
+      "reconciling",
+      "annotations",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.installationState = try container.decodeIfPresent(
       InstallationState.self, forKey: .installationState)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
-    self.reconciling = try container.decode(Swift.Bool.self, forKey: .reconciling)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var connectionConfig: OneOf_ConnectionConfig? = nil
     let connectionConfigCheckAndSet = {
@@ -133,14 +168,18 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try connectionConfigCheckAndSet(.bitbucketCloudConfig(bitbucketCloudConfig))
     }
     self.connectionConfig = connectionConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.installationState, forKey: .installationState)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.installationState, forKey: .installationState)
     try container.encode(self.disabled, forKey: .disabled)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.annotations, forKey: .annotations)
@@ -159,6 +198,9 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .bitbucketCloudConfig(let value):
         try container.encode(value, forKey: .bitbucketCloudConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

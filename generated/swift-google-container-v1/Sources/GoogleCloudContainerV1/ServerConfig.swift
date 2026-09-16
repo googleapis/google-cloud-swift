@@ -39,6 +39,8 @@ public struct ServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of release channel configurations.
   public var channels: [ServerConfig.ReleaseChannelConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServerConfig`.
   public init() {}
 
@@ -53,6 +55,72 @@ public struct ServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let defaultClusterVersion = CodingKeys(stringValue: "defaultClusterVersion")
+    static let validNodeVersions = CodingKeys(stringValue: "validNodeVersions")
+    static let defaultImageType = CodingKeys(stringValue: "defaultImageType")
+    static let validImageTypes = CodingKeys(stringValue: "validImageTypes")
+    static let validMasterVersions = CodingKeys(stringValue: "validMasterVersions")
+    static let channels = CodingKeys(stringValue: "channels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "defaultClusterVersion",
+      "validNodeVersions",
+      "defaultImageType",
+      "validImageTypes",
+      "validMasterVersions",
+      "channels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultClusterVersion)
+    {
+      self.defaultClusterVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validNodeVersions) {
+      self.validNodeVersions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultImageType) {
+      self.defaultImageType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validImageTypes) {
+      self.validImageTypes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validMasterVersions)
+    {
+      self.validMasterVersions = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ServerConfig.ReleaseChannelConfig].self, forKey: .channels)
+    {
+      self.channels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.defaultClusterVersion, forKey: .defaultClusterVersion)
+    try container.encode(self.validNodeVersions, forKey: .validNodeVersions)
+    try container.encode(self.defaultImageType, forKey: .defaultImageType)
+    try container.encode(self.validImageTypes, forKey: .validImageTypes)
+    try container.encode(self.validMasterVersions, forKey: .validMasterVersions)
+    try container.encode(self.channels, forKey: .channels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// ReleaseChannelConfig exposes configuration for a release channel.
@@ -71,6 +139,8 @@ public struct ServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The auto upgrade target version for clusters on the channel.
     public var upgradeTargetVersion: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReleaseChannelConfig`.
     public init() {}
 
@@ -85,6 +155,57 @@ public struct ServerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let channel = CodingKeys(stringValue: "channel")
+      static let defaultVersion = CodingKeys(stringValue: "defaultVersion")
+      static let validVersions = CodingKeys(stringValue: "validVersions")
+      static let upgradeTargetVersion = CodingKeys(stringValue: "upgradeTargetVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "channel",
+        "defaultVersion",
+        "validVersions",
+        "upgradeTargetVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(ReleaseChannel.Channel.self, forKey: .channel) {
+        self.channel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultVersion) {
+        self.defaultVersion = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validVersions) {
+        self.validVersions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .upgradeTargetVersion)
+      {
+        self.upgradeTargetVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.channel, forKey: .channel)
+      try container.encode(self.defaultVersion, forKey: .defaultVersion)
+      try container.encode(self.validVersions, forKey: .validVersions)
+      try container.encode(self.upgradeTargetVersion, forKey: .upgradeTargetVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// possible reason and associated with a given hub.
   public var spokeStateReasonCounts: [SpokeSummary.SpokeStateReasonCount] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpokeSummary`.
   public init() {}
 
@@ -53,6 +55,56 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let spokeTypeCounts = CodingKeys(stringValue: "spokeTypeCounts")
+    static let spokeStateCounts = CodingKeys(stringValue: "spokeStateCounts")
+    static let spokeStateReasonCounts = CodingKeys(stringValue: "spokeStateReasonCounts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "spokeTypeCounts",
+      "spokeStateCounts",
+      "spokeStateReasonCounts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SpokeSummary.SpokeTypeCount].self, forKey: .spokeTypeCounts)
+    {
+      self.spokeTypeCounts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SpokeSummary.SpokeStateCount].self, forKey: .spokeStateCounts)
+    {
+      self.spokeStateCounts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SpokeSummary.SpokeStateReasonCount].self, forKey: .spokeStateReasonCounts)
+    {
+      self.spokeStateReasonCounts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.spokeTypeCounts, forKey: .spokeTypeCounts)
+    try container.encode(self.spokeStateCounts, forKey: .spokeStateCounts)
+    try container.encode(self.spokeStateReasonCounts, forKey: .spokeStateReasonCounts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The number of spokes of a given type that are associated
   /// with a specific hub. The type indicates what kind of
   /// resource is associated with the spoke.
@@ -65,6 +117,8 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The total number of spokes of this type that are
     /// associated with the hub.
     public var count: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SpokeTypeCount`.
     public init() {}
@@ -80,6 +134,44 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let spokeType = CodingKeys(stringValue: "spokeType")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "spokeType",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(SpokeType.self, forKey: .spokeType) {
+        self.spokeType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.spokeType, forKey: .spokeType)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -105,6 +197,8 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// and associated with a given hub.
     public var count: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpokeStateCount`.
     public init() {}
 
@@ -119,6 +213,44 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -143,6 +275,8 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// particular reason and associated with a given hub.
     public var count: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpokeStateReasonCount`.
     public init() {}
 
@@ -157,6 +291,46 @@ public struct SpokeSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let stateReasonCode = CodingKeys(stringValue: "stateReasonCode")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "stateReasonCode",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Spoke.StateReason.Code.self, forKey: .stateReasonCode)
+      {
+        self.stateReasonCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.stateReasonCode, forKey: .stateReasonCode)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

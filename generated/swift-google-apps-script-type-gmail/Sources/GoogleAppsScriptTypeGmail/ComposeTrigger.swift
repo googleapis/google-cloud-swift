@@ -29,6 +29,8 @@ public struct ComposeTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Define the level of data access when a compose time addon is triggered.
   public var draftAccess: ComposeTrigger.DraftAccess = ComposeTrigger.DraftAccess()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComposeTrigger`.
   public init() {}
 
@@ -43,6 +45,48 @@ public struct ComposeTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let actions = CodingKeys(stringValue: "actions")
+    static let draftAccess = CodingKeys(stringValue: "draftAccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "actions",
+      "draftAccess",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [GoogleAppsScriptType.MenuItemExtensionPoint].self, forKey: .actions)
+    {
+      self.actions = value
+    }
+    if let value = try container.decodeIfPresent(
+      ComposeTrigger.DraftAccess.self, forKey: .draftAccess)
+    {
+      self.draftAccess = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.actions, forKey: .actions)
+    try container.encode(self.draftAccess, forKey: .draftAccess)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum defining the level of data access this compose trigger requires.

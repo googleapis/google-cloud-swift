@@ -36,6 +36,8 @@
     /// The new client certificate and private key.
     public var clientCert: SslCertDetail? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SslCertsInsertResponse`.
     public init() {}
 
@@ -50,6 +52,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let operation = CodingKeys(stringValue: "operation")
+      static let serverCaCert = CodingKeys(stringValue: "serverCaCert")
+      static let clientCert = CodingKeys(stringValue: "clientCert")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "operation",
+        "serverCaCert",
+        "clientCert",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.operation = try container.decodeIfPresent(Operation.self, forKey: .operation)
+      self.serverCaCert = try container.decodeIfPresent(SslCert.self, forKey: .serverCaCert)
+      self.clientCert = try container.decodeIfPresent(SslCertDetail.self, forKey: .clientCert)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.operation, forKey: .operation)
+      try container.encodeIfPresent(self.serverCaCert, forKey: .serverCaCert)
+      try container.encodeIfPresent(self.clientCert, forKey: .clientCert)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

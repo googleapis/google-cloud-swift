@@ -27,6 +27,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of Iceberg catalog.
   public var catalogDetails: OneOf_CatalogDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IcebergCatalog`.
   public init() {}
 
@@ -43,17 +45,34 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case glueIcebergCatalog = "glueIcebergCatalog"
-    case nessieIcebergCatalog = "nessieIcebergCatalog"
-    case polarisIcebergCatalog = "polarisIcebergCatalog"
-    case restIcebergCatalog = "restIcebergCatalog"
-    case catalogType = "catalogType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let glueIcebergCatalog = CodingKeys(stringValue: "glueIcebergCatalog")
+    static let nessieIcebergCatalog = CodingKeys(stringValue: "nessieIcebergCatalog")
+    static let polarisIcebergCatalog = CodingKeys(stringValue: "polarisIcebergCatalog")
+    static let restIcebergCatalog = CodingKeys(stringValue: "restIcebergCatalog")
+    static let catalogType = CodingKeys(stringValue: "catalogType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "glueIcebergCatalog",
+      "nessieIcebergCatalog",
+      "polarisIcebergCatalog",
+      "restIcebergCatalog",
+      "catalogType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.catalogType = try container.decode(IcebergCatalog.CatalogType.self, forKey: .catalogType)
+    if let value = try container.decodeIfPresent(
+      IcebergCatalog.CatalogType.self, forKey: .catalogType)
+    {
+      self.catalogType = value
+    }
 
     var catalogDetails: OneOf_CatalogDetails? = nil
     let catalogDetailsCheckAndSet = {
@@ -86,6 +105,10 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try catalogDetailsCheckAndSet(.restIcebergCatalog(restIcebergCatalog))
     }
     self.catalogDetails = catalogDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -103,6 +126,9 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .restIcebergCatalog(let value):
         try container.encode(value, forKey: .restIcebergCatalog)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

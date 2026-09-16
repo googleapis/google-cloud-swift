@@ -32,6 +32,8 @@ public struct ListConnectionsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// List of connections.
   public var connections: [Connection] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListConnectionsResponse`.
   public init() {}
 
@@ -46,6 +48,44 @@ public struct ListConnectionsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let connections = CodingKeys(stringValue: "connections")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nextPageToken",
+      "connections",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Connection].self, forKey: .connections) {
+      self.connections = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.connections, forKey: .connections)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

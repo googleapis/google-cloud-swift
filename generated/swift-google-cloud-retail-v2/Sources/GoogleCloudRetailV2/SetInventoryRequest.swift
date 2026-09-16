@@ -123,6 +123,8 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// [google.cloud.retail.v2.Product.name]: <doc:Product/name>
   public var allowMissing: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SetInventoryRequest`.
   public init() {}
 
@@ -137,6 +139,50 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inventory = CodingKeys(stringValue: "inventory")
+    static let setMask = CodingKeys(stringValue: "setMask")
+    static let setTime = CodingKeys(stringValue: "setTime")
+    static let allowMissing = CodingKeys(stringValue: "allowMissing")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inventory",
+      "setMask",
+      "setTime",
+      "allowMissing",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.inventory = try container.decodeIfPresent(Product.self, forKey: .inventory)
+    self.setMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .setMask)
+    self.setTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .setTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
+      self.allowMissing = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.inventory, forKey: .inventory)
+    try container.encodeIfPresent(self.setMask, forKey: .setMask)
+    try container.encodeIfPresent(self.setTime, forKey: .setTime)
+    try container.encode(self.allowMissing, forKey: .allowMissing)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

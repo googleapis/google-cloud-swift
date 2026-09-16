@@ -45,6 +45,8 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Additional details for specific platforms.
   public var platformSpecific: OneOf_PlatformSpecific? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskEntry`.
   public init() {}
 
@@ -61,26 +63,56 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case capacityBytes = "capacityBytes"
-    case freeBytes = "freeBytes"
-    case diskLabel = "diskLabel"
-    case diskLabelType = "diskLabelType"
-    case interfaceType = "interfaceType"
-    case partitions = "partitions"
-    case hwAddress = "hwAddress"
-    case vmware = "vmware"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let capacityBytes = CodingKeys(stringValue: "capacityBytes")
+    static let freeBytes = CodingKeys(stringValue: "freeBytes")
+    static let diskLabel = CodingKeys(stringValue: "diskLabel")
+    static let diskLabelType = CodingKeys(stringValue: "diskLabelType")
+    static let interfaceType = CodingKeys(stringValue: "interfaceType")
+    static let partitions = CodingKeys(stringValue: "partitions")
+    static let hwAddress = CodingKeys(stringValue: "hwAddress")
+    static let vmware = CodingKeys(stringValue: "vmware")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "capacityBytes",
+      "freeBytes",
+      "diskLabel",
+      "diskLabelType",
+      "interfaceType",
+      "partitions",
+      "hwAddress",
+      "vmware",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.capacityBytes = try container.decode(Swift.Int64.self, forKey: .capacityBytes)
-    self.freeBytes = try container.decode(Swift.Int64.self, forKey: .freeBytes)
-    self.diskLabel = try container.decode(Swift.String.self, forKey: .diskLabel)
-    self.diskLabelType = try container.decode(Swift.String.self, forKey: .diskLabelType)
-    self.interfaceType = try container.decode(DiskEntry.InterfaceType.self, forKey: .interfaceType)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityBytes) {
+      self.capacityBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .freeBytes) {
+      self.freeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskLabel) {
+      self.diskLabel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskLabelType) {
+      self.diskLabelType = value
+    }
+    if let value = try container.decodeIfPresent(
+      DiskEntry.InterfaceType.self, forKey: .interfaceType)
+    {
+      self.interfaceType = value
+    }
     self.partitions = try container.decodeIfPresent(DiskPartitionList.self, forKey: .partitions)
-    self.hwAddress = try container.decode(Swift.String.self, forKey: .hwAddress)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hwAddress) {
+      self.hwAddress = value
+    }
 
     var platformSpecific: OneOf_PlatformSpecific? = nil
     let platformSpecificCheckAndSet = {
@@ -96,6 +128,10 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try platformSpecificCheckAndSet(.vmware(vmware))
     }
     self.platformSpecific = platformSpecific
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -105,7 +141,7 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.diskLabel, forKey: .diskLabel)
     try container.encode(self.diskLabelType, forKey: .diskLabelType)
     try container.encode(self.interfaceType, forKey: .interfaceType)
-    try container.encode(self.partitions, forKey: .partitions)
+    try container.encodeIfPresent(self.partitions, forKey: .partitions)
     try container.encode(self.hwAddress, forKey: .hwAddress)
 
     if let choice = self.platformSpecific {
@@ -113,6 +149,9 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .vmware(let value):
         try container.encode(value, forKey: .vmware)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

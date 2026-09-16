@@ -28,6 +28,8 @@
     /// Output only. Name of the NAT config which the NAT IP belongs to.
     public var natName: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NatIpInfo`.
     public init() {}
 
@@ -42,6 +44,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let natIpInfoMappings = CodingKeys(stringValue: "natIpInfoMappings")
+      static let natName = CodingKeys(stringValue: "natName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "natIpInfoMappings",
+        "natName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [NatIpInfoNatIpInfoMapping].self, forKey: .natIpInfoMappings)
+      {
+        self.natIpInfoMappings = value
+      }
+      self.natName = try container.decodeIfPresent(Swift.String.self, forKey: .natName)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.natIpInfoMappings, forKey: .natIpInfoMappings)
+      try container.encodeIfPresent(self.natName, forKey: .natName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

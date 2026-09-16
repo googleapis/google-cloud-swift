@@ -68,6 +68,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `invalid_argument` error.
   public var policyType: OneOf_PolicyType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Policy`.
   public init() {}
 
@@ -84,21 +86,42 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case version = "version"
-    case constraint = "constraint"
-    case etag = "etag"
-    case updateTime = "updateTime"
-    case listPolicy = "listPolicy"
-    case booleanPolicy = "booleanPolicy"
-    case restoreDefault = "restoreDefault"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let constraint = CodingKeys(stringValue: "constraint")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let listPolicy = CodingKeys(stringValue: "listPolicy")
+    static let booleanPolicy = CodingKeys(stringValue: "booleanPolicy")
+    static let restoreDefault = CodingKeys(stringValue: "restoreDefault")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "constraint",
+      "etag",
+      "updateTime",
+      "listPolicy",
+      "booleanPolicy",
+      "restoreDefault",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.version = try container.decode(Swift.Int32.self, forKey: .version)
-    self.constraint = try container.decode(Swift.String.self, forKey: .constraint)
-    self.etag = try container.decode(Foundation.Data.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .constraint) {
+      self.constraint = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .etag) {
+      self.etag = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
@@ -127,6 +150,10 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try policyTypeCheckAndSet(.restoreDefault(restoreDefault))
     }
     self.policyType = policyType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -134,7 +161,7 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.version, forKey: .version)
     try container.encode(self.constraint, forKey: .constraint)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.policyType {
       switch choice {
@@ -145,6 +172,9 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .restoreDefault(let value):
         try container.encode(value, forKey: .restoreDefault)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -288,6 +318,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///   `folders/F1`, `projects/P1`.
     public var inheritFromParent: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ListPolicy`.
     public init() {}
 
@@ -302,6 +334,64 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedValues = CodingKeys(stringValue: "allowedValues")
+      static let deniedValues = CodingKeys(stringValue: "deniedValues")
+      static let allValues = CodingKeys(stringValue: "allValues")
+      static let suggestedValue = CodingKeys(stringValue: "suggestedValue")
+      static let inheritFromParent = CodingKeys(stringValue: "inheritFromParent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedValues",
+        "deniedValues",
+        "allValues",
+        "suggestedValue",
+        "inheritFromParent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
+        self.allowedValues = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .deniedValues) {
+        self.deniedValues = value
+      }
+      if let value = try container.decodeIfPresent(
+        Policy.ListPolicy.AllValues.self, forKey: .allValues)
+      {
+        self.allValues = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suggestedValue) {
+        self.suggestedValue = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inheritFromParent) {
+        self.inheritFromParent = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedValues, forKey: .allowedValues)
+      try container.encode(self.deniedValues, forKey: .deniedValues)
+      try container.encode(self.allValues, forKey: .allValues)
+      try container.encode(self.suggestedValue, forKey: .suggestedValue)
+      try container.encode(self.inheritFromParent, forKey: .inheritFromParent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// This enum can be used to set `Policies` that apply to all possible
@@ -479,6 +569,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `constraint_default` for the `Constraint` is `ALLOW`.
     public var enforced: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BooleanPolicy`.
     public init() {}
 
@@ -493,6 +585,38 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enforced = CodingKeys(stringValue: "enforced")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enforced"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enforced) {
+        self.enforced = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enforced, forKey: .enforced)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -521,6 +645,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct RestoreDefault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RestoreDefault`.
     public init() {}
 
@@ -535,6 +661,30 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

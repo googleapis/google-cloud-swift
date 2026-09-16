@@ -31,6 +31,8 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Optional. AOF configuration. This field will be ignored if mode is not AOF.
   public var aofConfig: ClusterPersistenceConfig.AOFConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterPersistenceConfig`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+    static let rdbConfig = CodingKeys(stringValue: "rdbConfig")
+    static let aofConfig = CodingKeys(stringValue: "aofConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode",
+      "rdbConfig",
+      "aofConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ClusterPersistenceConfig.PersistenceMode.self, forKey: .mode)
+    {
+      self.mode = value
+    }
+    self.rdbConfig = try container.decodeIfPresent(
+      ClusterPersistenceConfig.RDBConfig.self, forKey: .rdbConfig)
+    self.aofConfig = try container.decodeIfPresent(
+      ClusterPersistenceConfig.AOFConfig.self, forKey: .aofConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encodeIfPresent(self.rdbConfig, forKey: .rdbConfig)
+    try container.encodeIfPresent(self.aofConfig, forKey: .aofConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration of the RDB based persistence.
   public struct RDBConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +105,8 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     /// which future snapshots will be aligned. If not provided, the current time
     /// will be used.
     public var rdbSnapshotStartTime: GoogleCloudWKT.Timestamp? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RDBConfig`.
     public init() {}
@@ -74,6 +122,45 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rdbSnapshotPeriod = CodingKeys(stringValue: "rdbSnapshotPeriod")
+      static let rdbSnapshotStartTime = CodingKeys(stringValue: "rdbSnapshotStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rdbSnapshotPeriod",
+        "rdbSnapshotStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ClusterPersistenceConfig.RDBConfig.SnapshotPeriod.self, forKey: .rdbSnapshotPeriod)
+      {
+        self.rdbSnapshotPeriod = value
+      }
+      self.rdbSnapshotStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .rdbSnapshotStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+      try container.encodeIfPresent(self.rdbSnapshotStartTime, forKey: .rdbSnapshotStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Available snapshot periods.
@@ -214,6 +301,8 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     public var appendFsync: ClusterPersistenceConfig.AOFConfig.AppendFsync =
       ClusterPersistenceConfig.AOFConfig.AppendFsync()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AOFConfig`.
     public init() {}
 
@@ -228,6 +317,40 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let appendFsync = CodingKeys(stringValue: "appendFsync")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "appendFsync"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ClusterPersistenceConfig.AOFConfig.AppendFsync.self, forKey: .appendFsync)
+      {
+        self.appendFsync = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.appendFsync, forKey: .appendFsync)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Available fsync modes.

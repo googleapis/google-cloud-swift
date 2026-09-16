@@ -50,6 +50,8 @@ public struct ApiHubInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Description of the ApiHub instance.
   public var description: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApiHubInstance`.
   public init() {}
 
@@ -64,6 +66,77 @@ public struct ApiHubInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let config = CodingKeys(stringValue: "config")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "state",
+      "stateMessage",
+      "config",
+      "labels",
+      "description",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(ApiHubInstance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    self.config = try container.decodeIfPresent(ApiHubInstance.Config.self, forKey: .config)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available configurations to provision an ApiHub Instance.
@@ -91,6 +164,8 @@ public struct ApiHubInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var encryptionType: ApiHubInstance.Config.EncryptionType = ApiHubInstance.Config
       .EncryptionType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Config`.
     public init() {}
 
@@ -105,6 +180,58 @@ public struct ApiHubInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cmekKeyName = CodingKeys(stringValue: "cmekKeyName")
+      static let disableSearch = CodingKeys(stringValue: "disableSearch")
+      static let vertexLocation = CodingKeys(stringValue: "vertexLocation")
+      static let encryptionType = CodingKeys(stringValue: "encryptionType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cmekKeyName",
+        "disableSearch",
+        "vertexLocation",
+        "encryptionType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cmekKeyName) {
+        self.cmekKeyName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableSearch) {
+        self.disableSearch = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vertexLocation) {
+        self.vertexLocation = value
+      }
+      if let value = try container.decodeIfPresent(
+        ApiHubInstance.Config.EncryptionType.self, forKey: .encryptionType)
+      {
+        self.encryptionType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cmekKeyName, forKey: .cmekKeyName)
+      try container.encode(self.disableSearch, forKey: .disableSearch)
+      try container.encode(self.vertexLocation, forKey: .vertexLocation)
+      try container.encode(self.encryptionType, forKey: .encryptionType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Types of data encryption.

@@ -55,6 +55,8 @@ public struct PacketHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///           v  trace_id                         span_id          options
   public var traceContext: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PacketHeader`.
   public init() {}
 
@@ -69,6 +71,67 @@ public struct PacketHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let captureTime = CodingKeys(stringValue: "captureTime")
+    static let type = CodingKeys(stringValue: "type")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let serverMetadata = CodingKeys(stringValue: "serverMetadata")
+    static let seriesMetadata = CodingKeys(stringValue: "seriesMetadata")
+    static let flags = CodingKeys(stringValue: "flags")
+    static let traceContext = CodingKeys(stringValue: "traceContext")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "captureTime",
+      "type",
+      "metadata",
+      "serverMetadata",
+      "seriesMetadata",
+      "flags",
+      "traceContext",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.captureTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .captureTime)
+    self.type = try container.decodeIfPresent(PacketType.self, forKey: .type)
+    self.metadata = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .metadata)
+    self.serverMetadata = try container.decodeIfPresent(
+      ServerMetadata.self, forKey: .serverMetadata)
+    self.seriesMetadata = try container.decodeIfPresent(
+      SeriesMetadata.self, forKey: .seriesMetadata)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .flags) {
+      self.flags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .traceContext) {
+      self.traceContext = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.captureTime, forKey: .captureTime)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.serverMetadata, forKey: .serverMetadata)
+    try container.encodeIfPresent(self.seriesMetadata, forKey: .seriesMetadata)
+    try container.encode(self.flags, forKey: .flags)
+    try container.encode(self.traceContext, forKey: .traceContext)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

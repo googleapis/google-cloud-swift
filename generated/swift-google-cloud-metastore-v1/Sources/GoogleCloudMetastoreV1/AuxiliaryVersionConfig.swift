@@ -36,6 +36,8 @@ public struct AuxiliaryVersionConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// auxiliary Hive metastore service.
   public var networkConfig: NetworkConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuxiliaryVersionConfig`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct AuxiliaryVersionConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let configOverrides = CodingKeys(stringValue: "configOverrides")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "configOverrides",
+      "networkConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .configOverrides)
+    {
+      self.configOverrides = value
+    }
+    self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.configOverrides, forKey: .configOverrides)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

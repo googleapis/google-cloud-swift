@@ -47,6 +47,8 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleCloudWKT._An
   public var hyperthreading: MachineArchitectureDetails.CpuHyperThreading =
     MachineArchitectureDetails.CpuHyperThreading()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MachineArchitectureDetails`.
   public init() {}
 
@@ -61,6 +63,82 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuArchitecture = CodingKeys(stringValue: "cpuArchitecture")
+    static let cpuName = CodingKeys(stringValue: "cpuName")
+    static let vendor = CodingKeys(stringValue: "vendor")
+    static let cpuThreadCount = CodingKeys(stringValue: "cpuThreadCount")
+    static let cpuSocketCount = CodingKeys(stringValue: "cpuSocketCount")
+    static let bios = CodingKeys(stringValue: "bios")
+    static let firmwareType = CodingKeys(stringValue: "firmwareType")
+    static let hyperthreading = CodingKeys(stringValue: "hyperthreading")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuArchitecture",
+      "cpuName",
+      "vendor",
+      "cpuThreadCount",
+      "cpuSocketCount",
+      "bios",
+      "firmwareType",
+      "hyperthreading",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuArchitecture) {
+      self.cpuArchitecture = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuName) {
+      self.cpuName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vendor) {
+      self.vendor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuThreadCount) {
+      self.cpuThreadCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuSocketCount) {
+      self.cpuSocketCount = value
+    }
+    self.bios = try container.decodeIfPresent(BiosDetails.self, forKey: .bios)
+    if let value = try container.decodeIfPresent(
+      MachineArchitectureDetails.FirmwareType.self, forKey: .firmwareType)
+    {
+      self.firmwareType = value
+    }
+    if let value = try container.decodeIfPresent(
+      MachineArchitectureDetails.CpuHyperThreading.self, forKey: .hyperthreading)
+    {
+      self.hyperthreading = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuArchitecture, forKey: .cpuArchitecture)
+    try container.encode(self.cpuName, forKey: .cpuName)
+    try container.encode(self.vendor, forKey: .vendor)
+    try container.encode(self.cpuThreadCount, forKey: .cpuThreadCount)
+    try container.encode(self.cpuSocketCount, forKey: .cpuSocketCount)
+    try container.encodeIfPresent(self.bios, forKey: .bios)
+    try container.encode(self.firmwareType, forKey: .firmwareType)
+    try container.encode(self.hyperthreading, forKey: .hyperthreading)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Firmware type.

@@ -25,6 +25,8 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The first filter containing a pattern that matches a table will be used.
   public var pattern: OneOf_Pattern? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryTableCollection`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeRegexes = "includeRegexes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeRegexes = CodingKeys(stringValue: "includeRegexes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeRegexes"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleCloudWKT._AnyPa
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
     self.pattern = pattern
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .includeRegexes(let value):
         try container.encode(value, forKey: .includeRegexes)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

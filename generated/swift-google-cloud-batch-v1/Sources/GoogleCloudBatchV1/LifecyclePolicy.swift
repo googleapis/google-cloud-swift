@@ -32,6 +32,8 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Conditions that decide why a task failure is dealt with a specific action.
   public var actionCondition: LifecyclePolicy.ActionCondition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LifecyclePolicy`.
   public init() {}
 
@@ -48,6 +50,43 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let action = CodingKeys(stringValue: "action")
+    static let actionCondition = CodingKeys(stringValue: "actionCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "action",
+      "actionCondition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(LifecyclePolicy.Action.self, forKey: .action) {
+      self.action = value
+    }
+    self.actionCondition = try container.decodeIfPresent(
+      LifecyclePolicy.ActionCondition.self, forKey: .actionCondition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.action, forKey: .action)
+    try container.encodeIfPresent(self.actionCondition, forKey: .actionCondition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Conditions for actions to deal with task failures.
   public struct ActionCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -57,6 +96,8 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// when task executes with any of the exit code in the list,
     /// the condition is met and the action will be executed.
     public var exitCodes: [Swift.Int32] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ActionCondition`.
     public init() {}
@@ -72,6 +113,38 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exitCodes = CodingKeys(stringValue: "exitCodes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exitCodes"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .exitCodes) {
+        self.exitCodes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.exitCodes, forKey: .exitCodes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

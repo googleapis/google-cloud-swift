@@ -24,6 +24,8 @@ public struct SourceStorageResource: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Source storage resource details.
   public var storageResource: OneOf_StorageResource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceStorageResource`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct SourceStorageResource: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case awsDiskDetails = "awsDiskDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let awsDiskDetails = CodingKeys(stringValue: "awsDiskDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "awsDiskDetails"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct SourceStorageResource: Codable, Equatable, GoogleCloudWKT._AnyPack
       try storageResourceCheckAndSet(.awsDiskDetails(awsDiskDetails))
     }
     self.storageResource = storageResource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct SourceStorageResource: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .awsDiskDetails(let value):
         try container.encode(value, forKey: .awsDiskDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

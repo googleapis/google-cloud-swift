@@ -78,6 +78,8 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Total bytes loaded for an import job.
   public var totalLoadOutputBytes: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobStatistics`.
   public init() {}
 
@@ -94,6 +96,120 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let totalProcessedBytes = CodingKeys(stringValue: "totalProcessedBytes")
+    static let totalBilledBytes = CodingKeys(stringValue: "totalBilledBytes")
+    static let billingTier = CodingKeys(stringValue: "billingTier")
+    static let totalSlotMs = CodingKeys(stringValue: "totalSlotMs")
+    static let reservationUsage = CodingKeys(stringValue: "reservationUsage")
+    static let reservation = CodingKeys(stringValue: "reservation")
+    static let referencedTables = CodingKeys(stringValue: "referencedTables")
+    static let totalTablesProcessed = CodingKeys(stringValue: "totalTablesProcessed")
+    static let referencedViews = CodingKeys(stringValue: "referencedViews")
+    static let totalViewsProcessed = CodingKeys(stringValue: "totalViewsProcessed")
+    static let queryOutputRowCount = CodingKeys(stringValue: "queryOutputRowCount")
+    static let totalLoadOutputBytes = CodingKeys(stringValue: "totalLoadOutputBytes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "startTime",
+      "endTime",
+      "totalProcessedBytes",
+      "totalBilledBytes",
+      "billingTier",
+      "totalSlotMs",
+      "reservationUsage",
+      "reservation",
+      "referencedTables",
+      "totalTablesProcessed",
+      "referencedViews",
+      "totalViewsProcessed",
+      "queryOutputRowCount",
+      "totalLoadOutputBytes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalProcessedBytes) {
+      self.totalProcessedBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBilledBytes) {
+      self.totalBilledBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .billingTier) {
+      self.billingTier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalSlotMs) {
+      self.totalSlotMs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [JobStatistics.ReservationResourceUsage].self, forKey: .reservationUsage)
+    {
+      self.reservationUsage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reservation) {
+      self.reservation = value
+    }
+    if let value = try container.decodeIfPresent([TableName].self, forKey: .referencedTables) {
+      self.referencedTables = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTablesProcessed) {
+      self.totalTablesProcessed = value
+    }
+    if let value = try container.decodeIfPresent([TableName].self, forKey: .referencedViews) {
+      self.referencedViews = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalViewsProcessed) {
+      self.totalViewsProcessed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .queryOutputRowCount) {
+      self.queryOutputRowCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalLoadOutputBytes) {
+      self.totalLoadOutputBytes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.totalProcessedBytes, forKey: .totalProcessedBytes)
+    try container.encode(self.totalBilledBytes, forKey: .totalBilledBytes)
+    try container.encode(self.billingTier, forKey: .billingTier)
+    try container.encode(self.totalSlotMs, forKey: .totalSlotMs)
+    try container.encode(self.reservationUsage, forKey: .reservationUsage)
+    try container.encode(self.reservation, forKey: .reservation)
+    try container.encode(self.referencedTables, forKey: .referencedTables)
+    try container.encode(self.totalTablesProcessed, forKey: .totalTablesProcessed)
+    try container.encode(self.referencedViews, forKey: .referencedViews)
+    try container.encode(self.totalViewsProcessed, forKey: .totalViewsProcessed)
+    try container.encode(self.queryOutputRowCount, forKey: .queryOutputRowCount)
+    try container.encode(self.totalLoadOutputBytes, forKey: .totalLoadOutputBytes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Job resource usage breakdown by reservation.
   public struct ReservationResourceUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -103,6 +219,8 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Total slot milliseconds used by the reservation for a particular job.
     public var slotMs: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ReservationResourceUsage`.
     public init() {}
@@ -118,6 +236,44 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let slotMs = CodingKeys(stringValue: "slotMs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "slotMs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .slotMs) {
+        self.slotMs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.slotMs, forKey: .slotMs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

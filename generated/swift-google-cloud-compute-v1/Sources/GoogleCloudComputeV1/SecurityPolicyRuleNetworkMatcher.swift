@@ -55,6 +55,8 @@
     /// matching values for that field.
     public var userDefinedFields: [SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRuleNetworkMatcher`.
     public init() {}
 
@@ -69,6 +71,82 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let destIpRanges = CodingKeys(stringValue: "destIpRanges")
+      static let destPorts = CodingKeys(stringValue: "destPorts")
+      static let ipProtocols = CodingKeys(stringValue: "ipProtocols")
+      static let srcAsns = CodingKeys(stringValue: "srcAsns")
+      static let srcIpRanges = CodingKeys(stringValue: "srcIpRanges")
+      static let srcPorts = CodingKeys(stringValue: "srcPorts")
+      static let srcRegionCodes = CodingKeys(stringValue: "srcRegionCodes")
+      static let userDefinedFields = CodingKeys(stringValue: "userDefinedFields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "destIpRanges",
+        "destPorts",
+        "ipProtocols",
+        "srcAsns",
+        "srcIpRanges",
+        "srcPorts",
+        "srcRegionCodes",
+        "userDefinedFields",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destIpRanges) {
+        self.destIpRanges = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destPorts) {
+        self.destPorts = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipProtocols) {
+        self.ipProtocols = value
+      }
+      if let value = try container.decodeIfPresent([Swift.UInt32].self, forKey: .srcAsns) {
+        self.srcAsns = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcIpRanges) {
+        self.srcIpRanges = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcPorts) {
+        self.srcPorts = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcRegionCodes) {
+        self.srcRegionCodes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch].self, forKey: .userDefinedFields)
+      {
+        self.userDefinedFields = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.destIpRanges, forKey: .destIpRanges)
+      try container.encode(self.destPorts, forKey: .destPorts)
+      try container.encode(self.ipProtocols, forKey: .ipProtocols)
+      try container.encode(self.srcAsns, forKey: .srcAsns)
+      try container.encode(self.srcIpRanges, forKey: .srcIpRanges)
+      try container.encode(self.srcPorts, forKey: .srcPorts)
+      try container.encode(self.srcRegionCodes, forKey: .srcRegionCodes)
+      try container.encode(self.userDefinedFields, forKey: .userDefinedFields)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -30,6 +30,8 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleCloudWKT._A
   /// Stats about the de-identification operation.
   public var deidentifyStats: DeidentifyDataSourceStats? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeidentifyDataSourceDetails`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestedOptions = CodingKeys(stringValue: "requestedOptions")
+    static let deidentifyStats = CodingKeys(stringValue: "deidentifyStats")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestedOptions",
+      "deidentifyStats",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.requestedOptions = try container.decodeIfPresent(
+      DeidentifyDataSourceDetails.RequestedDeidentifyOptions.self, forKey: .requestedOptions)
+    self.deidentifyStats = try container.decodeIfPresent(
+      DeidentifyDataSourceStats.self, forKey: .deidentifyStats)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.requestedOptions, forKey: .requestedOptions)
+    try container.encodeIfPresent(self.deidentifyStats, forKey: .deidentifyStats)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// De-identification options.
@@ -65,6 +103,8 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleCloudWKT._A
     /// from the `Deidentify` action at the time this job was run.
     public var snapshotImageRedactTemplate: DeidentifyTemplate? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RequestedDeidentifyOptions`.
     public init() {}
 
@@ -79,6 +119,52 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let snapshotDeidentifyTemplate = CodingKeys(stringValue: "snapshotDeidentifyTemplate")
+      static let snapshotStructuredDeidentifyTemplate = CodingKeys(
+        stringValue: "snapshotStructuredDeidentifyTemplate")
+      static let snapshotImageRedactTemplate = CodingKeys(
+        stringValue: "snapshotImageRedactTemplate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "snapshotDeidentifyTemplate",
+        "snapshotStructuredDeidentifyTemplate",
+        "snapshotImageRedactTemplate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.snapshotDeidentifyTemplate = try container.decodeIfPresent(
+        DeidentifyTemplate.self, forKey: .snapshotDeidentifyTemplate)
+      self.snapshotStructuredDeidentifyTemplate = try container.decodeIfPresent(
+        DeidentifyTemplate.self, forKey: .snapshotStructuredDeidentifyTemplate)
+      self.snapshotImageRedactTemplate = try container.decodeIfPresent(
+        DeidentifyTemplate.self, forKey: .snapshotImageRedactTemplate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.snapshotDeidentifyTemplate, forKey: .snapshotDeidentifyTemplate)
+      try container.encodeIfPresent(
+        self.snapshotStructuredDeidentifyTemplate, forKey: .snapshotStructuredDeidentifyTemplate)
+      try container.encodeIfPresent(
+        self.snapshotImageRedactTemplate, forKey: .snapshotImageRedactTemplate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

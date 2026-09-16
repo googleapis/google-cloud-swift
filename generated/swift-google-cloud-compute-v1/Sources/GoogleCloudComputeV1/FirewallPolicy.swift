@@ -117,6 +117,8 @@
     /// cannot be a dash.
     public var shortName: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FirewallPolicy`.
     public init() {}
 
@@ -133,30 +135,58 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case associations = "associations"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case displayName = "displayName"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case packetMirroringRules = "packetMirroringRules"
-      case parent = "parent"
-      case policyType = "policyType"
-      case region = "region"
-      case ruleTupleCount = "ruleTupleCount"
-      case rules = "rules"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case shortName = "shortName"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let associations = CodingKeys(stringValue: "associations")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let packetMirroringRules = CodingKeys(stringValue: "packetMirroringRules")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let policyType = CodingKeys(stringValue: "policyType")
+      static let region = CodingKeys(stringValue: "region")
+      static let ruleTupleCount = CodingKeys(stringValue: "ruleTupleCount")
+      static let rules = CodingKeys(stringValue: "rules")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let shortName = CodingKeys(stringValue: "shortName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "associations",
+        "creationTimestamp",
+        "description",
+        "displayName",
+        "fingerprint",
+        "id",
+        "kind",
+        "name",
+        "packetMirroringRules",
+        "parent",
+        "policyType",
+        "region",
+        "ruleTupleCount",
+        "rules",
+        "selfLink",
+        "selfLinkWithId",
+        "shortName",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.associations = try container.decode(
+      if let value = try container.decodeIfPresent(
         [FirewallPolicyAssociation].self, forKey: .associations)
+      {
+        self.associations = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
@@ -173,43 +203,55 @@
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.packetMirroringRules = try container.decode(
+      if let value = try container.decodeIfPresent(
         [FirewallPolicyRule].self, forKey: .packetMirroringRules)
+      {
+        self.packetMirroringRules = value
+      }
       self.parent = try container.decodeIfPresent(Swift.String.self, forKey: .parent)
       self.policyType = try container.decodeIfPresent(
         FirewallPolicy.PolicyType.self, forKey: .policyType)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.ruleTupleCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .ruleTupleCount)
-      self.rules = try container.decode([FirewallPolicyRule].self, forKey: .rules)
+      if let value = try container.decodeIfPresent([FirewallPolicyRule].self, forKey: .rules) {
+        self.rules = value
+      }
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(
         Swift.String.self, forKey: .selfLinkWithId)
       self.shortName = try container.decodeIfPresent(Swift.String.self, forKey: .shortName)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.associations, forKey: .associations)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.displayName, forKey: .displayName)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.packetMirroringRules, forKey: .packetMirroringRules)
-      try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.policyType, forKey: .policyType)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.ruleTupleCount, forKey: .ruleTupleCount)
+      try container.encodeIfPresent(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.policyType, forKey: .policyType)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.ruleTupleCount, forKey: .ruleTupleCount)
       try container.encode(self.rules, forKey: .rules)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
-      try container.encode(self.shortName, forKey: .shortName)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.shortName, forKey: .shortName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [policyType][google.cloud.compute.v1.FirewallPolicy.policyType] field.

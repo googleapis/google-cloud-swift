@@ -32,6 +32,8 @@ public struct InlineResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// populated only when `SRT` output is requested.
   public var srtCaptions: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InlineResult`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct InlineResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transcript = CodingKeys(stringValue: "transcript")
+    static let vttCaptions = CodingKeys(stringValue: "vttCaptions")
+    static let srtCaptions = CodingKeys(stringValue: "srtCaptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transcript",
+      "vttCaptions",
+      "srtCaptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.transcript = try container.decodeIfPresent(BatchRecognizeResults.self, forKey: .transcript)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vttCaptions) {
+      self.vttCaptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .srtCaptions) {
+      self.srtCaptions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.transcript, forKey: .transcript)
+    try container.encode(self.vttCaptions, forKey: .vttCaptions)
+    try container.encode(self.srtCaptions, forKey: .srtCaptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

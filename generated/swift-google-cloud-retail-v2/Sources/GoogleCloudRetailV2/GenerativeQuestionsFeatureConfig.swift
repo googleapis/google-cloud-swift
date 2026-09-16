@@ -34,6 +34,8 @@ public struct GenerativeQuestionsFeatureConfig: Codable, Equatable, GoogleCloudW
   /// questions. Value must be 0 or positive.
   public var minimumProducts: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerativeQuestionsFeatureConfig`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct GenerativeQuestionsFeatureConfig: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let catalog = CodingKeys(stringValue: "catalog")
+    static let featureEnabled = CodingKeys(stringValue: "featureEnabled")
+    static let minimumProducts = CodingKeys(stringValue: "minimumProducts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "catalog",
+      "featureEnabled",
+      "minimumProducts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .catalog) {
+      self.catalog = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .featureEnabled) {
+      self.featureEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minimumProducts) {
+      self.minimumProducts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.catalog, forKey: .catalog)
+    try container.encode(self.featureEnabled, forKey: .featureEnabled)
+    try container.encode(self.minimumProducts, forKey: .minimumProducts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

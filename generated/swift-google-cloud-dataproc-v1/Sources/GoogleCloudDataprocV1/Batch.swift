@@ -71,6 +71,8 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The application/framework-specific portion of the batch configuration.
   public var batchConfig: OneOf_BatchConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Batch`.
   public init() {}
 
@@ -87,45 +89,88 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uuid = "uuid"
-    case createTime = "createTime"
-    case pysparkBatch = "pysparkBatch"
-    case sparkBatch = "sparkBatch"
-    case sparkRBatch = "sparkRBatch"
-    case sparkSqlBatch = "sparkSqlBatch"
-    case pysparkNotebookBatch = "pysparkNotebookBatch"
-    case runtimeInfo = "runtimeInfo"
-    case state = "state"
-    case stateMessage = "stateMessage"
-    case stateTime = "stateTime"
-    case creator = "creator"
-    case labels = "labels"
-    case runtimeConfig = "runtimeConfig"
-    case environmentConfig = "environmentConfig"
-    case operation = "operation"
-    case stateHistory = "stateHistory"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uuid = CodingKeys(stringValue: "uuid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let pysparkBatch = CodingKeys(stringValue: "pysparkBatch")
+    static let sparkBatch = CodingKeys(stringValue: "sparkBatch")
+    static let sparkRBatch = CodingKeys(stringValue: "sparkRBatch")
+    static let sparkSqlBatch = CodingKeys(stringValue: "sparkSqlBatch")
+    static let pysparkNotebookBatch = CodingKeys(stringValue: "pysparkNotebookBatch")
+    static let runtimeInfo = CodingKeys(stringValue: "runtimeInfo")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let stateTime = CodingKeys(stringValue: "stateTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let runtimeConfig = CodingKeys(stringValue: "runtimeConfig")
+    static let environmentConfig = CodingKeys(stringValue: "environmentConfig")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let stateHistory = CodingKeys(stringValue: "stateHistory")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uuid",
+      "createTime",
+      "pysparkBatch",
+      "sparkBatch",
+      "sparkRBatch",
+      "sparkSqlBatch",
+      "pysparkNotebookBatch",
+      "runtimeInfo",
+      "state",
+      "stateMessage",
+      "stateTime",
+      "creator",
+      "labels",
+      "runtimeConfig",
+      "environmentConfig",
+      "operation",
+      "stateHistory",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uuid = try container.decode(Swift.String.self, forKey: .uuid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+      self.uuid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.runtimeInfo = try container.decodeIfPresent(RuntimeInfo.self, forKey: .runtimeInfo)
-    self.state = try container.decode(Batch.State.self, forKey: .state)
-    self.stateMessage = try container.decode(Swift.String.self, forKey: .stateMessage)
+    if let value = try container.decodeIfPresent(Batch.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
     self.stateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
-    self.creator = try container.decode(Swift.String.self, forKey: .creator)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.runtimeConfig = try container.decodeIfPresent(RuntimeConfig.self, forKey: .runtimeConfig)
     self.environmentConfig = try container.decodeIfPresent(
       EnvironmentConfig.self, forKey: .environmentConfig)
-    self.operation = try container.decode(Swift.String.self, forKey: .operation)
-    self.stateHistory = try container.decode([Batch.StateHistory].self, forKey: .stateHistory)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operation) {
+      self.operation = value
+    }
+    if let value = try container.decodeIfPresent([Batch.StateHistory].self, forKey: .stateHistory) {
+      self.stateHistory = value
+    }
 
     var batchConfig: OneOf_BatchConfig? = nil
     let batchConfigCheckAndSet = {
@@ -157,21 +202,25 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try batchConfigCheckAndSet(.pysparkNotebookBatch(pysparkNotebookBatch))
     }
     self.batchConfig = batchConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uuid, forKey: .uuid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.runtimeInfo, forKey: .runtimeInfo)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.runtimeInfo, forKey: .runtimeInfo)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateMessage, forKey: .stateMessage)
-    try container.encode(self.stateTime, forKey: .stateTime)
+    try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encode(self.creator, forKey: .creator)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.runtimeConfig, forKey: .runtimeConfig)
-    try container.encode(self.environmentConfig, forKey: .environmentConfig)
+    try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
+    try container.encodeIfPresent(self.environmentConfig, forKey: .environmentConfig)
     try container.encode(self.operation, forKey: .operation)
     try container.encode(self.stateHistory, forKey: .stateHistory)
 
@@ -189,6 +238,9 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .pysparkNotebookBatch)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Historical state information.
@@ -204,6 +256,8 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The time when the batch entered the historical state.
     public var stateStartTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StateHistory`.
     public init() {}
 
@@ -218,6 +272,49 @@ public struct Batch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let stateMessage = CodingKeys(stringValue: "stateMessage")
+      static let stateStartTime = CodingKeys(stringValue: "stateStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "stateMessage",
+        "stateStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Batch.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+        self.stateMessage = value
+      }
+      self.stateStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .stateStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.stateMessage, forKey: .stateMessage)
+      try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

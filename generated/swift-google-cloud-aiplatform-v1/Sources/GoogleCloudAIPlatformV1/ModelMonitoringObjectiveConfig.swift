@@ -38,6 +38,8 @@
     /// The config for integrating with Vertex Explainable AI.
     public var explanationConfig: ModelMonitoringObjectiveConfig.ExplanationConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelMonitoringObjectiveConfig`.
     public init() {}
 
@@ -52,6 +54,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingDataset = CodingKeys(stringValue: "trainingDataset")
+      static let trainingPredictionSkewDetectionConfig = CodingKeys(
+        stringValue: "trainingPredictionSkewDetectionConfig")
+      static let predictionDriftDetectionConfig = CodingKeys(
+        stringValue: "predictionDriftDetectionConfig")
+      static let explanationConfig = CodingKeys(stringValue: "explanationConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingDataset",
+        "trainingPredictionSkewDetectionConfig",
+        "predictionDriftDetectionConfig",
+        "explanationConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.trainingDataset = try container.decodeIfPresent(
+        ModelMonitoringObjectiveConfig.TrainingDataset.self, forKey: .trainingDataset)
+      self.trainingPredictionSkewDetectionConfig = try container.decodeIfPresent(
+        ModelMonitoringObjectiveConfig.TrainingPredictionSkewDetectionConfig.self,
+        forKey: .trainingPredictionSkewDetectionConfig)
+      self.predictionDriftDetectionConfig = try container.decodeIfPresent(
+        ModelMonitoringObjectiveConfig.PredictionDriftDetectionConfig.self,
+        forKey: .predictionDriftDetectionConfig)
+      self.explanationConfig = try container.decodeIfPresent(
+        ModelMonitoringObjectiveConfig.ExplanationConfig.self, forKey: .explanationConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.trainingDataset, forKey: .trainingDataset)
+      try container.encodeIfPresent(
+        self.trainingPredictionSkewDetectionConfig, forKey: .trainingPredictionSkewDetectionConfig)
+      try container.encodeIfPresent(
+        self.predictionDriftDetectionConfig, forKey: .predictionDriftDetectionConfig)
+      try container.encodeIfPresent(self.explanationConfig, forKey: .explanationConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Training Dataset information.
@@ -82,6 +136,8 @@
 
       public var dataSource: OneOf_DataSource? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TrainingDataset`.
       public init() {}
 
@@ -98,19 +154,37 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case dataset = "dataset"
-        case gcsSource = "gcsSource"
-        case bigquerySource = "bigquerySource"
-        case dataFormat = "dataFormat"
-        case targetField = "targetField"
-        case loggingSamplingStrategy = "loggingSamplingStrategy"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataset = CodingKeys(stringValue: "dataset")
+        static let gcsSource = CodingKeys(stringValue: "gcsSource")
+        static let bigquerySource = CodingKeys(stringValue: "bigquerySource")
+        static let dataFormat = CodingKeys(stringValue: "dataFormat")
+        static let targetField = CodingKeys(stringValue: "targetField")
+        static let loggingSamplingStrategy = CodingKeys(stringValue: "loggingSamplingStrategy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataset",
+          "gcsSource",
+          "bigquerySource",
+          "dataFormat",
+          "targetField",
+          "loggingSamplingStrategy",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.dataFormat = try container.decode(Swift.String.self, forKey: .dataFormat)
-        self.targetField = try container.decode(Swift.String.self, forKey: .targetField)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataFormat) {
+          self.dataFormat = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetField) {
+          self.targetField = value
+        }
         self.loggingSamplingStrategy = try container.decodeIfPresent(
           SamplingStrategy.self, forKey: .loggingSamplingStrategy)
 
@@ -136,13 +210,18 @@
           try dataSourceCheckAndSet(.bigquerySource(bigquerySource))
         }
         self.dataSource = dataSource
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataFormat, forKey: .dataFormat)
         try container.encode(self.targetField, forKey: .targetField)
-        try container.encode(self.loggingSamplingStrategy, forKey: .loggingSamplingStrategy)
+        try container.encodeIfPresent(
+          self.loggingSamplingStrategy, forKey: .loggingSamplingStrategy)
 
         if let choice = self.dataSource {
           switch choice {
@@ -153,6 +232,9 @@
           case .bigquerySource(let value):
             try container.encode(value, forKey: .bigquerySource)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -201,6 +283,8 @@
       /// specify a threshold for all features.
       public var defaultSkewThreshold: ThresholdConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TrainingPredictionSkewDetectionConfig`.
       public init() {}
 
@@ -215,6 +299,55 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let skewThresholds = CodingKeys(stringValue: "skewThresholds")
+        static let attributionScoreSkewThresholds = CodingKeys(
+          stringValue: "attributionScoreSkewThresholds")
+        static let defaultSkewThreshold = CodingKeys(stringValue: "defaultSkewThreshold")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "skewThresholds",
+          "attributionScoreSkewThresholds",
+          "defaultSkewThreshold",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String: ThresholdConfig].self, forKey: .skewThresholds)
+        {
+          self.skewThresholds = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: ThresholdConfig].self, forKey: .attributionScoreSkewThresholds)
+        {
+          self.attributionScoreSkewThresholds = value
+        }
+        self.defaultSkewThreshold = try container.decodeIfPresent(
+          ThresholdConfig.self, forKey: .defaultSkewThreshold)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.skewThresholds, forKey: .skewThresholds)
+        try container.encode(
+          self.attributionScoreSkewThresholds, forKey: .attributionScoreSkewThresholds)
+        try container.encodeIfPresent(self.defaultSkewThreshold, forKey: .defaultSkewThreshold)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -248,6 +381,8 @@
       /// specify a threshold for all features.
       public var defaultDriftThreshold: ThresholdConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PredictionDriftDetectionConfig`.
       public init() {}
 
@@ -262,6 +397,55 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let driftThresholds = CodingKeys(stringValue: "driftThresholds")
+        static let attributionScoreDriftThresholds = CodingKeys(
+          stringValue: "attributionScoreDriftThresholds")
+        static let defaultDriftThreshold = CodingKeys(stringValue: "defaultDriftThreshold")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "driftThresholds",
+          "attributionScoreDriftThresholds",
+          "defaultDriftThreshold",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String: ThresholdConfig].self, forKey: .driftThresholds)
+        {
+          self.driftThresholds = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: ThresholdConfig].self, forKey: .attributionScoreDriftThresholds)
+        {
+          self.attributionScoreDriftThresholds = value
+        }
+        self.defaultDriftThreshold = try container.decodeIfPresent(
+          ThresholdConfig.self, forKey: .defaultDriftThreshold)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.driftThresholds, forKey: .driftThresholds)
+        try container.encode(
+          self.attributionScoreDriftThresholds, forKey: .attributionScoreDriftThresholds)
+        try container.encodeIfPresent(self.defaultDriftThreshold, forKey: .defaultDriftThreshold)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -290,6 +474,8 @@
       public var explanationBaseline:
         ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ExplanationConfig`.
       public init() {}
 
@@ -304,6 +490,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableFeatureAttributes = CodingKeys(stringValue: "enableFeatureAttributes")
+        static let explanationBaseline = CodingKeys(stringValue: "explanationBaseline")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableFeatureAttributes",
+          "explanationBaseline",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableFeatureAttributes)
+        {
+          self.enableFeatureAttributes = value
+        }
+        self.explanationBaseline = try container.decodeIfPresent(
+          ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline.self,
+          forKey: .explanationBaseline)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableFeatureAttributes, forKey: .enableFeatureAttributes)
+        try container.encodeIfPresent(self.explanationBaseline, forKey: .explanationBaseline)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Output from
@@ -324,6 +550,9 @@
         /// used to generate the baseline of feature attribution scores.
         public var destination: OneOf_Destination? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ExplanationBaseline`.
         public init() {}
 
@@ -340,17 +569,31 @@
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case gcs = "gcs"
-          case bigquery = "bigquery"
-          case predictionFormat = "predictionFormat"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let gcs = CodingKeys(stringValue: "gcs")
+          static let bigquery = CodingKeys(stringValue: "bigquery")
+          static let predictionFormat = CodingKeys(stringValue: "predictionFormat")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "gcs",
+            "bigquery",
+            "predictionFormat",
+          ]
         }
 
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.predictionFormat = try container.decode(
+          if let value = try container.decodeIfPresent(
             ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline.PredictionFormat
               .self, forKey: .predictionFormat)
+          {
+            self.predictionFormat = value
+          }
 
           var destination: OneOf_Destination? = nil
           let destinationCheckAndSet = {
@@ -371,6 +614,10 @@
             try destinationCheckAndSet(.bigquery(bigquery))
           }
           self.destination = destination
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -384,6 +631,9 @@
             case .bigquery(let value):
               try container.encode(value, forKey: .bigquery)
             }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
         }
 

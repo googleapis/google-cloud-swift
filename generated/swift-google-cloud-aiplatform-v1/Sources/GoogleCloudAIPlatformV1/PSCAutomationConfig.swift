@@ -44,6 +44,8 @@
     /// Output only. Error message if the PSC service automation failed.
     public var errorMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PSCAutomationConfig`.
     public init() {}
 
@@ -58,6 +60,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let projectId = CodingKeys(stringValue: "projectId")
+      static let network = CodingKeys(stringValue: "network")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+      static let state = CodingKeys(stringValue: "state")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "projectId",
+        "network",
+        "ipAddress",
+        "forwardingRule",
+        "state",
+        "errorMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+        self.projectId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+        self.ipAddress = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .forwardingRule) {
+        self.forwardingRule = value
+      }
+      if let value = try container.decodeIfPresent(PSCAutomationState.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.projectId, forKey: .projectId)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.ipAddress, forKey: .ipAddress)
+      try container.encode(self.forwardingRule, forKey: .forwardingRule)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

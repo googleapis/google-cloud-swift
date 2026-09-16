@@ -32,6 +32,8 @@ public struct Restrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// restrictions per key.
   public var clientRestrictions: OneOf_ClientRestrictions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Restrictions`.
   public init() {}
 
@@ -48,17 +50,32 @@ public struct Restrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case browserKeyRestrictions = "browserKeyRestrictions"
-    case serverKeyRestrictions = "serverKeyRestrictions"
-    case androidKeyRestrictions = "androidKeyRestrictions"
-    case iosKeyRestrictions = "iosKeyRestrictions"
-    case apiTargets = "apiTargets"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let browserKeyRestrictions = CodingKeys(stringValue: "browserKeyRestrictions")
+    static let serverKeyRestrictions = CodingKeys(stringValue: "serverKeyRestrictions")
+    static let androidKeyRestrictions = CodingKeys(stringValue: "androidKeyRestrictions")
+    static let iosKeyRestrictions = CodingKeys(stringValue: "iosKeyRestrictions")
+    static let apiTargets = CodingKeys(stringValue: "apiTargets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "browserKeyRestrictions",
+      "serverKeyRestrictions",
+      "androidKeyRestrictions",
+      "iosKeyRestrictions",
+      "apiTargets",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.apiTargets = try container.decode([ApiTarget].self, forKey: .apiTargets)
+    if let value = try container.decodeIfPresent([ApiTarget].self, forKey: .apiTargets) {
+      self.apiTargets = value
+    }
 
     var clientRestrictions: OneOf_ClientRestrictions? = nil
     let clientRestrictionsCheckAndSet = {
@@ -91,6 +108,10 @@ public struct Restrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try clientRestrictionsCheckAndSet(.iosKeyRestrictions(iosKeyRestrictions))
     }
     self.clientRestrictions = clientRestrictions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,6 +129,9 @@ public struct Restrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .iosKeyRestrictions(let value):
         try container.encode(value, forKey: .iosKeyRestrictions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

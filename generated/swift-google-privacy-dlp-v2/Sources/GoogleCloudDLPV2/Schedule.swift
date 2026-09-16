@@ -24,6 +24,8 @@ public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of schedule.
   public var option: OneOf_Option? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Schedule`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case recurrencePeriodDuration = "recurrencePeriodDuration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let recurrencePeriodDuration = CodingKeys(stringValue: "recurrencePeriodDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "recurrencePeriodDuration"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionCheckAndSet(.recurrencePeriodDuration(recurrencePeriodDuration))
     }
     self.option = option
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .recurrencePeriodDuration(let value):
         try container.encode(value, forKey: .recurrencePeriodDuration)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

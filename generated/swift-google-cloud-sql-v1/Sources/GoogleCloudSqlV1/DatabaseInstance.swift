@@ -244,6 +244,8 @@
     /// false, instance metadata is not sent to the Database Center.
     public var databaseCenterIntegrationEnabled: GoogleCloudWKT.BoolValue? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DatabaseInstance`.
     public init() {}
 
@@ -260,6 +262,342 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let state = CodingKeys(stringValue: "state")
+      static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+      static let settings = CodingKeys(stringValue: "settings")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let failoverReplica = CodingKeys(stringValue: "failoverReplica")
+      static let masterInstanceName = CodingKeys(stringValue: "masterInstanceName")
+      static let replicaNames = CodingKeys(stringValue: "replicaNames")
+      static let maxDiskSize = CodingKeys(stringValue: "maxDiskSize")
+      static let currentDiskSize = CodingKeys(stringValue: "currentDiskSize")
+      static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+      static let serverCaCert = CodingKeys(stringValue: "serverCaCert")
+      static let instanceType = CodingKeys(stringValue: "instanceType")
+      static let project = CodingKeys(stringValue: "project")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+      static let serviceAccountEmailAddress = CodingKeys(stringValue: "serviceAccountEmailAddress")
+      static let onPremisesConfiguration = CodingKeys(stringValue: "onPremisesConfiguration")
+      static let replicaConfiguration = CodingKeys(stringValue: "replicaConfiguration")
+      static let backendType = CodingKeys(stringValue: "backendType")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let suspensionReason = CodingKeys(stringValue: "suspensionReason")
+      static let connectionName = CodingKeys(stringValue: "connectionName")
+      static let name = CodingKeys(stringValue: "name")
+      static let region = CodingKeys(stringValue: "region")
+      static let gceZone = CodingKeys(stringValue: "gceZone")
+      static let secondaryGceZone = CodingKeys(stringValue: "secondaryGceZone")
+      static let diskEncryptionConfiguration = CodingKeys(
+        stringValue: "diskEncryptionConfiguration")
+      static let diskEncryptionStatus = CodingKeys(stringValue: "diskEncryptionStatus")
+      static let rootPassword = CodingKeys(stringValue: "rootPassword")
+      static let scheduledMaintenance = CodingKeys(stringValue: "scheduledMaintenance")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let databaseInstalledVersion = CodingKeys(stringValue: "databaseInstalledVersion")
+      static let outOfDiskReport = CodingKeys(stringValue: "outOfDiskReport")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let availableMaintenanceVersions = CodingKeys(
+        stringValue: "availableMaintenanceVersions")
+      static let maintenanceVersion = CodingKeys(stringValue: "maintenanceVersion")
+      static let upgradableDatabaseVersions = CodingKeys(stringValue: "upgradableDatabaseVersions")
+      static let sqlNetworkArchitecture = CodingKeys(stringValue: "sqlNetworkArchitecture")
+      static let pscServiceAttachmentLink = CodingKeys(stringValue: "pscServiceAttachmentLink")
+      static let dnsName = CodingKeys(stringValue: "dnsName")
+      static let primaryDnsName = CodingKeys(stringValue: "primaryDnsName")
+      static let writeEndpoint = CodingKeys(stringValue: "writeEndpoint")
+      static let replicationCluster = CodingKeys(stringValue: "replicationCluster")
+      static let geminiConfig = CodingKeys(stringValue: "geminiConfig")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let switchTransactionLogsToCloudStorageEnabled = CodingKeys(
+        stringValue: "switchTransactionLogsToCloudStorageEnabled")
+      static let includeReplicasForMajorVersionUpgrade = CodingKeys(
+        stringValue: "includeReplicasForMajorVersionUpgrade")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let nodeCount = CodingKeys(stringValue: "nodeCount")
+      static let nodes = CodingKeys(stringValue: "nodes")
+      static let dnsNames = CodingKeys(stringValue: "dnsNames")
+      static let databaseCenterIntegrationEnabled = CodingKeys(
+        stringValue: "databaseCenterIntegrationEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "state",
+        "databaseVersion",
+        "settings",
+        "etag",
+        "failoverReplica",
+        "masterInstanceName",
+        "replicaNames",
+        "maxDiskSize",
+        "currentDiskSize",
+        "ipAddresses",
+        "serverCaCert",
+        "instanceType",
+        "project",
+        "ipv6Address",
+        "serviceAccountEmailAddress",
+        "onPremisesConfiguration",
+        "replicaConfiguration",
+        "backendType",
+        "selfLink",
+        "suspensionReason",
+        "connectionName",
+        "name",
+        "region",
+        "gceZone",
+        "secondaryGceZone",
+        "diskEncryptionConfiguration",
+        "diskEncryptionStatus",
+        "rootPassword",
+        "scheduledMaintenance",
+        "satisfiesPzs",
+        "databaseInstalledVersion",
+        "outOfDiskReport",
+        "createTime",
+        "availableMaintenanceVersions",
+        "maintenanceVersion",
+        "upgradableDatabaseVersions",
+        "sqlNetworkArchitecture",
+        "pscServiceAttachmentLink",
+        "dnsName",
+        "primaryDnsName",
+        "writeEndpoint",
+        "replicationCluster",
+        "geminiConfig",
+        "satisfiesPzi",
+        "switchTransactionLogsToCloudStorageEnabled",
+        "includeReplicasForMajorVersionUpgrade",
+        "tags",
+        "nodeCount",
+        "nodes",
+        "dnsNames",
+        "databaseCenterIntegrationEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(
+        DatabaseInstance.SqlInstanceState.self, forKey: .state)
+      {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlDatabaseVersion.self, forKey: .databaseVersion)
+      {
+        self.databaseVersion = value
+      }
+      self.settings = try container.decodeIfPresent(Settings.self, forKey: .settings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      self.failoverReplica = try container.decodeIfPresent(
+        DatabaseInstance.SqlFailoverReplica.self, forKey: .failoverReplica)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterInstanceName) {
+        self.masterInstanceName = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaNames) {
+        self.replicaNames = value
+      }
+      self.maxDiskSize = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .maxDiskSize)
+      self.currentDiskSize = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .currentDiskSize)
+      if let value = try container.decodeIfPresent([IpMapping].self, forKey: .ipAddresses) {
+        self.ipAddresses = value
+      }
+      self.serverCaCert = try container.decodeIfPresent(SslCert.self, forKey: .serverCaCert)
+      if let value = try container.decodeIfPresent(SqlInstanceType.self, forKey: .instanceType) {
+        self.instanceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address) {
+        self.ipv6Address = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serviceAccountEmailAddress)
+      {
+        self.serviceAccountEmailAddress = value
+      }
+      self.onPremisesConfiguration = try container.decodeIfPresent(
+        OnPremisesConfiguration.self, forKey: .onPremisesConfiguration)
+      self.replicaConfiguration = try container.decodeIfPresent(
+        ReplicaConfiguration.self, forKey: .replicaConfiguration)
+      if let value = try container.decodeIfPresent(SqlBackendType.self, forKey: .backendType) {
+        self.backendType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SqlSuspensionReason].self, forKey: .suspensionReason)
+      {
+        self.suspensionReason = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionName) {
+        self.connectionName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+        self.region = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gceZone) {
+        self.gceZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryGceZone) {
+        self.secondaryGceZone = value
+      }
+      self.diskEncryptionConfiguration = try container.decodeIfPresent(
+        DiskEncryptionConfiguration.self, forKey: .diskEncryptionConfiguration)
+      self.diskEncryptionStatus = try container.decodeIfPresent(
+        DiskEncryptionStatus.self, forKey: .diskEncryptionStatus)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootPassword) {
+        self.rootPassword = value
+      }
+      self.scheduledMaintenance = try container.decodeIfPresent(
+        DatabaseInstance.SqlScheduledMaintenance.self, forKey: .scheduledMaintenance)
+      self.satisfiesPzs = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .satisfiesPzs)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .databaseInstalledVersion)
+      {
+        self.databaseInstalledVersion = value
+      }
+      self.outOfDiskReport = try container.decodeIfPresent(
+        DatabaseInstance.SqlOutOfDiskReport.self, forKey: .outOfDiskReport)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .availableMaintenanceVersions)
+      {
+        self.availableMaintenanceVersions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceVersion) {
+        self.maintenanceVersion = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AvailableDatabaseVersion].self, forKey: .upgradableDatabaseVersions)
+      {
+        self.upgradableDatabaseVersions = value
+      }
+      self.sqlNetworkArchitecture = try container.decodeIfPresent(
+        DatabaseInstance.SqlNetworkArchitecture.self, forKey: .sqlNetworkArchitecture)
+      self.pscServiceAttachmentLink = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pscServiceAttachmentLink)
+      self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
+      self.primaryDnsName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .primaryDnsName)
+      self.writeEndpoint = try container.decodeIfPresent(Swift.String.self, forKey: .writeEndpoint)
+      self.replicationCluster = try container.decodeIfPresent(
+        ReplicationCluster.self, forKey: .replicationCluster)
+      self.geminiConfig = try container.decodeIfPresent(
+        GeminiInstanceConfig.self, forKey: .geminiConfig)
+      self.satisfiesPzi = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .satisfiesPzi)
+      self.switchTransactionLogsToCloudStorageEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .switchTransactionLogsToCloudStorageEnabled)
+      self.includeReplicasForMajorVersionUpgrade = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .includeReplicasForMajorVersionUpgrade)
+      if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags)
+      {
+        self.tags = value
+      }
+      self.nodeCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount)
+      if let value = try container.decodeIfPresent(
+        [DatabaseInstance.PoolNodeConfig].self, forKey: .nodes)
+      {
+        self.nodes = value
+      }
+      if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
+        self.dnsNames = value
+      }
+      self.databaseCenterIntegrationEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .databaseCenterIntegrationEnabled)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      try container.encodeIfPresent(self.settings, forKey: .settings)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encodeIfPresent(self.failoverReplica, forKey: .failoverReplica)
+      try container.encode(self.masterInstanceName, forKey: .masterInstanceName)
+      try container.encode(self.replicaNames, forKey: .replicaNames)
+      try container.encodeIfPresent(self.maxDiskSize, forKey: .maxDiskSize)
+      try container.encodeIfPresent(self.currentDiskSize, forKey: .currentDiskSize)
+      try container.encode(self.ipAddresses, forKey: .ipAddresses)
+      try container.encodeIfPresent(self.serverCaCert, forKey: .serverCaCert)
+      try container.encode(self.instanceType, forKey: .instanceType)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.ipv6Address, forKey: .ipv6Address)
+      try container.encode(self.serviceAccountEmailAddress, forKey: .serviceAccountEmailAddress)
+      try container.encodeIfPresent(self.onPremisesConfiguration, forKey: .onPremisesConfiguration)
+      try container.encodeIfPresent(self.replicaConfiguration, forKey: .replicaConfiguration)
+      try container.encode(self.backendType, forKey: .backendType)
+      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encode(self.suspensionReason, forKey: .suspensionReason)
+      try container.encode(self.connectionName, forKey: .connectionName)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.region, forKey: .region)
+      try container.encode(self.gceZone, forKey: .gceZone)
+      try container.encode(self.secondaryGceZone, forKey: .secondaryGceZone)
+      try container.encodeIfPresent(
+        self.diskEncryptionConfiguration, forKey: .diskEncryptionConfiguration)
+      try container.encodeIfPresent(self.diskEncryptionStatus, forKey: .diskEncryptionStatus)
+      try container.encode(self.rootPassword, forKey: .rootPassword)
+      try container.encodeIfPresent(self.scheduledMaintenance, forKey: .scheduledMaintenance)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.databaseInstalledVersion, forKey: .databaseInstalledVersion)
+      try container.encodeIfPresent(self.outOfDiskReport, forKey: .outOfDiskReport)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encode(self.availableMaintenanceVersions, forKey: .availableMaintenanceVersions)
+      try container.encode(self.maintenanceVersion, forKey: .maintenanceVersion)
+      try container.encode(self.upgradableDatabaseVersions, forKey: .upgradableDatabaseVersions)
+      try container.encodeIfPresent(self.sqlNetworkArchitecture, forKey: .sqlNetworkArchitecture)
+      try container.encodeIfPresent(
+        self.pscServiceAttachmentLink, forKey: .pscServiceAttachmentLink)
+      try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
+      try container.encodeIfPresent(self.primaryDnsName, forKey: .primaryDnsName)
+      try container.encodeIfPresent(self.writeEndpoint, forKey: .writeEndpoint)
+      try container.encodeIfPresent(self.replicationCluster, forKey: .replicationCluster)
+      try container.encodeIfPresent(self.geminiConfig, forKey: .geminiConfig)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(
+        self.switchTransactionLogsToCloudStorageEnabled,
+        forKey: .switchTransactionLogsToCloudStorageEnabled)
+      try container.encodeIfPresent(
+        self.includeReplicasForMajorVersionUpgrade, forKey: .includeReplicasForMajorVersionUpgrade)
+      try container.encode(self.tags, forKey: .tags)
+      try container.encodeIfPresent(self.nodeCount, forKey: .nodeCount)
+      try container.encode(self.nodes, forKey: .nodes)
+      try container.encode(self.dnsNames, forKey: .dnsNames)
+      try container.encodeIfPresent(
+        self.databaseCenterIntegrationEnabled, forKey: .databaseCenterIntegrationEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     public struct SqlFailoverReplica: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
@@ -272,6 +610,8 @@
       /// that the failover replica is out of sync. The primary instance can only
       /// failover to the failover replica when the status is true.
       public var available: GoogleCloudWKT.BoolValue? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SqlFailoverReplica`.
       public init() {}
@@ -287,6 +627,43 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let available = CodingKeys(stringValue: "available")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "available",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        self.available = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .available)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encodeIfPresent(self.available, forKey: .available)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -316,6 +693,8 @@
       /// Maintenance cannot be rescheduled to start beyond this deadline.
       public var scheduleDeadlineTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlScheduledMaintenance`.
       public init() {}
 
@@ -330,6 +709,54 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let canDefer = CodingKeys(stringValue: "canDefer")
+        static let canReschedule = CodingKeys(stringValue: "canReschedule")
+        static let scheduleDeadlineTime = CodingKeys(stringValue: "scheduleDeadlineTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "startTime",
+          "canDefer",
+          "canReschedule",
+          "scheduleDeadlineTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .canDefer) {
+          self.canDefer = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .canReschedule) {
+          self.canReschedule = value
+        }
+        self.scheduleDeadlineTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .scheduleDeadlineTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encode(self.canDefer, forKey: .canDefer)
+        try container.encode(self.canReschedule, forKey: .canReschedule)
+        try container.encodeIfPresent(self.scheduleDeadlineTime, forKey: .scheduleDeadlineTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -362,6 +789,8 @@
       /// *  Readers:
       public var sqlMinRecommendedIncreaseSizeGb: Swift.Int32? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlOutOfDiskReport`.
       public init() {}
 
@@ -376,6 +805,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sqlOutOfDiskState = CodingKeys(stringValue: "sqlOutOfDiskState")
+        static let sqlMinRecommendedIncreaseSizeGb = CodingKeys(
+          stringValue: "sqlMinRecommendedIncreaseSizeGb")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sqlOutOfDiskState",
+          "sqlMinRecommendedIncreaseSizeGb",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sqlOutOfDiskState = try container.decodeIfPresent(
+          DatabaseInstance.SqlOutOfDiskReport.SqlOutOfDiskState.self, forKey: .sqlOutOfDiskState)
+        self.sqlMinRecommendedIncreaseSizeGb = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .sqlMinRecommendedIncreaseSizeGb)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.sqlOutOfDiskState, forKey: .sqlOutOfDiskState)
+        try container.encodeIfPresent(
+          self.sqlMinRecommendedIncreaseSizeGb, forKey: .sqlMinRecommendedIncreaseSizeGb)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// This enum lists all possible states regarding out-of-disk issues.
@@ -528,6 +995,8 @@
       /// connect to this read pool node.
       public var pscAutoConnections: [PscAutoConnectionConfig] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PoolNodeConfig`.
       public init() {}
 
@@ -542,6 +1011,75 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let gceZone = CodingKeys(stringValue: "gceZone")
+        static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+        static let dnsName = CodingKeys(stringValue: "dnsName")
+        static let state = CodingKeys(stringValue: "state")
+        static let dnsNames = CodingKeys(stringValue: "dnsNames")
+        static let pscServiceAttachmentLink = CodingKeys(stringValue: "pscServiceAttachmentLink")
+        static let pscAutoConnections = CodingKeys(stringValue: "pscAutoConnections")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "gceZone",
+          "ipAddresses",
+          "dnsName",
+          "state",
+          "dnsNames",
+          "pscServiceAttachmentLink",
+          "pscAutoConnections",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+        self.gceZone = try container.decodeIfPresent(Swift.String.self, forKey: .gceZone)
+        if let value = try container.decodeIfPresent([IpMapping].self, forKey: .ipAddresses) {
+          self.ipAddresses = value
+        }
+        self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
+        self.state = try container.decodeIfPresent(
+          DatabaseInstance.SqlInstanceState.self, forKey: .state)
+        if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
+          self.dnsNames = value
+        }
+        self.pscServiceAttachmentLink = try container.decodeIfPresent(
+          Swift.String.self, forKey: .pscServiceAttachmentLink)
+        if let value = try container.decodeIfPresent(
+          [PscAutoConnectionConfig].self, forKey: .pscAutoConnections)
+        {
+          self.pscAutoConnections = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.gceZone, forKey: .gceZone)
+        try container.encode(self.ipAddresses, forKey: .ipAddresses)
+        try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
+        try container.encodeIfPresent(self.state, forKey: .state)
+        try container.encode(self.dnsNames, forKey: .dnsNames)
+        try container.encodeIfPresent(
+          self.pscServiceAttachmentLink, forKey: .pscServiceAttachmentLink)
+        try container.encode(self.pscAutoConnections, forKey: .pscAutoConnections)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

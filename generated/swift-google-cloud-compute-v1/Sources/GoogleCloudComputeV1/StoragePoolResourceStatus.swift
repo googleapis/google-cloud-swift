@@ -76,6 +76,8 @@
     /// pool's throughput capacity.
     public var totalProvisionedDiskThroughput: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StoragePoolResourceStatus`.
     public init() {}
 
@@ -90,6 +92,109 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let diskCount = CodingKeys(stringValue: "diskCount")
+      static let exapoolMaxReadIops = CodingKeys(stringValue: "exapoolMaxReadIops")
+      static let exapoolMaxReadThroughput = CodingKeys(stringValue: "exapoolMaxReadThroughput")
+      static let exapoolMaxWriteIops = CodingKeys(stringValue: "exapoolMaxWriteIops")
+      static let exapoolMaxWriteThroughput = CodingKeys(stringValue: "exapoolMaxWriteThroughput")
+      static let lastResizeTimestamp = CodingKeys(stringValue: "lastResizeTimestamp")
+      static let maxTotalProvisionedDiskCapacityGb = CodingKeys(
+        stringValue: "maxTotalProvisionedDiskCapacityGb")
+      static let poolUsedCapacityBytes = CodingKeys(stringValue: "poolUsedCapacityBytes")
+      static let poolUsedIops = CodingKeys(stringValue: "poolUsedIops")
+      static let poolUsedThroughput = CodingKeys(stringValue: "poolUsedThroughput")
+      static let poolUserWrittenBytes = CodingKeys(stringValue: "poolUserWrittenBytes")
+      static let totalProvisionedDiskCapacityGb = CodingKeys(
+        stringValue: "totalProvisionedDiskCapacityGb")
+      static let totalProvisionedDiskIops = CodingKeys(stringValue: "totalProvisionedDiskIops")
+      static let totalProvisionedDiskThroughput = CodingKeys(
+        stringValue: "totalProvisionedDiskThroughput")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "diskCount",
+        "exapoolMaxReadIops",
+        "exapoolMaxReadThroughput",
+        "exapoolMaxWriteIops",
+        "exapoolMaxWriteThroughput",
+        "lastResizeTimestamp",
+        "maxTotalProvisionedDiskCapacityGb",
+        "poolUsedCapacityBytes",
+        "poolUsedIops",
+        "poolUsedThroughput",
+        "poolUserWrittenBytes",
+        "totalProvisionedDiskCapacityGb",
+        "totalProvisionedDiskIops",
+        "totalProvisionedDiskThroughput",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.diskCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskCount)
+      self.exapoolMaxReadIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .exapoolMaxReadIops)
+      self.exapoolMaxReadThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .exapoolMaxReadThroughput)
+      self.exapoolMaxWriteIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .exapoolMaxWriteIops)
+      self.exapoolMaxWriteThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .exapoolMaxWriteThroughput)
+      self.lastResizeTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .lastResizeTimestamp)
+      self.maxTotalProvisionedDiskCapacityGb = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxTotalProvisionedDiskCapacityGb)
+      self.poolUsedCapacityBytes = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolUsedCapacityBytes)
+      self.poolUsedIops = try container.decodeIfPresent(Swift.Int64.self, forKey: .poolUsedIops)
+      self.poolUsedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolUsedThroughput)
+      self.poolUserWrittenBytes = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolUserWrittenBytes)
+      self.totalProvisionedDiskCapacityGb = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalProvisionedDiskCapacityGb)
+      self.totalProvisionedDiskIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalProvisionedDiskIops)
+      self.totalProvisionedDiskThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalProvisionedDiskThroughput)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.diskCount, forKey: .diskCount)
+      try container.encodeIfPresent(self.exapoolMaxReadIops, forKey: .exapoolMaxReadIops)
+      try container.encodeIfPresent(
+        self.exapoolMaxReadThroughput, forKey: .exapoolMaxReadThroughput)
+      try container.encodeIfPresent(self.exapoolMaxWriteIops, forKey: .exapoolMaxWriteIops)
+      try container.encodeIfPresent(
+        self.exapoolMaxWriteThroughput, forKey: .exapoolMaxWriteThroughput)
+      try container.encodeIfPresent(self.lastResizeTimestamp, forKey: .lastResizeTimestamp)
+      try container.encodeIfPresent(
+        self.maxTotalProvisionedDiskCapacityGb, forKey: .maxTotalProvisionedDiskCapacityGb)
+      try container.encodeIfPresent(self.poolUsedCapacityBytes, forKey: .poolUsedCapacityBytes)
+      try container.encodeIfPresent(self.poolUsedIops, forKey: .poolUsedIops)
+      try container.encodeIfPresent(self.poolUsedThroughput, forKey: .poolUsedThroughput)
+      try container.encodeIfPresent(self.poolUserWrittenBytes, forKey: .poolUserWrittenBytes)
+      try container.encodeIfPresent(
+        self.totalProvisionedDiskCapacityGb, forKey: .totalProvisionedDiskCapacityGb)
+      try container.encodeIfPresent(
+        self.totalProvisionedDiskIops, forKey: .totalProvisionedDiskIops)
+      try container.encodeIfPresent(
+        self.totalProvisionedDiskThroughput, forKey: .totalProvisionedDiskThroughput)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

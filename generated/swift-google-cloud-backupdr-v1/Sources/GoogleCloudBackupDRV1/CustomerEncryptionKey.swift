@@ -29,6 +29,8 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The key to use for encryption.
   public var key: OneOf_Key? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomerEncryptionKey`.
   public init() {}
 
@@ -45,11 +47,23 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rawKey = "rawKey"
-    case rsaEncryptedKey = "rsaEncryptedKey"
-    case kmsKeyName = "kmsKeyName"
-    case kmsKeyServiceAccount = "kmsKeyServiceAccount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rawKey = CodingKeys(stringValue: "rawKey")
+    static let rsaEncryptedKey = CodingKeys(stringValue: "rsaEncryptedKey")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let kmsKeyServiceAccount = CodingKeys(stringValue: "kmsKeyServiceAccount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rawKey",
+      "rsaEncryptedKey",
+      "kmsKeyName",
+      "kmsKeyServiceAccount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -79,11 +93,15 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPack
       try keyCheckAndSet(.kmsKeyName(kmsKeyName))
     }
     self.key = key
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.kmsKeyServiceAccount, forKey: .kmsKeyServiceAccount)
+    try container.encodeIfPresent(self.kmsKeyServiceAccount, forKey: .kmsKeyServiceAccount)
 
     if let choice = self.key {
       switch choice {
@@ -94,6 +112,9 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .kmsKeyName(let value):
         try container.encode(value, forKey: .kmsKeyName)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

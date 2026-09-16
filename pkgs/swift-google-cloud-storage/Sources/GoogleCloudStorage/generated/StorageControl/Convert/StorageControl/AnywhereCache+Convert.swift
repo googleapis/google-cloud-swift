@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension AnywhereCache {
@@ -35,6 +35,7 @@ extension AnywhereCache {
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.pendingUpdate = proto.pendingUpdate
     self.ingestOnWrite = proto.hasIngestOnWrite ? proto.ingestOnWrite : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -48,6 +49,9 @@ extension AnywhereCache {
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.pendingUpdate = self.pendingUpdate
     if let ingestOnWrite = self.ingestOnWrite { proto.ingestOnWrite = ingestOnWrite }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

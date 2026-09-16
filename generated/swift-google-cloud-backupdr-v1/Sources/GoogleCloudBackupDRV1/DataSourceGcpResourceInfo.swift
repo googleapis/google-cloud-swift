@@ -36,6 +36,8 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleCloudWKT._Any
   /// The properties of the GCP resource.
   public var resourceProperties: OneOf_ResourceProperties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSourceGcpResourceInfo`.
   public init() {}
 
@@ -52,18 +54,36 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcpResourcename = "gcpResourcename"
-    case type = "type"
-    case location = "location"
-    case cloudSqlInstanceProperties = "cloudSqlInstanceProperties"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcpResourcename = CodingKeys(stringValue: "gcpResourcename")
+    static let type = CodingKeys(stringValue: "type")
+    static let location = CodingKeys(stringValue: "location")
+    static let cloudSqlInstanceProperties = CodingKeys(stringValue: "cloudSqlInstanceProperties")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcpResourcename",
+      "type",
+      "location",
+      "cloudSqlInstanceProperties",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.gcpResourcename = try container.decode(Swift.String.self, forKey: .gcpResourcename)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpResourcename) {
+      self.gcpResourcename = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
 
     var resourceProperties: OneOf_ResourceProperties? = nil
     let resourcePropertiesCheckAndSet = {
@@ -81,6 +101,10 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       try resourcePropertiesCheckAndSet(.cloudSqlInstanceProperties(cloudSqlInstanceProperties))
     }
     self.resourceProperties = resourceProperties
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +118,9 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       case .cloudSqlInstanceProperties(let value):
         try container.encode(value, forKey: .cloudSqlInstanceProperties)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

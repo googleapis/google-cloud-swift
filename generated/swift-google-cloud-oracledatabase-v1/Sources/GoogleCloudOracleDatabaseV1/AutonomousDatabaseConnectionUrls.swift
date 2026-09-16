@@ -52,6 +52,8 @@ public struct AutonomousDatabaseConnectionUrls: Codable, Equatable, GoogleCloudW
   /// Database.
   public var sqlDevWebUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutonomousDatabaseConnectionUrls`.
   public init() {}
 
@@ -66,6 +68,87 @@ public struct AutonomousDatabaseConnectionUrls: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let apexUri = CodingKeys(stringValue: "apexUri")
+    static let databaseTransformsUri = CodingKeys(stringValue: "databaseTransformsUri")
+    static let graphStudioUri = CodingKeys(stringValue: "graphStudioUri")
+    static let machineLearningNotebookUri = CodingKeys(stringValue: "machineLearningNotebookUri")
+    static let machineLearningUserManagementUri = CodingKeys(
+      stringValue: "machineLearningUserManagementUri")
+    static let mongoDbUri = CodingKeys(stringValue: "mongoDbUri")
+    static let ordsUri = CodingKeys(stringValue: "ordsUri")
+    static let sqlDevWebUri = CodingKeys(stringValue: "sqlDevWebUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "apexUri",
+      "databaseTransformsUri",
+      "graphStudioUri",
+      "machineLearningNotebookUri",
+      "machineLearningUserManagementUri",
+      "mongoDbUri",
+      "ordsUri",
+      "sqlDevWebUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apexUri) {
+      self.apexUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseTransformsUri)
+    {
+      self.databaseTransformsUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .graphStudioUri) {
+      self.graphStudioUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .machineLearningNotebookUri)
+    {
+      self.machineLearningNotebookUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .machineLearningUserManagementUri)
+    {
+      self.machineLearningUserManagementUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mongoDbUri) {
+      self.mongoDbUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ordsUri) {
+      self.ordsUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sqlDevWebUri) {
+      self.sqlDevWebUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.apexUri, forKey: .apexUri)
+    try container.encode(self.databaseTransformsUri, forKey: .databaseTransformsUri)
+    try container.encode(self.graphStudioUri, forKey: .graphStudioUri)
+    try container.encode(self.machineLearningNotebookUri, forKey: .machineLearningNotebookUri)
+    try container.encode(
+      self.machineLearningUserManagementUri, forKey: .machineLearningUserManagementUri)
+    try container.encode(self.mongoDbUri, forKey: .mongoDbUri)
+    try container.encode(self.ordsUri, forKey: .ordsUri)
+    try container.encode(self.sqlDevWebUri, forKey: .sqlDevWebUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

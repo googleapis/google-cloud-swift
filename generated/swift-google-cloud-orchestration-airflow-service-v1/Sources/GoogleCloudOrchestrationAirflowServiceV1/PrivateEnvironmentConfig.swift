@@ -94,6 +94,8 @@ public struct PrivateEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// environment.
   public var networkingConfig: NetworkingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivateEnvironmentConfig`.
   public init() {}
 
@@ -108,6 +110,117 @@ public struct PrivateEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enablePrivateEnvironment = CodingKeys(stringValue: "enablePrivateEnvironment")
+    static let enablePrivateBuildsOnly = CodingKeys(stringValue: "enablePrivateBuildsOnly")
+    static let privateClusterConfig = CodingKeys(stringValue: "privateClusterConfig")
+    static let webServerIpv4CidrBlock = CodingKeys(stringValue: "webServerIpv4CidrBlock")
+    static let cloudSqlIpv4CidrBlock = CodingKeys(stringValue: "cloudSqlIpv4CidrBlock")
+    static let webServerIpv4ReservedRange = CodingKeys(stringValue: "webServerIpv4ReservedRange")
+    static let cloudComposerNetworkIpv4CidrBlock = CodingKeys(
+      stringValue: "cloudComposerNetworkIpv4CidrBlock")
+    static let cloudComposerNetworkIpv4ReservedRange = CodingKeys(
+      stringValue: "cloudComposerNetworkIpv4ReservedRange")
+    static let enablePrivatelyUsedPublicIps = CodingKeys(
+      stringValue: "enablePrivatelyUsedPublicIps")
+    static let cloudComposerConnectionSubnetwork = CodingKeys(
+      stringValue: "cloudComposerConnectionSubnetwork")
+    static let networkingConfig = CodingKeys(stringValue: "networkingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enablePrivateEnvironment",
+      "enablePrivateBuildsOnly",
+      "privateClusterConfig",
+      "webServerIpv4CidrBlock",
+      "cloudSqlIpv4CidrBlock",
+      "webServerIpv4ReservedRange",
+      "cloudComposerNetworkIpv4CidrBlock",
+      "cloudComposerNetworkIpv4ReservedRange",
+      "enablePrivatelyUsedPublicIps",
+      "cloudComposerConnectionSubnetwork",
+      "networkingConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePrivateEnvironment)
+    {
+      self.enablePrivateEnvironment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePrivateBuildsOnly)
+    {
+      self.enablePrivateBuildsOnly = value
+    }
+    self.privateClusterConfig = try container.decodeIfPresent(
+      PrivateClusterConfig.self, forKey: .privateClusterConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webServerIpv4CidrBlock)
+    {
+      self.webServerIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudSqlIpv4CidrBlock)
+    {
+      self.cloudSqlIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .webServerIpv4ReservedRange)
+    {
+      self.webServerIpv4ReservedRange = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .cloudComposerNetworkIpv4CidrBlock)
+    {
+      self.cloudComposerNetworkIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .cloudComposerNetworkIpv4ReservedRange)
+    {
+      self.cloudComposerNetworkIpv4ReservedRange = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enablePrivatelyUsedPublicIps)
+    {
+      self.enablePrivatelyUsedPublicIps = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .cloudComposerConnectionSubnetwork)
+    {
+      self.cloudComposerConnectionSubnetwork = value
+    }
+    self.networkingConfig = try container.decodeIfPresent(
+      NetworkingConfig.self, forKey: .networkingConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enablePrivateEnvironment, forKey: .enablePrivateEnvironment)
+    try container.encode(self.enablePrivateBuildsOnly, forKey: .enablePrivateBuildsOnly)
+    try container.encodeIfPresent(self.privateClusterConfig, forKey: .privateClusterConfig)
+    try container.encode(self.webServerIpv4CidrBlock, forKey: .webServerIpv4CidrBlock)
+    try container.encode(self.cloudSqlIpv4CidrBlock, forKey: .cloudSqlIpv4CidrBlock)
+    try container.encode(self.webServerIpv4ReservedRange, forKey: .webServerIpv4ReservedRange)
+    try container.encode(
+      self.cloudComposerNetworkIpv4CidrBlock, forKey: .cloudComposerNetworkIpv4CidrBlock)
+    try container.encode(
+      self.cloudComposerNetworkIpv4ReservedRange, forKey: .cloudComposerNetworkIpv4ReservedRange)
+    try container.encode(self.enablePrivatelyUsedPublicIps, forKey: .enablePrivatelyUsedPublicIps)
+    try container.encode(
+      self.cloudComposerConnectionSubnetwork, forKey: .cloudComposerConnectionSubnetwork)
+    try container.encodeIfPresent(self.networkingConfig, forKey: .networkingConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

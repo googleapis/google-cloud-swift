@@ -35,6 +35,8 @@ public struct BucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Set of buckets. Ranges must be non-overlapping.
   public var buckets: [BucketingConfig.Bucket] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BucketingConfig`.
   public init() {}
 
@@ -51,6 +53,38 @@ public struct BucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let buckets = CodingKeys(stringValue: "buckets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "buckets"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([BucketingConfig.Bucket].self, forKey: .buckets) {
+      self.buckets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.buckets, forKey: .buckets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Bucket is represented as a range, along with replacement values.
   public struct Bucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -64,6 +98,8 @@ public struct BucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Required. Replacement value for this bucket.
     public var replacementValue: Value? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Bucket`.
     public init() {}
@@ -79,6 +115,44 @@ public struct BucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let min = CodingKeys(stringValue: "min")
+      static let max = CodingKeys(stringValue: "max")
+      static let replacementValue = CodingKeys(stringValue: "replacementValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "min",
+        "max",
+        "replacementValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.min = try container.decodeIfPresent(Value.self, forKey: .min)
+      self.max = try container.decodeIfPresent(Value.self, forKey: .max)
+      self.replacementValue = try container.decodeIfPresent(Value.self, forKey: .replacementValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.min, forKey: .min)
+      try container.encodeIfPresent(self.max, forKey: .max)
+      try container.encodeIfPresent(self.replacementValue, forKey: .replacementValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

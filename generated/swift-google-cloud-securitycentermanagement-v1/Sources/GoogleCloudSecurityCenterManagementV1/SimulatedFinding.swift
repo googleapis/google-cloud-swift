@@ -76,6 +76,8 @@ public struct SimulatedFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The class of the finding.
   public var findingClass: SimulatedFinding.FindingClass = SimulatedFinding.FindingClass()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SimulatedFinding`.
   public init() {}
 
@@ -90,6 +92,90 @@ public struct SimulatedFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let category = CodingKeys(stringValue: "category")
+    static let state = CodingKeys(stringValue: "state")
+    static let sourceProperties = CodingKeys(stringValue: "sourceProperties")
+    static let eventTime = CodingKeys(stringValue: "eventTime")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let findingClass = CodingKeys(stringValue: "findingClass")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "parent",
+      "resourceName",
+      "category",
+      "state",
+      "sourceProperties",
+      "eventTime",
+      "severity",
+      "findingClass",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(SimulatedFinding.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.Value].self, forKey: .sourceProperties)
+    {
+      self.sourceProperties = value
+    }
+    self.eventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+    if let value = try container.decodeIfPresent(SimulatedFinding.Severity.self, forKey: .severity)
+    {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(
+      SimulatedFinding.FindingClass.self, forKey: .findingClass)
+    {
+      self.findingClass = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.sourceProperties, forKey: .sourceProperties)
+    try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.findingClass, forKey: .findingClass)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the finding.

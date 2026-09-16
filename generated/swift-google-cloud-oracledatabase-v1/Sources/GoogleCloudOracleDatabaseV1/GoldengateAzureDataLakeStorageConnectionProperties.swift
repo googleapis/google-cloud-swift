@@ -62,6 +62,8 @@ public struct GoldengateAzureDataLakeStorageConnectionProperties: Codable, Equat
   /// https://login.microsoftonline.com
   public var azureAuthorityHost: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateAzureDataLakeStorageConnectionProperties`.
   public init() {}
 
@@ -76,6 +78,95 @@ public struct GoldengateAzureDataLakeStorageConnectionProperties: Codable, Equat
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let account = CodingKeys(stringValue: "account")
+    static let accountKeySecret = CodingKeys(stringValue: "accountKeySecret")
+    static let sasTokenSecret = CodingKeys(stringValue: "sasTokenSecret")
+    static let azureTenantId = CodingKeys(stringValue: "azureTenantId")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let clientSecret = CodingKeys(stringValue: "clientSecret")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let azureAuthorityHost = CodingKeys(stringValue: "azureAuthorityHost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "technologyType",
+      "authenticationType",
+      "account",
+      "accountKeySecret",
+      "sasTokenSecret",
+      "azureTenantId",
+      "clientId",
+      "clientSecret",
+      "endpoint",
+      "azureAuthorityHost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateAzureDataLakeStorageConnectionProperties.AuthenticationType.self,
+      forKey: .authenticationType)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .account) {
+      self.account = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountKeySecret) {
+      self.accountKeySecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sasTokenSecret) {
+      self.sasTokenSecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .azureTenantId) {
+      self.azureTenantId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientSecret) {
+      self.clientSecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .azureAuthorityHost) {
+      self.azureAuthorityHost = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.technologyType, forKey: .technologyType)
+    try container.encode(self.authenticationType, forKey: .authenticationType)
+    try container.encode(self.account, forKey: .account)
+    try container.encode(self.accountKeySecret, forKey: .accountKeySecret)
+    try container.encode(self.sasTokenSecret, forKey: .sasTokenSecret)
+    try container.encode(self.azureTenantId, forKey: .azureTenantId)
+    try container.encode(self.clientId, forKey: .clientId)
+    try container.encode(self.clientSecret, forKey: .clientSecret)
+    try container.encode(self.endpoint, forKey: .endpoint)
+    try container.encode(self.azureAuthorityHost, forKey: .azureAuthorityHost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for authentication mechanism to access Azure Data Lake Storage.

@@ -46,6 +46,8 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specifies the type of vector to use for the query.
   public var vectorType: OneOf_VectorType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VectorSearch`.
   public init() {}
 
@@ -62,25 +64,45 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vector = "vector"
-    case sparseVector = "sparseVector"
-    case searchField = "searchField"
-    case filter = "filter"
-    case topK = "topK"
-    case outputFields = "outputFields"
-    case searchHint = "searchHint"
-    case distanceMetric = "distanceMetric"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vector = CodingKeys(stringValue: "vector")
+    static let sparseVector = CodingKeys(stringValue: "sparseVector")
+    static let searchField = CodingKeys(stringValue: "searchField")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let topK = CodingKeys(stringValue: "topK")
+    static let outputFields = CodingKeys(stringValue: "outputFields")
+    static let searchHint = CodingKeys(stringValue: "searchHint")
+    static let distanceMetric = CodingKeys(stringValue: "distanceMetric")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vector",
+      "sparseVector",
+      "searchField",
+      "filter",
+      "topK",
+      "outputFields",
+      "searchHint",
+      "distanceMetric",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.searchField = try container.decode(Swift.String.self, forKey: .searchField)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchField) {
+      self.searchField = value
+    }
     self.filter = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .filter)
     self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
     self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
     self.searchHint = try container.decodeIfPresent(SearchHint.self, forKey: .searchHint)
-    self.distanceMetric = try container.decode(DistanceMetric.self, forKey: .distanceMetric)
+    if let value = try container.decodeIfPresent(DistanceMetric.self, forKey: .distanceMetric) {
+      self.distanceMetric = value
+    }
 
     var vectorType: OneOf_VectorType? = nil
     let vectorTypeCheckAndSet = {
@@ -99,15 +121,19 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try vectorTypeCheckAndSet(.sparseVector(sparseVector))
     }
     self.vectorType = vectorType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.searchField, forKey: .searchField)
-    try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.topK, forKey: .topK)
-    try container.encode(self.outputFields, forKey: .outputFields)
-    try container.encode(self.searchHint, forKey: .searchHint)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.topK, forKey: .topK)
+    try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
+    try container.encodeIfPresent(self.searchHint, forKey: .searchHint)
     try container.encode(self.distanceMetric, forKey: .distanceMetric)
 
     if let choice = self.vectorType {
@@ -117,6 +143,9 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .sparseVector(let value):
         try container.encode(value, forKey: .sparseVector)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

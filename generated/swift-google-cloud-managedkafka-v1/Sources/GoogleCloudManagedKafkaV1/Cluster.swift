@@ -55,6 +55,8 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Platform specific configuration properties for a Kafka cluster.
   public var platformConfig: OneOf_PlatformConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Cluster`.
   public init() {}
 
@@ -71,33 +73,59 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcpConfig = "gcpConfig"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case capacityConfig = "capacityConfig"
-    case rebalanceConfig = "rebalanceConfig"
-    case state = "state"
-    case satisfiesPzi = "satisfiesPzi"
-    case satisfiesPzs = "satisfiesPzs"
-    case tlsConfig = "tlsConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcpConfig = CodingKeys(stringValue: "gcpConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let capacityConfig = CodingKeys(stringValue: "capacityConfig")
+    static let rebalanceConfig = CodingKeys(stringValue: "rebalanceConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let tlsConfig = CodingKeys(stringValue: "tlsConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcpConfig",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "capacityConfig",
+      "rebalanceConfig",
+      "state",
+      "satisfiesPzi",
+      "satisfiesPzs",
+      "tlsConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.capacityConfig = try container.decodeIfPresent(
       CapacityConfig.self, forKey: .capacityConfig)
     self.rebalanceConfig = try container.decodeIfPresent(
       RebalanceConfig.self, forKey: .rebalanceConfig)
-    self.state = try container.decode(Cluster.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Cluster.State.self, forKey: .state) {
+      self.state = value
+    }
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.tlsConfig = try container.decodeIfPresent(TlsConfig.self, forKey: .tlsConfig)
@@ -116,26 +144,33 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try platformConfigCheckAndSet(.gcpConfig(gcpConfig))
     }
     self.platformConfig = platformConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.capacityConfig, forKey: .capacityConfig)
-    try container.encode(self.rebalanceConfig, forKey: .rebalanceConfig)
+    try container.encodeIfPresent(self.capacityConfig, forKey: .capacityConfig)
+    try container.encodeIfPresent(self.rebalanceConfig, forKey: .rebalanceConfig)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.tlsConfig, forKey: .tlsConfig)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.tlsConfig, forKey: .tlsConfig)
 
     if let choice = self.platformConfig {
       switch choice {
       case .gcpConfig(let value):
         try container.encode(value, forKey: .gcpConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

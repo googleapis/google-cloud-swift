@@ -41,6 +41,8 @@
     /// Optional. Evaluation Config for Tuning Job.
     public var evaluationConfig: EvaluationConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SupervisedTuningSpec`.
     public init() {}
 
@@ -55,6 +57,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingDatasetUri = CodingKeys(stringValue: "trainingDatasetUri")
+      static let validationDatasetUri = CodingKeys(stringValue: "validationDatasetUri")
+      static let hyperParameters = CodingKeys(stringValue: "hyperParameters")
+      static let exportLastCheckpointOnly = CodingKeys(stringValue: "exportLastCheckpointOnly")
+      static let evaluationConfig = CodingKeys(stringValue: "evaluationConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingDatasetUri",
+        "validationDatasetUri",
+        "hyperParameters",
+        "exportLastCheckpointOnly",
+        "evaluationConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trainingDatasetUri) {
+        self.trainingDatasetUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationDatasetUri)
+      {
+        self.validationDatasetUri = value
+      }
+      self.hyperParameters = try container.decodeIfPresent(
+        SupervisedHyperParameters.self, forKey: .hyperParameters)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exportLastCheckpointOnly)
+      {
+        self.exportLastCheckpointOnly = value
+      }
+      self.evaluationConfig = try container.decodeIfPresent(
+        EvaluationConfig.self, forKey: .evaluationConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trainingDatasetUri, forKey: .trainingDatasetUri)
+      try container.encode(self.validationDatasetUri, forKey: .validationDatasetUri)
+      try container.encodeIfPresent(self.hyperParameters, forKey: .hyperParameters)
+      try container.encode(self.exportLastCheckpointOnly, forKey: .exportLastCheckpointOnly)
+      try container.encodeIfPresent(self.evaluationConfig, forKey: .evaluationConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

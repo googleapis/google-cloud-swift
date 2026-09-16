@@ -144,6 +144,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstantSnapshot`.
     public init() {}
 
@@ -160,29 +162,60 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case architecture = "architecture"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case diskSizeGb = "diskSizeGb"
-      case id = "id"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case params = "params"
-      case region = "region"
-      case resourceStatus = "resourceStatus"
-      case satisfiesPzi = "satisfiesPzi"
-      case satisfiesPzs = "satisfiesPzs"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case sourceDisk = "sourceDisk"
-      case sourceDiskId = "sourceDiskId"
-      case sourceInstantSnapshotGroup = "sourceInstantSnapshotGroup"
-      case sourceInstantSnapshotGroupId = "sourceInstantSnapshotGroupId"
-      case status = "status"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let region = CodingKeys(stringValue: "region")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let sourceDisk = CodingKeys(stringValue: "sourceDisk")
+      static let sourceDiskId = CodingKeys(stringValue: "sourceDiskId")
+      static let sourceInstantSnapshotGroup = CodingKeys(stringValue: "sourceInstantSnapshotGroup")
+      static let sourceInstantSnapshotGroupId = CodingKeys(
+        stringValue: "sourceInstantSnapshotGroupId")
+      static let status = CodingKeys(stringValue: "status")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "architecture",
+        "creationTimestamp",
+        "description",
+        "diskSizeGb",
+        "id",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "params",
+        "region",
+        "resourceStatus",
+        "satisfiesPzi",
+        "satisfiesPzs",
+        "selfLink",
+        "selfLinkWithId",
+        "sourceDisk",
+        "sourceDiskId",
+        "sourceInstantSnapshotGroup",
+        "sourceInstantSnapshotGroupId",
+        "status",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -204,7 +237,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.params = try container.decodeIfPresent(InstantSnapshotParams.self, forKey: .params)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
@@ -223,36 +260,45 @@
         Swift.String.self, forKey: .sourceInstantSnapshotGroupId)
       self.status = try container.decodeIfPresent(InstantSnapshot.Status.self, forKey: .status)
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.architecture, forKey: .architecture)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.architecture, forKey: .architecture)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.resourceStatus, forKey: .resourceStatus)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
-      try container.encode(self.sourceDisk, forKey: .sourceDisk)
-      try container.encode(self.sourceDiskId, forKey: .sourceDiskId)
-      try container.encode(self.sourceInstantSnapshotGroup, forKey: .sourceInstantSnapshotGroup)
-      try container.encode(self.sourceInstantSnapshotGroupId, forKey: .sourceInstantSnapshotGroupId)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.sourceDisk, forKey: .sourceDisk)
+      try container.encodeIfPresent(self.sourceDiskId, forKey: .sourceDiskId)
+      try container.encodeIfPresent(
+        self.sourceInstantSnapshotGroup, forKey: .sourceInstantSnapshotGroup)
+      try container.encodeIfPresent(
+        self.sourceInstantSnapshotGroupId, forKey: .sourceInstantSnapshotGroupId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [architecture][google.cloud.compute.v1.InstantSnapshot.architecture] field.

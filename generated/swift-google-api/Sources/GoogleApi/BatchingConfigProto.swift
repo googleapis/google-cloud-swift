@@ -27,6 +27,8 @@ public struct BatchingConfigProto: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The request and response fields used in batching.
   public var batchDescriptor: BatchingDescriptorProto? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchingConfigProto`.
   public init() {}
 
@@ -41,6 +43,41 @@ public struct BatchingConfigProto: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let thresholds = CodingKeys(stringValue: "thresholds")
+    static let batchDescriptor = CodingKeys(stringValue: "batchDescriptor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "thresholds",
+      "batchDescriptor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.thresholds = try container.decodeIfPresent(BatchingSettingsProto.self, forKey: .thresholds)
+    self.batchDescriptor = try container.decodeIfPresent(
+      BatchingDescriptorProto.self, forKey: .batchDescriptor)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.thresholds, forKey: .thresholds)
+    try container.encodeIfPresent(self.batchDescriptor, forKey: .batchDescriptor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -52,6 +52,8 @@ public struct InvokeContractMethod: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// non-payable ones.
   public var payment: CurrencyValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InvokeContractMethod`.
   public init() {}
 
@@ -66,6 +68,66 @@ public struct InvokeContractMethod: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let contract = CodingKeys(stringValue: "contract")
+    static let contractId = CodingKeys(stringValue: "contractId")
+    static let methodName = CodingKeys(stringValue: "methodName")
+    static let arguments = CodingKeys(stringValue: "arguments")
+    static let methodArguments = CodingKeys(stringValue: "methodArguments")
+    static let payment = CodingKeys(stringValue: "payment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "contract",
+      "contractId",
+      "methodName",
+      "arguments",
+      "methodArguments",
+      "payment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.contract = try container.decodeIfPresent(Entity.self, forKey: .contract)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractId) {
+      self.contractId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .methodName) {
+      self.methodName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Value].self, forKey: .arguments) {
+      self.arguments = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Value].self, forKey: .methodArguments)
+    {
+      self.methodArguments = value
+    }
+    self.payment = try container.decodeIfPresent(CurrencyValue.self, forKey: .payment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.contract, forKey: .contract)
+    try container.encode(self.contractId, forKey: .contractId)
+    try container.encode(self.methodName, forKey: .methodName)
+    try container.encode(self.arguments, forKey: .arguments)
+    try container.encode(self.methodArguments, forKey: .methodArguments)
+    try container.encodeIfPresent(self.payment, forKey: .payment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

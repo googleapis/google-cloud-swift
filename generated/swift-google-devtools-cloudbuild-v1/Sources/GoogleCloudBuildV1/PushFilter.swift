@@ -29,6 +29,8 @@ public struct PushFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A modified refs are the refs modified by a git push operation.
   public var gitRef: OneOf_GitRef? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PushFilter`.
   public init() {}
 
@@ -45,15 +47,28 @@ public struct PushFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case branch = "branch"
-    case tag = "tag"
-    case invertRegex = "invertRegex"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let branch = CodingKeys(stringValue: "branch")
+    static let tag = CodingKeys(stringValue: "tag")
+    static let invertRegex = CodingKeys(stringValue: "invertRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "branch",
+      "tag",
+      "invertRegex",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.invertRegex = try container.decode(Swift.Bool.self, forKey: .invertRegex)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invertRegex) {
+      self.invertRegex = value
+    }
 
     var gitRef: OneOf_GitRef? = nil
     let gitRefCheckAndSet = {
@@ -72,6 +87,10 @@ public struct PushFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try gitRefCheckAndSet(.tag(tag))
     }
     self.gitRef = gitRef
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +104,9 @@ public struct PushFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .tag(let value):
         try container.encode(value, forKey: .tag)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

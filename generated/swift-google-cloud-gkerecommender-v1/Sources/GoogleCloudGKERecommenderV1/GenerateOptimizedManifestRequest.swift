@@ -53,6 +53,8 @@ public struct GenerateOptimizedManifestRequest: Codable, Equatable, GoogleCloudW
   /// model is loaded from Huggingface.
   public var storageConfig: StorageConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateOptimizedManifestRequest`.
   public init() {}
 
@@ -67,6 +69,58 @@ public struct GenerateOptimizedManifestRequest: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let modelServerInfo = CodingKeys(stringValue: "modelServerInfo")
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let kubernetesNamespace = CodingKeys(stringValue: "kubernetesNamespace")
+    static let performanceRequirements = CodingKeys(stringValue: "performanceRequirements")
+    static let storageConfig = CodingKeys(stringValue: "storageConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "modelServerInfo",
+      "acceleratorType",
+      "kubernetesNamespace",
+      "performanceRequirements",
+      "storageConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.modelServerInfo = try container.decodeIfPresent(
+      ModelServerInfo.self, forKey: .modelServerInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+      self.acceleratorType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kubernetesNamespace) {
+      self.kubernetesNamespace = value
+    }
+    self.performanceRequirements = try container.decodeIfPresent(
+      PerformanceRequirements.self, forKey: .performanceRequirements)
+    self.storageConfig = try container.decodeIfPresent(StorageConfig.self, forKey: .storageConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.modelServerInfo, forKey: .modelServerInfo)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encode(self.kubernetesNamespace, forKey: .kubernetesNamespace)
+    try container.encodeIfPresent(self.performanceRequirements, forKey: .performanceRequirements)
+    try container.encodeIfPresent(self.storageConfig, forKey: .storageConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

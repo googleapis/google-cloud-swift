@@ -28,6 +28,8 @@ public struct GPUSharingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of GPU sharing strategy to enable on the GPU node.
   public var gpuSharingStrategy: GPUSharingConfig.GPUSharingStrategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GPUSharingConfig`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct GPUSharingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maxSharedClientsPerGpu = CodingKeys(stringValue: "maxSharedClientsPerGpu")
+    static let gpuSharingStrategy = CodingKeys(stringValue: "gpuSharingStrategy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maxSharedClientsPerGpu",
+      "gpuSharingStrategy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxSharedClientsPerGpu)
+    {
+      self.maxSharedClientsPerGpu = value
+    }
+    self.gpuSharingStrategy = try container.decodeIfPresent(
+      GPUSharingConfig.GPUSharingStrategy.self, forKey: .gpuSharingStrategy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.maxSharedClientsPerGpu, forKey: .maxSharedClientsPerGpu)
+    try container.encodeIfPresent(self.gpuSharingStrategy, forKey: .gpuSharingStrategy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of GPU sharing strategy currently provided.

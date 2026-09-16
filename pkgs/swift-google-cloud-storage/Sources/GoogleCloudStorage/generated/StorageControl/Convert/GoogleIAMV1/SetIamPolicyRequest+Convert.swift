@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleIAMV1
 internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.SetIamPolicyRequest {
@@ -30,6 +30,7 @@ extension GoogleIAMV1.SetIamPolicyRequest {
     self.resource = proto.resource
     self.policy = proto.hasPolicy ? try .init(proto: proto.policy) : nil
     self.updateMask = proto.hasUpdateMask ? try .init(proto: proto.updateMask) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension GoogleIAMV1.SetIamPolicyRequest {
     proto.resource = self.resource
     if let policy = self.policy { proto.policy = try policy.toProto() }
     if let updateMask = self.updateMask { proto.updateMask = try updateMask.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

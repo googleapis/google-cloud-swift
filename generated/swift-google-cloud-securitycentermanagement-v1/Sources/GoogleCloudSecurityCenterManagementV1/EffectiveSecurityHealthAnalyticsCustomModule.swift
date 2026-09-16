@@ -49,6 +49,8 @@ public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, 
   /// alphanumeric characters or underscores only.
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EffectiveSecurityHealthAnalyticsCustomModule`.
   public init() {}
 
@@ -63,6 +65,56 @@ public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, 
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let customConfig = CodingKeys(stringValue: "customConfig")
+    static let enablementState = CodingKeys(stringValue: "enablementState")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "customConfig",
+      "enablementState",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.customConfig = try container.decodeIfPresent(CustomConfig.self, forKey: .customConfig)
+    if let value = try container.decodeIfPresent(
+      EffectiveSecurityHealthAnalyticsCustomModule.EnablementState.self, forKey: .enablementState)
+    {
+      self.enablementState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.customConfig, forKey: .customConfig)
+    try container.encode(self.enablementState, forKey: .enablementState)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enablement state of the module.

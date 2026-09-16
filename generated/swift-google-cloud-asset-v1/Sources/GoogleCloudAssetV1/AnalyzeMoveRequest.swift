@@ -38,6 +38,8 @@ public struct AnalyzeMoveRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// analysis response. If unspecified, the default view is FULL.
   public var view: AnalyzeMoveRequest.AnalysisView = AnalyzeMoveRequest.AnalysisView()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeMoveRequest`.
   public init() {}
 
@@ -52,6 +54,52 @@ public struct AnalyzeMoveRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resource = CodingKeys(stringValue: "resource")
+    static let destinationParent = CodingKeys(stringValue: "destinationParent")
+    static let view = CodingKeys(stringValue: "view")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resource",
+      "destinationParent",
+      "view",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationParent) {
+      self.destinationParent = value
+    }
+    if let value = try container.decodeIfPresent(
+      AnalyzeMoveRequest.AnalysisView.self, forKey: .view)
+    {
+      self.view = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.destinationParent, forKey: .destinationParent)
+    try container.encode(self.view, forKey: .view)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// View enum for supporting partial analysis responses.

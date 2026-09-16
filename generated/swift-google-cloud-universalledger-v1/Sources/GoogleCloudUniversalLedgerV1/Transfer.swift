@@ -41,6 +41,8 @@ public struct Transfer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The amount to transfer. The amount must be positive.
   public var amount: CurrencyValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Transfer`.
   public init() {}
 
@@ -55,6 +57,46 @@ public struct Transfer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let beneficiary = CodingKeys(stringValue: "beneficiary")
+    static let beneficiaryId = CodingKeys(stringValue: "beneficiaryId")
+    static let amount = CodingKeys(stringValue: "amount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "beneficiary",
+      "beneficiaryId",
+      "amount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.beneficiary = try container.decodeIfPresent(Entity.self, forKey: .beneficiary)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .beneficiaryId) {
+      self.beneficiaryId = value
+    }
+    self.amount = try container.decodeIfPresent(CurrencyValue.self, forKey: .amount)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.beneficiary, forKey: .beneficiary)
+    try container.encode(self.beneficiaryId, forKey: .beneficiaryId)
+    try container.encodeIfPresent(self.amount, forKey: .amount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

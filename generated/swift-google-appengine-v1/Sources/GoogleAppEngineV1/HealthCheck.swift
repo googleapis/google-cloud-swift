@@ -48,6 +48,8 @@ public struct HealthCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Time before the health check is considered failed.
   public var timeout: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HealthCheck`.
   public init() {}
 
@@ -62,6 +64,71 @@ public struct HealthCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let disableHealthCheck = CodingKeys(stringValue: "disableHealthCheck")
+    static let host = CodingKeys(stringValue: "host")
+    static let healthyThreshold = CodingKeys(stringValue: "healthyThreshold")
+    static let unhealthyThreshold = CodingKeys(stringValue: "unhealthyThreshold")
+    static let restartThreshold = CodingKeys(stringValue: "restartThreshold")
+    static let checkInterval = CodingKeys(stringValue: "checkInterval")
+    static let timeout = CodingKeys(stringValue: "timeout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "disableHealthCheck",
+      "host",
+      "healthyThreshold",
+      "unhealthyThreshold",
+      "restartThreshold",
+      "checkInterval",
+      "timeout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableHealthCheck) {
+      self.disableHealthCheck = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .healthyThreshold) {
+      self.healthyThreshold = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .unhealthyThreshold) {
+      self.unhealthyThreshold = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .restartThreshold) {
+      self.restartThreshold = value
+    }
+    self.checkInterval = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .checkInterval)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.disableHealthCheck, forKey: .disableHealthCheck)
+    try container.encode(self.host, forKey: .host)
+    try container.encode(self.healthyThreshold, forKey: .healthyThreshold)
+    try container.encode(self.unhealthyThreshold, forKey: .unhealthyThreshold)
+    try container.encode(self.restartThreshold, forKey: .restartThreshold)
+    try container.encodeIfPresent(self.checkInterval, forKey: .checkInterval)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

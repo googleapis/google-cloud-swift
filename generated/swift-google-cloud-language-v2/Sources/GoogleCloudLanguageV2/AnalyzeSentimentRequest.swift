@@ -27,6 +27,8 @@ public struct AnalyzeSentimentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The encoding type used by the API to calculate sentence offsets.
   public var encodingType: EncodingType = EncodingType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeSentimentRequest`.
   public init() {}
 
@@ -41,6 +43,42 @@ public struct AnalyzeSentimentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let document = CodingKeys(stringValue: "document")
+    static let encodingType = CodingKeys(stringValue: "encodingType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "document",
+      "encodingType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+    if let value = try container.decodeIfPresent(EncodingType.self, forKey: .encodingType) {
+      self.encodingType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.document, forKey: .document)
+    try container.encode(self.encodingType, forKey: .encodingType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

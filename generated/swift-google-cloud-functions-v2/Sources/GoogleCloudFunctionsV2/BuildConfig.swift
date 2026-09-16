@@ -96,6 +96,8 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This controls when security patches are applied to the runtime environment.
   public var runtimeUpdatePolicy: OneOf_RuntimeUpdatePolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildConfig`.
   public init() {}
 
@@ -112,36 +114,74 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case automaticUpdatePolicy = "automaticUpdatePolicy"
-    case onDeployUpdatePolicy = "onDeployUpdatePolicy"
-    case build = "build"
-    case runtime = "runtime"
-    case entryPoint = "entryPoint"
-    case source = "source"
-    case sourceProvenance = "sourceProvenance"
-    case workerPool = "workerPool"
-    case environmentVariables = "environmentVariables"
-    case dockerRegistry = "dockerRegistry"
-    case dockerRepository = "dockerRepository"
-    case serviceAccount = "serviceAccount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let automaticUpdatePolicy = CodingKeys(stringValue: "automaticUpdatePolicy")
+    static let onDeployUpdatePolicy = CodingKeys(stringValue: "onDeployUpdatePolicy")
+    static let build = CodingKeys(stringValue: "build")
+    static let runtime = CodingKeys(stringValue: "runtime")
+    static let entryPoint = CodingKeys(stringValue: "entryPoint")
+    static let source = CodingKeys(stringValue: "source")
+    static let sourceProvenance = CodingKeys(stringValue: "sourceProvenance")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let environmentVariables = CodingKeys(stringValue: "environmentVariables")
+    static let dockerRegistry = CodingKeys(stringValue: "dockerRegistry")
+    static let dockerRepository = CodingKeys(stringValue: "dockerRepository")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "automaticUpdatePolicy",
+      "onDeployUpdatePolicy",
+      "build",
+      "runtime",
+      "entryPoint",
+      "source",
+      "sourceProvenance",
+      "workerPool",
+      "environmentVariables",
+      "dockerRegistry",
+      "dockerRepository",
+      "serviceAccount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.build = try container.decode(Swift.String.self, forKey: .build)
-    self.runtime = try container.decode(Swift.String.self, forKey: .runtime)
-    self.entryPoint = try container.decode(Swift.String.self, forKey: .entryPoint)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .build) {
+      self.build = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtime) {
+      self.runtime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entryPoint) {
+      self.entryPoint = value
+    }
     self.source = try container.decodeIfPresent(Source.self, forKey: .source)
     self.sourceProvenance = try container.decodeIfPresent(
       SourceProvenance.self, forKey: .sourceProvenance)
-    self.workerPool = try container.decode(Swift.String.self, forKey: .workerPool)
-    self.environmentVariables = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .environmentVariables)
-    self.dockerRegistry = try container.decode(
+    {
+      self.environmentVariables = value
+    }
+    if let value = try container.decodeIfPresent(
       BuildConfig.DockerRegistry.self, forKey: .dockerRegistry)
-    self.dockerRepository = try container.decode(Swift.String.self, forKey: .dockerRepository)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+    {
+      self.dockerRegistry = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dockerRepository) {
+      self.dockerRepository = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
 
     var runtimeUpdatePolicy: OneOf_RuntimeUpdatePolicy? = nil
     let runtimeUpdatePolicyCheckAndSet = {
@@ -164,6 +204,10 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try runtimeUpdatePolicyCheckAndSet(.onDeployUpdatePolicy(onDeployUpdatePolicy))
     }
     self.runtimeUpdatePolicy = runtimeUpdatePolicy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -171,8 +215,8 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.build, forKey: .build)
     try container.encode(self.runtime, forKey: .runtime)
     try container.encode(self.entryPoint, forKey: .entryPoint)
-    try container.encode(self.source, forKey: .source)
-    try container.encode(self.sourceProvenance, forKey: .sourceProvenance)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encodeIfPresent(self.sourceProvenance, forKey: .sourceProvenance)
     try container.encode(self.workerPool, forKey: .workerPool)
     try container.encode(self.environmentVariables, forKey: .environmentVariables)
     try container.encode(self.dockerRegistry, forKey: .dockerRegistry)
@@ -186,6 +230,9 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .onDeployUpdatePolicy(let value):
         try container.encode(value, forKey: .onDeployUpdatePolicy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

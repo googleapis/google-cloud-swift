@@ -89,6 +89,8 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// Choose an alphabet which the data being transformed will be made up of.
   public var alphabet: OneOf_Alphabet? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoReplaceFfxFpeConfig`.
   public init() {}
 
@@ -105,13 +107,27 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cryptoKey = "cryptoKey"
-    case context = "context"
-    case commonAlphabet = "commonAlphabet"
-    case customAlphabet = "customAlphabet"
-    case radix = "radix"
-    case surrogateInfoType = "surrogateInfoType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cryptoKey = CodingKeys(stringValue: "cryptoKey")
+    static let context = CodingKeys(stringValue: "context")
+    static let commonAlphabet = CodingKeys(stringValue: "commonAlphabet")
+    static let customAlphabet = CodingKeys(stringValue: "customAlphabet")
+    static let radix = CodingKeys(stringValue: "radix")
+    static let surrogateInfoType = CodingKeys(stringValue: "surrogateInfoType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cryptoKey",
+      "context",
+      "commonAlphabet",
+      "customAlphabet",
+      "radix",
+      "surrogateInfoType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -145,13 +161,17 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
       try alphabetCheckAndSet(.radix(radix))
     }
     self.alphabet = alphabet
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.cryptoKey, forKey: .cryptoKey)
-    try container.encode(self.context, forKey: .context)
-    try container.encode(self.surrogateInfoType, forKey: .surrogateInfoType)
+    try container.encodeIfPresent(self.cryptoKey, forKey: .cryptoKey)
+    try container.encodeIfPresent(self.context, forKey: .context)
+    try container.encodeIfPresent(self.surrogateInfoType, forKey: .surrogateInfoType)
 
     if let choice = self.alphabet {
       switch choice {
@@ -162,6 +182,9 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
       case .radix(let value):
         try container.encode(value, forKey: .radix)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

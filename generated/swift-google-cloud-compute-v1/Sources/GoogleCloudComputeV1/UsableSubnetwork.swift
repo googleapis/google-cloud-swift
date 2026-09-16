@@ -64,6 +64,8 @@
     /// Subnetwork URL.
     public var subnetwork: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UsableSubnetwork`.
     public init() {}
 
@@ -78,6 +80,80 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let externalIpv6Prefix = CodingKeys(stringValue: "externalIpv6Prefix")
+      static let internalIpv6Prefix = CodingKeys(stringValue: "internalIpv6Prefix")
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let network = CodingKeys(stringValue: "network")
+      static let purpose = CodingKeys(stringValue: "purpose")
+      static let role = CodingKeys(stringValue: "role")
+      static let secondaryIpRanges = CodingKeys(stringValue: "secondaryIpRanges")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "externalIpv6Prefix",
+        "internalIpv6Prefix",
+        "ipCidrRange",
+        "ipv6AccessType",
+        "network",
+        "purpose",
+        "role",
+        "secondaryIpRanges",
+        "stackType",
+        "subnetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.externalIpv6Prefix = try container.decodeIfPresent(
+        Swift.String.self, forKey: .externalIpv6Prefix)
+      self.internalIpv6Prefix = try container.decodeIfPresent(
+        Swift.String.self, forKey: .internalIpv6Prefix)
+      self.ipCidrRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange)
+      self.ipv6AccessType = try container.decodeIfPresent(
+        UsableSubnetwork.Ipv6AccessType.self, forKey: .ipv6AccessType)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.purpose = try container.decodeIfPresent(UsableSubnetwork.Purpose.self, forKey: .purpose)
+      self.role = try container.decodeIfPresent(UsableSubnetwork.Role.self, forKey: .role)
+      if let value = try container.decodeIfPresent(
+        [UsableSubnetworkSecondaryRange].self, forKey: .secondaryIpRanges)
+      {
+        self.secondaryIpRanges = value
+      }
+      self.stackType = try container.decodeIfPresent(
+        UsableSubnetwork.StackType.self, forKey: .stackType)
+      self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.externalIpv6Prefix, forKey: .externalIpv6Prefix)
+      try container.encodeIfPresent(self.internalIpv6Prefix, forKey: .internalIpv6Prefix)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.purpose, forKey: .purpose)
+      try container.encodeIfPresent(self.role, forKey: .role)
+      try container.encode(self.secondaryIpRanges, forKey: .secondaryIpRanges)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [ipv6AccessType][google.cloud.compute.v1.UsableSubnetwork.ipv6AccessType] field.

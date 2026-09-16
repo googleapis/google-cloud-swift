@@ -42,6 +42,8 @@
     /// [google.cloud.discoveryengine.v1.Project.ServiceTerms]: <doc:Project/ServiceTerms>
     public var serviceTermsMap: [Swift.String: Project.ServiceTerms] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Project`.
     public init() {}
 
@@ -56,6 +58,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let provisionCompletionTime = CodingKeys(stringValue: "provisionCompletionTime")
+      static let serviceTermsMap = CodingKeys(stringValue: "serviceTermsMap")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "createTime",
+        "provisionCompletionTime",
+        "serviceTermsMap",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.provisionCompletionTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .provisionCompletionTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Project.ServiceTerms].self, forKey: .serviceTermsMap)
+      {
+        self.serviceTermsMap = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.provisionCompletionTime, forKey: .provisionCompletionTime)
+      try container.encode(self.serviceTermsMap, forKey: .serviceTermsMap)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Metadata about the terms of service.
@@ -92,6 +144,8 @@
       /// of service.
       public var declineTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ServiceTerms`.
       public init() {}
 
@@ -106,6 +160,62 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let version = CodingKeys(stringValue: "version")
+        static let state = CodingKeys(stringValue: "state")
+        static let acceptTime = CodingKeys(stringValue: "acceptTime")
+        static let declineTime = CodingKeys(stringValue: "declineTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "version",
+          "state",
+          "acceptTime",
+          "declineTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+          self.version = value
+        }
+        if let value = try container.decodeIfPresent(
+          Project.ServiceTerms.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        self.acceptTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .acceptTime)
+        self.declineTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .declineTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.version, forKey: .version)
+        try container.encode(self.state, forKey: .state)
+        try container.encodeIfPresent(self.acceptTime, forKey: .acceptTime)
+        try container.encodeIfPresent(self.declineTime, forKey: .declineTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The agreement states this terms of service.

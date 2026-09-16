@@ -72,6 +72,8 @@ public struct SlurmLoginNodes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Boot disk for the login node.
   public var bootDisk: BootDisk? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SlurmLoginNodes`.
   public init() {}
 
@@ -86,6 +88,91 @@ public struct SlurmLoginNodes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let count = CodingKeys(stringValue: "count")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let startupScript = CodingKeys(stringValue: "startupScript")
+    static let enableOsLogin = CodingKeys(stringValue: "enableOsLogin")
+    static let enablePublicIps = CodingKeys(stringValue: "enablePublicIps")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let storageConfigs = CodingKeys(stringValue: "storageConfigs")
+    static let instances = CodingKeys(stringValue: "instances")
+    static let bootDisk = CodingKeys(stringValue: "bootDisk")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "count",
+      "zone",
+      "machineType",
+      "startupScript",
+      "enableOsLogin",
+      "enablePublicIps",
+      "labels",
+      "storageConfigs",
+      "instances",
+      "bootDisk",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+      self.count = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startupScript) {
+      self.startupScript = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableOsLogin) {
+      self.enableOsLogin = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePublicIps) {
+      self.enablePublicIps = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([StorageConfig].self, forKey: .storageConfigs) {
+      self.storageConfigs = value
+    }
+    if let value = try container.decodeIfPresent([ComputeInstance].self, forKey: .instances) {
+      self.instances = value
+    }
+    self.bootDisk = try container.decodeIfPresent(BootDisk.self, forKey: .bootDisk)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.count, forKey: .count)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.startupScript, forKey: .startupScript)
+    try container.encode(self.enableOsLogin, forKey: .enableOsLogin)
+    try container.encode(self.enablePublicIps, forKey: .enablePublicIps)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.storageConfigs, forKey: .storageConfigs)
+    try container.encode(self.instances, forKey: .instances)
+    try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

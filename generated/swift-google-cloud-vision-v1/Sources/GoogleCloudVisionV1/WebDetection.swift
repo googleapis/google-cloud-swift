@@ -43,6 +43,8 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Inferred from similar images on the open web.
   public var bestGuessLabels: [WebDetection.WebLabel] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WebDetection`.
   public init() {}
 
@@ -59,6 +61,80 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let webEntities = CodingKeys(stringValue: "webEntities")
+    static let fullMatchingImages = CodingKeys(stringValue: "fullMatchingImages")
+    static let partialMatchingImages = CodingKeys(stringValue: "partialMatchingImages")
+    static let pagesWithMatchingImages = CodingKeys(stringValue: "pagesWithMatchingImages")
+    static let visuallySimilarImages = CodingKeys(stringValue: "visuallySimilarImages")
+    static let bestGuessLabels = CodingKeys(stringValue: "bestGuessLabels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "webEntities",
+      "fullMatchingImages",
+      "partialMatchingImages",
+      "pagesWithMatchingImages",
+      "visuallySimilarImages",
+      "bestGuessLabels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebEntity].self, forKey: .webEntities)
+    {
+      self.webEntities = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebImage].self, forKey: .fullMatchingImages)
+    {
+      self.fullMatchingImages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebImage].self, forKey: .partialMatchingImages)
+    {
+      self.partialMatchingImages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebPage].self, forKey: .pagesWithMatchingImages)
+    {
+      self.pagesWithMatchingImages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebImage].self, forKey: .visuallySimilarImages)
+    {
+      self.visuallySimilarImages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WebDetection.WebLabel].self, forKey: .bestGuessLabels)
+    {
+      self.bestGuessLabels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.webEntities, forKey: .webEntities)
+    try container.encode(self.fullMatchingImages, forKey: .fullMatchingImages)
+    try container.encode(self.partialMatchingImages, forKey: .partialMatchingImages)
+    try container.encode(self.pagesWithMatchingImages, forKey: .pagesWithMatchingImages)
+    try container.encode(self.visuallySimilarImages, forKey: .visuallySimilarImages)
+    try container.encode(self.bestGuessLabels, forKey: .bestGuessLabels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Entity deduced from similar images on the Internet.
   public struct WebEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -72,6 +148,8 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Canonical description of the entity, in English.
     public var description: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `WebEntity`.
     public init() {}
@@ -87,6 +165,50 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityId = CodingKeys(stringValue: "entityId")
+      static let score = CodingKeys(stringValue: "score")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityId",
+        "score",
+        "description",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityId) {
+        self.entityId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+        self.score = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entityId, forKey: .entityId)
+      try container.encode(self.score, forKey: .score)
+      try container.encode(self.description, forKey: .description)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -110,6 +232,8 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// (Deprecated) Overall relevancy score for the image.
     public var score: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebImage`.
     public init() {}
 
@@ -124,6 +248,44 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let url = CodingKeys(stringValue: "url")
+      static let score = CodingKeys(stringValue: "score")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "url",
+        "score",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+        self.url = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+        self.score = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.url, forKey: .url)
+      try container.encode(self.score, forKey: .score)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -160,6 +322,8 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// crops.
     public var partialMatchingImages: [WebDetection.WebImage] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebPage`.
     public init() {}
 
@@ -174,6 +338,66 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let url = CodingKeys(stringValue: "url")
+      static let score = CodingKeys(stringValue: "score")
+      static let pageTitle = CodingKeys(stringValue: "pageTitle")
+      static let fullMatchingImages = CodingKeys(stringValue: "fullMatchingImages")
+      static let partialMatchingImages = CodingKeys(stringValue: "partialMatchingImages")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "url",
+        "score",
+        "pageTitle",
+        "fullMatchingImages",
+        "partialMatchingImages",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+        self.url = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+        self.score = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageTitle) {
+        self.pageTitle = value
+      }
+      if let value = try container.decodeIfPresent(
+        [WebDetection.WebImage].self, forKey: .fullMatchingImages)
+      {
+        self.fullMatchingImages = value
+      }
+      if let value = try container.decodeIfPresent(
+        [WebDetection.WebImage].self, forKey: .partialMatchingImages)
+      {
+        self.partialMatchingImages = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.url, forKey: .url)
+      try container.encode(self.score, forKey: .score)
+      try container.encode(self.pageTitle, forKey: .pageTitle)
+      try container.encode(self.fullMatchingImages, forKey: .fullMatchingImages)
+      try container.encode(self.partialMatchingImages, forKey: .partialMatchingImages)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -199,6 +423,8 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
     public var languageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebLabel`.
     public init() {}
 
@@ -213,6 +439,44 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let label = CodingKeys(stringValue: "label")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "label",
+        "languageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+        self.label = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.label, forKey: .label)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

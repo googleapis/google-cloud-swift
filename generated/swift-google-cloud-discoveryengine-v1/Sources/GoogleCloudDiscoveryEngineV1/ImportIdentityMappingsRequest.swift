@@ -33,6 +33,8 @@
     /// The source of the input.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportIdentityMappingsRequest`.
     public init() {}
 
@@ -49,15 +51,27 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineSource = "inlineSource"
-      case identityMappingStore = "identityMappingStore"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineSource = CodingKeys(stringValue: "inlineSource")
+      static let identityMappingStore = CodingKeys(stringValue: "identityMappingStore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineSource",
+        "identityMappingStore",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.identityMappingStore = try container.decode(
-        Swift.String.self, forKey: .identityMappingStore)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identityMappingStore)
+      {
+        self.identityMappingStore = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -75,6 +89,10 @@
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -87,6 +105,9 @@
           try container.encode(value, forKey: .inlineSource)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The inline source to import identity mapping entries from.
@@ -95,6 +116,8 @@
     {
       /// A maximum of 10000 entries can be imported at one time
       public var identityMappingEntries: [IdentityMappingEntry] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `InlineSource`.
       public init() {}
@@ -110,6 +133,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let identityMappingEntries = CodingKeys(stringValue: "identityMappingEntries")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "identityMappingEntries"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [IdentityMappingEntry].self, forKey: .identityMappingEntries)
+        {
+          self.identityMappingEntries = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.identityMappingEntries, forKey: .identityMappingEntries)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@
     /// The workload type of the instances that will target this reservation.
     public var workloadType: AllocationAggregateReservation.WorkloadType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllocationAggregateReservation`.
     public init() {}
 
@@ -51,6 +53,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inUseResources = CodingKeys(stringValue: "inUseResources")
+      static let reservedResources = CodingKeys(stringValue: "reservedResources")
+      static let vmFamily = CodingKeys(stringValue: "vmFamily")
+      static let workloadType = CodingKeys(stringValue: "workloadType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inUseResources",
+        "reservedResources",
+        "vmFamily",
+        "workloadType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AllocationAggregateReservationReservedResourceInfo].self, forKey: .inUseResources)
+      {
+        self.inUseResources = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AllocationAggregateReservationReservedResourceInfo].self, forKey: .reservedResources)
+      {
+        self.reservedResources = value
+      }
+      self.vmFamily = try container.decodeIfPresent(
+        AllocationAggregateReservation.VmFamily.self, forKey: .vmFamily)
+      self.workloadType = try container.decodeIfPresent(
+        AllocationAggregateReservation.WorkloadType.self, forKey: .workloadType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inUseResources, forKey: .inUseResources)
+      try container.encode(self.reservedResources, forKey: .reservedResources)
+      try container.encodeIfPresent(self.vmFamily, forKey: .vmFamily)
+      try container.encodeIfPresent(self.workloadType, forKey: .workloadType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [vmFamily][google.cloud.compute.v1.AllocationAggregateReservation.vmFamily] field.

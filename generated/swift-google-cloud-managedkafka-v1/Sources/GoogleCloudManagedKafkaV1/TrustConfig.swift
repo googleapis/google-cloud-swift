@@ -25,6 +25,8 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Maximum 10.
   public var casConfigs: [TrustConfig.CertificateAuthorityServiceConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrustConfig`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let casConfigs = CodingKeys(stringValue: "casConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "casConfigs"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [TrustConfig.CertificateAuthorityServiceConfig].self, forKey: .casConfigs)
+    {
+      self.casConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.casConfigs, forKey: .casConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A configuration for the Google Certificate Authority Service.
   public struct CertificateAuthorityServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -51,6 +87,8 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The CA pool does not need to be in the same project or location as the
     /// Kafka cluster.
     public var caPool: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CertificateAuthorityServiceConfig`.
     public init() {}
@@ -66,6 +104,38 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caPool = CodingKeys(stringValue: "caPool")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caPool"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caPool) {
+        self.caPool = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caPool, forKey: .caPool)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

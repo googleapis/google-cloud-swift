@@ -58,6 +58,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The JumboFramesEnabled option for customer to set.
   public var jumboFramesEnabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -74,6 +76,102 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let type = CodingKeys(stringValue: "type")
+    static let bandwidth = CodingKeys(stringValue: "bandwidth")
+    static let vlanAttachments = CodingKeys(stringValue: "vlanAttachments")
+    static let cidr = CodingKeys(stringValue: "cidr")
+    static let serviceCidr = CodingKeys(stringValue: "serviceCidr")
+    static let userNote = CodingKeys(stringValue: "userNote")
+    static let gcpService = CodingKeys(stringValue: "gcpService")
+    static let vlanSameProject = CodingKeys(stringValue: "vlanSameProject")
+    static let jumboFramesEnabled = CodingKeys(stringValue: "jumboFramesEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "type",
+      "bandwidth",
+      "vlanAttachments",
+      "cidr",
+      "serviceCidr",
+      "userNote",
+      "gcpService",
+      "vlanSameProject",
+      "jumboFramesEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(NetworkConfig.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(NetworkConfig.Bandwidth.self, forKey: .bandwidth) {
+      self.bandwidth = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NetworkConfig.IntakeVlanAttachment].self, forKey: .vlanAttachments)
+    {
+      self.vlanAttachments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidr) {
+      self.cidr = value
+    }
+    if let value = try container.decodeIfPresent(
+      NetworkConfig.ServiceCidr.self, forKey: .serviceCidr)
+    {
+      self.serviceCidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userNote) {
+      self.userNote = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpService) {
+      self.gcpService = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .vlanSameProject) {
+      self.vlanSameProject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .jumboFramesEnabled) {
+      self.jumboFramesEnabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.bandwidth, forKey: .bandwidth)
+    try container.encode(self.vlanAttachments, forKey: .vlanAttachments)
+    try container.encode(self.cidr, forKey: .cidr)
+    try container.encode(self.serviceCidr, forKey: .serviceCidr)
+    try container.encode(self.userNote, forKey: .userNote)
+    try container.encode(self.gcpService, forKey: .gcpService)
+    try container.encode(self.vlanSameProject, forKey: .vlanSameProject)
+    try container.encode(self.jumboFramesEnabled, forKey: .jumboFramesEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A GCP vlan attachment.
   public struct IntakeVlanAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -83,6 +181,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Attachment pairing key.
     public var pairingKey: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `IntakeVlanAttachment`.
     public init() {}
@@ -98,6 +198,44 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let pairingKey = CodingKeys(stringValue: "pairingKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "pairingKey",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pairingKey) {
+        self.pairingKey = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.pairingKey, forKey: .pairingKey)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

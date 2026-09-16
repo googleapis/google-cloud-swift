@@ -65,6 +65,8 @@
     /// The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
     public var regexRewrite: RegexRewrite? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UrlRewrite`.
     public init() {}
 
@@ -79,6 +81,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hostRewrite = CodingKeys(stringValue: "hostRewrite")
+      static let pathPrefixRewrite = CodingKeys(stringValue: "pathPrefixRewrite")
+      static let pathTemplateRewrite = CodingKeys(stringValue: "pathTemplateRewrite")
+      static let regexRewrite = CodingKeys(stringValue: "regexRewrite")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hostRewrite",
+        "pathPrefixRewrite",
+        "pathTemplateRewrite",
+        "regexRewrite",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.hostRewrite = try container.decodeIfPresent(Swift.String.self, forKey: .hostRewrite)
+      self.pathPrefixRewrite = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pathPrefixRewrite)
+      self.pathTemplateRewrite = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pathTemplateRewrite)
+      self.regexRewrite = try container.decodeIfPresent(RegexRewrite.self, forKey: .regexRewrite)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.hostRewrite, forKey: .hostRewrite)
+      try container.encodeIfPresent(self.pathPrefixRewrite, forKey: .pathPrefixRewrite)
+      try container.encodeIfPresent(self.pathTemplateRewrite, forKey: .pathTemplateRewrite)
+      try container.encodeIfPresent(self.regexRewrite, forKey: .regexRewrite)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

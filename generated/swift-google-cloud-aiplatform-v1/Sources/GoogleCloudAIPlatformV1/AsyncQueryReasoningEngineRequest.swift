@@ -36,6 +36,8 @@
     /// Optional. Output Cloud Storage URI for the Async query.
     public var outputGcsUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AsyncQueryReasoningEngineRequest`.
     public init() {}
 
@@ -50,6 +52,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let inputGcsUri = CodingKeys(stringValue: "inputGcsUri")
+      static let outputGcsUri = CodingKeys(stringValue: "outputGcsUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "inputGcsUri",
+        "outputGcsUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputGcsUri) {
+        self.inputGcsUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputGcsUri) {
+        self.outputGcsUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.inputGcsUri, forKey: .inputGcsUri)
+      try container.encode(self.outputGcsUri, forKey: .outputGcsUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

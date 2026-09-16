@@ -36,6 +36,8 @@
     /// Required. The agent to restore.
     public var agent: OneOf_Agent? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RestoreAgentRequest`.
     public init() {}
 
@@ -52,19 +54,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case agentUri = "agentUri"
-      case agentContent = "agentContent"
-      case gitSource = "gitSource"
-      case restoreOption = "restoreOption"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let agentUri = CodingKeys(stringValue: "agentUri")
+      static let agentContent = CodingKeys(stringValue: "agentContent")
+      static let gitSource = CodingKeys(stringValue: "gitSource")
+      static let restoreOption = CodingKeys(stringValue: "restoreOption")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "agentUri",
+        "agentContent",
+        "gitSource",
+        "restoreOption",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.restoreOption = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
         RestoreAgentRequest.RestoreOption.self, forKey: .restoreOption)
+      {
+        self.restoreOption = value
+      }
 
       var agent: OneOf_Agent? = nil
       let agentCheckAndSet = {
@@ -90,6 +110,10 @@
         try agentCheckAndSet(.gitSource(gitSource))
       }
       self.agent = agent
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,6 +131,9 @@
           try container.encode(value, forKey: .gitSource)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Settings for restoring from a git branch
@@ -115,6 +142,8 @@
     {
       /// tracking branch for the git pull
       public var trackingBranch: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GitSource`.
       public init() {}
@@ -130,6 +159,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let trackingBranch = CodingKeys(stringValue: "trackingBranch")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "trackingBranch"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackingBranch) {
+          self.trackingBranch = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.trackingBranch, forKey: .trackingBranch)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

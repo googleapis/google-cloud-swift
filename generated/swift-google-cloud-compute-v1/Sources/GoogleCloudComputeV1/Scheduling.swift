@@ -104,6 +104,8 @@
     /// termination action will be performed at the termination time.
     public var terminationTime: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Scheduling`.
     public init() {}
 
@@ -118,6 +120,118 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let automaticRestart = CodingKeys(stringValue: "automaticRestart")
+      static let availabilityDomain = CodingKeys(stringValue: "availabilityDomain")
+      static let gracefulShutdown = CodingKeys(stringValue: "gracefulShutdown")
+      static let hostErrorTimeoutSeconds = CodingKeys(stringValue: "hostErrorTimeoutSeconds")
+      static let instanceTerminationAction = CodingKeys(stringValue: "instanceTerminationAction")
+      static let localSsdRecoveryTimeout = CodingKeys(stringValue: "localSsdRecoveryTimeout")
+      static let locationHint = CodingKeys(stringValue: "locationHint")
+      static let maxRunDuration = CodingKeys(stringValue: "maxRunDuration")
+      static let minNodeCpus = CodingKeys(stringValue: "minNodeCpus")
+      static let nodeAffinities = CodingKeys(stringValue: "nodeAffinities")
+      static let onHostMaintenance = CodingKeys(stringValue: "onHostMaintenance")
+      static let onInstanceStopAction = CodingKeys(stringValue: "onInstanceStopAction")
+      static let preemptible = CodingKeys(stringValue: "preemptible")
+      static let preemptionNoticeDuration = CodingKeys(stringValue: "preemptionNoticeDuration")
+      static let provisioningModel = CodingKeys(stringValue: "provisioningModel")
+      static let skipGuestOsShutdown = CodingKeys(stringValue: "skipGuestOsShutdown")
+      static let terminationTime = CodingKeys(stringValue: "terminationTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "automaticRestart",
+        "availabilityDomain",
+        "gracefulShutdown",
+        "hostErrorTimeoutSeconds",
+        "instanceTerminationAction",
+        "localSsdRecoveryTimeout",
+        "locationHint",
+        "maxRunDuration",
+        "minNodeCpus",
+        "nodeAffinities",
+        "onHostMaintenance",
+        "onInstanceStopAction",
+        "preemptible",
+        "preemptionNoticeDuration",
+        "provisioningModel",
+        "skipGuestOsShutdown",
+        "terminationTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.automaticRestart = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .automaticRestart)
+      self.availabilityDomain = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .availabilityDomain)
+      self.gracefulShutdown = try container.decodeIfPresent(
+        SchedulingGracefulShutdown.self, forKey: .gracefulShutdown)
+      self.hostErrorTimeoutSeconds = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .hostErrorTimeoutSeconds)
+      self.instanceTerminationAction = try container.decodeIfPresent(
+        Scheduling.InstanceTerminationAction.self, forKey: .instanceTerminationAction)
+      self.localSsdRecoveryTimeout = try container.decodeIfPresent(
+        Duration.self, forKey: .localSsdRecoveryTimeout)
+      self.locationHint = try container.decodeIfPresent(Swift.String.self, forKey: .locationHint)
+      self.maxRunDuration = try container.decodeIfPresent(Duration.self, forKey: .maxRunDuration)
+      self.minNodeCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCpus)
+      if let value = try container.decodeIfPresent(
+        [SchedulingNodeAffinity].self, forKey: .nodeAffinities)
+      {
+        self.nodeAffinities = value
+      }
+      self.onHostMaintenance = try container.decodeIfPresent(
+        Scheduling.OnHostMaintenance.self, forKey: .onHostMaintenance)
+      self.onInstanceStopAction = try container.decodeIfPresent(
+        SchedulingOnInstanceStopAction.self, forKey: .onInstanceStopAction)
+      self.preemptible = try container.decodeIfPresent(Swift.Bool.self, forKey: .preemptible)
+      self.preemptionNoticeDuration = try container.decodeIfPresent(
+        Duration.self, forKey: .preemptionNoticeDuration)
+      self.provisioningModel = try container.decodeIfPresent(
+        Scheduling.ProvisioningModel.self, forKey: .provisioningModel)
+      self.skipGuestOsShutdown = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .skipGuestOsShutdown)
+      self.terminationTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .terminationTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.automaticRestart, forKey: .automaticRestart)
+      try container.encodeIfPresent(self.availabilityDomain, forKey: .availabilityDomain)
+      try container.encodeIfPresent(self.gracefulShutdown, forKey: .gracefulShutdown)
+      try container.encodeIfPresent(self.hostErrorTimeoutSeconds, forKey: .hostErrorTimeoutSeconds)
+      try container.encodeIfPresent(
+        self.instanceTerminationAction, forKey: .instanceTerminationAction)
+      try container.encodeIfPresent(self.localSsdRecoveryTimeout, forKey: .localSsdRecoveryTimeout)
+      try container.encodeIfPresent(self.locationHint, forKey: .locationHint)
+      try container.encodeIfPresent(self.maxRunDuration, forKey: .maxRunDuration)
+      try container.encodeIfPresent(self.minNodeCpus, forKey: .minNodeCpus)
+      try container.encode(self.nodeAffinities, forKey: .nodeAffinities)
+      try container.encodeIfPresent(self.onHostMaintenance, forKey: .onHostMaintenance)
+      try container.encodeIfPresent(self.onInstanceStopAction, forKey: .onInstanceStopAction)
+      try container.encodeIfPresent(self.preemptible, forKey: .preemptible)
+      try container.encodeIfPresent(
+        self.preemptionNoticeDuration, forKey: .preemptionNoticeDuration)
+      try container.encodeIfPresent(self.provisioningModel, forKey: .provisioningModel)
+      try container.encodeIfPresent(self.skipGuestOsShutdown, forKey: .skipGuestOsShutdown)
+      try container.encodeIfPresent(self.terminationTime, forKey: .terminationTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [instanceTerminationAction][google.cloud.compute.v1.Scheduling.instanceTerminationAction] field.

@@ -59,6 +59,8 @@ public struct LiveSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the live config for this session.
   public var adTracking: AdTracking = AdTracking()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LiveSession`.
   public init() {}
 
@@ -75,6 +77,74 @@ public struct LiveSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let playUri = CodingKeys(stringValue: "playUri")
+    static let adTagMacros = CodingKeys(stringValue: "adTagMacros")
+    static let manifestOptions = CodingKeys(stringValue: "manifestOptions")
+    static let gamSettings = CodingKeys(stringValue: "gamSettings")
+    static let liveConfig = CodingKeys(stringValue: "liveConfig")
+    static let adTracking = CodingKeys(stringValue: "adTracking")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "playUri",
+      "adTagMacros",
+      "manifestOptions",
+      "gamSettings",
+      "liveConfig",
+      "adTracking",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .playUri) {
+      self.playUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .adTagMacros)
+    {
+      self.adTagMacros = value
+    }
+    self.manifestOptions = try container.decodeIfPresent(
+      ManifestOptions.self, forKey: .manifestOptions)
+    self.gamSettings = try container.decodeIfPresent(
+      LiveSession.GamSettings.self, forKey: .gamSettings)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .liveConfig) {
+      self.liveConfig = value
+    }
+    if let value = try container.decodeIfPresent(AdTracking.self, forKey: .adTracking) {
+      self.adTracking = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.playUri, forKey: .playUri)
+    try container.encode(self.adTagMacros, forKey: .adTagMacros)
+    try container.encodeIfPresent(self.manifestOptions, forKey: .manifestOptions)
+    try container.encodeIfPresent(self.gamSettings, forKey: .gamSettings)
+    try container.encode(self.liveConfig, forKey: .liveConfig)
+    try container.encode(self.adTracking, forKey: .adTracking)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Defines fields related to Google Ad Manager (GAM).
   public struct GamSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -88,6 +158,8 @@ public struct LiveSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// to Ad Manager to generate a stream ID. This should only be set if the
     /// session uses server-side ad tracking.
     public var targetingParameters: [Swift.String: Swift.String] = [:]
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `GamSettings`.
     public init() {}
@@ -103,6 +175,46 @@ public struct LiveSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let streamId = CodingKeys(stringValue: "streamId")
+      static let targetingParameters = CodingKeys(stringValue: "targetingParameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "streamId",
+        "targetingParameters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .streamId) {
+        self.streamId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .targetingParameters)
+      {
+        self.targetingParameters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.streamId, forKey: .streamId)
+      try container.encode(self.targetingParameters, forKey: .targetingParameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

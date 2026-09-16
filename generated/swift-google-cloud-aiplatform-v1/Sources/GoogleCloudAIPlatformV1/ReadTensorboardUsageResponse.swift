@@ -29,6 +29,8 @@
     public var monthlyUsageData: [Swift.String: ReadTensorboardUsageResponse.PerMonthUsageData] =
       [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReadTensorboardUsageResponse`.
     public init() {}
 
@@ -45,6 +47,41 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let monthlyUsageData = CodingKeys(stringValue: "monthlyUsageData")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "monthlyUsageData"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ReadTensorboardUsageResponse.PerMonthUsageData].self,
+        forKey: .monthlyUsageData)
+      {
+        self.monthlyUsageData = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.monthlyUsageData, forKey: .monthlyUsageData)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Per user usage data.
     public struct PerUserUsageData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -54,6 +91,8 @@
 
       /// Number of times the user has read data within the Tensorboard.
       public var viewCount: Swift.Int64 = Swift.Int64()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `PerUserUsageData`.
       public init() {}
@@ -69,6 +108,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let username = CodingKeys(stringValue: "username")
+        static let viewCount = CodingKeys(stringValue: "viewCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "username",
+          "viewCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+          self.username = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .viewCount) {
+          self.viewCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.username, forKey: .username)
+        try container.encode(self.viewCount, forKey: .viewCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -90,6 +167,8 @@
       /// Usage data for each user in the given month.
       public var userUsageData: [ReadTensorboardUsageResponse.PerUserUsageData] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PerMonthUsageData`.
       public init() {}
 
@@ -104,6 +183,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let userUsageData = CodingKeys(stringValue: "userUsageData")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "userUsageData"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [ReadTensorboardUsageResponse.PerUserUsageData].self, forKey: .userUsageData)
+        {
+          self.userUsageData = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.userUsageData, forKey: .userUsageData)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

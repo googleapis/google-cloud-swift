@@ -54,6 +54,8 @@
     /// Models.
     public var modelExplanation: ModelExplanation? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelEvaluationSlice`.
     public init() {}
 
@@ -68,6 +70,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let slice = CodingKeys(stringValue: "slice")
+      static let metricsSchemaUri = CodingKeys(stringValue: "metricsSchemaUri")
+      static let metrics = CodingKeys(stringValue: "metrics")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let modelExplanation = CodingKeys(stringValue: "modelExplanation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "slice",
+        "metricsSchemaUri",
+        "metrics",
+        "createTime",
+        "modelExplanation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.slice = try container.decodeIfPresent(ModelEvaluationSlice.Slice.self, forKey: .slice)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricsSchemaUri) {
+        self.metricsSchemaUri = value
+      }
+      self.metrics = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .metrics)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.modelExplanation = try container.decodeIfPresent(
+        ModelExplanation.self, forKey: .modelExplanation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.slice, forKey: .slice)
+      try container.encode(self.metricsSchemaUri, forKey: .metricsSchemaUri)
+      try container.encodeIfPresent(self.metrics, forKey: .metrics)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.modelExplanation, forKey: .modelExplanation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Definition of a slice.
@@ -94,6 +152,8 @@
       /// Output only. Specification for how the data was sliced.
       public var sliceSpec: ModelEvaluationSlice.Slice.SliceSpec? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Slice`.
       public init() {}
 
@@ -110,6 +170,49 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dimension = CodingKeys(stringValue: "dimension")
+        static let value = CodingKeys(stringValue: "value")
+        static let sliceSpec = CodingKeys(stringValue: "sliceSpec")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dimension",
+          "value",
+          "sliceSpec",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dimension) {
+          self.dimension = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+          self.value = value
+        }
+        self.sliceSpec = try container.decodeIfPresent(
+          ModelEvaluationSlice.Slice.SliceSpec.self, forKey: .sliceSpec)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dimension, forKey: .dimension)
+        try container.encode(self.value, forKey: .value)
+        try container.encodeIfPresent(self.sliceSpec, forKey: .sliceSpec)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Specification for how the data should be sliced.
       public struct SliceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -119,6 +222,9 @@
         /// By default, the key will be prefixed by "instance" as a dictionary
         /// prefix for Vertex Batch Predictions output format.
         public var configs: [Swift.String: ModelEvaluationSlice.Slice.SliceSpec.SliceConfig] = [:]
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `SliceSpec`.
         public init() {}
@@ -134,6 +240,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let configs = CodingKeys(stringValue: "configs")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "configs"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Swift.String: ModelEvaluationSlice.Slice.SliceSpec.SliceConfig].self, forKey: .configs)
+          {
+            self.configs = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.configs, forKey: .configs)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Specification message containing the config for this SliceSpec.
@@ -196,6 +336,9 @@
         {
           public var kind: OneOf_Kind? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `SliceConfig`.
           public init() {}
 
@@ -212,10 +355,21 @@
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case value = "value"
-            case range = "range"
-            case allValues = "allValues"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let value = CodingKeys(stringValue: "value")
+            static let range = CodingKeys(stringValue: "range")
+            static let allValues = CodingKeys(stringValue: "allValues")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "value",
+              "range",
+              "allValues",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
@@ -247,6 +401,10 @@
               try kindCheckAndSet(.allValues(allValues))
             }
             self.kind = kind
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -261,6 +419,9 @@
               case .allValues(let value):
                 try container.encode(value, forKey: .allValues)
               }
+            }
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
             }
           }
 
@@ -301,6 +462,9 @@
           /// Exclusive high value for the range.
           public var high: Swift.Float = Swift.Float()
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `Range`.
           public init() {}
 
@@ -315,6 +479,44 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let low = CodingKeys(stringValue: "low")
+            static let high = CodingKeys(stringValue: "high")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "low",
+              "high",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .low) {
+              self.low = value
+            }
+            if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .high) {
+              self.high = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.low, forKey: .low)
+            try container.encode(self.high, forKey: .high)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -335,6 +537,9 @@
         {
           public var kind: OneOf_Kind? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `Value`.
           public init() {}
 
@@ -351,9 +556,19 @@
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case stringValue = "stringValue"
-            case floatValue = "floatValue"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let stringValue = CodingKeys(stringValue: "stringValue")
+            static let floatValue = CodingKeys(stringValue: "floatValue")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "stringValue",
+              "floatValue",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
@@ -379,6 +594,10 @@
               try kindCheckAndSet(.floatValue(floatValue))
             }
             self.kind = kind
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -391,6 +610,9 @@
               case .floatValue(let value):
                 try container.encode(value, forKey: .floatValue)
               }
+            }
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
             }
           }
 

@@ -28,6 +28,8 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The type of the message.
   public var messageType: OneOf_MessageType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BidiSessionServerMessage`.
   public init() {}
 
@@ -44,12 +46,25 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sessionOutput = "sessionOutput"
-    case recognitionResult = "recognitionResult"
-    case interruptionSignal = "interruptionSignal"
-    case endSession = "endSession"
-    case goAway = "goAway"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sessionOutput = CodingKeys(stringValue: "sessionOutput")
+    static let recognitionResult = CodingKeys(stringValue: "recognitionResult")
+    static let interruptionSignal = CodingKeys(stringValue: "interruptionSignal")
+    static let endSession = CodingKeys(stringValue: "endSession")
+    static let goAway = CodingKeys(stringValue: "goAway")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sessionOutput",
+      "recognitionResult",
+      "interruptionSignal",
+      "endSession",
+      "goAway",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -87,6 +102,10 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleCloudWKT._AnyP
       try messageTypeCheckAndSet(.goAway(goAway))
     }
     self.messageType = messageType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -105,6 +124,9 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleCloudWKT._AnyP
       case .goAway(let value):
         try container.encode(value, forKey: .goAway)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

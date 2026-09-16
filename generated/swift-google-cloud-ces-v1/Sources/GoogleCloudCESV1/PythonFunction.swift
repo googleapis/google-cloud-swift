@@ -36,6 +36,8 @@ public struct PythonFunction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Service Directory configuration for the tool.
   public var serviceDirectoryConfig: ServiceDirectoryConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PythonFunction`.
   public init() {}
 
@@ -50,6 +52,55 @@ public struct PythonFunction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let pythonCode = CodingKeys(stringValue: "pythonCode")
+    static let description = CodingKeys(stringValue: "description")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "pythonCode",
+      "description",
+      "serviceDirectoryConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pythonCode) {
+      self.pythonCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.serviceDirectoryConfig = try container.decodeIfPresent(
+      ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.pythonCode, forKey: .pythonCode)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

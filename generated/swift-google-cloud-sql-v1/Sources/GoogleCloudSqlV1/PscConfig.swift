@@ -63,6 +63,8 @@
     /// automatically.
     public var pscAutoConnectionPolicyEnabled: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PscConfig`.
     public init() {}
 
@@ -77,6 +79,77 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pscEnabled = CodingKeys(stringValue: "pscEnabled")
+      static let allowedConsumerProjects = CodingKeys(stringValue: "allowedConsumerProjects")
+      static let pscAutoConnections = CodingKeys(stringValue: "pscAutoConnections")
+      static let networkAttachmentUri = CodingKeys(stringValue: "networkAttachmentUri")
+      static let pscAutoDnsEnabled = CodingKeys(stringValue: "pscAutoDnsEnabled")
+      static let pscWriteEndpointDnsEnabled = CodingKeys(stringValue: "pscWriteEndpointDnsEnabled")
+      static let pscAutoConnectionPolicyEnabled = CodingKeys(
+        stringValue: "pscAutoConnectionPolicyEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pscEnabled",
+        "allowedConsumerProjects",
+        "pscAutoConnections",
+        "networkAttachmentUri",
+        "pscAutoDnsEnabled",
+        "pscWriteEndpointDnsEnabled",
+        "pscAutoConnectionPolicyEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.pscEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .pscEnabled)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .allowedConsumerProjects)
+      {
+        self.allowedConsumerProjects = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PscAutoConnectionConfig].self, forKey: .pscAutoConnections)
+      {
+        self.pscAutoConnections = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkAttachmentUri)
+      {
+        self.networkAttachmentUri = value
+      }
+      self.pscAutoDnsEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .pscAutoDnsEnabled)
+      self.pscWriteEndpointDnsEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .pscWriteEndpointDnsEnabled)
+      self.pscAutoConnectionPolicyEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .pscAutoConnectionPolicyEnabled)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.pscEnabled, forKey: .pscEnabled)
+      try container.encode(self.allowedConsumerProjects, forKey: .allowedConsumerProjects)
+      try container.encode(self.pscAutoConnections, forKey: .pscAutoConnections)
+      try container.encode(self.networkAttachmentUri, forKey: .networkAttachmentUri)
+      try container.encodeIfPresent(self.pscAutoDnsEnabled, forKey: .pscAutoDnsEnabled)
+      try container.encodeIfPresent(
+        self.pscWriteEndpointDnsEnabled, forKey: .pscWriteEndpointDnsEnabled)
+      try container.encodeIfPresent(
+        self.pscAutoConnectionPolicyEnabled, forKey: .pscAutoConnectionPolicyEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

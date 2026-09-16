@@ -78,6 +78,8 @@ public struct IngestPipelineConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// * folder
   public var cloudFunction: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IngestPipelineConfig`.
   public init() {}
 
@@ -92,6 +94,58 @@ public struct IngestPipelineConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let documentAclPolicy = CodingKeys(stringValue: "documentAclPolicy")
+    static let enableDocumentTextExtraction = CodingKeys(
+      stringValue: "enableDocumentTextExtraction")
+    static let folder = CodingKeys(stringValue: "folder")
+    static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "documentAclPolicy",
+      "enableDocumentTextExtraction",
+      "folder",
+      "cloudFunction",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.documentAclPolicy = try container.decodeIfPresent(
+      GoogleIAMV1.Policy.self, forKey: .documentAclPolicy)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableDocumentTextExtraction)
+    {
+      self.enableDocumentTextExtraction = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .folder) {
+      self.folder = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudFunction) {
+      self.cloudFunction = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.documentAclPolicy, forKey: .documentAclPolicy)
+    try container.encode(self.enableDocumentTextExtraction, forKey: .enableDocumentTextExtraction)
+    try container.encode(self.folder, forKey: .folder)
+    try container.encode(self.cloudFunction, forKey: .cloudFunction)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

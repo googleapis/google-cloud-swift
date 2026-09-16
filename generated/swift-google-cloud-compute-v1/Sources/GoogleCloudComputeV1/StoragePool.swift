@@ -121,6 +121,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StoragePool`.
     public init() {}
 
@@ -137,29 +139,61 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case capacityProvisioningType = "capacityProvisioningType"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case exapoolProvisionedCapacityGb = "exapoolProvisionedCapacityGb"
-      case id = "id"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case params = "params"
-      case performanceProvisioningType = "performanceProvisioningType"
-      case poolProvisionedCapacityGb = "poolProvisionedCapacityGb"
-      case poolProvisionedIops = "poolProvisionedIops"
-      case poolProvisionedThroughput = "poolProvisionedThroughput"
-      case resourceStatus = "resourceStatus"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case shareSettings = "shareSettings"
-      case state = "state"
-      case status = "status"
-      case storagePoolType = "storagePoolType"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let capacityProvisioningType = CodingKeys(stringValue: "capacityProvisioningType")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let exapoolProvisionedCapacityGb = CodingKeys(
+        stringValue: "exapoolProvisionedCapacityGb")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let performanceProvisioningType = CodingKeys(
+        stringValue: "performanceProvisioningType")
+      static let poolProvisionedCapacityGb = CodingKeys(stringValue: "poolProvisionedCapacityGb")
+      static let poolProvisionedIops = CodingKeys(stringValue: "poolProvisionedIops")
+      static let poolProvisionedThroughput = CodingKeys(stringValue: "poolProvisionedThroughput")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let shareSettings = CodingKeys(stringValue: "shareSettings")
+      static let state = CodingKeys(stringValue: "state")
+      static let status = CodingKeys(stringValue: "status")
+      static let storagePoolType = CodingKeys(stringValue: "storagePoolType")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "capacityProvisioningType",
+        "creationTimestamp",
+        "description",
+        "exapoolProvisionedCapacityGb",
+        "id",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "params",
+        "performanceProvisioningType",
+        "poolProvisionedCapacityGb",
+        "poolProvisionedIops",
+        "poolProvisionedThroughput",
+        "resourceStatus",
+        "selfLink",
+        "selfLinkWithId",
+        "shareSettings",
+        "state",
+        "status",
+        "storagePoolType",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -182,7 +216,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.params = try container.decodeIfPresent(StoragePoolParams.self, forKey: .params)
       self.performanceProvisioningType = try container.decodeIfPresent(
@@ -205,36 +243,48 @@
       self.storagePoolType = try container.decodeIfPresent(
         Swift.String.self, forKey: .storagePoolType)
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.capacityProvisioningType, forKey: .capacityProvisioningType)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.exapoolProvisionedCapacityGb, forKey: .exapoolProvisionedCapacityGb)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(
+        self.capacityProvisioningType, forKey: .capacityProvisioningType)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
+        self.exapoolProvisionedCapacityGb, forKey: .exapoolProvisionedCapacityGb)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.performanceProvisioningType, forKey: .performanceProvisioningType)
-      try container.encode(self.poolProvisionedCapacityGb, forKey: .poolProvisionedCapacityGb)
-      try container.encode(self.poolProvisionedIops, forKey: .poolProvisionedIops)
-      try container.encode(self.poolProvisionedThroughput, forKey: .poolProvisionedThroughput)
-      try container.encode(self.resourceStatus, forKey: .resourceStatus)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
-      try container.encode(self.shareSettings, forKey: .shareSettings)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.storagePoolType, forKey: .storagePoolType)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(
+        self.performanceProvisioningType, forKey: .performanceProvisioningType)
+      try container.encodeIfPresent(
+        self.poolProvisionedCapacityGb, forKey: .poolProvisionedCapacityGb)
+      try container.encodeIfPresent(self.poolProvisionedIops, forKey: .poolProvisionedIops)
+      try container.encodeIfPresent(
+        self.poolProvisionedThroughput, forKey: .poolProvisionedThroughput)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.shareSettings, forKey: .shareSettings)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.storagePoolType, forKey: .storagePoolType)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [capacityProvisioningType][google.cloud.compute.v1.StoragePool.capacityProvisioningType] field.

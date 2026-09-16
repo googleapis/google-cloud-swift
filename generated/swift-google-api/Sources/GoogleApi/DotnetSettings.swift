@@ -54,6 +54,8 @@ public struct DotnetSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Snippets *calling* these methods are still generated, however.
   public var handwrittenSignatures: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DotnetSettings`.
   public init() {}
 
@@ -68,6 +70,74 @@ public struct DotnetSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let common = CodingKeys(stringValue: "common")
+    static let renamedServices = CodingKeys(stringValue: "renamedServices")
+    static let renamedResources = CodingKeys(stringValue: "renamedResources")
+    static let ignoredResources = CodingKeys(stringValue: "ignoredResources")
+    static let forcedNamespaceAliases = CodingKeys(stringValue: "forcedNamespaceAliases")
+    static let handwrittenSignatures = CodingKeys(stringValue: "handwrittenSignatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "common",
+      "renamedServices",
+      "renamedResources",
+      "ignoredResources",
+      "forcedNamespaceAliases",
+      "handwrittenSignatures",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.common = try container.decodeIfPresent(CommonLanguageSettings.self, forKey: .common)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .renamedServices)
+    {
+      self.renamedServices = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .renamedResources)
+    {
+      self.renamedResources = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ignoredResources) {
+      self.ignoredResources = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .forcedNamespaceAliases)
+    {
+      self.forcedNamespaceAliases = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .handwrittenSignatures)
+    {
+      self.handwrittenSignatures = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.common, forKey: .common)
+    try container.encode(self.renamedServices, forKey: .renamedServices)
+    try container.encode(self.renamedResources, forKey: .renamedResources)
+    try container.encode(self.ignoredResources, forKey: .ignoredResources)
+    try container.encode(self.forcedNamespaceAliases, forKey: .forcedNamespaceAliases)
+    try container.encode(self.handwrittenSignatures, forKey: .handwrittenSignatures)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

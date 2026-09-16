@@ -24,6 +24,8 @@
   {
     public var keyOneof: OneOf_KeyOneof? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureViewDataKey`.
     public init() {}
 
@@ -40,9 +42,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case key = "key"
-      case compositeKey = "compositeKey"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let key = CodingKeys(stringValue: "key")
+      static let compositeKey = CodingKeys(stringValue: "compositeKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "key",
+        "compositeKey",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@
         try keyOneofCheckAndSet(.compositeKey(compositeKey))
       }
       self.keyOneof = keyOneof
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@
           try container.encode(value, forKey: .compositeKey)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// ID that is comprised from several parts (columns).
@@ -89,6 +108,8 @@
       /// Parts to construct Entity ID. Should match with the same ID columns as
       /// defined in FeatureView in the same order.
       public var parts: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CompositeKey`.
       public init() {}
@@ -104,6 +125,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let parts = CodingKeys(stringValue: "parts")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "parts"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .parts) {
+          self.parts = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.parts, forKey: .parts)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

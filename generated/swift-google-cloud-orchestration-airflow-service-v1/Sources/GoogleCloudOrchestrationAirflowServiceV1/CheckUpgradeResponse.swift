@@ -40,6 +40,8 @@ public struct CheckUpgradeResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// when the build was triggered.
   public var pypiDependencies: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckUpgradeResponse`.
   public init() {}
 
@@ -54,6 +56,68 @@ public struct CheckUpgradeResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let buildLogUri = CodingKeys(stringValue: "buildLogUri")
+    static let containsPypiModulesConflict = CodingKeys(stringValue: "containsPypiModulesConflict")
+    static let pypiConflictBuildLogExtract = CodingKeys(stringValue: "pypiConflictBuildLogExtract")
+    static let imageVersion = CodingKeys(stringValue: "imageVersion")
+    static let pypiDependencies = CodingKeys(stringValue: "pypiDependencies")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "buildLogUri",
+      "containsPypiModulesConflict",
+      "pypiConflictBuildLogExtract",
+      "imageVersion",
+      "pypiDependencies",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildLogUri) {
+      self.buildLogUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      CheckUpgradeResponse.ConflictResult.self, forKey: .containsPypiModulesConflict)
+    {
+      self.containsPypiModulesConflict = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .pypiConflictBuildLogExtract)
+    {
+      self.pypiConflictBuildLogExtract = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageVersion) {
+      self.imageVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .pypiDependencies)
+    {
+      self.pypiDependencies = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.buildLogUri, forKey: .buildLogUri)
+    try container.encode(self.containsPypiModulesConflict, forKey: .containsPypiModulesConflict)
+    try container.encode(self.pypiConflictBuildLogExtract, forKey: .pypiConflictBuildLogExtract)
+    try container.encode(self.imageVersion, forKey: .imageVersion)
+    try container.encode(self.pypiDependencies, forKey: .pypiDependencies)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Whether there were python modules conflict during image build.

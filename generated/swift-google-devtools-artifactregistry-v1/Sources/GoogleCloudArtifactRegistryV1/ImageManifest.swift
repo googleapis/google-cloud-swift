@@ -51,6 +51,8 @@ public struct ImageManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ARMv7 when architecture is `arm`.
   public var variant: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageManifest`.
   public init() {}
 
@@ -65,6 +67,74 @@ public struct ImageManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let os = CodingKeys(stringValue: "os")
+    static let digest = CodingKeys(stringValue: "digest")
+    static let mediaType = CodingKeys(stringValue: "mediaType")
+    static let osVersion = CodingKeys(stringValue: "osVersion")
+    static let osFeatures = CodingKeys(stringValue: "osFeatures")
+    static let variant = CodingKeys(stringValue: "variant")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "architecture",
+      "os",
+      "digest",
+      "mediaType",
+      "osVersion",
+      "osFeatures",
+      "variant",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .architecture) {
+      self.architecture = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .os) {
+      self.os = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .digest) {
+      self.digest = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mediaType) {
+      self.mediaType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osVersion) {
+      self.osVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .osFeatures) {
+      self.osFeatures = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .variant) {
+      self.variant = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.architecture, forKey: .architecture)
+    try container.encode(self.os, forKey: .os)
+    try container.encode(self.digest, forKey: .digest)
+    try container.encode(self.mediaType, forKey: .mediaType)
+    try container.encode(self.osVersion, forKey: .osVersion)
+    try container.encode(self.osFeatures, forKey: .osFeatures)
+    try container.encode(self.variant, forKey: .variant)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

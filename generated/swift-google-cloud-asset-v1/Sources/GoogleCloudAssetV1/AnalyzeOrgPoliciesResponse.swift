@@ -44,6 +44,8 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWKT._An
   /// [google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.org_policy_results]: <doc:AnalyzeOrgPoliciesResponse/orgPolicyResults>
   public var nextPageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeOrgPoliciesResponse`.
   public init() {}
 
@@ -58,6 +60,51 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let orgPolicyResults = CodingKeys(stringValue: "orgPolicyResults")
+    static let constraint = CodingKeys(stringValue: "constraint")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "orgPolicyResults",
+      "constraint",
+      "nextPageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [AnalyzeOrgPoliciesResponse.OrgPolicyResult].self, forKey: .orgPolicyResults)
+    {
+      self.orgPolicyResults = value
+    }
+    self.constraint = try container.decodeIfPresent(
+      AnalyzerOrgPolicyConstraint.self, forKey: .constraint)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.orgPolicyResults, forKey: .orgPolicyResults)
+    try container.encodeIfPresent(self.constraint, forKey: .constraint)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The organization policy result to the query.
@@ -98,6 +145,8 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWKT._An
     /// consolidated policy belongs (directly or cascadingly) to an organization.
     public var organization: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OrgPolicyResult`.
     public init() {}
 
@@ -112,6 +161,62 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consolidatedPolicy = CodingKeys(stringValue: "consolidatedPolicy")
+      static let policyBundle = CodingKeys(stringValue: "policyBundle")
+      static let project = CodingKeys(stringValue: "project")
+      static let folders = CodingKeys(stringValue: "folders")
+      static let organization = CodingKeys(stringValue: "organization")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consolidatedPolicy",
+        "policyBundle",
+        "project",
+        "folders",
+        "organization",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consolidatedPolicy = try container.decodeIfPresent(
+        AnalyzerOrgPolicy.self, forKey: .consolidatedPolicy)
+      if let value = try container.decodeIfPresent([AnalyzerOrgPolicy].self, forKey: .policyBundle)
+      {
+        self.policyBundle = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .folders) {
+        self.folders = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+        self.organization = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.consolidatedPolicy, forKey: .consolidatedPolicy)
+      try container.encode(self.policyBundle, forKey: .policyBundle)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.folders, forKey: .folders)
+      try container.encode(self.organization, forKey: .organization)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

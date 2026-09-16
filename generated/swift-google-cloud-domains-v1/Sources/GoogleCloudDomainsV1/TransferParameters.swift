@@ -42,6 +42,8 @@ public struct TransferParameters: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Price to transfer or renew the domain for one year.
   public var yearlyPrice: GoogleType.Money? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferParameters`.
   public init() {}
 
@@ -56,6 +58,67 @@ public struct TransferParameters: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let domainName = CodingKeys(stringValue: "domainName")
+    static let currentRegistrar = CodingKeys(stringValue: "currentRegistrar")
+    static let nameServers = CodingKeys(stringValue: "nameServers")
+    static let transferLockState = CodingKeys(stringValue: "transferLockState")
+    static let supportedPrivacy = CodingKeys(stringValue: "supportedPrivacy")
+    static let yearlyPrice = CodingKeys(stringValue: "yearlyPrice")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "domainName",
+      "currentRegistrar",
+      "nameServers",
+      "transferLockState",
+      "supportedPrivacy",
+      "yearlyPrice",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domainName) {
+      self.domainName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentRegistrar) {
+      self.currentRegistrar = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nameServers) {
+      self.nameServers = value
+    }
+    if let value = try container.decodeIfPresent(TransferLockState.self, forKey: .transferLockState)
+    {
+      self.transferLockState = value
+    }
+    if let value = try container.decodeIfPresent([ContactPrivacy].self, forKey: .supportedPrivacy) {
+      self.supportedPrivacy = value
+    }
+    self.yearlyPrice = try container.decodeIfPresent(GoogleType.Money.self, forKey: .yearlyPrice)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.domainName, forKey: .domainName)
+    try container.encode(self.currentRegistrar, forKey: .currentRegistrar)
+    try container.encode(self.nameServers, forKey: .nameServers)
+    try container.encode(self.transferLockState, forKey: .transferLockState)
+    try container.encode(self.supportedPrivacy, forKey: .supportedPrivacy)
+    try container.encodeIfPresent(self.yearlyPrice, forKey: .yearlyPrice)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@
     /// The applicable regions for this tier.
     public var region: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Tier`.
     public init() {}
 
@@ -54,21 +56,48 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case tier = "tier"
-      case ram = "RAM"
-      case kind = "kind"
-      case diskQuota = "DiskQuota"
-      case region = "region"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tier = CodingKeys(stringValue: "tier")
+      static let ram = CodingKeys(stringValue: "RAM")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let diskQuota = CodingKeys(stringValue: "DiskQuota")
+      static let region = CodingKeys(stringValue: "region")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tier",
+        "RAM",
+        "kind",
+        "DiskQuota",
+        "region",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.tier = try container.decode(Swift.String.self, forKey: .tier)
-      self.ram = try container.decode(Swift.Int64.self, forKey: .ram)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
-      self.diskQuota = try container.decode(Swift.Int64.self, forKey: .diskQuota)
-      self.region = try container.decode([Swift.String].self, forKey: .region)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tier) {
+        self.tier = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .ram) {
+        self.ram = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskQuota) {
+        self.diskQuota = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .region) {
+        self.region = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,6 +107,9 @@
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.diskQuota, forKey: .diskQuota)
       try container.encode(self.region, forKey: .region)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

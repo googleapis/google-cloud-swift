@@ -49,6 +49,8 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The configuration for initializing the resource.
   public var initializationConfig: OneOf_InitializationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InitializeServiceRequest`.
   public init() {}
 
@@ -65,18 +67,37 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case resourceType = "resourceType"
-    case requestId = "requestId"
-    case cloudSqlInstanceInitializationConfig = "cloudSqlInstanceInitializationConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let cloudSqlInstanceInitializationConfig = CodingKeys(
+      stringValue: "cloudSqlInstanceInitializationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resourceType",
+      "requestId",
+      "cloudSqlInstanceInitializationConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.resourceType = try container.decode(Swift.String.self, forKey: .resourceType)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
 
     var initializationConfig: OneOf_InitializationConfig? = nil
     let initializationConfigCheckAndSet = {
@@ -95,6 +116,10 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyP
         .cloudSqlInstanceInitializationConfig(cloudSqlInstanceInitializationConfig))
     }
     self.initializationConfig = initializationConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,6 +133,9 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       case .cloudSqlInstanceInitializationConfig(let value):
         try container.encode(value, forKey: .cloudSqlInstanceInitializationConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

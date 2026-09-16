@@ -53,6 +53,8 @@
     /// It can be data store and/or retrieval engine.
     public var backendConfig: OneOf_BackendConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagCorpus`.
     public init() {}
 
@@ -69,23 +71,46 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case vectorDbConfig = "vectorDbConfig"
-      case vertexAiSearchConfig = "vertexAiSearchConfig"
-      case name = "name"
-      case displayName = "displayName"
-      case description = "description"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case corpusStatus = "corpusStatus"
-      case encryptionSpec = "encryptionSpec"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let vectorDbConfig = CodingKeys(stringValue: "vectorDbConfig")
+      static let vertexAiSearchConfig = CodingKeys(stringValue: "vertexAiSearchConfig")
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let corpusStatus = CodingKeys(stringValue: "corpusStatus")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "vectorDbConfig",
+        "vertexAiSearchConfig",
+        "name",
+        "displayName",
+        "description",
+        "createTime",
+        "updateTime",
+        "corpusStatus",
+        "encryptionSpec",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
@@ -115,6 +140,10 @@
         try backendConfigCheckAndSet(.vertexAiSearchConfig(vertexAiSearchConfig))
       }
       self.backendConfig = backendConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,10 +151,10 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
-      try container.encode(self.corpusStatus, forKey: .corpusStatus)
-      try container.encode(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.corpusStatus, forKey: .corpusStatus)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
 
       if let choice = self.backendConfig {
         switch choice {
@@ -134,6 +163,9 @@
         case .vertexAiSearchConfig(let value):
           try container.encode(value, forKey: .vertexAiSearchConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

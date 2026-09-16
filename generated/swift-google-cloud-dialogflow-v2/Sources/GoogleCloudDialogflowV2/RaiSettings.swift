@@ -25,6 +25,8 @@
     /// Configuration for a set of RAI categories.
     public var raiCategoryConfigs: [RaiSettings.RaiCategoryConfig] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RaiSettings`.
     public init() {}
 
@@ -41,6 +43,40 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let raiCategoryConfigs = CodingKeys(stringValue: "raiCategoryConfigs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "raiCategoryConfigs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RaiSettings.RaiCategoryConfig].self, forKey: .raiCategoryConfigs)
+      {
+        self.raiCategoryConfigs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.raiCategoryConfigs, forKey: .raiCategoryConfigs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Configuration for a specific RAI category.
     public struct RaiCategoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -52,6 +88,8 @@
       /// Optional. The sensitivity level for this category.
       public var sensitivityLevel: RaiSettings.RaiCategoryConfig.SensitivityLevel = RaiSettings
         .RaiCategoryConfig.SensitivityLevel()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RaiCategoryConfig`.
       public init() {}
@@ -67,6 +105,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let category = CodingKeys(stringValue: "category")
+        static let sensitivityLevel = CodingKeys(stringValue: "sensitivityLevel")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "category",
+          "sensitivityLevel",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          RaiSettings.RaiCategoryConfig.RaiCategory.self, forKey: .category)
+        {
+          self.category = value
+        }
+        if let value = try container.decodeIfPresent(
+          RaiSettings.RaiCategoryConfig.SensitivityLevel.self, forKey: .sensitivityLevel)
+        {
+          self.sensitivityLevel = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.category, forKey: .category)
+        try container.encode(self.sensitivityLevel, forKey: .sensitivityLevel)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Enum for RAI category.

@@ -58,6 +58,8 @@ public struct DataScanJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The result of the data scan.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataScanJob`.
   public init() {}
 
@@ -74,40 +76,77 @@ public struct DataScanJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case partialFailureMessage = "partialFailureMessage"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case state = "state"
-    case message = "message"
-    case type = "type"
-    case dataQualitySpec = "dataQualitySpec"
-    case dataProfileSpec = "dataProfileSpec"
-    case dataDiscoverySpec = "dataDiscoverySpec"
-    case dataDocumentationSpec = "dataDocumentationSpec"
-    case dataQualityResult = "dataQualityResult"
-    case dataProfileResult = "dataProfileResult"
-    case dataDiscoveryResult = "dataDiscoveryResult"
-    case dataDocumentationResult = "dataDocumentationResult"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let partialFailureMessage = CodingKeys(stringValue: "partialFailureMessage")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let message = CodingKeys(stringValue: "message")
+    static let type = CodingKeys(stringValue: "type")
+    static let dataQualitySpec = CodingKeys(stringValue: "dataQualitySpec")
+    static let dataProfileSpec = CodingKeys(stringValue: "dataProfileSpec")
+    static let dataDiscoverySpec = CodingKeys(stringValue: "dataDiscoverySpec")
+    static let dataDocumentationSpec = CodingKeys(stringValue: "dataDocumentationSpec")
+    static let dataQualityResult = CodingKeys(stringValue: "dataQualityResult")
+    static let dataProfileResult = CodingKeys(stringValue: "dataProfileResult")
+    static let dataDiscoveryResult = CodingKeys(stringValue: "dataDiscoveryResult")
+    static let dataDocumentationResult = CodingKeys(stringValue: "dataDocumentationResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "partialFailureMessage",
+      "startTime",
+      "endTime",
+      "state",
+      "message",
+      "type",
+      "dataQualitySpec",
+      "dataProfileSpec",
+      "dataDiscoverySpec",
+      "dataDocumentationSpec",
+      "dataQualityResult",
+      "dataProfileResult",
+      "dataDiscoveryResult",
+      "dataDocumentationResult",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.partialFailureMessage = try container.decode(
-      Swift.String.self, forKey: .partialFailureMessage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .partialFailureMessage)
+    {
+      self.partialFailureMessage = value
+    }
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.state = try container.decode(DataScanJob.State.self, forKey: .state)
-    self.message = try container.decode(Swift.String.self, forKey: .message)
-    self.type = try container.decode(DataScanType.self, forKey: .type)
+    if let value = try container.decodeIfPresent(DataScanJob.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(DataScanType.self, forKey: .type) {
+      self.type = value
+    }
 
     var spec: OneOf_Spec? = nil
     let specCheckAndSet = {
@@ -172,16 +211,20 @@ public struct DataScanJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.dataDocumentationResult(dataDocumentationResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.partialFailureMessage, forKey: .partialFailureMessage)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.message, forKey: .message)
     try container.encode(self.type, forKey: .type)
@@ -210,6 +253,9 @@ public struct DataScanJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dataDocumentationResult(let value):
         try container.encode(value, forKey: .dataDocumentationResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -116,6 +116,8 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `network_type`. Not relevant for destination endpoints.
   public var projectId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Endpoint`.
   public init() {}
 
@@ -132,12 +134,159 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let port = CodingKeys(stringValue: "port")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+    static let forwardingRuleTarget = CodingKeys(stringValue: "forwardingRuleTarget")
+    static let loadBalancerId = CodingKeys(stringValue: "loadBalancerId")
+    static let loadBalancerType = CodingKeys(stringValue: "loadBalancerType")
+    static let gkeMasterCluster = CodingKeys(stringValue: "gkeMasterCluster")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+    static let cloudSqlInstance = CodingKeys(stringValue: "cloudSqlInstance")
+    static let redisInstance = CodingKeys(stringValue: "redisInstance")
+    static let redisCluster = CodingKeys(stringValue: "redisCluster")
+    static let gkePod = CodingKeys(stringValue: "gkePod")
+    static let dmsPrivateConnection = CodingKeys(stringValue: "dmsPrivateConnection")
+    static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
+    static let appEngineVersion = CodingKeys(stringValue: "appEngineVersion")
+    static let cloudRunRevision = CodingKeys(stringValue: "cloudRunRevision")
+    static let cloudRunJob = CodingKeys(stringValue: "cloudRunJob")
+    static let network = CodingKeys(stringValue: "network")
+    static let networkType = CodingKeys(stringValue: "networkType")
+    static let projectId = CodingKeys(stringValue: "projectId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipAddress",
+      "port",
+      "instance",
+      "forwardingRule",
+      "forwardingRuleTarget",
+      "loadBalancerId",
+      "loadBalancerType",
+      "gkeMasterCluster",
+      "fqdn",
+      "cloudSqlInstance",
+      "redisInstance",
+      "redisCluster",
+      "gkePod",
+      "dmsPrivateConnection",
+      "cloudFunction",
+      "appEngineVersion",
+      "cloudRunRevision",
+      "cloudRunJob",
+      "network",
+      "networkType",
+      "projectId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .forwardingRule) {
+      self.forwardingRule = value
+    }
+    self.forwardingRuleTarget = try container.decodeIfPresent(
+      Endpoint.ForwardingRuleTarget.self, forKey: .forwardingRuleTarget)
+    self.loadBalancerId = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancerId)
+    self.loadBalancerType = try container.decodeIfPresent(
+      LoadBalancerType.self, forKey: .loadBalancerType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gkeMasterCluster) {
+      self.gkeMasterCluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudSqlInstance) {
+      self.cloudSqlInstance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .redisInstance) {
+      self.redisInstance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .redisCluster) {
+      self.redisCluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gkePod) {
+      self.gkePod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dmsPrivateConnection) {
+      self.dmsPrivateConnection = value
+    }
+    self.cloudFunction = try container.decodeIfPresent(
+      Endpoint.CloudFunctionEndpoint.self, forKey: .cloudFunction)
+    self.appEngineVersion = try container.decodeIfPresent(
+      Endpoint.AppEngineVersionEndpoint.self, forKey: .appEngineVersion)
+    self.cloudRunRevision = try container.decodeIfPresent(
+      Endpoint.CloudRunRevisionEndpoint.self, forKey: .cloudRunRevision)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudRunJob) {
+      self.cloudRunJob = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Endpoint.NetworkType.self, forKey: .networkType) {
+      self.networkType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.port, forKey: .port)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.forwardingRule, forKey: .forwardingRule)
+    try container.encodeIfPresent(self.forwardingRuleTarget, forKey: .forwardingRuleTarget)
+    try container.encodeIfPresent(self.loadBalancerId, forKey: .loadBalancerId)
+    try container.encodeIfPresent(self.loadBalancerType, forKey: .loadBalancerType)
+    try container.encode(self.gkeMasterCluster, forKey: .gkeMasterCluster)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    try container.encode(self.cloudSqlInstance, forKey: .cloudSqlInstance)
+    try container.encode(self.redisInstance, forKey: .redisInstance)
+    try container.encode(self.redisCluster, forKey: .redisCluster)
+    try container.encode(self.gkePod, forKey: .gkePod)
+    try container.encode(self.dmsPrivateConnection, forKey: .dmsPrivateConnection)
+    try container.encodeIfPresent(self.cloudFunction, forKey: .cloudFunction)
+    try container.encodeIfPresent(self.appEngineVersion, forKey: .appEngineVersion)
+    try container.encodeIfPresent(self.cloudRunRevision, forKey: .cloudRunRevision)
+    try container.encode(self.cloudRunJob, forKey: .cloudRunJob)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.networkType, forKey: .networkType)
+    try container.encode(self.projectId, forKey: .projectId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Wrapper for Cloud Function attributes.
   public struct CloudFunctionEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A [Cloud Function](https://cloud.google.com/functions) name.
     public var uri: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CloudFunctionEndpoint`.
     public init() {}
@@ -153,6 +302,38 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -175,6 +356,8 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// name.
     public var uri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AppEngineVersionEndpoint`.
     public init() {}
 
@@ -189,6 +372,38 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -218,6 +433,8 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// projects/{project}/locations/{location}/services/{service}
     public var serviceUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudRunRevisionEndpoint`.
     public init() {}
 
@@ -232,6 +449,44 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let serviceUri = CodingKeys(stringValue: "serviceUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "serviceUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceUri) {
+        self.serviceUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.serviceUri, forKey: .serviceUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

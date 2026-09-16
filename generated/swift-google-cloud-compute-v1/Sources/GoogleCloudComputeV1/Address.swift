@@ -190,6 +190,8 @@
     /// [Output Only] The URLs of the resources that are using this address.
     public var users: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Address`.
     public init() {}
 
@@ -206,28 +208,57 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case address = "address"
-      case addressType = "addressType"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case id = "id"
-      case ipCollection = "ipCollection"
-      case ipVersion = "ipVersion"
-      case ipv6EndpointType = "ipv6EndpointType"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case network = "network"
-      case networkTier = "networkTier"
-      case prefixLength = "prefixLength"
-      case purpose = "purpose"
-      case region = "region"
-      case selfLink = "selfLink"
-      case status = "status"
-      case subnetwork = "subnetwork"
-      case users = "users"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let address = CodingKeys(stringValue: "address")
+      static let addressType = CodingKeys(stringValue: "addressType")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let ipCollection = CodingKeys(stringValue: "ipCollection")
+      static let ipVersion = CodingKeys(stringValue: "ipVersion")
+      static let ipv6EndpointType = CodingKeys(stringValue: "ipv6EndpointType")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let networkTier = CodingKeys(stringValue: "networkTier")
+      static let prefixLength = CodingKeys(stringValue: "prefixLength")
+      static let purpose = CodingKeys(stringValue: "purpose")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let users = CodingKeys(stringValue: "users")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "address",
+        "addressType",
+        "creationTimestamp",
+        "description",
+        "id",
+        "ipCollection",
+        "ipVersion",
+        "ipv6EndpointType",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "network",
+        "networkTier",
+        "prefixLength",
+        "purpose",
+        "region",
+        "selfLink",
+        "status",
+        "subnetwork",
+        "users",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -253,7 +284,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
       self.networkTier = try container.decodeIfPresent(
@@ -264,36 +299,45 @@
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.status = try container.decodeIfPresent(Address.Status.self, forKey: .status)
       self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
-      self.users = try container.decode([Swift.String].self, forKey: .users)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .users) {
+        self.users = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.address, forKey: .address)
-      try container.encode(self.addressType, forKey: .addressType)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ipCollection, forKey: .ipCollection)
-      try container.encode(self.ipVersion, forKey: .ipVersion)
-      try container.encode(self.ipv6EndpointType, forKey: .ipv6EndpointType)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.address, forKey: .address)
+      try container.encodeIfPresent(self.addressType, forKey: .addressType)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ipCollection, forKey: .ipCollection)
+      try container.encodeIfPresent(self.ipVersion, forKey: .ipVersion)
+      try container.encodeIfPresent(self.ipv6EndpointType, forKey: .ipv6EndpointType)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.networkTier, forKey: .networkTier)
-      try container.encode(self.prefixLength, forKey: .prefixLength)
-      try container.encode(self.purpose, forKey: .purpose)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.subnetwork, forKey: .subnetwork)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.networkTier, forKey: .networkTier)
+      try container.encodeIfPresent(self.prefixLength, forKey: .prefixLength)
+      try container.encodeIfPresent(self.purpose, forKey: .purpose)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
       try container.encode(self.users, forKey: .users)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [addressType][google.cloud.compute.v1.Address.addressType] field.

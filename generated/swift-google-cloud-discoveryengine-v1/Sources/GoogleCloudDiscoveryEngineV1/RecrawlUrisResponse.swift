@@ -32,6 +32,8 @@
     /// URIs that were not crawled before the LRO terminated.
     public var failedUris: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RecrawlUrisResponse`.
     public init() {}
 
@@ -48,6 +50,46 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let failureSamples = CodingKeys(stringValue: "failureSamples")
+      static let failedUris = CodingKeys(stringValue: "failedUris")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "failureSamples",
+        "failedUris",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RecrawlUrisResponse.FailureInfo].self, forKey: .failureSamples)
+      {
+        self.failureSamples = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedUris) {
+        self.failedUris = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.failureSamples, forKey: .failureSamples)
+      try container.encode(self.failedUris, forKey: .failedUris)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Details about why a particular URI failed to be crawled. Each FailureInfo
     /// contains one FailureReason per CorpusType.
     public struct FailureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -58,6 +100,8 @@
 
       /// List of failure reasons by corpus type (e.g. desktop, mobile).
       public var failureReasons: [RecrawlUrisResponse.FailureInfo.FailureReason] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FailureInfo`.
       public init() {}
@@ -75,6 +119,46 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+        static let failureReasons = CodingKeys(stringValue: "failureReasons")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri",
+          "failureReasons",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        if let value = try container.decodeIfPresent(
+          [RecrawlUrisResponse.FailureInfo.FailureReason].self, forKey: .failureReasons)
+        {
+          self.failureReasons = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        try container.encode(self.failureReasons, forKey: .failureReasons)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Details about why crawling failed for a particular CorpusType, e.g.,
       /// DESKTOP and MOBILE crawling may fail for different reasons.
       public struct FailureReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -86,6 +170,9 @@
 
         /// Reason why the URI was not crawled.
         public var errorMessage: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `FailureReason`.
         public init() {}
@@ -101,6 +188,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let corpusType = CodingKeys(stringValue: "corpusType")
+          static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "corpusType",
+            "errorMessage",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            RecrawlUrisResponse.FailureInfo.FailureReason.CorpusType.self, forKey: .corpusType)
+          {
+            self.corpusType = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+            self.errorMessage = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.corpusType, forKey: .corpusType)
+          try container.encode(self.errorMessage, forKey: .errorMessage)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// CorpusType for the failed crawling operation.

@@ -37,6 +37,8 @@ public struct AnalyzeSentimentResponse: Codable, Equatable, GoogleCloudWKT._AnyP
   /// basis.
   public var languageSupported: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeSentimentResponse`.
   public init() {}
 
@@ -51,6 +53,55 @@ public struct AnalyzeSentimentResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let documentSentiment = CodingKeys(stringValue: "documentSentiment")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let sentences = CodingKeys(stringValue: "sentences")
+    static let languageSupported = CodingKeys(stringValue: "languageSupported")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "documentSentiment",
+      "languageCode",
+      "sentences",
+      "languageSupported",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.documentSentiment = try container.decodeIfPresent(
+      Sentiment.self, forKey: .documentSentiment)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent([Sentence].self, forKey: .sentences) {
+      self.sentences = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .languageSupported) {
+      self.languageSupported = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.documentSentiment, forKey: .documentSentiment)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.sentences, forKey: .sentences)
+    try container.encode(self.languageSupported, forKey: .languageSupported)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@
     /// The source of the autocomplete suggestions.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportCompletionSuggestionsRequest`.
     public init() {}
 
@@ -54,17 +56,32 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineSource = "inlineSource"
-      case gcsSource = "gcsSource"
-      case bigquerySource = "bigquerySource"
-      case parent = "parent"
-      case errorConfig = "errorConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineSource = CodingKeys(stringValue: "inlineSource")
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let bigquerySource = CodingKeys(stringValue: "bigquerySource")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let errorConfig = CodingKeys(stringValue: "errorConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineSource",
+        "gcsSource",
+        "bigquerySource",
+        "parent",
+        "errorConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
       self.errorConfig = try container.decodeIfPresent(ImportErrorConfig.self, forKey: .errorConfig)
 
       var source: OneOf_Source? = nil
@@ -91,12 +108,16 @@
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.errorConfig, forKey: .errorConfig)
+      try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
 
       if let choice = self.source {
         switch choice {
@@ -108,6 +129,9 @@
           try container.encode(value, forKey: .bigquerySource)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The inline source for CompletionSuggestions.
@@ -116,6 +140,8 @@
     {
       /// Required. A list of all denylist entries to import. Max of 1000 items.
       public var suggestions: [CompletionSuggestion] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `InlineSource`.
       public init() {}
@@ -131,6 +157,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let suggestions = CodingKeys(stringValue: "suggestions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "suggestions"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [CompletionSuggestion].self, forKey: .suggestions)
+        {
+          self.suggestions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.suggestions, forKey: .suggestions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

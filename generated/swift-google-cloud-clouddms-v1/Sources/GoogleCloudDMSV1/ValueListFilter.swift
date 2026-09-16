@@ -32,6 +32,8 @@ public struct ValueListFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// false
   public var ignoreCase: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValueListFilter`.
   public init() {}
 
@@ -46,6 +48,51 @@ public struct ValueListFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let valuePresentList = CodingKeys(stringValue: "valuePresentList")
+    static let values = CodingKeys(stringValue: "values")
+    static let ignoreCase = CodingKeys(stringValue: "ignoreCase")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "valuePresentList",
+      "values",
+      "ignoreCase",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ValuePresentInList.self, forKey: .valuePresentList)
+    {
+      self.valuePresentList = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+      self.values = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreCase) {
+      self.ignoreCase = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.valuePresentList, forKey: .valuePresentList)
+    try container.encode(self.values, forKey: .values)
+    try container.encode(self.ignoreCase, forKey: .ignoreCase)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

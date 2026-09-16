@@ -36,6 +36,8 @@
     /// Example inputs include: ["22"],["80","443"], and ["12345-12349"].
     public var ports: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FirewallPolicyRuleMatcherLayer4Config`.
     public init() {}
 
@@ -50,6 +52,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipProtocol = CodingKeys(stringValue: "ipProtocol")
+      static let ports = CodingKeys(stringValue: "ports")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipProtocol",
+        "ports",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipProtocol = try container.decodeIfPresent(Swift.String.self, forKey: .ipProtocol)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
+        self.ports = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipProtocol, forKey: .ipProtocol)
+      try container.encode(self.ports, forKey: .ports)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

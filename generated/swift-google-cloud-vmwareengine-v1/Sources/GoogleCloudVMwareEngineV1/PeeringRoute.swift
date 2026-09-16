@@ -49,6 +49,8 @@ public struct PeeringRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// of the VMware Engine network.
   public var direction: PeeringRoute.Direction = PeeringRoute.Direction()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PeeringRoute`.
   public init() {}
 
@@ -63,6 +65,68 @@ public struct PeeringRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destRange = CodingKeys(stringValue: "destRange")
+    static let type = CodingKeys(stringValue: "type")
+    static let nextHopRegion = CodingKeys(stringValue: "nextHopRegion")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let imported = CodingKeys(stringValue: "imported")
+    static let direction = CodingKeys(stringValue: "direction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destRange",
+      "type",
+      "nextHopRegion",
+      "priority",
+      "imported",
+      "direction",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destRange) {
+      self.destRange = value
+    }
+    if let value = try container.decodeIfPresent(PeeringRoute.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopRegion) {
+      self.nextHopRegion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .imported) {
+      self.imported = value
+    }
+    if let value = try container.decodeIfPresent(PeeringRoute.Direction.self, forKey: .direction) {
+      self.direction = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.destRange, forKey: .destRange)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.nextHopRegion, forKey: .nextHopRegion)
+    try container.encode(self.priority, forKey: .priority)
+    try container.encode(self.imported, forKey: .imported)
+    try container.encode(self.direction, forKey: .direction)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the peering route.

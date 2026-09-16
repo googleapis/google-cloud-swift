@@ -24,6 +24,8 @@ public struct ApiAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The auth configuration.
   public var authConfig: OneOf_AuthConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApiAuthentication`.
   public init() {}
 
@@ -40,12 +42,26 @@ public struct ApiAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case apiKeyConfig = "apiKeyConfig"
-    case oauthConfig = "oauthConfig"
-    case serviceAgentIdTokenAuthConfig = "serviceAgentIdTokenAuthConfig"
-    case serviceAccountAuthConfig = "serviceAccountAuthConfig"
-    case bearerTokenConfig = "bearerTokenConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let apiKeyConfig = CodingKeys(stringValue: "apiKeyConfig")
+    static let oauthConfig = CodingKeys(stringValue: "oauthConfig")
+    static let serviceAgentIdTokenAuthConfig = CodingKeys(
+      stringValue: "serviceAgentIdTokenAuthConfig")
+    static let serviceAccountAuthConfig = CodingKeys(stringValue: "serviceAccountAuthConfig")
+    static let bearerTokenConfig = CodingKeys(stringValue: "bearerTokenConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "apiKeyConfig",
+      "oauthConfig",
+      "serviceAgentIdTokenAuthConfig",
+      "serviceAccountAuthConfig",
+      "bearerTokenConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,6 +99,10 @@ public struct ApiAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try authConfigCheckAndSet(.bearerTokenConfig(bearerTokenConfig))
     }
     self.authConfig = authConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +121,9 @@ public struct ApiAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .bearerTokenConfig(let value):
         try container.encode(value, forKey: .bearerTokenConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -57,6 +57,8 @@
     /// thus be {min: 29, max: 30}.
     public var subnetLengthRange: InterconnectRemoteLocationConstraintsSubnetLengthRange? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectRemoteLocationConstraints`.
     public init() {}
 
@@ -71,6 +73,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let portPairRemoteLocation = CodingKeys(stringValue: "portPairRemoteLocation")
+      static let portPairVlan = CodingKeys(stringValue: "portPairVlan")
+      static let subnetLengthRange = CodingKeys(stringValue: "subnetLengthRange")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "portPairRemoteLocation",
+        "portPairVlan",
+        "subnetLengthRange",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.portPairRemoteLocation = try container.decodeIfPresent(
+        InterconnectRemoteLocationConstraints.PortPairRemoteLocation.self,
+        forKey: .portPairRemoteLocation)
+      self.portPairVlan = try container.decodeIfPresent(
+        InterconnectRemoteLocationConstraints.PortPairVlan.self, forKey: .portPairVlan)
+      self.subnetLengthRange = try container.decodeIfPresent(
+        InterconnectRemoteLocationConstraintsSubnetLengthRange.self, forKey: .subnetLengthRange)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.portPairRemoteLocation, forKey: .portPairRemoteLocation)
+      try container.encodeIfPresent(self.portPairVlan, forKey: .portPairVlan)
+      try container.encodeIfPresent(self.subnetLengthRange, forKey: .subnetLengthRange)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [portPairRemoteLocation][google.cloud.compute.v1.InterconnectRemoteLocationConstraints.portPairRemoteLocation] field.

@@ -64,6 +64,8 @@ public struct SecurityMarks: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
   public var canonicalName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityMarks`.
   public init() {}
 
@@ -78,6 +80,51 @@ public struct SecurityMarks: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let marks = CodingKeys(stringValue: "marks")
+    static let canonicalName = CodingKeys(stringValue: "canonicalName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "marks",
+      "canonicalName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .marks)
+    {
+      self.marks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .canonicalName) {
+      self.canonicalName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.marks, forKey: .marks)
+    try container.encode(self.canonicalName, forKey: .canonicalName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

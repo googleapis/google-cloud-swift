@@ -28,6 +28,8 @@ public struct ManagedZonePrivateVisibilityConfig: Codable, Equatable, GoogleClou
   /// The list of VPC networks that can see this zone.
   public var networks: [ManagedZonePrivateVisibilityConfigNetwork] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZonePrivateVisibilityConfig`.
   public init() {}
 
@@ -42,6 +44,52 @@ public struct ManagedZonePrivateVisibilityConfig: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gkeClusters = CodingKeys(stringValue: "gkeClusters")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let networks = CodingKeys(stringValue: "networks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gkeClusters",
+      "kind",
+      "networks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ManagedZonePrivateVisibilityConfigGKECluster].self, forKey: .gkeClusters)
+    {
+      self.gkeClusters = value
+    }
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent(
+      [ManagedZonePrivateVisibilityConfigNetwork].self, forKey: .networks)
+    {
+      self.networks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gkeClusters, forKey: .gkeClusters)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.networks, forKey: .networks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -74,6 +74,8 @@ public struct CreateCryptoKeyRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// [google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]: <doc:ProtectionLevel/hsmSingleTenant>
   public var trustedWrappingEnabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateCryptoKeyRequest`.
   public init() {}
 
@@ -88,6 +90,62 @@ public struct CreateCryptoKeyRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let cryptoKeyId = CodingKeys(stringValue: "cryptoKeyId")
+    static let cryptoKey = CodingKeys(stringValue: "cryptoKey")
+    static let skipInitialVersionCreation = CodingKeys(stringValue: "skipInitialVersionCreation")
+    static let trustedWrappingEnabled = CodingKeys(stringValue: "trustedWrappingEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "cryptoKeyId",
+      "cryptoKey",
+      "skipInitialVersionCreation",
+      "trustedWrappingEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyId) {
+      self.cryptoKeyId = value
+    }
+    self.cryptoKey = try container.decodeIfPresent(CryptoKey.self, forKey: .cryptoKey)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .skipInitialVersionCreation)
+    {
+      self.skipInitialVersionCreation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trustedWrappingEnabled) {
+      self.trustedWrappingEnabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.cryptoKeyId, forKey: .cryptoKeyId)
+    try container.encodeIfPresent(self.cryptoKey, forKey: .cryptoKey)
+    try container.encode(self.skipInitialVersionCreation, forKey: .skipInitialVersionCreation)
+    try container.encode(self.trustedWrappingEnabled, forKey: .trustedWrappingEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

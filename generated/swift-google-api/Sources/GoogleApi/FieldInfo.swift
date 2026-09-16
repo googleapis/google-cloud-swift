@@ -32,6 +32,8 @@ public struct FieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Supporting other generic types may be considered in the future.
   public var referencedTypes: [TypeReference] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FieldInfo`.
   public init() {}
 
@@ -46,6 +48,44 @@ public struct FieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let format = CodingKeys(stringValue: "format")
+    static let referencedTypes = CodingKeys(stringValue: "referencedTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "format",
+      "referencedTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FieldInfo.Format.self, forKey: .format) {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent([TypeReference].self, forKey: .referencedTypes) {
+      self.referencedTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.format, forKey: .format)
+    try container.encode(self.referencedTypes, forKey: .referencedTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The standard format of a field value. The supported formats are all backed

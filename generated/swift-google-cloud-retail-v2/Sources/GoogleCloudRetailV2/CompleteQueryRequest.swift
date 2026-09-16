@@ -118,6 +118,8 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.cloud.retail.v2.UserEvent.entity]: <doc:UserEvent/entity>
   public var entity: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompleteQueryRequest`.
   public init() {}
 
@@ -132,6 +134,88 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let catalog = CodingKeys(stringValue: "catalog")
+    static let query = CodingKeys(stringValue: "query")
+    static let visitorId = CodingKeys(stringValue: "visitorId")
+    static let languageCodes = CodingKeys(stringValue: "languageCodes")
+    static let deviceType = CodingKeys(stringValue: "deviceType")
+    static let dataset = CodingKeys(stringValue: "dataset")
+    static let maxSuggestions = CodingKeys(stringValue: "maxSuggestions")
+    static let enableAttributeSuggestions = CodingKeys(stringValue: "enableAttributeSuggestions")
+    static let entity = CodingKeys(stringValue: "entity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "catalog",
+      "query",
+      "visitorId",
+      "languageCodes",
+      "deviceType",
+      "dataset",
+      "maxSuggestions",
+      "enableAttributeSuggestions",
+      "entity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .catalog) {
+      self.catalog = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .visitorId) {
+      self.visitorId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageCodes) {
+      self.languageCodes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deviceType) {
+      self.deviceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+      self.dataset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSuggestions) {
+      self.maxSuggestions = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableAttributeSuggestions)
+    {
+      self.enableAttributeSuggestions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+      self.entity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.catalog, forKey: .catalog)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.visitorId, forKey: .visitorId)
+    try container.encode(self.languageCodes, forKey: .languageCodes)
+    try container.encode(self.deviceType, forKey: .deviceType)
+    try container.encode(self.dataset, forKey: .dataset)
+    try container.encode(self.maxSuggestions, forKey: .maxSuggestions)
+    try container.encode(self.enableAttributeSuggestions, forKey: .enableAttributeSuggestions)
+    try container.encode(self.entity, forKey: .entity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

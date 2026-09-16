@@ -94,6 +94,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// or Virtual)
   public var modeConfig: OneOf_ModeConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Repository`.
   public init() {}
 
@@ -110,52 +112,108 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mavenConfig = "mavenConfig"
-    case dockerConfig = "dockerConfig"
-    case virtualRepositoryConfig = "virtualRepositoryConfig"
-    case remoteRepositoryConfig = "remoteRepositoryConfig"
-    case name = "name"
-    case format = "format"
-    case description = "description"
-    case labels = "labels"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case kmsKeyName = "kmsKeyName"
-    case mode = "mode"
-    case cleanupPolicies = "cleanupPolicies"
-    case sizeBytes = "sizeBytes"
-    case satisfiesPzs = "satisfiesPzs"
-    case cleanupPolicyDryRun = "cleanupPolicyDryRun"
-    case vulnerabilityScanningConfig = "vulnerabilityScanningConfig"
-    case disallowUnspecifiedMode = "disallowUnspecifiedMode"
-    case satisfiesPzi = "satisfiesPzi"
-    case registryUri = "registryUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mavenConfig = CodingKeys(stringValue: "mavenConfig")
+    static let dockerConfig = CodingKeys(stringValue: "dockerConfig")
+    static let virtualRepositoryConfig = CodingKeys(stringValue: "virtualRepositoryConfig")
+    static let remoteRepositoryConfig = CodingKeys(stringValue: "remoteRepositoryConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let format = CodingKeys(stringValue: "format")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let cleanupPolicies = CodingKeys(stringValue: "cleanupPolicies")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let cleanupPolicyDryRun = CodingKeys(stringValue: "cleanupPolicyDryRun")
+    static let vulnerabilityScanningConfig = CodingKeys(stringValue: "vulnerabilityScanningConfig")
+    static let disallowUnspecifiedMode = CodingKeys(stringValue: "disallowUnspecifiedMode")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let registryUri = CodingKeys(stringValue: "registryUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mavenConfig",
+      "dockerConfig",
+      "virtualRepositoryConfig",
+      "remoteRepositoryConfig",
+      "name",
+      "format",
+      "description",
+      "labels",
+      "createTime",
+      "updateTime",
+      "kmsKeyName",
+      "mode",
+      "cleanupPolicies",
+      "sizeBytes",
+      "satisfiesPzs",
+      "cleanupPolicyDryRun",
+      "vulnerabilityScanningConfig",
+      "disallowUnspecifiedMode",
+      "satisfiesPzi",
+      "registryUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.format = try container.decode(Repository.Format.self, forKey: .format)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Repository.Format.self, forKey: .format) {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.kmsKeyName = try container.decode(Swift.String.self, forKey: .kmsKeyName)
-    self.mode = try container.decode(Repository.Mode.self, forKey: .mode)
-    self.cleanupPolicies = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Repository.Mode.self, forKey: .mode) {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: CleanupPolicy].self, forKey: .cleanupPolicies)
-    self.sizeBytes = try container.decode(Swift.Int64.self, forKey: .sizeBytes)
-    self.satisfiesPzs = try container.decode(Swift.Bool.self, forKey: .satisfiesPzs)
-    self.cleanupPolicyDryRun = try container.decode(Swift.Bool.self, forKey: .cleanupPolicyDryRun)
+    {
+      self.cleanupPolicies = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cleanupPolicyDryRun) {
+      self.cleanupPolicyDryRun = value
+    }
     self.vulnerabilityScanningConfig = try container.decodeIfPresent(
       Repository.VulnerabilityScanningConfig.self, forKey: .vulnerabilityScanningConfig)
-    self.disallowUnspecifiedMode = try container.decode(
-      Swift.Bool.self, forKey: .disallowUnspecifiedMode)
-    self.satisfiesPzi = try container.decode(Swift.Bool.self, forKey: .satisfiesPzi)
-    self.registryUri = try container.decode(Swift.String.self, forKey: .registryUri)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disallowUnspecifiedMode)
+    {
+      self.disallowUnspecifiedMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .registryUri) {
+      self.registryUri = value
+    }
 
     var formatConfig: OneOf_FormatConfig? = nil
     let formatConfigCheckAndSet = {
@@ -200,6 +258,10 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try modeConfigCheckAndSet(.remoteRepositoryConfig(remoteRepositoryConfig))
     }
     self.modeConfig = modeConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -208,15 +270,16 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.format, forKey: .format)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
     try container.encode(self.mode, forKey: .mode)
     try container.encode(self.cleanupPolicies, forKey: .cleanupPolicies)
     try container.encode(self.sizeBytes, forKey: .sizeBytes)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.cleanupPolicyDryRun, forKey: .cleanupPolicyDryRun)
-    try container.encode(self.vulnerabilityScanningConfig, forKey: .vulnerabilityScanningConfig)
+    try container.encodeIfPresent(
+      self.vulnerabilityScanningConfig, forKey: .vulnerabilityScanningConfig)
     try container.encode(self.disallowUnspecifiedMode, forKey: .disallowUnspecifiedMode)
     try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
     try container.encode(self.registryUri, forKey: .registryUri)
@@ -238,6 +301,9 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .remoteRepositoryConfig)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// MavenRepositoryConfig is maven related repository details.
@@ -254,6 +320,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var versionPolicy: Repository.MavenRepositoryConfig.VersionPolicy = Repository
       .MavenRepositoryConfig.VersionPolicy()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MavenRepositoryConfig`.
     public init() {}
 
@@ -268,6 +336,48 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowSnapshotOverwrites = CodingKeys(stringValue: "allowSnapshotOverwrites")
+      static let versionPolicy = CodingKeys(stringValue: "versionPolicy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowSnapshotOverwrites",
+        "versionPolicy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allowSnapshotOverwrites)
+      {
+        self.allowSnapshotOverwrites = value
+      }
+      if let value = try container.decodeIfPresent(
+        Repository.MavenRepositoryConfig.VersionPolicy.self, forKey: .versionPolicy)
+      {
+        self.versionPolicy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowSnapshotOverwrites, forKey: .allowSnapshotOverwrites)
+      try container.encode(self.versionPolicy, forKey: .versionPolicy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// VersionPolicy is the version policy for the repository.
@@ -400,6 +510,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// created.
     public var immutableTags: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DockerRepositoryConfig`.
     public init() {}
 
@@ -414,6 +526,38 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let immutableTags = CodingKeys(stringValue: "immutableTags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "immutableTags"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .immutableTags) {
+        self.immutableTags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.immutableTags, forKey: .immutableTags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -449,6 +593,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. Reason for the repository state.
     public var enablementStateReason: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VulnerabilityScanningConfig`.
     public init() {}
 
@@ -463,6 +609,61 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enablementConfig = CodingKeys(stringValue: "enablementConfig")
+      static let lastEnableTime = CodingKeys(stringValue: "lastEnableTime")
+      static let enablementState = CodingKeys(stringValue: "enablementState")
+      static let enablementStateReason = CodingKeys(stringValue: "enablementStateReason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enablementConfig",
+        "lastEnableTime",
+        "enablementState",
+        "enablementStateReason",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Repository.VulnerabilityScanningConfig.EnablementConfig.self, forKey: .enablementConfig)
+      {
+        self.enablementConfig = value
+      }
+      self.lastEnableTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastEnableTime)
+      if let value = try container.decodeIfPresent(
+        Repository.VulnerabilityScanningConfig.EnablementState.self, forKey: .enablementState)
+      {
+        self.enablementState = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .enablementStateReason)
+      {
+        self.enablementStateReason = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enablementConfig, forKey: .enablementConfig)
+      try container.encodeIfPresent(self.lastEnableTime, forKey: .lastEnableTime)
+      try container.encode(self.enablementState, forKey: .enablementState)
+      try container.encode(self.enablementStateReason, forKey: .enablementStateReason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Config for vulnerability scanning of resources in this repository.

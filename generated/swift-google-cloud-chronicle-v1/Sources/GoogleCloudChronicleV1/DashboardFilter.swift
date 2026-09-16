@@ -56,6 +56,8 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Advanced filter configuration for the filter widget.
   public var advancedFilterConfig: AdvancedFilterConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DashboardFilter`.
   public init() {}
 
@@ -70,6 +72,97 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let fieldPath = CodingKeys(stringValue: "fieldPath")
+    static let filterOperatorAndFieldValues = CodingKeys(
+      stringValue: "filterOperatorAndFieldValues")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let chartIds = CodingKeys(stringValue: "chartIds")
+    static let isStandardTimeRangeFilter = CodingKeys(stringValue: "isStandardTimeRangeFilter")
+    static let isMandatory = CodingKeys(stringValue: "isMandatory")
+    static let isStandardTimeRangeFilterEnabled = CodingKeys(
+      stringValue: "isStandardTimeRangeFilterEnabled")
+    static let advancedFilterConfig = CodingKeys(stringValue: "advancedFilterConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "dataSource",
+      "fieldPath",
+      "filterOperatorAndFieldValues",
+      "displayName",
+      "chartIds",
+      "isStandardTimeRangeFilter",
+      "isMandatory",
+      "isStandardTimeRangeFilterEnabled",
+      "advancedFilterConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(DataSource.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldPath) {
+      self.fieldPath = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FilterOperatorAndValues].self, forKey: .filterOperatorAndFieldValues)
+    {
+      self.filterOperatorAndFieldValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .chartIds) {
+      self.chartIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isStandardTimeRangeFilter)
+    {
+      self.isStandardTimeRangeFilter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isMandatory) {
+      self.isMandatory = value
+    }
+    self.isStandardTimeRangeFilterEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isStandardTimeRangeFilterEnabled)
+    self.advancedFilterConfig = try container.decodeIfPresent(
+      AdvancedFilterConfig.self, forKey: .advancedFilterConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.dataSource, forKey: .dataSource)
+    try container.encode(self.fieldPath, forKey: .fieldPath)
+    try container.encode(self.filterOperatorAndFieldValues, forKey: .filterOperatorAndFieldValues)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.chartIds, forKey: .chartIds)
+    try container.encode(self.isStandardTimeRangeFilter, forKey: .isStandardTimeRangeFilter)
+    try container.encode(self.isMandatory, forKey: .isMandatory)
+    try container.encodeIfPresent(
+      self.isStandardTimeRangeFilterEnabled, forKey: .isStandardTimeRangeFilterEnabled)
+    try container.encodeIfPresent(self.advancedFilterConfig, forKey: .advancedFilterConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

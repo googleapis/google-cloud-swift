@@ -29,6 +29,8 @@
     /// constraints. Currently only one value is allowed in this map.
     public var futureResourcesSpecs: [Swift.String: FutureResourcesSpec] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CalendarModeAdviceRequest`.
     public init() {}
 
@@ -43,6 +45,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let futureResourcesSpecs = CodingKeys(stringValue: "futureResourcesSpecs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "futureResourcesSpecs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: FutureResourcesSpec].self, forKey: .futureResourcesSpecs)
+      {
+        self.futureResourcesSpecs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.futureResourcesSpecs, forKey: .futureResourcesSpecs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

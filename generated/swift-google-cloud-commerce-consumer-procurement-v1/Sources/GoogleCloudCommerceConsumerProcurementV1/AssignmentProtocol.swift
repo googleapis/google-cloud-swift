@@ -24,6 +24,8 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The type of assignment protocol.
   public var assignmentType: OneOf_AssignmentType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AssignmentProtocol`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case manualAssignmentType = "manualAssignmentType"
-    case autoAssignmentType = "autoAssignmentType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let manualAssignmentType = CodingKeys(stringValue: "manualAssignmentType")
+    static let autoAssignmentType = CodingKeys(stringValue: "autoAssignmentType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "manualAssignmentType",
+      "autoAssignmentType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try assignmentTypeCheckAndSet(.autoAssignmentType(autoAssignmentType))
     }
     self.assignmentType = assignmentType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,12 +98,17 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .autoAssignmentType)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Allow manual assignments triggered by administrative operations only.
   public struct ManualAssignmentType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManualAssignmentType`.
     public init() {}
 
@@ -102,6 +123,30 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -125,6 +170,8 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// be at least 7 days, if set. If unset, the license will never expire.
     public var inactiveLicenseTtl: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoAssignmentType`.
     public init() {}
 
@@ -139,6 +186,37 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inactiveLicenseTtl = CodingKeys(stringValue: "inactiveLicenseTtl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inactiveLicenseTtl"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.inactiveLicenseTtl = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .inactiveLicenseTtl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.inactiveLicenseTtl, forKey: .inactiveLicenseTtl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

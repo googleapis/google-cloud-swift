@@ -34,6 +34,8 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type represents the release availability of the version
   public var type: Version.Type_ = Version.Type_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Version`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let versionNumber = CodingKeys(stringValue: "versionNumber")
+    static let defaultVersion = CodingKeys(stringValue: "defaultVersion")
+    static let availableFeatures = CodingKeys(stringValue: "availableFeatures")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "versionNumber",
+      "defaultVersion",
+      "availableFeatures",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionNumber) {
+      self.versionNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .defaultVersion) {
+      self.defaultVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .availableFeatures) {
+      self.availableFeatures = value
+    }
+    if let value = try container.decodeIfPresent(Version.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.versionNumber, forKey: .versionNumber)
+    try container.encode(self.defaultVersion, forKey: .defaultVersion)
+    try container.encode(self.availableFeatures, forKey: .availableFeatures)
+    try container.encode(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Each type represents the release availability of a CDF version

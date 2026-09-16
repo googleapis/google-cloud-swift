@@ -89,6 +89,8 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Condition evaluation state for this role binding.
   public var conditionExplanation: ConditionExplanation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AllowBindingExplanation`.
   public init() {}
 
@@ -105,6 +107,88 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowAccessState = CodingKeys(stringValue: "allowAccessState")
+    static let role = CodingKeys(stringValue: "role")
+    static let rolePermission = CodingKeys(stringValue: "rolePermission")
+    static let rolePermissionRelevance = CodingKeys(stringValue: "rolePermissionRelevance")
+    static let combinedMembership = CodingKeys(stringValue: "combinedMembership")
+    static let memberships = CodingKeys(stringValue: "memberships")
+    static let relevance = CodingKeys(stringValue: "relevance")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let conditionExplanation = CodingKeys(stringValue: "conditionExplanation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowAccessState",
+      "role",
+      "rolePermission",
+      "rolePermissionRelevance",
+      "combinedMembership",
+      "memberships",
+      "relevance",
+      "condition",
+      "conditionExplanation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AllowAccessState.self, forKey: .allowAccessState) {
+      self.allowAccessState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+      self.role = value
+    }
+    if let value = try container.decodeIfPresent(
+      RolePermissionInclusionState.self, forKey: .rolePermission)
+    {
+      self.rolePermission = value
+    }
+    if let value = try container.decodeIfPresent(
+      HeuristicRelevance.self, forKey: .rolePermissionRelevance)
+    {
+      self.rolePermissionRelevance = value
+    }
+    self.combinedMembership = try container.decodeIfPresent(
+      AllowBindingExplanation.AnnotatedAllowMembership.self, forKey: .combinedMembership)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AllowBindingExplanation.AnnotatedAllowMembership].self, forKey: .memberships)
+    {
+      self.memberships = value
+    }
+    if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+    self.conditionExplanation = try container.decodeIfPresent(
+      ConditionExplanation.self, forKey: .conditionExplanation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    try container.encode(self.role, forKey: .role)
+    try container.encode(self.rolePermission, forKey: .rolePermission)
+    try container.encode(self.rolePermissionRelevance, forKey: .rolePermissionRelevance)
+    try container.encodeIfPresent(self.combinedMembership, forKey: .combinedMembership)
+    try container.encode(self.memberships, forKey: .memberships)
+    try container.encode(self.relevance, forKey: .relevance)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encodeIfPresent(self.conditionExplanation, forKey: .conditionExplanation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details about whether the role binding includes the principal.
   public struct AnnotatedAllowMembership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -115,6 +199,8 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// The relevance of the principal's status to the overall determination for
     /// the role binding.
     public var relevance: HeuristicRelevance = HeuristicRelevance()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AnnotatedAllowMembership`.
     public init() {}
@@ -130,6 +216,46 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let membership = CodingKeys(stringValue: "membership")
+      static let relevance = CodingKeys(stringValue: "relevance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "membership",
+        "relevance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MembershipMatchingState.self, forKey: .membership)
+      {
+        self.membership = value
+      }
+      if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+        self.relevance = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.membership, forKey: .membership)
+      try container.encode(self.relevance, forKey: .relevance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -112,6 +112,8 @@
     /// text format.
     public var updateTimestamp: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `License`.
     public init() {}
 
@@ -126,6 +128,140 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedReplacementLicenses = CodingKeys(stringValue: "allowedReplacementLicenses")
+      static let appendableToDisk = CodingKeys(stringValue: "appendableToDisk")
+      static let chargesUseFee = CodingKeys(stringValue: "chargesUseFee")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let incompatibleLicenses = CodingKeys(stringValue: "incompatibleLicenses")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let licenseCode = CodingKeys(stringValue: "licenseCode")
+      static let minimumRetention = CodingKeys(stringValue: "minimumRetention")
+      static let multiTenantOnly = CodingKeys(stringValue: "multiTenantOnly")
+      static let name = CodingKeys(stringValue: "name")
+      static let osLicense = CodingKeys(stringValue: "osLicense")
+      static let params = CodingKeys(stringValue: "params")
+      static let removableFromDisk = CodingKeys(stringValue: "removableFromDisk")
+      static let requiredCoattachedLicenses = CodingKeys(stringValue: "requiredCoattachedLicenses")
+      static let resourceRequirements = CodingKeys(stringValue: "resourceRequirements")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let soleTenantOnly = CodingKeys(stringValue: "soleTenantOnly")
+      static let transferable = CodingKeys(stringValue: "transferable")
+      static let updateTimestamp = CodingKeys(stringValue: "updateTimestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedReplacementLicenses",
+        "appendableToDisk",
+        "chargesUseFee",
+        "creationTimestamp",
+        "description",
+        "id",
+        "incompatibleLicenses",
+        "kind",
+        "licenseCode",
+        "minimumRetention",
+        "multiTenantOnly",
+        "name",
+        "osLicense",
+        "params",
+        "removableFromDisk",
+        "requiredCoattachedLicenses",
+        "resourceRequirements",
+        "selfLink",
+        "selfLinkWithId",
+        "soleTenantOnly",
+        "transferable",
+        "updateTimestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .allowedReplacementLicenses)
+      {
+        self.allowedReplacementLicenses = value
+      }
+      self.appendableToDisk = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .appendableToDisk)
+      self.chargesUseFee = try container.decodeIfPresent(Swift.Bool.self, forKey: .chargesUseFee)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .incompatibleLicenses)
+      {
+        self.incompatibleLicenses = value
+      }
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.licenseCode = try container.decodeIfPresent(Swift.UInt64.self, forKey: .licenseCode)
+      self.minimumRetention = try container.decodeIfPresent(
+        Duration.self, forKey: .minimumRetention)
+      self.multiTenantOnly = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .multiTenantOnly)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.osLicense = try container.decodeIfPresent(Swift.Bool.self, forKey: .osLicense)
+      self.params = try container.decodeIfPresent(LicenseParams.self, forKey: .params)
+      self.removableFromDisk = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .removableFromDisk)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .requiredCoattachedLicenses)
+      {
+        self.requiredCoattachedLicenses = value
+      }
+      self.resourceRequirements = try container.decodeIfPresent(
+        LicenseResourceRequirements.self, forKey: .resourceRequirements)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      self.soleTenantOnly = try container.decodeIfPresent(Swift.Bool.self, forKey: .soleTenantOnly)
+      self.transferable = try container.decodeIfPresent(Swift.Bool.self, forKey: .transferable)
+      self.updateTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .updateTimestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedReplacementLicenses, forKey: .allowedReplacementLicenses)
+      try container.encodeIfPresent(self.appendableToDisk, forKey: .appendableToDisk)
+      try container.encodeIfPresent(self.chargesUseFee, forKey: .chargesUseFee)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encode(self.incompatibleLicenses, forKey: .incompatibleLicenses)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.licenseCode, forKey: .licenseCode)
+      try container.encodeIfPresent(self.minimumRetention, forKey: .minimumRetention)
+      try container.encodeIfPresent(self.multiTenantOnly, forKey: .multiTenantOnly)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.osLicense, forKey: .osLicense)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.removableFromDisk, forKey: .removableFromDisk)
+      try container.encode(self.requiredCoattachedLicenses, forKey: .requiredCoattachedLicenses)
+      try container.encodeIfPresent(self.resourceRequirements, forKey: .resourceRequirements)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.soleTenantOnly, forKey: .soleTenantOnly)
+      try container.encodeIfPresent(self.transferable, forKey: .transferable)
+      try container.encodeIfPresent(self.updateTimestamp, forKey: .updateTimestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

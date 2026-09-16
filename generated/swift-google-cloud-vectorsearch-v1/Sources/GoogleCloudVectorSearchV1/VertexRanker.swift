@@ -36,6 +36,8 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// set.
   public var recordSpec: OneOf_RecordSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VertexRanker`.
   public init() {}
 
@@ -52,16 +54,31 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case textRecordSpec = "textRecordSpec"
-    case model = "model"
-    case topN = "topN"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let textRecordSpec = CodingKeys(stringValue: "textRecordSpec")
+    static let model = CodingKeys(stringValue: "model")
+    static let topN = CodingKeys(stringValue: "topN")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "textRecordSpec",
+      "model",
+      "topN",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.model = try container.decode(Swift.String.self, forKey: .model)
-    self.topN = try container.decode(Swift.Int32.self, forKey: .topN)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topN) {
+      self.topN = value
+    }
 
     var recordSpec: OneOf_RecordSpec? = nil
     let recordSpecCheckAndSet = {
@@ -79,6 +96,10 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try recordSpecCheckAndSet(.textRecordSpec(textRecordSpec))
     }
     self.recordSpec = recordSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -91,6 +112,9 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .textRecordSpec(let value):
         try container.encode(value, forKey: .textRecordSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -107,6 +131,8 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The template used to generate the record's content.
     public var contentTemplate: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextRecordSpec`.
     public init() {}
 
@@ -121,6 +147,50 @@ public struct VertexRanker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let query = CodingKeys(stringValue: "query")
+      static let titleTemplate = CodingKeys(stringValue: "titleTemplate")
+      static let contentTemplate = CodingKeys(stringValue: "contentTemplate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "query",
+        "titleTemplate",
+        "contentTemplate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .titleTemplate) {
+        self.titleTemplate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentTemplate) {
+        self.contentTemplate = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.query, forKey: .query)
+      try container.encode(self.titleTemplate, forKey: .titleTemplate)
+      try container.encode(self.contentTemplate, forKey: .contentTemplate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

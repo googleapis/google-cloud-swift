@@ -24,6 +24,8 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleCloudWKT._
   /// Possible control messages.
   public var control: OneOf_Control? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReceiveEventsControlResponse`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case heartbeat = "heartbeat"
-    case writesDoneRequest = "writesDoneRequest"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let heartbeat = CodingKeys(stringValue: "heartbeat")
+    static let writesDoneRequest = CodingKeys(stringValue: "writesDoneRequest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "heartbeat",
+      "writesDoneRequest",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleCloudWKT._
       try controlCheckAndSet(.writesDoneRequest(writesDoneRequest))
     }
     self.control = control
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleCloudWKT._
       case .writesDoneRequest(let value):
         try container.encode(value, forKey: .writesDoneRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

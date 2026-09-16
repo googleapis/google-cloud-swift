@@ -42,6 +42,8 @@ public struct ConfigSyncVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Version of the deployed admission_webhook pod
   public var admissionWebhook: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigSyncVersion`.
   public init() {}
 
@@ -56,6 +58,74 @@ public struct ConfigSyncVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let importer = CodingKeys(stringValue: "importer")
+    static let syncer = CodingKeys(stringValue: "syncer")
+    static let gitSync = CodingKeys(stringValue: "gitSync")
+    static let monitor = CodingKeys(stringValue: "monitor")
+    static let reconcilerManager = CodingKeys(stringValue: "reconcilerManager")
+    static let rootReconciler = CodingKeys(stringValue: "rootReconciler")
+    static let admissionWebhook = CodingKeys(stringValue: "admissionWebhook")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "importer",
+      "syncer",
+      "gitSync",
+      "monitor",
+      "reconcilerManager",
+      "rootReconciler",
+      "admissionWebhook",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importer) {
+      self.importer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .syncer) {
+      self.syncer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gitSync) {
+      self.gitSync = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .monitor) {
+      self.monitor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reconcilerManager) {
+      self.reconcilerManager = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootReconciler) {
+      self.rootReconciler = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .admissionWebhook) {
+      self.admissionWebhook = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.importer, forKey: .importer)
+    try container.encode(self.syncer, forKey: .syncer)
+    try container.encode(self.gitSync, forKey: .gitSync)
+    try container.encode(self.monitor, forKey: .monitor)
+    try container.encode(self.reconcilerManager, forKey: .reconcilerManager)
+    try container.encode(self.rootReconciler, forKey: .rootReconciler)
+    try container.encode(self.admissionWebhook, forKey: .admissionWebhook)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

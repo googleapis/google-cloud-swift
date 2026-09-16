@@ -83,6 +83,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The application/framework-specific portion of the job.
   public var typeJob: OneOf_TypeJob? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -99,29 +101,59 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case reference = "reference"
-    case placement = "placement"
-    case hadoopJob = "hadoopJob"
-    case sparkJob = "sparkJob"
-    case pysparkJob = "pysparkJob"
-    case hiveJob = "hiveJob"
-    case pigJob = "pigJob"
-    case sparkRJob = "sparkRJob"
-    case sparkSqlJob = "sparkSqlJob"
-    case prestoJob = "prestoJob"
-    case trinoJob = "trinoJob"
-    case flinkJob = "flinkJob"
-    case status = "status"
-    case statusHistory = "statusHistory"
-    case yarnApplications = "yarnApplications"
-    case driverOutputResourceUri = "driverOutputResourceUri"
-    case driverControlFilesUri = "driverControlFilesUri"
-    case labels = "labels"
-    case scheduling = "scheduling"
-    case jobUuid = "jobUuid"
-    case done = "done"
-    case driverSchedulingConfig = "driverSchedulingConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let reference = CodingKeys(stringValue: "reference")
+    static let placement = CodingKeys(stringValue: "placement")
+    static let hadoopJob = CodingKeys(stringValue: "hadoopJob")
+    static let sparkJob = CodingKeys(stringValue: "sparkJob")
+    static let pysparkJob = CodingKeys(stringValue: "pysparkJob")
+    static let hiveJob = CodingKeys(stringValue: "hiveJob")
+    static let pigJob = CodingKeys(stringValue: "pigJob")
+    static let sparkRJob = CodingKeys(stringValue: "sparkRJob")
+    static let sparkSqlJob = CodingKeys(stringValue: "sparkSqlJob")
+    static let prestoJob = CodingKeys(stringValue: "prestoJob")
+    static let trinoJob = CodingKeys(stringValue: "trinoJob")
+    static let flinkJob = CodingKeys(stringValue: "flinkJob")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusHistory = CodingKeys(stringValue: "statusHistory")
+    static let yarnApplications = CodingKeys(stringValue: "yarnApplications")
+    static let driverOutputResourceUri = CodingKeys(stringValue: "driverOutputResourceUri")
+    static let driverControlFilesUri = CodingKeys(stringValue: "driverControlFilesUri")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let scheduling = CodingKeys(stringValue: "scheduling")
+    static let jobUuid = CodingKeys(stringValue: "jobUuid")
+    static let done = CodingKeys(stringValue: "done")
+    static let driverSchedulingConfig = CodingKeys(stringValue: "driverSchedulingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "reference",
+      "placement",
+      "hadoopJob",
+      "sparkJob",
+      "pysparkJob",
+      "hiveJob",
+      "pigJob",
+      "sparkRJob",
+      "sparkSqlJob",
+      "prestoJob",
+      "trinoJob",
+      "flinkJob",
+      "status",
+      "statusHistory",
+      "yarnApplications",
+      "driverOutputResourceUri",
+      "driverControlFilesUri",
+      "labels",
+      "scheduling",
+      "jobUuid",
+      "done",
+      "driverSchedulingConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -129,16 +161,33 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.reference = try container.decodeIfPresent(JobReference.self, forKey: .reference)
     self.placement = try container.decodeIfPresent(JobPlacement.self, forKey: .placement)
     self.status = try container.decodeIfPresent(JobStatus.self, forKey: .status)
-    self.statusHistory = try container.decode([JobStatus].self, forKey: .statusHistory)
-    self.yarnApplications = try container.decode([YarnApplication].self, forKey: .yarnApplications)
-    self.driverOutputResourceUri = try container.decode(
+    if let value = try container.decodeIfPresent([JobStatus].self, forKey: .statusHistory) {
+      self.statusHistory = value
+    }
+    if let value = try container.decodeIfPresent([YarnApplication].self, forKey: .yarnApplications)
+    {
+      self.yarnApplications = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .driverOutputResourceUri)
-    self.driverControlFilesUri = try container.decode(
-      Swift.String.self, forKey: .driverControlFilesUri)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.driverOutputResourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .driverControlFilesUri)
+    {
+      self.driverControlFilesUri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.scheduling = try container.decodeIfPresent(JobScheduling.self, forKey: .scheduling)
-    self.jobUuid = try container.decode(Swift.String.self, forKey: .jobUuid)
-    self.done = try container.decode(Swift.Bool.self, forKey: .done)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobUuid) {
+      self.jobUuid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .done) {
+      self.done = value
+    }
     self.driverSchedulingConfig = try container.decodeIfPresent(
       DriverSchedulingConfig.self, forKey: .driverSchedulingConfig)
 
@@ -183,22 +232,26 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeJobCheckAndSet(.flinkJob(flinkJob))
     }
     self.typeJob = typeJob
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.reference, forKey: .reference)
-    try container.encode(self.placement, forKey: .placement)
-    try container.encode(self.status, forKey: .status)
+    try container.encodeIfPresent(self.reference, forKey: .reference)
+    try container.encodeIfPresent(self.placement, forKey: .placement)
+    try container.encodeIfPresent(self.status, forKey: .status)
     try container.encode(self.statusHistory, forKey: .statusHistory)
     try container.encode(self.yarnApplications, forKey: .yarnApplications)
     try container.encode(self.driverOutputResourceUri, forKey: .driverOutputResourceUri)
     try container.encode(self.driverControlFilesUri, forKey: .driverControlFilesUri)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.scheduling, forKey: .scheduling)
+    try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
     try container.encode(self.jobUuid, forKey: .jobUuid)
     try container.encode(self.done, forKey: .done)
-    try container.encode(self.driverSchedulingConfig, forKey: .driverSchedulingConfig)
+    try container.encodeIfPresent(self.driverSchedulingConfig, forKey: .driverSchedulingConfig)
 
     if let choice = self.typeJob {
       switch choice {
@@ -223,6 +276,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .flinkJob(let value):
         try container.encode(value, forKey: .flinkJob)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

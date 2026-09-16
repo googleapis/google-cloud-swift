@@ -131,6 +131,8 @@
     /// * AIP_TEST_DATA_URI : Sharded exported test data uris.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputDataConfig`.
     public init() {}
 
@@ -147,30 +149,60 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fractionSplit = "fractionSplit"
-      case filterSplit = "filterSplit"
-      case predefinedSplit = "predefinedSplit"
-      case timestampSplit = "timestampSplit"
-      case stratifiedSplit = "stratifiedSplit"
-      case gcsDestination = "gcsDestination"
-      case bigqueryDestination = "bigqueryDestination"
-      case datasetId = "datasetId"
-      case annotationsFilter = "annotationsFilter"
-      case annotationSchemaUri = "annotationSchemaUri"
-      case savedQueryId = "savedQueryId"
-      case persistMlUseAssignment = "persistMlUseAssignment"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fractionSplit = CodingKeys(stringValue: "fractionSplit")
+      static let filterSplit = CodingKeys(stringValue: "filterSplit")
+      static let predefinedSplit = CodingKeys(stringValue: "predefinedSplit")
+      static let timestampSplit = CodingKeys(stringValue: "timestampSplit")
+      static let stratifiedSplit = CodingKeys(stringValue: "stratifiedSplit")
+      static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+      static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+      static let datasetId = CodingKeys(stringValue: "datasetId")
+      static let annotationsFilter = CodingKeys(stringValue: "annotationsFilter")
+      static let annotationSchemaUri = CodingKeys(stringValue: "annotationSchemaUri")
+      static let savedQueryId = CodingKeys(stringValue: "savedQueryId")
+      static let persistMlUseAssignment = CodingKeys(stringValue: "persistMlUseAssignment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fractionSplit",
+        "filterSplit",
+        "predefinedSplit",
+        "timestampSplit",
+        "stratifiedSplit",
+        "gcsDestination",
+        "bigqueryDestination",
+        "datasetId",
+        "annotationsFilter",
+        "annotationSchemaUri",
+        "savedQueryId",
+        "persistMlUseAssignment",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.datasetId = try container.decode(Swift.String.self, forKey: .datasetId)
-      self.annotationsFilter = try container.decode(Swift.String.self, forKey: .annotationsFilter)
-      self.annotationSchemaUri = try container.decode(
-        Swift.String.self, forKey: .annotationSchemaUri)
-      self.savedQueryId = try container.decode(Swift.String.self, forKey: .savedQueryId)
-      self.persistMlUseAssignment = try container.decode(
-        Swift.Bool.self, forKey: .persistMlUseAssignment)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
+        self.datasetId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationsFilter) {
+        self.annotationsFilter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationSchemaUri)
+      {
+        self.annotationSchemaUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savedQueryId) {
+        self.savedQueryId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .persistMlUseAssignment)
+      {
+        self.persistMlUseAssignment = value
+      }
 
       var split: OneOf_Split? = nil
       let splitCheckAndSet = {
@@ -228,6 +260,10 @@
         try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -260,6 +296,9 @@
         case .bigqueryDestination(let value):
           try container.encode(value, forKey: .bigqueryDestination)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -53,6 +53,8 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// and how they should be used at runtime.
   public var strategy: OneOf_Strategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rollout`.
   public init() {}
 
@@ -69,24 +71,47 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rolloutId = "rolloutId"
-    case createTime = "createTime"
-    case createdBy = "createdBy"
-    case status = "status"
-    case trafficPercentStrategy = "trafficPercentStrategy"
-    case deleteServiceStrategy = "deleteServiceStrategy"
-    case serviceName = "serviceName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rolloutId = CodingKeys(stringValue: "rolloutId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let createdBy = CodingKeys(stringValue: "createdBy")
+    static let status = CodingKeys(stringValue: "status")
+    static let trafficPercentStrategy = CodingKeys(stringValue: "trafficPercentStrategy")
+    static let deleteServiceStrategy = CodingKeys(stringValue: "deleteServiceStrategy")
+    static let serviceName = CodingKeys(stringValue: "serviceName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rolloutId",
+      "createTime",
+      "createdBy",
+      "status",
+      "trafficPercentStrategy",
+      "deleteServiceStrategy",
+      "serviceName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.rolloutId = try container.decode(Swift.String.self, forKey: .rolloutId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutId) {
+      self.rolloutId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.createdBy = try container.decode(Swift.String.self, forKey: .createdBy)
-    self.status = try container.decode(Rollout.RolloutStatus.self, forKey: .status)
-    self.serviceName = try container.decode(Swift.String.self, forKey: .serviceName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .createdBy) {
+      self.createdBy = value
+    }
+    if let value = try container.decodeIfPresent(Rollout.RolloutStatus.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
+      self.serviceName = value
+    }
 
     var strategy: OneOf_Strategy? = nil
     let strategyCheckAndSet = {
@@ -109,12 +134,16 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try strategyCheckAndSet(.deleteServiceStrategy(deleteServiceStrategy))
     }
     self.strategy = strategy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rolloutId, forKey: .rolloutId)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.createdBy, forKey: .createdBy)
     try container.encode(self.status, forKey: .status)
     try container.encode(self.serviceName, forKey: .serviceName)
@@ -126,6 +155,9 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .deleteServiceStrategy(let value):
         try container.encode(value, forKey: .deleteServiceStrategy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -167,6 +199,8 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// which must be greater than 0.0 and the sum must equal to 100.0.
     public var percentages: [Swift.String: Swift.Double] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TrafficPercentStrategy`.
     public init() {}
 
@@ -181,6 +215,40 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let percentages = CodingKeys(stringValue: "percentages")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "percentages"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Double].self, forKey: .percentages)
+      {
+        self.percentages = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.percentages, forKey: .percentages)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -199,6 +267,8 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct DeleteServiceStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeleteServiceStrategy`.
     public init() {}
 
@@ -213,6 +283,30 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

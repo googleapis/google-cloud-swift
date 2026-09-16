@@ -30,6 +30,8 @@ public struct CreateTimeSeriesError: Codable, Equatable, GoogleCloudWKT._AnyPack
   @available(*, deprecated)
   public var status: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateTimeSeriesError`.
   public init() {}
 
@@ -44,6 +46,40 @@ public struct CreateTimeSeriesError: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeSeries = CodingKeys(stringValue: "timeSeries")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeSeries",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.timeSeries = try container.decodeIfPresent(TimeSeries.self, forKey: .timeSeries)
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.timeSeries, forKey: .timeSeries)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

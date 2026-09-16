@@ -100,6 +100,8 @@
     /// SSL policy, this field will be populated with warning messages.
     public var warnings: [SslPolicy.Warnings] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SslPolicy`.
     public init() {}
 
@@ -116,30 +118,56 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case customFeatures = "customFeatures"
-      case description = "description"
-      case enabledFeatures = "enabledFeatures"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case minTlsVersion = "minTlsVersion"
-      case name = "name"
-      case postQuantumKeyExchange = "postQuantumKeyExchange"
-      case profile = "profile"
-      case region = "region"
-      case selfLink = "selfLink"
-      case warnings = "warnings"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customFeatures = CodingKeys(stringValue: "customFeatures")
+      static let description = CodingKeys(stringValue: "description")
+      static let enabledFeatures = CodingKeys(stringValue: "enabledFeatures")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let minTlsVersion = CodingKeys(stringValue: "minTlsVersion")
+      static let name = CodingKeys(stringValue: "name")
+      static let postQuantumKeyExchange = CodingKeys(stringValue: "postQuantumKeyExchange")
+      static let profile = CodingKeys(stringValue: "profile")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let warnings = CodingKeys(stringValue: "warnings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "customFeatures",
+        "description",
+        "enabledFeatures",
+        "fingerprint",
+        "id",
+        "kind",
+        "minTlsVersion",
+        "name",
+        "postQuantumKeyExchange",
+        "profile",
+        "region",
+        "selfLink",
+        "warnings",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
-      self.customFeatures = try container.decode([Swift.String].self, forKey: .customFeatures)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .customFeatures) {
+        self.customFeatures = value
+      }
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-      self.enabledFeatures = try container.decode([Swift.String].self, forKey: .enabledFeatures)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .enabledFeatures) {
+        self.enabledFeatures = value
+      }
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
@@ -159,29 +187,38 @@
       self.profile = try container.decodeIfPresent(SslPolicy.Profile.self, forKey: .profile)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.warnings = try container.decode([SslPolicy.Warnings].self, forKey: .warnings)
+      if let value = try container.decodeIfPresent([SslPolicy.Warnings].self, forKey: .warnings) {
+        self.warnings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
       try container.encode(self.customFeatures, forKey: .customFeatures)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.description, forKey: .description)
       try container.encode(self.enabledFeatures, forKey: .enabledFeatures)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.minTlsVersion, forKey: .minTlsVersion)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.postQuantumKeyExchange, forKey: .postQuantumKeyExchange)
-      try container.encode(self.profile, forKey: .profile)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.minTlsVersion, forKey: .minTlsVersion)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.postQuantumKeyExchange, forKey: .postQuantumKeyExchange)
+      try container.encodeIfPresent(self.profile, forKey: .profile)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encode(self.warnings, forKey: .warnings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The message type for the [warnings][google.cloud.compute.v1.SslPolicy.warnings] field.
@@ -208,6 +245,8 @@
       /// [Output Only] A human-readable description of the warning code.
       public var message: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Warnings`.
       public init() {}
 
@@ -222,6 +261,47 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let code = CodingKeys(stringValue: "code")
+        static let data = CodingKeys(stringValue: "data")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "code",
+          "data",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decodeIfPresent(SslPolicy.Warnings.Code.self, forKey: .code)
+        if let value = try container.decodeIfPresent([SslPolicy.Warnings.Data].self, forKey: .data)
+        {
+          self.data = value
+        }
+        self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.data, forKey: .data)
+        try container.encodeIfPresent(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [data][google.cloud.compute.v1.SslPolicy.warnings.data] field.
@@ -242,6 +322,9 @@
         /// [Output Only] A warning data value corresponding to the key.
         public var value: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Data`.
         public init() {}
 
@@ -256,6 +339,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
+          self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

@@ -51,6 +51,8 @@
     /// replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
     public var state: DeprecationStatus.State? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeprecationStatus`.
     public init() {}
 
@@ -65,6 +67,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deleted = CodingKeys(stringValue: "deleted")
+      static let deprecated = CodingKeys(stringValue: "deprecated")
+      static let obsolete = CodingKeys(stringValue: "obsolete")
+      static let replacement = CodingKeys(stringValue: "replacement")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deleted",
+        "deprecated",
+        "obsolete",
+        "replacement",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.deleted = try container.decodeIfPresent(Swift.String.self, forKey: .deleted)
+      self.deprecated = try container.decodeIfPresent(Swift.String.self, forKey: .deprecated)
+      self.obsolete = try container.decodeIfPresent(Swift.String.self, forKey: .obsolete)
+      self.replacement = try container.decodeIfPresent(Swift.String.self, forKey: .replacement)
+      self.state = try container.decodeIfPresent(DeprecationStatus.State.self, forKey: .state)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.deleted, forKey: .deleted)
+      try container.encodeIfPresent(self.deprecated, forKey: .deprecated)
+      try container.encodeIfPresent(self.obsolete, forKey: .obsolete)
+      try container.encodeIfPresent(self.replacement, forKey: .replacement)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [state][google.cloud.compute.v1.DeprecationStatus.state] field.

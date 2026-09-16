@@ -28,6 +28,8 @@ public struct SearchHashesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// cache the response until.
   public var negativeExpireTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchHashesResponse`.
   public init() {}
 
@@ -42,6 +44,45 @@ public struct SearchHashesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let threats = CodingKeys(stringValue: "threats")
+    static let negativeExpireTime = CodingKeys(stringValue: "negativeExpireTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "threats",
+      "negativeExpireTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SearchHashesResponse.ThreatHash].self, forKey: .threats)
+    {
+      self.threats = value
+    }
+    self.negativeExpireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .negativeExpireTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.threats, forKey: .threats)
+    try container.encodeIfPresent(self.negativeExpireTime, forKey: .negativeExpireTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains threat information on a matching hash.
@@ -60,6 +101,8 @@ public struct SearchHashesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// response past this timestamp to avoid false positives.
     public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ThreatHash`.
     public init() {}
 
@@ -74,6 +117,49 @@ public struct SearchHashesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let threatTypes = CodingKeys(stringValue: "threatTypes")
+      static let hash = CodingKeys(stringValue: "hash")
+      static let expireTime = CodingKeys(stringValue: "expireTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "threatTypes",
+        "hash",
+        "expireTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([ThreatType].self, forKey: .threatTypes) {
+        self.threatTypes = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .hash) {
+        self.hash = value
+      }
+      self.expireTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.threatTypes, forKey: .threatTypes)
+      try container.encode(self.hash, forKey: .hash)
+      try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

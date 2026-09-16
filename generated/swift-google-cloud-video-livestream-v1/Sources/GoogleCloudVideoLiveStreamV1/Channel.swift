@@ -116,6 +116,8 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Advanced configurations for auto-generated text streams.
   public var autoTranscriptionConfig: AutoTranscriptionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Channel`.
   public init() {}
 
@@ -132,12 +134,168 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let inputAttachments = CodingKeys(stringValue: "inputAttachments")
+    static let activeInput = CodingKeys(stringValue: "activeInput")
+    static let output = CodingKeys(stringValue: "output")
+    static let elementaryStreams = CodingKeys(stringValue: "elementaryStreams")
+    static let muxStreams = CodingKeys(stringValue: "muxStreams")
+    static let manifests = CodingKeys(stringValue: "manifests")
+    static let distributionStreams = CodingKeys(stringValue: "distributionStreams")
+    static let distributions = CodingKeys(stringValue: "distributions")
+    static let spriteSheets = CodingKeys(stringValue: "spriteSheets")
+    static let streamingState = CodingKeys(stringValue: "streamingState")
+    static let streamingError = CodingKeys(stringValue: "streamingError")
+    static let logConfig = CodingKeys(stringValue: "logConfig")
+    static let timecodeConfig = CodingKeys(stringValue: "timecodeConfig")
+    static let encryptions = CodingKeys(stringValue: "encryptions")
+    static let inputConfig = CodingKeys(stringValue: "inputConfig")
+    static let retentionConfig = CodingKeys(stringValue: "retentionConfig")
+    static let staticOverlays = CodingKeys(stringValue: "staticOverlays")
+    static let autoTranscriptionConfig = CodingKeys(stringValue: "autoTranscriptionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "inputAttachments",
+      "activeInput",
+      "output",
+      "elementaryStreams",
+      "muxStreams",
+      "manifests",
+      "distributionStreams",
+      "distributions",
+      "spriteSheets",
+      "streamingState",
+      "streamingError",
+      "logConfig",
+      "timecodeConfig",
+      "encryptions",
+      "inputConfig",
+      "retentionConfig",
+      "staticOverlays",
+      "autoTranscriptionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([InputAttachment].self, forKey: .inputAttachments)
+    {
+      self.inputAttachments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeInput) {
+      self.activeInput = value
+    }
+    self.output = try container.decodeIfPresent(Channel.Output.self, forKey: .output)
+    if let value = try container.decodeIfPresent(
+      [ElementaryStream].self, forKey: .elementaryStreams)
+    {
+      self.elementaryStreams = value
+    }
+    if let value = try container.decodeIfPresent([MuxStream].self, forKey: .muxStreams) {
+      self.muxStreams = value
+    }
+    if let value = try container.decodeIfPresent([Manifest].self, forKey: .manifests) {
+      self.manifests = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DistributionStream].self, forKey: .distributionStreams)
+    {
+      self.distributionStreams = value
+    }
+    if let value = try container.decodeIfPresent([Distribution].self, forKey: .distributions) {
+      self.distributions = value
+    }
+    if let value = try container.decodeIfPresent([SpriteSheet].self, forKey: .spriteSheets) {
+      self.spriteSheets = value
+    }
+    if let value = try container.decodeIfPresent(
+      Channel.StreamingState.self, forKey: .streamingState)
+    {
+      self.streamingState = value
+    }
+    self.streamingError = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .streamingError)
+    self.logConfig = try container.decodeIfPresent(LogConfig.self, forKey: .logConfig)
+    self.timecodeConfig = try container.decodeIfPresent(
+      TimecodeConfig.self, forKey: .timecodeConfig)
+    if let value = try container.decodeIfPresent([Encryption].self, forKey: .encryptions) {
+      self.encryptions = value
+    }
+    self.inputConfig = try container.decodeIfPresent(InputConfig.self, forKey: .inputConfig)
+    self.retentionConfig = try container.decodeIfPresent(
+      RetentionConfig.self, forKey: .retentionConfig)
+    if let value = try container.decodeIfPresent([StaticOverlay].self, forKey: .staticOverlays) {
+      self.staticOverlays = value
+    }
+    self.autoTranscriptionConfig = try container.decodeIfPresent(
+      AutoTranscriptionConfig.self, forKey: .autoTranscriptionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.inputAttachments, forKey: .inputAttachments)
+    try container.encode(self.activeInput, forKey: .activeInput)
+    try container.encodeIfPresent(self.output, forKey: .output)
+    try container.encode(self.elementaryStreams, forKey: .elementaryStreams)
+    try container.encode(self.muxStreams, forKey: .muxStreams)
+    try container.encode(self.manifests, forKey: .manifests)
+    try container.encode(self.distributionStreams, forKey: .distributionStreams)
+    try container.encode(self.distributions, forKey: .distributions)
+    try container.encode(self.spriteSheets, forKey: .spriteSheets)
+    try container.encode(self.streamingState, forKey: .streamingState)
+    try container.encodeIfPresent(self.streamingError, forKey: .streamingError)
+    try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+    try container.encodeIfPresent(self.timecodeConfig, forKey: .timecodeConfig)
+    try container.encode(self.encryptions, forKey: .encryptions)
+    try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
+    try container.encodeIfPresent(self.retentionConfig, forKey: .retentionConfig)
+    try container.encode(self.staticOverlays, forKey: .staticOverlays)
+    try container.encodeIfPresent(self.autoTranscriptionConfig, forKey: .autoTranscriptionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Location of output file(s) in a Google Cloud Storage bucket.
   public struct Output: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// URI for the output file(s). For example, `gs://my-bucket/outputs/`.
     public var uri: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Output`.
     public init() {}
@@ -153,6 +311,38 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

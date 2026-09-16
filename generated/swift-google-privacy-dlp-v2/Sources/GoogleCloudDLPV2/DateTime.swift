@@ -36,6 +36,8 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Time zone
   public var timeZone: DateTime.TimeZone? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DateTime`.
   public init() {}
 
@@ -52,6 +54,50 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let date = CodingKeys(stringValue: "date")
+    static let dayOfWeek = CodingKeys(stringValue: "dayOfWeek")
+    static let time = CodingKeys(stringValue: "time")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "date",
+      "dayOfWeek",
+      "time",
+      "timeZone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.date = try container.decodeIfPresent(GoogleType.Date.self, forKey: .date)
+    if let value = try container.decodeIfPresent(GoogleType.DayOfWeek.self, forKey: .dayOfWeek) {
+      self.dayOfWeek = value
+    }
+    self.time = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .time)
+    self.timeZone = try container.decodeIfPresent(DateTime.TimeZone.self, forKey: .timeZone)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.date, forKey: .date)
+    try container.encode(self.dayOfWeek, forKey: .dayOfWeek)
+    try container.encodeIfPresent(self.time, forKey: .time)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Time zone of the date time object.
   public struct TimeZone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +105,8 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Set only if the offset can be determined. Positive for time ahead of UTC.
     /// E.g. For "UTC-9", this value is -540.
     public var offsetMinutes: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TimeZone`.
     public init() {}
@@ -74,6 +122,38 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let offsetMinutes = CodingKeys(stringValue: "offsetMinutes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "offsetMinutes"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .offsetMinutes) {
+        self.offsetMinutes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.offsetMinutes, forKey: .offsetMinutes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

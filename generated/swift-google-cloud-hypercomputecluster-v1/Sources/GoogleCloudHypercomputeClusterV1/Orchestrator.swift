@@ -26,6 +26,8 @@ public struct Orchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Particular type of orchestrator to use in this cluster.
   public var option: OneOf_Option? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Orchestrator`.
   public init() {}
 
@@ -42,8 +44,17 @@ public struct Orchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case slurm = "slurm"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let slurm = CodingKeys(stringValue: "slurm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "slurm"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct Orchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionCheckAndSet(.slurm(slurm))
     }
     self.option = option
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct Orchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .slurm(let value):
         try container.encode(value, forKey: .slurm)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

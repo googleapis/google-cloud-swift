@@ -48,6 +48,8 @@ public struct CloudExadataInfrastructure: Codable, Equatable, GoogleCloudWKT._An
   /// Output only. The date and time that the Exadata Infrastructure was created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudExadataInfrastructure`.
   public init() {}
 
@@ -62,6 +64,73 @@ public struct CloudExadataInfrastructure: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let gcpOracleZone = CodingKeys(stringValue: "gcpOracleZone")
+    static let entitlementId = CodingKeys(stringValue: "entitlementId")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "gcpOracleZone",
+      "entitlementId",
+      "properties",
+      "labels",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleZone) {
+      self.gcpOracleZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlementId) {
+      self.entitlementId = value
+    }
+    self.properties = try container.decodeIfPresent(
+      CloudExadataInfrastructureProperties.self, forKey: .properties)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
+    try container.encode(self.entitlementId, forKey: .entitlementId)
+    try container.encodeIfPresent(self.properties, forKey: .properties)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

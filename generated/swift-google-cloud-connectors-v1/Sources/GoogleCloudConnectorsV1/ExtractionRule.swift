@@ -28,6 +28,8 @@ public struct ExtractionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// value will be used.
   public var extractionRegex: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExtractionRule`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct ExtractionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let source = CodingKeys(stringValue: "source")
+    static let extractionRegex = CodingKeys(stringValue: "extractionRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "source",
+      "extractionRegex",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.source = try container.decodeIfPresent(ExtractionRule.Source.self, forKey: .source)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .extractionRegex) {
+      self.extractionRegex = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encode(self.extractionRegex, forKey: .extractionRegex)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Source to extract the backend from.
   public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +91,8 @@ public struct ExtractionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Field identifier. For example config vaiable name.
     public var fieldId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Source`.
     public init() {}
@@ -68,6 +108,46 @@ public struct ExtractionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceType = CodingKeys(stringValue: "sourceType")
+      static let fieldId = CodingKeys(stringValue: "fieldId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceType",
+        "fieldId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ExtractionRule.SourceType.self, forKey: .sourceType)
+      {
+        self.sourceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldId) {
+        self.fieldId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceType, forKey: .sourceType)
+      try container.encode(self.fieldId, forKey: .fieldId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -43,6 +43,8 @@ public struct CreateMicrosoftAdDomainRequest: Codable, Equatable, GoogleCloudWKT
   /// Required. A Managed Identity domain resource.
   public var domain: Domain? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateMicrosoftAdDomainRequest`.
   public init() {}
 
@@ -57,6 +59,48 @@ public struct CreateMicrosoftAdDomainRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let domainName = CodingKeys(stringValue: "domainName")
+    static let domain = CodingKeys(stringValue: "domain")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "domainName",
+      "domain",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domainName) {
+      self.domainName = value
+    }
+    self.domain = try container.decodeIfPresent(Domain.self, forKey: .domain)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.domainName, forKey: .domainName)
+    try container.encodeIfPresent(self.domain, forKey: .domain)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

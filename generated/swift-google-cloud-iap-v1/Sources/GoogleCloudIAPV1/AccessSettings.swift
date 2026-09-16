@@ -45,6 +45,8 @@ public struct AccessSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only one identity source can be configured.
   public var identitySources: [AccessSettings.IdentitySource] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessSettings`.
   public init() {}
 
@@ -59,6 +61,68 @@ public struct AccessSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcipSettings = CodingKeys(stringValue: "gcipSettings")
+    static let corsSettings = CodingKeys(stringValue: "corsSettings")
+    static let oauthSettings = CodingKeys(stringValue: "oauthSettings")
+    static let reauthSettings = CodingKeys(stringValue: "reauthSettings")
+    static let allowedDomainsSettings = CodingKeys(stringValue: "allowedDomainsSettings")
+    static let workforceIdentitySettings = CodingKeys(stringValue: "workforceIdentitySettings")
+    static let identitySources = CodingKeys(stringValue: "identitySources")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcipSettings",
+      "corsSettings",
+      "oauthSettings",
+      "reauthSettings",
+      "allowedDomainsSettings",
+      "workforceIdentitySettings",
+      "identitySources",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gcipSettings = try container.decodeIfPresent(GcipSettings.self, forKey: .gcipSettings)
+    self.corsSettings = try container.decodeIfPresent(CorsSettings.self, forKey: .corsSettings)
+    self.oauthSettings = try container.decodeIfPresent(OAuthSettings.self, forKey: .oauthSettings)
+    self.reauthSettings = try container.decodeIfPresent(
+      ReauthSettings.self, forKey: .reauthSettings)
+    self.allowedDomainsSettings = try container.decodeIfPresent(
+      AllowedDomainsSettings.self, forKey: .allowedDomainsSettings)
+    self.workforceIdentitySettings = try container.decodeIfPresent(
+      WorkforceIdentitySettings.self, forKey: .workforceIdentitySettings)
+    if let value = try container.decodeIfPresent(
+      [AccessSettings.IdentitySource].self, forKey: .identitySources)
+    {
+      self.identitySources = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.gcipSettings, forKey: .gcipSettings)
+    try container.encodeIfPresent(self.corsSettings, forKey: .corsSettings)
+    try container.encodeIfPresent(self.oauthSettings, forKey: .oauthSettings)
+    try container.encodeIfPresent(self.reauthSettings, forKey: .reauthSettings)
+    try container.encodeIfPresent(self.allowedDomainsSettings, forKey: .allowedDomainsSettings)
+    try container.encodeIfPresent(
+      self.workforceIdentitySettings, forKey: .workforceIdentitySettings)
+    try container.encode(self.identitySources, forKey: .identitySources)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of identity source supported by IAP.

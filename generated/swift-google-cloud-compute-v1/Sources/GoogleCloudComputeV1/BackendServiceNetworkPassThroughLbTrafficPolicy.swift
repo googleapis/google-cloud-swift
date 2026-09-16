@@ -26,6 +26,8 @@
     /// endpoints in the local zone.
     public var zonalAffinity: BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceNetworkPassThroughLbTrafficPolicy`.
     public init() {}
 
@@ -40,6 +42,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let zonalAffinity = CodingKeys(stringValue: "zonalAffinity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "zonalAffinity"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.zonalAffinity = try container.decodeIfPresent(
+        BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity.self, forKey: .zonalAffinity)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.zonalAffinity, forKey: .zonalAffinity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

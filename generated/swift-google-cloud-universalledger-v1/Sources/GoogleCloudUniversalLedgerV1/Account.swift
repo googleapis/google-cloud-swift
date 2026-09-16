@@ -39,6 +39,8 @@ public struct Account: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specific details based on the type of account.
   public var accountDetails: OneOf_AccountDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Account`.
   public init() {}
 
@@ -55,27 +57,55 @@ public struct Account: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case userDetails = "userDetails"
-    case accountManagerDetails = "accountManagerDetails"
-    case tokenManagerDetails = "tokenManagerDetails"
-    case contractTokenManagerDetails = "contractTokenManagerDetails"
-    case contractDetails = "contractDetails"
-    case clearinghouseDetails = "clearinghouseDetails"
-    case currencyOperatorDetails = "currencyOperatorDetails"
-    case platformOperatorDetails = "platformOperatorDetails"
-    case sequenceNumber = "sequenceNumber"
-    case publicKey = "publicKey"
-    case roundId = "roundId"
-    case comment = "comment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userDetails = CodingKeys(stringValue: "userDetails")
+    static let accountManagerDetails = CodingKeys(stringValue: "accountManagerDetails")
+    static let tokenManagerDetails = CodingKeys(stringValue: "tokenManagerDetails")
+    static let contractTokenManagerDetails = CodingKeys(stringValue: "contractTokenManagerDetails")
+    static let contractDetails = CodingKeys(stringValue: "contractDetails")
+    static let clearinghouseDetails = CodingKeys(stringValue: "clearinghouseDetails")
+    static let currencyOperatorDetails = CodingKeys(stringValue: "currencyOperatorDetails")
+    static let platformOperatorDetails = CodingKeys(stringValue: "platformOperatorDetails")
+    static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let roundId = CodingKeys(stringValue: "roundId")
+    static let comment = CodingKeys(stringValue: "comment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userDetails",
+      "accountManagerDetails",
+      "tokenManagerDetails",
+      "contractTokenManagerDetails",
+      "contractDetails",
+      "clearinghouseDetails",
+      "currencyOperatorDetails",
+      "platformOperatorDetails",
+      "sequenceNumber",
+      "publicKey",
+      "roundId",
+      "comment",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sequenceNumber = try container.decode(Swift.Int64.self, forKey: .sequenceNumber)
-    self.publicKey = try container.decode(Foundation.Data.self, forKey: .publicKey)
-    self.roundId = try container.decode(Swift.Int64.self, forKey: .roundId)
-    self.comment = try container.decode(Swift.String.self, forKey: .comment)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
+      self.sequenceNumber = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKey) {
+      self.publicKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .roundId) {
+      self.roundId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comment) {
+      self.comment = value
+    }
 
     var accountDetails: OneOf_AccountDetails? = nil
     let accountDetailsCheckAndSet = {
@@ -126,6 +156,10 @@ public struct Account: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try accountDetailsCheckAndSet(.platformOperatorDetails(platformOperatorDetails))
     }
     self.accountDetails = accountDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -154,6 +188,9 @@ public struct Account: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .platformOperatorDetails(let value):
         try container.encode(value, forKey: .platformOperatorDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

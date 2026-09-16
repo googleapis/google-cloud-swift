@@ -97,6 +97,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the specified time.
   public var expiration: OneOf_Expiration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Conversation`.
   public init() {}
 
@@ -113,34 +115,66 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case callMetadata = "callMetadata"
-    case expireTime = "expireTime"
-    case ttl = "ttl"
-    case name = "name"
-    case dataSource = "dataSource"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case startTime = "startTime"
-    case languageCode = "languageCode"
-    case agentId = "agentId"
-    case labels = "labels"
-    case qualityMetadata = "qualityMetadata"
-    case metadataJson = "metadataJson"
-    case transcript = "transcript"
-    case medium = "medium"
-    case duration = "duration"
-    case turnCount = "turnCount"
-    case latestAnalysis = "latestAnalysis"
-    case latestSummary = "latestSummary"
-    case runtimeAnnotations = "runtimeAnnotations"
-    case dialogflowIntents = "dialogflowIntents"
-    case obfuscatedUserId = "obfuscatedUserId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let callMetadata = CodingKeys(stringValue: "callMetadata")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let name = CodingKeys(stringValue: "name")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let agentId = CodingKeys(stringValue: "agentId")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let qualityMetadata = CodingKeys(stringValue: "qualityMetadata")
+    static let metadataJson = CodingKeys(stringValue: "metadataJson")
+    static let transcript = CodingKeys(stringValue: "transcript")
+    static let medium = CodingKeys(stringValue: "medium")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let turnCount = CodingKeys(stringValue: "turnCount")
+    static let latestAnalysis = CodingKeys(stringValue: "latestAnalysis")
+    static let latestSummary = CodingKeys(stringValue: "latestSummary")
+    static let runtimeAnnotations = CodingKeys(stringValue: "runtimeAnnotations")
+    static let dialogflowIntents = CodingKeys(stringValue: "dialogflowIntents")
+    static let obfuscatedUserId = CodingKeys(stringValue: "obfuscatedUserId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "callMetadata",
+      "expireTime",
+      "ttl",
+      "name",
+      "dataSource",
+      "createTime",
+      "updateTime",
+      "startTime",
+      "languageCode",
+      "agentId",
+      "labels",
+      "qualityMetadata",
+      "metadataJson",
+      "transcript",
+      "medium",
+      "duration",
+      "turnCount",
+      "latestAnalysis",
+      "latestSummary",
+      "runtimeAnnotations",
+      "dialogflowIntents",
+      "obfuscatedUserId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.dataSource = try container.decodeIfPresent(
       ConversationDataSource.self, forKey: .dataSource)
     self.createTime = try container.decodeIfPresent(
@@ -149,25 +183,46 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
-    self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
-    self.agentId = try container.decode(Swift.String.self, forKey: .agentId)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
+      self.agentId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.qualityMetadata = try container.decodeIfPresent(
       Conversation.QualityMetadata.self, forKey: .qualityMetadata)
-    self.metadataJson = try container.decode(Swift.String.self, forKey: .metadataJson)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataJson) {
+      self.metadataJson = value
+    }
     self.transcript = try container.decodeIfPresent(
       Conversation.Transcript.self, forKey: .transcript)
-    self.medium = try container.decode(Conversation.Medium.self, forKey: .medium)
+    if let value = try container.decodeIfPresent(Conversation.Medium.self, forKey: .medium) {
+      self.medium = value
+    }
     self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
-    self.turnCount = try container.decode(Swift.Int32.self, forKey: .turnCount)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .turnCount) {
+      self.turnCount = value
+    }
     self.latestAnalysis = try container.decodeIfPresent(Analysis.self, forKey: .latestAnalysis)
     self.latestSummary = try container.decodeIfPresent(
       ConversationSummarizationSuggestionData.self, forKey: .latestSummary)
-    self.runtimeAnnotations = try container.decode(
+    if let value = try container.decodeIfPresent(
       [RuntimeAnnotation].self, forKey: .runtimeAnnotations)
-    self.dialogflowIntents = try container.decode(
+    {
+      self.runtimeAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: DialogflowIntent].self, forKey: .dialogflowIntents)
-    self.obfuscatedUserId = try container.decode(Swift.String.self, forKey: .obfuscatedUserId)
+    {
+      self.dialogflowIntents = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .obfuscatedUserId) {
+      self.obfuscatedUserId = value
+    }
 
     var metadata: OneOf_Metadata? = nil
     let metadataCheckAndSet = {
@@ -205,26 +260,30 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.dataSource, forKey: .dataSource)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.dataSource, forKey: .dataSource)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encode(self.languageCode, forKey: .languageCode)
     try container.encode(self.agentId, forKey: .agentId)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.qualityMetadata, forKey: .qualityMetadata)
+    try container.encodeIfPresent(self.qualityMetadata, forKey: .qualityMetadata)
     try container.encode(self.metadataJson, forKey: .metadataJson)
-    try container.encode(self.transcript, forKey: .transcript)
+    try container.encodeIfPresent(self.transcript, forKey: .transcript)
     try container.encode(self.medium, forKey: .medium)
-    try container.encode(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
     try container.encode(self.turnCount, forKey: .turnCount)
-    try container.encode(self.latestAnalysis, forKey: .latestAnalysis)
-    try container.encode(self.latestSummary, forKey: .latestSummary)
+    try container.encodeIfPresent(self.latestAnalysis, forKey: .latestAnalysis)
+    try container.encodeIfPresent(self.latestSummary, forKey: .latestSummary)
     try container.encode(self.runtimeAnnotations, forKey: .runtimeAnnotations)
     try container.encode(self.dialogflowIntents, forKey: .dialogflowIntents)
     try container.encode(self.obfuscatedUserId, forKey: .obfuscatedUserId)
@@ -244,6 +303,9 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .ttl)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Call-specific metadata.
@@ -255,6 +317,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The audio channel that contains the agent.
     public var agentChannel: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CallMetadata`.
     public init() {}
@@ -270,6 +334,44 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customerChannel = CodingKeys(stringValue: "customerChannel")
+      static let agentChannel = CodingKeys(stringValue: "agentChannel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customerChannel",
+        "agentChannel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .customerChannel) {
+        self.customerChannel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .agentChannel) {
+        self.agentChannel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.customerChannel, forKey: .customerChannel)
+      try container.encode(self.agentChannel, forKey: .agentChannel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -299,6 +401,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Information about agents involved in the call.
     public var agentInfo: [Conversation.QualityMetadata.AgentInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QualityMetadata`.
     public init() {}
 
@@ -313,6 +417,59 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customerSatisfactionRating = CodingKeys(stringValue: "customerSatisfactionRating")
+      static let waitDuration = CodingKeys(stringValue: "waitDuration")
+      static let menuPath = CodingKeys(stringValue: "menuPath")
+      static let agentInfo = CodingKeys(stringValue: "agentInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customerSatisfactionRating",
+        "waitDuration",
+        "menuPath",
+        "agentInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .customerSatisfactionRating)
+      {
+        self.customerSatisfactionRating = value
+      }
+      self.waitDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .waitDuration)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .menuPath) {
+        self.menuPath = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Conversation.QualityMetadata.AgentInfo].self, forKey: .agentInfo)
+      {
+        self.agentInfo = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.customerSatisfactionRating, forKey: .customerSatisfactionRating)
+      try container.encodeIfPresent(self.waitDuration, forKey: .waitDuration)
+      try container.encode(self.menuPath, forKey: .menuPath)
+      try container.encode(self.agentInfo, forKey: .agentInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Information about an agent involved in the conversation.
@@ -335,6 +492,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The agent type, e.g. HUMAN_AGENT.
       public var agentType: ConversationParticipant.Role = ConversationParticipant.Role()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AgentInfo`.
       public init() {}
 
@@ -349,6 +508,64 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let agentId = CodingKeys(stringValue: "agentId")
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let team = CodingKeys(stringValue: "team")
+        static let dispositionCode = CodingKeys(stringValue: "dispositionCode")
+        static let agentType = CodingKeys(stringValue: "agentType")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "agentId",
+          "displayName",
+          "team",
+          "dispositionCode",
+          "agentType",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
+          self.agentId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .team) {
+          self.team = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dispositionCode) {
+          self.dispositionCode = value
+        }
+        if let value = try container.decodeIfPresent(
+          ConversationParticipant.Role.self, forKey: .agentType)
+        {
+          self.agentType = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.agentId, forKey: .agentId)
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encode(self.team, forKey: .team)
+        try container.encode(self.dispositionCode, forKey: .dispositionCode)
+        try container.encode(self.agentType, forKey: .agentType)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -382,6 +599,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A list of sequential transcript segments that comprise the conversation.
     public var transcriptSegments: [Conversation.Transcript.TranscriptSegment] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Transcript`.
     public init() {}
 
@@ -396,6 +615,40 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let transcriptSegments = CodingKeys(stringValue: "transcriptSegments")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "transcriptSegments"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Conversation.Transcript.TranscriptSegment].self, forKey: .transcriptSegments)
+      {
+        self.transcriptSegments = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.transcriptSegments, forKey: .transcriptSegments)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A segment of a full transcript.
@@ -436,6 +689,8 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The sentiment for this transcript segment.
       public var sentiment: SentimentData? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TranscriptSegment`.
       public init() {}
 
@@ -450,6 +705,85 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let messageTime = CodingKeys(stringValue: "messageTime")
+        static let text = CodingKeys(stringValue: "text")
+        static let confidence = CodingKeys(stringValue: "confidence")
+        static let words = CodingKeys(stringValue: "words")
+        static let languageCode = CodingKeys(stringValue: "languageCode")
+        static let channelTag = CodingKeys(stringValue: "channelTag")
+        static let segmentParticipant = CodingKeys(stringValue: "segmentParticipant")
+        static let dialogflowSegmentMetadata = CodingKeys(stringValue: "dialogflowSegmentMetadata")
+        static let sentiment = CodingKeys(stringValue: "sentiment")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "messageTime",
+          "text",
+          "confidence",
+          "words",
+          "languageCode",
+          "channelTag",
+          "segmentParticipant",
+          "dialogflowSegmentMetadata",
+          "sentiment",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.messageTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .messageTime)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+          self.text = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+          self.confidence = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Conversation.Transcript.TranscriptSegment.WordInfo].self, forKey: .words)
+        {
+          self.words = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+          self.languageCode = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelTag) {
+          self.channelTag = value
+        }
+        self.segmentParticipant = try container.decodeIfPresent(
+          ConversationParticipant.self, forKey: .segmentParticipant)
+        self.dialogflowSegmentMetadata = try container.decodeIfPresent(
+          Conversation.Transcript.TranscriptSegment.DialogflowSegmentMetadata.self,
+          forKey: .dialogflowSegmentMetadata)
+        self.sentiment = try container.decodeIfPresent(SentimentData.self, forKey: .sentiment)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.messageTime, forKey: .messageTime)
+        try container.encode(self.text, forKey: .text)
+        try container.encode(self.confidence, forKey: .confidence)
+        try container.encode(self.words, forKey: .words)
+        try container.encode(self.languageCode, forKey: .languageCode)
+        try container.encode(self.channelTag, forKey: .channelTag)
+        try container.encodeIfPresent(self.segmentParticipant, forKey: .segmentParticipant)
+        try container.encodeIfPresent(
+          self.dialogflowSegmentMetadata, forKey: .dialogflowSegmentMetadata)
+        try container.encodeIfPresent(self.sentiment, forKey: .sentiment)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Word-level info for words in a transcript.
@@ -471,6 +805,9 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// word. A default value of 0.0 indicates that the value is unset.
         public var confidence: Swift.Float = Swift.Float()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `WordInfo`.
         public init() {}
 
@@ -485,6 +822,54 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let startOffset = CodingKeys(stringValue: "startOffset")
+          static let endOffset = CodingKeys(stringValue: "endOffset")
+          static let word = CodingKeys(stringValue: "word")
+          static let confidence = CodingKeys(stringValue: "confidence")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "startOffset",
+            "endOffset",
+            "word",
+            "confidence",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.startOffset = try container.decodeIfPresent(
+            GoogleCloudWKT.Duration.self, forKey: .startOffset)
+          self.endOffset = try container.decodeIfPresent(
+            GoogleCloudWKT.Duration.self, forKey: .endOffset)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .word) {
+            self.word = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+            self.confidence = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.startOffset, forKey: .startOffset)
+          try container.encodeIfPresent(self.endOffset, forKey: .endOffset)
+          try container.encode(self.word, forKey: .word)
+          try container.encode(self.confidence, forKey: .confidence)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -507,6 +892,9 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// reply allowlist in Agent Assist.
         public var smartReplyAllowlistCovered: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DialogflowSegmentMetadata`.
         public init() {}
 
@@ -521,6 +909,41 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let smartReplyAllowlistCovered = CodingKeys(
+            stringValue: "smartReplyAllowlistCovered")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "smartReplyAllowlistCovered"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .smartReplyAllowlistCovered)
+          {
+            self.smartReplyAllowlistCovered = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.smartReplyAllowlistCovered, forKey: .smartReplyAllowlistCovered)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

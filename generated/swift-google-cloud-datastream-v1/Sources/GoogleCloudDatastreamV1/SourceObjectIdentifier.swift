@@ -24,6 +24,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The identifier for an object in the data source.
   public var sourceIdentifier: OneOf_SourceIdentifier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceObjectIdentifier`.
   public init() {}
 
@@ -40,13 +42,27 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oracleIdentifier = "oracleIdentifier"
-    case mysqlIdentifier = "mysqlIdentifier"
-    case postgresqlIdentifier = "postgresqlIdentifier"
-    case sqlServerIdentifier = "sqlServerIdentifier"
-    case salesforceIdentifier = "salesforceIdentifier"
-    case mongodbIdentifier = "mongodbIdentifier"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oracleIdentifier = CodingKeys(stringValue: "oracleIdentifier")
+    static let mysqlIdentifier = CodingKeys(stringValue: "mysqlIdentifier")
+    static let postgresqlIdentifier = CodingKeys(stringValue: "postgresqlIdentifier")
+    static let sqlServerIdentifier = CodingKeys(stringValue: "sqlServerIdentifier")
+    static let salesforceIdentifier = CodingKeys(stringValue: "salesforceIdentifier")
+    static let mongodbIdentifier = CodingKeys(stringValue: "mongodbIdentifier")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oracleIdentifier",
+      "mysqlIdentifier",
+      "postgresqlIdentifier",
+      "sqlServerIdentifier",
+      "salesforceIdentifier",
+      "mongodbIdentifier",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,6 +109,10 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       try sourceIdentifierCheckAndSet(.mongodbIdentifier(mongodbIdentifier))
     }
     self.sourceIdentifier = sourceIdentifier
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,6 +134,9 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
         try container.encode(value, forKey: .mongodbIdentifier)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Oracle data source object identifier.
@@ -125,6 +148,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
 
     /// Required. The table name.
     public var table: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `OracleObjectIdentifier`.
     public init() {}
@@ -140,6 +165,44 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let schema = CodingKeys(stringValue: "schema")
+      static let table = CodingKeys(stringValue: "table")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "schema",
+        "table",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+        self.schema = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.schema, forKey: .schema)
+      try container.encode(self.table, forKey: .table)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -164,6 +227,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. The table name.
     public var table: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PostgresqlObjectIdentifier`.
     public init() {}
 
@@ -178,6 +243,44 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let schema = CodingKeys(stringValue: "schema")
+      static let table = CodingKeys(stringValue: "table")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "schema",
+        "table",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+        self.schema = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.schema, forKey: .schema)
+      try container.encode(self.table, forKey: .table)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -202,6 +305,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. The table name.
     public var table: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MysqlObjectIdentifier`.
     public init() {}
 
@@ -216,6 +321,44 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let database = CodingKeys(stringValue: "database")
+      static let table = CodingKeys(stringValue: "table")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "database",
+        "table",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+        self.database = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.database, forKey: .database)
+      try container.encode(self.table, forKey: .table)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -240,6 +383,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. The table name.
     public var table: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlServerObjectIdentifier`.
     public init() {}
 
@@ -254,6 +399,44 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let schema = CodingKeys(stringValue: "schema")
+      static let table = CodingKeys(stringValue: "table")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "schema",
+        "table",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+        self.schema = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.schema, forKey: .schema)
+      try container.encode(self.table, forKey: .table)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -275,6 +458,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. The object name.
     public var objectName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SalesforceObjectIdentifier`.
     public init() {}
 
@@ -289,6 +474,38 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let objectName = CodingKeys(stringValue: "objectName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "objectName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .objectName) {
+        self.objectName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.objectName, forKey: .objectName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -313,6 +530,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. The collection name.
     public var collection: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MongodbObjectIdentifier`.
     public init() {}
 
@@ -327,6 +546,44 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let database = CodingKeys(stringValue: "database")
+      static let collection = CodingKeys(stringValue: "collection")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "database",
+        "collection",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+        self.database = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collection) {
+        self.collection = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.database, forKey: .database)
+      try container.encode(self.collection, forKey: .collection)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

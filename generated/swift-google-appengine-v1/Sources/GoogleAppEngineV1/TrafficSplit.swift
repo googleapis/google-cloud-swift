@@ -37,6 +37,8 @@ public struct TrafficSplit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// up to three decimal places is supported for cookie-based splits.
   public var allocations: [Swift.String: Swift.Double] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrafficSplit`.
   public init() {}
 
@@ -51,6 +53,46 @@ public struct TrafficSplit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let shardBy = CodingKeys(stringValue: "shardBy")
+    static let allocations = CodingKeys(stringValue: "allocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "shardBy",
+      "allocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(TrafficSplit.ShardBy.self, forKey: .shardBy) {
+      self.shardBy = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Double].self, forKey: .allocations)
+    {
+      self.allocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.shardBy, forKey: .shardBy)
+    try container.encode(self.allocations, forKey: .allocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available sharding mechanisms.

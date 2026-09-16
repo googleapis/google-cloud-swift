@@ -59,6 +59,8 @@ public struct PySparkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The runtime log config for job execution.
   public var loggingConfig: LoggingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PySparkJob`.
   public init() {}
 
@@ -73,6 +75,80 @@ public struct PySparkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mainPythonFileUri = CodingKeys(stringValue: "mainPythonFileUri")
+    static let args = CodingKeys(stringValue: "args")
+    static let pythonFileUris = CodingKeys(stringValue: "pythonFileUris")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+    static let fileUris = CodingKeys(stringValue: "fileUris")
+    static let archiveUris = CodingKeys(stringValue: "archiveUris")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mainPythonFileUri",
+      "args",
+      "pythonFileUris",
+      "jarFileUris",
+      "fileUris",
+      "archiveUris",
+      "properties",
+      "loggingConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mainPythonFileUri) {
+      self.mainPythonFileUri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pythonFileUris) {
+      self.pythonFileUris = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fileUris) {
+      self.fileUris = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .archiveUris) {
+      self.archiveUris = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mainPythonFileUri, forKey: .mainPythonFileUri)
+    try container.encode(self.args, forKey: .args)
+    try container.encode(self.pythonFileUris, forKey: .pythonFileUris)
+    try container.encode(self.jarFileUris, forKey: .jarFileUris)
+    try container.encode(self.fileUris, forKey: .fileUris)
+    try container.encode(self.archiveUris, forKey: .archiveUris)
+    try container.encode(self.properties, forKey: .properties)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

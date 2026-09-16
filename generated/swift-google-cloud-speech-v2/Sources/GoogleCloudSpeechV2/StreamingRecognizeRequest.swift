@@ -55,6 +55,8 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleCloudWKT._Any
 
   public var streamingRequest: OneOf_StreamingRequest? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamingRecognizeRequest`.
   public init() {}
 
@@ -71,15 +73,28 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case recognizer = "recognizer"
-    case streamingConfig = "streamingConfig"
-    case audio = "audio"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let recognizer = CodingKeys(stringValue: "recognizer")
+    static let streamingConfig = CodingKeys(stringValue: "streamingConfig")
+    static let audio = CodingKeys(stringValue: "audio")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "recognizer",
+      "streamingConfig",
+      "audio",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.recognizer = try container.decode(Swift.String.self, forKey: .recognizer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recognizer) {
+      self.recognizer = value
+    }
 
     var streamingRequest: OneOf_StreamingRequest? = nil
     let streamingRequestCheckAndSet = {
@@ -100,6 +115,10 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleCloudWKT._Any
       try streamingRequestCheckAndSet(.audio(audio))
     }
     self.streamingRequest = streamingRequest
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -113,6 +132,9 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleCloudWKT._Any
       case .audio(let value):
         try container.encode(value, forKey: .audio)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

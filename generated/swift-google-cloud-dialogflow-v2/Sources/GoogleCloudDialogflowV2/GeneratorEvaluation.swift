@@ -65,6 +65,8 @@
     /// Metrics details.
     public var metrics: OneOf_Metrics? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GeneratorEvaluation`.
     public init() {}
 
@@ -81,23 +83,45 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case generatorEvaluationConfig = "generatorEvaluationConfig"
-      case createTime = "createTime"
-      case completeTime = "completeTime"
-      case initialGenerator = "initialGenerator"
-      case summarizationMetrics = "summarizationMetrics"
-      case evaluationStatus = "evaluationStatus"
-      case satisfiesPzs = "satisfiesPzs"
-      case satisfiesPzi = "satisfiesPzi"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let generatorEvaluationConfig = CodingKeys(stringValue: "generatorEvaluationConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let completeTime = CodingKeys(stringValue: "completeTime")
+      static let initialGenerator = CodingKeys(stringValue: "initialGenerator")
+      static let summarizationMetrics = CodingKeys(stringValue: "summarizationMetrics")
+      static let evaluationStatus = CodingKeys(stringValue: "evaluationStatus")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "generatorEvaluationConfig",
+        "createTime",
+        "completeTime",
+        "initialGenerator",
+        "summarizationMetrics",
+        "evaluationStatus",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.generatorEvaluationConfig = try container.decodeIfPresent(
         GeneratorEvaluationConfig.self, forKey: .generatorEvaluationConfig)
       self.createTime = try container.decodeIfPresent(
@@ -127,25 +151,33 @@
         try metricsCheckAndSet(.summarizationMetrics(summarizationMetrics))
       }
       self.metrics = metrics
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.generatorEvaluationConfig, forKey: .generatorEvaluationConfig)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.completeTime, forKey: .completeTime)
-      try container.encode(self.initialGenerator, forKey: .initialGenerator)
-      try container.encode(self.evaluationStatus, forKey: .evaluationStatus)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(
+        self.generatorEvaluationConfig, forKey: .generatorEvaluationConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+      try container.encodeIfPresent(self.initialGenerator, forKey: .initialGenerator)
+      try container.encodeIfPresent(self.evaluationStatus, forKey: .evaluationStatus)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
       if let choice = self.metrics {
         switch choice {
         case .summarizationMetrics(let value):
           try container.encode(value, forKey: .summarizationMetrics)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -42,6 +42,8 @@ public struct ChecksummedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.ChecksummedData.data]: <doc:ChecksummedData/data>
   public var crc32CChecksum: GoogleCloudWKT.Int64Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChecksummedData`.
   public init() {}
 
@@ -58,22 +60,41 @@ public struct ChecksummedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case data = "data"
-    case crc32CChecksum = "crc32cChecksum"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let data = CodingKeys(stringValue: "data")
+    static let crc32CChecksum = CodingKeys(stringValue: "crc32cChecksum")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "data",
+      "crc32cChecksum",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.data = try container.decode(Foundation.Data.self, forKey: .data)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
+      self.data = value
+    }
     self.crc32CChecksum = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .crc32CChecksum)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.data, forKey: .data)
-    try container.encode(self.crc32CChecksum, forKey: .crc32CChecksum)
+    try container.encodeIfPresent(self.crc32CChecksum, forKey: .crc32CChecksum)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -255,6 +255,8 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   @available(*, deprecated)
   public var populateTravelStepPolylines: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OptimizeToursRequest`.
   public init() {}
 
@@ -269,6 +271,155 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let model = CodingKeys(stringValue: "model")
+    static let solvingMode = CodingKeys(stringValue: "solvingMode")
+    static let searchMode = CodingKeys(stringValue: "searchMode")
+    static let injectedFirstSolutionRoutes = CodingKeys(stringValue: "injectedFirstSolutionRoutes")
+    static let injectedSolutionConstraint = CodingKeys(stringValue: "injectedSolutionConstraint")
+    static let refreshDetailsRoutes = CodingKeys(stringValue: "refreshDetailsRoutes")
+    static let interpretInjectedSolutionsUsingLabels = CodingKeys(
+      stringValue: "interpretInjectedSolutionsUsingLabels")
+    static let considerRoadTraffic = CodingKeys(stringValue: "considerRoadTraffic")
+    static let populatePolylines = CodingKeys(stringValue: "populatePolylines")
+    static let populateTransitionPolylines = CodingKeys(stringValue: "populateTransitionPolylines")
+    static let allowLargeDeadlineDespiteInterruptionRisk = CodingKeys(
+      stringValue: "allowLargeDeadlineDespiteInterruptionRisk")
+    static let useGeodesicDistances = CodingKeys(stringValue: "useGeodesicDistances")
+    static let geodesicMetersPerSecond = CodingKeys(stringValue: "geodesicMetersPerSecond")
+    static let maxValidationErrors = CodingKeys(stringValue: "maxValidationErrors")
+    static let label = CodingKeys(stringValue: "label")
+    static let populateTravelStepPolylines = CodingKeys(stringValue: "populateTravelStepPolylines")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "timeout",
+      "model",
+      "solvingMode",
+      "searchMode",
+      "injectedFirstSolutionRoutes",
+      "injectedSolutionConstraint",
+      "refreshDetailsRoutes",
+      "interpretInjectedSolutionsUsingLabels",
+      "considerRoadTraffic",
+      "populatePolylines",
+      "populateTransitionPolylines",
+      "allowLargeDeadlineDespiteInterruptionRisk",
+      "useGeodesicDistances",
+      "geodesicMetersPerSecond",
+      "maxValidationErrors",
+      "label",
+      "populateTravelStepPolylines",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    self.model = try container.decodeIfPresent(ShipmentModel.self, forKey: .model)
+    if let value = try container.decodeIfPresent(
+      OptimizeToursRequest.SolvingMode.self, forKey: .solvingMode)
+    {
+      self.solvingMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      OptimizeToursRequest.SearchMode.self, forKey: .searchMode)
+    {
+      self.searchMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentRoute].self, forKey: .injectedFirstSolutionRoutes)
+    {
+      self.injectedFirstSolutionRoutes = value
+    }
+    self.injectedSolutionConstraint = try container.decodeIfPresent(
+      InjectedSolutionConstraint.self, forKey: .injectedSolutionConstraint)
+    if let value = try container.decodeIfPresent(
+      [ShipmentRoute].self, forKey: .refreshDetailsRoutes)
+    {
+      self.refreshDetailsRoutes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .interpretInjectedSolutionsUsingLabels)
+    {
+      self.interpretInjectedSolutionsUsingLabels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .considerRoadTraffic) {
+      self.considerRoadTraffic = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .populatePolylines) {
+      self.populatePolylines = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .populateTransitionPolylines)
+    {
+      self.populateTransitionPolylines = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .allowLargeDeadlineDespiteInterruptionRisk)
+    {
+      self.allowLargeDeadlineDespiteInterruptionRisk = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useGeodesicDistances) {
+      self.useGeodesicDistances = value
+    }
+    self.geodesicMetersPerSecond = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .geodesicMetersPerSecond)
+    self.maxValidationErrors = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .maxValidationErrors)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .populateTravelStepPolylines)
+    {
+      self.populateTravelStepPolylines = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encodeIfPresent(self.model, forKey: .model)
+    try container.encode(self.solvingMode, forKey: .solvingMode)
+    try container.encode(self.searchMode, forKey: .searchMode)
+    try container.encode(self.injectedFirstSolutionRoutes, forKey: .injectedFirstSolutionRoutes)
+    try container.encodeIfPresent(
+      self.injectedSolutionConstraint, forKey: .injectedSolutionConstraint)
+    try container.encode(self.refreshDetailsRoutes, forKey: .refreshDetailsRoutes)
+    try container.encode(
+      self.interpretInjectedSolutionsUsingLabels, forKey: .interpretInjectedSolutionsUsingLabels)
+    try container.encode(self.considerRoadTraffic, forKey: .considerRoadTraffic)
+    try container.encode(self.populatePolylines, forKey: .populatePolylines)
+    try container.encode(self.populateTransitionPolylines, forKey: .populateTransitionPolylines)
+    try container.encode(
+      self.allowLargeDeadlineDespiteInterruptionRisk,
+      forKey: .allowLargeDeadlineDespiteInterruptionRisk)
+    try container.encode(self.useGeodesicDistances, forKey: .useGeodesicDistances)
+    try container.encodeIfPresent(self.geodesicMetersPerSecond, forKey: .geodesicMetersPerSecond)
+    try container.encodeIfPresent(self.maxValidationErrors, forKey: .maxValidationErrors)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.populateTravelStepPolylines, forKey: .populateTravelStepPolylines)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines how the solver should handle the request. In all modes but

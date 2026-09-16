@@ -25,6 +25,8 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWKT
   /// Kubernetes master through HTTPS.
   public var cidrBlocks: [MasterAuthorizedNetworksConfig.CidrBlock] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MasterAuthorizedNetworksConfig`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cidrBlocks = CodingKeys(stringValue: "cidrBlocks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cidrBlocks"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [MasterAuthorizedNetworksConfig.CidrBlock].self, forKey: .cidrBlocks)
+    {
+      self.cidrBlocks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cidrBlocks, forKey: .cidrBlocks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// CidrBlock contains an optional name and one CIDR block.
   public struct CidrBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -54,6 +90,8 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWKT
     /// the deprecated man_block field, so this field is currently optional, but
     /// will be required in the future.
     public var cidrBlock: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CidrBlock`.
     public init() {}
@@ -69,6 +107,44 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWKT
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let cidrBlock = CodingKeys(stringValue: "cidrBlock")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "cidrBlock",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidrBlock) {
+        self.cidrBlock = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.cidrBlock, forKey: .cidrBlock)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

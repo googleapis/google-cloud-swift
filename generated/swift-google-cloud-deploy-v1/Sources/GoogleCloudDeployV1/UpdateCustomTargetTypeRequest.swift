@@ -54,6 +54,8 @@ public struct UpdateCustomTargetTypeRequest: Codable, Equatable, GoogleCloudWKT.
   /// with an expected result, but no actual change is made.
   public var validateOnly: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateCustomTargetTypeRequest`.
   public init() {}
 
@@ -68,6 +70,60 @@ public struct UpdateCustomTargetTypeRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let customTargetType = CodingKeys(stringValue: "customTargetType")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let allowMissing = CodingKeys(stringValue: "allowMissing")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateMask",
+      "customTargetType",
+      "requestId",
+      "allowMissing",
+      "validateOnly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.customTargetType = try container.decodeIfPresent(
+      CustomTargetType.self, forKey: .customTargetType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
+      self.allowMissing = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.customTargetType, forKey: .customTargetType)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.allowMissing, forKey: .allowMissing)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

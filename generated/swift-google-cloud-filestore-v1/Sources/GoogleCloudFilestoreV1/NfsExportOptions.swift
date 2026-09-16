@@ -53,6 +53,8 @@ public struct NfsExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// returned if this field is specified for other squash_mode settings.
   public var anonGid: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NfsExportOptions`.
   public init() {}
 
@@ -67,6 +69,66 @@ public struct NfsExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipRanges = CodingKeys(stringValue: "ipRanges")
+    static let accessMode = CodingKeys(stringValue: "accessMode")
+    static let squashMode = CodingKeys(stringValue: "squashMode")
+    static let anonUid = CodingKeys(stringValue: "anonUid")
+    static let anonGid = CodingKeys(stringValue: "anonGid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipRanges",
+      "accessMode",
+      "squashMode",
+      "anonUid",
+      "anonGid",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipRanges) {
+      self.ipRanges = value
+    }
+    if let value = try container.decodeIfPresent(
+      NfsExportOptions.AccessMode.self, forKey: .accessMode)
+    {
+      self.accessMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      NfsExportOptions.SquashMode.self, forKey: .squashMode)
+    {
+      self.squashMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .anonUid) {
+      self.anonUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .anonGid) {
+      self.anonGid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ipRanges, forKey: .ipRanges)
+    try container.encode(self.accessMode, forKey: .accessMode)
+    try container.encode(self.squashMode, forKey: .squashMode)
+    try container.encode(self.anonUid, forKey: .anonUid)
+    try container.encode(self.anonGid, forKey: .anonGid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The access mode.

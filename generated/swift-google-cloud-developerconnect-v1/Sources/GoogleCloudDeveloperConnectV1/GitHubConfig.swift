@@ -37,6 +37,8 @@ public struct GitHubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// associated with this GitHubConfig.
   public var installationUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubConfig`.
   public init() {}
 
@@ -51,6 +53,55 @@ public struct GitHubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let githubApp = CodingKeys(stringValue: "githubApp")
+    static let authorizerCredential = CodingKeys(stringValue: "authorizerCredential")
+    static let appInstallationId = CodingKeys(stringValue: "appInstallationId")
+    static let installationUri = CodingKeys(stringValue: "installationUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "githubApp",
+      "authorizerCredential",
+      "appInstallationId",
+      "installationUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(GitHubConfig.GitHubApp.self, forKey: .githubApp) {
+      self.githubApp = value
+    }
+    self.authorizerCredential = try container.decodeIfPresent(
+      OAuthCredential.self, forKey: .authorizerCredential)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appInstallationId) {
+      self.appInstallationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .installationUri) {
+      self.installationUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.githubApp, forKey: .githubApp)
+    try container.encodeIfPresent(self.authorizerCredential, forKey: .authorizerCredential)
+    try container.encode(self.appInstallationId, forKey: .appInstallationId)
+    try container.encode(self.installationUri, forKey: .installationUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the various GitHub Applications that can be installed to a

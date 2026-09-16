@@ -34,6 +34,8 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Entitlement State.
   public var state: Entitlement.State = Entitlement.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Entitlement`.
   public init() {}
 
@@ -48,6 +50,55 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let cloudAccountDetails = CodingKeys(stringValue: "cloudAccountDetails")
+    static let entitlementId = CodingKeys(stringValue: "entitlementId")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "cloudAccountDetails",
+      "entitlementId",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.cloudAccountDetails = try container.decodeIfPresent(
+      CloudAccountDetails.self, forKey: .cloudAccountDetails)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlementId) {
+      self.entitlementId = value
+    }
+    if let value = try container.decodeIfPresent(Entitlement.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.cloudAccountDetails, forKey: .cloudAccountDetails)
+    try container.encode(self.entitlementId, forKey: .entitlementId)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the subscription.

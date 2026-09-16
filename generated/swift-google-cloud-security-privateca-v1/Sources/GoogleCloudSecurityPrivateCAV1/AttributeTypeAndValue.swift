@@ -31,6 +31,8 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The attribute type for the attribute and value pair.
   public var attributeType: OneOf_AttributeType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttributeTypeAndValue`.
   public init() {}
 
@@ -47,15 +49,28 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case objectId = "objectId"
-    case value = "value"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let objectId = CodingKeys(stringValue: "objectId")
+    static let value = CodingKeys(stringValue: "value")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "objectId",
+      "value",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.value = try container.decode(Swift.String.self, forKey: .value)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+      self.value = value
+    }
 
     var attributeType: OneOf_AttributeType? = nil
     let attributeTypeCheckAndSet = {
@@ -74,6 +89,10 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleCloudWKT._AnyPack
       try attributeTypeCheckAndSet(.objectId(objectId))
     }
     self.attributeType = attributeType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +106,9 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .objectId(let value):
         try container.encode(value, forKey: .objectId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -58,6 +58,8 @@
     /// Optional. Audio transcription of model output.
     public var outputTranscription: Transcription? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EventMetadata`.
     public init() {}
 
@@ -72,6 +74,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let groundingMetadata = CodingKeys(stringValue: "groundingMetadata")
+      static let partial = CodingKeys(stringValue: "partial")
+      static let turnComplete = CodingKeys(stringValue: "turnComplete")
+      static let interrupted = CodingKeys(stringValue: "interrupted")
+      static let longRunningToolIds = CodingKeys(stringValue: "longRunningToolIds")
+      static let branch = CodingKeys(stringValue: "branch")
+      static let customMetadata = CodingKeys(stringValue: "customMetadata")
+      static let inputTranscription = CodingKeys(stringValue: "inputTranscription")
+      static let outputTranscription = CodingKeys(stringValue: "outputTranscription")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "groundingMetadata",
+        "partial",
+        "turnComplete",
+        "interrupted",
+        "longRunningToolIds",
+        "branch",
+        "customMetadata",
+        "inputTranscription",
+        "outputTranscription",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.groundingMetadata = try container.decodeIfPresent(
+        GroundingMetadata.self, forKey: .groundingMetadata)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .partial) {
+        self.partial = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .turnComplete) {
+        self.turnComplete = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .interrupted) {
+        self.interrupted = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .longRunningToolIds)
+      {
+        self.longRunningToolIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .branch) {
+        self.branch = value
+      }
+      self.customMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .customMetadata)
+      self.inputTranscription = try container.decodeIfPresent(
+        Transcription.self, forKey: .inputTranscription)
+      self.outputTranscription = try container.decodeIfPresent(
+        Transcription.self, forKey: .outputTranscription)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.groundingMetadata, forKey: .groundingMetadata)
+      try container.encode(self.partial, forKey: .partial)
+      try container.encode(self.turnComplete, forKey: .turnComplete)
+      try container.encode(self.interrupted, forKey: .interrupted)
+      try container.encode(self.longRunningToolIds, forKey: .longRunningToolIds)
+      try container.encode(self.branch, forKey: .branch)
+      try container.encodeIfPresent(self.customMetadata, forKey: .customMetadata)
+      try container.encodeIfPresent(self.inputTranscription, forKey: .inputTranscription)
+      try container.encodeIfPresent(self.outputTranscription, forKey: .outputTranscription)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -43,6 +43,8 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// time will be used.
   public var rdbSnapshotStartTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PersistenceConfig`.
   public init() {}
 
@@ -57,6 +59,58 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let persistenceMode = CodingKeys(stringValue: "persistenceMode")
+    static let rdbSnapshotPeriod = CodingKeys(stringValue: "rdbSnapshotPeriod")
+    static let rdbNextSnapshotTime = CodingKeys(stringValue: "rdbNextSnapshotTime")
+    static let rdbSnapshotStartTime = CodingKeys(stringValue: "rdbSnapshotStartTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "persistenceMode",
+      "rdbSnapshotPeriod",
+      "rdbNextSnapshotTime",
+      "rdbSnapshotStartTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      PersistenceConfig.PersistenceMode.self, forKey: .persistenceMode)
+    {
+      self.persistenceMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      PersistenceConfig.SnapshotPeriod.self, forKey: .rdbSnapshotPeriod)
+    {
+      self.rdbSnapshotPeriod = value
+    }
+    self.rdbNextSnapshotTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .rdbNextSnapshotTime)
+    self.rdbSnapshotStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .rdbSnapshotStartTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.persistenceMode, forKey: .persistenceMode)
+    try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+    try container.encodeIfPresent(self.rdbNextSnapshotTime, forKey: .rdbNextSnapshotTime)
+    try container.encodeIfPresent(self.rdbSnapshotStartTime, forKey: .rdbSnapshotStartTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available Persistence modes.

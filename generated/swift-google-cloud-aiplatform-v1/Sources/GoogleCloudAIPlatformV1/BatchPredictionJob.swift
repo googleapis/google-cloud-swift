@@ -251,6 +251,8 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchPredictionJob`.
     public init() {}
 
@@ -265,6 +267,195 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let model = CodingKeys(stringValue: "model")
+      static let modelVersionId = CodingKeys(stringValue: "modelVersionId")
+      static let unmanagedContainerModel = CodingKeys(stringValue: "unmanagedContainerModel")
+      static let inputConfig = CodingKeys(stringValue: "inputConfig")
+      static let instanceConfig = CodingKeys(stringValue: "instanceConfig")
+      static let modelParameters = CodingKeys(stringValue: "modelParameters")
+      static let outputConfig = CodingKeys(stringValue: "outputConfig")
+      static let dedicatedResources = CodingKeys(stringValue: "dedicatedResources")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let manualBatchTuningParameters = CodingKeys(
+        stringValue: "manualBatchTuningParameters")
+      static let generateExplanation = CodingKeys(stringValue: "generateExplanation")
+      static let explanationSpec = CodingKeys(stringValue: "explanationSpec")
+      static let outputInfo = CodingKeys(stringValue: "outputInfo")
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+      static let partialFailures = CodingKeys(stringValue: "partialFailures")
+      static let resourcesConsumed = CodingKeys(stringValue: "resourcesConsumed")
+      static let completionStats = CodingKeys(stringValue: "completionStats")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let disableContainerLogging = CodingKeys(stringValue: "disableContainerLogging")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "model",
+        "modelVersionId",
+        "unmanagedContainerModel",
+        "inputConfig",
+        "instanceConfig",
+        "modelParameters",
+        "outputConfig",
+        "dedicatedResources",
+        "serviceAccount",
+        "manualBatchTuningParameters",
+        "generateExplanation",
+        "explanationSpec",
+        "outputInfo",
+        "state",
+        "error",
+        "partialFailures",
+        "resourcesConsumed",
+        "completionStats",
+        "createTime",
+        "startTime",
+        "endTime",
+        "updateTime",
+        "labels",
+        "encryptionSpec",
+        "disableContainerLogging",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersionId) {
+        self.modelVersionId = value
+      }
+      self.unmanagedContainerModel = try container.decodeIfPresent(
+        UnmanagedContainerModel.self, forKey: .unmanagedContainerModel)
+      self.inputConfig = try container.decodeIfPresent(
+        BatchPredictionJob.InputConfig.self, forKey: .inputConfig)
+      self.instanceConfig = try container.decodeIfPresent(
+        BatchPredictionJob.InstanceConfig.self, forKey: .instanceConfig)
+      self.modelParameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .modelParameters)
+      self.outputConfig = try container.decodeIfPresent(
+        BatchPredictionJob.OutputConfig.self, forKey: .outputConfig)
+      self.dedicatedResources = try container.decodeIfPresent(
+        BatchDedicatedResources.self, forKey: .dedicatedResources)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      self.manualBatchTuningParameters = try container.decodeIfPresent(
+        ManualBatchTuningParameters.self, forKey: .manualBatchTuningParameters)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .generateExplanation) {
+        self.generateExplanation = value
+      }
+      self.explanationSpec = try container.decodeIfPresent(
+        ExplanationSpec.self, forKey: .explanationSpec)
+      self.outputInfo = try container.decodeIfPresent(
+        BatchPredictionJob.OutputInfo.self, forKey: .outputInfo)
+      if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
+        self.state = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      if let value = try container.decodeIfPresent(
+        [GoogleRpc.Status].self, forKey: .partialFailures)
+      {
+        self.partialFailures = value
+      }
+      self.resourcesConsumed = try container.decodeIfPresent(
+        ResourcesConsumed.self, forKey: .resourcesConsumed)
+      self.completionStats = try container.decodeIfPresent(
+        CompletionStats.self, forKey: .completionStats)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableContainerLogging)
+      {
+        self.disableContainerLogging = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.model, forKey: .model)
+      try container.encode(self.modelVersionId, forKey: .modelVersionId)
+      try container.encodeIfPresent(self.unmanagedContainerModel, forKey: .unmanagedContainerModel)
+      try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
+      try container.encodeIfPresent(self.instanceConfig, forKey: .instanceConfig)
+      try container.encodeIfPresent(self.modelParameters, forKey: .modelParameters)
+      try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+      try container.encodeIfPresent(self.dedicatedResources, forKey: .dedicatedResources)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encodeIfPresent(
+        self.manualBatchTuningParameters, forKey: .manualBatchTuningParameters)
+      try container.encode(self.generateExplanation, forKey: .generateExplanation)
+      try container.encodeIfPresent(self.explanationSpec, forKey: .explanationSpec)
+      try container.encodeIfPresent(self.outputInfo, forKey: .outputInfo)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encode(self.partialFailures, forKey: .partialFailures)
+      try container.encodeIfPresent(self.resourcesConsumed, forKey: .resourcesConsumed)
+      try container.encodeIfPresent(self.completionStats, forKey: .completionStats)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.disableContainerLogging, forKey: .disableContainerLogging)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configures the input to
@@ -289,6 +480,8 @@
       /// Required. The source of the input.
       public var source: OneOf_Source? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InputConfig`.
       public init() {}
 
@@ -305,16 +498,31 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case gcsSource = "gcsSource"
-        case bigquerySource = "bigquerySource"
-        case vertexMultimodalDatasetSource = "vertexMultimodalDatasetSource"
-        case instancesFormat = "instancesFormat"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let gcsSource = CodingKeys(stringValue: "gcsSource")
+        static let bigquerySource = CodingKeys(stringValue: "bigquerySource")
+        static let vertexMultimodalDatasetSource = CodingKeys(
+          stringValue: "vertexMultimodalDatasetSource")
+        static let instancesFormat = CodingKeys(stringValue: "instancesFormat")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "gcsSource",
+          "bigquerySource",
+          "vertexMultimodalDatasetSource",
+          "instancesFormat",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.instancesFormat = try container.decode(Swift.String.self, forKey: .instancesFormat)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instancesFormat) {
+          self.instancesFormat = value
+        }
 
         var source: OneOf_Source? = nil
         let sourceCheckAndSet = {
@@ -340,6 +548,10 @@
           try sourceCheckAndSet(.vertexMultimodalDatasetSource(vertexMultimodalDatasetSource))
         }
         self.source = source
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -355,6 +567,9 @@
           case .vertexMultimodalDatasetSource(let value):
             try container.encode(value, forKey: .vertexMultimodalDatasetSource)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -494,6 +709,8 @@
       /// [google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.key_field]: <doc:BatchPredictionJob/InstanceConfig/keyField>
       public var excludedFields: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InstanceConfig`.
       public init() {}
 
@@ -508,6 +725,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceType = CodingKeys(stringValue: "instanceType")
+        static let keyField = CodingKeys(stringValue: "keyField")
+        static let includedFields = CodingKeys(stringValue: "includedFields")
+        static let excludedFields = CodingKeys(stringValue: "excludedFields")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instanceType",
+          "keyField",
+          "includedFields",
+          "excludedFields",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+          self.instanceType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyField) {
+          self.keyField = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedFields) {
+          self.includedFields = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedFields) {
+          self.excludedFields = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instanceType, forKey: .instanceType)
+        try container.encode(self.keyField, forKey: .keyField)
+        try container.encode(self.includedFields, forKey: .includedFields)
+        try container.encode(self.excludedFields, forKey: .excludedFields)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -543,6 +810,8 @@
       /// Required. The destination of the output.
       public var destination: OneOf_Destination? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OutputConfig`.
       public init() {}
 
@@ -559,16 +828,32 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case gcsDestination = "gcsDestination"
-        case bigqueryDestination = "bigqueryDestination"
-        case vertexMultimodalDatasetDestination = "vertexMultimodalDatasetDestination"
-        case predictionsFormat = "predictionsFormat"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+        static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+        static let vertexMultimodalDatasetDestination = CodingKeys(
+          stringValue: "vertexMultimodalDatasetDestination")
+        static let predictionsFormat = CodingKeys(stringValue: "predictionsFormat")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "gcsDestination",
+          "bigqueryDestination",
+          "vertexMultimodalDatasetDestination",
+          "predictionsFormat",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.predictionsFormat = try container.decode(Swift.String.self, forKey: .predictionsFormat)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predictionsFormat)
+        {
+          self.predictionsFormat = value
+        }
 
         var destination: OneOf_Destination? = nil
         let destinationCheckAndSet = {
@@ -597,6 +882,10 @@
             .vertexMultimodalDatasetDestination(vertexMultimodalDatasetDestination))
         }
         self.destination = destination
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -612,6 +901,9 @@
           case .vertexMultimodalDatasetDestination(let value):
             try container.encode(value, forKey: .vertexMultimodalDatasetDestination)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -703,6 +995,8 @@
       /// The output location into which prediction output is written.
       public var outputLocation: OneOf_OutputLocation? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OutputInfo`.
       public init() {}
 
@@ -719,17 +1013,33 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case gcsOutputDirectory = "gcsOutputDirectory"
-        case bigqueryOutputDataset = "bigqueryOutputDataset"
-        case vertexMultimodalDatasetName = "vertexMultimodalDatasetName"
-        case bigqueryOutputTable = "bigqueryOutputTable"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let gcsOutputDirectory = CodingKeys(stringValue: "gcsOutputDirectory")
+        static let bigqueryOutputDataset = CodingKeys(stringValue: "bigqueryOutputDataset")
+        static let vertexMultimodalDatasetName = CodingKeys(
+          stringValue: "vertexMultimodalDatasetName")
+        static let bigqueryOutputTable = CodingKeys(stringValue: "bigqueryOutputTable")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "gcsOutputDirectory",
+          "bigqueryOutputDataset",
+          "vertexMultimodalDatasetName",
+          "bigqueryOutputTable",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bigqueryOutputTable = try container.decode(
+        if let value = try container.decodeIfPresent(
           Swift.String.self, forKey: .bigqueryOutputTable)
+        {
+          self.bigqueryOutputTable = value
+        }
 
         var outputLocation: OneOf_OutputLocation? = nil
         let outputLocationCheckAndSet = {
@@ -757,6 +1067,10 @@
           try outputLocationCheckAndSet(.vertexMultimodalDatasetName(vertexMultimodalDatasetName))
         }
         self.outputLocation = outputLocation
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -772,6 +1086,9 @@
           case .vertexMultimodalDatasetName(let value):
             try container.encode(value, forKey: .vertexMultimodalDatasetName)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

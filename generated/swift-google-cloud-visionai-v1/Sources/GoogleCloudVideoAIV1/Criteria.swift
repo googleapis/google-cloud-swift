@@ -36,6 +36,8 @@ public struct Criteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Criteria`.
   public init() {}
 
@@ -52,22 +54,42 @@ public struct Criteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case textArray = "textArray"
-    case intRangeArray = "intRangeArray"
-    case floatRangeArray = "floatRangeArray"
-    case dateTimeRangeArray = "dateTimeRangeArray"
-    case geoLocationArray = "geoLocationArray"
-    case boolValue = "boolValue"
-    case field = "field"
-    case fetchMatchedAnnotations = "fetchMatchedAnnotations"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let textArray = CodingKeys(stringValue: "textArray")
+    static let intRangeArray = CodingKeys(stringValue: "intRangeArray")
+    static let floatRangeArray = CodingKeys(stringValue: "floatRangeArray")
+    static let dateTimeRangeArray = CodingKeys(stringValue: "dateTimeRangeArray")
+    static let geoLocationArray = CodingKeys(stringValue: "geoLocationArray")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let field = CodingKeys(stringValue: "field")
+    static let fetchMatchedAnnotations = CodingKeys(stringValue: "fetchMatchedAnnotations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "textArray",
+      "intRangeArray",
+      "floatRangeArray",
+      "dateTimeRangeArray",
+      "geoLocationArray",
+      "boolValue",
+      "field",
+      "fetchMatchedAnnotations",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.field = try container.decode(Swift.String.self, forKey: .field)
-    self.fetchMatchedAnnotations = try container.decode(
-      Swift.Bool.self, forKey: .fetchMatchedAnnotations)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+      self.field = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fetchMatchedAnnotations)
+    {
+      self.fetchMatchedAnnotations = value
+    }
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -106,6 +128,10 @@ public struct Criteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.boolValue(boolValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -128,6 +154,9 @@ public struct Criteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .boolValue(let value):
         try container.encode(value, forKey: .boolValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

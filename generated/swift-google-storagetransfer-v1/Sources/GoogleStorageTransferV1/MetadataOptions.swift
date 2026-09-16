@@ -78,6 +78,8 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP]: <doc:MetadataOptions/TimeCreated/skip>
   public var timeCreated: MetadataOptions.TimeCreated = MetadataOptions.TimeCreated()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataOptions`.
   public init() {}
 
@@ -92,6 +94,92 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let symlink = CodingKeys(stringValue: "symlink")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let gid = CodingKeys(stringValue: "gid")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let acl = CodingKeys(stringValue: "acl")
+    static let storageClass = CodingKeys(stringValue: "storageClass")
+    static let temporaryHold = CodingKeys(stringValue: "temporaryHold")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let timeCreated = CodingKeys(stringValue: "timeCreated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "symlink",
+      "mode",
+      "gid",
+      "uid",
+      "acl",
+      "storageClass",
+      "temporaryHold",
+      "kmsKey",
+      "timeCreated",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(MetadataOptions.Symlink.self, forKey: .symlink) {
+      self.symlink = value
+    }
+    if let value = try container.decodeIfPresent(MetadataOptions.Mode.self, forKey: .mode) {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(MetadataOptions.GID.self, forKey: .gid) {
+      self.gid = value
+    }
+    if let value = try container.decodeIfPresent(MetadataOptions.UID.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(MetadataOptions.Acl.self, forKey: .acl) {
+      self.acl = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetadataOptions.StorageClass.self, forKey: .storageClass)
+    {
+      self.storageClass = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetadataOptions.TemporaryHold.self, forKey: .temporaryHold)
+    {
+      self.temporaryHold = value
+    }
+    if let value = try container.decodeIfPresent(MetadataOptions.KmsKey.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetadataOptions.TimeCreated.self, forKey: .timeCreated)
+    {
+      self.timeCreated = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.symlink, forKey: .symlink)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encode(self.gid, forKey: .gid)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.acl, forKey: .acl)
+    try container.encode(self.storageClass, forKey: .storageClass)
+    try container.encode(self.temporaryHold, forKey: .temporaryHold)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.timeCreated, forKey: .timeCreated)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Whether symlinks should be skipped or preserved during a transfer job.

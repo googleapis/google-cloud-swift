@@ -62,6 +62,8 @@ public struct Changelog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The monotonically increasing sequence number of the changelog.
   public var sequenceNumber: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Changelog`.
   public init() {}
 
@@ -76,6 +78,103 @@ public struct Changelog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let author = CodingKeys(stringValue: "author")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let action = CodingKeys(stringValue: "action")
+    static let originalResource = CodingKeys(stringValue: "originalResource")
+    static let newResource = CodingKeys(stringValue: "newResource")
+    static let dependentResources = CodingKeys(stringValue: "dependentResources")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "author",
+      "displayName",
+      "description",
+      "resource",
+      "resourceType",
+      "action",
+      "originalResource",
+      "newResource",
+      "dependentResources",
+      "createTime",
+      "sequenceNumber",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
+      self.author = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    self.originalResource = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .originalResource)
+    self.newResource = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .newResource)
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudWKT.Struct].self, forKey: .dependentResources)
+    {
+      self.dependentResources = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
+      self.sequenceNumber = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.author, forKey: .author)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.action, forKey: .action)
+    try container.encodeIfPresent(self.originalResource, forKey: .originalResource)
+    try container.encodeIfPresent(self.newResource, forKey: .newResource)
+    try container.encode(self.dependentResources, forKey: .dependentResources)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.sequenceNumber, forKey: .sequenceNumber)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

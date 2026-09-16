@@ -67,6 +67,8 @@ public struct LoggingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// for the LLM analysis pipeline for the app.
   public var metricAnalysisSettings: MetricAnalysisSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoggingSettings`.
   public init() {}
 
@@ -81,6 +83,84 @@ public struct LoggingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let redactionConfig = CodingKeys(stringValue: "redactionConfig")
+    static let audioRecordingConfig = CodingKeys(stringValue: "audioRecordingConfig")
+    static let unredactedAudioRecordingConfig = CodingKeys(
+      stringValue: "unredactedAudioRecordingConfig")
+    static let bigqueryExportSettings = CodingKeys(stringValue: "bigqueryExportSettings")
+    static let unredactedBigqueryExportSettings = CodingKeys(
+      stringValue: "unredactedBigqueryExportSettings")
+    static let cloudLoggingSettings = CodingKeys(stringValue: "cloudLoggingSettings")
+    static let conversationLoggingSettings = CodingKeys(stringValue: "conversationLoggingSettings")
+    static let evaluationAudioRecordingConfig = CodingKeys(
+      stringValue: "evaluationAudioRecordingConfig")
+    static let metricAnalysisSettings = CodingKeys(stringValue: "metricAnalysisSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "redactionConfig",
+      "audioRecordingConfig",
+      "unredactedAudioRecordingConfig",
+      "bigqueryExportSettings",
+      "unredactedBigqueryExportSettings",
+      "cloudLoggingSettings",
+      "conversationLoggingSettings",
+      "evaluationAudioRecordingConfig",
+      "metricAnalysisSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.redactionConfig = try container.decodeIfPresent(
+      RedactionConfig.self, forKey: .redactionConfig)
+    self.audioRecordingConfig = try container.decodeIfPresent(
+      AudioRecordingConfig.self, forKey: .audioRecordingConfig)
+    self.unredactedAudioRecordingConfig = try container.decodeIfPresent(
+      AudioRecordingConfig.self, forKey: .unredactedAudioRecordingConfig)
+    self.bigqueryExportSettings = try container.decodeIfPresent(
+      BigQueryExportSettings.self, forKey: .bigqueryExportSettings)
+    self.unredactedBigqueryExportSettings = try container.decodeIfPresent(
+      BigQueryExportSettings.self, forKey: .unredactedBigqueryExportSettings)
+    self.cloudLoggingSettings = try container.decodeIfPresent(
+      CloudLoggingSettings.self, forKey: .cloudLoggingSettings)
+    self.conversationLoggingSettings = try container.decodeIfPresent(
+      ConversationLoggingSettings.self, forKey: .conversationLoggingSettings)
+    self.evaluationAudioRecordingConfig = try container.decodeIfPresent(
+      AudioRecordingConfig.self, forKey: .evaluationAudioRecordingConfig)
+    self.metricAnalysisSettings = try container.decodeIfPresent(
+      MetricAnalysisSettings.self, forKey: .metricAnalysisSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.redactionConfig, forKey: .redactionConfig)
+    try container.encodeIfPresent(self.audioRecordingConfig, forKey: .audioRecordingConfig)
+    try container.encodeIfPresent(
+      self.unredactedAudioRecordingConfig, forKey: .unredactedAudioRecordingConfig)
+    try container.encodeIfPresent(self.bigqueryExportSettings, forKey: .bigqueryExportSettings)
+    try container.encodeIfPresent(
+      self.unredactedBigqueryExportSettings, forKey: .unredactedBigqueryExportSettings)
+    try container.encodeIfPresent(self.cloudLoggingSettings, forKey: .cloudLoggingSettings)
+    try container.encodeIfPresent(
+      self.conversationLoggingSettings, forKey: .conversationLoggingSettings)
+    try container.encodeIfPresent(
+      self.evaluationAudioRecordingConfig, forKey: .evaluationAudioRecordingConfig)
+    try container.encodeIfPresent(self.metricAnalysisSettings, forKey: .metricAnalysisSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

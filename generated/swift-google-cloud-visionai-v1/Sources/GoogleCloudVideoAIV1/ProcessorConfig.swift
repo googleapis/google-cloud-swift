@@ -27,6 +27,8 @@ public struct ProcessorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var processorConfig: OneOf_ProcessorConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessorConfig`.
   public init() {}
 
@@ -43,24 +45,52 @@ public struct ProcessorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case videoStreamInputConfig = "videoStreamInputConfig"
-    case aiEnabledDevicesInputConfig = "aiEnabledDevicesInputConfig"
-    case mediaWarehouseConfig = "mediaWarehouseConfig"
-    case personBlurConfig = "personBlurConfig"
-    case occupancyCountConfig = "occupancyCountConfig"
-    case personVehicleDetectionConfig = "personVehicleDetectionConfig"
-    case vertexAutomlVisionConfig = "vertexAutomlVisionConfig"
-    case vertexAutomlVideoConfig = "vertexAutomlVideoConfig"
-    case vertexCustomConfig = "vertexCustomConfig"
-    case generalObjectDetectionConfig = "generalObjectDetectionConfig"
-    case bigQueryConfig = "bigQueryConfig"
-    case gcsOutputConfig = "gcsOutputConfig"
-    case productRecognizerConfig = "productRecognizerConfig"
-    case personalProtectiveEquipmentDetectionConfig = "personalProtectiveEquipmentDetectionConfig"
-    case tagRecognizerConfig = "tagRecognizerConfig"
-    case universalInputConfig = "universalInputConfig"
-    case experimentalConfig = "experimentalConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let videoStreamInputConfig = CodingKeys(stringValue: "videoStreamInputConfig")
+    static let aiEnabledDevicesInputConfig = CodingKeys(stringValue: "aiEnabledDevicesInputConfig")
+    static let mediaWarehouseConfig = CodingKeys(stringValue: "mediaWarehouseConfig")
+    static let personBlurConfig = CodingKeys(stringValue: "personBlurConfig")
+    static let occupancyCountConfig = CodingKeys(stringValue: "occupancyCountConfig")
+    static let personVehicleDetectionConfig = CodingKeys(
+      stringValue: "personVehicleDetectionConfig")
+    static let vertexAutomlVisionConfig = CodingKeys(stringValue: "vertexAutomlVisionConfig")
+    static let vertexAutomlVideoConfig = CodingKeys(stringValue: "vertexAutomlVideoConfig")
+    static let vertexCustomConfig = CodingKeys(stringValue: "vertexCustomConfig")
+    static let generalObjectDetectionConfig = CodingKeys(
+      stringValue: "generalObjectDetectionConfig")
+    static let bigQueryConfig = CodingKeys(stringValue: "bigQueryConfig")
+    static let gcsOutputConfig = CodingKeys(stringValue: "gcsOutputConfig")
+    static let productRecognizerConfig = CodingKeys(stringValue: "productRecognizerConfig")
+    static let personalProtectiveEquipmentDetectionConfig = CodingKeys(
+      stringValue: "personalProtectiveEquipmentDetectionConfig")
+    static let tagRecognizerConfig = CodingKeys(stringValue: "tagRecognizerConfig")
+    static let universalInputConfig = CodingKeys(stringValue: "universalInputConfig")
+    static let experimentalConfig = CodingKeys(stringValue: "experimentalConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "videoStreamInputConfig",
+      "aiEnabledDevicesInputConfig",
+      "mediaWarehouseConfig",
+      "personBlurConfig",
+      "occupancyCountConfig",
+      "personVehicleDetectionConfig",
+      "vertexAutomlVisionConfig",
+      "vertexAutomlVideoConfig",
+      "vertexCustomConfig",
+      "generalObjectDetectionConfig",
+      "bigQueryConfig",
+      "gcsOutputConfig",
+      "productRecognizerConfig",
+      "personalProtectiveEquipmentDetectionConfig",
+      "tagRecognizerConfig",
+      "universalInputConfig",
+      "experimentalConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -161,11 +191,15 @@ public struct ProcessorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try processorConfigCheckAndSet(.universalInputConfig(universalInputConfig))
     }
     self.processorConfig = processorConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.experimentalConfig, forKey: .experimentalConfig)
+    try container.encodeIfPresent(self.experimentalConfig, forKey: .experimentalConfig)
 
     if let choice = self.processorConfig {
       switch choice {
@@ -202,6 +236,9 @@ public struct ProcessorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .universalInputConfig(let value):
         try container.encode(value, forKey: .universalInputConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

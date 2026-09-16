@@ -70,6 +70,8 @@
     /// for more details.
     public var userLabels: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RankRequest`.
     public init() {}
 
@@ -84,6 +86,80 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rankingConfig = CodingKeys(stringValue: "rankingConfig")
+      static let model = CodingKeys(stringValue: "model")
+      static let topN = CodingKeys(stringValue: "topN")
+      static let query = CodingKeys(stringValue: "query")
+      static let records = CodingKeys(stringValue: "records")
+      static let ignoreRecordDetailsInResponse = CodingKeys(
+        stringValue: "ignoreRecordDetailsInResponse")
+      static let userLabels = CodingKeys(stringValue: "userLabels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rankingConfig",
+        "model",
+        "topN",
+        "query",
+        "records",
+        "ignoreRecordDetailsInResponse",
+        "userLabels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rankingConfig) {
+        self.rankingConfig = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topN) {
+        self.topN = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      if let value = try container.decodeIfPresent([RankingRecord].self, forKey: .records) {
+        self.records = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .ignoreRecordDetailsInResponse)
+      {
+        self.ignoreRecordDetailsInResponse = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .userLabels)
+      {
+        self.userLabels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rankingConfig, forKey: .rankingConfig)
+      try container.encode(self.model, forKey: .model)
+      try container.encode(self.topN, forKey: .topN)
+      try container.encode(self.query, forKey: .query)
+      try container.encode(self.records, forKey: .records)
+      try container.encode(
+        self.ignoreRecordDetailsInResponse, forKey: .ignoreRecordDetailsInResponse)
+      try container.encode(self.userLabels, forKey: .userLabels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

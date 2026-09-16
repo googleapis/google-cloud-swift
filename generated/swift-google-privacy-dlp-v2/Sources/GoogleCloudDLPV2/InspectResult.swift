@@ -32,6 +32,8 @@ public struct InspectResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// smaller batches.
   public var findingsTruncated: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InspectResult`.
   public init() {}
 
@@ -46,6 +48,44 @@ public struct InspectResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let findings = CodingKeys(stringValue: "findings")
+    static let findingsTruncated = CodingKeys(stringValue: "findingsTruncated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "findings",
+      "findingsTruncated",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Finding].self, forKey: .findings) {
+      self.findings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .findingsTruncated) {
+      self.findingsTruncated = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.findings, forKey: .findings)
+    try container.encode(self.findingsTruncated, forKey: .findingsTruncated)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -131,6 +131,8 @@ public struct EvaluatedSlice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// - **"Internal server error"**: Internal unexpected error.
   public var status: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EvaluatedSlice`.
   public init() {}
 
@@ -145,6 +147,69 @@ public struct EvaluatedSlice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dimensions = CodingKeys(stringValue: "dimensions")
+    static let detectionPointActual = CodingKeys(stringValue: "detectionPointActual")
+    static let detectionPointForecast = CodingKeys(stringValue: "detectionPointForecast")
+    static let expectedDeviation = CodingKeys(stringValue: "expectedDeviation")
+    static let anomalyScore = CodingKeys(stringValue: "anomalyScore")
+    static let history = CodingKeys(stringValue: "history")
+    static let forecast = CodingKeys(stringValue: "forecast")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dimensions",
+      "detectionPointActual",
+      "detectionPointForecast",
+      "expectedDeviation",
+      "anomalyScore",
+      "history",
+      "forecast",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([PinnedDimension].self, forKey: .dimensions) {
+      self.dimensions = value
+    }
+    self.detectionPointActual = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .detectionPointActual)
+    self.detectionPointForecast = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .detectionPointForecast)
+    self.expectedDeviation = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .expectedDeviation)
+    self.anomalyScore = try container.decodeIfPresent(Swift.Double.self, forKey: .anomalyScore)
+    self.history = try container.decodeIfPresent(Timeseries.self, forKey: .history)
+    self.forecast = try container.decodeIfPresent(Timeseries.self, forKey: .forecast)
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dimensions, forKey: .dimensions)
+    try container.encodeIfPresent(self.detectionPointActual, forKey: .detectionPointActual)
+    try container.encodeIfPresent(self.detectionPointForecast, forKey: .detectionPointForecast)
+    try container.encodeIfPresent(self.expectedDeviation, forKey: .expectedDeviation)
+    try container.encodeIfPresent(self.anomalyScore, forKey: .anomalyScore)
+    try container.encodeIfPresent(self.history, forKey: .history)
+    try container.encodeIfPresent(self.forecast, forKey: .forecast)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -95,6 +95,8 @@
     /// [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
     public var boostSpec: SearchRequest.BoostSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConverseConversationRequest`.
     public init() {}
 
@@ -109,6 +111,82 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let query = CodingKeys(stringValue: "query")
+      static let servingConfig = CodingKeys(stringValue: "servingConfig")
+      static let conversation = CodingKeys(stringValue: "conversation")
+      static let safeSearch = CodingKeys(stringValue: "safeSearch")
+      static let userLabels = CodingKeys(stringValue: "userLabels")
+      static let summarySpec = CodingKeys(stringValue: "summarySpec")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let boostSpec = CodingKeys(stringValue: "boostSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "query",
+        "servingConfig",
+        "conversation",
+        "safeSearch",
+        "userLabels",
+        "summarySpec",
+        "filter",
+        "boostSpec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.query = try container.decodeIfPresent(TextInput.self, forKey: .query)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servingConfig) {
+        self.servingConfig = value
+      }
+      self.conversation = try container.decodeIfPresent(Conversation.self, forKey: .conversation)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .safeSearch) {
+        self.safeSearch = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .userLabels)
+      {
+        self.userLabels = value
+      }
+      self.summarySpec = try container.decodeIfPresent(
+        SearchRequest.ContentSearchSpec.SummarySpec.self, forKey: .summarySpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      self.boostSpec = try container.decodeIfPresent(
+        SearchRequest.BoostSpec.self, forKey: .boostSpec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.servingConfig, forKey: .servingConfig)
+      try container.encodeIfPresent(self.conversation, forKey: .conversation)
+      try container.encode(self.safeSearch, forKey: .safeSearch)
+      try container.encode(self.userLabels, forKey: .userLabels)
+      try container.encodeIfPresent(self.summarySpec, forKey: .summarySpec)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encodeIfPresent(self.boostSpec, forKey: .boostSpec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

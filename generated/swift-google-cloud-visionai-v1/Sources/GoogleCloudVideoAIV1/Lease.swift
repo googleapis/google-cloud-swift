@@ -36,6 +36,8 @@ public struct Lease: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The lease type.
   public var leaseType: LeaseType = LeaseType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Lease`.
   public init() {}
 
@@ -50,6 +52,61 @@ public struct Lease: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let series = CodingKeys(stringValue: "series")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let leaseType = CodingKeys(stringValue: "leaseType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "series",
+      "owner",
+      "expireTime",
+      "leaseType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .series) {
+      self.series = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .owner) {
+      self.owner = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(LeaseType.self, forKey: .leaseType) {
+      self.leaseType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.series, forKey: .series)
+    try container.encode(self.owner, forKey: .owner)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.leaseType, forKey: .leaseType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

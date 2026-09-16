@@ -63,6 +63,8 @@ public struct Tag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// These fields cannot be updated after creation.
   public var scope: OneOf_Scope? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Tag`.
   public init() {}
 
@@ -79,23 +81,48 @@ public struct Tag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case template = "template"
-    case templateDisplayName = "templateDisplayName"
-    case column = "column"
-    case fields = "fields"
-    case dataplexTransferStatus = "dataplexTransferStatus"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let template = CodingKeys(stringValue: "template")
+    static let templateDisplayName = CodingKeys(stringValue: "templateDisplayName")
+    static let column = CodingKeys(stringValue: "column")
+    static let fields = CodingKeys(stringValue: "fields")
+    static let dataplexTransferStatus = CodingKeys(stringValue: "dataplexTransferStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "template",
+      "templateDisplayName",
+      "column",
+      "fields",
+      "dataplexTransferStatus",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.template = try container.decode(Swift.String.self, forKey: .template)
-    self.templateDisplayName = try container.decode(Swift.String.self, forKey: .templateDisplayName)
-    self.fields = try container.decode([Swift.String: TagField].self, forKey: .fields)
-    self.dataplexTransferStatus = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .template) {
+      self.template = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .templateDisplayName) {
+      self.templateDisplayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: TagField].self, forKey: .fields) {
+      self.fields = value
+    }
+    if let value = try container.decodeIfPresent(
       TagTemplate.DataplexTransferStatus.self, forKey: .dataplexTransferStatus)
+    {
+      self.dataplexTransferStatus = value
+    }
 
     var scope: OneOf_Scope? = nil
     let scopeCheckAndSet = {
@@ -111,6 +138,10 @@ public struct Tag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try scopeCheckAndSet(.column(column))
     }
     self.scope = scope
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,6 +157,9 @@ public struct Tag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .column(let value):
         try container.encode(value, forKey: .column)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

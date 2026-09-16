@@ -58,6 +58,8 @@ public struct Curation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time at which the curation was last updated.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Curation`.
   public init() {}
 
@@ -74,6 +76,96 @@ public struct Curation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let pluginInstanceActions = CodingKeys(stringValue: "pluginInstanceActions")
+    static let lastExecutionState = CodingKeys(stringValue: "lastExecutionState")
+    static let lastExecutionErrorCode = CodingKeys(stringValue: "lastExecutionErrorCode")
+    static let lastExecutionErrorMessage = CodingKeys(stringValue: "lastExecutionErrorMessage")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "endpoint",
+      "pluginInstanceActions",
+      "lastExecutionState",
+      "lastExecutionErrorCode",
+      "lastExecutionErrorMessage",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.endpoint = try container.decodeIfPresent(Endpoint.self, forKey: .endpoint)
+    if let value = try container.decodeIfPresent(
+      [Curation.PluginInstanceActionID].self, forKey: .pluginInstanceActions)
+    {
+      self.pluginInstanceActions = value
+    }
+    if let value = try container.decodeIfPresent(
+      Curation.LastExecutionState.self, forKey: .lastExecutionState)
+    {
+      self.lastExecutionState = value
+    }
+    if let value = try container.decodeIfPresent(
+      Curation.ErrorCode.self, forKey: .lastExecutionErrorCode)
+    {
+      self.lastExecutionErrorCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .lastExecutionErrorMessage)
+    {
+      self.lastExecutionErrorMessage = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.endpoint, forKey: .endpoint)
+    try container.encode(self.pluginInstanceActions, forKey: .pluginInstanceActions)
+    try container.encode(self.lastExecutionState, forKey: .lastExecutionState)
+    try container.encode(self.lastExecutionErrorCode, forKey: .lastExecutionErrorCode)
+    try container.encode(self.lastExecutionErrorMessage, forKey: .lastExecutionErrorMessage)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The plugin instance and associated action that is using the curation.
   public struct PluginInstanceActionID: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -87,6 +179,8 @@ public struct Curation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// This should map to one of the action IDs specified
     /// in action configs in the plugin.
     public var actionId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PluginInstanceActionID`.
     public init() {}
@@ -102,6 +196,44 @@ public struct Curation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pluginInstance = CodingKeys(stringValue: "pluginInstance")
+      static let actionId = CodingKeys(stringValue: "actionId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pluginInstance",
+        "actionId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluginInstance) {
+        self.pluginInstance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .actionId) {
+        self.actionId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pluginInstance, forKey: .pluginInstance)
+      try container.encode(self.actionId, forKey: .actionId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

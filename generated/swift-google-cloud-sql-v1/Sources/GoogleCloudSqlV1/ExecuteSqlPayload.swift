@@ -51,6 +51,8 @@
     /// Credentials for the database connection.
     public var userPassword: OneOf_UserPassword? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExecuteSqlPayload`.
     public init() {}
 
@@ -67,26 +69,55 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case user = "user"
-      case sqlStatement = "sqlStatement"
-      case database = "database"
-      case passwordSecretVersion = "passwordSecretVersion"
-      case autoIamAuthn = "autoIamAuthn"
-      case rowLimit = "rowLimit"
-      case partialResultMode = "partialResultMode"
-      case application = "application"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let user = CodingKeys(stringValue: "user")
+      static let sqlStatement = CodingKeys(stringValue: "sqlStatement")
+      static let database = CodingKeys(stringValue: "database")
+      static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+      static let autoIamAuthn = CodingKeys(stringValue: "autoIamAuthn")
+      static let rowLimit = CodingKeys(stringValue: "rowLimit")
+      static let partialResultMode = CodingKeys(stringValue: "partialResultMode")
+      static let application = CodingKeys(stringValue: "application")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "user",
+        "sqlStatement",
+        "database",
+        "passwordSecretVersion",
+        "autoIamAuthn",
+        "rowLimit",
+        "partialResultMode",
+        "application",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.user = try container.decode(Swift.String.self, forKey: .user)
-      self.sqlStatement = try container.decode(Swift.String.self, forKey: .sqlStatement)
-      self.database = try container.decode(Swift.String.self, forKey: .database)
-      self.rowLimit = try container.decode(Swift.Int64.self, forKey: .rowLimit)
-      self.partialResultMode = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+        self.user = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sqlStatement) {
+        self.sqlStatement = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+        self.database = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowLimit) {
+        self.rowLimit = value
+      }
+      if let value = try container.decodeIfPresent(
         ExecuteSqlPayload.PartialResultMode.self, forKey: .partialResultMode)
-      self.application = try container.decode(Swift.String.self, forKey: .application)
+      {
+        self.partialResultMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .application) {
+        self.application = value
+      }
 
       var userPassword: OneOf_UserPassword? = nil
       let userPasswordCheckAndSet = {
@@ -107,6 +138,10 @@
         try userPasswordCheckAndSet(.autoIamAuthn(autoIamAuthn))
       }
       self.userPassword = userPassword
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,6 +160,9 @@
         case .autoIamAuthn(let value):
           try container.encode(value, forKey: .autoIamAuthn)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -35,6 +35,8 @@ public struct AwsCrossAccountRole: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
   public var externalId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsCrossAccountRole`.
   public init() {}
 
@@ -49,6 +51,50 @@ public struct AwsCrossAccountRole: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let iamRoleId = CodingKeys(stringValue: "iamRoleId")
+    static let iamUserId = CodingKeys(stringValue: "iamUserId")
+    static let externalId = CodingKeys(stringValue: "externalId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "iamRoleId",
+      "iamUserId",
+      "externalId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamRoleId) {
+      self.iamRoleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamUserId) {
+      self.iamUserId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalId) {
+      self.externalId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.iamRoleId, forKey: .iamRoleId)
+    try container.encode(self.iamUserId, forKey: .iamUserId)
+    try container.encode(self.externalId, forKey: .externalId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -44,6 +44,8 @@ public struct AgentSkill: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// agent's defaults.
   public var outputModes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AgentSkill`.
   public init() {}
 
@@ -58,6 +60,74 @@ public struct AgentSkill: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let examples = CodingKeys(stringValue: "examples")
+    static let inputModes = CodingKeys(stringValue: "inputModes")
+    static let outputModes = CodingKeys(stringValue: "outputModes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "name",
+      "description",
+      "tags",
+      "examples",
+      "inputModes",
+      "outputModes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .examples) {
+      self.examples = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputModes) {
+      self.inputModes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .outputModes) {
+      self.outputModes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.examples, forKey: .examples)
+    try container.encode(self.inputModes, forKey: .inputModes)
+    try container.encode(self.outputModes, forKey: .outputModes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

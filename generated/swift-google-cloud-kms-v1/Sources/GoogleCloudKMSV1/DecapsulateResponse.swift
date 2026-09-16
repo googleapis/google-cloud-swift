@@ -87,6 +87,8 @@ public struct DecapsulateResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
   public var protectionLevel: ProtectionLevel = ProtectionLevel()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DecapsulateResponse`.
   public init() {}
 
@@ -103,32 +105,60 @@ public struct DecapsulateResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case sharedSecret = "sharedSecret"
-    case sharedSecretCrc32C = "sharedSecretCrc32c"
-    case verifiedCiphertextCrc32C = "verifiedCiphertextCrc32c"
-    case protectionLevel = "protectionLevel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sharedSecret = CodingKeys(stringValue: "sharedSecret")
+    static let sharedSecretCrc32C = CodingKeys(stringValue: "sharedSecretCrc32c")
+    static let verifiedCiphertextCrc32C = CodingKeys(stringValue: "verifiedCiphertextCrc32c")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sharedSecret",
+      "sharedSecretCrc32c",
+      "verifiedCiphertextCrc32c",
+      "protectionLevel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.sharedSecret = try container.decode(Foundation.Data.self, forKey: .sharedSecret)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .sharedSecret) {
+      self.sharedSecret = value
+    }
     self.sharedSecretCrc32C = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .sharedSecretCrc32C)
-    self.verifiedCiphertextCrc32C = try container.decode(
-      Swift.Bool.self, forKey: .verifiedCiphertextCrc32C)
-    self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedCiphertextCrc32C)
+    {
+      self.verifiedCiphertextCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.sharedSecret, forKey: .sharedSecret)
-    try container.encode(self.sharedSecretCrc32C, forKey: .sharedSecretCrc32C)
+    try container.encodeIfPresent(self.sharedSecretCrc32C, forKey: .sharedSecretCrc32C)
     try container.encode(self.verifiedCiphertextCrc32C, forKey: .verifiedCiphertextCrc32C)
     try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

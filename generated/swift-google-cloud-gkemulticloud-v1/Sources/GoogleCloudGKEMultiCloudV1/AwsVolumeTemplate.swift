@@ -50,6 +50,8 @@ public struct AwsVolumeTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// the AWS region where this cluster runs will be used.
   public var kmsKeyArn: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsVolumeTemplate`.
   public init() {}
 
@@ -64,6 +66,64 @@ public struct AwsVolumeTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sizeGib = CodingKeys(stringValue: "sizeGib")
+    static let volumeType = CodingKeys(stringValue: "volumeType")
+    static let iops = CodingKeys(stringValue: "iops")
+    static let throughput = CodingKeys(stringValue: "throughput")
+    static let kmsKeyArn = CodingKeys(stringValue: "kmsKeyArn")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sizeGib",
+      "volumeType",
+      "iops",
+      "throughput",
+      "kmsKeyArn",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGib) {
+      self.sizeGib = value
+    }
+    if let value = try container.decodeIfPresent(
+      AwsVolumeTemplate.VolumeType.self, forKey: .volumeType)
+    {
+      self.volumeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .iops) {
+      self.iops = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .throughput) {
+      self.throughput = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyArn) {
+      self.kmsKeyArn = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sizeGib, forKey: .sizeGib)
+    try container.encode(self.volumeType, forKey: .volumeType)
+    try container.encode(self.iops, forKey: .iops)
+    try container.encode(self.throughput, forKey: .throughput)
+    try container.encode(self.kmsKeyArn, forKey: .kmsKeyArn)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of supported EBS volumes. We currently only support GP2 or GP3

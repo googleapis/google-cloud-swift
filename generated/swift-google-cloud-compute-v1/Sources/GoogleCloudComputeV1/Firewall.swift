@@ -161,6 +161,8 @@
     /// applies to all instances on the specified network.
     public var targetTags: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Firewall`.
     public init() {}
 
@@ -175,6 +177,134 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowed = CodingKeys(stringValue: "allowed")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let denied = CodingKeys(stringValue: "denied")
+      static let description = CodingKeys(stringValue: "description")
+      static let destinationRanges = CodingKeys(stringValue: "destinationRanges")
+      static let direction = CodingKeys(stringValue: "direction")
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let logConfig = CodingKeys(stringValue: "logConfig")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let params = CodingKeys(stringValue: "params")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sourceRanges = CodingKeys(stringValue: "sourceRanges")
+      static let sourceServiceAccounts = CodingKeys(stringValue: "sourceServiceAccounts")
+      static let sourceTags = CodingKeys(stringValue: "sourceTags")
+      static let targetServiceAccounts = CodingKeys(stringValue: "targetServiceAccounts")
+      static let targetTags = CodingKeys(stringValue: "targetTags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowed",
+        "creationTimestamp",
+        "denied",
+        "description",
+        "destinationRanges",
+        "direction",
+        "disabled",
+        "id",
+        "kind",
+        "logConfig",
+        "name",
+        "network",
+        "params",
+        "priority",
+        "selfLink",
+        "sourceRanges",
+        "sourceServiceAccounts",
+        "sourceTags",
+        "targetServiceAccounts",
+        "targetTags",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Firewall.Allowed].self, forKey: .allowed) {
+        self.allowed = value
+      }
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      if let value = try container.decodeIfPresent([Firewall.Denied].self, forKey: .denied) {
+        self.denied = value
+      }
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationRanges)
+      {
+        self.destinationRanges = value
+      }
+      self.direction = try container.decodeIfPresent(Firewall.Direction.self, forKey: .direction)
+      self.disabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.logConfig = try container.decodeIfPresent(FirewallLogConfig.self, forKey: .logConfig)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.params = try container.decodeIfPresent(FirewallParams.self, forKey: .params)
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceRanges) {
+        self.sourceRanges = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .sourceServiceAccounts)
+      {
+        self.sourceServiceAccounts = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceTags) {
+        self.sourceTags = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .targetServiceAccounts)
+      {
+        self.targetServiceAccounts = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetTags) {
+        self.targetTags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowed, forKey: .allowed)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encode(self.denied, forKey: .denied)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.destinationRanges, forKey: .destinationRanges)
+      try container.encodeIfPresent(self.direction, forKey: .direction)
+      try container.encodeIfPresent(self.disabled, forKey: .disabled)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encode(self.sourceRanges, forKey: .sourceRanges)
+      try container.encode(self.sourceServiceAccounts, forKey: .sourceServiceAccounts)
+      try container.encode(self.sourceTags, forKey: .sourceTags)
+      try container.encode(self.targetServiceAccounts, forKey: .targetServiceAccounts)
+      try container.encode(self.targetTags, forKey: .targetTags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The message type for the [allowed][google.cloud.compute.v1.Firewall.allowed] field.
@@ -197,6 +327,8 @@
       /// and ["12345-12349"].
       public var ports: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Allowed`.
       public init() {}
 
@@ -213,21 +345,40 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case ipprotocol = "IPProtocol"
-        case ports = "ports"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ipprotocol = CodingKeys(stringValue: "IPProtocol")
+        static let ports = CodingKeys(stringValue: "ports")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "IPProtocol",
+          "ports",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.ipprotocol = try container.decodeIfPresent(Swift.String.self, forKey: .ipprotocol)
-        self.ports = try container.decode([Swift.String].self, forKey: .ports)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
+          self.ports = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.ipprotocol, forKey: .ipprotocol)
+        try container.encodeIfPresent(self.ipprotocol, forKey: .ipprotocol)
         try container.encode(self.ports, forKey: .ports)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -261,6 +412,8 @@
       /// and ["12345-12349"].
       public var ports: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Denied`.
       public init() {}
 
@@ -277,21 +430,40 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case ipprotocol = "IPProtocol"
-        case ports = "ports"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ipprotocol = CodingKeys(stringValue: "IPProtocol")
+        static let ports = CodingKeys(stringValue: "ports")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "IPProtocol",
+          "ports",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.ipprotocol = try container.decodeIfPresent(Swift.String.self, forKey: .ipprotocol)
-        self.ports = try container.decode([Swift.String].self, forKey: .ports)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
+          self.ports = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.ipprotocol, forKey: .ipprotocol)
+        try container.encodeIfPresent(self.ipprotocol, forKey: .ipprotocol)
         try container.encode(self.ports, forKey: .ports)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

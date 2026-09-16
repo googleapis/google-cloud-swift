@@ -51,6 +51,8 @@ public struct MongodbProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Must specify either srv_connection_format or standard_connection_format.
   public var mongodbConnectionFormat: OneOf_MongodbConnectionFormat? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MongodbProfile`.
   public init() {}
 
@@ -67,25 +69,52 @@ public struct MongodbProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hostAddresses = "hostAddresses"
-    case replicaSet = "replicaSet"
-    case username = "username"
-    case password = "password"
-    case secretManagerStoredPassword = "secretManagerStoredPassword"
-    case sslConfig = "sslConfig"
-    case srvConnectionFormat = "srvConnectionFormat"
-    case standardConnectionFormat = "standardConnectionFormat"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostAddresses = CodingKeys(stringValue: "hostAddresses")
+    static let replicaSet = CodingKeys(stringValue: "replicaSet")
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let secretManagerStoredPassword = CodingKeys(stringValue: "secretManagerStoredPassword")
+    static let sslConfig = CodingKeys(stringValue: "sslConfig")
+    static let srvConnectionFormat = CodingKeys(stringValue: "srvConnectionFormat")
+    static let standardConnectionFormat = CodingKeys(stringValue: "standardConnectionFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostAddresses",
+      "replicaSet",
+      "username",
+      "password",
+      "secretManagerStoredPassword",
+      "sslConfig",
+      "srvConnectionFormat",
+      "standardConnectionFormat",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.hostAddresses = try container.decode([HostAddress].self, forKey: .hostAddresses)
-    self.replicaSet = try container.decode(Swift.String.self, forKey: .replicaSet)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.password = try container.decode(Swift.String.self, forKey: .password)
-    self.secretManagerStoredPassword = try container.decode(
+    if let value = try container.decodeIfPresent([HostAddress].self, forKey: .hostAddresses) {
+      self.hostAddresses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replicaSet) {
+      self.replicaSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .secretManagerStoredPassword)
+    {
+      self.secretManagerStoredPassword = value
+    }
     self.sslConfig = try container.decodeIfPresent(MongodbSslConfig.self, forKey: .sslConfig)
 
     var mongodbConnectionFormat: OneOf_MongodbConnectionFormat? = nil
@@ -109,6 +138,10 @@ public struct MongodbProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try mongodbConnectionFormatCheckAndSet(.standardConnectionFormat(standardConnectionFormat))
     }
     self.mongodbConnectionFormat = mongodbConnectionFormat
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -118,7 +151,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.username, forKey: .username)
     try container.encode(self.password, forKey: .password)
     try container.encode(self.secretManagerStoredPassword, forKey: .secretManagerStoredPassword)
-    try container.encode(self.sslConfig, forKey: .sslConfig)
+    try container.encodeIfPresent(self.sslConfig, forKey: .sslConfig)
 
     if let choice = self.mongodbConnectionFormat {
       switch choice {
@@ -127,6 +160,9 @@ public struct MongodbProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .standardConnectionFormat(let value):
         try container.encode(value, forKey: .standardConnectionFormat)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

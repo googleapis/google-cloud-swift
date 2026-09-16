@@ -121,6 +121,8 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
   public var authorizationHeader: OneOf_AuthorizationHeader? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HttpRequest`.
   public init() {}
 
@@ -137,21 +139,45 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case url = "url"
-    case httpMethod = "httpMethod"
-    case headers = "headers"
-    case body = "body"
-    case oauthToken = "oauthToken"
-    case oidcToken = "oidcToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let url = CodingKeys(stringValue: "url")
+    static let httpMethod = CodingKeys(stringValue: "httpMethod")
+    static let headers = CodingKeys(stringValue: "headers")
+    static let body = CodingKeys(stringValue: "body")
+    static let oauthToken = CodingKeys(stringValue: "oauthToken")
+    static let oidcToken = CodingKeys(stringValue: "oidcToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "url",
+      "httpMethod",
+      "headers",
+      "body",
+      "oauthToken",
+      "oidcToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.url = try container.decode(Swift.String.self, forKey: .url)
-    self.httpMethod = try container.decode(HttpMethod.self, forKey: .httpMethod)
-    self.headers = try container.decode([Swift.String: Swift.String].self, forKey: .headers)
-    self.body = try container.decode(Foundation.Data.self, forKey: .body)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    if let value = try container.decodeIfPresent(HttpMethod.self, forKey: .httpMethod) {
+      self.httpMethod = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .headers)
+    {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .body) {
+      self.body = value
+    }
 
     var authorizationHeader: OneOf_AuthorizationHeader? = nil
     let authorizationHeaderCheckAndSet = {
@@ -170,6 +196,10 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try authorizationHeaderCheckAndSet(.oidcToken(oidcToken))
     }
     self.authorizationHeader = authorizationHeader
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -186,6 +216,9 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .oidcToken(let value):
         try container.encode(value, forKey: .oidcToken)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -97,6 +97,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// must be supplied.
   public var rules: [GrpcRoute.RouteRule] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GrpcRoute`.
   public init() {}
 
@@ -111,6 +113,91 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let hostnames = CodingKeys(stringValue: "hostnames")
+    static let meshes = CodingKeys(stringValue: "meshes")
+    static let gateways = CodingKeys(stringValue: "gateways")
+    static let rules = CodingKeys(stringValue: "rules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "selfLink",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "hostnames",
+      "meshes",
+      "gateways",
+      "rules",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .hostnames) {
+      self.hostnames = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .meshes) {
+      self.meshes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .gateways) {
+      self.gateways = value
+    }
+    if let value = try container.decodeIfPresent([GrpcRoute.RouteRule].self, forKey: .rules) {
+      self.rules = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.selfLink, forKey: .selfLink)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.hostnames, forKey: .hostnames)
+    try container.encode(self.meshes, forKey: .meshes)
+    try container.encode(self.gateways, forKey: .gateways)
+    try container.encode(self.rules, forKey: .rules)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies a match against a method.
@@ -134,6 +221,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// REGULAR_EXPRESSION.
     public var caseSensitive: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MethodMatch`.
     public init() {}
 
@@ -148,6 +237,55 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let grpcService = CodingKeys(stringValue: "grpcService")
+      static let grpcMethod = CodingKeys(stringValue: "grpcMethod")
+      static let caseSensitive = CodingKeys(stringValue: "caseSensitive")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "grpcService",
+        "grpcMethod",
+        "caseSensitive",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(GrpcRoute.MethodMatch.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .grpcService) {
+        self.grpcService = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .grpcMethod) {
+        self.grpcMethod = value
+      }
+      self.caseSensitive = try container.decodeIfPresent(Swift.Bool.self, forKey: .caseSensitive)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.grpcService, forKey: .grpcService)
+      try container.encode(self.grpcMethod, forKey: .grpcMethod)
+      try container.encodeIfPresent(self.caseSensitive, forKey: .caseSensitive)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of the match.
@@ -281,6 +419,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. The value of the header.
     public var value: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HeaderMatch`.
     public init() {}
 
@@ -295,6 +435,51 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let key = CodingKeys(stringValue: "key")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "key",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(GrpcRoute.HeaderMatch.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+        self.key = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.key, forKey: .key)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of match.
@@ -426,6 +611,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Specifies a collection of headers to match.
     public var headers: [GrpcRoute.HeaderMatch] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouteMatch`.
     public init() {}
 
@@ -440,6 +627,42 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let method = CodingKeys(stringValue: "method")
+      static let headers = CodingKeys(stringValue: "headers")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "method",
+        "headers",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.method = try container.decodeIfPresent(GrpcRoute.MethodMatch.self, forKey: .method)
+      if let value = try container.decodeIfPresent([GrpcRoute.HeaderMatch].self, forKey: .headers) {
+        self.headers = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.method, forKey: .method)
+      try container.encode(self.headers, forKey: .headers)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -476,6 +699,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Specifies the kind of destination to which traffic will be routed.
     public var destinationType: OneOf_DestinationType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Destination`.
     public init() {}
 
@@ -492,9 +717,19 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case serviceName = "serviceName"
-      case weight = "weight"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let serviceName = CodingKeys(stringValue: "serviceName")
+      static let weight = CodingKeys(stringValue: "weight")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "serviceName",
+        "weight",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -515,17 +750,24 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try destinationTypeCheckAndSet(.serviceName(serviceName))
       }
       self.destinationType = destinationType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.weight, forKey: .weight)
+      try container.encodeIfPresent(self.weight, forKey: .weight)
 
       if let choice = self.destinationType {
         switch choice {
         case .serviceName(let value):
           try container.encode(value, forKey: .serviceName)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -562,6 +804,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The specification for aborting to client requests.
     public var abort: GrpcRoute.FaultInjectionPolicy.Abort? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FaultInjectionPolicy`.
     public init() {}
 
@@ -578,6 +822,42 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let delay = CodingKeys(stringValue: "delay")
+      static let abort = CodingKeys(stringValue: "abort")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "delay",
+        "abort",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.delay = try container.decodeIfPresent(
+        GrpcRoute.FaultInjectionPolicy.Delay.self, forKey: .delay)
+      self.abort = try container.decodeIfPresent(
+        GrpcRoute.FaultInjectionPolicy.Abort.self, forKey: .abort)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.delay, forKey: .delay)
+      try container.encodeIfPresent(self.abort, forKey: .abort)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Specification of how client requests are delayed as part of fault
     /// injection before being sent to a destination.
     public struct Delay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -590,6 +870,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       ///
       /// The value must be between [0, 100]
       public var percentage: Swift.Int32? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Delay`.
       public init() {}
@@ -605,6 +887,41 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let fixedDelay = CodingKeys(stringValue: "fixedDelay")
+        static let percentage = CodingKeys(stringValue: "percentage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "fixedDelay",
+          "percentage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.fixedDelay = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .fixedDelay)
+        self.percentage = try container.decodeIfPresent(Swift.Int32.self, forKey: .percentage)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.fixedDelay, forKey: .fixedDelay)
+        try container.encodeIfPresent(self.percentage, forKey: .percentage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -634,6 +951,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The value must be between [0, 100]
       public var percentage: Swift.Int32? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Abort`.
       public init() {}
 
@@ -648,6 +967,40 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let httpStatus = CodingKeys(stringValue: "httpStatus")
+        static let percentage = CodingKeys(stringValue: "percentage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "httpStatus",
+          "percentage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.httpStatus = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpStatus)
+        self.percentage = try container.decodeIfPresent(Swift.Int32.self, forKey: .percentage)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.httpStatus, forKey: .httpStatus)
+        try container.encodeIfPresent(self.percentage, forKey: .percentage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -692,6 +1045,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Set this to 0s to use a session cookie and disable cookie expiration.
     public var cookieTtl: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StatefulSessionAffinityPolicy`.
     public init() {}
 
@@ -706,6 +1061,37 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cookieTtl = CodingKeys(stringValue: "cookieTtl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cookieTtl"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cookieTtl = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .cookieTtl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cookieTtl, forKey: .cookieTtl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -748,6 +1134,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// specified, default to 1.
     public var numRetries: Swift.UInt32 = Swift.UInt32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RetryPolicy`.
     public init() {}
 
@@ -762,6 +1150,44 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let retryConditions = CodingKeys(stringValue: "retryConditions")
+      static let numRetries = CodingKeys(stringValue: "numRetries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "retryConditions",
+        "numRetries",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retryConditions) {
+        self.retryConditions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .numRetries) {
+        self.numRetries = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.retryConditions, forKey: .retryConditions)
+      try container.encode(self.numRetries, forKey: .numRetries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -814,6 +1240,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// disabled.
     public var idleTimeout: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouteAction`.
     public init() {}
 
@@ -828,6 +1256,64 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let destinations = CodingKeys(stringValue: "destinations")
+      static let faultInjectionPolicy = CodingKeys(stringValue: "faultInjectionPolicy")
+      static let timeout = CodingKeys(stringValue: "timeout")
+      static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
+      static let statefulSessionAffinity = CodingKeys(stringValue: "statefulSessionAffinity")
+      static let idleTimeout = CodingKeys(stringValue: "idleTimeout")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "destinations",
+        "faultInjectionPolicy",
+        "timeout",
+        "retryPolicy",
+        "statefulSessionAffinity",
+        "idleTimeout",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [GrpcRoute.Destination].self, forKey: .destinations)
+      {
+        self.destinations = value
+      }
+      self.faultInjectionPolicy = try container.decodeIfPresent(
+        GrpcRoute.FaultInjectionPolicy.self, forKey: .faultInjectionPolicy)
+      self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+      self.retryPolicy = try container.decodeIfPresent(
+        GrpcRoute.RetryPolicy.self, forKey: .retryPolicy)
+      self.statefulSessionAffinity = try container.decodeIfPresent(
+        GrpcRoute.StatefulSessionAffinityPolicy.self, forKey: .statefulSessionAffinity)
+      self.idleTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .idleTimeout)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.destinations, forKey: .destinations)
+      try container.encodeIfPresent(self.faultInjectionPolicy, forKey: .faultInjectionPolicy)
+      try container.encodeIfPresent(self.timeout, forKey: .timeout)
+      try container.encodeIfPresent(self.retryPolicy, forKey: .retryPolicy)
+      try container.encodeIfPresent(self.statefulSessionAffinity, forKey: .statefulSessionAffinity)
+      try container.encodeIfPresent(self.idleTimeout, forKey: .idleTimeout)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -855,6 +1341,8 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// required.
     public var action: GrpcRoute.RouteAction? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouteRule`.
     public init() {}
 
@@ -869,6 +1357,42 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let matches = CodingKeys(stringValue: "matches")
+      static let action = CodingKeys(stringValue: "action")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "matches",
+        "action",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GrpcRoute.RouteMatch].self, forKey: .matches) {
+        self.matches = value
+      }
+      self.action = try container.decodeIfPresent(GrpcRoute.RouteAction.self, forKey: .action)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.matches, forKey: .matches)
+      try container.encodeIfPresent(self.action, forKey: .action)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

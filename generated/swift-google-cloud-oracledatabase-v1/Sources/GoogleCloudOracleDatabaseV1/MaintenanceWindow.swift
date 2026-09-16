@@ -66,6 +66,8 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// (waiting period) between database server patching operations.
   public var isCustomActionTimeoutEnabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenanceWindow`.
   public init() {}
 
@@ -80,6 +82,94 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let preference = CodingKeys(stringValue: "preference")
+    static let months = CodingKeys(stringValue: "months")
+    static let weeksOfMonth = CodingKeys(stringValue: "weeksOfMonth")
+    static let daysOfWeek = CodingKeys(stringValue: "daysOfWeek")
+    static let hoursOfDay = CodingKeys(stringValue: "hoursOfDay")
+    static let leadTimeWeek = CodingKeys(stringValue: "leadTimeWeek")
+    static let patchingMode = CodingKeys(stringValue: "patchingMode")
+    static let customActionTimeoutMins = CodingKeys(stringValue: "customActionTimeoutMins")
+    static let isCustomActionTimeoutEnabled = CodingKeys(
+      stringValue: "isCustomActionTimeoutEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "preference",
+      "months",
+      "weeksOfMonth",
+      "daysOfWeek",
+      "hoursOfDay",
+      "leadTimeWeek",
+      "patchingMode",
+      "customActionTimeoutMins",
+      "isCustomActionTimeoutEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      MaintenanceWindow.MaintenanceWindowPreference.self, forKey: .preference)
+    {
+      self.preference = value
+    }
+    if let value = try container.decodeIfPresent([GoogleType.Month].self, forKey: .months) {
+      self.months = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .weeksOfMonth) {
+      self.weeksOfMonth = value
+    }
+    if let value = try container.decodeIfPresent([GoogleType.DayOfWeek].self, forKey: .daysOfWeek) {
+      self.daysOfWeek = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .hoursOfDay) {
+      self.hoursOfDay = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .leadTimeWeek) {
+      self.leadTimeWeek = value
+    }
+    if let value = try container.decodeIfPresent(
+      MaintenanceWindow.PatchingMode.self, forKey: .patchingMode)
+    {
+      self.patchingMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .customActionTimeoutMins)
+    {
+      self.customActionTimeoutMins = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isCustomActionTimeoutEnabled)
+    {
+      self.isCustomActionTimeoutEnabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.preference, forKey: .preference)
+    try container.encode(self.months, forKey: .months)
+    try container.encode(self.weeksOfMonth, forKey: .weeksOfMonth)
+    try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
+    try container.encode(self.hoursOfDay, forKey: .hoursOfDay)
+    try container.encode(self.leadTimeWeek, forKey: .leadTimeWeek)
+    try container.encode(self.patchingMode, forKey: .patchingMode)
+    try container.encode(self.customActionTimeoutMins, forKey: .customActionTimeoutMins)
+    try container.encode(self.isCustomActionTimeoutEnabled, forKey: .isCustomActionTimeoutEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Maintenance window preference.

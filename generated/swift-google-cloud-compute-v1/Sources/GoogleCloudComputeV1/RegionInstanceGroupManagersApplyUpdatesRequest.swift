@@ -69,6 +69,8 @@
     public var mostDisruptiveAllowedAction:
       RegionInstanceGroupManagersApplyUpdatesRequest.MostDisruptiveAllowedAction? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RegionInstanceGroupManagersApplyUpdatesRequest`.
     public init() {}
 
@@ -83,6 +85,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allInstances = CodingKeys(stringValue: "allInstances")
+      static let instances = CodingKeys(stringValue: "instances")
+      static let minimalAction = CodingKeys(stringValue: "minimalAction")
+      static let mostDisruptiveAllowedAction = CodingKeys(
+        stringValue: "mostDisruptiveAllowedAction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allInstances",
+        "instances",
+        "minimalAction",
+        "mostDisruptiveAllowedAction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.allInstances = try container.decodeIfPresent(Swift.Bool.self, forKey: .allInstances)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+        self.instances = value
+      }
+      self.minimalAction = try container.decodeIfPresent(
+        RegionInstanceGroupManagersApplyUpdatesRequest.MinimalAction.self, forKey: .minimalAction)
+      self.mostDisruptiveAllowedAction = try container.decodeIfPresent(
+        RegionInstanceGroupManagersApplyUpdatesRequest.MostDisruptiveAllowedAction.self,
+        forKey: .mostDisruptiveAllowedAction)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.allInstances, forKey: .allInstances)
+      try container.encode(self.instances, forKey: .instances)
+      try container.encodeIfPresent(self.minimalAction, forKey: .minimalAction)
+      try container.encodeIfPresent(
+        self.mostDisruptiveAllowedAction, forKey: .mostDisruptiveAllowedAction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [minimalAction][google.cloud.compute.v1.RegionInstanceGroupManagersApplyUpdatesRequest.minimalAction] field.

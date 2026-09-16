@@ -66,6 +66,8 @@ public struct EntityAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// fields, such a score or string that qualifies the entity.
   public var properties: [Property] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntityAnnotation`.
   public init() {}
 
@@ -80,6 +82,84 @@ public struct EntityAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mid = CodingKeys(stringValue: "mid")
+    static let locale = CodingKeys(stringValue: "locale")
+    static let description = CodingKeys(stringValue: "description")
+    static let score = CodingKeys(stringValue: "score")
+    static let confidence = CodingKeys(stringValue: "confidence")
+    static let topicality = CodingKeys(stringValue: "topicality")
+    static let boundingPoly = CodingKeys(stringValue: "boundingPoly")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let properties = CodingKeys(stringValue: "properties")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mid",
+      "locale",
+      "description",
+      "score",
+      "confidence",
+      "topicality",
+      "boundingPoly",
+      "locations",
+      "properties",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mid) {
+      self.mid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locale) {
+      self.locale = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+      self.score = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .topicality) {
+      self.topicality = value
+    }
+    self.boundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingPoly)
+    if let value = try container.decodeIfPresent([LocationInfo].self, forKey: .locations) {
+      self.locations = value
+    }
+    if let value = try container.decodeIfPresent([Property].self, forKey: .properties) {
+      self.properties = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mid, forKey: .mid)
+    try container.encode(self.locale, forKey: .locale)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.score, forKey: .score)
+    try container.encode(self.confidence, forKey: .confidence)
+    try container.encode(self.topicality, forKey: .topicality)
+    try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encode(self.properties, forKey: .properties)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

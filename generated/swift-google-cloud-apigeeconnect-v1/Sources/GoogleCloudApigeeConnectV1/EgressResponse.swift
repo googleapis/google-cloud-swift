@@ -46,6 +46,8 @@ public struct EgressResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Format: `projects/{project_number or project_id}/endpoints/{endpoint}`
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EgressResponse`.
   public init() {}
 
@@ -60,6 +62,70 @@ public struct EgressResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let httpResponse = CodingKeys(stringValue: "httpResponse")
+    static let status = CodingKeys(stringValue: "status")
+    static let project = CodingKeys(stringValue: "project")
+    static let traceId = CodingKeys(stringValue: "traceId")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "httpResponse",
+      "status",
+      "project",
+      "traceId",
+      "endpoint",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    self.httpResponse = try container.decodeIfPresent(HttpResponse.self, forKey: .httpResponse)
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .traceId) {
+      self.traceId = value
+    }
+    if let value = try container.decodeIfPresent(TetherEndpoint.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encodeIfPresent(self.httpResponse, forKey: .httpResponse)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.traceId, forKey: .traceId)
+    try container.encode(self.endpoint, forKey: .endpoint)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@
     /// The aggregation result.
     public var aggregationResult: OneOf_AggregationResult? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AggregationResult`.
     public init() {}
 
@@ -44,19 +46,36 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case pointwiseMetricResult = "pointwiseMetricResult"
-      case pairwiseMetricResult = "pairwiseMetricResult"
-      case exactMatchMetricValue = "exactMatchMetricValue"
-      case bleuMetricValue = "bleuMetricValue"
-      case rougeMetricValue = "rougeMetricValue"
-      case aggregationMetric = "aggregationMetric"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pointwiseMetricResult = CodingKeys(stringValue: "pointwiseMetricResult")
+      static let pairwiseMetricResult = CodingKeys(stringValue: "pairwiseMetricResult")
+      static let exactMatchMetricValue = CodingKeys(stringValue: "exactMatchMetricValue")
+      static let bleuMetricValue = CodingKeys(stringValue: "bleuMetricValue")
+      static let rougeMetricValue = CodingKeys(stringValue: "rougeMetricValue")
+      static let aggregationMetric = CodingKeys(stringValue: "aggregationMetric")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pointwiseMetricResult",
+        "pairwiseMetricResult",
+        "exactMatchMetricValue",
+        "bleuMetricValue",
+        "rougeMetricValue",
+        "aggregationMetric",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.aggregationMetric = try container.decode(
+      if let value = try container.decodeIfPresent(
         Metric.AggregationMetric.self, forKey: .aggregationMetric)
+      {
+        self.aggregationMetric = value
+      }
 
       var aggregationResult: OneOf_AggregationResult? = nil
       let aggregationResultCheckAndSet = {
@@ -94,6 +113,10 @@
         try aggregationResultCheckAndSet(.rougeMetricValue(rougeMetricValue))
       }
       self.aggregationResult = aggregationResult
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -113,6 +136,9 @@
         case .rougeMetricValue(let value):
           try container.encode(value, forKey: .rougeMetricValue)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

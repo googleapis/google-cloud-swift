@@ -171,6 +171,8 @@
     /// exactly one default version.
     public var models: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomJobSpec`.
     public init() {}
 
@@ -185,6 +187,124 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let persistentResourceId = CodingKeys(stringValue: "persistentResourceId")
+      static let workerPoolSpecs = CodingKeys(stringValue: "workerPoolSpecs")
+      static let scheduling = CodingKeys(stringValue: "scheduling")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let network = CodingKeys(stringValue: "network")
+      static let reservedIpRanges = CodingKeys(stringValue: "reservedIpRanges")
+      static let pscInterfaceConfig = CodingKeys(stringValue: "pscInterfaceConfig")
+      static let baseOutputDirectory = CodingKeys(stringValue: "baseOutputDirectory")
+      static let protectedArtifactLocationId = CodingKeys(
+        stringValue: "protectedArtifactLocationId")
+      static let tensorboard = CodingKeys(stringValue: "tensorboard")
+      static let enableWebAccess = CodingKeys(stringValue: "enableWebAccess")
+      static let enableDashboardAccess = CodingKeys(stringValue: "enableDashboardAccess")
+      static let experiment = CodingKeys(stringValue: "experiment")
+      static let experimentRun = CodingKeys(stringValue: "experimentRun")
+      static let models = CodingKeys(stringValue: "models")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "persistentResourceId",
+        "workerPoolSpecs",
+        "scheduling",
+        "serviceAccount",
+        "network",
+        "reservedIpRanges",
+        "pscInterfaceConfig",
+        "baseOutputDirectory",
+        "protectedArtifactLocationId",
+        "tensorboard",
+        "enableWebAccess",
+        "enableDashboardAccess",
+        "experiment",
+        "experimentRun",
+        "models",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .persistentResourceId)
+      {
+        self.persistentResourceId = value
+      }
+      if let value = try container.decodeIfPresent([WorkerPoolSpec].self, forKey: .workerPoolSpecs)
+      {
+        self.workerPoolSpecs = value
+      }
+      self.scheduling = try container.decodeIfPresent(Scheduling.self, forKey: .scheduling)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reservedIpRanges) {
+        self.reservedIpRanges = value
+      }
+      self.pscInterfaceConfig = try container.decodeIfPresent(
+        PscInterfaceConfig.self, forKey: .pscInterfaceConfig)
+      self.baseOutputDirectory = try container.decodeIfPresent(
+        GcsDestination.self, forKey: .baseOutputDirectory)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .protectedArtifactLocationId)
+      {
+        self.protectedArtifactLocationId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tensorboard) {
+        self.tensorboard = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWebAccess) {
+        self.enableWebAccess = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableDashboardAccess)
+      {
+        self.enableDashboardAccess = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .experiment) {
+        self.experiment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .experimentRun) {
+        self.experimentRun = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .models) {
+        self.models = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.persistentResourceId, forKey: .persistentResourceId)
+      try container.encode(self.workerPoolSpecs, forKey: .workerPoolSpecs)
+      try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.reservedIpRanges, forKey: .reservedIpRanges)
+      try container.encodeIfPresent(self.pscInterfaceConfig, forKey: .pscInterfaceConfig)
+      try container.encodeIfPresent(self.baseOutputDirectory, forKey: .baseOutputDirectory)
+      try container.encode(self.protectedArtifactLocationId, forKey: .protectedArtifactLocationId)
+      try container.encode(self.tensorboard, forKey: .tensorboard)
+      try container.encode(self.enableWebAccess, forKey: .enableWebAccess)
+      try container.encode(self.enableDashboardAccess, forKey: .enableDashboardAccess)
+      try container.encode(self.experiment, forKey: .experiment)
+      try container.encode(self.experimentRun, forKey: .experimentRun)
+      try container.encode(self.models, forKey: .models)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

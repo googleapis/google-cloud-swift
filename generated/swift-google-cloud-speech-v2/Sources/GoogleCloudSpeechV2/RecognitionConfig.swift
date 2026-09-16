@@ -70,6 +70,8 @@ public struct RecognitionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Decoding parameters for audio being sent for recognition.
   public var decodingConfig: OneOf_DecodingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognitionConfig`.
   public init() {}
 
@@ -86,22 +88,43 @@ public struct RecognitionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case autoDecodingConfig = "autoDecodingConfig"
-    case explicitDecodingConfig = "explicitDecodingConfig"
-    case model = "model"
-    case languageCodes = "languageCodes"
-    case features = "features"
-    case adaptation = "adaptation"
-    case transcriptNormalization = "transcriptNormalization"
-    case translationConfig = "translationConfig"
-    case denoiserConfig = "denoiserConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let autoDecodingConfig = CodingKeys(stringValue: "autoDecodingConfig")
+    static let explicitDecodingConfig = CodingKeys(stringValue: "explicitDecodingConfig")
+    static let model = CodingKeys(stringValue: "model")
+    static let languageCodes = CodingKeys(stringValue: "languageCodes")
+    static let features = CodingKeys(stringValue: "features")
+    static let adaptation = CodingKeys(stringValue: "adaptation")
+    static let transcriptNormalization = CodingKeys(stringValue: "transcriptNormalization")
+    static let translationConfig = CodingKeys(stringValue: "translationConfig")
+    static let denoiserConfig = CodingKeys(stringValue: "denoiserConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "autoDecodingConfig",
+      "explicitDecodingConfig",
+      "model",
+      "languageCodes",
+      "features",
+      "adaptation",
+      "transcriptNormalization",
+      "translationConfig",
+      "denoiserConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.model = try container.decode(Swift.String.self, forKey: .model)
-    self.languageCodes = try container.decode([Swift.String].self, forKey: .languageCodes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageCodes) {
+      self.languageCodes = value
+    }
     self.features = try container.decodeIfPresent(RecognitionFeatures.self, forKey: .features)
     self.adaptation = try container.decodeIfPresent(SpeechAdaptation.self, forKey: .adaptation)
     self.transcriptNormalization = try container.decodeIfPresent(
@@ -132,17 +155,21 @@ public struct RecognitionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try decodingConfigCheckAndSet(.explicitDecodingConfig(explicitDecodingConfig))
     }
     self.decodingConfig = decodingConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.model, forKey: .model)
     try container.encode(self.languageCodes, forKey: .languageCodes)
-    try container.encode(self.features, forKey: .features)
-    try container.encode(self.adaptation, forKey: .adaptation)
-    try container.encode(self.transcriptNormalization, forKey: .transcriptNormalization)
-    try container.encode(self.translationConfig, forKey: .translationConfig)
-    try container.encode(self.denoiserConfig, forKey: .denoiserConfig)
+    try container.encodeIfPresent(self.features, forKey: .features)
+    try container.encodeIfPresent(self.adaptation, forKey: .adaptation)
+    try container.encodeIfPresent(self.transcriptNormalization, forKey: .transcriptNormalization)
+    try container.encodeIfPresent(self.translationConfig, forKey: .translationConfig)
+    try container.encodeIfPresent(self.denoiserConfig, forKey: .denoiserConfig)
 
     if let choice = self.decodingConfig {
       switch choice {
@@ -151,6 +178,9 @@ public struct RecognitionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .explicitDecodingConfig(let value):
         try container.encode(value, forKey: .explicitDecodingConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

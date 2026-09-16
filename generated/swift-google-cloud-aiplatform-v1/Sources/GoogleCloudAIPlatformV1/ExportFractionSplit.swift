@@ -36,6 +36,8 @@
     /// The fraction of the input data that is to be used to evaluate the Model.
     public var testFraction: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportFractionSplit`.
     public init() {}
 
@@ -50,6 +52,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingFraction = CodingKeys(stringValue: "trainingFraction")
+      static let validationFraction = CodingKeys(stringValue: "validationFraction")
+      static let testFraction = CodingKeys(stringValue: "testFraction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingFraction",
+        "validationFraction",
+        "testFraction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .trainingFraction) {
+        self.trainingFraction = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .validationFraction) {
+        self.validationFraction = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .testFraction) {
+        self.testFraction = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trainingFraction, forKey: .trainingFraction)
+      try container.encode(self.validationFraction, forKey: .validationFraction)
+      try container.encode(self.testFraction, forKey: .testFraction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

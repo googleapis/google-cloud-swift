@@ -60,6 +60,8 @@ public struct FrameworkAudit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The framework audit state of the audit.
   public var state: FrameworkAudit.State = FrameworkAudit.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FrameworkAudit`.
   public init() {}
 
@@ -74,6 +76,111 @@ public struct FrameworkAudit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let frameworkAuditId = CodingKeys(stringValue: "frameworkAuditId")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let frameworkAuditDestination = CodingKeys(stringValue: "frameworkAuditDestination")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let finishTime = CodingKeys(stringValue: "finishTime")
+    static let complianceState = CodingKeys(stringValue: "complianceState")
+    static let reportSummary = CodingKeys(stringValue: "reportSummary")
+    static let cloudControlGroupAuditDetails = CodingKeys(
+      stringValue: "cloudControlGroupAuditDetails")
+    static let cloudControlAuditDetails = CodingKeys(stringValue: "cloudControlAuditDetails")
+    static let operationId = CodingKeys(stringValue: "operationId")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "frameworkAuditId",
+      "complianceFramework",
+      "scope",
+      "frameworkAuditDestination",
+      "startTime",
+      "finishTime",
+      "complianceState",
+      "reportSummary",
+      "cloudControlGroupAuditDetails",
+      "cloudControlAuditDetails",
+      "operationId",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .frameworkAuditId) {
+      self.frameworkAuditId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    self.frameworkAuditDestination = try container.decodeIfPresent(
+      FrameworkAuditDestination.self, forKey: .frameworkAuditDestination)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finishTime)
+    if let value = try container.decodeIfPresent(ComplianceState.self, forKey: .complianceState) {
+      self.complianceState = value
+    }
+    self.reportSummary = try container.decodeIfPresent(ReportSummary.self, forKey: .reportSummary)
+    if let value = try container.decodeIfPresent(
+      [CloudControlGroupAuditDetails].self, forKey: .cloudControlGroupAuditDetails)
+    {
+      self.cloudControlGroupAuditDetails = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudControlAuditDetails].self, forKey: .cloudControlAuditDetails)
+    {
+      self.cloudControlAuditDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
+      self.operationId = value
+    }
+    if let value = try container.decodeIfPresent(FrameworkAudit.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.frameworkAuditId, forKey: .frameworkAuditId)
+    try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encodeIfPresent(
+      self.frameworkAuditDestination, forKey: .frameworkAuditDestination)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
+    try container.encode(self.complianceState, forKey: .complianceState)
+    try container.encodeIfPresent(self.reportSummary, forKey: .reportSummary)
+    try container.encode(self.cloudControlGroupAuditDetails, forKey: .cloudControlGroupAuditDetails)
+    try container.encode(self.cloudControlAuditDetails, forKey: .cloudControlAuditDetails)
+    try container.encode(self.operationId, forKey: .operationId)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the framework audit.

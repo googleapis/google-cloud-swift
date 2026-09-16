@@ -43,6 +43,8 @@
 
     public var metadata: OneOf_Metadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Part`.
     public init() {}
 
@@ -59,24 +61,48 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case inlineData = "inlineData"
-      case fileData = "fileData"
-      case functionCall = "functionCall"
-      case functionResponse = "functionResponse"
-      case executableCode = "executableCode"
-      case codeExecutionResult = "codeExecutionResult"
-      case thought = "thought"
-      case thoughtSignature = "thoughtSignature"
-      case videoMetadata = "videoMetadata"
-      case mediaResolution = "mediaResolution"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let inlineData = CodingKeys(stringValue: "inlineData")
+      static let fileData = CodingKeys(stringValue: "fileData")
+      static let functionCall = CodingKeys(stringValue: "functionCall")
+      static let functionResponse = CodingKeys(stringValue: "functionResponse")
+      static let executableCode = CodingKeys(stringValue: "executableCode")
+      static let codeExecutionResult = CodingKeys(stringValue: "codeExecutionResult")
+      static let thought = CodingKeys(stringValue: "thought")
+      static let thoughtSignature = CodingKeys(stringValue: "thoughtSignature")
+      static let videoMetadata = CodingKeys(stringValue: "videoMetadata")
+      static let mediaResolution = CodingKeys(stringValue: "mediaResolution")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "inlineData",
+        "fileData",
+        "functionCall",
+        "functionResponse",
+        "executableCode",
+        "codeExecutionResult",
+        "thought",
+        "thoughtSignature",
+        "videoMetadata",
+        "mediaResolution",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.thought = try container.decode(Swift.Bool.self, forKey: .thought)
-      self.thoughtSignature = try container.decode(Foundation.Data.self, forKey: .thoughtSignature)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .thought) {
+        self.thought = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .thoughtSignature)
+      {
+        self.thoughtSignature = value
+      }
       self.mediaResolution = try container.decodeIfPresent(
         Part.MediaResolution.self, forKey: .mediaResolution)
 
@@ -136,13 +162,17 @@
         try metadataCheckAndSet(.videoMetadata(videoMetadata))
       }
       self.metadata = metadata
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.thought, forKey: .thought)
       try container.encode(self.thoughtSignature, forKey: .thoughtSignature)
-      try container.encode(self.mediaResolution, forKey: .mediaResolution)
+      try container.encodeIfPresent(self.mediaResolution, forKey: .mediaResolution)
 
       if let choice = self.data {
         switch choice {
@@ -169,6 +199,9 @@
           try container.encode(value, forKey: .videoMetadata)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// per part media resolution.
@@ -177,6 +210,8 @@
       Sendable
     {
       public var value: OneOf_Value? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MediaResolution`.
       public init() {}
@@ -194,8 +229,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case level = "level"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let level = CodingKeys(stringValue: "level")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "level"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -217,6 +261,10 @@
           try valueCheckAndSet(.level(level))
         }
         self.value = value
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -227,6 +275,9 @@
           case .level(let value):
             try container.encode(value, forKey: .level)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

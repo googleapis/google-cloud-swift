@@ -96,6 +96,8 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// alphanumeric characters.
   public var pluggableDatabaseName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Database`.
   public init() {}
 
@@ -110,6 +112,146 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dbName = CodingKeys(stringValue: "dbName")
+    static let dbUniqueName = CodingKeys(stringValue: "dbUniqueName")
+    static let adminPassword = CodingKeys(stringValue: "adminPassword")
+    static let adminPasswordSecretVersion = CodingKeys(stringValue: "adminPasswordSecretVersion")
+    static let tdeWalletPassword = CodingKeys(stringValue: "tdeWalletPassword")
+    static let tdeWalletPasswordSecretVersion = CodingKeys(
+      stringValue: "tdeWalletPasswordSecretVersion")
+    static let characterSet = CodingKeys(stringValue: "characterSet")
+    static let ncharacterSet = CodingKeys(stringValue: "ncharacterSet")
+    static let ociUrl = CodingKeys(stringValue: "ociUrl")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let databaseId = CodingKeys(stringValue: "databaseId")
+    static let dbHomeName = CodingKeys(stringValue: "dbHomeName")
+    static let gcpOracleZone = CodingKeys(stringValue: "gcpOracleZone")
+    static let opsInsightsStatus = CodingKeys(stringValue: "opsInsightsStatus")
+    static let pluggableDatabaseId = CodingKeys(stringValue: "pluggableDatabaseId")
+    static let pluggableDatabaseName = CodingKeys(stringValue: "pluggableDatabaseName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dbName",
+      "dbUniqueName",
+      "adminPassword",
+      "adminPasswordSecretVersion",
+      "tdeWalletPassword",
+      "tdeWalletPasswordSecretVersion",
+      "characterSet",
+      "ncharacterSet",
+      "ociUrl",
+      "createTime",
+      "properties",
+      "databaseId",
+      "dbHomeName",
+      "gcpOracleZone",
+      "opsInsightsStatus",
+      "pluggableDatabaseId",
+      "pluggableDatabaseName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbName) {
+      self.dbName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbUniqueName) {
+      self.dbUniqueName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adminPassword) {
+      self.adminPassword = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .adminPasswordSecretVersion)
+    {
+      self.adminPasswordSecretVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tdeWalletPassword) {
+      self.tdeWalletPassword = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .tdeWalletPasswordSecretVersion)
+    {
+      self.tdeWalletPasswordSecretVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .characterSet) {
+      self.characterSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ncharacterSet) {
+      self.ncharacterSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUrl) {
+      self.ociUrl = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.properties = try container.decodeIfPresent(DatabaseProperties.self, forKey: .properties)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseId) {
+      self.databaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbHomeName) {
+      self.dbHomeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleZone) {
+      self.gcpOracleZone = value
+    }
+    if let value = try container.decodeIfPresent(
+      Database.OperationsInsightsStatus.self, forKey: .opsInsightsStatus)
+    {
+      self.opsInsightsStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluggableDatabaseId) {
+      self.pluggableDatabaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluggableDatabaseName)
+    {
+      self.pluggableDatabaseName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.dbName, forKey: .dbName)
+    try container.encode(self.dbUniqueName, forKey: .dbUniqueName)
+    try container.encode(self.adminPassword, forKey: .adminPassword)
+    try container.encode(self.adminPasswordSecretVersion, forKey: .adminPasswordSecretVersion)
+    try container.encode(self.tdeWalletPassword, forKey: .tdeWalletPassword)
+    try container.encode(
+      self.tdeWalletPasswordSecretVersion, forKey: .tdeWalletPasswordSecretVersion)
+    try container.encode(self.characterSet, forKey: .characterSet)
+    try container.encode(self.ncharacterSet, forKey: .ncharacterSet)
+    try container.encode(self.ociUrl, forKey: .ociUrl)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.properties, forKey: .properties)
+    try container.encode(self.databaseId, forKey: .databaseId)
+    try container.encode(self.dbHomeName, forKey: .dbHomeName)
+    try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
+    try container.encode(self.opsInsightsStatus, forKey: .opsInsightsStatus)
+    try container.encode(self.pluggableDatabaseId, forKey: .pluggableDatabaseId)
+    try container.encode(self.pluggableDatabaseName, forKey: .pluggableDatabaseName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Status of Operations Insights for this Database.

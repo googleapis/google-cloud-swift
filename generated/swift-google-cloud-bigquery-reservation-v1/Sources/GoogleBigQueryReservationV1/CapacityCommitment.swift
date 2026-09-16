@@ -88,6 +88,8 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// it's an edition commitment.
   public var isFlatRate: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CapacityCommitment`.
   public init() {}
 
@@ -102,6 +104,99 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let slotCount = CodingKeys(stringValue: "slotCount")
+    static let plan = CodingKeys(stringValue: "plan")
+    static let state = CodingKeys(stringValue: "state")
+    static let commitmentStartTime = CodingKeys(stringValue: "commitmentStartTime")
+    static let commitmentEndTime = CodingKeys(stringValue: "commitmentEndTime")
+    static let failureStatus = CodingKeys(stringValue: "failureStatus")
+    static let renewalPlan = CodingKeys(stringValue: "renewalPlan")
+    static let multiRegionAuxiliary = CodingKeys(stringValue: "multiRegionAuxiliary")
+    static let edition = CodingKeys(stringValue: "edition")
+    static let isFlatRate = CodingKeys(stringValue: "isFlatRate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "slotCount",
+      "plan",
+      "state",
+      "commitmentStartTime",
+      "commitmentEndTime",
+      "failureStatus",
+      "renewalPlan",
+      "multiRegionAuxiliary",
+      "edition",
+      "isFlatRate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .slotCount) {
+      self.slotCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      CapacityCommitment.CommitmentPlan.self, forKey: .plan)
+    {
+      self.plan = value
+    }
+    if let value = try container.decodeIfPresent(CapacityCommitment.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.commitmentStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .commitmentStartTime)
+    self.commitmentEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .commitmentEndTime)
+    self.failureStatus = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .failureStatus)
+    if let value = try container.decodeIfPresent(
+      CapacityCommitment.CommitmentPlan.self, forKey: .renewalPlan)
+    {
+      self.renewalPlan = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .multiRegionAuxiliary) {
+      self.multiRegionAuxiliary = value
+    }
+    if let value = try container.decodeIfPresent(Edition.self, forKey: .edition) {
+      self.edition = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFlatRate) {
+      self.isFlatRate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.slotCount, forKey: .slotCount)
+    try container.encode(self.plan, forKey: .plan)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.commitmentStartTime, forKey: .commitmentStartTime)
+    try container.encodeIfPresent(self.commitmentEndTime, forKey: .commitmentEndTime)
+    try container.encodeIfPresent(self.failureStatus, forKey: .failureStatus)
+    try container.encode(self.renewalPlan, forKey: .renewalPlan)
+    try container.encode(self.multiRegionAuxiliary, forKey: .multiRegionAuxiliary)
+    try container.encode(self.edition, forKey: .edition)
+    try container.encode(self.isFlatRate, forKey: .isFlatRate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Commitment plan defines the current committed period. Capacity commitment

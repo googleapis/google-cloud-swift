@@ -147,6 +147,8 @@
     /// [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
     public var version: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Policy`.
     public init() {}
 
@@ -163,17 +165,33 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case auditConfigs = "auditConfigs"
-      case bindings = "bindings"
-      case etag = "etag"
-      case version = "version"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let auditConfigs = CodingKeys(stringValue: "auditConfigs")
+      static let bindings = CodingKeys(stringValue: "bindings")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let version = CodingKeys(stringValue: "version")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "auditConfigs",
+        "bindings",
+        "etag",
+        "version",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.auditConfigs = try container.decode([AuditConfig].self, forKey: .auditConfigs)
-      self.bindings = try container.decode([Binding].self, forKey: .bindings)
+      if let value = try container.decodeIfPresent([AuditConfig].self, forKey: .auditConfigs) {
+        self.auditConfigs = value
+      }
+      if let value = try container.decodeIfPresent([Binding].self, forKey: .bindings) {
+        self.bindings = value
+      }
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
@@ -184,6 +202,10 @@
         self.etag = v
       }
       self.version = try container.decodeIfPresent(Swift.Int32.self, forKey: .version)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -195,7 +217,10 @@
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .etag
         )
       }
-      try container.encode(self.version, forKey: .version)
+      try container.encodeIfPresent(self.version, forKey: .version)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -71,6 +71,8 @@ public struct ChangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Detailed specification of the change, embedding the original request.
   public var changePayload: OneOf_ChangePayload? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChangeRequest`.
   public init() {}
 
@@ -87,54 +89,114 @@ public struct ChangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case justification = "justification"
-    case labels = "labels"
-    case author = "author"
-    case state = "state"
-    case resource = "resource"
-    case createEntry = "createEntry"
-    case updateEntry = "updateEntry"
-    case deleteEntry = "deleteEntry"
-    case createEntryLink = "createEntryLink"
-    case deleteEntryLink = "deleteEntryLink"
-    case createGlossary = "createGlossary"
-    case updateGlossary = "updateGlossary"
-    case deleteGlossary = "deleteGlossary"
-    case createGlossaryCategory = "createGlossaryCategory"
-    case updateGlossaryCategory = "updateGlossaryCategory"
-    case deleteGlossaryCategory = "deleteGlossaryCategory"
-    case createGlossaryTerm = "createGlossaryTerm"
-    case updateGlossaryTerm = "updateGlossaryTerm"
-    case deleteGlossaryTerm = "deleteGlossaryTerm"
-    case dataProductAccessRequest = "dataProductAccessRequest"
-    case changeType = "changeType"
-    case rejectionComment = "rejectionComment"
-    case approver = "approver"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let justification = CodingKeys(stringValue: "justification")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let author = CodingKeys(stringValue: "author")
+    static let state = CodingKeys(stringValue: "state")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let createEntry = CodingKeys(stringValue: "createEntry")
+    static let updateEntry = CodingKeys(stringValue: "updateEntry")
+    static let deleteEntry = CodingKeys(stringValue: "deleteEntry")
+    static let createEntryLink = CodingKeys(stringValue: "createEntryLink")
+    static let deleteEntryLink = CodingKeys(stringValue: "deleteEntryLink")
+    static let createGlossary = CodingKeys(stringValue: "createGlossary")
+    static let updateGlossary = CodingKeys(stringValue: "updateGlossary")
+    static let deleteGlossary = CodingKeys(stringValue: "deleteGlossary")
+    static let createGlossaryCategory = CodingKeys(stringValue: "createGlossaryCategory")
+    static let updateGlossaryCategory = CodingKeys(stringValue: "updateGlossaryCategory")
+    static let deleteGlossaryCategory = CodingKeys(stringValue: "deleteGlossaryCategory")
+    static let createGlossaryTerm = CodingKeys(stringValue: "createGlossaryTerm")
+    static let updateGlossaryTerm = CodingKeys(stringValue: "updateGlossaryTerm")
+    static let deleteGlossaryTerm = CodingKeys(stringValue: "deleteGlossaryTerm")
+    static let dataProductAccessRequest = CodingKeys(stringValue: "dataProductAccessRequest")
+    static let changeType = CodingKeys(stringValue: "changeType")
+    static let rejectionComment = CodingKeys(stringValue: "rejectionComment")
+    static let approver = CodingKeys(stringValue: "approver")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "justification",
+      "labels",
+      "author",
+      "state",
+      "resource",
+      "createEntry",
+      "updateEntry",
+      "deleteEntry",
+      "createEntryLink",
+      "deleteEntryLink",
+      "createGlossary",
+      "updateGlossary",
+      "deleteGlossary",
+      "createGlossaryCategory",
+      "updateGlossaryCategory",
+      "deleteGlossaryCategory",
+      "createGlossaryTerm",
+      "updateGlossaryTerm",
+      "deleteGlossaryTerm",
+      "dataProductAccessRequest",
+      "changeType",
+      "rejectionComment",
+      "approver",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.justification = try container.decode(Swift.String.self, forKey: .justification)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.author = try container.decode(Swift.String.self, forKey: .author)
-    self.state = try container.decode(ChangeRequest.State.self, forKey: .state)
-    self.resource = try container.decode(Swift.String.self, forKey: .resource)
-    self.changeType = try container.decode(ChangeRequest.ChangeType.self, forKey: .changeType)
-    self.rejectionComment = try container.decode(Swift.String.self, forKey: .rejectionComment)
-    self.approver = try container.decode(Swift.String.self, forKey: .approver)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .justification) {
+      self.justification = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
+      self.author = value
+    }
+    if let value = try container.decodeIfPresent(ChangeRequest.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(ChangeRequest.ChangeType.self, forKey: .changeType)
+    {
+      self.changeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rejectionComment) {
+      self.rejectionComment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .approver) {
+      self.approver = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var changePayload: OneOf_ChangePayload? = nil
     let changePayloadCheckAndSet = {
@@ -222,14 +284,18 @@ public struct ChangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try changePayloadCheckAndSet(.dataProductAccessRequest(dataProductAccessRequest))
     }
     self.changePayload = changePayload
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.justification, forKey: .justification)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.author, forKey: .author)
@@ -273,6 +339,9 @@ public struct ChangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dataProductAccessRequest(let value):
         try container.encode(value, forKey: .dataProductAccessRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -38,6 +38,8 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
   /// Required. The compliance framework that the scope report is generated for.
   public var complianceFramework: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateFrameworkAuditScopeReportRequest`.
   public init() {}
 
@@ -52,6 +54,52 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let reportFormat = CodingKeys(stringValue: "reportFormat")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "reportFormat",
+      "complianceFramework",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(
+      GenerateFrameworkAuditScopeReportRequest.Format.self, forKey: .reportFormat)
+    {
+      self.reportFormat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.reportFormat, forKey: .reportFormat)
+    try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The set of options for the audit scope report format.

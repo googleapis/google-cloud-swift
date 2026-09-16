@@ -87,6 +87,8 @@
     /// Client half close time in terms of API streaming duration.
     public var clientHalfCloseStreamingTimeOffset: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudConversationDebuggingInfo`.
     public init() {}
 
@@ -101,6 +103,153 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audioDataChunks = CodingKeys(stringValue: "audioDataChunks")
+      static let resultEndTimeOffset = CodingKeys(stringValue: "resultEndTimeOffset")
+      static let firstAudioDuration = CodingKeys(stringValue: "firstAudioDuration")
+      static let singleUtterance = CodingKeys(stringValue: "singleUtterance")
+      static let speechPartialResultsEndTimes = CodingKeys(
+        stringValue: "speechPartialResultsEndTimes")
+      static let speechFinalResultsEndTimes = CodingKeys(stringValue: "speechFinalResultsEndTimes")
+      static let partialResponses = CodingKeys(stringValue: "partialResponses")
+      static let speakerIdPassiveLatencyMsOffset = CodingKeys(
+        stringValue: "speakerIdPassiveLatencyMsOffset")
+      static let bargeinEventTriggered = CodingKeys(stringValue: "bargeinEventTriggered")
+      static let speechSingleUtterance = CodingKeys(stringValue: "speechSingleUtterance")
+      static let dtmfPartialResultsTimes = CodingKeys(stringValue: "dtmfPartialResultsTimes")
+      static let dtmfFinalResultsTimes = CodingKeys(stringValue: "dtmfFinalResultsTimes")
+      static let singleUtteranceEndTimeOffset = CodingKeys(
+        stringValue: "singleUtteranceEndTimeOffset")
+      static let noSpeechTimeout = CodingKeys(stringValue: "noSpeechTimeout")
+      static let endpointingTimeout = CodingKeys(stringValue: "endpointingTimeout")
+      static let isInputText = CodingKeys(stringValue: "isInputText")
+      static let clientHalfCloseTimeOffset = CodingKeys(stringValue: "clientHalfCloseTimeOffset")
+      static let clientHalfCloseStreamingTimeOffset = CodingKeys(
+        stringValue: "clientHalfCloseStreamingTimeOffset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audioDataChunks",
+        "resultEndTimeOffset",
+        "firstAudioDuration",
+        "singleUtterance",
+        "speechPartialResultsEndTimes",
+        "speechFinalResultsEndTimes",
+        "partialResponses",
+        "speakerIdPassiveLatencyMsOffset",
+        "bargeinEventTriggered",
+        "speechSingleUtterance",
+        "dtmfPartialResultsTimes",
+        "dtmfFinalResultsTimes",
+        "singleUtteranceEndTimeOffset",
+        "noSpeechTimeout",
+        "endpointingTimeout",
+        "isInputText",
+        "clientHalfCloseTimeOffset",
+        "clientHalfCloseStreamingTimeOffset",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .audioDataChunks) {
+        self.audioDataChunks = value
+      }
+      self.resultEndTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .resultEndTimeOffset)
+      self.firstAudioDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .firstAudioDuration)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .singleUtterance) {
+        self.singleUtterance = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Duration].self, forKey: .speechPartialResultsEndTimes)
+      {
+        self.speechPartialResultsEndTimes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Duration].self, forKey: .speechFinalResultsEndTimes)
+      {
+        self.speechFinalResultsEndTimes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .partialResponses) {
+        self.partialResponses = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .speakerIdPassiveLatencyMsOffset)
+      {
+        self.speakerIdPassiveLatencyMsOffset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bargeinEventTriggered)
+      {
+        self.bargeinEventTriggered = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .speechSingleUtterance)
+      {
+        self.speechSingleUtterance = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Duration].self, forKey: .dtmfPartialResultsTimes)
+      {
+        self.dtmfPartialResultsTimes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Duration].self, forKey: .dtmfFinalResultsTimes)
+      {
+        self.dtmfFinalResultsTimes = value
+      }
+      self.singleUtteranceEndTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .singleUtteranceEndTimeOffset)
+      self.noSpeechTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .noSpeechTimeout)
+      self.endpointingTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .endpointingTimeout)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isInputText) {
+        self.isInputText = value
+      }
+      self.clientHalfCloseTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .clientHalfCloseTimeOffset)
+      self.clientHalfCloseStreamingTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .clientHalfCloseStreamingTimeOffset)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.audioDataChunks, forKey: .audioDataChunks)
+      try container.encodeIfPresent(self.resultEndTimeOffset, forKey: .resultEndTimeOffset)
+      try container.encodeIfPresent(self.firstAudioDuration, forKey: .firstAudioDuration)
+      try container.encode(self.singleUtterance, forKey: .singleUtterance)
+      try container.encode(self.speechPartialResultsEndTimes, forKey: .speechPartialResultsEndTimes)
+      try container.encode(self.speechFinalResultsEndTimes, forKey: .speechFinalResultsEndTimes)
+      try container.encode(self.partialResponses, forKey: .partialResponses)
+      try container.encode(
+        self.speakerIdPassiveLatencyMsOffset, forKey: .speakerIdPassiveLatencyMsOffset)
+      try container.encode(self.bargeinEventTriggered, forKey: .bargeinEventTriggered)
+      try container.encode(self.speechSingleUtterance, forKey: .speechSingleUtterance)
+      try container.encode(self.dtmfPartialResultsTimes, forKey: .dtmfPartialResultsTimes)
+      try container.encode(self.dtmfFinalResultsTimes, forKey: .dtmfFinalResultsTimes)
+      try container.encodeIfPresent(
+        self.singleUtteranceEndTimeOffset, forKey: .singleUtteranceEndTimeOffset)
+      try container.encodeIfPresent(self.noSpeechTimeout, forKey: .noSpeechTimeout)
+      try container.encodeIfPresent(self.endpointingTimeout, forKey: .endpointingTimeout)
+      try container.encode(self.isInputText, forKey: .isInputText)
+      try container.encodeIfPresent(
+        self.clientHalfCloseTimeOffset, forKey: .clientHalfCloseTimeOffset)
+      try container.encodeIfPresent(
+        self.clientHalfCloseStreamingTimeOffset, forKey: .clientHalfCloseStreamingTimeOffset)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CreateRapidCacheRequest {
@@ -30,6 +30,7 @@ extension CreateRapidCacheRequest {
     self.parent = proto.parent
     self.rapidCache = proto.hasRapidCache ? try .init(proto: proto.rapidCache) : nil
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension CreateRapidCacheRequest {
     proto.parent = self.parent
     if let rapidCache = self.rapidCache { proto.rapidCache = try rapidCache.toProto() }
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

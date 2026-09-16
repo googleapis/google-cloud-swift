@@ -36,6 +36,8 @@ public struct Exfiltration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Total exfiltrated bytes processed for the entire job.
   public var totalExfiltratedBytes: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Exfiltration`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct Exfiltration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sources = CodingKeys(stringValue: "sources")
+    static let targets = CodingKeys(stringValue: "targets")
+    static let totalExfiltratedBytes = CodingKeys(stringValue: "totalExfiltratedBytes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sources",
+      "targets",
+      "totalExfiltratedBytes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([ExfilResource].self, forKey: .sources) {
+      self.sources = value
+    }
+    if let value = try container.decodeIfPresent([ExfilResource].self, forKey: .targets) {
+      self.targets = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalExfiltratedBytes) {
+      self.totalExfiltratedBytes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sources, forKey: .sources)
+    try container.encode(self.targets, forKey: .targets)
+    try container.encode(self.totalExfiltratedBytes, forKey: .totalExfiltratedBytes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

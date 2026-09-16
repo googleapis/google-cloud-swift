@@ -33,6 +33,8 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleCloudWKT
   /// Output result indicating where the data were exported to.
   public var outputResult: OutputResult? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportAnalyticsMetricsResponse`.
   public init() {}
 
@@ -47,6 +49,47 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errorSamples = CodingKeys(stringValue: "errorSamples")
+    static let errorsConfig = CodingKeys(stringValue: "errorsConfig")
+    static let outputResult = CodingKeys(stringValue: "outputResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errorSamples",
+      "errorsConfig",
+      "outputResult",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errorSamples) {
+      self.errorSamples = value
+    }
+    self.errorsConfig = try container.decodeIfPresent(
+      ExportErrorsConfig.self, forKey: .errorsConfig)
+    self.outputResult = try container.decodeIfPresent(OutputResult.self, forKey: .outputResult)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errorSamples, forKey: .errorSamples)
+    try container.encodeIfPresent(self.errorsConfig, forKey: .errorsConfig)
+    try container.encodeIfPresent(self.outputResult, forKey: .outputResult)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

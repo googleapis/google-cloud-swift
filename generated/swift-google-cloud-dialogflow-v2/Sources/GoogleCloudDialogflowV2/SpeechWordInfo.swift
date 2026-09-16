@@ -44,6 +44,8 @@
     /// audio input. Users should also not rely on it to always be provided.
     public var confidence: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpeechWordInfo`.
     public init() {}
 
@@ -58,6 +60,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let word = CodingKeys(stringValue: "word")
+      static let startOffset = CodingKeys(stringValue: "startOffset")
+      static let endOffset = CodingKeys(stringValue: "endOffset")
+      static let confidence = CodingKeys(stringValue: "confidence")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "word",
+        "startOffset",
+        "endOffset",
+        "confidence",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .word) {
+        self.word = value
+      }
+      self.startOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .startOffset)
+      self.endOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .endOffset)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+        self.confidence = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.word, forKey: .word)
+      try container.encodeIfPresent(self.startOffset, forKey: .startOffset)
+      try container.encodeIfPresent(self.endOffset, forKey: .endOffset)
+      try container.encode(self.confidence, forKey: .confidence)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

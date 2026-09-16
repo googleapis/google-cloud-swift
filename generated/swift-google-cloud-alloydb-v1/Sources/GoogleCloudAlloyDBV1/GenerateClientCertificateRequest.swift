@@ -56,6 +56,8 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleCloudW
   /// the server after TLS handshake.
   public var useMetadataExchange: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateClientCertificateRequest`.
   public init() {}
 
@@ -70,6 +72,61 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let certDuration = CodingKeys(stringValue: "certDuration")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let useMetadataExchange = CodingKeys(stringValue: "useMetadataExchange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "requestId",
+      "certDuration",
+      "publicKey",
+      "useMetadataExchange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    self.certDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .certDuration)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicKey) {
+      self.publicKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useMetadataExchange) {
+      self.useMetadataExchange = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encodeIfPresent(self.certDuration, forKey: .certDuration)
+    try container.encode(self.publicKey, forKey: .publicKey)
+    try container.encode(self.useMetadataExchange, forKey: .useMetadataExchange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

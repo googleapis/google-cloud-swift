@@ -35,6 +35,8 @@ public struct PersonDetectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Ignored if 'include_bounding_boxes' is set to false.
   public var includeAttributes: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PersonDetectionConfig`.
   public init() {}
 
@@ -49,6 +51,50 @@ public struct PersonDetectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeBoundingBoxes = CodingKeys(stringValue: "includeBoundingBoxes")
+    static let includePoseLandmarks = CodingKeys(stringValue: "includePoseLandmarks")
+    static let includeAttributes = CodingKeys(stringValue: "includeAttributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeBoundingBoxes",
+      "includePoseLandmarks",
+      "includeAttributes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeBoundingBoxes) {
+      self.includeBoundingBoxes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includePoseLandmarks) {
+      self.includePoseLandmarks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeAttributes) {
+      self.includeAttributes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.includeBoundingBoxes, forKey: .includeBoundingBoxes)
+    try container.encode(self.includePoseLandmarks, forKey: .includePoseLandmarks)
+    try container.encode(self.includeAttributes, forKey: .includeAttributes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

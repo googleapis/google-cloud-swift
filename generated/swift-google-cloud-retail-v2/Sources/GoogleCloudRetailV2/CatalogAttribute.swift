@@ -138,6 +138,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Contains facet options.
   public var facetConfig: CatalogAttribute.FacetConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CatalogAttribute`.
   public init() {}
 
@@ -152,6 +154,96 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let inUse = CodingKeys(stringValue: "inUse")
+    static let type = CodingKeys(stringValue: "type")
+    static let indexableOption = CodingKeys(stringValue: "indexableOption")
+    static let dynamicFacetableOption = CodingKeys(stringValue: "dynamicFacetableOption")
+    static let searchableOption = CodingKeys(stringValue: "searchableOption")
+    static let exactSearchableOption = CodingKeys(stringValue: "exactSearchableOption")
+    static let retrievableOption = CodingKeys(stringValue: "retrievableOption")
+    static let facetConfig = CodingKeys(stringValue: "facetConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "inUse",
+      "type",
+      "indexableOption",
+      "dynamicFacetableOption",
+      "searchableOption",
+      "exactSearchableOption",
+      "retrievableOption",
+      "facetConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inUse) {
+      self.inUse = value
+    }
+    if let value = try container.decodeIfPresent(CatalogAttribute.AttributeType.self, forKey: .type)
+    {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogAttribute.IndexableOption.self, forKey: .indexableOption)
+    {
+      self.indexableOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogAttribute.DynamicFacetableOption.self, forKey: .dynamicFacetableOption)
+    {
+      self.dynamicFacetableOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogAttribute.SearchableOption.self, forKey: .searchableOption)
+    {
+      self.searchableOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogAttribute.ExactSearchableOption.self, forKey: .exactSearchableOption)
+    {
+      self.exactSearchableOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogAttribute.RetrievableOption.self, forKey: .retrievableOption)
+    {
+      self.retrievableOption = value
+    }
+    self.facetConfig = try container.decodeIfPresent(
+      CatalogAttribute.FacetConfig.self, forKey: .facetConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.inUse, forKey: .inUse)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.indexableOption, forKey: .indexableOption)
+    try container.encode(self.dynamicFacetableOption, forKey: .dynamicFacetableOption)
+    try container.encode(self.searchableOption, forKey: .searchableOption)
+    try container.encode(self.exactSearchableOption, forKey: .exactSearchableOption)
+    try container.encode(self.retrievableOption, forKey: .retrievableOption)
+    try container.encodeIfPresent(self.facetConfig, forKey: .facetConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible options for the facet that corresponds to the current attribute
@@ -203,6 +295,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// facetable textual keys.
     public var rerankConfig: CatalogAttribute.FacetConfig.RerankConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FacetConfig`.
     public init() {}
 
@@ -217,6 +311,64 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let facetIntervals = CodingKeys(stringValue: "facetIntervals")
+      static let ignoredFacetValues = CodingKeys(stringValue: "ignoredFacetValues")
+      static let mergedFacetValues = CodingKeys(stringValue: "mergedFacetValues")
+      static let mergedFacet = CodingKeys(stringValue: "mergedFacet")
+      static let rerankConfig = CodingKeys(stringValue: "rerankConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "facetIntervals",
+        "ignoredFacetValues",
+        "mergedFacetValues",
+        "mergedFacet",
+        "rerankConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Interval].self, forKey: .facetIntervals) {
+        self.facetIntervals = value
+      }
+      if let value = try container.decodeIfPresent(
+        [CatalogAttribute.FacetConfig.IgnoredFacetValues].self, forKey: .ignoredFacetValues)
+      {
+        self.ignoredFacetValues = value
+      }
+      if let value = try container.decodeIfPresent(
+        [CatalogAttribute.FacetConfig.MergedFacetValue].self, forKey: .mergedFacetValues)
+      {
+        self.mergedFacetValues = value
+      }
+      self.mergedFacet = try container.decodeIfPresent(
+        CatalogAttribute.FacetConfig.MergedFacet.self, forKey: .mergedFacet)
+      self.rerankConfig = try container.decodeIfPresent(
+        CatalogAttribute.FacetConfig.RerankConfig.self, forKey: .rerankConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.facetIntervals, forKey: .facetIntervals)
+      try container.encode(self.ignoredFacetValues, forKey: .ignoredFacetValues)
+      try container.encode(self.mergedFacetValues, forKey: .mergedFacetValues)
+      try container.encodeIfPresent(self.mergedFacet, forKey: .mergedFacet)
+      try container.encodeIfPresent(self.rerankConfig, forKey: .rerankConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// [Facet values][google.cloud.retail.v2.SearchResponse.Facet.values] to
@@ -250,6 +402,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// facet values before end time.
       public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `IgnoredFacetValues`.
       public init() {}
 
@@ -264,6 +418,48 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let values = CodingKeys(stringValue: "values")
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let endTime = CodingKeys(stringValue: "endTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "values",
+          "startTime",
+          "endTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+          self.values = value
+        }
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        self.endTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.values, forKey: .values)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -299,6 +495,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// This merged_value must be non-empty and can have up to 128 characters.
       public var mergedValue: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MergedFacetValue`.
       public init() {}
 
@@ -313,6 +511,44 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let values = CodingKeys(stringValue: "values")
+        static let mergedValue = CodingKeys(stringValue: "mergedValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "values",
+          "mergedValue",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+          self.values = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mergedValue) {
+          self.mergedValue = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.values, forKey: .values)
+        try container.encode(self.mergedValue, forKey: .mergedValue)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -345,6 +581,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// textual custom attribute or a numerical custom attribute.
       public var mergedFacetKey: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MergedFacet`.
       public init() {}
 
@@ -359,6 +597,38 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let mergedFacetKey = CodingKeys(stringValue: "mergedFacetKey")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "mergedFacetKey"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mergedFacetKey) {
+          self.mergedFacetKey = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mergedFacetKey, forKey: .mergedFacetKey)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -392,6 +662,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// will rerank on the facet values from this list only.
       public var facetValues: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RerankConfig`.
       public init() {}
 
@@ -406,6 +678,44 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rerankFacet = CodingKeys(stringValue: "rerankFacet")
+        static let facetValues = CodingKeys(stringValue: "facetValues")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rerankFacet",
+          "facetValues",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rerankFacet) {
+          self.rerankFacet = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .facetValues) {
+          self.facetValues = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.rerankFacet, forKey: .rerankFacet)
+        try container.encode(self.facetValues, forKey: .facetValues)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

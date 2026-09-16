@@ -146,6 +146,8 @@ public struct Queue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// field is unset, then no logs are written.
   public var stackdriverLoggingConfig: StackdriverLoggingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Queue`.
   public init() {}
 
@@ -160,6 +162,67 @@ public struct Queue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let appEngineRoutingOverride = CodingKeys(stringValue: "appEngineRoutingOverride")
+    static let rateLimits = CodingKeys(stringValue: "rateLimits")
+    static let retryConfig = CodingKeys(stringValue: "retryConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let purgeTime = CodingKeys(stringValue: "purgeTime")
+    static let stackdriverLoggingConfig = CodingKeys(stringValue: "stackdriverLoggingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "appEngineRoutingOverride",
+      "rateLimits",
+      "retryConfig",
+      "state",
+      "purgeTime",
+      "stackdriverLoggingConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.appEngineRoutingOverride = try container.decodeIfPresent(
+      AppEngineRouting.self, forKey: .appEngineRoutingOverride)
+    self.rateLimits = try container.decodeIfPresent(RateLimits.self, forKey: .rateLimits)
+    self.retryConfig = try container.decodeIfPresent(RetryConfig.self, forKey: .retryConfig)
+    if let value = try container.decodeIfPresent(Queue.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.purgeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .purgeTime)
+    self.stackdriverLoggingConfig = try container.decodeIfPresent(
+      StackdriverLoggingConfig.self, forKey: .stackdriverLoggingConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.appEngineRoutingOverride, forKey: .appEngineRoutingOverride)
+    try container.encodeIfPresent(self.rateLimits, forKey: .rateLimits)
+    try container.encodeIfPresent(self.retryConfig, forKey: .retryConfig)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.purgeTime, forKey: .purgeTime)
+    try container.encodeIfPresent(self.stackdriverLoggingConfig, forKey: .stackdriverLoggingConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the queue.

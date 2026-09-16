@@ -29,6 +29,8 @@ public struct GitHubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// GitHub App installation id.
   public var appInstallationId: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubConfig`.
   public init() {}
 
@@ -43,6 +45,43 @@ public struct GitHubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let authorizerCredential = CodingKeys(stringValue: "authorizerCredential")
+    static let appInstallationId = CodingKeys(stringValue: "appInstallationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "authorizerCredential",
+      "appInstallationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.authorizerCredential = try container.decodeIfPresent(
+      OAuthCredential.self, forKey: .authorizerCredential)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appInstallationId) {
+      self.appInstallationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.authorizerCredential, forKey: .authorizerCredential)
+    try container.encode(self.appInstallationId, forKey: .appInstallationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

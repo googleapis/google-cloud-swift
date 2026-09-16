@@ -28,6 +28,8 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The DNS provider of the registration.
   public var dnsProvider: OneOf_DnsProvider? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DnsSettings`.
   public init() {}
 
@@ -44,15 +46,30 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case customDns = "customDns"
-    case googleDomainsDns = "googleDomainsDns"
-    case glueRecords = "glueRecords"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customDns = CodingKeys(stringValue: "customDns")
+    static let googleDomainsDns = CodingKeys(stringValue: "googleDomainsDns")
+    static let glueRecords = CodingKeys(stringValue: "glueRecords")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customDns",
+      "googleDomainsDns",
+      "glueRecords",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.glueRecords = try container.decode([DnsSettings.GlueRecord].self, forKey: .glueRecords)
+    if let value = try container.decodeIfPresent(
+      [DnsSettings.GlueRecord].self, forKey: .glueRecords)
+    {
+      self.glueRecords = value
+    }
 
     var dnsProvider: OneOf_DnsProvider? = nil
     let dnsProviderCheckAndSet = {
@@ -75,6 +92,10 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dnsProviderCheckAndSet(.googleDomainsDns(googleDomainsDns))
     }
     self.dnsProvider = dnsProvider
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +109,9 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .googleDomainsDns(let value):
         try container.encode(value, forKey: .googleDomainsDns)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -105,6 +129,8 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// field is empty, DNSSEC is disabled.
     public var dsRecords: [DnsSettings.DsRecord] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomDns`.
     public init() {}
 
@@ -119,6 +145,45 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nameServers = CodingKeys(stringValue: "nameServers")
+      static let dsRecords = CodingKeys(stringValue: "dsRecords")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nameServers",
+        "dsRecords",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nameServers) {
+        self.nameServers = value
+      }
+      if let value = try container.decodeIfPresent([DnsSettings.DsRecord].self, forKey: .dsRecords)
+      {
+        self.dsRecords = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nameServers, forKey: .nameServers)
+      try container.encode(self.dsRecords, forKey: .dsRecords)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -154,6 +219,8 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// otherwise it remains empty.
     public var dsRecords: [DnsSettings.DsRecord] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoogleDomainsDns`.
     public init() {}
 
@@ -168,6 +235,51 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nameServers = CodingKeys(stringValue: "nameServers")
+      static let dsState = CodingKeys(stringValue: "dsState")
+      static let dsRecords = CodingKeys(stringValue: "dsRecords")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nameServers",
+        "dsState",
+        "dsRecords",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nameServers) {
+        self.nameServers = value
+      }
+      if let value = try container.decodeIfPresent(DnsSettings.DsState.self, forKey: .dsState) {
+        self.dsState = value
+      }
+      if let value = try container.decodeIfPresent([DnsSettings.DsRecord].self, forKey: .dsRecords)
+      {
+        self.dsRecords = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nameServers, forKey: .nameServers)
+      try container.encode(self.dsState, forKey: .dsState)
+      try container.encode(self.dsRecords, forKey: .dsRecords)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -199,6 +311,8 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The digest generated from the referenced DNSKEY.
     public var digest: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DsRecord`.
     public init() {}
 
@@ -213,6 +327,60 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let keyTag = CodingKeys(stringValue: "keyTag")
+      static let algorithm = CodingKeys(stringValue: "algorithm")
+      static let digestType = CodingKeys(stringValue: "digestType")
+      static let digest = CodingKeys(stringValue: "digest")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "keyTag",
+        "algorithm",
+        "digestType",
+        "digest",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .keyTag) {
+        self.keyTag = value
+      }
+      if let value = try container.decodeIfPresent(
+        DnsSettings.DsRecord.Algorithm.self, forKey: .algorithm)
+      {
+        self.algorithm = value
+      }
+      if let value = try container.decodeIfPresent(
+        DnsSettings.DsRecord.DigestType.self, forKey: .digestType)
+      {
+        self.digestType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .digest) {
+        self.digest = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.keyTag, forKey: .keyTag)
+      try container.encode(self.algorithm, forKey: .algorithm)
+      try container.encode(self.digestType, forKey: .digestType)
+      try container.encode(self.digest, forKey: .digest)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// List of algorithms used to create a DNSKEY. Certain
@@ -579,6 +747,8 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `ipv4_address` and `ipv6_address` must be set.
     public var ipv6Addresses: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GlueRecord`.
     public init() {}
 
@@ -593,6 +763,50 @@ public struct DnsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hostName = CodingKeys(stringValue: "hostName")
+      static let ipv4Addresses = CodingKeys(stringValue: "ipv4Addresses")
+      static let ipv6Addresses = CodingKeys(stringValue: "ipv6Addresses")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hostName",
+        "ipv4Addresses",
+        "ipv6Addresses",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+        self.hostName = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipv4Addresses) {
+        self.ipv4Addresses = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipv6Addresses) {
+        self.ipv6Addresses = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.hostName, forKey: .hostName)
+      try container.encode(self.ipv4Addresses, forKey: .ipv4Addresses)
+      try container.encode(self.ipv6Addresses, forKey: .ipv6Addresses)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

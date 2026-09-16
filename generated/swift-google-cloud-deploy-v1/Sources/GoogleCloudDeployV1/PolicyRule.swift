@@ -23,6 +23,8 @@ public struct PolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var rule: OneOf_Rule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PolicyRule`.
   public init() {}
 
@@ -39,8 +41,17 @@ public struct PolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rolloutRestriction = "rolloutRestriction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rolloutRestriction = CodingKeys(stringValue: "rolloutRestriction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rolloutRestriction"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -62,6 +73,10 @@ public struct PolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try ruleCheckAndSet(.rolloutRestriction(rolloutRestriction))
     }
     self.rule = rule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@ public struct PolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .rolloutRestriction(let value):
         try container.encode(value, forKey: .rolloutRestriction)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

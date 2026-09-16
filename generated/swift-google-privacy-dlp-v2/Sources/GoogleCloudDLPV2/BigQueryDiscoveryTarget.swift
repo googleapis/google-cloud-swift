@@ -34,6 +34,8 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// update no more than once a month if new columns appear in the table.
   public var frequency: OneOf_Frequency? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryDiscoveryTarget`.
   public init() {}
 
@@ -50,11 +52,23 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case filter = "filter"
-    case conditions = "conditions"
-    case cadence = "cadence"
-    case disabled = "disabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filter = CodingKeys(stringValue: "filter")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let cadence = CodingKeys(stringValue: "cadence")
+    static let disabled = CodingKeys(stringValue: "disabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filter",
+      "conditions",
+      "cadence",
+      "disabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -82,12 +96,16 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPa
       try frequencyCheckAndSet(.disabled(disabled))
     }
     self.frequency = frequency
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.conditions, forKey: .conditions)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.conditions, forKey: .conditions)
 
     if let choice = self.frequency {
       switch choice {
@@ -96,6 +114,9 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .disabled(let value):
         try container.encode(value, forKey: .disabled)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

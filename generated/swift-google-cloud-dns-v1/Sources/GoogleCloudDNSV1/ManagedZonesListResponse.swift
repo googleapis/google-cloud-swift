@@ -31,6 +31,8 @@ public struct ManagedZonesListResponse: Codable, Equatable, GoogleCloudWKT._AnyP
   /// This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
   public var nextPageToken: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZonesListResponse`.
   public init() {}
 
@@ -45,6 +47,46 @@ public struct ManagedZonesListResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kind = CodingKeys(stringValue: "kind")
+    static let managedZones = CodingKeys(stringValue: "managedZones")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kind",
+      "managedZones",
+      "nextPageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent([ManagedZone].self, forKey: .managedZones) {
+      self.managedZones = value
+    }
+    self.nextPageToken = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.managedZones, forKey: .managedZones)
+    try container.encodeIfPresent(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

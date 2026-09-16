@@ -86,6 +86,8 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The details of the task.
   public var taskDetails: OneOf_TaskDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationTask`.
   public init() {}
 
@@ -102,44 +104,85 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case assessmentTaskDetails = "assessmentTaskDetails"
-    case translationConfigDetails = "translationConfigDetails"
-    case translationDetails = "translationDetails"
-    case id = "id"
-    case type = "type"
-    case state = "state"
-    case processingError = "processingError"
-    case createTime = "createTime"
-    case lastUpdateTime = "lastUpdateTime"
-    case resourceErrorDetails = "resourceErrorDetails"
-    case resourceErrorCount = "resourceErrorCount"
-    case metrics = "metrics"
-    case taskResult = "taskResult"
-    case totalProcessingErrorCount = "totalProcessingErrorCount"
-    case totalResourceErrorCount = "totalResourceErrorCount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let assessmentTaskDetails = CodingKeys(stringValue: "assessmentTaskDetails")
+    static let translationConfigDetails = CodingKeys(stringValue: "translationConfigDetails")
+    static let translationDetails = CodingKeys(stringValue: "translationDetails")
+    static let id = CodingKeys(stringValue: "id")
+    static let type = CodingKeys(stringValue: "type")
+    static let state = CodingKeys(stringValue: "state")
+    static let processingError = CodingKeys(stringValue: "processingError")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+    static let resourceErrorDetails = CodingKeys(stringValue: "resourceErrorDetails")
+    static let resourceErrorCount = CodingKeys(stringValue: "resourceErrorCount")
+    static let metrics = CodingKeys(stringValue: "metrics")
+    static let taskResult = CodingKeys(stringValue: "taskResult")
+    static let totalProcessingErrorCount = CodingKeys(stringValue: "totalProcessingErrorCount")
+    static let totalResourceErrorCount = CodingKeys(stringValue: "totalResourceErrorCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "assessmentTaskDetails",
+      "translationConfigDetails",
+      "translationDetails",
+      "id",
+      "type",
+      "state",
+      "processingError",
+      "createTime",
+      "lastUpdateTime",
+      "resourceErrorDetails",
+      "resourceErrorCount",
+      "metrics",
+      "taskResult",
+      "totalProcessingErrorCount",
+      "totalResourceErrorCount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.state = try container.decode(MigrationTask.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(MigrationTask.State.self, forKey: .state) {
+      self.state = value
+    }
     self.processingError = try container.decodeIfPresent(
       GoogleRpc.ErrorInfo.self, forKey: .processingError)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.lastUpdateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
-    self.resourceErrorDetails = try container.decode(
+    if let value = try container.decodeIfPresent(
       [ResourceErrorDetail].self, forKey: .resourceErrorDetails)
-    self.resourceErrorCount = try container.decode(Swift.Int32.self, forKey: .resourceErrorCount)
-    self.metrics = try container.decode([TimeSeries].self, forKey: .metrics)
+    {
+      self.resourceErrorDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourceErrorCount) {
+      self.resourceErrorCount = value
+    }
+    if let value = try container.decodeIfPresent([TimeSeries].self, forKey: .metrics) {
+      self.metrics = value
+    }
     self.taskResult = try container.decodeIfPresent(MigrationTaskResult.self, forKey: .taskResult)
-    self.totalProcessingErrorCount = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .totalProcessingErrorCount)
-    self.totalResourceErrorCount = try container.decode(
-      Swift.Int32.self, forKey: .totalResourceErrorCount)
+    {
+      self.totalProcessingErrorCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalResourceErrorCount)
+    {
+      self.totalResourceErrorCount = value
+    }
 
     var taskDetails: OneOf_TaskDetails? = nil
     let taskDetailsCheckAndSet = {
@@ -167,6 +210,10 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try taskDetailsCheckAndSet(.translationDetails(translationDetails))
     }
     self.taskDetails = taskDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -174,13 +221,13 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.processingError, forKey: .processingError)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.lastUpdateTime, forKey: .lastUpdateTime)
+    try container.encodeIfPresent(self.processingError, forKey: .processingError)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
     try container.encode(self.resourceErrorDetails, forKey: .resourceErrorDetails)
     try container.encode(self.resourceErrorCount, forKey: .resourceErrorCount)
     try container.encode(self.metrics, forKey: .metrics)
-    try container.encode(self.taskResult, forKey: .taskResult)
+    try container.encodeIfPresent(self.taskResult, forKey: .taskResult)
     try container.encode(self.totalProcessingErrorCount, forKey: .totalProcessingErrorCount)
     try container.encode(self.totalResourceErrorCount, forKey: .totalResourceErrorCount)
 
@@ -193,6 +240,9 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .translationDetails(let value):
         try container.encode(value, forKey: .translationDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -52,6 +52,8 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
   /// this run, then this id will not be available in the agent logs.
   public var lastRunId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OSPolicyAssignmentReport`.
   public init() {}
 
@@ -66,6 +68,69 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let osPolicyAssignment = CodingKeys(stringValue: "osPolicyAssignment")
+    static let osPolicyCompliances = CodingKeys(stringValue: "osPolicyCompliances")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastRunId = CodingKeys(stringValue: "lastRunId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "instance",
+      "osPolicyAssignment",
+      "osPolicyCompliances",
+      "updateTime",
+      "lastRunId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osPolicyAssignment) {
+      self.osPolicyAssignment = value
+    }
+    if let value = try container.decodeIfPresent(
+      [OSPolicyAssignmentReport.OSPolicyCompliance].self, forKey: .osPolicyCompliances)
+    {
+      self.osPolicyCompliances = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastRunId) {
+      self.lastRunId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.osPolicyAssignment, forKey: .osPolicyAssignment)
+    try container.encode(self.osPolicyCompliances, forKey: .osPolicyCompliances)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.lastRunId, forKey: .lastRunId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Compliance data for an OS policy
@@ -106,6 +171,8 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
     public var osPolicyResourceCompliances:
       [OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OSPolicyCompliance`.
     public init() {}
 
@@ -120,6 +187,64 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let osPolicyId = CodingKeys(stringValue: "osPolicyId")
+      static let complianceState = CodingKeys(stringValue: "complianceState")
+      static let complianceStateReason = CodingKeys(stringValue: "complianceStateReason")
+      static let osPolicyResourceCompliances = CodingKeys(
+        stringValue: "osPolicyResourceCompliances")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "osPolicyId",
+        "complianceState",
+        "complianceStateReason",
+        "osPolicyResourceCompliances",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osPolicyId) {
+        self.osPolicyId = value
+      }
+      if let value = try container.decodeIfPresent(
+        OSPolicyAssignmentReport.OSPolicyCompliance.ComplianceState.self, forKey: .complianceState)
+      {
+        self.complianceState = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .complianceStateReason)
+      {
+        self.complianceStateReason = value
+      }
+      if let value = try container.decodeIfPresent(
+        [OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance].self,
+        forKey: .osPolicyResourceCompliances)
+      {
+        self.osPolicyResourceCompliances = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.osPolicyId, forKey: .osPolicyId)
+      try container.encode(self.complianceState, forKey: .complianceState)
+      try container.encode(self.complianceStateReason, forKey: .complianceStateReason)
+      try container.encode(self.osPolicyResourceCompliances, forKey: .osPolicyResourceCompliances)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Compliance data for an OS policy resource.
@@ -159,6 +284,8 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
       /// Resource specific output.
       public var output: OneOf_Output? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OSPolicyResourceCompliance`.
       public init() {}
 
@@ -175,28 +302,52 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case osPolicyResourceId = "osPolicyResourceId"
-        case configSteps = "configSteps"
-        case complianceState = "complianceState"
-        case complianceStateReason = "complianceStateReason"
-        case execResourceOutput = "execResourceOutput"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let osPolicyResourceId = CodingKeys(stringValue: "osPolicyResourceId")
+        static let configSteps = CodingKeys(stringValue: "configSteps")
+        static let complianceState = CodingKeys(stringValue: "complianceState")
+        static let complianceStateReason = CodingKeys(stringValue: "complianceStateReason")
+        static let execResourceOutput = CodingKeys(stringValue: "execResourceOutput")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "osPolicyResourceId",
+          "configSteps",
+          "complianceState",
+          "complianceStateReason",
+          "execResourceOutput",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.osPolicyResourceId = try container.decode(
-          Swift.String.self, forKey: .osPolicyResourceId)
-        self.configSteps = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osPolicyResourceId)
+        {
+          self.osPolicyResourceId = value
+        }
+        if let value = try container.decodeIfPresent(
           [
             OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance
               .OSPolicyResourceConfigStep
           ].self, forKey: .configSteps)
-        self.complianceState = try container.decode(
+        {
+          self.configSteps = value
+        }
+        if let value = try container.decodeIfPresent(
           OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ComplianceState
             .self, forKey: .complianceState)
-        self.complianceStateReason = try container.decode(
+        {
+          self.complianceState = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.String.self, forKey: .complianceStateReason)
+        {
+          self.complianceStateReason = value
+        }
 
         var output: OneOf_Output? = nil
         let outputCheckAndSet = {
@@ -215,6 +366,10 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
           try outputCheckAndSet(.execResourceOutput(execResourceOutput))
         }
         self.output = output
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -229,6 +384,9 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
           case .execResourceOutput(let value):
             try container.encode(value, forKey: .execResourceOutput)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -247,6 +405,9 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
         /// Only populated if errors were encountered during this step execution.
         public var errorMessage: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `OSPolicyResourceConfigStep`.
         public init() {}
 
@@ -261,6 +422,47 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let type = CodingKeys(stringValue: "type")
+          static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "type",
+            "errorMessage",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance
+              .OSPolicyResourceConfigStep.Type_.self, forKey: .type)
+          {
+            self.type = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+            self.errorMessage = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.type, forKey: .type)
+          try container.encode(self.errorMessage, forKey: .errorMessage)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Supported configuration step types
@@ -410,6 +612,9 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
         /// Output size is limited to 100K bytes.
         public var enforcementOutput: Foundation.Data = Foundation.Data()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ExecResourceOutput`.
         public init() {}
 
@@ -424,6 +629,40 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enforcementOutput = CodingKeys(stringValue: "enforcementOutput")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enforcementOutput"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Foundation.Data.self, forKey: .enforcementOutput)
+          {
+            self.enforcementOutput = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enforcementOutput, forKey: .enforcementOutput)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

@@ -52,6 +52,8 @@ public struct TransferContractTokenManager: Codable, Equatable, GoogleCloudWKT._
   /// Considered public information.
   public var keyFormat: KeyFormat = KeyFormat()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferContractTokenManager`.
   public init() {}
 
@@ -66,6 +68,50 @@ public struct TransferContractTokenManager: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let accountComment = CodingKeys(stringValue: "accountComment")
+    static let keyFormat = CodingKeys(stringValue: "keyFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "publicKey",
+      "accountComment",
+      "keyFormat",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKey) {
+      self.publicKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountComment) {
+      self.accountComment = value
+    }
+    if let value = try container.decodeIfPresent(KeyFormat.self, forKey: .keyFormat) {
+      self.keyFormat = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.publicKey, forKey: .publicKey)
+    try container.encode(self.accountComment, forKey: .accountComment)
+    try container.encode(self.keyFormat, forKey: .keyFormat)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

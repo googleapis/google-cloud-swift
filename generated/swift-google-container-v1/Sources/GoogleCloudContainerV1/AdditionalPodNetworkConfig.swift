@@ -32,6 +32,8 @@ public struct AdditionalPodNetworkConfig: Codable, Equatable, GoogleCloudWKT._An
   /// The maximum number of pods per node which use this pod network.
   public var maxPodsPerNode: MaxPodsConstraint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdditionalPodNetworkConfig`.
   public init() {}
 
@@ -46,6 +48,49 @@ public struct AdditionalPodNetworkConfig: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let secondaryPodRange = CodingKeys(stringValue: "secondaryPodRange")
+    static let maxPodsPerNode = CodingKeys(stringValue: "maxPodsPerNode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subnetwork",
+      "secondaryPodRange",
+      "maxPodsPerNode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryPodRange) {
+      self.secondaryPodRange = value
+    }
+    self.maxPodsPerNode = try container.decodeIfPresent(
+      MaxPodsConstraint.self, forKey: .maxPodsPerNode)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encode(self.secondaryPodRange, forKey: .secondaryPodRange)
+    try container.encodeIfPresent(self.maxPodsPerNode, forKey: .maxPodsPerNode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

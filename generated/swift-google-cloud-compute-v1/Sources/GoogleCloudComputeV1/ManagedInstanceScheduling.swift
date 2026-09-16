@@ -30,6 +30,8 @@
     /// format.
     public var terminationTimestamp: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManagedInstanceScheduling`.
     public init() {}
 
@@ -44,6 +46,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gracefulShutdownTimestamp = CodingKeys(stringValue: "gracefulShutdownTimestamp")
+      static let terminationTimestamp = CodingKeys(stringValue: "terminationTimestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gracefulShutdownTimestamp",
+        "terminationTimestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.gracefulShutdownTimestamp = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .gracefulShutdownTimestamp)
+      self.terminationTimestamp = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .terminationTimestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.gracefulShutdownTimestamp, forKey: .gracefulShutdownTimestamp)
+      try container.encodeIfPresent(self.terminationTimestamp, forKey: .terminationTimestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

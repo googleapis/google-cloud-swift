@@ -46,6 +46,8 @@
     /// This named set's type
     public var type: NamedSet.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NamedSet`.
     public init() {}
 
@@ -62,18 +64,33 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case description = "description"
-      case elements = "elements"
-      case fingerprint = "fingerprint"
-      case name = "name"
-      case type = "type"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let elements = CodingKeys(stringValue: "elements")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "elements",
+        "fingerprint",
+        "name",
+        "type",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-      self.elements = try container.decode([Expr].self, forKey: .elements)
+      if let value = try container.decodeIfPresent([Expr].self, forKey: .elements) {
+        self.elements = value
+      }
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
@@ -85,19 +102,26 @@
       }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.type = try container.decodeIfPresent(NamedSet.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.description, forKey: .description)
       try container.encode(self.elements, forKey: .elements)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.NamedSet.type] field.

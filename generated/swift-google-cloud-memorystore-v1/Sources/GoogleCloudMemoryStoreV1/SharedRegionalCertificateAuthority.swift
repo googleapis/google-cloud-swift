@@ -29,6 +29,8 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
   /// Server ca information.
   public var serverCa: OneOf_ServerCa? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SharedRegionalCertificateAuthority`.
   public init() {}
 
@@ -45,14 +47,26 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case managedServerCa = "managedServerCa"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let managedServerCa = CodingKeys(stringValue: "managedServerCa")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "managedServerCa",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var serverCa: OneOf_ServerCa? = nil
     let serverCaCheckAndSet = {
@@ -71,6 +85,10 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
       try serverCaCheckAndSet(.managedServerCa(managedServerCa))
     }
     self.serverCa = serverCa
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +100,9 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
       case .managedServerCa(let value):
         try container.encode(value, forKey: .managedServerCa)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -95,6 +116,8 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
     public var caCerts:
       [SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority.RegionalCertChain] =
         []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RegionalManagedCertificateAuthority`.
     public init() {}
@@ -112,12 +135,49 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caCerts = CodingKeys(stringValue: "caCerts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caCerts"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority.RegionalCertChain]
+          .self, forKey: .caCerts)
+      {
+        self.caCerts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caCerts, forKey: .caCerts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The certificates that form the CA chain, from leaf to root order.
     public struct RegionalCertChain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The certificates that form the CA chain, from leaf to root order.
       public var certificates: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RegionalCertChain`.
       public init() {}
@@ -133,6 +193,38 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let certificates = CodingKeys(stringValue: "certificates")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "certificates"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .certificates) {
+          self.certificates = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.certificates, forKey: .certificates)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

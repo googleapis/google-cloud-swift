@@ -23,6 +23,8 @@ public struct PlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var vendorDetails: OneOf_VendorDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PlatformDetails`.
   public init() {}
 
@@ -39,12 +41,25 @@ public struct PlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vmwareDetails = "vmwareDetails"
-    case awsEc2Details = "awsEc2Details"
-    case azureVmDetails = "azureVmDetails"
-    case genericDetails = "genericDetails"
-    case physicalDetails = "physicalDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmwareDetails = CodingKeys(stringValue: "vmwareDetails")
+    static let awsEc2Details = CodingKeys(stringValue: "awsEc2Details")
+    static let azureVmDetails = CodingKeys(stringValue: "azureVmDetails")
+    static let genericDetails = CodingKeys(stringValue: "genericDetails")
+    static let physicalDetails = CodingKeys(stringValue: "physicalDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmwareDetails",
+      "awsEc2Details",
+      "azureVmDetails",
+      "genericDetails",
+      "physicalDetails",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -86,6 +101,10 @@ public struct PlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try vendorDetailsCheckAndSet(.physicalDetails(physicalDetails))
     }
     self.vendorDetails = vendorDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +123,9 @@ public struct PlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .physicalDetails(let value):
         try container.encode(value, forKey: .physicalDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

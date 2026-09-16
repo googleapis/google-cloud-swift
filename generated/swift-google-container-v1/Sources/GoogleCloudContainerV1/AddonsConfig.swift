@@ -98,6 +98,8 @@ public struct AddonsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration for NodeReadinessController add-on.
   public var nodeReadinessConfig: NodeReadinessConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddonsConfig`.
   public init() {}
 
@@ -112,6 +114,144 @@ public struct AddonsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let httpLoadBalancing = CodingKeys(stringValue: "httpLoadBalancing")
+    static let horizontalPodAutoscaling = CodingKeys(stringValue: "horizontalPodAutoscaling")
+    static let kubernetesDashboard = CodingKeys(stringValue: "kubernetesDashboard")
+    static let networkPolicyConfig = CodingKeys(stringValue: "networkPolicyConfig")
+    static let cloudRunConfig = CodingKeys(stringValue: "cloudRunConfig")
+    static let dnsCacheConfig = CodingKeys(stringValue: "dnsCacheConfig")
+    static let configConnectorConfig = CodingKeys(stringValue: "configConnectorConfig")
+    static let gcePersistentDiskCsiDriverConfig = CodingKeys(
+      stringValue: "gcePersistentDiskCsiDriverConfig")
+    static let gcpFilestoreCsiDriverConfig = CodingKeys(stringValue: "gcpFilestoreCsiDriverConfig")
+    static let gkeBackupAgentConfig = CodingKeys(stringValue: "gkeBackupAgentConfig")
+    static let gcsFuseCsiDriverConfig = CodingKeys(stringValue: "gcsFuseCsiDriverConfig")
+    static let statefulHaConfig = CodingKeys(stringValue: "statefulHaConfig")
+    static let parallelstoreCsiDriverConfig = CodingKeys(
+      stringValue: "parallelstoreCsiDriverConfig")
+    static let rayOperatorConfig = CodingKeys(stringValue: "rayOperatorConfig")
+    static let highScaleCheckpointingConfig = CodingKeys(
+      stringValue: "highScaleCheckpointingConfig")
+    static let lustreCsiDriverConfig = CodingKeys(stringValue: "lustreCsiDriverConfig")
+    static let podSnapshotConfig = CodingKeys(stringValue: "podSnapshotConfig")
+    static let slurmOperatorConfig = CodingKeys(stringValue: "slurmOperatorConfig")
+    static let sliceControllerConfig = CodingKeys(stringValue: "sliceControllerConfig")
+    static let agentSandboxConfig = CodingKeys(stringValue: "agentSandboxConfig")
+    static let nodeReadinessConfig = CodingKeys(stringValue: "nodeReadinessConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "httpLoadBalancing",
+      "horizontalPodAutoscaling",
+      "kubernetesDashboard",
+      "networkPolicyConfig",
+      "cloudRunConfig",
+      "dnsCacheConfig",
+      "configConnectorConfig",
+      "gcePersistentDiskCsiDriverConfig",
+      "gcpFilestoreCsiDriverConfig",
+      "gkeBackupAgentConfig",
+      "gcsFuseCsiDriverConfig",
+      "statefulHaConfig",
+      "parallelstoreCsiDriverConfig",
+      "rayOperatorConfig",
+      "highScaleCheckpointingConfig",
+      "lustreCsiDriverConfig",
+      "podSnapshotConfig",
+      "slurmOperatorConfig",
+      "sliceControllerConfig",
+      "agentSandboxConfig",
+      "nodeReadinessConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.httpLoadBalancing = try container.decodeIfPresent(
+      HttpLoadBalancing.self, forKey: .httpLoadBalancing)
+    self.horizontalPodAutoscaling = try container.decodeIfPresent(
+      HorizontalPodAutoscaling.self, forKey: .horizontalPodAutoscaling)
+    self.kubernetesDashboard = try container.decodeIfPresent(
+      KubernetesDashboard.self, forKey: .kubernetesDashboard)
+    self.networkPolicyConfig = try container.decodeIfPresent(
+      NetworkPolicyConfig.self, forKey: .networkPolicyConfig)
+    self.cloudRunConfig = try container.decodeIfPresent(
+      CloudRunConfig.self, forKey: .cloudRunConfig)
+    self.dnsCacheConfig = try container.decodeIfPresent(
+      DnsCacheConfig.self, forKey: .dnsCacheConfig)
+    self.configConnectorConfig = try container.decodeIfPresent(
+      ConfigConnectorConfig.self, forKey: .configConnectorConfig)
+    self.gcePersistentDiskCsiDriverConfig = try container.decodeIfPresent(
+      GcePersistentDiskCsiDriverConfig.self, forKey: .gcePersistentDiskCsiDriverConfig)
+    self.gcpFilestoreCsiDriverConfig = try container.decodeIfPresent(
+      GcpFilestoreCsiDriverConfig.self, forKey: .gcpFilestoreCsiDriverConfig)
+    self.gkeBackupAgentConfig = try container.decodeIfPresent(
+      GkeBackupAgentConfig.self, forKey: .gkeBackupAgentConfig)
+    self.gcsFuseCsiDriverConfig = try container.decodeIfPresent(
+      GcsFuseCsiDriverConfig.self, forKey: .gcsFuseCsiDriverConfig)
+    self.statefulHaConfig = try container.decodeIfPresent(
+      StatefulHAConfig.self, forKey: .statefulHaConfig)
+    self.parallelstoreCsiDriverConfig = try container.decodeIfPresent(
+      ParallelstoreCsiDriverConfig.self, forKey: .parallelstoreCsiDriverConfig)
+    self.rayOperatorConfig = try container.decodeIfPresent(
+      RayOperatorConfig.self, forKey: .rayOperatorConfig)
+    self.highScaleCheckpointingConfig = try container.decodeIfPresent(
+      HighScaleCheckpointingConfig.self, forKey: .highScaleCheckpointingConfig)
+    self.lustreCsiDriverConfig = try container.decodeIfPresent(
+      LustreCsiDriverConfig.self, forKey: .lustreCsiDriverConfig)
+    self.podSnapshotConfig = try container.decodeIfPresent(
+      PodSnapshotConfig.self, forKey: .podSnapshotConfig)
+    self.slurmOperatorConfig = try container.decodeIfPresent(
+      SlurmOperatorConfig.self, forKey: .slurmOperatorConfig)
+    self.sliceControllerConfig = try container.decodeIfPresent(
+      SliceControllerConfig.self, forKey: .sliceControllerConfig)
+    self.agentSandboxConfig = try container.decodeIfPresent(
+      AgentSandboxConfig.self, forKey: .agentSandboxConfig)
+    self.nodeReadinessConfig = try container.decodeIfPresent(
+      NodeReadinessConfig.self, forKey: .nodeReadinessConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.httpLoadBalancing, forKey: .httpLoadBalancing)
+    try container.encodeIfPresent(self.horizontalPodAutoscaling, forKey: .horizontalPodAutoscaling)
+    try container.encodeIfPresent(self.kubernetesDashboard, forKey: .kubernetesDashboard)
+    try container.encodeIfPresent(self.networkPolicyConfig, forKey: .networkPolicyConfig)
+    try container.encodeIfPresent(self.cloudRunConfig, forKey: .cloudRunConfig)
+    try container.encodeIfPresent(self.dnsCacheConfig, forKey: .dnsCacheConfig)
+    try container.encodeIfPresent(self.configConnectorConfig, forKey: .configConnectorConfig)
+    try container.encodeIfPresent(
+      self.gcePersistentDiskCsiDriverConfig, forKey: .gcePersistentDiskCsiDriverConfig)
+    try container.encodeIfPresent(
+      self.gcpFilestoreCsiDriverConfig, forKey: .gcpFilestoreCsiDriverConfig)
+    try container.encodeIfPresent(self.gkeBackupAgentConfig, forKey: .gkeBackupAgentConfig)
+    try container.encodeIfPresent(self.gcsFuseCsiDriverConfig, forKey: .gcsFuseCsiDriverConfig)
+    try container.encodeIfPresent(self.statefulHaConfig, forKey: .statefulHaConfig)
+    try container.encodeIfPresent(
+      self.parallelstoreCsiDriverConfig, forKey: .parallelstoreCsiDriverConfig)
+    try container.encodeIfPresent(self.rayOperatorConfig, forKey: .rayOperatorConfig)
+    try container.encodeIfPresent(
+      self.highScaleCheckpointingConfig, forKey: .highScaleCheckpointingConfig)
+    try container.encodeIfPresent(self.lustreCsiDriverConfig, forKey: .lustreCsiDriverConfig)
+    try container.encodeIfPresent(self.podSnapshotConfig, forKey: .podSnapshotConfig)
+    try container.encodeIfPresent(self.slurmOperatorConfig, forKey: .slurmOperatorConfig)
+    try container.encodeIfPresent(self.sliceControllerConfig, forKey: .sliceControllerConfig)
+    try container.encodeIfPresent(self.agentSandboxConfig, forKey: .agentSandboxConfig)
+    try container.encodeIfPresent(self.nodeReadinessConfig, forKey: .nodeReadinessConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

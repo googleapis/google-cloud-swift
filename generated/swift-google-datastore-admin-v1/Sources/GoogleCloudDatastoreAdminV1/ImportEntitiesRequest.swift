@@ -54,6 +54,8 @@ public struct ImportEntitiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// specified then all entities from the export are imported.
   public var entityFilter: EntityFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportEntitiesRequest`.
   public init() {}
 
@@ -68,6 +70,55 @@ public struct ImportEntitiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let inputUrl = CodingKeys(stringValue: "inputUrl")
+    static let entityFilter = CodingKeys(stringValue: "entityFilter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "labels",
+      "inputUrl",
+      "entityFilter",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputUrl) {
+      self.inputUrl = value
+    }
+    self.entityFilter = try container.decodeIfPresent(EntityFilter.self, forKey: .entityFilter)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.inputUrl, forKey: .inputUrl)
+    try container.encodeIfPresent(self.entityFilter, forKey: .entityFilter)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

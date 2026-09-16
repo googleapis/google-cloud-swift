@@ -41,6 +41,8 @@
     /// This contains a time zone.
     public var windowStartTime: DateTime? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PeriodicPartialMaintenanceSchedule`.
     public init() {}
 
@@ -55,6 +57,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subType = CodingKeys(stringValue: "subType")
+      static let targetResource = CodingKeys(stringValue: "targetResource")
+      static let type = CodingKeys(stringValue: "type")
+      static let windowEndTime = CodingKeys(stringValue: "windowEndTime")
+      static let windowStartTime = CodingKeys(stringValue: "windowStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subType",
+        "targetResource",
+        "type",
+        "windowEndTime",
+        "windowStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.subType = try container.decodeIfPresent(
+        PeriodicPartialMaintenanceSchedule.SubType.self, forKey: .subType)
+      self.targetResource = try container.decodeIfPresent(
+        Swift.String.self, forKey: .targetResource)
+      self.type = try container.decodeIfPresent(
+        PeriodicPartialMaintenanceSchedule.Type_.self, forKey: .type)
+      self.windowEndTime = try container.decodeIfPresent(DateTime.self, forKey: .windowEndTime)
+      self.windowStartTime = try container.decodeIfPresent(DateTime.self, forKey: .windowStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.subType, forKey: .subType)
+      try container.encodeIfPresent(self.targetResource, forKey: .targetResource)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      try container.encodeIfPresent(self.windowEndTime, forKey: .windowEndTime)
+      try container.encodeIfPresent(self.windowStartTime, forKey: .windowStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [subType][google.cloud.compute.v1.PeriodicPartialMaintenanceSchedule.subType] field.

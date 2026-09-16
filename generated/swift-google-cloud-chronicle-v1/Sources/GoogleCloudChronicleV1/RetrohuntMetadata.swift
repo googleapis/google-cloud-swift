@@ -34,6 +34,8 @@ public struct RetrohuntMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Percent progress of the retrohunt towards completion, from 0.00 to 100.00.
   public var progressPercentage: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RetrohuntMetadata`.
   public init() {}
 
@@ -48,6 +50,49 @@ public struct RetrohuntMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let retrohunt = CodingKeys(stringValue: "retrohunt")
+    static let executionInterval = CodingKeys(stringValue: "executionInterval")
+    static let progressPercentage = CodingKeys(stringValue: "progressPercentage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "retrohunt",
+      "executionInterval",
+      "progressPercentage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .retrohunt) {
+      self.retrohunt = value
+    }
+    self.executionInterval = try container.decodeIfPresent(
+      GoogleType.Interval.self, forKey: .executionInterval)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .progressPercentage) {
+      self.progressPercentage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.retrohunt, forKey: .retrohunt)
+    try container.encodeIfPresent(self.executionInterval, forKey: .executionInterval)
+    try container.encode(self.progressPercentage, forKey: .progressPercentage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

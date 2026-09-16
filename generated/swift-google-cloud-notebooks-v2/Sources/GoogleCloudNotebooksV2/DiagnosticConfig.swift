@@ -52,6 +52,8 @@ public struct DiagnosticConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Enables flag to copy all `/home/jupyter` folder contents
   public var enableCopyHomeFilesFlag: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiagnosticConfig`.
   public init() {}
 
@@ -66,6 +68,64 @@ public struct DiagnosticConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsBucket = CodingKeys(stringValue: "gcsBucket")
+    static let relativePath = CodingKeys(stringValue: "relativePath")
+    static let enableRepairFlag = CodingKeys(stringValue: "enableRepairFlag")
+    static let enablePacketCaptureFlag = CodingKeys(stringValue: "enablePacketCaptureFlag")
+    static let enableCopyHomeFilesFlag = CodingKeys(stringValue: "enableCopyHomeFilesFlag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsBucket",
+      "relativePath",
+      "enableRepairFlag",
+      "enablePacketCaptureFlag",
+      "enableCopyHomeFilesFlag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsBucket) {
+      self.gcsBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .relativePath) {
+      self.relativePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRepairFlag) {
+      self.enableRepairFlag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePacketCaptureFlag)
+    {
+      self.enablePacketCaptureFlag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCopyHomeFilesFlag)
+    {
+      self.enableCopyHomeFilesFlag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gcsBucket, forKey: .gcsBucket)
+    try container.encode(self.relativePath, forKey: .relativePath)
+    try container.encode(self.enableRepairFlag, forKey: .enableRepairFlag)
+    try container.encode(self.enablePacketCaptureFlag, forKey: .enablePacketCaptureFlag)
+    try container.encode(self.enableCopyHomeFilesFlag, forKey: .enableCopyHomeFilesFlag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

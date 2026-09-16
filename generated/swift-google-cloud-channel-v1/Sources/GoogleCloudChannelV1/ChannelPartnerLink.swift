@@ -48,6 +48,8 @@ public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. Cloud Identity info of the channel partner (IR).
   public var channelPartnerCloudIdentityInfo: CloudIdentityInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChannelPartnerLink`.
   public init() {}
 
@@ -62,6 +64,81 @@ public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resellerCloudIdentityId = CodingKeys(stringValue: "resellerCloudIdentityId")
+    static let linkState = CodingKeys(stringValue: "linkState")
+    static let inviteLinkUri = CodingKeys(stringValue: "inviteLinkUri")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let publicId = CodingKeys(stringValue: "publicId")
+    static let channelPartnerCloudIdentityInfo = CodingKeys(
+      stringValue: "channelPartnerCloudIdentityInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resellerCloudIdentityId",
+      "linkState",
+      "inviteLinkUri",
+      "createTime",
+      "updateTime",
+      "publicId",
+      "channelPartnerCloudIdentityInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .resellerCloudIdentityId)
+    {
+      self.resellerCloudIdentityId = value
+    }
+    if let value = try container.decodeIfPresent(ChannelPartnerLinkState.self, forKey: .linkState) {
+      self.linkState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inviteLinkUri) {
+      self.inviteLinkUri = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicId) {
+      self.publicId = value
+    }
+    self.channelPartnerCloudIdentityInfo = try container.decodeIfPresent(
+      CloudIdentityInfo.self, forKey: .channelPartnerCloudIdentityInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.resellerCloudIdentityId, forKey: .resellerCloudIdentityId)
+    try container.encode(self.linkState, forKey: .linkState)
+    try container.encode(self.inviteLinkUri, forKey: .inviteLinkUri)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.publicId, forKey: .publicId)
+    try container.encodeIfPresent(
+      self.channelPartnerCloudIdentityInfo, forKey: .channelPartnerCloudIdentityInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

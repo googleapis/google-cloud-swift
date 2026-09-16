@@ -79,6 +79,8 @@ public struct AutoprovisioningNodePoolDefaults: Codable, Equatable, GoogleCloudW
   /// DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
   public var insecureKubeletReadonlyPortEnabled: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoprovisioningNodePoolDefaults`.
   public init() {}
 
@@ -93,6 +95,95 @@ public struct AutoprovisioningNodePoolDefaults: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oauthScopes = CodingKeys(stringValue: "oauthScopes")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let upgradeSettings = CodingKeys(stringValue: "upgradeSettings")
+    static let management = CodingKeys(stringValue: "management")
+    static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let bootDiskKmsKey = CodingKeys(stringValue: "bootDiskKmsKey")
+    static let imageType = CodingKeys(stringValue: "imageType")
+    static let insecureKubeletReadonlyPortEnabled = CodingKeys(
+      stringValue: "insecureKubeletReadonlyPortEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oauthScopes",
+      "serviceAccount",
+      "upgradeSettings",
+      "management",
+      "minCpuPlatform",
+      "diskSizeGb",
+      "diskType",
+      "shieldedInstanceConfig",
+      "bootDiskKmsKey",
+      "imageType",
+      "insecureKubeletReadonlyPortEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .oauthScopes) {
+      self.oauthScopes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.upgradeSettings = try container.decodeIfPresent(
+      NodePool.UpgradeSettings.self, forKey: .upgradeSettings)
+    self.management = try container.decodeIfPresent(NodeManagement.self, forKey: .management)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform) {
+      self.minCpuPlatform = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    self.shieldedInstanceConfig = try container.decodeIfPresent(
+      ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bootDiskKmsKey) {
+      self.bootDiskKmsKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageType) {
+      self.imageType = value
+    }
+    self.insecureKubeletReadonlyPortEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .insecureKubeletReadonlyPortEnabled)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.oauthScopes, forKey: .oauthScopes)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.upgradeSettings, forKey: .upgradeSettings)
+    try container.encodeIfPresent(self.management, forKey: .management)
+    try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encode(self.bootDiskKmsKey, forKey: .bootDiskKmsKey)
+    try container.encode(self.imageType, forKey: .imageType)
+    try container.encodeIfPresent(
+      self.insecureKubeletReadonlyPortEnabled, forKey: .insecureKubeletReadonlyPortEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

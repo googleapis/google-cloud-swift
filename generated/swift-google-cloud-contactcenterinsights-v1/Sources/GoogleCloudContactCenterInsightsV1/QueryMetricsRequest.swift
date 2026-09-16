@@ -53,6 +53,8 @@ public struct QueryMetricsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// "conversation_measure.count".
   public var measureMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryMetricsRequest`.
   public init() {}
 
@@ -67,6 +69,63 @@ public struct QueryMetricsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let location = CodingKeys(stringValue: "location")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let timeGranularity = CodingKeys(stringValue: "timeGranularity")
+    static let dimensions = CodingKeys(stringValue: "dimensions")
+    static let measureMask = CodingKeys(stringValue: "measureMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "location",
+      "filter",
+      "timeGranularity",
+      "dimensions",
+      "measureMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(
+      QueryMetricsRequest.TimeGranularity.self, forKey: .timeGranularity)
+    {
+      self.timeGranularity = value
+    }
+    if let value = try container.decodeIfPresent([Dimension].self, forKey: .dimensions) {
+      self.dimensions = value
+    }
+    self.measureMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .measureMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.timeGranularity, forKey: .timeGranularity)
+    try container.encode(self.dimensions, forKey: .dimensions)
+    try container.encodeIfPresent(self.measureMask, forKey: .measureMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A time granularity divides the time line into discrete time periods.

@@ -39,6 +39,8 @@ public struct TableEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Comment associated with the table.
   public var comment: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TableEntity`.
   public init() {}
 
@@ -53,6 +55,67 @@ public struct TableEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let columns = CodingKeys(stringValue: "columns")
+    static let constraints = CodingKeys(stringValue: "constraints")
+    static let indices = CodingKeys(stringValue: "indices")
+    static let triggers = CodingKeys(stringValue: "triggers")
+    static let customFeatures = CodingKeys(stringValue: "customFeatures")
+    static let comment = CodingKeys(stringValue: "comment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "columns",
+      "constraints",
+      "indices",
+      "triggers",
+      "customFeatures",
+      "comment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([ColumnEntity].self, forKey: .columns) {
+      self.columns = value
+    }
+    if let value = try container.decodeIfPresent([ConstraintEntity].self, forKey: .constraints) {
+      self.constraints = value
+    }
+    if let value = try container.decodeIfPresent([IndexEntity].self, forKey: .indices) {
+      self.indices = value
+    }
+    if let value = try container.decodeIfPresent([TriggerEntity].self, forKey: .triggers) {
+      self.triggers = value
+    }
+    self.customFeatures = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .customFeatures)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comment) {
+      self.comment = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.columns, forKey: .columns)
+    try container.encode(self.constraints, forKey: .constraints)
+    try container.encode(self.indices, forKey: .indices)
+    try container.encode(self.triggers, forKey: .triggers)
+    try container.encodeIfPresent(self.customFeatures, forKey: .customFeatures)
+    try container.encode(self.comment, forKey: .comment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

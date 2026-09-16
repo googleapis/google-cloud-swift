@@ -324,6 +324,8 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Details about behavior anomalies detected in AI agents.
   public var agentAnomaly: AgentAnomaly? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Finding`.
   public init() {}
 
@@ -340,6 +342,374 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let canonicalName = CodingKeys(stringValue: "canonicalName")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let state = CodingKeys(stringValue: "state")
+    static let category = CodingKeys(stringValue: "category")
+    static let externalUri = CodingKeys(stringValue: "externalUri")
+    static let sourceProperties = CodingKeys(stringValue: "sourceProperties")
+    static let securityMarks = CodingKeys(stringValue: "securityMarks")
+    static let eventTime = CodingKeys(stringValue: "eventTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let mute = CodingKeys(stringValue: "mute")
+    static let muteInfo = CodingKeys(stringValue: "muteInfo")
+    static let findingClass = CodingKeys(stringValue: "findingClass")
+    static let indicator = CodingKeys(stringValue: "indicator")
+    static let vulnerability = CodingKeys(stringValue: "vulnerability")
+    static let muteUpdateTime = CodingKeys(stringValue: "muteUpdateTime")
+    static let externalSystems = CodingKeys(stringValue: "externalSystems")
+    static let mitreAttack = CodingKeys(stringValue: "mitreAttack")
+    static let access = CodingKeys(stringValue: "access")
+    static let connections = CodingKeys(stringValue: "connections")
+    static let muteInitiator = CodingKeys(stringValue: "muteInitiator")
+    static let processes = CodingKeys(stringValue: "processes")
+    static let contacts = CodingKeys(stringValue: "contacts")
+    static let compliances = CodingKeys(stringValue: "compliances")
+    static let parentDisplayName = CodingKeys(stringValue: "parentDisplayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let exfiltration = CodingKeys(stringValue: "exfiltration")
+    static let iamBindings = CodingKeys(stringValue: "iamBindings")
+    static let nextSteps = CodingKeys(stringValue: "nextSteps")
+    static let moduleName = CodingKeys(stringValue: "moduleName")
+    static let containers = CodingKeys(stringValue: "containers")
+    static let kubernetes = CodingKeys(stringValue: "kubernetes")
+    static let database = CodingKeys(stringValue: "database")
+    static let attackExposure = CodingKeys(stringValue: "attackExposure")
+    static let files = CodingKeys(stringValue: "files")
+    static let cloudDlpInspection = CodingKeys(stringValue: "cloudDlpInspection")
+    static let cloudDlpDataProfile = CodingKeys(stringValue: "cloudDlpDataProfile")
+    static let kernelRootkit = CodingKeys(stringValue: "kernelRootkit")
+    static let orgPolicies = CodingKeys(stringValue: "orgPolicies")
+    static let job = CodingKeys(stringValue: "job")
+    static let application = CodingKeys(stringValue: "application")
+    static let ipRules = CodingKeys(stringValue: "ipRules")
+    static let backupDisasterRecovery = CodingKeys(stringValue: "backupDisasterRecovery")
+    static let securityPosture = CodingKeys(stringValue: "securityPosture")
+    static let logEntries = CodingKeys(stringValue: "logEntries")
+    static let loadBalancers = CodingKeys(stringValue: "loadBalancers")
+    static let cloudArmor = CodingKeys(stringValue: "cloudArmor")
+    static let notebook = CodingKeys(stringValue: "notebook")
+    static let toxicCombination = CodingKeys(stringValue: "toxicCombination")
+    static let groupMemberships = CodingKeys(stringValue: "groupMemberships")
+    static let disk = CodingKeys(stringValue: "disk")
+    static let dataAccessEvents = CodingKeys(stringValue: "dataAccessEvents")
+    static let dataFlowEvents = CodingKeys(stringValue: "dataFlowEvents")
+    static let networks = CodingKeys(stringValue: "networks")
+    static let dataRetentionDeletionEvents = CodingKeys(stringValue: "dataRetentionDeletionEvents")
+    static let affectedResources = CodingKeys(stringValue: "affectedResources")
+    static let aiModel = CodingKeys(stringValue: "aiModel")
+    static let chokepoint = CodingKeys(stringValue: "chokepoint")
+    static let vertexAi = CodingKeys(stringValue: "vertexAi")
+    static let agent = CodingKeys(stringValue: "agent")
+    static let agentSessions = CodingKeys(stringValue: "agentSessions")
+    static let agentAnomaly = CodingKeys(stringValue: "agentAnomaly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "canonicalName",
+      "parent",
+      "resourceName",
+      "state",
+      "category",
+      "externalUri",
+      "sourceProperties",
+      "securityMarks",
+      "eventTime",
+      "createTime",
+      "severity",
+      "mute",
+      "muteInfo",
+      "findingClass",
+      "indicator",
+      "vulnerability",
+      "muteUpdateTime",
+      "externalSystems",
+      "mitreAttack",
+      "access",
+      "connections",
+      "muteInitiator",
+      "processes",
+      "contacts",
+      "compliances",
+      "parentDisplayName",
+      "description",
+      "exfiltration",
+      "iamBindings",
+      "nextSteps",
+      "moduleName",
+      "containers",
+      "kubernetes",
+      "database",
+      "attackExposure",
+      "files",
+      "cloudDlpInspection",
+      "cloudDlpDataProfile",
+      "kernelRootkit",
+      "orgPolicies",
+      "job",
+      "application",
+      "ipRules",
+      "backupDisasterRecovery",
+      "securityPosture",
+      "logEntries",
+      "loadBalancers",
+      "cloudArmor",
+      "notebook",
+      "toxicCombination",
+      "groupMemberships",
+      "disk",
+      "dataAccessEvents",
+      "dataFlowEvents",
+      "networks",
+      "dataRetentionDeletionEvents",
+      "affectedResources",
+      "aiModel",
+      "chokepoint",
+      "vertexAi",
+      "agent",
+      "agentSessions",
+      "agentAnomaly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .canonicalName) {
+      self.canonicalName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Finding.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalUri) {
+      self.externalUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.Value].self, forKey: .sourceProperties)
+    {
+      self.sourceProperties = value
+    }
+    self.securityMarks = try container.decodeIfPresent(SecurityMarks.self, forKey: .securityMarks)
+    self.eventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Finding.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Finding.Mute.self, forKey: .mute) {
+      self.mute = value
+    }
+    self.muteInfo = try container.decodeIfPresent(Finding.MuteInfo.self, forKey: .muteInfo)
+    if let value = try container.decodeIfPresent(Finding.FindingClass.self, forKey: .findingClass) {
+      self.findingClass = value
+    }
+    self.indicator = try container.decodeIfPresent(Indicator.self, forKey: .indicator)
+    self.vulnerability = try container.decodeIfPresent(Vulnerability.self, forKey: .vulnerability)
+    self.muteUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .muteUpdateTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ExternalSystem].self, forKey: .externalSystems)
+    {
+      self.externalSystems = value
+    }
+    self.mitreAttack = try container.decodeIfPresent(MitreAttack.self, forKey: .mitreAttack)
+    self.access = try container.decodeIfPresent(Access.self, forKey: .access)
+    if let value = try container.decodeIfPresent([Connection].self, forKey: .connections) {
+      self.connections = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .muteInitiator) {
+      self.muteInitiator = value
+    }
+    if let value = try container.decodeIfPresent([Process].self, forKey: .processes) {
+      self.processes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ContactDetails].self, forKey: .contacts)
+    {
+      self.contacts = value
+    }
+    if let value = try container.decodeIfPresent([Compliance].self, forKey: .compliances) {
+      self.compliances = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentDisplayName) {
+      self.parentDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.exfiltration = try container.decodeIfPresent(Exfiltration.self, forKey: .exfiltration)
+    if let value = try container.decodeIfPresent([IamBinding].self, forKey: .iamBindings) {
+      self.iamBindings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextSteps) {
+      self.nextSteps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .moduleName) {
+      self.moduleName = value
+    }
+    if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
+      self.containers = value
+    }
+    self.kubernetes = try container.decodeIfPresent(Kubernetes.self, forKey: .kubernetes)
+    self.database = try container.decodeIfPresent(Database.self, forKey: .database)
+    self.attackExposure = try container.decodeIfPresent(
+      AttackExposure.self, forKey: .attackExposure)
+    if let value = try container.decodeIfPresent([File].self, forKey: .files) {
+      self.files = value
+    }
+    self.cloudDlpInspection = try container.decodeIfPresent(
+      CloudDlpInspection.self, forKey: .cloudDlpInspection)
+    self.cloudDlpDataProfile = try container.decodeIfPresent(
+      CloudDlpDataProfile.self, forKey: .cloudDlpDataProfile)
+    self.kernelRootkit = try container.decodeIfPresent(KernelRootkit.self, forKey: .kernelRootkit)
+    if let value = try container.decodeIfPresent([OrgPolicy].self, forKey: .orgPolicies) {
+      self.orgPolicies = value
+    }
+    self.job = try container.decodeIfPresent(Job.self, forKey: .job)
+    self.application = try container.decodeIfPresent(Application.self, forKey: .application)
+    self.ipRules = try container.decodeIfPresent(IpRules.self, forKey: .ipRules)
+    self.backupDisasterRecovery = try container.decodeIfPresent(
+      BackupDisasterRecovery.self, forKey: .backupDisasterRecovery)
+    self.securityPosture = try container.decodeIfPresent(
+      SecurityPosture.self, forKey: .securityPosture)
+    if let value = try container.decodeIfPresent([LogEntry].self, forKey: .logEntries) {
+      self.logEntries = value
+    }
+    if let value = try container.decodeIfPresent([LoadBalancer].self, forKey: .loadBalancers) {
+      self.loadBalancers = value
+    }
+    self.cloudArmor = try container.decodeIfPresent(CloudArmor.self, forKey: .cloudArmor)
+    self.notebook = try container.decodeIfPresent(Notebook.self, forKey: .notebook)
+    self.toxicCombination = try container.decodeIfPresent(
+      ToxicCombination.self, forKey: .toxicCombination)
+    if let value = try container.decodeIfPresent([GroupMembership].self, forKey: .groupMemberships)
+    {
+      self.groupMemberships = value
+    }
+    self.disk = try container.decodeIfPresent(Disk.self, forKey: .disk)
+    if let value = try container.decodeIfPresent([DataAccessEvent].self, forKey: .dataAccessEvents)
+    {
+      self.dataAccessEvents = value
+    }
+    if let value = try container.decodeIfPresent([DataFlowEvent].self, forKey: .dataFlowEvents) {
+      self.dataFlowEvents = value
+    }
+    if let value = try container.decodeIfPresent([Network].self, forKey: .networks) {
+      self.networks = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DataRetentionDeletionEvent].self, forKey: .dataRetentionDeletionEvents)
+    {
+      self.dataRetentionDeletionEvents = value
+    }
+    self.affectedResources = try container.decodeIfPresent(
+      AffectedResources.self, forKey: .affectedResources)
+    self.aiModel = try container.decodeIfPresent(AiModel.self, forKey: .aiModel)
+    self.chokepoint = try container.decodeIfPresent(Chokepoint.self, forKey: .chokepoint)
+    self.vertexAi = try container.decodeIfPresent(VertexAi.self, forKey: .vertexAi)
+    self.agent = try container.decodeIfPresent(Agent.self, forKey: .agent)
+    if let value = try container.decodeIfPresent([AgentSession].self, forKey: .agentSessions) {
+      self.agentSessions = value
+    }
+    self.agentAnomaly = try container.decodeIfPresent(AgentAnomaly.self, forKey: .agentAnomaly)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.canonicalName, forKey: .canonicalName)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.externalUri, forKey: .externalUri)
+    try container.encode(self.sourceProperties, forKey: .sourceProperties)
+    try container.encodeIfPresent(self.securityMarks, forKey: .securityMarks)
+    try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.mute, forKey: .mute)
+    try container.encodeIfPresent(self.muteInfo, forKey: .muteInfo)
+    try container.encode(self.findingClass, forKey: .findingClass)
+    try container.encodeIfPresent(self.indicator, forKey: .indicator)
+    try container.encodeIfPresent(self.vulnerability, forKey: .vulnerability)
+    try container.encodeIfPresent(self.muteUpdateTime, forKey: .muteUpdateTime)
+    try container.encode(self.externalSystems, forKey: .externalSystems)
+    try container.encodeIfPresent(self.mitreAttack, forKey: .mitreAttack)
+    try container.encodeIfPresent(self.access, forKey: .access)
+    try container.encode(self.connections, forKey: .connections)
+    try container.encode(self.muteInitiator, forKey: .muteInitiator)
+    try container.encode(self.processes, forKey: .processes)
+    try container.encode(self.contacts, forKey: .contacts)
+    try container.encode(self.compliances, forKey: .compliances)
+    try container.encode(self.parentDisplayName, forKey: .parentDisplayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.exfiltration, forKey: .exfiltration)
+    try container.encode(self.iamBindings, forKey: .iamBindings)
+    try container.encode(self.nextSteps, forKey: .nextSteps)
+    try container.encode(self.moduleName, forKey: .moduleName)
+    try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.kubernetes, forKey: .kubernetes)
+    try container.encodeIfPresent(self.database, forKey: .database)
+    try container.encodeIfPresent(self.attackExposure, forKey: .attackExposure)
+    try container.encode(self.files, forKey: .files)
+    try container.encodeIfPresent(self.cloudDlpInspection, forKey: .cloudDlpInspection)
+    try container.encodeIfPresent(self.cloudDlpDataProfile, forKey: .cloudDlpDataProfile)
+    try container.encodeIfPresent(self.kernelRootkit, forKey: .kernelRootkit)
+    try container.encode(self.orgPolicies, forKey: .orgPolicies)
+    try container.encodeIfPresent(self.job, forKey: .job)
+    try container.encodeIfPresent(self.application, forKey: .application)
+    try container.encodeIfPresent(self.ipRules, forKey: .ipRules)
+    try container.encodeIfPresent(self.backupDisasterRecovery, forKey: .backupDisasterRecovery)
+    try container.encodeIfPresent(self.securityPosture, forKey: .securityPosture)
+    try container.encode(self.logEntries, forKey: .logEntries)
+    try container.encode(self.loadBalancers, forKey: .loadBalancers)
+    try container.encodeIfPresent(self.cloudArmor, forKey: .cloudArmor)
+    try container.encodeIfPresent(self.notebook, forKey: .notebook)
+    try container.encodeIfPresent(self.toxicCombination, forKey: .toxicCombination)
+    try container.encode(self.groupMemberships, forKey: .groupMemberships)
+    try container.encodeIfPresent(self.disk, forKey: .disk)
+    try container.encode(self.dataAccessEvents, forKey: .dataAccessEvents)
+    try container.encode(self.dataFlowEvents, forKey: .dataFlowEvents)
+    try container.encode(self.networks, forKey: .networks)
+    try container.encode(self.dataRetentionDeletionEvents, forKey: .dataRetentionDeletionEvents)
+    try container.encodeIfPresent(self.affectedResources, forKey: .affectedResources)
+    try container.encodeIfPresent(self.aiModel, forKey: .aiModel)
+    try container.encodeIfPresent(self.chokepoint, forKey: .chokepoint)
+    try container.encodeIfPresent(self.vertexAi, forKey: .vertexAi)
+    try container.encodeIfPresent(self.agent, forKey: .agent)
+    try container.encode(self.agentSessions, forKey: .agentSessions)
+    try container.encodeIfPresent(self.agentAnomaly, forKey: .agentAnomaly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Mute information about the finding, including whether the finding has a
   /// static mute or any matching dynamic mute rules.
   public struct MuteInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -351,6 +721,8 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The list of dynamic mute rules that currently match the finding.
     public var dynamicMuteRecords: [Finding.MuteInfo.DynamicMuteRecord] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `MuteInfo`.
     public init() {}
@@ -368,6 +740,45 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let staticMute = CodingKeys(stringValue: "staticMute")
+      static let dynamicMuteRecords = CodingKeys(stringValue: "dynamicMuteRecords")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "staticMute",
+        "dynamicMuteRecords",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.staticMute = try container.decodeIfPresent(
+        Finding.MuteInfo.StaticMute.self, forKey: .staticMute)
+      if let value = try container.decodeIfPresent(
+        [Finding.MuteInfo.DynamicMuteRecord].self, forKey: .dynamicMuteRecords)
+      {
+        self.dynamicMuteRecords = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.staticMute, forKey: .staticMute)
+      try container.encode(self.dynamicMuteRecords, forKey: .dynamicMuteRecords)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Information about the static mute state. A static mute state overrides
     /// any dynamic mute rules that apply to this finding. The static mute state
     /// can be set by a static mute rule or by muting the finding directly.
@@ -380,6 +791,8 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// When the static mute was applied.
       public var applyTime: GoogleCloudWKT.Timestamp? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `StaticMute`.
       public init() {}
@@ -395,6 +808,43 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let state = CodingKeys(stringValue: "state")
+        static let applyTime = CodingKeys(stringValue: "applyTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "state",
+          "applyTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Finding.Mute.self, forKey: .state) {
+          self.state = value
+        }
+        self.applyTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .applyTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.state, forKey: .state)
+        try container.encodeIfPresent(self.applyTime, forKey: .applyTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -421,6 +871,8 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// When the dynamic mute rule first matched the finding.
       public var matchTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DynamicMuteRecord`.
       public init() {}
 
@@ -435,6 +887,43 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let muteConfig = CodingKeys(stringValue: "muteConfig")
+        static let matchTime = CodingKeys(stringValue: "matchTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "muteConfig",
+          "matchTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .muteConfig) {
+          self.muteConfig = value
+        }
+        self.matchTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .matchTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.muteConfig, forKey: .muteConfig)
+        try container.encodeIfPresent(self.matchTime, forKey: .matchTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

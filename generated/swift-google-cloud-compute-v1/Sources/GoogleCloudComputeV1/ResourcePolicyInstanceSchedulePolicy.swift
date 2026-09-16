@@ -41,6 +41,8 @@
     /// Specifies the schedule for stopping instances.
     public var vmStopSchedule: ResourcePolicyInstanceSchedulePolicySchedule? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicyInstanceSchedulePolicy`.
     public init() {}
 
@@ -55,6 +57,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expirationTime = CodingKeys(stringValue: "expirationTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let vmStartSchedule = CodingKeys(stringValue: "vmStartSchedule")
+      static let vmStopSchedule = CodingKeys(stringValue: "vmStopSchedule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expirationTime",
+        "startTime",
+        "timeZone",
+        "vmStartSchedule",
+        "vmStopSchedule",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.expirationTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .expirationTime)
+      self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
+      self.timeZone = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone)
+      self.vmStartSchedule = try container.decodeIfPresent(
+        ResourcePolicyInstanceSchedulePolicySchedule.self, forKey: .vmStartSchedule)
+      self.vmStopSchedule = try container.decodeIfPresent(
+        ResourcePolicyInstanceSchedulePolicySchedule.self, forKey: .vmStopSchedule)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.vmStartSchedule, forKey: .vmStartSchedule)
+      try container.encodeIfPresent(self.vmStopSchedule, forKey: .vmStopSchedule)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

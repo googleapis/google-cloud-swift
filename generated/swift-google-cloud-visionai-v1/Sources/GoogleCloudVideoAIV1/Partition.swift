@@ -31,6 +31,8 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Partition of asset in time.
   public var relativeTemporalPartition: Partition.RelativeTemporalPartition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Partition`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let temporalPartition = CodingKeys(stringValue: "temporalPartition")
+    static let spatialPartition = CodingKeys(stringValue: "spatialPartition")
+    static let relativeTemporalPartition = CodingKeys(stringValue: "relativeTemporalPartition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "temporalPartition",
+      "spatialPartition",
+      "relativeTemporalPartition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.temporalPartition = try container.decodeIfPresent(
+      Partition.TemporalPartition.self, forKey: .temporalPartition)
+    self.spatialPartition = try container.decodeIfPresent(
+      Partition.SpatialPartition.self, forKey: .spatialPartition)
+    self.relativeTemporalPartition = try container.decodeIfPresent(
+      Partition.RelativeTemporalPartition.self, forKey: .relativeTemporalPartition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.temporalPartition, forKey: .temporalPartition)
+    try container.encodeIfPresent(self.spatialPartition, forKey: .spatialPartition)
+    try container.encodeIfPresent(
+      self.relativeTemporalPartition, forKey: .relativeTemporalPartition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Partition of asset in UTC Epoch time. Supported by STREAM_VIDEO corpus
   /// type.
   public struct TemporalPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -57,6 +101,8 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// End time of the partition.
     public var endTime: GoogleCloudWKT.Timestamp? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TemporalPartition`.
     public init() {}
@@ -72,6 +118,41 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTime",
+        "endTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -101,6 +182,8 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The maximum y coordinate value.
     public var yMax: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpatialPartition`.
     public init() {}
 
@@ -115,6 +198,48 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let xMin = CodingKeys(stringValue: "xMin")
+      static let yMin = CodingKeys(stringValue: "yMin")
+      static let xMax = CodingKeys(stringValue: "xMax")
+      static let yMax = CodingKeys(stringValue: "yMax")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "xMin",
+        "yMin",
+        "xMax",
+        "yMax",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.xMin = try container.decodeIfPresent(Swift.Int64.self, forKey: .xMin)
+      self.yMin = try container.decodeIfPresent(Swift.Int64.self, forKey: .yMin)
+      self.xMax = try container.decodeIfPresent(Swift.Int64.self, forKey: .xMax)
+      self.yMax = try container.decodeIfPresent(Swift.Int64.self, forKey: .yMax)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.xMin, forKey: .xMin)
+      try container.encodeIfPresent(self.yMin, forKey: .yMin)
+      try container.encodeIfPresent(self.xMax, forKey: .xMax)
+      try container.encodeIfPresent(self.yMax, forKey: .yMax)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -139,6 +264,8 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// End time offset of the partition.
     public var endOffset: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RelativeTemporalPartition`.
     public init() {}
 
@@ -153,6 +280,42 @@ public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startOffset = CodingKeys(stringValue: "startOffset")
+      static let endOffset = CodingKeys(stringValue: "endOffset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startOffset",
+        "endOffset",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .startOffset)
+      self.endOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .endOffset)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startOffset, forKey: .startOffset)
+      try container.encodeIfPresent(self.endOffset, forKey: .endOffset)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -124,6 +124,8 @@
     /// Output only. [Output Only] Reserved for future use.
     public var supportsPzs: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectLocation`.
     public init() {}
 
@@ -138,6 +140,142 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let address = CodingKeys(stringValue: "address")
+      static let availabilityZone = CodingKeys(stringValue: "availabilityZone")
+      static let availableFeatures = CodingKeys(stringValue: "availableFeatures")
+      static let availableLinkTypes = CodingKeys(stringValue: "availableLinkTypes")
+      static let city = CodingKeys(stringValue: "city")
+      static let continent = CodingKeys(stringValue: "continent")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let crossSiteInterconnectInfos = CodingKeys(stringValue: "crossSiteInterconnectInfos")
+      static let description = CodingKeys(stringValue: "description")
+      static let facilityProvider = CodingKeys(stringValue: "facilityProvider")
+      static let facilityProviderFacilityId = CodingKeys(stringValue: "facilityProviderFacilityId")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let peeringdbFacilityId = CodingKeys(stringValue: "peeringdbFacilityId")
+      static let regionInfos = CodingKeys(stringValue: "regionInfos")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let singleRegionProductionCriticalPeerLocations = CodingKeys(
+        stringValue: "singleRegionProductionCriticalPeerLocations")
+      static let status = CodingKeys(stringValue: "status")
+      static let supportsPzs = CodingKeys(stringValue: "supportsPzs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "address",
+        "availabilityZone",
+        "availableFeatures",
+        "availableLinkTypes",
+        "city",
+        "continent",
+        "creationTimestamp",
+        "crossSiteInterconnectInfos",
+        "description",
+        "facilityProvider",
+        "facilityProviderFacilityId",
+        "id",
+        "kind",
+        "name",
+        "peeringdbFacilityId",
+        "regionInfos",
+        "selfLink",
+        "singleRegionProductionCriticalPeerLocations",
+        "status",
+        "supportsPzs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.address = try container.decodeIfPresent(Swift.String.self, forKey: .address)
+      self.availabilityZone = try container.decodeIfPresent(
+        Swift.String.self, forKey: .availabilityZone)
+      if let value = try container.decodeIfPresent(
+        [InterconnectLocation.AvailableFeatures].self, forKey: .availableFeatures)
+      {
+        self.availableFeatures = value
+      }
+      if let value = try container.decodeIfPresent(
+        [InterconnectLocation.AvailableLinkTypes].self, forKey: .availableLinkTypes)
+      {
+        self.availableLinkTypes = value
+      }
+      self.city = try container.decodeIfPresent(Swift.String.self, forKey: .city)
+      self.continent = try container.decodeIfPresent(
+        InterconnectLocation.Continent.self, forKey: .continent)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      if let value = try container.decodeIfPresent(
+        [InterconnectLocationCrossSiteInterconnectInfo].self, forKey: .crossSiteInterconnectInfos)
+      {
+        self.crossSiteInterconnectInfos = value
+      }
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.facilityProvider = try container.decodeIfPresent(
+        Swift.String.self, forKey: .facilityProvider)
+      self.facilityProviderFacilityId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .facilityProviderFacilityId)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.peeringdbFacilityId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peeringdbFacilityId)
+      if let value = try container.decodeIfPresent(
+        [InterconnectLocationRegionInfo].self, forKey: .regionInfos)
+      {
+        self.regionInfos = value
+      }
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .singleRegionProductionCriticalPeerLocations)
+      {
+        self.singleRegionProductionCriticalPeerLocations = value
+      }
+      self.status = try container.decodeIfPresent(InterconnectLocation.Status.self, forKey: .status)
+      self.supportsPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsPzs)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.address, forKey: .address)
+      try container.encodeIfPresent(self.availabilityZone, forKey: .availabilityZone)
+      try container.encode(self.availableFeatures, forKey: .availableFeatures)
+      try container.encode(self.availableLinkTypes, forKey: .availableLinkTypes)
+      try container.encodeIfPresent(self.city, forKey: .city)
+      try container.encodeIfPresent(self.continent, forKey: .continent)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encode(self.crossSiteInterconnectInfos, forKey: .crossSiteInterconnectInfos)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.facilityProvider, forKey: .facilityProvider)
+      try container.encodeIfPresent(
+        self.facilityProviderFacilityId, forKey: .facilityProviderFacilityId)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.peeringdbFacilityId, forKey: .peeringdbFacilityId)
+      try container.encode(self.regionInfos, forKey: .regionInfos)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encode(
+        self.singleRegionProductionCriticalPeerLocations,
+        forKey: .singleRegionProductionCriticalPeerLocations)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.supportsPzs, forKey: .supportsPzs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [availableFeatures][google.cloud.compute.v1.InterconnectLocation.availableFeatures] field.

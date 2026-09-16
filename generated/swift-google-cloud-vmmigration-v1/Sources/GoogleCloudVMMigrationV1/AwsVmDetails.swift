@@ -80,6 +80,8 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// number of CPU cores * threads per CPU the VM has.
   public var vcpuCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsVmDetails`.
   public init() {}
 
@@ -94,6 +96,152 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmId = CodingKeys(stringValue: "vmId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let sourceId = CodingKeys(stringValue: "sourceId")
+    static let sourceDescription = CodingKeys(stringValue: "sourceDescription")
+    static let powerState = CodingKeys(stringValue: "powerState")
+    static let cpuCount = CodingKeys(stringValue: "cpuCount")
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let diskCount = CodingKeys(stringValue: "diskCount")
+    static let committedStorageMb = CodingKeys(stringValue: "committedStorageMb")
+    static let osDescription = CodingKeys(stringValue: "osDescription")
+    static let bootOption = CodingKeys(stringValue: "bootOption")
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let vpcId = CodingKeys(stringValue: "vpcId")
+    static let securityGroups = CodingKeys(stringValue: "securityGroups")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let virtualizationType = CodingKeys(stringValue: "virtualizationType")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let vcpuCount = CodingKeys(stringValue: "vcpuCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmId",
+      "displayName",
+      "sourceId",
+      "sourceDescription",
+      "powerState",
+      "cpuCount",
+      "memoryMb",
+      "diskCount",
+      "committedStorageMb",
+      "osDescription",
+      "bootOption",
+      "instanceType",
+      "vpcId",
+      "securityGroups",
+      "tags",
+      "zone",
+      "virtualizationType",
+      "architecture",
+      "vcpuCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmId) {
+      self.vmId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceId) {
+      self.sourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceDescription) {
+      self.sourceDescription = value
+    }
+    if let value = try container.decodeIfPresent(AwsVmDetails.PowerState.self, forKey: .powerState)
+    {
+      self.powerState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+      self.cpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskCount) {
+      self.diskCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .committedStorageMb) {
+      self.committedStorageMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osDescription) {
+      self.osDescription = value
+    }
+    if let value = try container.decodeIfPresent(AwsVmDetails.BootOption.self, forKey: .bootOption)
+    {
+      self.bootOption = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vpcId) {
+      self.vpcId = value
+    }
+    if let value = try container.decodeIfPresent([AwsSecurityGroup].self, forKey: .securityGroups) {
+      self.securityGroups = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(
+      AwsVmDetails.VmVirtualizationType.self, forKey: .virtualizationType)
+    {
+      self.virtualizationType = value
+    }
+    if let value = try container.decodeIfPresent(
+      AwsVmDetails.VmArchitecture.self, forKey: .architecture)
+    {
+      self.architecture = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vcpuCount) {
+      self.vcpuCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmId, forKey: .vmId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.sourceId, forKey: .sourceId)
+    try container.encode(self.sourceDescription, forKey: .sourceDescription)
+    try container.encode(self.powerState, forKey: .powerState)
+    try container.encode(self.cpuCount, forKey: .cpuCount)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.diskCount, forKey: .diskCount)
+    try container.encode(self.committedStorageMb, forKey: .committedStorageMb)
+    try container.encode(self.osDescription, forKey: .osDescription)
+    try container.encode(self.bootOption, forKey: .bootOption)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encode(self.vpcId, forKey: .vpcId)
+    try container.encode(self.securityGroups, forKey: .securityGroups)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.virtualizationType, forKey: .virtualizationType)
+    try container.encode(self.architecture, forKey: .architecture)
+    try container.encode(self.vcpuCount, forKey: .vcpuCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values for the power state of the VM.

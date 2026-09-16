@@ -46,6 +46,8 @@ public struct ContextRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// side channel from backend to client.
   public var allowedResponseExtensions: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContextRule`.
   public init() {}
 
@@ -60,6 +62,66 @@ public struct ContextRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let requested = CodingKeys(stringValue: "requested")
+    static let provided = CodingKeys(stringValue: "provided")
+    static let allowedRequestExtensions = CodingKeys(stringValue: "allowedRequestExtensions")
+    static let allowedResponseExtensions = CodingKeys(stringValue: "allowedResponseExtensions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "requested",
+      "provided",
+      "allowedRequestExtensions",
+      "allowedResponseExtensions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .requested) {
+      self.requested = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .provided) {
+      self.provided = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .allowedRequestExtensions)
+    {
+      self.allowedRequestExtensions = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .allowedResponseExtensions)
+    {
+      self.allowedResponseExtensions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.selector, forKey: .selector)
+    try container.encode(self.requested, forKey: .requested)
+    try container.encode(self.provided, forKey: .provided)
+    try container.encode(self.allowedRequestExtensions, forKey: .allowedRequestExtensions)
+    try container.encode(self.allowedResponseExtensions, forKey: .allowedResponseExtensions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -48,6 +48,8 @@ public struct ConnectNetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// my-kafka-cluster.us-central1.managedkafka.my-project.cloud.goog
   public var dnsDomainNames: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectNetworkConfig`.
   public init() {}
 
@@ -62,6 +64,50 @@ public struct ConnectNetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let primarySubnet = CodingKeys(stringValue: "primarySubnet")
+    static let additionalSubnets = CodingKeys(stringValue: "additionalSubnets")
+    static let dnsDomainNames = CodingKeys(stringValue: "dnsDomainNames")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "primarySubnet",
+      "additionalSubnets",
+      "dnsDomainNames",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primarySubnet) {
+      self.primarySubnet = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .additionalSubnets) {
+      self.additionalSubnets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dnsDomainNames) {
+      self.dnsDomainNames = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.primarySubnet, forKey: .primarySubnet)
+    try container.encode(self.additionalSubnets, forKey: .additionalSubnets)
+    try container.encode(self.dnsDomainNames, forKey: .dnsDomainNames)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

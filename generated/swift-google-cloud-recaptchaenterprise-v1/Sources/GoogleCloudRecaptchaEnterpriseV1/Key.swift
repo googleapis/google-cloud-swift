@@ -46,6 +46,8 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// platform for which the settings are enabled.
   public var platformSettings: OneOf_PlatformSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Key`.
   public init() {}
 
@@ -62,25 +64,51 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case webSettings = "webSettings"
-    case androidSettings = "androidSettings"
-    case iosSettings = "iosSettings"
-    case expressSettings = "expressSettings"
-    case universalSettings = "universalSettings"
-    case labels = "labels"
-    case createTime = "createTime"
-    case testingOptions = "testingOptions"
-    case wafSettings = "wafSettings"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let webSettings = CodingKeys(stringValue: "webSettings")
+    static let androidSettings = CodingKeys(stringValue: "androidSettings")
+    static let iosSettings = CodingKeys(stringValue: "iosSettings")
+    static let expressSettings = CodingKeys(stringValue: "expressSettings")
+    static let universalSettings = CodingKeys(stringValue: "universalSettings")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let testingOptions = CodingKeys(stringValue: "testingOptions")
+    static let wafSettings = CodingKeys(stringValue: "wafSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "webSettings",
+      "androidSettings",
+      "iosSettings",
+      "expressSettings",
+      "universalSettings",
+      "labels",
+      "createTime",
+      "testingOptions",
+      "wafSettings",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.testingOptions = try container.decodeIfPresent(
@@ -119,6 +147,10 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try platformSettingsCheckAndSet(.universalSettings(universalSettings))
     }
     self.platformSettings = platformSettings
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,9 +158,9 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.testingOptions, forKey: .testingOptions)
-    try container.encode(self.wafSettings, forKey: .wafSettings)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.testingOptions, forKey: .testingOptions)
+    try container.encodeIfPresent(self.wafSettings, forKey: .wafSettings)
 
     if let choice = self.platformSettings {
       switch choice {
@@ -143,6 +175,9 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .universalSettings(let value):
         try container.encode(value, forKey: .universalSettings)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

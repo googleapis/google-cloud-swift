@@ -70,6 +70,8 @@ public struct AuditReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// report was generated for.
   public var scopeId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditReport`.
   public init() {}
 
@@ -84,6 +86,96 @@ public struct AuditReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let reportSummary = CodingKeys(stringValue: "reportSummary")
+    static let operationId = CodingKeys(stringValue: "operationId")
+    static let destinationDetails = CodingKeys(stringValue: "destinationDetails")
+    static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let controlDetails = CodingKeys(stringValue: "controlDetails")
+    static let reportGenerationState = CodingKeys(stringValue: "reportGenerationState")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+    static let scopeId = CodingKeys(stringValue: "scopeId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "reportSummary",
+      "operationId",
+      "destinationDetails",
+      "complianceStandard",
+      "scope",
+      "createTime",
+      "controlDetails",
+      "reportGenerationState",
+      "complianceFramework",
+      "scopeId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.reportSummary = try container.decodeIfPresent(ReportSummary.self, forKey: .reportSummary)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
+      self.operationId = value
+    }
+    self.destinationDetails = try container.decodeIfPresent(
+      DestinationDetails.self, forKey: .destinationDetails)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceStandard) {
+      self.complianceStandard = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent([ControlDetails].self, forKey: .controlDetails) {
+      self.controlDetails = value
+    }
+    if let value = try container.decodeIfPresent(
+      AuditReport.ReportGenerationState.self, forKey: .reportGenerationState)
+    {
+      self.reportGenerationState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scopeId) {
+      self.scopeId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.reportSummary, forKey: .reportSummary)
+    try container.encode(self.operationId, forKey: .operationId)
+    try container.encodeIfPresent(self.destinationDetails, forKey: .destinationDetails)
+    try container.encode(self.complianceStandard, forKey: .complianceStandard)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.controlDetails, forKey: .controlDetails)
+    try container.encode(self.reportGenerationState, forKey: .reportGenerationState)
+    try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    try container.encode(self.scopeId, forKey: .scopeId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Different states of report generation.

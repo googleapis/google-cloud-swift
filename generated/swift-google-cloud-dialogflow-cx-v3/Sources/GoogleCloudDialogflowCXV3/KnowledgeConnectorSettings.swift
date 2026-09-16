@@ -47,6 +47,8 @@
     /// [google.cloud.dialogflow.cx.v3.KnowledgeConnectorSettings]: <doc:KnowledgeConnectorSettings>
     public var target: OneOf_Target? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KnowledgeConnectorSettings`.
     public init() {}
 
@@ -63,21 +65,39 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case enabled = "enabled"
-      case triggerFulfillment = "triggerFulfillment"
-      case targetPage = "targetPage"
-      case targetFlow = "targetFlow"
-      case dataStoreConnections = "dataStoreConnections"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let triggerFulfillment = CodingKeys(stringValue: "triggerFulfillment")
+      static let targetPage = CodingKeys(stringValue: "targetPage")
+      static let targetFlow = CodingKeys(stringValue: "targetFlow")
+      static let dataStoreConnections = CodingKeys(stringValue: "dataStoreConnections")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "triggerFulfillment",
+        "targetPage",
+        "targetFlow",
+        "dataStoreConnections",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
       self.triggerFulfillment = try container.decodeIfPresent(
         Fulfillment.self, forKey: .triggerFulfillment)
-      self.dataStoreConnections = try container.decode(
+      if let value = try container.decodeIfPresent(
         [DataStoreConnection].self, forKey: .dataStoreConnections)
+      {
+        self.dataStoreConnections = value
+      }
 
       var target: OneOf_Target? = nil
       let targetCheckAndSet = {
@@ -96,12 +116,16 @@
         try targetCheckAndSet(.targetFlow(targetFlow))
       }
       self.target = target
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
-      try container.encode(self.triggerFulfillment, forKey: .triggerFulfillment)
+      try container.encodeIfPresent(self.triggerFulfillment, forKey: .triggerFulfillment)
       try container.encode(self.dataStoreConnections, forKey: .dataStoreConnections)
 
       if let choice = self.target {
@@ -111,6 +135,9 @@
         case .targetFlow(let value):
           try container.encode(value, forKey: .targetFlow)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

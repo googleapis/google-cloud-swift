@@ -92,6 +92,8 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. System-generated unique identifier for the resource.
   public var uid: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExternalAccessRule`.
   public init() {}
 
@@ -108,11 +110,119 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let action = CodingKeys(stringValue: "action")
+    static let ipProtocol = CodingKeys(stringValue: "ipProtocol")
+    static let sourceIpRanges = CodingKeys(stringValue: "sourceIpRanges")
+    static let sourcePorts = CodingKeys(stringValue: "sourcePorts")
+    static let destinationIpRanges = CodingKeys(stringValue: "destinationIpRanges")
+    static let destinationPorts = CodingKeys(stringValue: "destinationPorts")
+    static let state = CodingKeys(stringValue: "state")
+    static let uid = CodingKeys(stringValue: "uid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "description",
+      "priority",
+      "action",
+      "ipProtocol",
+      "sourceIpRanges",
+      "sourcePorts",
+      "destinationIpRanges",
+      "destinationPorts",
+      "state",
+      "uid",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent(ExternalAccessRule.Action.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipProtocol) {
+      self.ipProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ExternalAccessRule.IpRange].self, forKey: .sourceIpRanges)
+    {
+      self.sourceIpRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourcePorts) {
+      self.sourcePorts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ExternalAccessRule.IpRange].self, forKey: .destinationIpRanges)
+    {
+      self.destinationIpRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationPorts) {
+      self.destinationPorts = value
+    }
+    if let value = try container.decodeIfPresent(ExternalAccessRule.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.priority, forKey: .priority)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.ipProtocol, forKey: .ipProtocol)
+    try container.encode(self.sourceIpRanges, forKey: .sourceIpRanges)
+    try container.encode(self.sourcePorts, forKey: .sourcePorts)
+    try container.encode(self.destinationIpRanges, forKey: .destinationIpRanges)
+    try container.encode(self.destinationPorts, forKey: .destinationPorts)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.uid, forKey: .uid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// An IP range provided in any one of the supported formats.
   public struct IpRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var ipRange: OneOf_IpRange? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `IpRange`.
     public init() {}
@@ -130,10 +240,21 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ipAddress = "ipAddress"
-      case ipAddressRange = "ipAddressRange"
-      case externalAddress = "externalAddress"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipAddressRange = CodingKeys(stringValue: "ipAddressRange")
+      static let externalAddress = CodingKeys(stringValue: "externalAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipAddress",
+        "ipAddressRange",
+        "externalAddress",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -163,6 +284,10 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try ipRangeCheckAndSet(.externalAddress(externalAddress))
       }
       self.ipRange = ipRange
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,6 +302,9 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         case .externalAddress(let value):
           try container.encode(value, forKey: .externalAddress)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

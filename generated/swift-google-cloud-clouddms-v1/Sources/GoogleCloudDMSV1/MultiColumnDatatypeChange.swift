@@ -62,6 +62,8 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._Any
   /// Filter on source column parameters.
   public var sourceFilter: OneOf_SourceFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MultiColumnDatatypeChange`.
   public init() {}
 
@@ -78,28 +80,58 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceDataTypeFilter = "sourceDataTypeFilter"
-    case sourceTextFilter = "sourceTextFilter"
-    case sourceNumericFilter = "sourceNumericFilter"
-    case newDataType = "newDataType"
-    case overrideLength = "overrideLength"
-    case overrideScale = "overrideScale"
-    case overridePrecision = "overridePrecision"
-    case overrideFractionalSecondsPrecision = "overrideFractionalSecondsPrecision"
-    case customFeatures = "customFeatures"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceDataTypeFilter = CodingKeys(stringValue: "sourceDataTypeFilter")
+    static let sourceTextFilter = CodingKeys(stringValue: "sourceTextFilter")
+    static let sourceNumericFilter = CodingKeys(stringValue: "sourceNumericFilter")
+    static let newDataType = CodingKeys(stringValue: "newDataType")
+    static let overrideLength = CodingKeys(stringValue: "overrideLength")
+    static let overrideScale = CodingKeys(stringValue: "overrideScale")
+    static let overridePrecision = CodingKeys(stringValue: "overridePrecision")
+    static let overrideFractionalSecondsPrecision = CodingKeys(
+      stringValue: "overrideFractionalSecondsPrecision")
+    static let customFeatures = CodingKeys(stringValue: "customFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceDataTypeFilter",
+      "sourceTextFilter",
+      "sourceNumericFilter",
+      "newDataType",
+      "overrideLength",
+      "overrideScale",
+      "overridePrecision",
+      "overrideFractionalSecondsPrecision",
+      "customFeatures",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sourceDataTypeFilter = try container.decode(
-      Swift.String.self, forKey: .sourceDataTypeFilter)
-    self.newDataType = try container.decode(Swift.String.self, forKey: .newDataType)
-    self.overrideLength = try container.decode(Swift.Int64.self, forKey: .overrideLength)
-    self.overrideScale = try container.decode(Swift.Int32.self, forKey: .overrideScale)
-    self.overridePrecision = try container.decode(Swift.Int32.self, forKey: .overridePrecision)
-    self.overrideFractionalSecondsPrecision = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceDataTypeFilter) {
+      self.sourceDataTypeFilter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newDataType) {
+      self.newDataType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .overrideLength) {
+      self.overrideLength = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .overrideScale) {
+      self.overrideScale = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .overridePrecision) {
+      self.overridePrecision = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .overrideFractionalSecondsPrecision)
+    {
+      self.overrideFractionalSecondsPrecision = value
+    }
     self.customFeatures = try container.decodeIfPresent(
       GoogleCloudWKT.Struct.self, forKey: .customFeatures)
 
@@ -124,6 +156,10 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._Any
       try sourceFilterCheckAndSet(.sourceNumericFilter(sourceNumericFilter))
     }
     self.sourceFilter = sourceFilter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -135,7 +171,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._Any
     try container.encode(self.overridePrecision, forKey: .overridePrecision)
     try container.encode(
       self.overrideFractionalSecondsPrecision, forKey: .overrideFractionalSecondsPrecision)
-    try container.encode(self.customFeatures, forKey: .customFeatures)
+    try container.encodeIfPresent(self.customFeatures, forKey: .customFeatures)
 
     if let choice = self.sourceFilter {
       switch choice {
@@ -144,6 +180,9 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._Any
       case .sourceNumericFilter(let value):
         try container.encode(value, forKey: .sourceNumericFilter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

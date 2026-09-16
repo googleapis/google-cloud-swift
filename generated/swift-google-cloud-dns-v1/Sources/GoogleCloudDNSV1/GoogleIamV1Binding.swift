@@ -30,6 +30,8 @@ public struct GoogleIamV1Binding: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
   public var role: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleIamV1Binding`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct GoogleIamV1Binding: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let condition = CodingKeys(stringValue: "condition")
+    static let members = CodingKeys(stringValue: "members")
+    static let role = CodingKeys(stringValue: "role")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "condition",
+      "members",
+      "role",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.condition = try container.decodeIfPresent(Expr.self, forKey: .condition)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .members) {
+      self.members = value
+    }
+    self.role = try container.decodeIfPresent(Swift.String.self, forKey: .role)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encode(self.members, forKey: .members)
+    try container.encodeIfPresent(self.role, forKey: .role)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

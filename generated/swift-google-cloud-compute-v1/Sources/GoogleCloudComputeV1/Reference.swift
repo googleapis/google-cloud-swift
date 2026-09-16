@@ -39,6 +39,8 @@
     /// URL of the resource to which this reference points.
     public var target: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Reference`.
     public init() {}
 
@@ -53,6 +55,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let referenceType = CodingKeys(stringValue: "referenceType")
+      static let referrer = CodingKeys(stringValue: "referrer")
+      static let target = CodingKeys(stringValue: "target")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "referenceType",
+        "referrer",
+        "target",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.referenceType = try container.decodeIfPresent(Swift.String.self, forKey: .referenceType)
+      self.referrer = try container.decodeIfPresent(Swift.String.self, forKey: .referrer)
+      self.target = try container.decodeIfPresent(Swift.String.self, forKey: .target)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.referenceType, forKey: .referenceType)
+      try container.encodeIfPresent(self.referrer, forKey: .referrer)
+      try container.encodeIfPresent(self.target, forKey: .target)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

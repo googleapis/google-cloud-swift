@@ -26,6 +26,8 @@
     /// Required. Where the data is from.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputConfig`.
     public init() {}
 
@@ -42,8 +44,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@
         case .gcsSource(let value):
           try container.encode(value, forKey: .gcsSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

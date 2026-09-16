@@ -30,6 +30,8 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// A repeated field.
   public var repeated: [Foundation.Data] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryWithBytes`.
   public init() {}
 
@@ -46,16 +48,27 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case map = "map"
-    case `optional` = "optional"
-    case repeated = "repeated"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let map = CodingKeys(stringValue: "map")
+    static let `optional` = CodingKeys(stringValue: "optional")
+    static let repeated = CodingKeys(stringValue: "repeated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "map",
+      "optional",
+      "repeated",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    do {
-      let strings = try container.decode([Swift.String: Swift.String].self, forKey: .map)
+    if let strings = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .map)
+    {
       self.map = try strings.mapValues {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode($0) else {
           throw DecodingError.dataCorrupted(
@@ -75,8 +88,7 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       }
       self.`optional` = v
     }
-    do {
-      let strings = try container.decode([Swift.String].self, forKey: .repeated)
+    if let strings = try container.decodeIfPresent([Swift.String].self, forKey: .repeated) {
       self.repeated = try strings.map {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode($0) else {
           throw DecodingError.dataCorrupted(
@@ -86,6 +98,10 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         }
         return v
       }
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
     }
   }
 
@@ -105,6 +121,9 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(
       repeated.map { GoogleCloudWKT._DiscoveryBase64.encode($0) }, forKey: .repeated
     )
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

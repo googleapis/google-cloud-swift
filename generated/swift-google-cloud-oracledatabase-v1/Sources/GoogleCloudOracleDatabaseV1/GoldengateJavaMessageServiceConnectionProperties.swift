@@ -90,6 +90,8 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
   /// In case it differs from the KeyStore password, it should be provided.
   public var sslKeyPasswordOptions: OneOf_SslKeyPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateJavaMessageServiceConnectionProperties`.
   public init() {}
 
@@ -106,55 +108,120 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case trustStorePassword = "trustStorePassword"
-    case trustStorePasswordSecretVersion = "trustStorePasswordSecretVersion"
-    case keyStorePassword = "keyStorePassword"
-    case keyStorePasswordSecretVersion = "keyStorePasswordSecretVersion"
-    case sslKeyPassword = "sslKeyPassword"
-    case sslKeyPasswordSecretVersion = "sslKeyPasswordSecretVersion"
-    case technologyType = "technologyType"
-    case useJndi = "useJndi"
-    case jndiConnectionFactory = "jndiConnectionFactory"
-    case jndiProviderUrl = "jndiProviderUrl"
-    case jndiInitialContextFactory = "jndiInitialContextFactory"
-    case jndiSecurityPrincipal = "jndiSecurityPrincipal"
-    case jndiSecurityCredentialsSecret = "jndiSecurityCredentialsSecret"
-    case connectionUrl = "connectionUrl"
-    case connectionFactory = "connectionFactory"
-    case username = "username"
-    case securityProtocol = "securityProtocol"
-    case authenticationType = "authenticationType"
-    case trustStoreFile = "trustStoreFile"
-    case keyStoreFile = "keyStoreFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let trustStorePassword = CodingKeys(stringValue: "trustStorePassword")
+    static let trustStorePasswordSecretVersion = CodingKeys(
+      stringValue: "trustStorePasswordSecretVersion")
+    static let keyStorePassword = CodingKeys(stringValue: "keyStorePassword")
+    static let keyStorePasswordSecretVersion = CodingKeys(
+      stringValue: "keyStorePasswordSecretVersion")
+    static let sslKeyPassword = CodingKeys(stringValue: "sslKeyPassword")
+    static let sslKeyPasswordSecretVersion = CodingKeys(stringValue: "sslKeyPasswordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let useJndi = CodingKeys(stringValue: "useJndi")
+    static let jndiConnectionFactory = CodingKeys(stringValue: "jndiConnectionFactory")
+    static let jndiProviderUrl = CodingKeys(stringValue: "jndiProviderUrl")
+    static let jndiInitialContextFactory = CodingKeys(stringValue: "jndiInitialContextFactory")
+    static let jndiSecurityPrincipal = CodingKeys(stringValue: "jndiSecurityPrincipal")
+    static let jndiSecurityCredentialsSecret = CodingKeys(
+      stringValue: "jndiSecurityCredentialsSecret")
+    static let connectionUrl = CodingKeys(stringValue: "connectionUrl")
+    static let connectionFactory = CodingKeys(stringValue: "connectionFactory")
+    static let username = CodingKeys(stringValue: "username")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let trustStoreFile = CodingKeys(stringValue: "trustStoreFile")
+    static let keyStoreFile = CodingKeys(stringValue: "keyStoreFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "trustStorePassword",
+      "trustStorePasswordSecretVersion",
+      "keyStorePassword",
+      "keyStorePasswordSecretVersion",
+      "sslKeyPassword",
+      "sslKeyPasswordSecretVersion",
+      "technologyType",
+      "useJndi",
+      "jndiConnectionFactory",
+      "jndiProviderUrl",
+      "jndiInitialContextFactory",
+      "jndiSecurityPrincipal",
+      "jndiSecurityCredentialsSecret",
+      "connectionUrl",
+      "connectionFactory",
+      "username",
+      "securityProtocol",
+      "authenticationType",
+      "trustStoreFile",
+      "keyStoreFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.useJndi = try container.decode(Swift.Bool.self, forKey: .useJndi)
-    self.jndiConnectionFactory = try container.decode(
-      Swift.String.self, forKey: .jndiConnectionFactory)
-    self.jndiProviderUrl = try container.decode(Swift.String.self, forKey: .jndiProviderUrl)
-    self.jndiInitialContextFactory = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useJndi) {
+      self.useJndi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jndiConnectionFactory)
+    {
+      self.jndiConnectionFactory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jndiProviderUrl) {
+      self.jndiProviderUrl = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .jndiInitialContextFactory)
-    self.jndiSecurityPrincipal = try container.decode(
-      Swift.String.self, forKey: .jndiSecurityPrincipal)
-    self.jndiSecurityCredentialsSecret = try container.decode(
+    {
+      self.jndiInitialContextFactory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jndiSecurityPrincipal)
+    {
+      self.jndiSecurityPrincipal = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .jndiSecurityCredentialsSecret)
-    self.connectionUrl = try container.decode(Swift.String.self, forKey: .connectionUrl)
-    self.connectionFactory = try container.decode(Swift.String.self, forKey: .connectionFactory)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.securityProtocol = try container.decode(
+    {
+      self.jndiSecurityCredentialsSecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionUrl) {
+      self.connectionUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionFactory) {
+      self.connectionFactory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateJavaMessageServiceConnectionProperties.JmsSecurityProtocol.self,
       forKey: .securityProtocol)
-    self.authenticationType = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateJavaMessageServiceConnectionProperties.JmsAuthenticationType.self,
       forKey: .authenticationType)
-    self.trustStoreFile = try container.decode(Swift.String.self, forKey: .trustStoreFile)
-    self.keyStoreFile = try container.decode(Swift.String.self, forKey: .keyStoreFile)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustStoreFile) {
+      self.trustStoreFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreFile) {
+      self.keyStoreFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -244,6 +311,10 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
         .sslKeyPasswordSecretVersion(sslKeyPasswordSecretVersion))
     }
     self.sslKeyPasswordOptions = sslKeyPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -297,6 +368,9 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
       case .sslKeyPasswordSecretVersion(let value):
         try container.encode(value, forKey: .sslKeyPasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

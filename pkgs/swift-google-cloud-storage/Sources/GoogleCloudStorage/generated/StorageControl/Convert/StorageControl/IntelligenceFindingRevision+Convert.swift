@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension IntelligenceFindingRevision {
@@ -30,6 +30,7 @@ extension IntelligenceFindingRevision {
     self.name = proto.name
     self.snapshot = proto.hasSnapshot ? try .init(proto: proto.snapshot) : nil
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension IntelligenceFindingRevision {
     proto.name = self.name
     if let snapshot = self.snapshot { proto.snapshot = try snapshot.toProto() }
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

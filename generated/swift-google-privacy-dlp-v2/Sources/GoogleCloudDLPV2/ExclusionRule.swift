@@ -28,6 +28,8 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Exclusion rule types.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExclusionRule`.
   public init() {}
 
@@ -44,18 +46,34 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dictionary = "dictionary"
-    case regex = "regex"
-    case excludeInfoTypes = "excludeInfoTypes"
-    case excludeByHotword = "excludeByHotword"
-    case excludeByImageFindings = "excludeByImageFindings"
-    case matchingType = "matchingType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dictionary = CodingKeys(stringValue: "dictionary")
+    static let regex = CodingKeys(stringValue: "regex")
+    static let excludeInfoTypes = CodingKeys(stringValue: "excludeInfoTypes")
+    static let excludeByHotword = CodingKeys(stringValue: "excludeByHotword")
+    static let excludeByImageFindings = CodingKeys(stringValue: "excludeByImageFindings")
+    static let matchingType = CodingKeys(stringValue: "matchingType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dictionary",
+      "regex",
+      "excludeInfoTypes",
+      "excludeByHotword",
+      "excludeByImageFindings",
+      "matchingType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.matchingType = try container.decode(MatchingType.self, forKey: .matchingType)
+    if let value = try container.decodeIfPresent(MatchingType.self, forKey: .matchingType) {
+      self.matchingType = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -91,6 +109,10 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.excludeByImageFindings(excludeByImageFindings))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -110,6 +132,9 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .excludeByImageFindings(let value):
         try container.encode(value, forKey: .excludeByImageFindings)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

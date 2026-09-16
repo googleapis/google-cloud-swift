@@ -34,6 +34,8 @@ public struct ControlledMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This is the offset from which to start receiveing.
   public var startingOffset: OneOf_StartingOffset? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ControlledMode`.
   public init() {}
 
@@ -50,15 +52,27 @@ public struct ControlledMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case startingLogicalOffset = "startingLogicalOffset"
-    case fallbackStartingOffset = "fallbackStartingOffset"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startingLogicalOffset = CodingKeys(stringValue: "startingLogicalOffset")
+    static let fallbackStartingOffset = CodingKeys(stringValue: "fallbackStartingOffset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startingLogicalOffset",
+      "fallbackStartingOffset",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.fallbackStartingOffset = try container.decode(
-      Swift.String.self, forKey: .fallbackStartingOffset)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fallbackStartingOffset)
+    {
+      self.fallbackStartingOffset = value
+    }
 
     var startingOffset: OneOf_StartingOffset? = nil
     let startingOffsetCheckAndSet = {
@@ -76,6 +90,10 @@ public struct ControlledMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try startingOffsetCheckAndSet(.startingLogicalOffset(startingLogicalOffset))
     }
     self.startingOffset = startingOffset
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +105,9 @@ public struct ControlledMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .startingLogicalOffset(let value):
         try container.encode(value, forKey: .startingLogicalOffset)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

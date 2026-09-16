@@ -59,6 +59,8 @@ public struct TopologyManager: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-scopes
   public var scope: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TopologyManager`.
   public init() {}
 
@@ -73,6 +75,44 @@ public struct TopologyManager: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policy = CodingKeys(stringValue: "policy")
+    static let scope = CodingKeys(stringValue: "scope")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policy",
+      "scope",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policy) {
+      self.policy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.policy, forKey: .policy)
+    try container.encode(self.scope, forKey: .scope)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

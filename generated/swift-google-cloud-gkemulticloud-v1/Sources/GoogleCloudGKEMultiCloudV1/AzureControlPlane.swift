@@ -96,6 +96,8 @@ public struct AzureControlPlane: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid123"
   public var endpointSubnetId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureControlPlane`.
   public init() {}
 
@@ -110,6 +112,96 @@ public struct AzureControlPlane: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let subnetId = CodingKeys(stringValue: "subnetId")
+    static let vmSize = CodingKeys(stringValue: "vmSize")
+    static let sshConfig = CodingKeys(stringValue: "sshConfig")
+    static let rootVolume = CodingKeys(stringValue: "rootVolume")
+    static let mainVolume = CodingKeys(stringValue: "mainVolume")
+    static let databaseEncryption = CodingKeys(stringValue: "databaseEncryption")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+    static let configEncryption = CodingKeys(stringValue: "configEncryption")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let replicaPlacements = CodingKeys(stringValue: "replicaPlacements")
+    static let endpointSubnetId = CodingKeys(stringValue: "endpointSubnetId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "subnetId",
+      "vmSize",
+      "sshConfig",
+      "rootVolume",
+      "mainVolume",
+      "databaseEncryption",
+      "proxyConfig",
+      "configEncryption",
+      "tags",
+      "replicaPlacements",
+      "endpointSubnetId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetId) {
+      self.subnetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmSize) {
+      self.vmSize = value
+    }
+    self.sshConfig = try container.decodeIfPresent(AzureSshConfig.self, forKey: .sshConfig)
+    self.rootVolume = try container.decodeIfPresent(AzureDiskTemplate.self, forKey: .rootVolume)
+    self.mainVolume = try container.decodeIfPresent(AzureDiskTemplate.self, forKey: .mainVolume)
+    self.databaseEncryption = try container.decodeIfPresent(
+      AzureDatabaseEncryption.self, forKey: .databaseEncryption)
+    self.proxyConfig = try container.decodeIfPresent(AzureProxyConfig.self, forKey: .proxyConfig)
+    self.configEncryption = try container.decodeIfPresent(
+      AzureConfigEncryption.self, forKey: .configEncryption)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ReplicaPlacement].self, forKey: .replicaPlacements)
+    {
+      self.replicaPlacements = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointSubnetId) {
+      self.endpointSubnetId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.subnetId, forKey: .subnetId)
+    try container.encode(self.vmSize, forKey: .vmSize)
+    try container.encodeIfPresent(self.sshConfig, forKey: .sshConfig)
+    try container.encodeIfPresent(self.rootVolume, forKey: .rootVolume)
+    try container.encodeIfPresent(self.mainVolume, forKey: .mainVolume)
+    try container.encodeIfPresent(self.databaseEncryption, forKey: .databaseEncryption)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    try container.encodeIfPresent(self.configEncryption, forKey: .configEncryption)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.replicaPlacements, forKey: .replicaPlacements)
+    try container.encode(self.endpointSubnetId, forKey: .endpointSubnetId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

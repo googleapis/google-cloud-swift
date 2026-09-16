@@ -40,6 +40,8 @@
     /// Optional. Settings for prompt security checks.
     public var promptSecuritySettings: SafetySettings.PromptSecuritySettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SafetySettings`.
     public init() {}
 
@@ -56,6 +58,65 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultBannedPhraseMatchStrategy = CodingKeys(
+        stringValue: "defaultBannedPhraseMatchStrategy")
+      static let bannedPhrases = CodingKeys(stringValue: "bannedPhrases")
+      static let raiSettings = CodingKeys(stringValue: "raiSettings")
+      static let defaultRaiSettings = CodingKeys(stringValue: "defaultRaiSettings")
+      static let promptSecuritySettings = CodingKeys(stringValue: "promptSecuritySettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultBannedPhraseMatchStrategy",
+        "bannedPhrases",
+        "raiSettings",
+        "defaultRaiSettings",
+        "promptSecuritySettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        SafetySettings.PhraseMatchStrategy.self, forKey: .defaultBannedPhraseMatchStrategy)
+      {
+        self.defaultBannedPhraseMatchStrategy = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SafetySettings.Phrase].self, forKey: .bannedPhrases)
+      {
+        self.bannedPhrases = value
+      }
+      self.raiSettings = try container.decodeIfPresent(
+        SafetySettings.RaiSettings.self, forKey: .raiSettings)
+      self.defaultRaiSettings = try container.decodeIfPresent(
+        SafetySettings.RaiSettings.self, forKey: .defaultRaiSettings)
+      self.promptSecuritySettings = try container.decodeIfPresent(
+        SafetySettings.PromptSecuritySettings.self, forKey: .promptSecuritySettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.defaultBannedPhraseMatchStrategy, forKey: .defaultBannedPhraseMatchStrategy)
+      try container.encode(self.bannedPhrases, forKey: .bannedPhrases)
+      try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
+      try container.encodeIfPresent(self.defaultRaiSettings, forKey: .defaultRaiSettings)
+      try container.encodeIfPresent(self.promptSecuritySettings, forKey: .promptSecuritySettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Text input which can be used for prompt or banned phrases.
     public struct Phrase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -65,6 +126,8 @@
 
       /// Required. Language code of the phrase.
       public var languageCode: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Phrase`.
       public init() {}
@@ -80,6 +143,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let text = CodingKeys(stringValue: "text")
+        static let languageCode = CodingKeys(stringValue: "languageCode")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "text",
+          "languageCode",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+          self.text = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+          self.languageCode = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.text, forKey: .text)
+        try container.encode(self.languageCode, forKey: .languageCode)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -100,6 +201,8 @@
       /// Optional. RAI blocking configurations.
       public var categoryFilters: [SafetySettings.RaiSettings.CategoryFilter] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RaiSettings`.
       public init() {}
 
@@ -116,6 +219,40 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let categoryFilters = CodingKeys(stringValue: "categoryFilters")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "categoryFilters"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [SafetySettings.RaiSettings.CategoryFilter].self, forKey: .categoryFilters)
+        {
+          self.categoryFilters = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.categoryFilters, forKey: .categoryFilters)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Configuration of the sensitivity level for blocking an RAI category.
       public struct CategoryFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -127,6 +264,9 @@
         /// Blocking sensitivity level to configure for the RAI category.
         public var filterLevel: SafetySettings.RaiSettings.SafetyFilterLevel = SafetySettings
           .RaiSettings.SafetyFilterLevel()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `CategoryFilter`.
         public init() {}
@@ -142,6 +282,48 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let category = CodingKeys(stringValue: "category")
+          static let filterLevel = CodingKeys(stringValue: "filterLevel")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "category",
+            "filterLevel",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            SafetySettings.RaiSettings.SafetyCategory.self, forKey: .category)
+          {
+            self.category = value
+          }
+          if let value = try container.decodeIfPresent(
+            SafetySettings.RaiSettings.SafetyFilterLevel.self, forKey: .filterLevel)
+          {
+            self.filterLevel = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.category, forKey: .category)
+          try container.encode(self.filterLevel, forKey: .filterLevel)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -412,6 +594,8 @@
       /// Optional. Enable prompt security checks.
       public var enablePromptSecurity: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PromptSecuritySettings`.
       public init() {}
 
@@ -426,6 +610,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enablePromptSecurity = CodingKeys(stringValue: "enablePromptSecurity")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enablePromptSecurity"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePromptSecurity)
+        {
+          self.enablePromptSecurity = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enablePromptSecurity, forKey: .enablePromptSecurity)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

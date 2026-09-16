@@ -33,6 +33,8 @@
     /// Required. The desired output location and configuration.
     public var outputConfig: ExportModelRequest.OutputConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportModelRequest`.
     public init() {}
 
@@ -47,6 +49,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let outputConfig = CodingKeys(stringValue: "outputConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "outputConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.outputConfig = try container.decodeIfPresent(
+        ExportModelRequest.OutputConfig.self, forKey: .outputConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Output configuration for the Model export.
@@ -78,6 +117,8 @@
       /// [Model.supported_export_formats] object contains `IMAGE`.
       public var imageDestination: ContainerRegistryDestination? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OutputConfig`.
       public init() {}
 
@@ -92,6 +133,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let exportFormatId = CodingKeys(stringValue: "exportFormatId")
+        static let artifactDestination = CodingKeys(stringValue: "artifactDestination")
+        static let imageDestination = CodingKeys(stringValue: "imageDestination")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "exportFormatId",
+          "artifactDestination",
+          "imageDestination",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exportFormatId) {
+          self.exportFormatId = value
+        }
+        self.artifactDestination = try container.decodeIfPresent(
+          GcsDestination.self, forKey: .artifactDestination)
+        self.imageDestination = try container.decodeIfPresent(
+          ContainerRegistryDestination.self, forKey: .imageDestination)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.exportFormatId, forKey: .exportFormatId)
+        try container.encodeIfPresent(self.artifactDestination, forKey: .artifactDestination)
+        try container.encodeIfPresent(self.imageDestination, forKey: .imageDestination)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

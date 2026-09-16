@@ -88,6 +88,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// standard backup, attempting to set this field will fail the request.
   public var hotToStandardTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Backup`.
   public init() {}
 
@@ -102,6 +104,92 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceTable = CodingKeys(stringValue: "sourceTable")
+    static let sourceBackup = CodingKeys(stringValue: "sourceBackup")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+    static let state = CodingKeys(stringValue: "state")
+    static let encryptionInfo = CodingKeys(stringValue: "encryptionInfo")
+    static let backupType = CodingKeys(stringValue: "backupType")
+    static let hotToStandardTime = CodingKeys(stringValue: "hotToStandardTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceTable",
+      "sourceBackup",
+      "expireTime",
+      "startTime",
+      "endTime",
+      "sizeBytes",
+      "state",
+      "encryptionInfo",
+      "backupType",
+      "hotToStandardTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceTable) {
+      self.sourceTable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceBackup) {
+      self.sourceBackup = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.encryptionInfo = try container.decodeIfPresent(
+      EncryptionInfo.self, forKey: .encryptionInfo)
+    if let value = try container.decodeIfPresent(Backup.BackupType.self, forKey: .backupType) {
+      self.backupType = value
+    }
+    self.hotToStandardTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .hotToStandardTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.sourceTable, forKey: .sourceTable)
+    try container.encode(self.sourceBackup, forKey: .sourceBackup)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.sizeBytes, forKey: .sizeBytes)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.encryptionInfo, forKey: .encryptionInfo)
+    try container.encode(self.backupType, forKey: .backupType)
+    try container.encodeIfPresent(self.hotToStandardTime, forKey: .hotToStandardTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Indicates the current state of the backup.

@@ -43,6 +43,8 @@
     /// if the caller can't view the preexisting MetadataSchema.)
     public var metadataSchemaId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateMetadataSchemaRequest`.
     public init() {}
 
@@ -57,6 +59,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let metadataSchema = CodingKeys(stringValue: "metadataSchema")
+      static let metadataSchemaId = CodingKeys(stringValue: "metadataSchemaId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "metadataSchema",
+        "metadataSchemaId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.metadataSchema = try container.decodeIfPresent(
+        MetadataSchema.self, forKey: .metadataSchema)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataSchemaId) {
+        self.metadataSchemaId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.metadataSchema, forKey: .metadataSchema)
+      try container.encode(self.metadataSchemaId, forKey: .metadataSchemaId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

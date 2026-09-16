@@ -378,6 +378,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Disk`.
     public init() {}
 
@@ -394,57 +396,118 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case accessMode = "accessMode"
-      case architecture = "architecture"
-      case asyncPrimaryDisk = "asyncPrimaryDisk"
-      case asyncSecondaryDisks = "asyncSecondaryDisks"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case diskEncryptionKey = "diskEncryptionKey"
-      case enableConfidentialCompute = "enableConfidentialCompute"
-      case guestOsFeatures = "guestOsFeatures"
-      case id = "id"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case lastAttachTimestamp = "lastAttachTimestamp"
-      case lastDetachTimestamp = "lastDetachTimestamp"
-      case licenseCodes = "licenseCodes"
-      case licenses = "licenses"
-      case locationHint = "locationHint"
-      case name = "name"
-      case options = "options"
-      case params = "params"
-      case physicalBlockSizeBytes = "physicalBlockSizeBytes"
-      case provisionedIops = "provisionedIops"
-      case provisionedThroughput = "provisionedThroughput"
-      case region = "region"
-      case replicaZones = "replicaZones"
-      case resourcePolicies = "resourcePolicies"
-      case resourceStatus = "resourceStatus"
-      case satisfiesPzi = "satisfiesPzi"
-      case satisfiesPzs = "satisfiesPzs"
-      case selfLink = "selfLink"
-      case sizeGb = "sizeGb"
-      case sourceConsistencyGroupPolicy = "sourceConsistencyGroupPolicy"
-      case sourceConsistencyGroupPolicyId = "sourceConsistencyGroupPolicyId"
-      case sourceDisk = "sourceDisk"
-      case sourceDiskId = "sourceDiskId"
-      case sourceImage = "sourceImage"
-      case sourceImageEncryptionKey = "sourceImageEncryptionKey"
-      case sourceImageId = "sourceImageId"
-      case sourceInstantSnapshot = "sourceInstantSnapshot"
-      case sourceInstantSnapshotId = "sourceInstantSnapshotId"
-      case sourceSnapshot = "sourceSnapshot"
-      case sourceSnapshotEncryptionKey = "sourceSnapshotEncryptionKey"
-      case sourceSnapshotId = "sourceSnapshotId"
-      case sourceStorageObject = "sourceStorageObject"
-      case status = "status"
-      case storagePool = "storagePool"
-      case type = "type"
-      case users = "users"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accessMode = CodingKeys(stringValue: "accessMode")
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let asyncPrimaryDisk = CodingKeys(stringValue: "asyncPrimaryDisk")
+      static let asyncSecondaryDisks = CodingKeys(stringValue: "asyncSecondaryDisks")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let diskEncryptionKey = CodingKeys(stringValue: "diskEncryptionKey")
+      static let enableConfidentialCompute = CodingKeys(stringValue: "enableConfidentialCompute")
+      static let guestOsFeatures = CodingKeys(stringValue: "guestOsFeatures")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let lastAttachTimestamp = CodingKeys(stringValue: "lastAttachTimestamp")
+      static let lastDetachTimestamp = CodingKeys(stringValue: "lastDetachTimestamp")
+      static let licenseCodes = CodingKeys(stringValue: "licenseCodes")
+      static let licenses = CodingKeys(stringValue: "licenses")
+      static let locationHint = CodingKeys(stringValue: "locationHint")
+      static let name = CodingKeys(stringValue: "name")
+      static let options = CodingKeys(stringValue: "options")
+      static let params = CodingKeys(stringValue: "params")
+      static let physicalBlockSizeBytes = CodingKeys(stringValue: "physicalBlockSizeBytes")
+      static let provisionedIops = CodingKeys(stringValue: "provisionedIops")
+      static let provisionedThroughput = CodingKeys(stringValue: "provisionedThroughput")
+      static let region = CodingKeys(stringValue: "region")
+      static let replicaZones = CodingKeys(stringValue: "replicaZones")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sizeGb = CodingKeys(stringValue: "sizeGb")
+      static let sourceConsistencyGroupPolicy = CodingKeys(
+        stringValue: "sourceConsistencyGroupPolicy")
+      static let sourceConsistencyGroupPolicyId = CodingKeys(
+        stringValue: "sourceConsistencyGroupPolicyId")
+      static let sourceDisk = CodingKeys(stringValue: "sourceDisk")
+      static let sourceDiskId = CodingKeys(stringValue: "sourceDiskId")
+      static let sourceImage = CodingKeys(stringValue: "sourceImage")
+      static let sourceImageEncryptionKey = CodingKeys(stringValue: "sourceImageEncryptionKey")
+      static let sourceImageId = CodingKeys(stringValue: "sourceImageId")
+      static let sourceInstantSnapshot = CodingKeys(stringValue: "sourceInstantSnapshot")
+      static let sourceInstantSnapshotId = CodingKeys(stringValue: "sourceInstantSnapshotId")
+      static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+      static let sourceSnapshotEncryptionKey = CodingKeys(
+        stringValue: "sourceSnapshotEncryptionKey")
+      static let sourceSnapshotId = CodingKeys(stringValue: "sourceSnapshotId")
+      static let sourceStorageObject = CodingKeys(stringValue: "sourceStorageObject")
+      static let status = CodingKeys(stringValue: "status")
+      static let storagePool = CodingKeys(stringValue: "storagePool")
+      static let type = CodingKeys(stringValue: "type")
+      static let users = CodingKeys(stringValue: "users")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accessMode",
+        "architecture",
+        "asyncPrimaryDisk",
+        "asyncSecondaryDisks",
+        "creationTimestamp",
+        "description",
+        "diskEncryptionKey",
+        "enableConfidentialCompute",
+        "guestOsFeatures",
+        "id",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "lastAttachTimestamp",
+        "lastDetachTimestamp",
+        "licenseCodes",
+        "licenses",
+        "locationHint",
+        "name",
+        "options",
+        "params",
+        "physicalBlockSizeBytes",
+        "provisionedIops",
+        "provisionedThroughput",
+        "region",
+        "replicaZones",
+        "resourcePolicies",
+        "resourceStatus",
+        "satisfiesPzi",
+        "satisfiesPzs",
+        "selfLink",
+        "sizeGb",
+        "sourceConsistencyGroupPolicy",
+        "sourceConsistencyGroupPolicyId",
+        "sourceDisk",
+        "sourceDiskId",
+        "sourceImage",
+        "sourceImageEncryptionKey",
+        "sourceImageId",
+        "sourceInstantSnapshot",
+        "sourceInstantSnapshotId",
+        "sourceSnapshot",
+        "sourceSnapshotEncryptionKey",
+        "sourceSnapshotId",
+        "sourceStorageObject",
+        "status",
+        "storagePool",
+        "type",
+        "users",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -454,8 +517,11 @@
         Disk.Architecture.self, forKey: .architecture)
       self.asyncPrimaryDisk = try container.decodeIfPresent(
         DiskAsyncReplication.self, forKey: .asyncPrimaryDisk)
-      self.asyncSecondaryDisks = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String: DiskAsyncReplicationList].self, forKey: .asyncSecondaryDisks)
+      {
+        self.asyncSecondaryDisks = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
@@ -463,7 +529,10 @@
         CustomerEncryptionKey.self, forKey: .diskEncryptionKey)
       self.enableConfidentialCompute = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableConfidentialCompute)
-      self.guestOsFeatures = try container.decode([GuestOsFeature].self, forKey: .guestOsFeatures)
+      if let value = try container.decodeIfPresent([GuestOsFeature].self, forKey: .guestOsFeatures)
+      {
+        self.guestOsFeatures = value
+      }
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
@@ -475,13 +544,21 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.lastAttachTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .lastAttachTimestamp)
       self.lastDetachTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .lastDetachTimestamp)
-      self.licenseCodes = try container.decode([Swift.Int64].self, forKey: .licenseCodes)
-      self.licenses = try container.decode([Swift.String].self, forKey: .licenses)
+      if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .licenseCodes) {
+        self.licenseCodes = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .licenses) {
+        self.licenses = value
+      }
       self.locationHint = try container.decodeIfPresent(Swift.String.self, forKey: .locationHint)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.options = try container.decodeIfPresent(Swift.String.self, forKey: .options)
@@ -493,8 +570,12 @@
       self.provisionedThroughput = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .provisionedThroughput)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
-      self.replicaZones = try container.decode([Swift.String].self, forKey: .replicaZones)
-      self.resourcePolicies = try container.decode([Swift.String].self, forKey: .resourcePolicies)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+        self.replicaZones = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+        self.resourcePolicies = value
+      }
       self.resourceStatus = try container.decodeIfPresent(
         DiskResourceStatus.self, forKey: .resourceStatus)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
@@ -526,67 +607,80 @@
       self.status = try container.decodeIfPresent(Disk.Status.self, forKey: .status)
       self.storagePool = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool)
       self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
-      self.users = try container.decode([Swift.String].self, forKey: .users)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .users) {
+        self.users = value
+      }
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.accessMode, forKey: .accessMode)
-      try container.encode(self.architecture, forKey: .architecture)
-      try container.encode(self.asyncPrimaryDisk, forKey: .asyncPrimaryDisk)
+      try container.encodeIfPresent(self.accessMode, forKey: .accessMode)
+      try container.encodeIfPresent(self.architecture, forKey: .architecture)
+      try container.encodeIfPresent(self.asyncPrimaryDisk, forKey: .asyncPrimaryDisk)
       try container.encode(self.asyncSecondaryDisks, forKey: .asyncSecondaryDisks)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.diskEncryptionKey, forKey: .diskEncryptionKey)
-      try container.encode(self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.diskEncryptionKey, forKey: .diskEncryptionKey)
+      try container.encodeIfPresent(
+        self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
       try container.encode(self.guestOsFeatures, forKey: .guestOsFeatures)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.lastAttachTimestamp, forKey: .lastAttachTimestamp)
-      try container.encode(self.lastDetachTimestamp, forKey: .lastDetachTimestamp)
+      try container.encodeIfPresent(self.lastAttachTimestamp, forKey: .lastAttachTimestamp)
+      try container.encodeIfPresent(self.lastDetachTimestamp, forKey: .lastDetachTimestamp)
       try container.encode(self.licenseCodes, forKey: .licenseCodes)
       try container.encode(self.licenses, forKey: .licenses)
-      try container.encode(self.locationHint, forKey: .locationHint)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.options, forKey: .options)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.physicalBlockSizeBytes, forKey: .physicalBlockSizeBytes)
-      try container.encode(self.provisionedIops, forKey: .provisionedIops)
-      try container.encode(self.provisionedThroughput, forKey: .provisionedThroughput)
-      try container.encode(self.region, forKey: .region)
+      try container.encodeIfPresent(self.locationHint, forKey: .locationHint)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.options, forKey: .options)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.physicalBlockSizeBytes, forKey: .physicalBlockSizeBytes)
+      try container.encodeIfPresent(self.provisionedIops, forKey: .provisionedIops)
+      try container.encodeIfPresent(self.provisionedThroughput, forKey: .provisionedThroughput)
+      try container.encodeIfPresent(self.region, forKey: .region)
       try container.encode(self.replicaZones, forKey: .replicaZones)
       try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
-      try container.encode(self.resourceStatus, forKey: .resourceStatus)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.sizeGb, forKey: .sizeGb)
-      try container.encode(self.sourceConsistencyGroupPolicy, forKey: .sourceConsistencyGroupPolicy)
-      try container.encode(
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.sizeGb, forKey: .sizeGb)
+      try container.encodeIfPresent(
+        self.sourceConsistencyGroupPolicy, forKey: .sourceConsistencyGroupPolicy)
+      try container.encodeIfPresent(
         self.sourceConsistencyGroupPolicyId, forKey: .sourceConsistencyGroupPolicyId)
-      try container.encode(self.sourceDisk, forKey: .sourceDisk)
-      try container.encode(self.sourceDiskId, forKey: .sourceDiskId)
-      try container.encode(self.sourceImage, forKey: .sourceImage)
-      try container.encode(self.sourceImageEncryptionKey, forKey: .sourceImageEncryptionKey)
-      try container.encode(self.sourceImageId, forKey: .sourceImageId)
-      try container.encode(self.sourceInstantSnapshot, forKey: .sourceInstantSnapshot)
-      try container.encode(self.sourceInstantSnapshotId, forKey: .sourceInstantSnapshotId)
-      try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
-      try container.encode(self.sourceSnapshotEncryptionKey, forKey: .sourceSnapshotEncryptionKey)
-      try container.encode(self.sourceSnapshotId, forKey: .sourceSnapshotId)
-      try container.encode(self.sourceStorageObject, forKey: .sourceStorageObject)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.storagePool, forKey: .storagePool)
-      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.sourceDisk, forKey: .sourceDisk)
+      try container.encodeIfPresent(self.sourceDiskId, forKey: .sourceDiskId)
+      try container.encodeIfPresent(self.sourceImage, forKey: .sourceImage)
+      try container.encodeIfPresent(
+        self.sourceImageEncryptionKey, forKey: .sourceImageEncryptionKey)
+      try container.encodeIfPresent(self.sourceImageId, forKey: .sourceImageId)
+      try container.encodeIfPresent(self.sourceInstantSnapshot, forKey: .sourceInstantSnapshot)
+      try container.encodeIfPresent(self.sourceInstantSnapshotId, forKey: .sourceInstantSnapshotId)
+      try container.encodeIfPresent(self.sourceSnapshot, forKey: .sourceSnapshot)
+      try container.encodeIfPresent(
+        self.sourceSnapshotEncryptionKey, forKey: .sourceSnapshotEncryptionKey)
+      try container.encodeIfPresent(self.sourceSnapshotId, forKey: .sourceSnapshotId)
+      try container.encodeIfPresent(self.sourceStorageObject, forKey: .sourceStorageObject)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.storagePool, forKey: .storagePool)
+      try container.encodeIfPresent(self.type, forKey: .type)
       try container.encode(self.users, forKey: .users)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [accessMode][google.cloud.compute.v1.Disk.accessMode] field.

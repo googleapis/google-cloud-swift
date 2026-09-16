@@ -37,6 +37,8 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public var response: OneOf_Response? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryAssetsResponse`.
   public init() {}
 
@@ -53,18 +55,35 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case jobReference = "jobReference"
-    case done = "done"
-    case error = "error"
-    case queryResult = "queryResult"
-    case outputConfig = "outputConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobReference = CodingKeys(stringValue: "jobReference")
+    static let done = CodingKeys(stringValue: "done")
+    static let error = CodingKeys(stringValue: "error")
+    static let queryResult = CodingKeys(stringValue: "queryResult")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobReference",
+      "done",
+      "error",
+      "queryResult",
+      "outputConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.jobReference = try container.decode(Swift.String.self, forKey: .jobReference)
-    self.done = try container.decode(Swift.Bool.self, forKey: .done)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobReference) {
+      self.jobReference = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .done) {
+      self.done = value
+    }
 
     var response: OneOf_Response? = nil
     let responseCheckAndSet = {
@@ -88,6 +107,10 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try responseCheckAndSet(.outputConfig(outputConfig))
     }
     self.response = response
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +127,9 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .outputConfig(let value):
         try container.encode(value, forKey: .outputConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

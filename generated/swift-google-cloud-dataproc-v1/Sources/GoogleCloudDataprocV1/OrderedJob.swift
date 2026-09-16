@@ -58,6 +58,8 @@ public struct OrderedJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The job definition.
   public var jobType: OneOf_JobType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OrderedJob`.
   public init() {}
 
@@ -74,30 +76,59 @@ public struct OrderedJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stepId = "stepId"
-    case hadoopJob = "hadoopJob"
-    case sparkJob = "sparkJob"
-    case pysparkJob = "pysparkJob"
-    case hiveJob = "hiveJob"
-    case pigJob = "pigJob"
-    case sparkRJob = "sparkRJob"
-    case sparkSqlJob = "sparkSqlJob"
-    case prestoJob = "prestoJob"
-    case trinoJob = "trinoJob"
-    case flinkJob = "flinkJob"
-    case labels = "labels"
-    case scheduling = "scheduling"
-    case prerequisiteStepIds = "prerequisiteStepIds"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stepId = CodingKeys(stringValue: "stepId")
+    static let hadoopJob = CodingKeys(stringValue: "hadoopJob")
+    static let sparkJob = CodingKeys(stringValue: "sparkJob")
+    static let pysparkJob = CodingKeys(stringValue: "pysparkJob")
+    static let hiveJob = CodingKeys(stringValue: "hiveJob")
+    static let pigJob = CodingKeys(stringValue: "pigJob")
+    static let sparkRJob = CodingKeys(stringValue: "sparkRJob")
+    static let sparkSqlJob = CodingKeys(stringValue: "sparkSqlJob")
+    static let prestoJob = CodingKeys(stringValue: "prestoJob")
+    static let trinoJob = CodingKeys(stringValue: "trinoJob")
+    static let flinkJob = CodingKeys(stringValue: "flinkJob")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let scheduling = CodingKeys(stringValue: "scheduling")
+    static let prerequisiteStepIds = CodingKeys(stringValue: "prerequisiteStepIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stepId",
+      "hadoopJob",
+      "sparkJob",
+      "pysparkJob",
+      "hiveJob",
+      "pigJob",
+      "sparkRJob",
+      "sparkSqlJob",
+      "prestoJob",
+      "trinoJob",
+      "flinkJob",
+      "labels",
+      "scheduling",
+      "prerequisiteStepIds",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.stepId = try container.decode(Swift.String.self, forKey: .stepId)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stepId) {
+      self.stepId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.scheduling = try container.decodeIfPresent(JobScheduling.self, forKey: .scheduling)
-    self.prerequisiteStepIds = try container.decode(
-      [Swift.String].self, forKey: .prerequisiteStepIds)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .prerequisiteStepIds)
+    {
+      self.prerequisiteStepIds = value
+    }
 
     var jobType: OneOf_JobType? = nil
     let jobTypeCheckAndSet = {
@@ -140,13 +171,17 @@ public struct OrderedJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobTypeCheckAndSet(.flinkJob(flinkJob))
     }
     self.jobType = jobType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.stepId, forKey: .stepId)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.scheduling, forKey: .scheduling)
+    try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
     try container.encode(self.prerequisiteStepIds, forKey: .prerequisiteStepIds)
 
     if let choice = self.jobType {
@@ -172,6 +207,9 @@ public struct OrderedJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .flinkJob(let value):
         try container.encode(value, forKey: .flinkJob)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

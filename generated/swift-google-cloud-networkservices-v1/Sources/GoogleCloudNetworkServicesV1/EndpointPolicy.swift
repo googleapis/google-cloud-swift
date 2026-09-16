@@ -78,6 +78,8 @@ public struct EndpointPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var clientTlsPolicy: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndpointPolicy`.
   public init() {}
 
@@ -92,6 +94,97 @@ public struct EndpointPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let type = CodingKeys(stringValue: "type")
+    static let authorizationPolicy = CodingKeys(stringValue: "authorizationPolicy")
+    static let endpointMatcher = CodingKeys(stringValue: "endpointMatcher")
+    static let trafficPortSelector = CodingKeys(stringValue: "trafficPortSelector")
+    static let description = CodingKeys(stringValue: "description")
+    static let serverTlsPolicy = CodingKeys(stringValue: "serverTlsPolicy")
+    static let clientTlsPolicy = CodingKeys(stringValue: "clientTlsPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "type",
+      "authorizationPolicy",
+      "endpointMatcher",
+      "trafficPortSelector",
+      "description",
+      "serverTlsPolicy",
+      "clientTlsPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      EndpointPolicy.EndpointPolicyType.self, forKey: .type)
+    {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizationPolicy) {
+      self.authorizationPolicy = value
+    }
+    self.endpointMatcher = try container.decodeIfPresent(
+      EndpointMatcher.self, forKey: .endpointMatcher)
+    self.trafficPortSelector = try container.decodeIfPresent(
+      TrafficPortSelector.self, forKey: .trafficPortSelector)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverTlsPolicy) {
+      self.serverTlsPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientTlsPolicy) {
+      self.clientTlsPolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.authorizationPolicy, forKey: .authorizationPolicy)
+    try container.encodeIfPresent(self.endpointMatcher, forKey: .endpointMatcher)
+    try container.encodeIfPresent(self.trafficPortSelector, forKey: .trafficPortSelector)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.serverTlsPolicy, forKey: .serverTlsPolicy)
+    try container.encode(self.clientTlsPolicy, forKey: .clientTlsPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of endpoint policy.

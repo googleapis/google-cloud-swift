@@ -62,6 +62,8 @@
     /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:options:)>
     public var testFilter: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FilterSplit`.
     public init() {}
 
@@ -76,6 +78,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingFilter = CodingKeys(stringValue: "trainingFilter")
+      static let validationFilter = CodingKeys(stringValue: "validationFilter")
+      static let testFilter = CodingKeys(stringValue: "testFilter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingFilter",
+        "validationFilter",
+        "testFilter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trainingFilter) {
+        self.trainingFilter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationFilter) {
+        self.validationFilter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .testFilter) {
+        self.testFilter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trainingFilter, forKey: .trainingFilter)
+      try container.encode(self.validationFilter, forKey: .validationFilter)
+      try container.encode(self.testFilter, forKey: .testFilter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

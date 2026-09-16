@@ -39,6 +39,8 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWKT._
   public var endpointingSensitivity: StreamingRecognitionFeatures.EndpointingSensitivity =
     StreamingRecognitionFeatures.EndpointingSensitivity()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamingRecognitionFeatures`.
   public init() {}
 
@@ -55,6 +57,59 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableVoiceActivityEvents = CodingKeys(stringValue: "enableVoiceActivityEvents")
+    static let interimResults = CodingKeys(stringValue: "interimResults")
+    static let voiceActivityTimeout = CodingKeys(stringValue: "voiceActivityTimeout")
+    static let endpointingSensitivity = CodingKeys(stringValue: "endpointingSensitivity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableVoiceActivityEvents",
+      "interimResults",
+      "voiceActivityTimeout",
+      "endpointingSensitivity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableVoiceActivityEvents)
+    {
+      self.enableVoiceActivityEvents = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .interimResults) {
+      self.interimResults = value
+    }
+    self.voiceActivityTimeout = try container.decodeIfPresent(
+      StreamingRecognitionFeatures.VoiceActivityTimeout.self, forKey: .voiceActivityTimeout)
+    if let value = try container.decodeIfPresent(
+      StreamingRecognitionFeatures.EndpointingSensitivity.self, forKey: .endpointingSensitivity)
+    {
+      self.endpointingSensitivity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableVoiceActivityEvents, forKey: .enableVoiceActivityEvents)
+    try container.encode(self.interimResults, forKey: .interimResults)
+    try container.encodeIfPresent(self.voiceActivityTimeout, forKey: .voiceActivityTimeout)
+    try container.encode(self.endpointingSensitivity, forKey: .endpointingSensitivity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Events that a timeout can be set on for voice activity.
   public struct VoiceActivityTimeout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -68,6 +123,8 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWKT._
     /// speech is detected in this duration after speech was detected, the server
     /// will close the stream.
     public var speechEndTimeout: GoogleCloudWKT.Duration? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `VoiceActivityTimeout`.
     public init() {}
@@ -83,6 +140,42 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let speechStartTimeout = CodingKeys(stringValue: "speechStartTimeout")
+      static let speechEndTimeout = CodingKeys(stringValue: "speechEndTimeout")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "speechStartTimeout",
+        "speechEndTimeout",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.speechStartTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .speechStartTimeout)
+      self.speechEndTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .speechEndTimeout)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.speechStartTimeout, forKey: .speechStartTimeout)
+      try container.encodeIfPresent(self.speechEndTimeout, forKey: .speechEndTimeout)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

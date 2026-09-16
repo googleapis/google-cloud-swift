@@ -52,6 +52,8 @@ public struct LabelDetectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// the default threshold everytime when we release a new model.
   public var videoConfidenceThreshold: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LabelDetectionConfig`.
   public init() {}
 
@@ -66,6 +68,68 @@ public struct LabelDetectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labelDetectionMode = CodingKeys(stringValue: "labelDetectionMode")
+    static let stationaryCamera = CodingKeys(stringValue: "stationaryCamera")
+    static let model = CodingKeys(stringValue: "model")
+    static let frameConfidenceThreshold = CodingKeys(stringValue: "frameConfidenceThreshold")
+    static let videoConfidenceThreshold = CodingKeys(stringValue: "videoConfidenceThreshold")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labelDetectionMode",
+      "stationaryCamera",
+      "model",
+      "frameConfidenceThreshold",
+      "videoConfidenceThreshold",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      LabelDetectionMode.self, forKey: .labelDetectionMode)
+    {
+      self.labelDetectionMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .stationaryCamera) {
+      self.stationaryCamera = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .frameConfidenceThreshold)
+    {
+      self.frameConfidenceThreshold = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .videoConfidenceThreshold)
+    {
+      self.videoConfidenceThreshold = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.labelDetectionMode, forKey: .labelDetectionMode)
+    try container.encode(self.stationaryCamera, forKey: .stationaryCamera)
+    try container.encode(self.model, forKey: .model)
+    try container.encode(self.frameConfidenceThreshold, forKey: .frameConfidenceThreshold)
+    try container.encode(self.videoConfidenceThreshold, forKey: .videoConfidenceThreshold)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -32,6 +32,8 @@
     /// Output only. List of modalities that were processed in the request input.
     public var promptTokensDetails: [ModalityTokenCount] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CountTokensResponse`.
     public init() {}
 
@@ -46,6 +48,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let totalTokens = CodingKeys(stringValue: "totalTokens")
+      static let totalBillableCharacters = CodingKeys(stringValue: "totalBillableCharacters")
+      static let promptTokensDetails = CodingKeys(stringValue: "promptTokensDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "totalTokens",
+        "totalBillableCharacters",
+        "promptTokensDetails",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokens) {
+        self.totalTokens = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .totalBillableCharacters)
+      {
+        self.totalBillableCharacters = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModalityTokenCount].self, forKey: .promptTokensDetails)
+      {
+        self.promptTokensDetails = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.totalTokens, forKey: .totalTokens)
+      try container.encode(self.totalBillableCharacters, forKey: .totalBillableCharacters)
+      try container.encode(self.promptTokensDetails, forKey: .promptTokensDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

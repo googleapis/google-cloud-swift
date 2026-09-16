@@ -37,6 +37,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
   /// Disk usage.
   public var disk: DailyResourceUsageAggregation.Disk? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DailyResourceUsageAggregation`.
   public init() {}
 
@@ -51,6 +53,55 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let date = CodingKeys(stringValue: "date")
+    static let cpu = CodingKeys(stringValue: "cpu")
+    static let memory = CodingKeys(stringValue: "memory")
+    static let network = CodingKeys(stringValue: "network")
+    static let disk = CodingKeys(stringValue: "disk")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "date",
+      "cpu",
+      "memory",
+      "network",
+      "disk",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.date = try container.decodeIfPresent(GoogleType.Date.self, forKey: .date)
+    self.cpu = try container.decodeIfPresent(DailyResourceUsageAggregation.CPU.self, forKey: .cpu)
+    self.memory = try container.decodeIfPresent(
+      DailyResourceUsageAggregation.Memory.self, forKey: .memory)
+    self.network = try container.decodeIfPresent(
+      DailyResourceUsageAggregation.Network.self, forKey: .network)
+    self.disk = try container.decodeIfPresent(
+      DailyResourceUsageAggregation.Disk.self, forKey: .disk)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.date, forKey: .date)
+    try container.encodeIfPresent(self.cpu, forKey: .cpu)
+    try container.encodeIfPresent(self.memory, forKey: .memory)
+    try container.encodeIfPresent(self.network, forKey: .network)
+    try container.encodeIfPresent(self.disk, forKey: .disk)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Statistical aggregation of samples for a single resource usage.
@@ -69,6 +120,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     /// Peak usage value.
     public var peak: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Stats`.
     public init() {}
 
@@ -83,6 +136,57 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let average = CodingKeys(stringValue: "average")
+      static let median = CodingKeys(stringValue: "median")
+      static let ninteyFifthPercentile = CodingKeys(stringValue: "ninteyFifthPercentile")
+      static let peak = CodingKeys(stringValue: "peak")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "average",
+        "median",
+        "ninteyFifthPercentile",
+        "peak",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .average) {
+        self.average = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .median) {
+        self.median = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .ninteyFifthPercentile)
+      {
+        self.ninteyFifthPercentile = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .peak) {
+        self.peak = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.average, forKey: .average)
+      try container.encode(self.median, forKey: .median)
+      try container.encode(self.ninteyFifthPercentile, forKey: .ninteyFifthPercentile)
+      try container.encode(self.peak, forKey: .peak)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -104,6 +208,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     /// CPU utilization percentage.
     public var utilizationPercentage: DailyResourceUsageAggregation.Stats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CPU`.
     public init() {}
 
@@ -118,6 +224,37 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let utilizationPercentage = CodingKeys(stringValue: "utilizationPercentage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "utilizationPercentage"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.utilizationPercentage = try container.decodeIfPresent(
+        DailyResourceUsageAggregation.Stats.self, forKey: .utilizationPercentage)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.utilizationPercentage, forKey: .utilizationPercentage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -138,6 +275,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     /// Memory utilization percentage.
     public var utilizationPercentage: DailyResourceUsageAggregation.Stats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Memory`.
     public init() {}
 
@@ -152,6 +291,37 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let utilizationPercentage = CodingKeys(stringValue: "utilizationPercentage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "utilizationPercentage"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.utilizationPercentage = try container.decodeIfPresent(
+        DailyResourceUsageAggregation.Stats.self, forKey: .utilizationPercentage)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.utilizationPercentage, forKey: .utilizationPercentage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -176,6 +346,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     /// Network egress in B/s.
     public var egressBps: DailyResourceUsageAggregation.Stats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Network`.
     public init() {}
 
@@ -190,6 +362,42 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ingressBps = CodingKeys(stringValue: "ingressBps")
+      static let egressBps = CodingKeys(stringValue: "egressBps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ingressBps",
+        "egressBps",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ingressBps = try container.decodeIfPresent(
+        DailyResourceUsageAggregation.Stats.self, forKey: .ingressBps)
+      self.egressBps = try container.decodeIfPresent(
+        DailyResourceUsageAggregation.Stats.self, forKey: .egressBps)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ingressBps, forKey: .ingressBps)
+      try container.encodeIfPresent(self.egressBps, forKey: .egressBps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -211,6 +419,8 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
     /// Disk I/O operations per second.
     public var iops: DailyResourceUsageAggregation.Stats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Disk`.
     public init() {}
 
@@ -225,6 +435,37 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let iops = CodingKeys(stringValue: "iops")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "iops"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.iops = try container.decodeIfPresent(
+        DailyResourceUsageAggregation.Stats.self, forKey: .iops)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.iops, forKey: .iops)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

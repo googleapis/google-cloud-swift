@@ -29,6 +29,8 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleCloudWKT._An
   /// The activity for the findings refinement.
   public var activity: OneOf_Activity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FindingsRefinementActivity`.
   public init() {}
 
@@ -45,14 +47,26 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case detectionExclusionActivity = "detectionExclusionActivity"
-    case findingsRefinement = "findingsRefinement"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let detectionExclusionActivity = CodingKeys(stringValue: "detectionExclusionActivity")
+    static let findingsRefinement = CodingKeys(stringValue: "findingsRefinement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "detectionExclusionActivity",
+      "findingsRefinement",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.findingsRefinement = try container.decode(Swift.String.self, forKey: .findingsRefinement)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingsRefinement) {
+      self.findingsRefinement = value
+    }
 
     var activity: OneOf_Activity? = nil
     let activityCheckAndSet = {
@@ -70,6 +84,10 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleCloudWKT._An
       try activityCheckAndSet(.detectionExclusionActivity(detectionExclusionActivity))
     }
     self.activity = activity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +99,9 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleCloudWKT._An
       case .detectionExclusionActivity(let value):
         try container.encode(value, forKey: .detectionExclusionActivity)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

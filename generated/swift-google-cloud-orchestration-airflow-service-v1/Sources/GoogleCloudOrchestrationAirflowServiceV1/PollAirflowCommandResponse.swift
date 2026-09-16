@@ -31,6 +31,8 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
   /// The result exit status of the command.
   public var exitInfo: PollAirflowCommandResponse.ExitInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PollAirflowCommandResponse`.
   public init() {}
 
@@ -47,6 +49,51 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let output = CodingKeys(stringValue: "output")
+    static let outputEnd = CodingKeys(stringValue: "outputEnd")
+    static let exitInfo = CodingKeys(stringValue: "exitInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "output",
+      "outputEnd",
+      "exitInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [PollAirflowCommandResponse.Line].self, forKey: .output)
+    {
+      self.output = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .outputEnd) {
+      self.outputEnd = value
+    }
+    self.exitInfo = try container.decodeIfPresent(
+      PollAirflowCommandResponse.ExitInfo.self, forKey: .exitInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.output, forKey: .output)
+    try container.encode(self.outputEnd, forKey: .outputEnd)
+    try container.encodeIfPresent(self.exitInfo, forKey: .exitInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Contains information about a single line from logs.
   public struct Line: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -56,6 +103,8 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
 
     /// Text content of the log line.
     public var content: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Line`.
     public init() {}
@@ -71,6 +120,44 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lineNumber = CodingKeys(stringValue: "lineNumber")
+      static let content = CodingKeys(stringValue: "content")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lineNumber",
+        "content",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
+        self.lineNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+        self.content = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lineNumber, forKey: .lineNumber)
+      try container.encode(self.content, forKey: .content)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -95,6 +182,8 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
     /// Error message. Empty if there was no error.
     public var error: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExitInfo`.
     public init() {}
 
@@ -109,6 +198,44 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exitCode = CodingKeys(stringValue: "exitCode")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exitCode",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .exitCode) {
+        self.exitCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
+        self.error = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.exitCode, forKey: .exitCode)
+      try container.encode(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

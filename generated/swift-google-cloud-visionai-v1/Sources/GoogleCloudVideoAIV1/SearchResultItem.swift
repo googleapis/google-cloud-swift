@@ -52,6 +52,8 @@ public struct SearchResultItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// facet_selections with fetch_matched_annotations=true.
   public var annotationMatchingResults: [AnnotationMatchingResult] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchResultItem`.
   public init() {}
 
@@ -66,6 +68,70 @@ public struct SearchResultItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let asset = CodingKeys(stringValue: "asset")
+    static let segments = CodingKeys(stringValue: "segments")
+    static let segment = CodingKeys(stringValue: "segment")
+    static let relevance = CodingKeys(stringValue: "relevance")
+    static let requestedAnnotations = CodingKeys(stringValue: "requestedAnnotations")
+    static let annotationMatchingResults = CodingKeys(stringValue: "annotationMatchingResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "asset",
+      "segments",
+      "segment",
+      "relevance",
+      "requestedAnnotations",
+      "annotationMatchingResults",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
+      self.asset = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Partition.TemporalPartition].self, forKey: .segments)
+    {
+      self.segments = value
+    }
+    self.segment = try container.decodeIfPresent(Partition.TemporalPartition.self, forKey: .segment)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    if let value = try container.decodeIfPresent([Annotation].self, forKey: .requestedAnnotations) {
+      self.requestedAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AnnotationMatchingResult].self, forKey: .annotationMatchingResults)
+    {
+      self.annotationMatchingResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.asset, forKey: .asset)
+    try container.encode(self.segments, forKey: .segments)
+    try container.encodeIfPresent(self.segment, forKey: .segment)
+    try container.encode(self.relevance, forKey: .relevance)
+    try container.encode(self.requestedAnnotations, forKey: .requestedAnnotations)
+    try container.encode(self.annotationMatchingResults, forKey: .annotationMatchingResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// API event.
   public var activity: OneOf_Activity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleApiSourceActivity`.
   public init() {}
 
@@ -53,17 +55,35 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case messageUid = "messageUid"
-    case attributes = "attributes"
-    case activityTime = "activityTime"
-    case published = "published"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let messageUid = CodingKeys(stringValue: "messageUid")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let activityTime = CodingKeys(stringValue: "activityTime")
+    static let published = CodingKeys(stringValue: "published")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "messageUid",
+      "attributes",
+      "activityTime",
+      "published",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.messageUid = try container.decode(Swift.String.self, forKey: .messageUid)
-    self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageUid) {
+      self.messageUid = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
     self.activityTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .activityTime)
 
@@ -83,19 +103,26 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleCloudWKT._AnyPa
       try activityCheckAndSet(.published(published))
     }
     self.activity = activity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.messageUid, forKey: .messageUid)
     try container.encode(self.attributes, forKey: .attributes)
-    try container.encode(self.activityTime, forKey: .activityTime)
+    try container.encodeIfPresent(self.activityTime, forKey: .activityTime)
 
     if let choice = self.activity {
       switch choice {
       case .published(let value):
         try container.encode(value, forKey: .published)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -116,6 +143,8 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// Logged if the event encounters an error.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Published`.
     public init() {}
 
@@ -130,6 +159,54 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let messageBus = CodingKeys(stringValue: "messageBus")
+      static let eventProvider = CodingKeys(stringValue: "eventProvider")
+      static let details = CodingKeys(stringValue: "details")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "messageBus",
+        "eventProvider",
+        "details",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageBus) {
+        self.messageBus = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventProvider) {
+        self.eventProvider = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.messageBus, forKey: .messageBus)
+      try container.encode(self.eventProvider, forKey: .eventProvider)
+      try container.encode(self.details, forKey: .details)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

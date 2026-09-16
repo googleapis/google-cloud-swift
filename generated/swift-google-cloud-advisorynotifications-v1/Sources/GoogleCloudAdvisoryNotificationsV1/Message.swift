@@ -33,6 +33,8 @@ public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Time when Message was localized
   public var localizationTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Message`.
   public init() {}
 
@@ -49,12 +51,60 @@ public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let body = CodingKeys(stringValue: "body")
+    static let attachments = CodingKeys(stringValue: "attachments")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let localizationTime = CodingKeys(stringValue: "localizationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "body",
+      "attachments",
+      "createTime",
+      "localizationTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.body = try container.decodeIfPresent(Message.Body.self, forKey: .body)
+    if let value = try container.decodeIfPresent([Attachment].self, forKey: .attachments) {
+      self.attachments = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.localizationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .localizationTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.body, forKey: .body)
+    try container.encode(self.attachments, forKey: .attachments)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.localizationTime, forKey: .localizationTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A message body containing text.
   public struct Body: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The text content of the message body.
     public var text: Text? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Body`.
     public init() {}
@@ -70,6 +120,36 @@ public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.text = try container.decodeIfPresent(Text.self, forKey: .text)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.text, forKey: .text)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

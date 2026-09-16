@@ -57,6 +57,8 @@ public struct CacheParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Detailed description of the current cache state.
   public var stateDetails: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CacheParameters`.
   public init() {}
 
@@ -71,6 +73,96 @@ public struct CacheParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let peerVolumeName = CodingKeys(stringValue: "peerVolumeName")
+    static let peerClusterName = CodingKeys(stringValue: "peerClusterName")
+    static let peerSvmName = CodingKeys(stringValue: "peerSvmName")
+    static let peerIpAddresses = CodingKeys(stringValue: "peerIpAddresses")
+    static let enableGlobalFileLock = CodingKeys(stringValue: "enableGlobalFileLock")
+    static let cacheConfig = CodingKeys(stringValue: "cacheConfig")
+    static let cacheState = CodingKeys(stringValue: "cacheState")
+    static let command = CodingKeys(stringValue: "command")
+    static let peeringCommandExpiryTime = CodingKeys(stringValue: "peeringCommandExpiryTime")
+    static let passphrase = CodingKeys(stringValue: "passphrase")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "peerVolumeName",
+      "peerClusterName",
+      "peerSvmName",
+      "peerIpAddresses",
+      "enableGlobalFileLock",
+      "cacheConfig",
+      "cacheState",
+      "command",
+      "peeringCommandExpiryTime",
+      "passphrase",
+      "stateDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerVolumeName) {
+      self.peerVolumeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerClusterName) {
+      self.peerClusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerSvmName) {
+      self.peerSvmName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .peerIpAddresses) {
+      self.peerIpAddresses = value
+    }
+    self.enableGlobalFileLock = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableGlobalFileLock)
+    self.cacheConfig = try container.decodeIfPresent(CacheConfig.self, forKey: .cacheConfig)
+    if let value = try container.decodeIfPresent(
+      CacheParameters.CacheState.self, forKey: .cacheState)
+    {
+      self.cacheState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .command) {
+      self.command = value
+    }
+    self.peeringCommandExpiryTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .peeringCommandExpiryTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .passphrase) {
+      self.passphrase = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.peerVolumeName, forKey: .peerVolumeName)
+    try container.encode(self.peerClusterName, forKey: .peerClusterName)
+    try container.encode(self.peerSvmName, forKey: .peerSvmName)
+    try container.encode(self.peerIpAddresses, forKey: .peerIpAddresses)
+    try container.encodeIfPresent(self.enableGlobalFileLock, forKey: .enableGlobalFileLock)
+    try container.encodeIfPresent(self.cacheConfig, forKey: .cacheConfig)
+    try container.encode(self.cacheState, forKey: .cacheState)
+    try container.encode(self.command, forKey: .command)
+    try container.encodeIfPresent(self.peeringCommandExpiryTime, forKey: .peeringCommandExpiryTime)
+    try container.encode(self.passphrase, forKey: .passphrase)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the cache volume indicating the peering status.

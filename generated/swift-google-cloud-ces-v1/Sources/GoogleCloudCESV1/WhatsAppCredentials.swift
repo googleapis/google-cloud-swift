@@ -39,6 +39,8 @@ public struct WhatsAppCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. The Conversation Profile ID to use for the deployment.
   public var conversationProfileId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WhatsAppCredentials`.
   public init() {}
 
@@ -53,6 +55,69 @@ public struct WhatsAppCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let authCode = CodingKeys(stringValue: "authCode")
+    static let pin = CodingKeys(stringValue: "pin")
+    static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+    static let businessAccountId = CodingKeys(stringValue: "businessAccountId")
+    static let wabaId = CodingKeys(stringValue: "wabaId")
+    static let conversationProfileId = CodingKeys(stringValue: "conversationProfileId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "authCode",
+      "pin",
+      "phoneNumber",
+      "businessAccountId",
+      "wabaId",
+      "conversationProfileId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authCode) {
+      self.authCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pin) {
+      self.pin = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumber) {
+      self.phoneNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .businessAccountId) {
+      self.businessAccountId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .wabaId) {
+      self.wabaId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationProfileId)
+    {
+      self.conversationProfileId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.authCode, forKey: .authCode)
+    try container.encode(self.pin, forKey: .pin)
+    try container.encode(self.phoneNumber, forKey: .phoneNumber)
+    try container.encode(self.businessAccountId, forKey: .businessAccountId)
+    try container.encode(self.wabaId, forKey: .wabaId)
+    try container.encode(self.conversationProfileId, forKey: .conversationProfileId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

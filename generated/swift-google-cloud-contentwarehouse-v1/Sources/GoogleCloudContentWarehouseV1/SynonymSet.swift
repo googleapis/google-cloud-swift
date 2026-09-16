@@ -40,6 +40,8 @@ public struct SynonymSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of Synonyms for the context.
   public var synonyms: [SynonymSet.Synonym] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SynonymSet`.
   public init() {}
 
@@ -56,6 +58,50 @@ public struct SynonymSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let context = CodingKeys(stringValue: "context")
+    static let synonyms = CodingKeys(stringValue: "synonyms")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "context",
+      "synonyms",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .context) {
+      self.context = value
+    }
+    if let value = try container.decodeIfPresent([SynonymSet.Synonym].self, forKey: .synonyms) {
+      self.synonyms = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.context, forKey: .context)
+    try container.encode(self.synonyms, forKey: .synonyms)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents a list of words given by the customer
   /// All these words are synonyms of each other.
   public struct Synonym: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -63,6 +109,8 @@ public struct SynonymSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// For example: sale, invoice, bill, order
     public var words: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Synonym`.
     public init() {}
@@ -78,6 +126,38 @@ public struct SynonymSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let words = CodingKeys(stringValue: "words")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "words"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .words) {
+        self.words = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.words, forKey: .words)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

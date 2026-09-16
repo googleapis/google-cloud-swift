@@ -63,6 +63,8 @@ public struct SecurityBulletinEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The GKE versions where this vulnerability is mitigated.
   public var mitigatedVersions: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityBulletinEvent`.
   public init() {}
 
@@ -77,6 +79,101 @@ public struct SecurityBulletinEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceTypeAffected = CodingKeys(stringValue: "resourceTypeAffected")
+    static let bulletinId = CodingKeys(stringValue: "bulletinId")
+    static let cveIds = CodingKeys(stringValue: "cveIds")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let bulletinUri = CodingKeys(stringValue: "bulletinUri")
+    static let briefDescription = CodingKeys(stringValue: "briefDescription")
+    static let affectedSupportedMinors = CodingKeys(stringValue: "affectedSupportedMinors")
+    static let patchedVersions = CodingKeys(stringValue: "patchedVersions")
+    static let suggestedUpgradeTarget = CodingKeys(stringValue: "suggestedUpgradeTarget")
+    static let manualStepsRequired = CodingKeys(stringValue: "manualStepsRequired")
+    static let mitigatedVersions = CodingKeys(stringValue: "mitigatedVersions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceTypeAffected",
+      "bulletinId",
+      "cveIds",
+      "severity",
+      "bulletinUri",
+      "briefDescription",
+      "affectedSupportedMinors",
+      "patchedVersions",
+      "suggestedUpgradeTarget",
+      "manualStepsRequired",
+      "mitigatedVersions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceTypeAffected) {
+      self.resourceTypeAffected = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bulletinId) {
+      self.bulletinId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .cveIds) {
+      self.cveIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bulletinUri) {
+      self.bulletinUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .briefDescription) {
+      self.briefDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .affectedSupportedMinors)
+    {
+      self.affectedSupportedMinors = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .patchedVersions) {
+      self.patchedVersions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suggestedUpgradeTarget)
+    {
+      self.suggestedUpgradeTarget = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .manualStepsRequired) {
+      self.manualStepsRequired = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mitigatedVersions) {
+      self.mitigatedVersions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceTypeAffected, forKey: .resourceTypeAffected)
+    try container.encode(self.bulletinId, forKey: .bulletinId)
+    try container.encode(self.cveIds, forKey: .cveIds)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.bulletinUri, forKey: .bulletinUri)
+    try container.encode(self.briefDescription, forKey: .briefDescription)
+    try container.encode(self.affectedSupportedMinors, forKey: .affectedSupportedMinors)
+    try container.encode(self.patchedVersions, forKey: .patchedVersions)
+    try container.encode(self.suggestedUpgradeTarget, forKey: .suggestedUpgradeTarget)
+    try container.encode(self.manualStepsRequired, forKey: .manualStepsRequired)
+    try container.encode(self.mitigatedVersions, forKey: .mitigatedVersions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

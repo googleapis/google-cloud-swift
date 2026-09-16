@@ -64,6 +64,8 @@ public struct UserManagedKeysConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// etcd backups.
   public var gkeopsEtcdBackupEncryptionKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserManagedKeysConfig`.
   public init() {}
 
@@ -78,6 +80,102 @@ public struct UserManagedKeysConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterCa = CodingKeys(stringValue: "clusterCa")
+    static let etcdApiCa = CodingKeys(stringValue: "etcdApiCa")
+    static let etcdPeerCa = CodingKeys(stringValue: "etcdPeerCa")
+    static let serviceAccountSigningKeys = CodingKeys(stringValue: "serviceAccountSigningKeys")
+    static let serviceAccountVerificationKeys = CodingKeys(
+      stringValue: "serviceAccountVerificationKeys")
+    static let aggregationCa = CodingKeys(stringValue: "aggregationCa")
+    static let controlPlaneDiskEncryptionKey = CodingKeys(
+      stringValue: "controlPlaneDiskEncryptionKey")
+    static let controlPlaneDiskEncryptionKeyVersions = CodingKeys(
+      stringValue: "controlPlaneDiskEncryptionKeyVersions")
+    static let gkeopsEtcdBackupEncryptionKey = CodingKeys(
+      stringValue: "gkeopsEtcdBackupEncryptionKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterCa",
+      "etcdApiCa",
+      "etcdPeerCa",
+      "serviceAccountSigningKeys",
+      "serviceAccountVerificationKeys",
+      "aggregationCa",
+      "controlPlaneDiskEncryptionKey",
+      "controlPlaneDiskEncryptionKeyVersions",
+      "gkeopsEtcdBackupEncryptionKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterCa) {
+      self.clusterCa = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etcdApiCa) {
+      self.etcdApiCa = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etcdPeerCa) {
+      self.etcdPeerCa = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .serviceAccountSigningKeys)
+    {
+      self.serviceAccountSigningKeys = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .serviceAccountVerificationKeys)
+    {
+      self.serviceAccountVerificationKeys = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .aggregationCa) {
+      self.aggregationCa = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .controlPlaneDiskEncryptionKey)
+    {
+      self.controlPlaneDiskEncryptionKey = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .controlPlaneDiskEncryptionKeyVersions)
+    {
+      self.controlPlaneDiskEncryptionKeyVersions = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .gkeopsEtcdBackupEncryptionKey)
+    {
+      self.gkeopsEtcdBackupEncryptionKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterCa, forKey: .clusterCa)
+    try container.encode(self.etcdApiCa, forKey: .etcdApiCa)
+    try container.encode(self.etcdPeerCa, forKey: .etcdPeerCa)
+    try container.encode(self.serviceAccountSigningKeys, forKey: .serviceAccountSigningKeys)
+    try container.encode(
+      self.serviceAccountVerificationKeys, forKey: .serviceAccountVerificationKeys)
+    try container.encode(self.aggregationCa, forKey: .aggregationCa)
+    try container.encode(self.controlPlaneDiskEncryptionKey, forKey: .controlPlaneDiskEncryptionKey)
+    try container.encode(
+      self.controlPlaneDiskEncryptionKeyVersions, forKey: .controlPlaneDiskEncryptionKeyVersions)
+    try container.encode(self.gkeopsEtcdBackupEncryptionKey, forKey: .gkeopsEtcdBackupEncryptionKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

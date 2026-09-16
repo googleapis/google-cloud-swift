@@ -70,6 +70,8 @@
     /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/OneOf_DocumentDescriptor/name(_:)>
     public var documentDescriptor: OneOf_DocumentDescriptor? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DocumentInfo`.
     public init() {}
 
@@ -86,21 +88,40 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case id = "id"
-      case name = "name"
-      case uri = "uri"
-      case quantity = "quantity"
-      case promotionIds = "promotionIds"
-      case joined = "joined"
-      case conversionValue = "conversionValue"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let name = CodingKeys(stringValue: "name")
+      static let uri = CodingKeys(stringValue: "uri")
+      static let quantity = CodingKeys(stringValue: "quantity")
+      static let promotionIds = CodingKeys(stringValue: "promotionIds")
+      static let joined = CodingKeys(stringValue: "joined")
+      static let conversionValue = CodingKeys(stringValue: "conversionValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "name",
+        "uri",
+        "quantity",
+        "promotionIds",
+        "joined",
+        "conversionValue",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.quantity = try container.decodeIfPresent(Swift.Int32.self, forKey: .quantity)
-      self.promotionIds = try container.decode([Swift.String].self, forKey: .promotionIds)
-      self.joined = try container.decode(Swift.Bool.self, forKey: .joined)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .promotionIds) {
+        self.promotionIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .joined) {
+        self.joined = value
+      }
       self.conversionValue = try container.decodeIfPresent(
         Swift.Float.self, forKey: .conversionValue)
 
@@ -124,14 +145,18 @@
         try documentDescriptorCheckAndSet(.uri(uri))
       }
       self.documentDescriptor = documentDescriptor
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.quantity, forKey: .quantity)
+      try container.encodeIfPresent(self.quantity, forKey: .quantity)
       try container.encode(self.promotionIds, forKey: .promotionIds)
       try container.encode(self.joined, forKey: .joined)
-      try container.encode(self.conversionValue, forKey: .conversionValue)
+      try container.encodeIfPresent(self.conversionValue, forKey: .conversionValue)
 
       if let choice = self.documentDescriptor {
         switch choice {
@@ -142,6 +167,9 @@
         case .uri(let value):
           try container.encode(value, forKey: .uri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

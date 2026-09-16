@@ -33,6 +33,8 @@ public struct DataplexTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Indicates if the table schema is managed by the user or not.
   public var userManaged: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataplexTableSpec`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct DataplexTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let externalTables = CodingKeys(stringValue: "externalTables")
+    static let dataplexSpec = CodingKeys(stringValue: "dataplexSpec")
+    static let userManaged = CodingKeys(stringValue: "userManaged")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "externalTables",
+      "dataplexSpec",
+      "userManaged",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [DataplexExternalTable].self, forKey: .externalTables)
+    {
+      self.externalTables = value
+    }
+    self.dataplexSpec = try container.decodeIfPresent(DataplexSpec.self, forKey: .dataplexSpec)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userManaged) {
+      self.userManaged = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.externalTables, forKey: .externalTables)
+    try container.encodeIfPresent(self.dataplexSpec, forKey: .dataplexSpec)
+    try container.encode(self.userManaged, forKey: .userManaged)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

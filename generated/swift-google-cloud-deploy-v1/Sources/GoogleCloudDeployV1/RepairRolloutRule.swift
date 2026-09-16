@@ -50,6 +50,8 @@ public struct RepairRolloutRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Required. Defines the types of automatic repair phases for failed jobs.
   public var repairPhases: [RepairPhaseConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepairRolloutRule`.
   public init() {}
 
@@ -64,6 +66,60 @@ public struct RepairRolloutRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let phases = CodingKeys(stringValue: "phases")
+    static let jobs = CodingKeys(stringValue: "jobs")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let repairPhases = CodingKeys(stringValue: "repairPhases")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "phases",
+      "jobs",
+      "condition",
+      "repairPhases",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phases) {
+      self.phases = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jobs) {
+      self.jobs = value
+    }
+    self.condition = try container.decodeIfPresent(AutomationRuleCondition.self, forKey: .condition)
+    if let value = try container.decodeIfPresent([RepairPhaseConfig].self, forKey: .repairPhases) {
+      self.repairPhases = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.phases, forKey: .phases)
+    try container.encode(self.jobs, forKey: .jobs)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encode(self.repairPhases, forKey: .repairPhases)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

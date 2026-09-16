@@ -32,6 +32,8 @@ public struct BasicLevel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var combiningFunction: BasicLevel.ConditionCombiningFunction =
     BasicLevel.ConditionCombiningFunction()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BasicLevel`.
   public init() {}
 
@@ -46,6 +48,46 @@ public struct BasicLevel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let combiningFunction = CodingKeys(stringValue: "combiningFunction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "conditions",
+      "combiningFunction",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Condition].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(
+      BasicLevel.ConditionCombiningFunction.self, forKey: .combiningFunction)
+    {
+      self.combiningFunction = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.conditions, forKey: .conditions)
+    try container.encode(self.combiningFunction, forKey: .combiningFunction)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Options for how the `conditions` list should be combined to determine if

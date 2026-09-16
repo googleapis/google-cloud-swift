@@ -27,6 +27,8 @@ public struct GenerateAttachedClusterAgentTokenResponse: Codable, Equatable, Goo
 
   public var tokenType: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateAttachedClusterAgentTokenResponse`.
   public init() {}
 
@@ -43,17 +45,38 @@ public struct GenerateAttachedClusterAgentTokenResponse: Codable, Equatable, Goo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case accessToken = "access_token"
-    case expiresIn = "expires_in"
-    case tokenType = "token_type"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accessToken = CodingKeys(stringValue: "access_token")
+    static let expiresIn = CodingKeys(stringValue: "expires_in")
+    static let tokenType = CodingKeys(stringValue: "token_type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "access_token",
+      "expires_in",
+      "token_type",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.accessToken = try container.decode(Swift.String.self, forKey: .accessToken)
-    self.expiresIn = try container.decode(Swift.Int32.self, forKey: .expiresIn)
-    self.tokenType = try container.decode(Swift.String.self, forKey: .tokenType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessToken) {
+      self.accessToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .expiresIn) {
+      self.expiresIn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenType) {
+      self.tokenType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -61,6 +84,9 @@ public struct GenerateAttachedClusterAgentTokenResponse: Codable, Equatable, Goo
     try container.encode(self.accessToken, forKey: .accessToken)
     try container.encode(self.expiresIn, forKey: .expiresIn)
     try container.encode(self.tokenType, forKey: .tokenType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

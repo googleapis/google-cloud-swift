@@ -41,6 +41,8 @@
     /// SynthesizeSpeechConfig.
     public var synthesizeSpeechConfigs: [Swift.String: SynthesizeSpeechConfig] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextToSpeechSettings`.
     public init() {}
 
@@ -55,6 +57,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enableTextToSpeech = CodingKeys(stringValue: "enableTextToSpeech")
+      static let outputAudioEncoding = CodingKeys(stringValue: "outputAudioEncoding")
+      static let sampleRateHertz = CodingKeys(stringValue: "sampleRateHertz")
+      static let synthesizeSpeechConfigs = CodingKeys(stringValue: "synthesizeSpeechConfigs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enableTextToSpeech",
+        "outputAudioEncoding",
+        "sampleRateHertz",
+        "synthesizeSpeechConfigs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextToSpeech) {
+        self.enableTextToSpeech = value
+      }
+      if let value = try container.decodeIfPresent(
+        OutputAudioEncoding.self, forKey: .outputAudioEncoding)
+      {
+        self.outputAudioEncoding = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleRateHertz) {
+        self.sampleRateHertz = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: SynthesizeSpeechConfig].self, forKey: .synthesizeSpeechConfigs)
+      {
+        self.synthesizeSpeechConfigs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enableTextToSpeech, forKey: .enableTextToSpeech)
+      try container.encode(self.outputAudioEncoding, forKey: .outputAudioEncoding)
+      try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
+      try container.encode(self.synthesizeSpeechConfigs, forKey: .synthesizeSpeechConfigs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

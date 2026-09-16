@@ -31,6 +31,8 @@ public struct UpdateLogicalViewRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Optional. The list of fields to update.
   public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateLogicalViewRequest`.
   public init() {}
 
@@ -45,6 +47,41 @@ public struct UpdateLogicalViewRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let logicalView = CodingKeys(stringValue: "logicalView")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "logicalView",
+      "updateMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.logicalView = try container.decodeIfPresent(LogicalView.self, forKey: .logicalView)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.logicalView, forKey: .logicalView)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

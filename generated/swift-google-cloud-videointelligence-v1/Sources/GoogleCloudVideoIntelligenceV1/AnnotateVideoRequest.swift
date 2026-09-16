@@ -60,6 +60,8 @@ public struct AnnotateVideoRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// location.
   public var locationId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotateVideoRequest`.
   public init() {}
 
@@ -74,6 +76,66 @@ public struct AnnotateVideoRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputUri = CodingKeys(stringValue: "inputUri")
+    static let inputContent = CodingKeys(stringValue: "inputContent")
+    static let features = CodingKeys(stringValue: "features")
+    static let videoContext = CodingKeys(stringValue: "videoContext")
+    static let outputUri = CodingKeys(stringValue: "outputUri")
+    static let locationId = CodingKeys(stringValue: "locationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputUri",
+      "inputContent",
+      "features",
+      "videoContext",
+      "outputUri",
+      "locationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputUri) {
+      self.inputUri = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .inputContent) {
+      self.inputContent = value
+    }
+    if let value = try container.decodeIfPresent([Feature].self, forKey: .features) {
+      self.features = value
+    }
+    self.videoContext = try container.decodeIfPresent(VideoContext.self, forKey: .videoContext)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+      self.outputUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputUri, forKey: .inputUri)
+    try container.encode(self.inputContent, forKey: .inputContent)
+    try container.encode(self.features, forKey: .features)
+    try container.encodeIfPresent(self.videoContext, forKey: .videoContext)
+    try container.encode(self.outputUri, forKey: .outputUri)
+    try container.encode(self.locationId, forKey: .locationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

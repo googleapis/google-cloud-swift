@@ -47,6 +47,8 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// present.
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudEvent`.
   public init() {}
 
@@ -63,25 +65,52 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case source = "source"
-    case specVersion = "specVersion"
-    case type = "type"
-    case attributes = "attributes"
-    case binaryData = "binaryData"
-    case textData = "textData"
-    case protoData = "protoData"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let source = CodingKeys(stringValue: "source")
+    static let specVersion = CodingKeys(stringValue: "specVersion")
+    static let type = CodingKeys(stringValue: "type")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let binaryData = CodingKeys(stringValue: "binaryData")
+    static let textData = CodingKeys(stringValue: "textData")
+    static let protoData = CodingKeys(stringValue: "protoData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "source",
+      "specVersion",
+      "type",
+      "attributes",
+      "binaryData",
+      "textData",
+      "protoData",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.source = try container.decode(Swift.String.self, forKey: .source)
-    self.specVersion = try container.decode(Swift.String.self, forKey: .specVersion)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.attributes = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+      self.source = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .specVersion) {
+      self.specVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: CloudEvent.CloudEventAttributeValue].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
 
     var data: OneOf_Data? = nil
     let dataCheckAndSet = {
@@ -104,6 +133,10 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataCheckAndSet(.protoData(protoData))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -124,6 +157,9 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .protoData)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The following abstract data types are available for use in attributes.
@@ -132,6 +168,8 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// The value of the attribute.
     public var attr: OneOf_Attr? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CloudEventAttributeValue`.
     public init() {}
@@ -149,14 +187,29 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ceBoolean = "ceBoolean"
-      case ceInteger = "ceInteger"
-      case ceString = "ceString"
-      case ceBytes = "ceBytes"
-      case ceUri = "ceUri"
-      case ceUriRef = "ceUriRef"
-      case ceTimestamp = "ceTimestamp"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ceBoolean = CodingKeys(stringValue: "ceBoolean")
+      static let ceInteger = CodingKeys(stringValue: "ceInteger")
+      static let ceString = CodingKeys(stringValue: "ceString")
+      static let ceBytes = CodingKeys(stringValue: "ceBytes")
+      static let ceUri = CodingKeys(stringValue: "ceUri")
+      static let ceUriRef = CodingKeys(stringValue: "ceUriRef")
+      static let ceTimestamp = CodingKeys(stringValue: "ceTimestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ceBoolean",
+        "ceInteger",
+        "ceString",
+        "ceBytes",
+        "ceUri",
+        "ceUriRef",
+        "ceTimestamp",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -196,6 +249,10 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try attrCheckAndSet(.ceTimestamp(ceTimestamp))
       }
       self.attr = attr
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -218,6 +275,9 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .ceTimestamp(let value):
           try container.encode(value, forKey: .ceTimestamp)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

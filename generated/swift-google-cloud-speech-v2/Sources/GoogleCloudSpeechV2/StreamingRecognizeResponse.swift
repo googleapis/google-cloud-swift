@@ -89,6 +89,8 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWKT._An
   /// Metadata about the recognition.
   public var metadata: RecognitionResponseMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamingRecognizeResponse`.
   public init() {}
 
@@ -103,6 +105,58 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let results = CodingKeys(stringValue: "results")
+    static let speechEventType = CodingKeys(stringValue: "speechEventType")
+    static let speechEventOffset = CodingKeys(stringValue: "speechEventOffset")
+    static let metadata = CodingKeys(stringValue: "metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "results",
+      "speechEventType",
+      "speechEventOffset",
+      "metadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [StreamingRecognitionResult].self, forKey: .results)
+    {
+      self.results = value
+    }
+    if let value = try container.decodeIfPresent(
+      StreamingRecognizeResponse.SpeechEventType.self, forKey: .speechEventType)
+    {
+      self.speechEventType = value
+    }
+    self.speechEventOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .speechEventOffset)
+    self.metadata = try container.decodeIfPresent(
+      RecognitionResponseMetadata.self, forKey: .metadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.results, forKey: .results)
+    try container.encode(self.speechEventType, forKey: .speechEventType)
+    try container.encodeIfPresent(self.speechEventOffset, forKey: .speechEventOffset)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Indicates the type of speech event.

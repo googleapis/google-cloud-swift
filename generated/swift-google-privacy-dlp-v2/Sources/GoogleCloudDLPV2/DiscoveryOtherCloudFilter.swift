@@ -27,6 +27,8 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleCloudWKT._Any
   /// the condition. Defaults to `others` if none is set.
   public var filter: OneOf_Filter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryOtherCloudFilter`.
   public init() {}
 
@@ -43,10 +45,21 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case collection = "collection"
-    case singleResource = "singleResource"
-    case others = "others"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let collection = CodingKeys(stringValue: "collection")
+    static let singleResource = CodingKeys(stringValue: "singleResource")
+    static let others = CodingKeys(stringValue: "others")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "collection",
+      "singleResource",
+      "others",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,6 +89,10 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleCloudWKT._Any
       try filterCheckAndSet(.others(others))
     }
     self.filter = filter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +107,9 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleCloudWKT._Any
       case .others(let value):
         try container.encode(value, forKey: .others)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

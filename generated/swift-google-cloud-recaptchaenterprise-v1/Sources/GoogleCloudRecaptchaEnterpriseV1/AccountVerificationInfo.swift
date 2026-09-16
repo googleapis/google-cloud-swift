@@ -37,6 +37,8 @@ public struct AccountVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
   @available(*, deprecated)
   public var username: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccountVerificationInfo`.
   public init() {}
 
@@ -51,6 +53,60 @@ public struct AccountVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let endpoints = CodingKeys(stringValue: "endpoints")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let latestVerificationResult = CodingKeys(stringValue: "latestVerificationResult")
+    static let username = CodingKeys(stringValue: "username")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "endpoints",
+      "languageCode",
+      "latestVerificationResult",
+      "username",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [EndpointVerificationInfo].self, forKey: .endpoints)
+    {
+      self.endpoints = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      AccountVerificationInfo.Result.self, forKey: .latestVerificationResult)
+    {
+      self.latestVerificationResult = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.endpoints, forKey: .endpoints)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.latestVerificationResult, forKey: .latestVerificationResult)
+    try container.encode(self.username, forKey: .username)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Result of the account verification as contained in the verdict token issued

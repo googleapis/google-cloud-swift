@@ -70,6 +70,8 @@
     /// Output only. [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectGroup`.
     public init() {}
 
@@ -84,6 +86,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let configured = CodingKeys(stringValue: "configured")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let id = CodingKeys(stringValue: "id")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let interconnects = CodingKeys(stringValue: "interconnects")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let physicalStructure = CodingKeys(stringValue: "physicalStructure")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "configured",
+        "creationTimestamp",
+        "description",
+        "etag",
+        "id",
+        "intent",
+        "interconnects",
+        "kind",
+        "name",
+        "physicalStructure",
+        "selfLink",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.configured = try container.decodeIfPresent(
+        InterconnectGroupConfigured.self, forKey: .configured)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.intent = try container.decodeIfPresent(InterconnectGroupIntent.self, forKey: .intent)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: InterconnectGroupInterconnect].self, forKey: .interconnects)
+      {
+        self.interconnects = value
+      }
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.physicalStructure = try container.decodeIfPresent(
+        InterconnectGroupPhysicalStructure.self, forKey: .physicalStructure)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.configured, forKey: .configured)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.etag, forKey: .etag)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
+      try container.encode(self.interconnects, forKey: .interconnects)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.physicalStructure, forKey: .physicalStructure)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

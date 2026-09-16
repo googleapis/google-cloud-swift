@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ListManagedFoldersResponse {
@@ -29,12 +29,16 @@ extension ListManagedFoldersResponse {
     self.init()
     self.managedFolders = try proto.managedFolders.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.managedFolders = try self.managedFolders.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

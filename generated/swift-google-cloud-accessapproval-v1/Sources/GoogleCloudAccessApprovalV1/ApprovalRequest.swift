@@ -53,6 +53,8 @@ public struct ApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The current decision on the approval request.
   public var decision: OneOf_Decision? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApprovalRequest`.
   public init() {}
 
@@ -69,23 +71,44 @@ public struct ApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case requestedResourceName = "requestedResourceName"
-    case requestedResourceProperties = "requestedResourceProperties"
-    case requestedReason = "requestedReason"
-    case requestedLocations = "requestedLocations"
-    case requestTime = "requestTime"
-    case requestedExpiration = "requestedExpiration"
-    case approve = "approve"
-    case dismiss = "dismiss"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let requestedResourceName = CodingKeys(stringValue: "requestedResourceName")
+    static let requestedResourceProperties = CodingKeys(stringValue: "requestedResourceProperties")
+    static let requestedReason = CodingKeys(stringValue: "requestedReason")
+    static let requestedLocations = CodingKeys(stringValue: "requestedLocations")
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let requestedExpiration = CodingKeys(stringValue: "requestedExpiration")
+    static let approve = CodingKeys(stringValue: "approve")
+    static let dismiss = CodingKeys(stringValue: "dismiss")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "requestedResourceName",
+      "requestedResourceProperties",
+      "requestedReason",
+      "requestedLocations",
+      "requestTime",
+      "requestedExpiration",
+      "approve",
+      "dismiss",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.requestedResourceName = try container.decode(
-      Swift.String.self, forKey: .requestedResourceName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestedResourceName)
+    {
+      self.requestedResourceName = value
+    }
     self.requestedResourceProperties = try container.decodeIfPresent(
       ResourceProperties.self, forKey: .requestedResourceProperties)
     self.requestedReason = try container.decodeIfPresent(
@@ -114,17 +137,22 @@ public struct ApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try decisionCheckAndSet(.dismiss(dismiss))
     }
     self.decision = decision
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestedResourceName, forKey: .requestedResourceName)
-    try container.encode(self.requestedResourceProperties, forKey: .requestedResourceProperties)
-    try container.encode(self.requestedReason, forKey: .requestedReason)
-    try container.encode(self.requestedLocations, forKey: .requestedLocations)
-    try container.encode(self.requestTime, forKey: .requestTime)
-    try container.encode(self.requestedExpiration, forKey: .requestedExpiration)
+    try container.encodeIfPresent(
+      self.requestedResourceProperties, forKey: .requestedResourceProperties)
+    try container.encodeIfPresent(self.requestedReason, forKey: .requestedReason)
+    try container.encodeIfPresent(self.requestedLocations, forKey: .requestedLocations)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.requestedExpiration, forKey: .requestedExpiration)
 
     if let choice = self.decision {
       switch choice {
@@ -133,6 +161,9 @@ public struct ApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dismiss(let value):
         try container.encode(value, forKey: .dismiss)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -61,6 +61,8 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The configuration details for the specific type of job to run.
   public var job: OneOf_Job? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobTrigger`.
   public init() {}
 
@@ -77,33 +79,63 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case inspectJob = "inspectJob"
-    case triggers = "triggers"
-    case errors = "errors"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case lastRunTime = "lastRunTime"
-    case status = "status"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let inspectJob = CodingKeys(stringValue: "inspectJob")
+    static let triggers = CodingKeys(stringValue: "triggers")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastRunTime = CodingKeys(stringValue: "lastRunTime")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "inspectJob",
+      "triggers",
+      "errors",
+      "createTime",
+      "updateTime",
+      "lastRunTime",
+      "status",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.triggers = try container.decode([JobTrigger.Trigger].self, forKey: .triggers)
-    self.errors = try container.decode([Error].self, forKey: .errors)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([JobTrigger.Trigger].self, forKey: .triggers) {
+      self.triggers = value
+    }
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.lastRunTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastRunTime)
-    self.status = try container.decode(JobTrigger.Status.self, forKey: .status)
+    if let value = try container.decodeIfPresent(JobTrigger.Status.self, forKey: .status) {
+      self.status = value
+    }
 
     var job: OneOf_Job? = nil
     let jobCheckAndSet = {
@@ -119,6 +151,10 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobCheckAndSet(.inspectJob(inspectJob))
     }
     self.job = job
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -128,9 +164,9 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.triggers, forKey: .triggers)
     try container.encode(self.errors, forKey: .errors)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.lastRunTime, forKey: .lastRunTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lastRunTime, forKey: .lastRunTime)
     try container.encode(self.status, forKey: .status)
 
     if let choice = self.job {
@@ -138,6 +174,9 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .inspectJob(let value):
         try container.encode(value, forKey: .inspectJob)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -147,6 +186,8 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// What event needs to occur for a new job to be started.
     public var trigger: OneOf_Trigger? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Trigger`.
     public init() {}
@@ -164,9 +205,19 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case schedule = "schedule"
-      case manual = "manual"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let schedule = CodingKeys(stringValue: "schedule")
+      static let manual = CodingKeys(stringValue: "manual")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "schedule",
+        "manual",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -189,6 +240,10 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try triggerCheckAndSet(.manual(manual))
       }
       self.trigger = trigger
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -201,6 +256,9 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .manual(let value):
           try container.encode(value, forKey: .manual)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

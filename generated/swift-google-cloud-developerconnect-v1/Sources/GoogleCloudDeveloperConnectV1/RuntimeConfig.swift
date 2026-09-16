@@ -36,6 +36,8 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Where the runtime is derived from.
   public var derivedFrom: OneOf_DerivedFrom? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeConfig`.
   public init() {}
 
@@ -52,19 +54,37 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gkeWorkload = "gkeWorkload"
-    case googleCloudRun = "googleCloudRun"
-    case appHubWorkload = "appHubWorkload"
-    case appHubService = "appHubService"
-    case uri = "uri"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gkeWorkload = CodingKeys(stringValue: "gkeWorkload")
+    static let googleCloudRun = CodingKeys(stringValue: "googleCloudRun")
+    static let appHubWorkload = CodingKeys(stringValue: "appHubWorkload")
+    static let appHubService = CodingKeys(stringValue: "appHubService")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gkeWorkload",
+      "googleCloudRun",
+      "appHubWorkload",
+      "appHubService",
+      "uri",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
-    self.state = try container.decode(RuntimeConfig.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(RuntimeConfig.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var runtime: OneOf_Runtime? = nil
     let runtimeCheckAndSet = {
@@ -107,6 +127,10 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try derivedFromCheckAndSet(.appHubService(appHubService))
     }
     self.derivedFrom = derivedFrom
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -130,6 +154,9 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .appHubService(let value):
         try container.encode(value, forKey: .appHubService)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -51,6 +51,8 @@
     /// This flag is used for basic site search only.
     public var enabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchLinkPromotion`.
     public init() {}
 
@@ -65,6 +67,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let title = CodingKeys(stringValue: "title")
+      static let uri = CodingKeys(stringValue: "uri")
+      static let document = CodingKeys(stringValue: "document")
+      static let imageUri = CodingKeys(stringValue: "imageUri")
+      static let description = CodingKeys(stringValue: "description")
+      static let enabled = CodingKeys(stringValue: "enabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "title",
+        "uri",
+        "document",
+        "imageUri",
+        "description",
+        "enabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .document) {
+        self.document = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+        self.imageUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.document, forKey: .document)
+      try container.encode(self.imageUri, forKey: .imageUri)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.enabled, forKey: .enabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

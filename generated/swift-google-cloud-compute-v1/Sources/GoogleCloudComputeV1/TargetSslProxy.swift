@@ -82,6 +82,8 @@
     /// SSL policy configured.
     public var sslPolicy: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetSslProxy`.
     public init() {}
 
@@ -96,6 +98,81 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let certificateMap = CodingKeys(stringValue: "certificateMap")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let proxyHeader = CodingKeys(stringValue: "proxyHeader")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let service = CodingKeys(stringValue: "service")
+      static let sslCertificates = CodingKeys(stringValue: "sslCertificates")
+      static let sslPolicy = CodingKeys(stringValue: "sslPolicy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "certificateMap",
+        "creationTimestamp",
+        "description",
+        "id",
+        "kind",
+        "name",
+        "proxyHeader",
+        "selfLink",
+        "service",
+        "sslCertificates",
+        "sslPolicy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.certificateMap = try container.decodeIfPresent(
+        Swift.String.self, forKey: .certificateMap)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.proxyHeader = try container.decodeIfPresent(
+        TargetSslProxy.ProxyHeader.self, forKey: .proxyHeader)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.service = try container.decodeIfPresent(Swift.String.self, forKey: .service)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sslCertificates) {
+        self.sslCertificates = value
+      }
+      self.sslPolicy = try container.decodeIfPresent(Swift.String.self, forKey: .sslPolicy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.certificateMap, forKey: .certificateMap)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.proxyHeader, forKey: .proxyHeader)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.service, forKey: .service)
+      try container.encode(self.sslCertificates, forKey: .sslCertificates)
+      try container.encodeIfPresent(self.sslPolicy, forKey: .sslPolicy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [proxyHeader][google.cloud.compute.v1.TargetSslProxy.proxyHeader] field.

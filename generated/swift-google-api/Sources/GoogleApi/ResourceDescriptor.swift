@@ -146,6 +146,8 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// style. See the specific style flags for additional information.
   public var style: [ResourceDescriptor.Style] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceDescriptor`.
   public init() {}
 
@@ -160,6 +162,75 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let pattern = CodingKeys(stringValue: "pattern")
+    static let nameField = CodingKeys(stringValue: "nameField")
+    static let history = CodingKeys(stringValue: "history")
+    static let plural = CodingKeys(stringValue: "plural")
+    static let singular = CodingKeys(stringValue: "singular")
+    static let style = CodingKeys(stringValue: "style")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "pattern",
+      "nameField",
+      "history",
+      "plural",
+      "singular",
+      "style",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pattern) {
+      self.pattern = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nameField) {
+      self.nameField = value
+    }
+    if let value = try container.decodeIfPresent(ResourceDescriptor.History.self, forKey: .history)
+    {
+      self.history = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .plural) {
+      self.plural = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .singular) {
+      self.singular = value
+    }
+    if let value = try container.decodeIfPresent([ResourceDescriptor.Style].self, forKey: .style) {
+      self.style = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.pattern, forKey: .pattern)
+    try container.encode(self.nameField, forKey: .nameField)
+    try container.encode(self.history, forKey: .history)
+    try container.encode(self.plural, forKey: .plural)
+    try container.encode(self.singular, forKey: .singular)
+    try container.encode(self.style, forKey: .style)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A description of the historical or future-looking state of the

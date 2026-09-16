@@ -46,6 +46,8 @@ public struct AzureProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Directory Application.
   public var identity: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureProperties`.
   public init() {}
 
@@ -60,6 +62,77 @@ public struct AzureProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let application = CodingKeys(stringValue: "application")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let objectId = CodingKeys(stringValue: "objectId")
+    static let customerTenantId = CodingKeys(stringValue: "customerTenantId")
+    static let redirectUri = CodingKeys(stringValue: "redirectUri")
+    static let federatedApplicationClientId = CodingKeys(
+      stringValue: "federatedApplicationClientId")
+    static let identity = CodingKeys(stringValue: "identity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "application",
+      "clientId",
+      "objectId",
+      "customerTenantId",
+      "redirectUri",
+      "federatedApplicationClientId",
+      "identity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .application) {
+      self.application = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .objectId) {
+      self.objectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customerTenantId) {
+      self.customerTenantId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .redirectUri) {
+      self.redirectUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .federatedApplicationClientId)
+    {
+      self.federatedApplicationClientId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identity) {
+      self.identity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.application, forKey: .application)
+    try container.encode(self.clientId, forKey: .clientId)
+    try container.encode(self.objectId, forKey: .objectId)
+    try container.encode(self.customerTenantId, forKey: .customerTenantId)
+    try container.encode(self.redirectUri, forKey: .redirectUri)
+    try container.encode(self.federatedApplicationClientId, forKey: .federatedApplicationClientId)
+    try container.encode(self.identity, forKey: .identity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

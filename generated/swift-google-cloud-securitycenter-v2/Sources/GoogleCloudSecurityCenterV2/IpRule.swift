@@ -31,6 +31,8 @@ public struct IpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// either an integer or a range including a min and max port number.
   public var portRanges: [IpRule.PortRange] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IpRule`.
   public init() {}
 
@@ -47,21 +49,42 @@ public struct IpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `protocol` = "protocol"
-    case portRanges = "portRanges"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let portRanges = CodingKeys(stringValue: "portRanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "protocol",
+      "portRanges",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.portRanges = try container.decode([IpRule.PortRange].self, forKey: .portRanges)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent([IpRule.PortRange].self, forKey: .portRanges) {
+      self.portRanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.portRanges, forKey: .portRanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A port range which is inclusive of the min and max values.
@@ -77,6 +100,8 @@ public struct IpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Maximum port value.
     public var max: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PortRange`.
     public init() {}
 
@@ -91,6 +116,44 @@ public struct IpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let min = CodingKeys(stringValue: "min")
+      static let max = CodingKeys(stringValue: "max")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "min",
+        "max",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .min) {
+        self.min = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .max) {
+        self.max = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.min, forKey: .min)
+      try container.encode(self.max, forKey: .max)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

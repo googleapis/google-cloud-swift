@@ -135,6 +135,8 @@ public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// of the legacy `type_spec`.
   public var spec: OneOf_Spec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Entry`.
   public init() {}
 
@@ -151,53 +153,104 @@ public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case linkedResource = "linkedResource"
-    case fullyQualifiedName = "fullyQualifiedName"
-    case type = "type"
-    case userSpecifiedType = "userSpecifiedType"
-    case integratedSystem = "integratedSystem"
-    case userSpecifiedSystem = "userSpecifiedSystem"
-    case sqlDatabaseSystemSpec = "sqlDatabaseSystemSpec"
-    case lookerSystemSpec = "lookerSystemSpec"
-    case cloudBigtableSystemSpec = "cloudBigtableSystemSpec"
-    case gcsFilesetSpec = "gcsFilesetSpec"
-    case bigqueryTableSpec = "bigqueryTableSpec"
-    case bigqueryDateShardedSpec = "bigqueryDateShardedSpec"
-    case databaseTableSpec = "databaseTableSpec"
-    case dataSourceConnectionSpec = "dataSourceConnectionSpec"
-    case routineSpec = "routineSpec"
-    case datasetSpec = "datasetSpec"
-    case filesetSpec = "filesetSpec"
-    case serviceSpec = "serviceSpec"
-    case modelSpec = "modelSpec"
-    case featureOnlineStoreSpec = "featureOnlineStoreSpec"
-    case displayName = "displayName"
-    case description = "description"
-    case businessContext = "businessContext"
-    case schema = "schema"
-    case sourceSystemTimestamps = "sourceSystemTimestamps"
-    case usageSignal = "usageSignal"
-    case labels = "labels"
-    case dataSource = "dataSource"
-    case personalDetails = "personalDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let linkedResource = CodingKeys(stringValue: "linkedResource")
+    static let fullyQualifiedName = CodingKeys(stringValue: "fullyQualifiedName")
+    static let type = CodingKeys(stringValue: "type")
+    static let userSpecifiedType = CodingKeys(stringValue: "userSpecifiedType")
+    static let integratedSystem = CodingKeys(stringValue: "integratedSystem")
+    static let userSpecifiedSystem = CodingKeys(stringValue: "userSpecifiedSystem")
+    static let sqlDatabaseSystemSpec = CodingKeys(stringValue: "sqlDatabaseSystemSpec")
+    static let lookerSystemSpec = CodingKeys(stringValue: "lookerSystemSpec")
+    static let cloudBigtableSystemSpec = CodingKeys(stringValue: "cloudBigtableSystemSpec")
+    static let gcsFilesetSpec = CodingKeys(stringValue: "gcsFilesetSpec")
+    static let bigqueryTableSpec = CodingKeys(stringValue: "bigqueryTableSpec")
+    static let bigqueryDateShardedSpec = CodingKeys(stringValue: "bigqueryDateShardedSpec")
+    static let databaseTableSpec = CodingKeys(stringValue: "databaseTableSpec")
+    static let dataSourceConnectionSpec = CodingKeys(stringValue: "dataSourceConnectionSpec")
+    static let routineSpec = CodingKeys(stringValue: "routineSpec")
+    static let datasetSpec = CodingKeys(stringValue: "datasetSpec")
+    static let filesetSpec = CodingKeys(stringValue: "filesetSpec")
+    static let serviceSpec = CodingKeys(stringValue: "serviceSpec")
+    static let modelSpec = CodingKeys(stringValue: "modelSpec")
+    static let featureOnlineStoreSpec = CodingKeys(stringValue: "featureOnlineStoreSpec")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let businessContext = CodingKeys(stringValue: "businessContext")
+    static let schema = CodingKeys(stringValue: "schema")
+    static let sourceSystemTimestamps = CodingKeys(stringValue: "sourceSystemTimestamps")
+    static let usageSignal = CodingKeys(stringValue: "usageSignal")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let personalDetails = CodingKeys(stringValue: "personalDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "linkedResource",
+      "fullyQualifiedName",
+      "type",
+      "userSpecifiedType",
+      "integratedSystem",
+      "userSpecifiedSystem",
+      "sqlDatabaseSystemSpec",
+      "lookerSystemSpec",
+      "cloudBigtableSystemSpec",
+      "gcsFilesetSpec",
+      "bigqueryTableSpec",
+      "bigqueryDateShardedSpec",
+      "databaseTableSpec",
+      "dataSourceConnectionSpec",
+      "routineSpec",
+      "datasetSpec",
+      "filesetSpec",
+      "serviceSpec",
+      "modelSpec",
+      "featureOnlineStoreSpec",
+      "displayName",
+      "description",
+      "businessContext",
+      "schema",
+      "sourceSystemTimestamps",
+      "usageSignal",
+      "labels",
+      "dataSource",
+      "personalDetails",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.linkedResource = try container.decode(Swift.String.self, forKey: .linkedResource)
-    self.fullyQualifiedName = try container.decode(Swift.String.self, forKey: .fullyQualifiedName)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .linkedResource) {
+      self.linkedResource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullyQualifiedName) {
+      self.fullyQualifiedName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.businessContext = try container.decodeIfPresent(
       BusinessContext.self, forKey: .businessContext)
     self.schema = try container.decodeIfPresent(Schema.self, forKey: .schema)
     self.sourceSystemTimestamps = try container.decodeIfPresent(
       SystemTimestamps.self, forKey: .sourceSystemTimestamps)
     self.usageSignal = try container.decodeIfPresent(UsageSignal.self, forKey: .usageSignal)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.dataSource = try container.decodeIfPresent(DataSource.self, forKey: .dataSource)
     self.personalDetails = try container.decodeIfPresent(
       PersonalDetails.self, forKey: .personalDetails)
@@ -339,6 +392,10 @@ public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try specCheckAndSet(.featureOnlineStoreSpec(featureOnlineStoreSpec))
     }
     self.spec = spec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -348,13 +405,13 @@ public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.fullyQualifiedName, forKey: .fullyQualifiedName)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.businessContext, forKey: .businessContext)
-    try container.encode(self.schema, forKey: .schema)
-    try container.encode(self.sourceSystemTimestamps, forKey: .sourceSystemTimestamps)
-    try container.encode(self.usageSignal, forKey: .usageSignal)
+    try container.encodeIfPresent(self.businessContext, forKey: .businessContext)
+    try container.encodeIfPresent(self.schema, forKey: .schema)
+    try container.encodeIfPresent(self.sourceSystemTimestamps, forKey: .sourceSystemTimestamps)
+    try container.encodeIfPresent(self.usageSignal, forKey: .usageSignal)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.dataSource, forKey: .dataSource)
-    try container.encode(self.personalDetails, forKey: .personalDetails)
+    try container.encodeIfPresent(self.dataSource, forKey: .dataSource)
+    try container.encodeIfPresent(self.personalDetails, forKey: .personalDetails)
 
     if let choice = self.entryType {
       switch choice {
@@ -415,6 +472,9 @@ public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .featureOnlineStoreSpec(let value):
         try container.encode(value, forKey: .featureOnlineStoreSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

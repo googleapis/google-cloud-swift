@@ -92,6 +92,8 @@
     /// list of email addresses or URIs.
     public var pointOfContact: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Feature`.
     public init() {}
 
@@ -106,6 +108,100 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let valueType = CodingKeys(stringValue: "valueType")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let disableMonitoring = CodingKeys(stringValue: "disableMonitoring")
+      static let monitoringStatsAnomalies = CodingKeys(stringValue: "monitoringStatsAnomalies")
+      static let versionColumnName = CodingKeys(stringValue: "versionColumnName")
+      static let pointOfContact = CodingKeys(stringValue: "pointOfContact")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "valueType",
+        "createTime",
+        "updateTime",
+        "labels",
+        "etag",
+        "disableMonitoring",
+        "monitoringStatsAnomalies",
+        "versionColumnName",
+        "pointOfContact",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Feature.ValueType.self, forKey: .valueType) {
+        self.valueType = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableMonitoring) {
+        self.disableMonitoring = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Feature.MonitoringStatsAnomaly].self, forKey: .monitoringStatsAnomalies)
+      {
+        self.monitoringStatsAnomalies = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionColumnName) {
+        self.versionColumnName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pointOfContact) {
+        self.pointOfContact = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.valueType, forKey: .valueType)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.disableMonitoring, forKey: .disableMonitoring)
+      try container.encode(self.monitoringStatsAnomalies, forKey: .monitoringStatsAnomalies)
+      try container.encode(self.versionColumnName, forKey: .versionColumnName)
+      try container.encode(self.pointOfContact, forKey: .pointOfContact)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A list of historical
@@ -129,6 +225,8 @@
       /// Output only. The stats and anomalies generated at specific timestamp.
       public var featureStatsAnomaly: FeatureStatsAnomaly? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MonitoringStatsAnomaly`.
       public init() {}
 
@@ -143,6 +241,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let objective = CodingKeys(stringValue: "objective")
+        static let featureStatsAnomaly = CodingKeys(stringValue: "featureStatsAnomaly")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "objective",
+          "featureStatsAnomaly",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Feature.MonitoringStatsAnomaly.Objective.self, forKey: .objective)
+        {
+          self.objective = value
+        }
+        self.featureStatsAnomaly = try container.decodeIfPresent(
+          FeatureStatsAnomaly.self, forKey: .featureStatsAnomaly)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.objective, forKey: .objective)
+        try container.encodeIfPresent(self.featureStatsAnomaly, forKey: .featureStatsAnomaly)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// If the objective in the request is both

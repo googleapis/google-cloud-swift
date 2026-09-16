@@ -95,6 +95,8 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `SCHEMA` and `FULL` entity views of a `GetEntity` response.
   public var schema: Schema? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Entity`.
   public init() {}
 
@@ -111,6 +113,131 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let id = CodingKeys(stringValue: "id")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let type = CodingKeys(stringValue: "type")
+    static let asset = CodingKeys(stringValue: "asset")
+    static let dataPath = CodingKeys(stringValue: "dataPath")
+    static let dataPathPattern = CodingKeys(stringValue: "dataPathPattern")
+    static let catalogEntry = CodingKeys(stringValue: "catalogEntry")
+    static let system = CodingKeys(stringValue: "system")
+    static let format = CodingKeys(stringValue: "format")
+    static let compatibility = CodingKeys(stringValue: "compatibility")
+    static let access = CodingKeys(stringValue: "access")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let schema = CodingKeys(stringValue: "schema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "createTime",
+      "updateTime",
+      "id",
+      "etag",
+      "type",
+      "asset",
+      "dataPath",
+      "dataPathPattern",
+      "catalogEntry",
+      "system",
+      "format",
+      "compatibility",
+      "access",
+      "uid",
+      "schema",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Entity.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
+      self.asset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataPath) {
+      self.dataPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataPathPattern) {
+      self.dataPathPattern = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .catalogEntry) {
+      self.catalogEntry = value
+    }
+    if let value = try container.decodeIfPresent(StorageSystem.self, forKey: .system) {
+      self.system = value
+    }
+    self.format = try container.decodeIfPresent(StorageFormat.self, forKey: .format)
+    self.compatibility = try container.decodeIfPresent(
+      Entity.CompatibilityStatus.self, forKey: .compatibility)
+    self.access = try container.decodeIfPresent(StorageAccess.self, forKey: .access)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.schema = try container.decodeIfPresent(Schema.self, forKey: .schema)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.asset, forKey: .asset)
+    try container.encode(self.dataPath, forKey: .dataPath)
+    try container.encode(self.dataPathPattern, forKey: .dataPathPattern)
+    try container.encode(self.catalogEntry, forKey: .catalogEntry)
+    try container.encode(self.system, forKey: .system)
+    try container.encodeIfPresent(self.format, forKey: .format)
+    try container.encodeIfPresent(self.compatibility, forKey: .compatibility)
+    try container.encodeIfPresent(self.access, forKey: .access)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.schema, forKey: .schema)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Provides compatibility information for various metadata stores.
   public struct CompatibilityStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -120,6 +247,8 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Output only. Whether this entity is compatible with BigQuery.
     public var bigquery: Entity.CompatibilityStatus.Compatibility? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CompatibilityStatus`.
     public init() {}
@@ -137,6 +266,42 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hiveMetastore = CodingKeys(stringValue: "hiveMetastore")
+      static let bigquery = CodingKeys(stringValue: "bigquery")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hiveMetastore",
+        "bigquery",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.hiveMetastore = try container.decodeIfPresent(
+        Entity.CompatibilityStatus.Compatibility.self, forKey: .hiveMetastore)
+      self.bigquery = try container.decodeIfPresent(
+        Entity.CompatibilityStatus.Compatibility.self, forKey: .bigquery)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.hiveMetastore, forKey: .hiveMetastore)
+      try container.encodeIfPresent(self.bigquery, forKey: .bigquery)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Provides compatibility information for a specific metadata store.
     public struct Compatibility: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -148,6 +313,8 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Output only. Provides additional detail if the entity is incompatible
       /// with the metadata store.
       public var reason: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Compatibility`.
       public init() {}
@@ -163,6 +330,44 @@ public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let compatible = CodingKeys(stringValue: "compatible")
+        static let reason = CodingKeys(stringValue: "reason")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "compatible",
+          "reason",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .compatible) {
+          self.compatible = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reason) {
+          self.reason = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.compatible, forKey: .compatible)
+        try container.encode(self.reason, forKey: .reason)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

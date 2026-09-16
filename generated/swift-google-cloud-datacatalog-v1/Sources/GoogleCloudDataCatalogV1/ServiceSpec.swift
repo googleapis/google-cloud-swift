@@ -25,6 +25,8 @@ public struct ServiceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// System spec
   public var systemSpec: OneOf_SystemSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceSpec`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct ServiceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudBigtableInstanceSpec = "cloudBigtableInstanceSpec"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudBigtableInstanceSpec = CodingKeys(stringValue: "cloudBigtableInstanceSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudBigtableInstanceSpec"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct ServiceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try systemSpecCheckAndSet(.cloudBigtableInstanceSpec(cloudBigtableInstanceSpec))
     }
     self.systemSpec = systemSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct ServiceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .cloudBigtableInstanceSpec(let value):
         try container.encode(value, forKey: .cloudBigtableInstanceSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -61,6 +61,8 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Type of the property.
   public var valueTypeOptions: OneOf_ValueTypeOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PropertyDefinition`.
   public init() {}
 
@@ -77,39 +79,84 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case isRepeatable = "isRepeatable"
-    case isFilterable = "isFilterable"
-    case isSearchable = "isSearchable"
-    case isMetadata = "isMetadata"
-    case isRequired = "isRequired"
-    case retrievalImportance = "retrievalImportance"
-    case integerTypeOptions = "integerTypeOptions"
-    case floatTypeOptions = "floatTypeOptions"
-    case textTypeOptions = "textTypeOptions"
-    case propertyTypeOptions = "propertyTypeOptions"
-    case enumTypeOptions = "enumTypeOptions"
-    case dateTimeTypeOptions = "dateTimeTypeOptions"
-    case mapTypeOptions = "mapTypeOptions"
-    case timestampTypeOptions = "timestampTypeOptions"
-    case schemaSources = "schemaSources"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let isRepeatable = CodingKeys(stringValue: "isRepeatable")
+    static let isFilterable = CodingKeys(stringValue: "isFilterable")
+    static let isSearchable = CodingKeys(stringValue: "isSearchable")
+    static let isMetadata = CodingKeys(stringValue: "isMetadata")
+    static let isRequired = CodingKeys(stringValue: "isRequired")
+    static let retrievalImportance = CodingKeys(stringValue: "retrievalImportance")
+    static let integerTypeOptions = CodingKeys(stringValue: "integerTypeOptions")
+    static let floatTypeOptions = CodingKeys(stringValue: "floatTypeOptions")
+    static let textTypeOptions = CodingKeys(stringValue: "textTypeOptions")
+    static let propertyTypeOptions = CodingKeys(stringValue: "propertyTypeOptions")
+    static let enumTypeOptions = CodingKeys(stringValue: "enumTypeOptions")
+    static let dateTimeTypeOptions = CodingKeys(stringValue: "dateTimeTypeOptions")
+    static let mapTypeOptions = CodingKeys(stringValue: "mapTypeOptions")
+    static let timestampTypeOptions = CodingKeys(stringValue: "timestampTypeOptions")
+    static let schemaSources = CodingKeys(stringValue: "schemaSources")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "isRepeatable",
+      "isFilterable",
+      "isSearchable",
+      "isMetadata",
+      "isRequired",
+      "retrievalImportance",
+      "integerTypeOptions",
+      "floatTypeOptions",
+      "textTypeOptions",
+      "propertyTypeOptions",
+      "enumTypeOptions",
+      "dateTimeTypeOptions",
+      "mapTypeOptions",
+      "timestampTypeOptions",
+      "schemaSources",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.isRepeatable = try container.decode(Swift.Bool.self, forKey: .isRepeatable)
-    self.isFilterable = try container.decode(Swift.Bool.self, forKey: .isFilterable)
-    self.isSearchable = try container.decode(Swift.Bool.self, forKey: .isSearchable)
-    self.isMetadata = try container.decode(Swift.Bool.self, forKey: .isMetadata)
-    self.isRequired = try container.decode(Swift.Bool.self, forKey: .isRequired)
-    self.retrievalImportance = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRepeatable) {
+      self.isRepeatable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFilterable) {
+      self.isFilterable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isSearchable) {
+      self.isSearchable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isMetadata) {
+      self.isMetadata = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRequired) {
+      self.isRequired = value
+    }
+    if let value = try container.decodeIfPresent(
       PropertyDefinition.RetrievalImportance.self, forKey: .retrievalImportance)
-    self.schemaSources = try container.decode(
+    {
+      self.retrievalImportance = value
+    }
+    if let value = try container.decodeIfPresent(
       [PropertyDefinition.SchemaSource].self, forKey: .schemaSources)
+    {
+      self.schemaSources = value
+    }
 
     var valueTypeOptions: OneOf_ValueTypeOptions? = nil
     let valueTypeOptionsCheckAndSet = {
@@ -162,6 +209,10 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try valueTypeOptionsCheckAndSet(.timestampTypeOptions(timestampTypeOptions))
     }
     self.valueTypeOptions = valueTypeOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -196,6 +247,9 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .timestampTypeOptions)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The schema source information.
@@ -207,6 +261,8 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
     /// The Doc AI processor type name.
     public var processorType: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SchemaSource`.
     public init() {}
@@ -222,6 +278,44 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let processorType = CodingKeys(stringValue: "processorType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "processorType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processorType) {
+        self.processorType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.processorType, forKey: .processorType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

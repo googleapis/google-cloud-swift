@@ -25,6 +25,8 @@ public struct ComputeFindingsRefinementActivityResponse: Codable, Equatable, Goo
   /// The activity for the findings refinement.
   public var activity: FindingsRefinementActivity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeFindingsRefinementActivityResponse`.
   public init() {}
 
@@ -39,6 +41,37 @@ public struct ComputeFindingsRefinementActivityResponse: Codable, Equatable, Goo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let activity = CodingKeys(stringValue: "activity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "activity"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.activity = try container.decodeIfPresent(
+      FindingsRefinementActivity.self, forKey: .activity)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.activity, forKey: .activity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

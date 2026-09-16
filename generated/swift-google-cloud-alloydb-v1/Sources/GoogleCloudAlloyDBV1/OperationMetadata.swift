@@ -53,6 +53,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Request specific metadata, if any.
   public var requestSpecific: OneOf_RequestSpecific? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
 
@@ -69,16 +71,34 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case batchCreateInstancesMetadata = "batchCreateInstancesMetadata"
-    case upgradeClusterStatus = "upgradeClusterStatus"
-    case createTime = "createTime"
-    case endTime = "endTime"
-    case target = "target"
-    case verb = "verb"
-    case statusMessage = "statusMessage"
-    case requestedCancellation = "requestedCancellation"
-    case apiVersion = "apiVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let batchCreateInstancesMetadata = CodingKeys(
+      stringValue: "batchCreateInstancesMetadata")
+    static let upgradeClusterStatus = CodingKeys(stringValue: "upgradeClusterStatus")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let target = CodingKeys(stringValue: "target")
+    static let verb = CodingKeys(stringValue: "verb")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let requestedCancellation = CodingKeys(stringValue: "requestedCancellation")
+    static let apiVersion = CodingKeys(stringValue: "apiVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "batchCreateInstancesMetadata",
+      "upgradeClusterStatus",
+      "createTime",
+      "endTime",
+      "target",
+      "verb",
+      "statusMessage",
+      "requestedCancellation",
+      "apiVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -86,12 +106,21 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.target = try container.decode(Swift.String.self, forKey: .target)
-    self.verb = try container.decode(Swift.String.self, forKey: .verb)
-    self.statusMessage = try container.decode(Swift.String.self, forKey: .statusMessage)
-    self.requestedCancellation = try container.decode(
-      Swift.Bool.self, forKey: .requestedCancellation)
-    self.apiVersion = try container.decode(Swift.String.self, forKey: .apiVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .verb) {
+      self.verb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requestedCancellation) {
+      self.requestedCancellation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiVersion) {
+      self.apiVersion = value
+    }
 
     var requestSpecific: OneOf_RequestSpecific? = nil
     let requestSpecificCheckAndSet = {
@@ -114,12 +143,16 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try requestSpecificCheckAndSet(.upgradeClusterStatus(upgradeClusterStatus))
     }
     self.requestSpecific = requestSpecific
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.target, forKey: .target)
     try container.encode(self.verb, forKey: .verb)
     try container.encode(self.statusMessage, forKey: .statusMessage)
@@ -133,6 +166,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .upgradeClusterStatus(let value):
         try container.encode(value, forKey: .upgradeClusterStatus)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

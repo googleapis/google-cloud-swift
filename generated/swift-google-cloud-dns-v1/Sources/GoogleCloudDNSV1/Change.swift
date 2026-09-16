@@ -41,6 +41,8 @@ public struct Change: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Status of the operation (output only). A status of "done" means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
   public var status: Change.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Change`.
   public init() {}
 
@@ -55,6 +57,64 @@ public struct Change: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let additions = CodingKeys(stringValue: "additions")
+    static let deletions = CodingKeys(stringValue: "deletions")
+    static let id = CodingKeys(stringValue: "id")
+    static let isServing = CodingKeys(stringValue: "isServing")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "additions",
+      "deletions",
+      "id",
+      "isServing",
+      "kind",
+      "startTime",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([ResourceRecordSet].self, forKey: .additions) {
+      self.additions = value
+    }
+    if let value = try container.decodeIfPresent([ResourceRecordSet].self, forKey: .deletions) {
+      self.deletions = value
+    }
+    self.id = try container.decodeIfPresent(Swift.String.self, forKey: .id)
+    self.isServing = try container.decodeIfPresent(Swift.Bool.self, forKey: .isServing)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
+    self.status = try container.decodeIfPresent(Change.Status.self, forKey: .status)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.additions, forKey: .additions)
+    try container.encode(self.deletions, forKey: .deletions)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.isServing, forKey: .isServing)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [status][.Change.status] field.

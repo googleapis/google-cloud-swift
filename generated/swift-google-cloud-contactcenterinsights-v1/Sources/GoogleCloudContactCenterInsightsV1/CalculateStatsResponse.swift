@@ -55,6 +55,8 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// that match that requested filter criteria.
   public var conversationCountTimeSeries: CalculateStatsResponse.TimeSeries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CalculateStatsResponse`.
   public init() {}
 
@@ -71,6 +73,87 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let averageDuration = CodingKeys(stringValue: "averageDuration")
+    static let averageTurnCount = CodingKeys(stringValue: "averageTurnCount")
+    static let conversationCount = CodingKeys(stringValue: "conversationCount")
+    static let smartHighlighterMatches = CodingKeys(stringValue: "smartHighlighterMatches")
+    static let customHighlighterMatches = CodingKeys(stringValue: "customHighlighterMatches")
+    static let issueMatches = CodingKeys(stringValue: "issueMatches")
+    static let issueMatchesStats = CodingKeys(stringValue: "issueMatchesStats")
+    static let conversationCountTimeSeries = CodingKeys(stringValue: "conversationCountTimeSeries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "averageDuration",
+      "averageTurnCount",
+      "conversationCount",
+      "smartHighlighterMatches",
+      "customHighlighterMatches",
+      "issueMatches",
+      "issueMatchesStats",
+      "conversationCountTimeSeries",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.averageDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .averageDuration)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .averageTurnCount) {
+      self.averageTurnCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .conversationCount) {
+      self.conversationCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int32].self, forKey: .smartHighlighterMatches)
+    {
+      self.smartHighlighterMatches = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int32].self, forKey: .customHighlighterMatches)
+    {
+      self.customHighlighterMatches = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int32].self, forKey: .issueMatches)
+    {
+      self.issueMatches = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: IssueModelLabelStats.IssueStats].self, forKey: .issueMatchesStats)
+    {
+      self.issueMatchesStats = value
+    }
+    self.conversationCountTimeSeries = try container.decodeIfPresent(
+      CalculateStatsResponse.TimeSeries.self, forKey: .conversationCountTimeSeries)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.averageDuration, forKey: .averageDuration)
+    try container.encode(self.averageTurnCount, forKey: .averageTurnCount)
+    try container.encode(self.conversationCount, forKey: .conversationCount)
+    try container.encode(self.smartHighlighterMatches, forKey: .smartHighlighterMatches)
+    try container.encode(self.customHighlighterMatches, forKey: .customHighlighterMatches)
+    try container.encode(self.issueMatches, forKey: .issueMatches)
+    try container.encode(self.issueMatchesStats, forKey: .issueMatchesStats)
+    try container.encodeIfPresent(
+      self.conversationCountTimeSeries, forKey: .conversationCountTimeSeries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A time series representing conversations over time.
   public struct TimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -82,6 +165,8 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// represents the number of conversations that transpired during the time
     /// window.
     public var points: [CalculateStatsResponse.TimeSeries.Interval] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TimeSeries`.
     public init() {}
@@ -99,6 +184,45 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intervalDuration = CodingKeys(stringValue: "intervalDuration")
+      static let points = CodingKeys(stringValue: "points")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intervalDuration",
+        "points",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.intervalDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .intervalDuration)
+      if let value = try container.decodeIfPresent(
+        [CalculateStatsResponse.TimeSeries.Interval].self, forKey: .points)
+      {
+        self.points = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.intervalDuration, forKey: .intervalDuration)
+      try container.encode(self.points, forKey: .points)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A single interval in a time series.
     public struct Interval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -108,6 +232,8 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
 
       /// The number of conversations created in this interval.
       public var conversationCount: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Interval`.
       public init() {}
@@ -123,6 +249,43 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let conversationCount = CodingKeys(stringValue: "conversationCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "startTime",
+          "conversationCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .conversationCount) {
+          self.conversationCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encode(self.conversationCount, forKey: .conversationCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

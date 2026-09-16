@@ -84,6 +84,8 @@
     /// that have TERMINATED status.
     public var terminated: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerStatusInstanceStatusSummary`.
     public init() {}
 
@@ -98,6 +100,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deprovisioning = CodingKeys(stringValue: "deprovisioning")
+      static let nonExistent = CodingKeys(stringValue: "nonExistent")
+      static let pending = CodingKeys(stringValue: "pending")
+      static let pendingStop = CodingKeys(stringValue: "pendingStop")
+      static let provisioning = CodingKeys(stringValue: "provisioning")
+      static let repairing = CodingKeys(stringValue: "repairing")
+      static let running = CodingKeys(stringValue: "running")
+      static let staging = CodingKeys(stringValue: "staging")
+      static let stopped = CodingKeys(stringValue: "stopped")
+      static let stopping = CodingKeys(stringValue: "stopping")
+      static let suspended = CodingKeys(stringValue: "suspended")
+      static let suspending = CodingKeys(stringValue: "suspending")
+      static let terminated = CodingKeys(stringValue: "terminated")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deprovisioning",
+        "nonExistent",
+        "pending",
+        "pendingStop",
+        "provisioning",
+        "repairing",
+        "running",
+        "staging",
+        "stopped",
+        "stopping",
+        "suspended",
+        "suspending",
+        "terminated",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.deprovisioning = try container.decodeIfPresent(Swift.Int32.self, forKey: .deprovisioning)
+      self.nonExistent = try container.decodeIfPresent(Swift.Int32.self, forKey: .nonExistent)
+      self.pending = try container.decodeIfPresent(Swift.Int32.self, forKey: .pending)
+      self.pendingStop = try container.decodeIfPresent(Swift.Int32.self, forKey: .pendingStop)
+      self.provisioning = try container.decodeIfPresent(Swift.Int32.self, forKey: .provisioning)
+      self.repairing = try container.decodeIfPresent(Swift.Int32.self, forKey: .repairing)
+      self.running = try container.decodeIfPresent(Swift.Int32.self, forKey: .running)
+      self.staging = try container.decodeIfPresent(Swift.Int32.self, forKey: .staging)
+      self.stopped = try container.decodeIfPresent(Swift.Int32.self, forKey: .stopped)
+      self.stopping = try container.decodeIfPresent(Swift.Int32.self, forKey: .stopping)
+      self.suspended = try container.decodeIfPresent(Swift.Int32.self, forKey: .suspended)
+      self.suspending = try container.decodeIfPresent(Swift.Int32.self, forKey: .suspending)
+      self.terminated = try container.decodeIfPresent(Swift.Int32.self, forKey: .terminated)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.deprovisioning, forKey: .deprovisioning)
+      try container.encodeIfPresent(self.nonExistent, forKey: .nonExistent)
+      try container.encodeIfPresent(self.pending, forKey: .pending)
+      try container.encodeIfPresent(self.pendingStop, forKey: .pendingStop)
+      try container.encodeIfPresent(self.provisioning, forKey: .provisioning)
+      try container.encodeIfPresent(self.repairing, forKey: .repairing)
+      try container.encodeIfPresent(self.running, forKey: .running)
+      try container.encodeIfPresent(self.staging, forKey: .staging)
+      try container.encodeIfPresent(self.stopped, forKey: .stopped)
+      try container.encodeIfPresent(self.stopping, forKey: .stopping)
+      try container.encodeIfPresent(self.suspended, forKey: .suspended)
+      try container.encodeIfPresent(self.suspending, forKey: .suspending)
+      try container.encodeIfPresent(self.terminated, forKey: .terminated)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

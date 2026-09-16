@@ -39,6 +39,8 @@ public struct LockInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Time that the lock was taken.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LockInfo`.
   public init() {}
 
@@ -53,6 +55,67 @@ public struct LockInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lockId = CodingKeys(stringValue: "lockId")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let info = CodingKeys(stringValue: "info")
+    static let who = CodingKeys(stringValue: "who")
+    static let version = CodingKeys(stringValue: "version")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lockId",
+      "operation",
+      "info",
+      "who",
+      "version",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .lockId) {
+      self.lockId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operation) {
+      self.operation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .info) {
+      self.info = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .who) {
+      self.who = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.lockId, forKey: .lockId)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encode(self.info, forKey: .info)
+    try container.encode(self.who, forKey: .who)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

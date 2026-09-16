@@ -54,6 +54,8 @@
 
     public var body: User? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlUsersUpdateRequest`.
     public init() {}
 
@@ -68,6 +70,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let host = CodingKeys(stringValue: "host")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let name = CodingKeys(stringValue: "name")
+      static let project = CodingKeys(stringValue: "project")
+      static let databaseRoles = CodingKeys(stringValue: "databaseRoles")
+      static let revokeExistingRoles = CodingKeys(stringValue: "revokeExistingRoles")
+      static let serverRoles = CodingKeys(stringValue: "serverRoles")
+      static let revokeExistingServerRoles = CodingKeys(stringValue: "revokeExistingServerRoles")
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "host",
+        "instance",
+        "name",
+        "project",
+        "databaseRoles",
+        "revokeExistingRoles",
+        "serverRoles",
+        "revokeExistingServerRoles",
+        "body",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+        self.host = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .databaseRoles) {
+        self.databaseRoles = value
+      }
+      self.revokeExistingRoles = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .revokeExistingRoles)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serverRoles) {
+        self.serverRoles = value
+      }
+      self.revokeExistingServerRoles = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .revokeExistingServerRoles)
+      self.body = try container.decodeIfPresent(User.self, forKey: .body)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.host, forKey: .host)
+      try container.encode(self.instance, forKey: .instance)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.databaseRoles, forKey: .databaseRoles)
+      try container.encodeIfPresent(self.revokeExistingRoles, forKey: .revokeExistingRoles)
+      try container.encode(self.serverRoles, forKey: .serverRoles)
+      try container.encodeIfPresent(
+        self.revokeExistingServerRoles, forKey: .revokeExistingServerRoles)
+      try container.encodeIfPresent(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

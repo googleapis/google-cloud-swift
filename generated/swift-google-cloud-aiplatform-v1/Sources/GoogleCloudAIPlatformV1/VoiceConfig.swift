@@ -25,6 +25,8 @@
     /// The configuration for the speaker to use.
     public var voiceConfig: OneOf_VoiceConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VoiceConfig`.
     public init() {}
 
@@ -41,9 +43,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case prebuiltVoiceConfig = "prebuiltVoiceConfig"
-      case replicatedVoiceConfig = "replicatedVoiceConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let prebuiltVoiceConfig = CodingKeys(stringValue: "prebuiltVoiceConfig")
+      static let replicatedVoiceConfig = CodingKeys(stringValue: "replicatedVoiceConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "prebuiltVoiceConfig",
+        "replicatedVoiceConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@
         try voiceConfigCheckAndSet(.replicatedVoiceConfig(replicatedVoiceConfig))
       }
       self.voiceConfig = voiceConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@
         case .replicatedVoiceConfig(let value):
           try container.encode(value, forKey: .replicatedVoiceConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

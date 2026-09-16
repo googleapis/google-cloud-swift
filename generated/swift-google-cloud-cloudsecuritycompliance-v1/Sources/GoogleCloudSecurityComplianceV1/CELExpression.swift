@@ -29,6 +29,8 @@ public struct CELExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The criteria of the CEL expression.
   public var criteria: OneOf_Criteria? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CELExpression`.
   public init() {}
 
@@ -45,14 +47,26 @@ public struct CELExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case resourceTypesValues = "resourceTypesValues"
-    case expression = "expression"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceTypesValues = CodingKeys(stringValue: "resourceTypesValues")
+    static let expression = CodingKeys(stringValue: "expression")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceTypesValues",
+      "expression",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.expression = try container.decode(Swift.String.self, forKey: .expression)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expression) {
+      self.expression = value
+    }
 
     var criteria: OneOf_Criteria? = nil
     let criteriaCheckAndSet = {
@@ -70,6 +84,10 @@ public struct CELExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try criteriaCheckAndSet(.resourceTypesValues(resourceTypesValues))
     }
     self.criteria = criteria
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +99,9 @@ public struct CELExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .resourceTypesValues(let value):
         try container.encode(value, forKey: .resourceTypesValues)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

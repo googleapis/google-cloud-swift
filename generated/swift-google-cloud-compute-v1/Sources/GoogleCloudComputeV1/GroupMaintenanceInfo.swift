@@ -54,6 +54,8 @@
     /// Maintenance information on this group of VMs.
     public var upcomingGroupMaintenance: UpcomingMaintenance? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroupMaintenanceInfo`.
     public init() {}
 
@@ -68,6 +70,81 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceMaintenanceOngoingCount = CodingKeys(
+        stringValue: "instanceMaintenanceOngoingCount")
+      static let instanceMaintenancePendingCount = CodingKeys(
+        stringValue: "instanceMaintenancePendingCount")
+      static let maintenanceOngoingCount = CodingKeys(stringValue: "maintenanceOngoingCount")
+      static let maintenancePendingCount = CodingKeys(stringValue: "maintenancePendingCount")
+      static let schedulingType = CodingKeys(stringValue: "schedulingType")
+      static let subblockInfraMaintenanceOngoingCount = CodingKeys(
+        stringValue: "subblockInfraMaintenanceOngoingCount")
+      static let subblockInfraMaintenancePendingCount = CodingKeys(
+        stringValue: "subblockInfraMaintenancePendingCount")
+      static let upcomingGroupMaintenance = CodingKeys(stringValue: "upcomingGroupMaintenance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceMaintenanceOngoingCount",
+        "instanceMaintenancePendingCount",
+        "maintenanceOngoingCount",
+        "maintenancePendingCount",
+        "schedulingType",
+        "subblockInfraMaintenanceOngoingCount",
+        "subblockInfraMaintenancePendingCount",
+        "upcomingGroupMaintenance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instanceMaintenanceOngoingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .instanceMaintenanceOngoingCount)
+      self.instanceMaintenancePendingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .instanceMaintenancePendingCount)
+      self.maintenanceOngoingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maintenanceOngoingCount)
+      self.maintenancePendingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maintenancePendingCount)
+      self.schedulingType = try container.decodeIfPresent(
+        GroupMaintenanceInfo.SchedulingType.self, forKey: .schedulingType)
+      self.subblockInfraMaintenanceOngoingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .subblockInfraMaintenanceOngoingCount)
+      self.subblockInfraMaintenancePendingCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .subblockInfraMaintenancePendingCount)
+      self.upcomingGroupMaintenance = try container.decodeIfPresent(
+        UpcomingMaintenance.self, forKey: .upcomingGroupMaintenance)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.instanceMaintenanceOngoingCount, forKey: .instanceMaintenanceOngoingCount)
+      try container.encodeIfPresent(
+        self.instanceMaintenancePendingCount, forKey: .instanceMaintenancePendingCount)
+      try container.encodeIfPresent(self.maintenanceOngoingCount, forKey: .maintenanceOngoingCount)
+      try container.encodeIfPresent(self.maintenancePendingCount, forKey: .maintenancePendingCount)
+      try container.encodeIfPresent(self.schedulingType, forKey: .schedulingType)
+      try container.encodeIfPresent(
+        self.subblockInfraMaintenanceOngoingCount, forKey: .subblockInfraMaintenanceOngoingCount)
+      try container.encodeIfPresent(
+        self.subblockInfraMaintenancePendingCount, forKey: .subblockInfraMaintenancePendingCount)
+      try container.encodeIfPresent(
+        self.upcomingGroupMaintenance, forKey: .upcomingGroupMaintenance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [schedulingType][google.cloud.compute.v1.GroupMaintenanceInfo.schedulingType] field.

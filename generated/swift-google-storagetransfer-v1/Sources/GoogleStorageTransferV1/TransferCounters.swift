@@ -104,6 +104,8 @@ public struct TransferCounters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Number of intermediate objects failed cleaned up.
   public var intermediateObjectsFailedCleanedUp: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferCounters`.
   public init() {}
 
@@ -118,6 +120,197 @@ public struct TransferCounters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let objectsFoundFromSource = CodingKeys(stringValue: "objectsFoundFromSource")
+    static let bytesFoundFromSource = CodingKeys(stringValue: "bytesFoundFromSource")
+    static let objectsFoundOnlyFromSink = CodingKeys(stringValue: "objectsFoundOnlyFromSink")
+    static let bytesFoundOnlyFromSink = CodingKeys(stringValue: "bytesFoundOnlyFromSink")
+    static let objectsFromSourceSkippedBySync = CodingKeys(
+      stringValue: "objectsFromSourceSkippedBySync")
+    static let bytesFromSourceSkippedBySync = CodingKeys(
+      stringValue: "bytesFromSourceSkippedBySync")
+    static let objectsCopiedToSink = CodingKeys(stringValue: "objectsCopiedToSink")
+    static let bytesCopiedToSink = CodingKeys(stringValue: "bytesCopiedToSink")
+    static let objectsDeletedFromSource = CodingKeys(stringValue: "objectsDeletedFromSource")
+    static let bytesDeletedFromSource = CodingKeys(stringValue: "bytesDeletedFromSource")
+    static let objectsDeletedFromSink = CodingKeys(stringValue: "objectsDeletedFromSink")
+    static let bytesDeletedFromSink = CodingKeys(stringValue: "bytesDeletedFromSink")
+    static let objectsFromSourceFailed = CodingKeys(stringValue: "objectsFromSourceFailed")
+    static let bytesFromSourceFailed = CodingKeys(stringValue: "bytesFromSourceFailed")
+    static let objectsFailedToDeleteFromSink = CodingKeys(
+      stringValue: "objectsFailedToDeleteFromSink")
+    static let bytesFailedToDeleteFromSink = CodingKeys(stringValue: "bytesFailedToDeleteFromSink")
+    static let directoriesFoundFromSource = CodingKeys(stringValue: "directoriesFoundFromSource")
+    static let directoriesFailedToListFromSource = CodingKeys(
+      stringValue: "directoriesFailedToListFromSource")
+    static let directoriesSuccessfullyListedFromSource = CodingKeys(
+      stringValue: "directoriesSuccessfullyListedFromSource")
+    static let intermediateObjectsCleanedUp = CodingKeys(
+      stringValue: "intermediateObjectsCleanedUp")
+    static let intermediateObjectsFailedCleanedUp = CodingKeys(
+      stringValue: "intermediateObjectsFailedCleanedUp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "objectsFoundFromSource",
+      "bytesFoundFromSource",
+      "objectsFoundOnlyFromSink",
+      "bytesFoundOnlyFromSink",
+      "objectsFromSourceSkippedBySync",
+      "bytesFromSourceSkippedBySync",
+      "objectsCopiedToSink",
+      "bytesCopiedToSink",
+      "objectsDeletedFromSource",
+      "bytesDeletedFromSource",
+      "objectsDeletedFromSink",
+      "bytesDeletedFromSink",
+      "objectsFromSourceFailed",
+      "bytesFromSourceFailed",
+      "objectsFailedToDeleteFromSink",
+      "bytesFailedToDeleteFromSink",
+      "directoriesFoundFromSource",
+      "directoriesFailedToListFromSource",
+      "directoriesSuccessfullyListedFromSource",
+      "intermediateObjectsCleanedUp",
+      "intermediateObjectsFailedCleanedUp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsFoundFromSource)
+    {
+      self.objectsFoundFromSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesFoundFromSource) {
+      self.bytesFoundFromSource = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectsFoundOnlyFromSink)
+    {
+      self.objectsFoundOnlyFromSink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesFoundOnlyFromSink)
+    {
+      self.bytesFoundOnlyFromSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectsFromSourceSkippedBySync)
+    {
+      self.objectsFromSourceSkippedBySync = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .bytesFromSourceSkippedBySync)
+    {
+      self.bytesFromSourceSkippedBySync = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsCopiedToSink) {
+      self.objectsCopiedToSink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesCopiedToSink) {
+      self.bytesCopiedToSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectsDeletedFromSource)
+    {
+      self.objectsDeletedFromSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesDeletedFromSource)
+    {
+      self.bytesDeletedFromSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsDeletedFromSink)
+    {
+      self.objectsDeletedFromSink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesDeletedFromSink) {
+      self.bytesDeletedFromSink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsFromSourceFailed)
+    {
+      self.objectsFromSourceFailed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesFromSourceFailed) {
+      self.bytesFromSourceFailed = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectsFailedToDeleteFromSink)
+    {
+      self.objectsFailedToDeleteFromSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .bytesFailedToDeleteFromSink)
+    {
+      self.bytesFailedToDeleteFromSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .directoriesFoundFromSource)
+    {
+      self.directoriesFoundFromSource = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .directoriesFailedToListFromSource)
+    {
+      self.directoriesFailedToListFromSource = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .directoriesSuccessfullyListedFromSource)
+    {
+      self.directoriesSuccessfullyListedFromSource = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .intermediateObjectsCleanedUp)
+    {
+      self.intermediateObjectsCleanedUp = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .intermediateObjectsFailedCleanedUp)
+    {
+      self.intermediateObjectsFailedCleanedUp = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.objectsFoundFromSource, forKey: .objectsFoundFromSource)
+    try container.encode(self.bytesFoundFromSource, forKey: .bytesFoundFromSource)
+    try container.encode(self.objectsFoundOnlyFromSink, forKey: .objectsFoundOnlyFromSink)
+    try container.encode(self.bytesFoundOnlyFromSink, forKey: .bytesFoundOnlyFromSink)
+    try container.encode(
+      self.objectsFromSourceSkippedBySync, forKey: .objectsFromSourceSkippedBySync)
+    try container.encode(self.bytesFromSourceSkippedBySync, forKey: .bytesFromSourceSkippedBySync)
+    try container.encode(self.objectsCopiedToSink, forKey: .objectsCopiedToSink)
+    try container.encode(self.bytesCopiedToSink, forKey: .bytesCopiedToSink)
+    try container.encode(self.objectsDeletedFromSource, forKey: .objectsDeletedFromSource)
+    try container.encode(self.bytesDeletedFromSource, forKey: .bytesDeletedFromSource)
+    try container.encode(self.objectsDeletedFromSink, forKey: .objectsDeletedFromSink)
+    try container.encode(self.bytesDeletedFromSink, forKey: .bytesDeletedFromSink)
+    try container.encode(self.objectsFromSourceFailed, forKey: .objectsFromSourceFailed)
+    try container.encode(self.bytesFromSourceFailed, forKey: .bytesFromSourceFailed)
+    try container.encode(self.objectsFailedToDeleteFromSink, forKey: .objectsFailedToDeleteFromSink)
+    try container.encode(self.bytesFailedToDeleteFromSink, forKey: .bytesFailedToDeleteFromSink)
+    try container.encode(self.directoriesFoundFromSource, forKey: .directoriesFoundFromSource)
+    try container.encode(
+      self.directoriesFailedToListFromSource, forKey: .directoriesFailedToListFromSource)
+    try container.encode(
+      self.directoriesSuccessfullyListedFromSource, forKey: .directoriesSuccessfullyListedFromSource
+    )
+    try container.encode(self.intermediateObjectsCleanedUp, forKey: .intermediateObjectsCleanedUp)
+    try container.encode(
+      self.intermediateObjectsFailedCleanedUp, forKey: .intermediateObjectsFailedCleanedUp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

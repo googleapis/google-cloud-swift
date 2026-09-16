@@ -88,6 +88,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// this backup is created from.
   public var fileSystemProtocol: Instance.FileProtocol = Instance.FileProtocol()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Backup`.
   public init() {}
 
@@ -102,6 +104,129 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let capacityGb = CodingKeys(stringValue: "capacityGb")
+    static let storageBytes = CodingKeys(stringValue: "storageBytes")
+    static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
+    static let sourceFileShare = CodingKeys(stringValue: "sourceFileShare")
+    static let sourceInstanceTier = CodingKeys(stringValue: "sourceInstanceTier")
+    static let downloadBytes = CodingKeys(stringValue: "downloadBytes")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let fileSystemProtocol = CodingKeys(stringValue: "fileSystemProtocol")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "state",
+      "createTime",
+      "labels",
+      "capacityGb",
+      "storageBytes",
+      "sourceInstance",
+      "sourceFileShare",
+      "sourceInstanceTier",
+      "downloadBytes",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "kmsKey",
+      "tags",
+      "fileSystemProtocol",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityGb) {
+      self.capacityGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .storageBytes) {
+      self.storageBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceInstance) {
+      self.sourceInstance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceFileShare) {
+      self.sourceFileShare = value
+    }
+    if let value = try container.decodeIfPresent(Instance.Tier.self, forKey: .sourceInstanceTier) {
+      self.sourceInstanceTier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .downloadBytes) {
+      self.downloadBytes = value
+    }
+    self.satisfiesPzs = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .satisfiesPzs)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(
+      Instance.FileProtocol.self, forKey: .fileSystemProtocol)
+    {
+      self.fileSystemProtocol = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.capacityGb, forKey: .capacityGb)
+    try container.encode(self.storageBytes, forKey: .storageBytes)
+    try container.encode(self.sourceInstance, forKey: .sourceInstance)
+    try container.encode(self.sourceFileShare, forKey: .sourceFileShare)
+    try container.encode(self.sourceInstanceTier, forKey: .sourceInstanceTier)
+    try container.encode(self.downloadBytes, forKey: .downloadBytes)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.fileSystemProtocol, forKey: .fileSystemProtocol)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The backup state.

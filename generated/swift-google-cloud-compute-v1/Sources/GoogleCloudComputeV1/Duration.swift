@@ -36,6 +36,8 @@
     /// 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
     public var seconds: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Duration`.
     public init() {}
 
@@ -50,6 +52,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nanos = CodingKeys(stringValue: "nanos")
+      static let seconds = CodingKeys(stringValue: "seconds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nanos",
+        "seconds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.nanos = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos)
+      self.seconds = try container.decodeIfPresent(Swift.Int64.self, forKey: .seconds)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.nanos, forKey: .nanos)
+      try container.encodeIfPresent(self.seconds, forKey: .seconds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

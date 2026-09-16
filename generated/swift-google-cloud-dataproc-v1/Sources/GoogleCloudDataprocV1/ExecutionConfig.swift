@@ -85,6 +85,8 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Network configuration for workload execution.
   public var network: OneOf_Network? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecutionConfig`.
   public init() {}
 
@@ -101,31 +103,60 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case serviceAccount = "serviceAccount"
-    case networkUri = "networkUri"
-    case subnetworkUri = "subnetworkUri"
-    case networkTags = "networkTags"
-    case kmsKey = "kmsKey"
-    case idleTtl = "idleTtl"
-    case ttl = "ttl"
-    case stagingBucket = "stagingBucket"
-    case authenticationConfig = "authenticationConfig"
-    case resourceManagerTags = "resourceManagerTags"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let subnetworkUri = CodingKeys(stringValue: "subnetworkUri")
+    static let networkTags = CodingKeys(stringValue: "networkTags")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let idleTtl = CodingKeys(stringValue: "idleTtl")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let stagingBucket = CodingKeys(stringValue: "stagingBucket")
+    static let authenticationConfig = CodingKeys(stringValue: "authenticationConfig")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccount",
+      "networkUri",
+      "subnetworkUri",
+      "networkTags",
+      "kmsKey",
+      "idleTtl",
+      "ttl",
+      "stagingBucket",
+      "authenticationConfig",
+      "resourceManagerTags",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.networkTags = try container.decode([Swift.String].self, forKey: .networkTags)
-    self.kmsKey = try container.decode(Swift.String.self, forKey: .kmsKey)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+      self.networkTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
     self.idleTtl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .idleTtl)
     self.ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .ttl)
-    self.stagingBucket = try container.decode(Swift.String.self, forKey: .stagingBucket)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stagingBucket) {
+      self.stagingBucket = value
+    }
     self.authenticationConfig = try container.decodeIfPresent(
       AuthenticationConfig.self, forKey: .authenticationConfig)
-    self.resourceManagerTags = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
+    {
+      self.resourceManagerTags = value
+    }
 
     var network: OneOf_Network? = nil
     let networkCheckAndSet = {
@@ -145,6 +176,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try networkCheckAndSet(.subnetworkUri(subnetworkUri))
     }
     self.network = network
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -152,10 +187,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.networkTags, forKey: .networkTags)
     try container.encode(self.kmsKey, forKey: .kmsKey)
-    try container.encode(self.idleTtl, forKey: .idleTtl)
-    try container.encode(self.ttl, forKey: .ttl)
+    try container.encodeIfPresent(self.idleTtl, forKey: .idleTtl)
+    try container.encodeIfPresent(self.ttl, forKey: .ttl)
     try container.encode(self.stagingBucket, forKey: .stagingBucket)
-    try container.encode(self.authenticationConfig, forKey: .authenticationConfig)
+    try container.encodeIfPresent(self.authenticationConfig, forKey: .authenticationConfig)
     try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
 
     if let choice = self.network {
@@ -165,6 +200,9 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .subnetworkUri(let value):
         try container.encode(value, forKey: .subnetworkUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

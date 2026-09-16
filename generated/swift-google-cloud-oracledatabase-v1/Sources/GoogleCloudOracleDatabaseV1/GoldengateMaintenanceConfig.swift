@@ -49,6 +49,8 @@ public struct GoldengateMaintenanceConfig: Codable, Equatable, GoogleCloudWKT._A
   /// using the service default.
   public var securityPatchUpgradePeriodDays: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateMaintenanceConfig`.
   public init() {}
 
@@ -63,6 +65,81 @@ public struct GoldengateMaintenanceConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let isInterimReleaseAutoUpgradeEnabled = CodingKeys(
+      stringValue: "isInterimReleaseAutoUpgradeEnabled")
+    static let interimReleaseUpgradePeriodDays = CodingKeys(
+      stringValue: "interimReleaseUpgradePeriodDays")
+    static let bundleReleaseUpgradePeriodDays = CodingKeys(
+      stringValue: "bundleReleaseUpgradePeriodDays")
+    static let majorReleaseUpgradePeriodDays = CodingKeys(
+      stringValue: "majorReleaseUpgradePeriodDays")
+    static let securityPatchUpgradePeriodDays = CodingKeys(
+      stringValue: "securityPatchUpgradePeriodDays")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "isInterimReleaseAutoUpgradeEnabled",
+      "interimReleaseUpgradePeriodDays",
+      "bundleReleaseUpgradePeriodDays",
+      "majorReleaseUpgradePeriodDays",
+      "securityPatchUpgradePeriodDays",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isInterimReleaseAutoUpgradeEnabled)
+    {
+      self.isInterimReleaseAutoUpgradeEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .interimReleaseUpgradePeriodDays)
+    {
+      self.interimReleaseUpgradePeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .bundleReleaseUpgradePeriodDays)
+    {
+      self.bundleReleaseUpgradePeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .majorReleaseUpgradePeriodDays)
+    {
+      self.majorReleaseUpgradePeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .securityPatchUpgradePeriodDays)
+    {
+      self.securityPatchUpgradePeriodDays = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.isInterimReleaseAutoUpgradeEnabled, forKey: .isInterimReleaseAutoUpgradeEnabled)
+    try container.encode(
+      self.interimReleaseUpgradePeriodDays, forKey: .interimReleaseUpgradePeriodDays)
+    try container.encode(
+      self.bundleReleaseUpgradePeriodDays, forKey: .bundleReleaseUpgradePeriodDays)
+    try container.encode(self.majorReleaseUpgradePeriodDays, forKey: .majorReleaseUpgradePeriodDays)
+    try container.encode(
+      self.securityPatchUpgradePeriodDays, forKey: .securityPatchUpgradePeriodDays)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -87,6 +87,8 @@
     /// value HOST, are differentiated.
     public var xpnProjectStatus: Project.XpnProjectStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Project`.
     public init() {}
 
@@ -101,6 +103,104 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cloudArmorTier = CodingKeys(stringValue: "cloudArmorTier")
+      static let commonInstanceMetadata = CodingKeys(stringValue: "commonInstanceMetadata")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let defaultNetworkTier = CodingKeys(stringValue: "defaultNetworkTier")
+      static let defaultServiceAccount = CodingKeys(stringValue: "defaultServiceAccount")
+      static let description = CodingKeys(stringValue: "description")
+      static let enabledFeatures = CodingKeys(stringValue: "enabledFeatures")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let quotas = CodingKeys(stringValue: "quotas")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let usageExportLocation = CodingKeys(stringValue: "usageExportLocation")
+      static let vmDnsSetting = CodingKeys(stringValue: "vmDnsSetting")
+      static let xpnProjectStatus = CodingKeys(stringValue: "xpnProjectStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cloudArmorTier",
+        "commonInstanceMetadata",
+        "creationTimestamp",
+        "defaultNetworkTier",
+        "defaultServiceAccount",
+        "description",
+        "enabledFeatures",
+        "id",
+        "kind",
+        "name",
+        "quotas",
+        "selfLink",
+        "usageExportLocation",
+        "vmDnsSetting",
+        "xpnProjectStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cloudArmorTier = try container.decodeIfPresent(
+        Project.CloudArmorTier.self, forKey: .cloudArmorTier)
+      self.commonInstanceMetadata = try container.decodeIfPresent(
+        Metadata.self, forKey: .commonInstanceMetadata)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.defaultNetworkTier = try container.decodeIfPresent(
+        Project.DefaultNetworkTier.self, forKey: .defaultNetworkTier)
+      self.defaultServiceAccount = try container.decodeIfPresent(
+        Swift.String.self, forKey: .defaultServiceAccount)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .enabledFeatures) {
+        self.enabledFeatures = value
+      }
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent([Quota].self, forKey: .quotas) {
+        self.quotas = value
+      }
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.usageExportLocation = try container.decodeIfPresent(
+        UsageExportLocation.self, forKey: .usageExportLocation)
+      self.vmDnsSetting = try container.decodeIfPresent(
+        Project.VmDnsSetting.self, forKey: .vmDnsSetting)
+      self.xpnProjectStatus = try container.decodeIfPresent(
+        Project.XpnProjectStatus.self, forKey: .xpnProjectStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cloudArmorTier, forKey: .cloudArmorTier)
+      try container.encodeIfPresent(self.commonInstanceMetadata, forKey: .commonInstanceMetadata)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.defaultNetworkTier, forKey: .defaultNetworkTier)
+      try container.encodeIfPresent(self.defaultServiceAccount, forKey: .defaultServiceAccount)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.enabledFeatures, forKey: .enabledFeatures)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encode(self.quotas, forKey: .quotas)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.usageExportLocation, forKey: .usageExportLocation)
+      try container.encodeIfPresent(self.vmDnsSetting, forKey: .vmDnsSetting)
+      try container.encodeIfPresent(self.xpnProjectStatus, forKey: .xpnProjectStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [cloudArmorTier][google.cloud.compute.v1.Project.cloudArmorTier] field.

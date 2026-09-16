@@ -38,6 +38,8 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// above `Reason`.
   public var reasons: [SkippedShipment.Reason] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SkippedShipment`.
   public init() {}
 
@@ -52,6 +54,50 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let index = CodingKeys(stringValue: "index")
+    static let label = CodingKeys(stringValue: "label")
+    static let reasons = CodingKeys(stringValue: "reasons")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "index",
+      "label",
+      "reasons",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
+      self.index = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent([SkippedShipment.Reason].self, forKey: .reasons) {
+      self.reasons = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.index, forKey: .index)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.reasons, forKey: .reasons)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// If we can explain why the shipment was skipped, reasons will be listed
@@ -94,6 +140,8 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// capacity type that is exceeded.
     public var exampleExceededCapacityType: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Reason`.
     public init() {}
 
@@ -108,6 +156,53 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let code = CodingKeys(stringValue: "code")
+      static let exampleVehicleIndex = CodingKeys(stringValue: "exampleVehicleIndex")
+      static let exampleExceededCapacityType = CodingKeys(
+        stringValue: "exampleExceededCapacityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "code",
+        "exampleVehicleIndex",
+        "exampleExceededCapacityType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(SkippedShipment.Reason.Code.self, forKey: .code)
+      {
+        self.code = value
+      }
+      self.exampleVehicleIndex = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .exampleVehicleIndex)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .exampleExceededCapacityType)
+      {
+        self.exampleExceededCapacityType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.code, forKey: .code)
+      try container.encodeIfPresent(self.exampleVehicleIndex, forKey: .exampleVehicleIndex)
+      try container.encode(self.exampleExceededCapacityType, forKey: .exampleExceededCapacityType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Code identifying the reason type. The order here is meaningless. In

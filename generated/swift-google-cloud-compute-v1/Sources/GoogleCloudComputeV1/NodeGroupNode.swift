@@ -62,6 +62,8 @@
     /// Output only. [Output Only] The information about an upcoming maintenance event.
     public var upcomingMaintenance: UpcomingMaintenance? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeGroupNode`.
     public init() {}
 
@@ -76,6 +78,103 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accelerators = CodingKeys(stringValue: "accelerators")
+      static let consumedResources = CodingKeys(stringValue: "consumedResources")
+      static let cpuOvercommitType = CodingKeys(stringValue: "cpuOvercommitType")
+      static let disks = CodingKeys(stringValue: "disks")
+      static let instanceConsumptionData = CodingKeys(stringValue: "instanceConsumptionData")
+      static let instances = CodingKeys(stringValue: "instances")
+      static let name = CodingKeys(stringValue: "name")
+      static let nodeType = CodingKeys(stringValue: "nodeType")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let serverBinding = CodingKeys(stringValue: "serverBinding")
+      static let serverId = CodingKeys(stringValue: "serverId")
+      static let status = CodingKeys(stringValue: "status")
+      static let totalResources = CodingKeys(stringValue: "totalResources")
+      static let upcomingMaintenance = CodingKeys(stringValue: "upcomingMaintenance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accelerators",
+        "consumedResources",
+        "cpuOvercommitType",
+        "disks",
+        "instanceConsumptionData",
+        "instances",
+        "name",
+        "nodeType",
+        "satisfiesPzs",
+        "serverBinding",
+        "serverId",
+        "status",
+        "totalResources",
+        "upcomingMaintenance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AcceleratorConfig].self, forKey: .accelerators)
+      {
+        self.accelerators = value
+      }
+      self.consumedResources = try container.decodeIfPresent(
+        InstanceConsumptionInfo.self, forKey: .consumedResources)
+      self.cpuOvercommitType = try container.decodeIfPresent(
+        NodeGroupNode.CpuOvercommitType.self, forKey: .cpuOvercommitType)
+      if let value = try container.decodeIfPresent([LocalDisk].self, forKey: .disks) {
+        self.disks = value
+      }
+      if let value = try container.decodeIfPresent(
+        [InstanceConsumptionData].self, forKey: .instanceConsumptionData)
+      {
+        self.instanceConsumptionData = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+        self.instances = value
+      }
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.nodeType = try container.decodeIfPresent(Swift.String.self, forKey: .nodeType)
+      self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
+      self.serverBinding = try container.decodeIfPresent(ServerBinding.self, forKey: .serverBinding)
+      self.serverId = try container.decodeIfPresent(Swift.String.self, forKey: .serverId)
+      self.status = try container.decodeIfPresent(NodeGroupNode.Status.self, forKey: .status)
+      self.totalResources = try container.decodeIfPresent(
+        InstanceConsumptionInfo.self, forKey: .totalResources)
+      self.upcomingMaintenance = try container.decodeIfPresent(
+        UpcomingMaintenance.self, forKey: .upcomingMaintenance)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.accelerators, forKey: .accelerators)
+      try container.encodeIfPresent(self.consumedResources, forKey: .consumedResources)
+      try container.encodeIfPresent(self.cpuOvercommitType, forKey: .cpuOvercommitType)
+      try container.encode(self.disks, forKey: .disks)
+      try container.encode(self.instanceConsumptionData, forKey: .instanceConsumptionData)
+      try container.encode(self.instances, forKey: .instances)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.nodeType, forKey: .nodeType)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.serverBinding, forKey: .serverBinding)
+      try container.encodeIfPresent(self.serverId, forKey: .serverId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.totalResources, forKey: .totalResources)
+      try container.encodeIfPresent(self.upcomingMaintenance, forKey: .upcomingMaintenance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [cpuOvercommitType][google.cloud.compute.v1.NodeGroupNode.cpuOvercommitType] field.

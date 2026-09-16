@@ -43,6 +43,8 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Traffic factor to take into account while searching by commute.
   public var trafficOption: OneOf_TrafficOption? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommuteFilter`.
   public init() {}
 
@@ -59,24 +61,42 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case commuteMethod = "commuteMethod"
-    case startCoordinates = "startCoordinates"
-    case travelDuration = "travelDuration"
-    case allowImpreciseAddresses = "allowImpreciseAddresses"
-    case roadTraffic = "roadTraffic"
-    case departureTime = "departureTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let commuteMethod = CodingKeys(stringValue: "commuteMethod")
+    static let startCoordinates = CodingKeys(stringValue: "startCoordinates")
+    static let travelDuration = CodingKeys(stringValue: "travelDuration")
+    static let allowImpreciseAddresses = CodingKeys(stringValue: "allowImpreciseAddresses")
+    static let roadTraffic = CodingKeys(stringValue: "roadTraffic")
+    static let departureTime = CodingKeys(stringValue: "departureTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "commuteMethod",
+      "startCoordinates",
+      "travelDuration",
+      "allowImpreciseAddresses",
+      "roadTraffic",
+      "departureTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.commuteMethod = try container.decode(CommuteMethod.self, forKey: .commuteMethod)
+    if let value = try container.decodeIfPresent(CommuteMethod.self, forKey: .commuteMethod) {
+      self.commuteMethod = value
+    }
     self.startCoordinates = try container.decodeIfPresent(
       GoogleType.LatLng.self, forKey: .startCoordinates)
     self.travelDuration = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .travelDuration)
-    self.allowImpreciseAddresses = try container.decode(
-      Swift.Bool.self, forKey: .allowImpreciseAddresses)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowImpreciseAddresses)
+    {
+      self.allowImpreciseAddresses = value
+    }
 
     var trafficOption: OneOf_TrafficOption? = nil
     let trafficOptionCheckAndSet = {
@@ -99,13 +119,17 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try trafficOptionCheckAndSet(.departureTime(departureTime))
     }
     self.trafficOption = trafficOption
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.commuteMethod, forKey: .commuteMethod)
-    try container.encode(self.startCoordinates, forKey: .startCoordinates)
-    try container.encode(self.travelDuration, forKey: .travelDuration)
+    try container.encodeIfPresent(self.startCoordinates, forKey: .startCoordinates)
+    try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)
     try container.encode(self.allowImpreciseAddresses, forKey: .allowImpreciseAddresses)
 
     if let choice = self.trafficOption {
@@ -115,6 +139,9 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .departureTime(let value):
         try container.encode(value, forKey: .departureTime)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

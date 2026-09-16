@@ -43,6 +43,8 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The identifier of the tool that got executed.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecuteToolResponse`.
   public init() {}
 
@@ -59,13 +61,27 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tool = "tool"
-    case toolsetTool = "toolsetTool"
-    case response = "response"
-    case variables = "variables"
-    case citations = "citations"
-    case googleSearchSuggestions = "googleSearchSuggestions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tool = CodingKeys(stringValue: "tool")
+    static let toolsetTool = CodingKeys(stringValue: "toolsetTool")
+    static let response = CodingKeys(stringValue: "response")
+    static let variables = CodingKeys(stringValue: "variables")
+    static let citations = CodingKeys(stringValue: "citations")
+    static let googleSearchSuggestions = CodingKeys(stringValue: "googleSearchSuggestions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tool",
+      "toolsetTool",
+      "response",
+      "variables",
+      "citations",
+      "googleSearchSuggestions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,14 +109,18 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.response, forKey: .response)
-    try container.encode(self.variables, forKey: .variables)
-    try container.encode(self.citations, forKey: .citations)
-    try container.encode(self.googleSearchSuggestions, forKey: .googleSearchSuggestions)
+    try container.encodeIfPresent(self.response, forKey: .response)
+    try container.encodeIfPresent(self.variables, forKey: .variables)
+    try container.encodeIfPresent(self.citations, forKey: .citations)
+    try container.encodeIfPresent(self.googleSearchSuggestions, forKey: .googleSearchSuggestions)
 
     if let choice = self.toolIdentifier {
       switch choice {
@@ -109,6 +129,9 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .toolsetTool(let value):
         try container.encode(value, forKey: .toolsetTool)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

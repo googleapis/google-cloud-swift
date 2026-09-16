@@ -48,6 +48,8 @@
     /// (1200s). Must be a positive number.
     public var retryDurationSec: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NotificationEndpointGrpcSettings`.
     public init() {}
 
@@ -62,6 +64,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let authority = CodingKeys(stringValue: "authority")
+      static let endpoint = CodingKeys(stringValue: "endpoint")
+      static let payloadName = CodingKeys(stringValue: "payloadName")
+      static let resendInterval = CodingKeys(stringValue: "resendInterval")
+      static let retryDurationSec = CodingKeys(stringValue: "retryDurationSec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "authority",
+        "endpoint",
+        "payloadName",
+        "resendInterval",
+        "retryDurationSec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.authority = try container.decodeIfPresent(Swift.String.self, forKey: .authority)
+      self.endpoint = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint)
+      self.payloadName = try container.decodeIfPresent(Swift.String.self, forKey: .payloadName)
+      self.resendInterval = try container.decodeIfPresent(Duration.self, forKey: .resendInterval)
+      self.retryDurationSec = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .retryDurationSec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.authority, forKey: .authority)
+      try container.encodeIfPresent(self.endpoint, forKey: .endpoint)
+      try container.encodeIfPresent(self.payloadName, forKey: .payloadName)
+      try container.encodeIfPresent(self.resendInterval, forKey: .resendInterval)
+      try container.encodeIfPresent(self.retryDurationSec, forKey: .retryDurationSec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

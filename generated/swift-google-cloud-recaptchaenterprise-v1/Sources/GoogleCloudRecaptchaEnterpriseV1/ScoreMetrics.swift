@@ -28,6 +28,8 @@ public struct ScoreMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// site owners at time of the "execute" client-side call.
   public var actionMetrics: [Swift.String: ScoreDistribution] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScoreMetrics`.
   public init() {}
 
@@ -42,6 +44,45 @@ public struct ScoreMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let overallMetrics = CodingKeys(stringValue: "overallMetrics")
+    static let actionMetrics = CodingKeys(stringValue: "actionMetrics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "overallMetrics",
+      "actionMetrics",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.overallMetrics = try container.decodeIfPresent(
+      ScoreDistribution.self, forKey: .overallMetrics)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ScoreDistribution].self, forKey: .actionMetrics)
+    {
+      self.actionMetrics = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.overallMetrics, forKey: .overallMetrics)
+    try container.encode(self.actionMetrics, forKey: .actionMetrics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

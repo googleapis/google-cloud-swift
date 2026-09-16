@@ -38,6 +38,8 @@ public struct ProjectSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// partial redirection.
   public var pullPercent: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProjectSettings`.
   public init() {}
 
@@ -52,6 +54,52 @@ public struct ProjectSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let legacyRedirectionState = CodingKeys(stringValue: "legacyRedirectionState")
+    static let pullPercent = CodingKeys(stringValue: "pullPercent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "legacyRedirectionState",
+      "pullPercent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      ProjectSettings.RedirectionState.self, forKey: .legacyRedirectionState)
+    {
+      self.legacyRedirectionState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pullPercent) {
+      self.pullPercent = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.legacyRedirectionState, forKey: .legacyRedirectionState)
+    try container.encode(self.pullPercent, forKey: .pullPercent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible redirection states for legacy repositories.

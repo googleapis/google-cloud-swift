@@ -37,6 +37,8 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
   /// for all unsupported tables.
   public var includedTypes: OneOf_IncludedTypes? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryBigQueryConditions`.
   public init() {}
 
@@ -53,11 +55,23 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case createdAfter = "createdAfter"
-    case types = "types"
-    case typeCollection = "typeCollection"
-    case orConditions = "orConditions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createdAfter = CodingKeys(stringValue: "createdAfter")
+    static let types = CodingKeys(stringValue: "types")
+    static let typeCollection = CodingKeys(stringValue: "typeCollection")
+    static let orConditions = CodingKeys(stringValue: "orConditions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createdAfter",
+      "types",
+      "typeCollection",
+      "orConditions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -86,12 +100,16 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
       try includedTypesCheckAndSet(.typeCollection(typeCollection))
     }
     self.includedTypes = includedTypes
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.createdAfter, forKey: .createdAfter)
-    try container.encode(self.orConditions, forKey: .orConditions)
+    try container.encodeIfPresent(self.createdAfter, forKey: .createdAfter)
+    try container.encodeIfPresent(self.orConditions, forKey: .orConditions)
 
     if let choice = self.includedTypes {
       switch choice {
@@ -100,6 +118,9 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
       case .typeCollection(let value):
         try container.encode(value, forKey: .typeCollection)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -116,6 +137,8 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
     /// be 1 hour or greater.
     public var minAge: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OrConditions`.
     public init() {}
 
@@ -130,6 +153,42 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minRowCount = CodingKeys(stringValue: "minRowCount")
+      static let minAge = CodingKeys(stringValue: "minAge")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minRowCount",
+        "minAge",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minRowCount) {
+        self.minRowCount = value
+      }
+      self.minAge = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .minAge)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.minRowCount, forKey: .minRowCount)
+      try container.encodeIfPresent(self.minAge, forKey: .minAge)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

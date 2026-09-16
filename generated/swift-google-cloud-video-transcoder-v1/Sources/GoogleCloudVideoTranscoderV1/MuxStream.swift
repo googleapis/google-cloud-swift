@@ -72,6 +72,8 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specifies the container configuration.
   public var containerConfig: OneOf_ContainerConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MuxStream`.
   public init() {}
 
@@ -88,25 +90,50 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case key = "key"
-    case fileName = "fileName"
-    case container = "container"
-    case elementaryStreams = "elementaryStreams"
-    case segmentSettings = "segmentSettings"
-    case encryptionId = "encryptionId"
-    case fmp4 = "fmp4"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let fileName = CodingKeys(stringValue: "fileName")
+    static let container = CodingKeys(stringValue: "container")
+    static let elementaryStreams = CodingKeys(stringValue: "elementaryStreams")
+    static let segmentSettings = CodingKeys(stringValue: "segmentSettings")
+    static let encryptionId = CodingKeys(stringValue: "encryptionId")
+    static let fmp4 = CodingKeys(stringValue: "fmp4")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "fileName",
+      "container",
+      "elementaryStreams",
+      "segmentSettings",
+      "encryptionId",
+      "fmp4",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
-    self.fileName = try container.decode(Swift.String.self, forKey: .fileName)
-    self.container = try container.decode(Swift.String.self, forKey: .container)
-    self.elementaryStreams = try container.decode([Swift.String].self, forKey: .elementaryStreams)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileName) {
+      self.fileName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .container) {
+      self.container = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .elementaryStreams) {
+      self.elementaryStreams = value
+    }
     self.segmentSettings = try container.decodeIfPresent(
       SegmentSettings.self, forKey: .segmentSettings)
-    self.encryptionId = try container.decode(Swift.String.self, forKey: .encryptionId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encryptionId) {
+      self.encryptionId = value
+    }
 
     var containerConfig: OneOf_ContainerConfig? = nil
     let containerConfigCheckAndSet = {
@@ -122,6 +149,10 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try containerConfigCheckAndSet(.fmp4(fmp4))
     }
     self.containerConfig = containerConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -130,7 +161,7 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.fileName, forKey: .fileName)
     try container.encode(self.container, forKey: .container)
     try container.encode(self.elementaryStreams, forKey: .elementaryStreams)
-    try container.encode(self.segmentSettings, forKey: .segmentSettings)
+    try container.encodeIfPresent(self.segmentSettings, forKey: .segmentSettings)
     try container.encode(self.encryptionId, forKey: .encryptionId)
 
     if let choice = self.containerConfig {
@@ -138,6 +169,9 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .fmp4(let value):
         try container.encode(value, forKey: .fmp4)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -154,6 +188,8 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// - `hev1`
     public var codecTag: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Fmp4Config`.
     public init() {}
 
@@ -168,6 +204,38 @@ public struct MuxStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let codecTag = CodingKeys(stringValue: "codecTag")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "codecTag"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codecTag) {
+        self.codecTag = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.codecTag, forKey: .codecTag)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@
     /// The status of a connected endpoint to this service attachment.
     public var status: ServiceAttachmentConnectedEndpoint.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServiceAttachmentConnectedEndpoint`.
     public init() {}
 
@@ -59,6 +61,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consumerNetwork = CodingKeys(stringValue: "consumerNetwork")
+      static let endpoint = CodingKeys(stringValue: "endpoint")
+      static let endpointWithId = CodingKeys(stringValue: "endpointWithId")
+      static let natIps = CodingKeys(stringValue: "natIps")
+      static let propagatedConnectionCount = CodingKeys(stringValue: "propagatedConnectionCount")
+      static let pscConnectionId = CodingKeys(stringValue: "pscConnectionId")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consumerNetwork",
+        "endpoint",
+        "endpointWithId",
+        "natIps",
+        "propagatedConnectionCount",
+        "pscConnectionId",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consumerNetwork = try container.decodeIfPresent(
+        Swift.String.self, forKey: .consumerNetwork)
+      self.endpoint = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint)
+      self.endpointWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .endpointWithId)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .natIps) {
+        self.natIps = value
+      }
+      self.propagatedConnectionCount = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .propagatedConnectionCount)
+      self.pscConnectionId = try container.decodeIfPresent(
+        Swift.UInt64.self, forKey: .pscConnectionId)
+      self.status = try container.decodeIfPresent(
+        ServiceAttachmentConnectedEndpoint.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.consumerNetwork, forKey: .consumerNetwork)
+      try container.encodeIfPresent(self.endpoint, forKey: .endpoint)
+      try container.encodeIfPresent(self.endpointWithId, forKey: .endpointWithId)
+      try container.encode(self.natIps, forKey: .natIps)
+      try container.encodeIfPresent(
+        self.propagatedConnectionCount, forKey: .propagatedConnectionCount)
+      try container.encodeIfPresent(self.pscConnectionId, forKey: .pscConnectionId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.status] field.

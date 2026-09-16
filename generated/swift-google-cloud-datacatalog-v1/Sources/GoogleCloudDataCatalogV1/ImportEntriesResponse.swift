@@ -33,6 +33,8 @@ public struct ImportEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Number of entries deleted as a result of import operation.
   public var deletedEntriesCount: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportEntriesResponse`.
   public init() {}
 
@@ -47,6 +49,42 @@ public struct ImportEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let upsertedEntriesCount = CodingKeys(stringValue: "upsertedEntriesCount")
+    static let deletedEntriesCount = CodingKeys(stringValue: "deletedEntriesCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "upsertedEntriesCount",
+      "deletedEntriesCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.upsertedEntriesCount = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .upsertedEntriesCount)
+    self.deletedEntriesCount = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .deletedEntriesCount)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.upsertedEntriesCount, forKey: .upsertedEntriesCount)
+    try container.encodeIfPresent(self.deletedEntriesCount, forKey: .deletedEntriesCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

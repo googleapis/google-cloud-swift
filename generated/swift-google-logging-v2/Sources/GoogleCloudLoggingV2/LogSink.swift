@@ -131,6 +131,8 @@ public struct LogSink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Destination dependent options.
   public var options: OneOf_Options? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogSink`.
   public init() {}
 
@@ -147,33 +149,72 @@ public struct LogSink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case destination = "destination"
-    case filter = "filter"
-    case description = "description"
-    case disabled = "disabled"
-    case exclusions = "exclusions"
-    case outputVersionFormat = "outputVersionFormat"
-    case writerIdentity = "writerIdentity"
-    case includeChildren = "includeChildren"
-    case bigqueryOptions = "bigqueryOptions"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let description = CodingKeys(stringValue: "description")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let exclusions = CodingKeys(stringValue: "exclusions")
+    static let outputVersionFormat = CodingKeys(stringValue: "outputVersionFormat")
+    static let writerIdentity = CodingKeys(stringValue: "writerIdentity")
+    static let includeChildren = CodingKeys(stringValue: "includeChildren")
+    static let bigqueryOptions = CodingKeys(stringValue: "bigqueryOptions")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "destination",
+      "filter",
+      "description",
+      "disabled",
+      "exclusions",
+      "outputVersionFormat",
+      "writerIdentity",
+      "includeChildren",
+      "bigqueryOptions",
+      "createTime",
+      "updateTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.destination = try container.decode(Swift.String.self, forKey: .destination)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
-    self.exclusions = try container.decode([LogExclusion].self, forKey: .exclusions)
-    self.outputVersionFormat = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
+      self.destination = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent([LogExclusion].self, forKey: .exclusions) {
+      self.exclusions = value
+    }
+    if let value = try container.decodeIfPresent(
       LogSink.VersionFormat.self, forKey: .outputVersionFormat)
-    self.writerIdentity = try container.decode(Swift.String.self, forKey: .writerIdentity)
-    self.includeChildren = try container.decode(Swift.Bool.self, forKey: .includeChildren)
+    {
+      self.outputVersionFormat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .writerIdentity) {
+      self.writerIdentity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeChildren) {
+      self.includeChildren = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -195,6 +236,10 @@ public struct LogSink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionsCheckAndSet(.bigqueryOptions(bigqueryOptions))
     }
     self.options = options
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -208,14 +253,17 @@ public struct LogSink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.outputVersionFormat, forKey: .outputVersionFormat)
     try container.encode(self.writerIdentity, forKey: .writerIdentity)
     try container.encode(self.includeChildren, forKey: .includeChildren)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.options {
       switch choice {
       case .bigqueryOptions(let value):
         try container.encode(value, forKey: .bigqueryOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -25,6 +25,8 @@ public struct TaskLogsRetentionConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   public var storageMode: TaskLogsRetentionConfig.TaskLogsStorageMode =
     TaskLogsRetentionConfig.TaskLogsStorageMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskLogsRetentionConfig`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct TaskLogsRetentionConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageMode = CodingKeys(stringValue: "storageMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storageMode"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      TaskLogsRetentionConfig.TaskLogsStorageMode.self, forKey: .storageMode)
+    {
+      self.storageMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.storageMode, forKey: .storageMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The definition of task_logs_storage_mode.

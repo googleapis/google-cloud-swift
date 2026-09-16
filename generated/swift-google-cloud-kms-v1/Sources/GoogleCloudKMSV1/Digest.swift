@@ -26,6 +26,8 @@ public struct Digest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The message digest.
   public var digest: OneOf_Digest? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Digest`.
   public init() {}
 
@@ -42,11 +44,23 @@ public struct Digest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sha256 = "sha256"
-    case sha384 = "sha384"
-    case sha512 = "sha512"
-    case externalMu = "externalMu"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sha256 = CodingKeys(stringValue: "sha256")
+    static let sha384 = CodingKeys(stringValue: "sha384")
+    static let sha512 = CodingKeys(stringValue: "sha512")
+    static let externalMu = CodingKeys(stringValue: "externalMu")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sha256",
+      "sha384",
+      "sha512",
+      "externalMu",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -75,6 +89,10 @@ public struct Digest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try digestCheckAndSet(.externalMu(externalMu))
     }
     self.digest = digest
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -91,6 +109,9 @@ public struct Digest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .externalMu(let value):
         try container.encode(value, forKey: .externalMu)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

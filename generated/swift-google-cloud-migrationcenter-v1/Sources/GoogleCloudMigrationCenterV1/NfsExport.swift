@@ -27,6 +27,8 @@ public struct NfsExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The hosts or networks to which the export is being shared.
   public var hosts: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NfsExport`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct NfsExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exportDirectory = CodingKeys(stringValue: "exportDirectory")
+    static let hosts = CodingKeys(stringValue: "hosts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exportDirectory",
+      "hosts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exportDirectory) {
+      self.exportDirectory = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .hosts) {
+      self.hosts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.exportDirectory, forKey: .exportDirectory)
+    try container.encode(self.hosts, forKey: .hosts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

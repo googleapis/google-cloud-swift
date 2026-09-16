@@ -37,6 +37,8 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleCloudWKT.
   /// The target storage.
   public var targetStorage: OneOf_TargetStorage? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskMigrationJobTargetDetails`.
   public init() {}
 
@@ -53,17 +55,34 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case targetDisk = "targetDisk"
-    case targetProject = "targetProject"
-    case labels = "labels"
-    case encryption = "encryption"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetDisk = CodingKeys(stringValue: "targetDisk")
+    static let targetProject = CodingKeys(stringValue: "targetProject")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let encryption = CodingKeys(stringValue: "encryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetDisk",
+      "targetProject",
+      "labels",
+      "encryption",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.targetProject = try container.decode(Swift.String.self, forKey: .targetProject)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+      self.targetProject = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
     var targetStorage: OneOf_TargetStorage? = nil
@@ -81,19 +100,26 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleCloudWKT.
       try targetStorageCheckAndSet(.targetDisk(targetDisk))
     }
     self.targetStorage = targetStorage
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.targetProject, forKey: .targetProject)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.encryption, forKey: .encryption)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
 
     if let choice = self.targetStorage {
       switch choice {
       case .targetDisk(let value):
         try container.encode(value, forKey: .targetDisk)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

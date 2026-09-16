@@ -24,6 +24,8 @@ public struct ActionExecutorOutput: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// List of rule and corresponding actions result.
   public var ruleActionsPairs: [RuleActionsPair] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ActionExecutorOutput`.
   public init() {}
 
@@ -38,6 +40,39 @@ public struct ActionExecutorOutput: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ruleActionsPairs = CodingKeys(stringValue: "ruleActionsPairs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ruleActionsPairs"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([RuleActionsPair].self, forKey: .ruleActionsPairs)
+    {
+      self.ruleActionsPairs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ruleActionsPairs, forKey: .ruleActionsPairs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

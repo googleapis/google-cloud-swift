@@ -50,6 +50,8 @@
     /// Optional. The key-value map of additional metadata for the datapoint.
     public var embeddingMetadata: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndexDatapoint`.
     public init() {}
 
@@ -66,6 +68,75 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datapointId = CodingKeys(stringValue: "datapointId")
+      static let featureVector = CodingKeys(stringValue: "featureVector")
+      static let sparseEmbedding = CodingKeys(stringValue: "sparseEmbedding")
+      static let restricts = CodingKeys(stringValue: "restricts")
+      static let numericRestricts = CodingKeys(stringValue: "numericRestricts")
+      static let crowdingTag = CodingKeys(stringValue: "crowdingTag")
+      static let embeddingMetadata = CodingKeys(stringValue: "embeddingMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datapointId",
+        "featureVector",
+        "sparseEmbedding",
+        "restricts",
+        "numericRestricts",
+        "crowdingTag",
+        "embeddingMetadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datapointId) {
+        self.datapointId = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .featureVector) {
+        self.featureVector = value
+      }
+      self.sparseEmbedding = try container.decodeIfPresent(
+        IndexDatapoint.SparseEmbedding.self, forKey: .sparseEmbedding)
+      if let value = try container.decodeIfPresent(
+        [IndexDatapoint.Restriction].self, forKey: .restricts)
+      {
+        self.restricts = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IndexDatapoint.NumericRestriction].self, forKey: .numericRestricts)
+      {
+        self.numericRestricts = value
+      }
+      self.crowdingTag = try container.decodeIfPresent(
+        IndexDatapoint.CrowdingTag.self, forKey: .crowdingTag)
+      self.embeddingMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .embeddingMetadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.datapointId, forKey: .datapointId)
+      try container.encode(self.featureVector, forKey: .featureVector)
+      try container.encodeIfPresent(self.sparseEmbedding, forKey: .sparseEmbedding)
+      try container.encode(self.restricts, forKey: .restricts)
+      try container.encode(self.numericRestricts, forKey: .numericRestricts)
+      try container.encodeIfPresent(self.crowdingTag, forKey: .crowdingTag)
+      try container.encodeIfPresent(self.embeddingMetadata, forKey: .embeddingMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Feature embedding vector for sparse index. An array of numbers whose values
     /// are located in the specified dimensions.
     public struct SparseEmbedding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -77,6 +148,8 @@
       /// Required. The list of indexes for the embedding values of the sparse
       /// vector.
       public var dimensions: [Swift.Int64] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SparseEmbedding`.
       public init() {}
@@ -92,6 +165,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let values = CodingKeys(stringValue: "values")
+        static let dimensions = CodingKeys(stringValue: "dimensions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "values",
+          "dimensions",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .values) {
+          self.values = value
+        }
+        if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .dimensions) {
+          self.dimensions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.values, forKey: .values)
+        try container.encode(self.dimensions, forKey: .dimensions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -119,6 +230,8 @@
       /// The attributes to deny in this namespace. e.g.: 'blue'
       public var denyList: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Restriction`.
       public init() {}
 
@@ -133,6 +246,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let namespace = CodingKeys(stringValue: "namespace")
+        static let allowList = CodingKeys(stringValue: "allowList")
+        static let denyList = CodingKeys(stringValue: "denyList")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "namespace",
+          "allowList",
+          "denyList",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+          self.namespace = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowList) {
+          self.allowList = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .denyList) {
+          self.denyList = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.namespace, forKey: .namespace)
+        try container.encode(self.allowList, forKey: .allowList)
+        try container.encode(self.denyList, forKey: .denyList)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -163,6 +320,8 @@
       /// namespace name. This is verified at runtime.
       public var value: OneOf_Value? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NumericRestriction`.
       public init() {}
 
@@ -179,18 +338,37 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case valueInt = "valueInt"
-        case valueFloat = "valueFloat"
-        case valueDouble = "valueDouble"
-        case namespace = "namespace"
-        case op = "op"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let valueInt = CodingKeys(stringValue: "valueInt")
+        static let valueFloat = CodingKeys(stringValue: "valueFloat")
+        static let valueDouble = CodingKeys(stringValue: "valueDouble")
+        static let namespace = CodingKeys(stringValue: "namespace")
+        static let op = CodingKeys(stringValue: "op")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "valueInt",
+          "valueFloat",
+          "valueDouble",
+          "namespace",
+          "op",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.namespace = try container.decode(Swift.String.self, forKey: .namespace)
-        self.op = try container.decode(IndexDatapoint.NumericRestriction.Operator.self, forKey: .op)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+          self.namespace = value
+        }
+        if let value = try container.decodeIfPresent(
+          IndexDatapoint.NumericRestriction.Operator.self, forKey: .op)
+        {
+          self.op = value
+        }
 
         var value: OneOf_Value? = nil
         let valueCheckAndSet = {
@@ -213,6 +391,10 @@
           try valueCheckAndSet(.valueDouble(valueDouble))
         }
         self.value = value
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -229,6 +411,9 @@
           case .valueDouble(let value):
             try container.encode(value, forKey: .valueDouble)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -404,6 +589,8 @@
       /// the total number of neighbors to return for a given query.
       public var crowdingAttribute: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CrowdingTag`.
       public init() {}
 
@@ -418,6 +605,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let crowdingAttribute = CodingKeys(stringValue: "crowdingAttribute")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "crowdingAttribute"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crowdingAttribute)
+        {
+          self.crowdingAttribute = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.crowdingAttribute, forKey: .crowdingAttribute)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

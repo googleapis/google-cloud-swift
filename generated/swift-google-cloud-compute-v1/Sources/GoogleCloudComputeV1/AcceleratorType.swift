@@ -64,6 +64,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AcceleratorType`.
     public init() {}
 
@@ -78,6 +80,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deprecated = CodingKeys(stringValue: "deprecated")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let maximumCardsPerInstance = CodingKeys(stringValue: "maximumCardsPerInstance")
+      static let name = CodingKeys(stringValue: "name")
+      static let resourceMetadata = CodingKeys(stringValue: "resourceMetadata")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "deprecated",
+        "description",
+        "id",
+        "kind",
+        "maximumCardsPerInstance",
+        "name",
+        "resourceMetadata",
+        "selfLink",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.deprecated = try container.decodeIfPresent(DeprecationStatus.self, forKey: .deprecated)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.maximumCardsPerInstance = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maximumCardsPerInstance)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.resourceMetadata = try container.decodeIfPresent(
+        ResourceMetadata.self, forKey: .resourceMetadata)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deprecated, forKey: .deprecated)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.maximumCardsPerInstance, forKey: .maximumCardsPerInstance)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.resourceMetadata, forKey: .resourceMetadata)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

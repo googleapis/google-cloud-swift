@@ -57,6 +57,8 @@ public struct InstanceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The status of the instance.
   public var status: InstanceInfo.Status = InstanceInfo.Status()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InstanceInfo`.
   public init() {}
 
@@ -71,6 +73,100 @@ public struct InstanceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let interface = CodingKeys(stringValue: "interface")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let externalIp = CodingKeys(stringValue: "externalIp")
+    static let networkTags = CodingKeys(stringValue: "networkTags")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let pscNetworkAttachmentUri = CodingKeys(stringValue: "pscNetworkAttachmentUri")
+    static let running = CodingKeys(stringValue: "running")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "interface",
+      "networkUri",
+      "internalIp",
+      "externalIp",
+      "networkTags",
+      "serviceAccount",
+      "pscNetworkAttachmentUri",
+      "running",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interface) {
+      self.interface = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalIp) {
+      self.externalIp = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+      self.networkTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .pscNetworkAttachmentUri)
+    {
+      self.pscNetworkAttachmentUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .running) {
+      self.running = value
+    }
+    if let value = try container.decodeIfPresent(InstanceInfo.Status.self, forKey: .status) {
+      self.status = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.interface, forKey: .interface)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.externalIp, forKey: .externalIp)
+    try container.encode(self.networkTags, forKey: .networkTags)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.pscNetworkAttachmentUri, forKey: .pscNetworkAttachmentUri)
+    try container.encode(self.running, forKey: .running)
+    try container.encode(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The status of the instance. We treat all states other than "RUNNING" as

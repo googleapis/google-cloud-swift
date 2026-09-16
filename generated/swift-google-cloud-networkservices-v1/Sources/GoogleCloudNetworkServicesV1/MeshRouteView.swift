@@ -38,6 +38,8 @@ public struct MeshRouteView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The resource id for the route.
   public var routeId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MeshRouteView`.
   public init() {}
 
@@ -52,6 +54,62 @@ public struct MeshRouteView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let routeProjectNumber = CodingKeys(stringValue: "routeProjectNumber")
+    static let routeLocation = CodingKeys(stringValue: "routeLocation")
+    static let routeType = CodingKeys(stringValue: "routeType")
+    static let routeId = CodingKeys(stringValue: "routeId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "routeProjectNumber",
+      "routeLocation",
+      "routeType",
+      "routeId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .routeProjectNumber) {
+      self.routeProjectNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .routeLocation) {
+      self.routeLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .routeType) {
+      self.routeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .routeId) {
+      self.routeId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.routeProjectNumber, forKey: .routeProjectNumber)
+    try container.encode(self.routeLocation, forKey: .routeLocation)
+    try container.encode(self.routeType, forKey: .routeType)
+    try container.encode(self.routeId, forKey: .routeId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

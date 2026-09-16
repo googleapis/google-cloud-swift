@@ -55,6 +55,8 @@
     ///    matching labels in the provided metadata.
     public var filterMatchCriteria: MetadataFilter.FilterMatchCriteria? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetadataFilter`.
     public init() {}
 
@@ -69,6 +71,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filterLabels = CodingKeys(stringValue: "filterLabels")
+      static let filterMatchCriteria = CodingKeys(stringValue: "filterMatchCriteria")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filterLabels",
+        "filterMatchCriteria",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [MetadataFilterLabelMatch].self, forKey: .filterLabels)
+      {
+        self.filterLabels = value
+      }
+      self.filterMatchCriteria = try container.decodeIfPresent(
+        MetadataFilter.FilterMatchCriteria.self, forKey: .filterMatchCriteria)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.filterLabels, forKey: .filterLabels)
+      try container.encodeIfPresent(self.filterMatchCriteria, forKey: .filterMatchCriteria)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [filterMatchCriteria][google.cloud.compute.v1.MetadataFilter.filterMatchCriteria] field.

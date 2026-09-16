@@ -48,6 +48,8 @@ public struct AudioProcessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// synthesized agent response, to enhance the naturalness of the conversation.
   public var ambientSoundConfig: AmbientSoundConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AudioProcessingConfig`.
   public init() {}
 
@@ -62,6 +64,54 @@ public struct AudioProcessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let synthesizeSpeechConfigs = CodingKeys(stringValue: "synthesizeSpeechConfigs")
+    static let bargeInConfig = CodingKeys(stringValue: "bargeInConfig")
+    static let inactivityTimeout = CodingKeys(stringValue: "inactivityTimeout")
+    static let ambientSoundConfig = CodingKeys(stringValue: "ambientSoundConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "synthesizeSpeechConfigs",
+      "bargeInConfig",
+      "inactivityTimeout",
+      "ambientSoundConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: SynthesizeSpeechConfig].self, forKey: .synthesizeSpeechConfigs)
+    {
+      self.synthesizeSpeechConfigs = value
+    }
+    self.bargeInConfig = try container.decodeIfPresent(BargeInConfig.self, forKey: .bargeInConfig)
+    self.inactivityTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .inactivityTimeout)
+    self.ambientSoundConfig = try container.decodeIfPresent(
+      AmbientSoundConfig.self, forKey: .ambientSoundConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.synthesizeSpeechConfigs, forKey: .synthesizeSpeechConfigs)
+    try container.encodeIfPresent(self.bargeInConfig, forKey: .bargeInConfig)
+    try container.encodeIfPresent(self.inactivityTimeout, forKey: .inactivityTimeout)
+    try container.encodeIfPresent(self.ambientSoundConfig, forKey: .ambientSoundConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

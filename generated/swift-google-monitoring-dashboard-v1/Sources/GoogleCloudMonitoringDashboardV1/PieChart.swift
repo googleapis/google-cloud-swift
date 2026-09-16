@@ -30,6 +30,8 @@ public struct PieChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Indicates whether or not the pie chart should show slices' labels
   public var showLabels: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PieChart`.
   public init() {}
 
@@ -44,6 +46,51 @@ public struct PieChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataSets = CodingKeys(stringValue: "dataSets")
+    static let chartType = CodingKeys(stringValue: "chartType")
+    static let showLabels = CodingKeys(stringValue: "showLabels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataSets",
+      "chartType",
+      "showLabels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([PieChart.PieChartDataSet].self, forKey: .dataSets)
+    {
+      self.dataSets = value
+    }
+    if let value = try container.decodeIfPresent(PieChart.PieChartType.self, forKey: .chartType) {
+      self.chartType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .showLabels) {
+      self.showLabels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dataSets, forKey: .dataSets)
+    try container.encode(self.chartType, forKey: .chartType)
+    try container.encode(self.showLabels, forKey: .showLabels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Groups a time series query definition.
@@ -69,6 +116,8 @@ public struct PieChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// would not make sense to fetch and align data at one minute intervals.
     public var minAlignmentPeriod: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PieChartDataSet`.
     public init() {}
 
@@ -83,6 +132,48 @@ public struct PieChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeSeriesQuery = CodingKeys(stringValue: "timeSeriesQuery")
+      static let sliceNameTemplate = CodingKeys(stringValue: "sliceNameTemplate")
+      static let minAlignmentPeriod = CodingKeys(stringValue: "minAlignmentPeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeSeriesQuery",
+        "sliceNameTemplate",
+        "minAlignmentPeriod",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.timeSeriesQuery = try container.decodeIfPresent(
+        TimeSeriesQuery.self, forKey: .timeSeriesQuery)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sliceNameTemplate) {
+        self.sliceNameTemplate = value
+      }
+      self.minAlignmentPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minAlignmentPeriod)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
+      try container.encode(self.sliceNameTemplate, forKey: .sliceNameTemplate)
+      try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

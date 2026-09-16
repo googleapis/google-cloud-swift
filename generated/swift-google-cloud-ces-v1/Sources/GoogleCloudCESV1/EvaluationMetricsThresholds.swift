@@ -41,6 +41,8 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
     EvaluationMetricsThresholds.HallucinationMetricBehavior =
       EvaluationMetricsThresholds.HallucinationMetricBehavior()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EvaluationMetricsThresholds`.
   public init() {}
 
@@ -55,6 +57,71 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let goldenEvaluationMetricsThresholds = CodingKeys(
+      stringValue: "goldenEvaluationMetricsThresholds")
+    static let hallucinationMetricBehavior = CodingKeys(stringValue: "hallucinationMetricBehavior")
+    static let goldenHallucinationMetricBehavior = CodingKeys(
+      stringValue: "goldenHallucinationMetricBehavior")
+    static let scenarioHallucinationMetricBehavior = CodingKeys(
+      stringValue: "scenarioHallucinationMetricBehavior")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "goldenEvaluationMetricsThresholds",
+      "hallucinationMetricBehavior",
+      "goldenHallucinationMetricBehavior",
+      "scenarioHallucinationMetricBehavior",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.goldenEvaluationMetricsThresholds = try container.decodeIfPresent(
+      EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.self,
+      forKey: .goldenEvaluationMetricsThresholds)
+    if let value = try container.decodeIfPresent(
+      EvaluationMetricsThresholds.HallucinationMetricBehavior.self,
+      forKey: .hallucinationMetricBehavior)
+    {
+      self.hallucinationMetricBehavior = value
+    }
+    if let value = try container.decodeIfPresent(
+      EvaluationMetricsThresholds.HallucinationMetricBehavior.self,
+      forKey: .goldenHallucinationMetricBehavior)
+    {
+      self.goldenHallucinationMetricBehavior = value
+    }
+    if let value = try container.decodeIfPresent(
+      EvaluationMetricsThresholds.HallucinationMetricBehavior.self,
+      forKey: .scenarioHallucinationMetricBehavior)
+    {
+      self.scenarioHallucinationMetricBehavior = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.goldenEvaluationMetricsThresholds, forKey: .goldenEvaluationMetricsThresholds)
+    try container.encode(self.hallucinationMetricBehavior, forKey: .hallucinationMetricBehavior)
+    try container.encode(
+      self.goldenHallucinationMetricBehavior, forKey: .goldenHallucinationMetricBehavior)
+    try container.encode(
+      self.scenarioHallucinationMetricBehavior, forKey: .scenarioHallucinationMetricBehavior)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Settings for golden evaluations.
@@ -76,6 +143,8 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
     /// not match any tool call in the golden expectation.
     public var toolMatchingSettings: EvaluationMetricsThresholds.ToolMatchingSettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoldenEvaluationMetricsThresholds`.
     public init() {}
 
@@ -90,6 +159,52 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let turnLevelMetricsThresholds = CodingKeys(stringValue: "turnLevelMetricsThresholds")
+      static let expectationLevelMetricsThresholds = CodingKeys(
+        stringValue: "expectationLevelMetricsThresholds")
+      static let toolMatchingSettings = CodingKeys(stringValue: "toolMatchingSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "turnLevelMetricsThresholds",
+        "expectationLevelMetricsThresholds",
+        "toolMatchingSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.turnLevelMetricsThresholds = try container.decodeIfPresent(
+        EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds
+          .self, forKey: .turnLevelMetricsThresholds)
+      self.expectationLevelMetricsThresholds = try container.decodeIfPresent(
+        EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds
+          .ExpectationLevelMetricsThresholds.self, forKey: .expectationLevelMetricsThresholds)
+      self.toolMatchingSettings = try container.decodeIfPresent(
+        EvaluationMetricsThresholds.ToolMatchingSettings.self, forKey: .toolMatchingSettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.turnLevelMetricsThresholds, forKey: .turnLevelMetricsThresholds)
+      try container.encodeIfPresent(
+        self.expectationLevelMetricsThresholds, forKey: .expectationLevelMetricsThresholds)
+      try container.encodeIfPresent(self.toolMatchingSettings, forKey: .toolMatchingSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Turn level metrics thresholds.
@@ -110,6 +225,8 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
           .SemanticSimilarityChannel = EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds
           .TurnLevelMetricsThresholds.SemanticSimilarityChannel()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TurnLevelMetricsThresholds`.
       public init() {}
 
@@ -124,6 +241,56 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let semanticSimilaritySuccessThreshold = CodingKeys(
+          stringValue: "semanticSimilaritySuccessThreshold")
+        static let overallToolInvocationCorrectnessThreshold = CodingKeys(
+          stringValue: "overallToolInvocationCorrectnessThreshold")
+        static let semanticSimilarityChannel = CodingKeys(stringValue: "semanticSimilarityChannel")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "semanticSimilaritySuccessThreshold",
+          "overallToolInvocationCorrectnessThreshold",
+          "semanticSimilarityChannel",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.semanticSimilaritySuccessThreshold = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .semanticSimilaritySuccessThreshold)
+        self.overallToolInvocationCorrectnessThreshold = try container.decodeIfPresent(
+          Swift.Float.self, forKey: .overallToolInvocationCorrectnessThreshold)
+        if let value = try container.decodeIfPresent(
+          EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds
+            .SemanticSimilarityChannel.self, forKey: .semanticSimilarityChannel)
+        {
+          self.semanticSimilarityChannel = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(
+          self.semanticSimilaritySuccessThreshold, forKey: .semanticSimilaritySuccessThreshold)
+        try container.encodeIfPresent(
+          self.overallToolInvocationCorrectnessThreshold,
+          forKey: .overallToolInvocationCorrectnessThreshold)
+        try container.encode(self.semanticSimilarityChannel, forKey: .semanticSimilarityChannel)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Semantic similarity channel to use.
@@ -252,6 +419,8 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
       /// parameter correctness. Must be a float between 0 and 1. Default is 1.0.
       public var toolInvocationParameterCorrectnessThreshold: Swift.Float? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ExpectationLevelMetricsThresholds`.
       public init() {}
 
@@ -266,6 +435,40 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let toolInvocationParameterCorrectnessThreshold = CodingKeys(
+          stringValue: "toolInvocationParameterCorrectnessThreshold")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "toolInvocationParameterCorrectnessThreshold"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.toolInvocationParameterCorrectnessThreshold = try container.decodeIfPresent(
+          Swift.Float.self, forKey: .toolInvocationParameterCorrectnessThreshold)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(
+          self.toolInvocationParameterCorrectnessThreshold,
+          forKey: .toolInvocationParameterCorrectnessThreshold)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -302,6 +505,8 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
       EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior =
         EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ToolMatchingSettings`.
     public init() {}
 
@@ -316,6 +521,41 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let extraToolCallBehavior = CodingKeys(stringValue: "extraToolCallBehavior")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "extraToolCallBehavior"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior.self,
+        forKey: .extraToolCallBehavior)
+      {
+        self.extraToolCallBehavior = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.extraToolCallBehavior, forKey: .extraToolCallBehavior)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the behavior when an extra tool call is encountered. An extra

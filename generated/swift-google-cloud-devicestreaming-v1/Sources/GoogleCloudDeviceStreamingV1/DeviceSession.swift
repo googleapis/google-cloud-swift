@@ -51,6 +51,8 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The amount of time that a device will be initially allocated for.
   public var expiration: OneOf_Expiration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeviceSession`.
   public init() {}
 
@@ -67,26 +69,53 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case state = "state"
-    case stateHistories = "stateHistories"
-    case ttl = "ttl"
-    case expireTime = "expireTime"
-    case inactivityTimeout = "inactivityTimeout"
-    case createTime = "createTime"
-    case activeStartTime = "activeStartTime"
-    case androidDevice = "androidDevice"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateHistories = CodingKeys(stringValue: "stateHistories")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let inactivityTimeout = CodingKeys(stringValue: "inactivityTimeout")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let activeStartTime = CodingKeys(stringValue: "activeStartTime")
+    static let androidDevice = CodingKeys(stringValue: "androidDevice")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "state",
+      "stateHistories",
+      "ttl",
+      "expireTime",
+      "inactivityTimeout",
+      "createTime",
+      "activeStartTime",
+      "androidDevice",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.state = try container.decode(DeviceSession.SessionState.self, forKey: .state)
-    self.stateHistories = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(DeviceSession.SessionState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
       [DeviceSession.SessionStateEvent].self, forKey: .stateHistories)
+    {
+      self.stateHistories = value
+    }
     self.inactivityTimeout = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .inactivityTimeout)
     self.createTime = try container.decodeIfPresent(
@@ -114,6 +143,10 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try expirationCheckAndSet(.expireTime(expireTime))
     }
     self.expiration = expiration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -122,10 +155,10 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateHistories, forKey: .stateHistories)
-    try container.encode(self.inactivityTimeout, forKey: .inactivityTimeout)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.activeStartTime, forKey: .activeStartTime)
-    try container.encode(self.androidDevice, forKey: .androidDevice)
+    try container.encodeIfPresent(self.inactivityTimeout, forKey: .inactivityTimeout)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.activeStartTime, forKey: .activeStartTime)
+    try container.encodeIfPresent(self.androidDevice, forKey: .androidDevice)
 
     if let choice = self.expiration {
       switch choice {
@@ -134,6 +167,9 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .expireTime(let value):
         try container.encode(value, forKey: .expireTime)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -152,6 +188,8 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. A human-readable message to explain the state.
     public var stateMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SessionStateEvent`.
     public init() {}
 
@@ -166,6 +204,51 @@ public struct DeviceSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sessionState = CodingKeys(stringValue: "sessionState")
+      static let eventTime = CodingKeys(stringValue: "eventTime")
+      static let stateMessage = CodingKeys(stringValue: "stateMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sessionState",
+        "eventTime",
+        "stateMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DeviceSession.SessionState.self, forKey: .sessionState)
+      {
+        self.sessionState = value
+      }
+      self.eventTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+        self.stateMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sessionState, forKey: .sessionState)
+      try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+      try container.encode(self.stateMessage, forKey: .stateMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -51,6 +51,8 @@ public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Rollout strategy of the patch job.
   public var rollout: PatchRollout? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecutePatchJobRequest`.
   public init() {}
 
@@ -65,6 +67,73 @@ public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let description = CodingKeys(stringValue: "description")
+    static let instanceFilter = CodingKeys(stringValue: "instanceFilter")
+    static let patchConfig = CodingKeys(stringValue: "patchConfig")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let dryRun = CodingKeys(stringValue: "dryRun")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let rollout = CodingKeys(stringValue: "rollout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "description",
+      "instanceFilter",
+      "patchConfig",
+      "duration",
+      "dryRun",
+      "displayName",
+      "rollout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.instanceFilter = try container.decodeIfPresent(
+      PatchInstanceFilter.self, forKey: .instanceFilter)
+    self.patchConfig = try container.decodeIfPresent(PatchConfig.self, forKey: .patchConfig)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
+      self.dryRun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.rollout = try container.decodeIfPresent(PatchRollout.self, forKey: .rollout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.instanceFilter, forKey: .instanceFilter)
+    try container.encodeIfPresent(self.patchConfig, forKey: .patchConfig)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encode(self.dryRun, forKey: .dryRun)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.rollout, forKey: .rollout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct Ranker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ranker.
   public var reranker: OneOf_Reranker? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Ranker`.
   public init() {}
 
@@ -44,9 +46,19 @@ public struct Ranker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rrf = "rrf"
-    case vertexRanker = "vertexRanker"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rrf = CodingKeys(stringValue: "rrf")
+    static let vertexRanker = CodingKeys(stringValue: "vertexRanker")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rrf",
+      "vertexRanker",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -81,6 +93,10 @@ public struct Ranker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try rerankerCheckAndSet(.vertexRanker(vertexRanker))
     }
     self.reranker = reranker
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,6 +114,9 @@ public struct Ranker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .vertexRanker(let value):
         try container.encode(value, forKey: .vertexRanker)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

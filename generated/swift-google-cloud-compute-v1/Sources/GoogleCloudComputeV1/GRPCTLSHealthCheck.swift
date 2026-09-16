@@ -61,6 +61,8 @@
     /// the instance group's list of named ports.
     public var portSpecification: GRPCTLSHealthCheck.PortSpecification? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GRPCTLSHealthCheck`.
     public init() {}
 
@@ -75,6 +77,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let grpcServiceName = CodingKeys(stringValue: "grpcServiceName")
+      static let port = CodingKeys(stringValue: "port")
+      static let portSpecification = CodingKeys(stringValue: "portSpecification")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "grpcServiceName",
+        "port",
+        "portSpecification",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.grpcServiceName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .grpcServiceName)
+      self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
+      self.portSpecification = try container.decodeIfPresent(
+        GRPCTLSHealthCheck.PortSpecification.self, forKey: .portSpecification)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.grpcServiceName, forKey: .grpcServiceName)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      try container.encodeIfPresent(self.portSpecification, forKey: .portSpecification)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [portSpecification][google.cloud.compute.v1.GRPCTLSHealthCheck.portSpecification] field.

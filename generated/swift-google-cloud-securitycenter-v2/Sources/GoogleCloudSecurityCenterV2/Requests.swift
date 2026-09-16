@@ -35,6 +35,8 @@ public struct Requests: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Denied RPS (requests per second) over the long term.
   public var longTermDenied: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Requests`.
   public init() {}
 
@@ -49,6 +51,56 @@ public struct Requests: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ratio = CodingKeys(stringValue: "ratio")
+    static let shortTermAllowed = CodingKeys(stringValue: "shortTermAllowed")
+    static let longTermAllowed = CodingKeys(stringValue: "longTermAllowed")
+    static let longTermDenied = CodingKeys(stringValue: "longTermDenied")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ratio",
+      "shortTermAllowed",
+      "longTermAllowed",
+      "longTermDenied",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .ratio) {
+      self.ratio = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shortTermAllowed) {
+      self.shortTermAllowed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .longTermAllowed) {
+      self.longTermAllowed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .longTermDenied) {
+      self.longTermDenied = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ratio, forKey: .ratio)
+    try container.encode(self.shortTermAllowed, forKey: .shortTermAllowed)
+    try container.encode(self.longTermAllowed, forKey: .longTermAllowed)
+    try container.encode(self.longTermDenied, forKey: .longTermDenied)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

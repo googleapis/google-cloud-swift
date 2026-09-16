@@ -48,6 +48,8 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// e.g. "Waiting-ImagePullBackOff : 3"
   public var containerStatusSummary: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ArtifactDeployment`.
   public init() {}
 
@@ -62,6 +64,73 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let artifactReference = CodingKeys(stringValue: "artifactReference")
+    static let artifactAlias = CodingKeys(stringValue: "artifactAlias")
+    static let sourceCommitUris = CodingKeys(stringValue: "sourceCommitUris")
+    static let deployTime = CodingKeys(stringValue: "deployTime")
+    static let undeployTime = CodingKeys(stringValue: "undeployTime")
+    static let containerStatusSummary = CodingKeys(stringValue: "containerStatusSummary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "artifactReference",
+      "artifactAlias",
+      "sourceCommitUris",
+      "deployTime",
+      "undeployTime",
+      "containerStatusSummary",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactReference) {
+      self.artifactReference = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactAlias) {
+      self.artifactAlias = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceCommitUris) {
+      self.sourceCommitUris = value
+    }
+    self.deployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deployTime)
+    self.undeployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .undeployTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerStatusSummary)
+    {
+      self.containerStatusSummary = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.artifactReference, forKey: .artifactReference)
+    try container.encode(self.artifactAlias, forKey: .artifactAlias)
+    try container.encode(self.sourceCommitUris, forKey: .sourceCommitUris)
+    try container.encodeIfPresent(self.deployTime, forKey: .deployTime)
+    try container.encodeIfPresent(self.undeployTime, forKey: .undeployTime)
+    try container.encode(self.containerStatusSummary, forKey: .containerStatusSummary)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

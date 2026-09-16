@@ -34,6 +34,8 @@
     /// The Neural Architecture Search (NAS) algorithm specification.
     public var nasAlgorithmSpec: OneOf_NasAlgorithmSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NasJobSpec`.
     public init() {}
 
@@ -50,16 +52,31 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case multiTrialAlgorithmSpec = "multiTrialAlgorithmSpec"
-      case resumeNasJobId = "resumeNasJobId"
-      case searchSpaceSpec = "searchSpaceSpec"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let multiTrialAlgorithmSpec = CodingKeys(stringValue: "multiTrialAlgorithmSpec")
+      static let resumeNasJobId = CodingKeys(stringValue: "resumeNasJobId")
+      static let searchSpaceSpec = CodingKeys(stringValue: "searchSpaceSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "multiTrialAlgorithmSpec",
+        "resumeNasJobId",
+        "searchSpaceSpec",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.resumeNasJobId = try container.decode(Swift.String.self, forKey: .resumeNasJobId)
-      self.searchSpaceSpec = try container.decode(Swift.String.self, forKey: .searchSpaceSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resumeNasJobId) {
+        self.resumeNasJobId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchSpaceSpec) {
+        self.searchSpaceSpec = value
+      }
 
       var nasAlgorithmSpec: OneOf_NasAlgorithmSpec? = nil
       let nasAlgorithmSpecCheckAndSet = {
@@ -77,6 +94,10 @@
         try nasAlgorithmSpecCheckAndSet(.multiTrialAlgorithmSpec(multiTrialAlgorithmSpec))
       }
       self.nasAlgorithmSpec = nasAlgorithmSpec
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -89,6 +110,9 @@
         case .multiTrialAlgorithmSpec(let value):
           try container.encode(value, forKey: .multiTrialAlgorithmSpec)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -113,6 +137,8 @@
       /// [TrainTrialSpec.frequency] trials searched.
       public var trainTrialSpec: NasJobSpec.MultiTrialAlgorithmSpec.TrainTrialSpec? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MultiTrialAlgorithmSpec`.
       public init() {}
 
@@ -129,6 +155,55 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let multiTrialAlgorithm = CodingKeys(stringValue: "multiTrialAlgorithm")
+        static let metric = CodingKeys(stringValue: "metric")
+        static let searchTrialSpec = CodingKeys(stringValue: "searchTrialSpec")
+        static let trainTrialSpec = CodingKeys(stringValue: "trainTrialSpec")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "multiTrialAlgorithm",
+          "metric",
+          "searchTrialSpec",
+          "trainTrialSpec",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          NasJobSpec.MultiTrialAlgorithmSpec.MultiTrialAlgorithm.self, forKey: .multiTrialAlgorithm)
+        {
+          self.multiTrialAlgorithm = value
+        }
+        self.metric = try container.decodeIfPresent(
+          NasJobSpec.MultiTrialAlgorithmSpec.MetricSpec.self, forKey: .metric)
+        self.searchTrialSpec = try container.decodeIfPresent(
+          NasJobSpec.MultiTrialAlgorithmSpec.SearchTrialSpec.self, forKey: .searchTrialSpec)
+        self.trainTrialSpec = try container.decodeIfPresent(
+          NasJobSpec.MultiTrialAlgorithmSpec.TrainTrialSpec.self, forKey: .trainTrialSpec)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.multiTrialAlgorithm, forKey: .multiTrialAlgorithm)
+        try container.encodeIfPresent(self.metric, forKey: .metric)
+        try container.encodeIfPresent(self.searchTrialSpec, forKey: .searchTrialSpec)
+        try container.encodeIfPresent(self.trainTrialSpec, forKey: .trainTrialSpec)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Represents a metric to optimize.
       public struct MetricSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -139,6 +214,9 @@
         /// Required. The optimization goal of the metric.
         public var goal: NasJobSpec.MultiTrialAlgorithmSpec.MetricSpec.GoalType = NasJobSpec
           .MultiTrialAlgorithmSpec.MetricSpec.GoalType()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `MetricSpec`.
         public init() {}
@@ -154,6 +232,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let metricId = CodingKeys(stringValue: "metricId")
+          static let goal = CodingKeys(stringValue: "goal")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "metricId",
+            "goal",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricId) {
+            self.metricId = value
+          }
+          if let value = try container.decodeIfPresent(
+            NasJobSpec.MultiTrialAlgorithmSpec.MetricSpec.GoalType.self, forKey: .goal)
+          {
+            self.goal = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.metricId, forKey: .metricId)
+          try container.encode(self.goal, forKey: .goal)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// The available types of optimization goals.
@@ -295,6 +413,9 @@
         /// before the whole job fails.
         public var maxFailedTrialCount: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `SearchTrialSpec`.
         public init() {}
 
@@ -309,6 +430,59 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let searchTrialJobSpec = CodingKeys(stringValue: "searchTrialJobSpec")
+          static let maxTrialCount = CodingKeys(stringValue: "maxTrialCount")
+          static let maxParallelTrialCount = CodingKeys(stringValue: "maxParallelTrialCount")
+          static let maxFailedTrialCount = CodingKeys(stringValue: "maxFailedTrialCount")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "searchTrialJobSpec",
+            "maxTrialCount",
+            "maxParallelTrialCount",
+            "maxFailedTrialCount",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.searchTrialJobSpec = try container.decodeIfPresent(
+            CustomJobSpec.self, forKey: .searchTrialJobSpec)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxTrialCount) {
+            self.maxTrialCount = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Int32.self, forKey: .maxParallelTrialCount)
+          {
+            self.maxParallelTrialCount = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Int32.self, forKey: .maxFailedTrialCount)
+          {
+            self.maxFailedTrialCount = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.searchTrialJobSpec, forKey: .searchTrialJobSpec)
+          try container.encode(self.maxTrialCount, forKey: .maxTrialCount)
+          try container.encode(self.maxParallelTrialCount, forKey: .maxParallelTrialCount)
+          try container.encode(self.maxFailedTrialCount, forKey: .maxFailedTrialCount)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -340,6 +514,9 @@
         /// [TrainTrialSpec.frequency] trials searched.
         public var frequency: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `TrainTrialSpec`.
         public init() {}
 
@@ -354,6 +531,51 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let trainTrialJobSpec = CodingKeys(stringValue: "trainTrialJobSpec")
+          static let maxParallelTrialCount = CodingKeys(stringValue: "maxParallelTrialCount")
+          static let frequency = CodingKeys(stringValue: "frequency")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "trainTrialJobSpec",
+            "maxParallelTrialCount",
+            "frequency",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.trainTrialJobSpec = try container.decodeIfPresent(
+            CustomJobSpec.self, forKey: .trainTrialJobSpec)
+          if let value = try container.decodeIfPresent(
+            Swift.Int32.self, forKey: .maxParallelTrialCount)
+          {
+            self.maxParallelTrialCount = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .frequency) {
+            self.frequency = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.trainTrialJobSpec, forKey: .trainTrialJobSpec)
+          try container.encode(self.maxParallelTrialCount, forKey: .maxParallelTrialCount)
+          try container.encode(self.frequency, forKey: .frequency)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

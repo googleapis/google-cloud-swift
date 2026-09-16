@@ -39,6 +39,8 @@ public struct EventFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// triggers.
   public var `operator`: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EventFilter`.
   public init() {}
 
@@ -55,17 +57,38 @@ public struct EventFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case attribute = "attribute"
-    case value = "value"
-    case `operator` = "operator"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let attribute = CodingKeys(stringValue: "attribute")
+    static let value = CodingKeys(stringValue: "value")
+    static let `operator` = CodingKeys(stringValue: "operator")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "attribute",
+      "value",
+      "operator",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.attribute = try container.decode(Swift.String.self, forKey: .attribute)
-    self.value = try container.decode(Swift.String.self, forKey: .value)
-    self.`operator` = try container.decode(Swift.String.self, forKey: .`operator`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attribute) {
+      self.attribute = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+      self.value = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`operator`) {
+      self.`operator` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +96,9 @@ public struct EventFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.attribute, forKey: .attribute)
     try container.encode(self.value, forKey: .value)
     try container.encode(self.`operator`, forKey: .`operator`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

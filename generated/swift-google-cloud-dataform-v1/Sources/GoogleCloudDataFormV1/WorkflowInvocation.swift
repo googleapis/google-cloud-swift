@@ -59,6 +59,8 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The source of the compilation result to use for this invocation.
   public var compilationSource: OneOf_CompilationSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkflowInvocation`.
   public init() {}
 
@@ -75,30 +77,56 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case compilationResult = "compilationResult"
-    case workflowConfig = "workflowConfig"
-    case name = "name"
-    case invocationConfig = "invocationConfig"
-    case state = "state"
-    case invocationTiming = "invocationTiming"
-    case resolvedCompilationResult = "resolvedCompilationResult"
-    case dataEncryptionState = "dataEncryptionState"
-    case internalMetadata = "internalMetadata"
-    case privateResourceMetadata = "privateResourceMetadata"
-    case pipelineConfig = "pipelineConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let compilationResult = CodingKeys(stringValue: "compilationResult")
+    static let workflowConfig = CodingKeys(stringValue: "workflowConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let invocationConfig = CodingKeys(stringValue: "invocationConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let invocationTiming = CodingKeys(stringValue: "invocationTiming")
+    static let resolvedCompilationResult = CodingKeys(stringValue: "resolvedCompilationResult")
+    static let dataEncryptionState = CodingKeys(stringValue: "dataEncryptionState")
+    static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+    static let privateResourceMetadata = CodingKeys(stringValue: "privateResourceMetadata")
+    static let pipelineConfig = CodingKeys(stringValue: "pipelineConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "compilationResult",
+      "workflowConfig",
+      "name",
+      "invocationConfig",
+      "state",
+      "invocationTiming",
+      "resolvedCompilationResult",
+      "dataEncryptionState",
+      "internalMetadata",
+      "privateResourceMetadata",
+      "pipelineConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.invocationConfig = try container.decodeIfPresent(
       InvocationConfig.self, forKey: .invocationConfig)
-    self.state = try container.decode(WorkflowInvocation.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(WorkflowInvocation.State.self, forKey: .state) {
+      self.state = value
+    }
     self.invocationTiming = try container.decodeIfPresent(
       GoogleType.Interval.self, forKey: .invocationTiming)
-    self.resolvedCompilationResult = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .resolvedCompilationResult)
+    {
+      self.resolvedCompilationResult = value
+    }
     self.dataEncryptionState = try container.decodeIfPresent(
       DataEncryptionState.self, forKey: .dataEncryptionState)
     self.internalMetadata = try container.decodeIfPresent(
@@ -129,19 +157,23 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try compilationSourceCheckAndSet(.workflowConfig(workflowConfig))
     }
     self.compilationSource = compilationSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.invocationConfig, forKey: .invocationConfig)
+    try container.encodeIfPresent(self.invocationConfig, forKey: .invocationConfig)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.invocationTiming, forKey: .invocationTiming)
+    try container.encodeIfPresent(self.invocationTiming, forKey: .invocationTiming)
     try container.encode(self.resolvedCompilationResult, forKey: .resolvedCompilationResult)
-    try container.encode(self.dataEncryptionState, forKey: .dataEncryptionState)
-    try container.encode(self.internalMetadata, forKey: .internalMetadata)
-    try container.encode(self.privateResourceMetadata, forKey: .privateResourceMetadata)
-    try container.encode(self.pipelineConfig, forKey: .pipelineConfig)
+    try container.encodeIfPresent(self.dataEncryptionState, forKey: .dataEncryptionState)
+    try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    try container.encodeIfPresent(self.privateResourceMetadata, forKey: .privateResourceMetadata)
+    try container.encodeIfPresent(self.pipelineConfig, forKey: .pipelineConfig)
 
     if let choice = self.compilationSource {
       switch choice {
@@ -150,6 +182,9 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .workflowConfig(let value):
         try container.encode(value, forKey: .workflowConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

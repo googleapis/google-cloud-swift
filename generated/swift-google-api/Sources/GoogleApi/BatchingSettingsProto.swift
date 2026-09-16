@@ -53,6 +53,8 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWKT._AnyPack
   public var flowControlLimitExceededBehavior: FlowControlLimitExceededBehaviorProto =
     FlowControlLimitExceededBehaviorProto()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchingSettingsProto`.
   public init() {}
 
@@ -67,6 +69,84 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let elementCountThreshold = CodingKeys(stringValue: "elementCountThreshold")
+    static let requestByteThreshold = CodingKeys(stringValue: "requestByteThreshold")
+    static let delayThreshold = CodingKeys(stringValue: "delayThreshold")
+    static let elementCountLimit = CodingKeys(stringValue: "elementCountLimit")
+    static let requestByteLimit = CodingKeys(stringValue: "requestByteLimit")
+    static let flowControlElementLimit = CodingKeys(stringValue: "flowControlElementLimit")
+    static let flowControlByteLimit = CodingKeys(stringValue: "flowControlByteLimit")
+    static let flowControlLimitExceededBehavior = CodingKeys(
+      stringValue: "flowControlLimitExceededBehavior")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "elementCountThreshold",
+      "requestByteThreshold",
+      "delayThreshold",
+      "elementCountLimit",
+      "requestByteLimit",
+      "flowControlElementLimit",
+      "flowControlByteLimit",
+      "flowControlLimitExceededBehavior",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .elementCountThreshold) {
+      self.elementCountThreshold = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .requestByteThreshold) {
+      self.requestByteThreshold = value
+    }
+    self.delayThreshold = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .delayThreshold)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .elementCountLimit) {
+      self.elementCountLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requestByteLimit) {
+      self.requestByteLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .flowControlElementLimit)
+    {
+      self.flowControlElementLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .flowControlByteLimit) {
+      self.flowControlByteLimit = value
+    }
+    if let value = try container.decodeIfPresent(
+      FlowControlLimitExceededBehaviorProto.self, forKey: .flowControlLimitExceededBehavior)
+    {
+      self.flowControlLimitExceededBehavior = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.elementCountThreshold, forKey: .elementCountThreshold)
+    try container.encode(self.requestByteThreshold, forKey: .requestByteThreshold)
+    try container.encodeIfPresent(self.delayThreshold, forKey: .delayThreshold)
+    try container.encode(self.elementCountLimit, forKey: .elementCountLimit)
+    try container.encode(self.requestByteLimit, forKey: .requestByteLimit)
+    try container.encode(self.flowControlElementLimit, forKey: .flowControlElementLimit)
+    try container.encode(self.flowControlByteLimit, forKey: .flowControlByteLimit)
+    try container.encode(
+      self.flowControlLimitExceededBehavior, forKey: .flowControlLimitExceededBehavior)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

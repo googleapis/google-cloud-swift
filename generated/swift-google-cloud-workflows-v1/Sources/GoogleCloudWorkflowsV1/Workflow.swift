@@ -140,6 +140,8 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// revision.
   public var sourceCode: OneOf_SourceCode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Workflow`.
   public init() {}
 
@@ -156,52 +158,112 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case state = "state"
-    case revisionId = "revisionId"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case revisionCreateTime = "revisionCreateTime"
-    case labels = "labels"
-    case serviceAccount = "serviceAccount"
-    case sourceContents = "sourceContents"
-    case cryptoKeyName = "cryptoKeyName"
-    case stateError = "stateError"
-    case callLogLevel = "callLogLevel"
-    case userEnvVars = "userEnvVars"
-    case executionHistoryLevel = "executionHistoryLevel"
-    case allKmsKeys = "allKmsKeys"
-    case allKmsKeysVersions = "allKmsKeysVersions"
-    case cryptoKeyVersion = "cryptoKeyVersion"
-    case tags = "tags"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let revisionCreateTime = CodingKeys(stringValue: "revisionCreateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let sourceContents = CodingKeys(stringValue: "sourceContents")
+    static let cryptoKeyName = CodingKeys(stringValue: "cryptoKeyName")
+    static let stateError = CodingKeys(stringValue: "stateError")
+    static let callLogLevel = CodingKeys(stringValue: "callLogLevel")
+    static let userEnvVars = CodingKeys(stringValue: "userEnvVars")
+    static let executionHistoryLevel = CodingKeys(stringValue: "executionHistoryLevel")
+    static let allKmsKeys = CodingKeys(stringValue: "allKmsKeys")
+    static let allKmsKeysVersions = CodingKeys(stringValue: "allKmsKeysVersions")
+    static let cryptoKeyVersion = CodingKeys(stringValue: "cryptoKeyVersion")
+    static let tags = CodingKeys(stringValue: "tags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "state",
+      "revisionId",
+      "createTime",
+      "updateTime",
+      "revisionCreateTime",
+      "labels",
+      "serviceAccount",
+      "sourceContents",
+      "cryptoKeyName",
+      "stateError",
+      "callLogLevel",
+      "userEnvVars",
+      "executionHistoryLevel",
+      "allKmsKeys",
+      "allKmsKeysVersions",
+      "cryptoKeyVersion",
+      "tags",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.state = try container.decode(Workflow.State.self, forKey: .state)
-    self.revisionId = try container.decode(Swift.String.self, forKey: .revisionId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Workflow.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.revisionCreateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.cryptoKeyName = try container.decode(Swift.String.self, forKey: .cryptoKeyName)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyName) {
+      self.cryptoKeyName = value
+    }
     self.stateError = try container.decodeIfPresent(Workflow.StateError.self, forKey: .stateError)
-    self.callLogLevel = try container.decode(Workflow.CallLogLevel.self, forKey: .callLogLevel)
-    self.userEnvVars = try container.decode([Swift.String: Swift.String].self, forKey: .userEnvVars)
-    self.executionHistoryLevel = try container.decode(
+    if let value = try container.decodeIfPresent(Workflow.CallLogLevel.self, forKey: .callLogLevel)
+    {
+      self.callLogLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .userEnvVars)
+    {
+      self.userEnvVars = value
+    }
+    if let value = try container.decodeIfPresent(
       ExecutionHistoryLevel.self, forKey: .executionHistoryLevel)
-    self.allKmsKeys = try container.decode([Swift.String].self, forKey: .allKmsKeys)
-    self.allKmsKeysVersions = try container.decode([Swift.String].self, forKey: .allKmsKeysVersions)
-    self.cryptoKeyVersion = try container.decode(Swift.String.self, forKey: .cryptoKeyVersion)
-    self.tags = try container.decode([Swift.String: Swift.String].self, forKey: .tags)
+    {
+      self.executionHistoryLevel = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allKmsKeys) {
+      self.allKmsKeys = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allKmsKeysVersions) {
+      self.allKmsKeysVersions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyVersion) {
+      self.cryptoKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
 
     var sourceCode: OneOf_SourceCode? = nil
     let sourceCodeCheckAndSet = {
@@ -219,6 +281,10 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCodeCheckAndSet(.sourceContents(sourceContents))
     }
     self.sourceCode = sourceCode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -227,13 +293,13 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.revisionId, forKey: .revisionId)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.revisionCreateTime, forKey: .revisionCreateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.cryptoKeyName, forKey: .cryptoKeyName)
-    try container.encode(self.stateError, forKey: .stateError)
+    try container.encodeIfPresent(self.stateError, forKey: .stateError)
     try container.encode(self.callLogLevel, forKey: .callLogLevel)
     try container.encode(self.userEnvVars, forKey: .userEnvVars)
     try container.encode(self.executionHistoryLevel, forKey: .executionHistoryLevel)
@@ -248,6 +314,9 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .sourceContents)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes an error related to the current state of the workflow.
@@ -259,6 +328,8 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The type of this state error.
     public var type: Workflow.StateError.Type_ = Workflow.StateError.Type_()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StateError`.
     public init() {}
@@ -274,6 +345,44 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      if let value = try container.decodeIfPresent(Workflow.StateError.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes the possibled types of a state error.

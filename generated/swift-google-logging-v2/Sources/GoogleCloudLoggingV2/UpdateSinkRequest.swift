@@ -71,6 +71,8 @@ public struct UpdateSinkRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// For example: `updateMask=filter`
   public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateSinkRequest`.
   public init() {}
 
@@ -85,6 +87,53 @@ public struct UpdateSinkRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sinkName = CodingKeys(stringValue: "sinkName")
+    static let sink = CodingKeys(stringValue: "sink")
+    static let uniqueWriterIdentity = CodingKeys(stringValue: "uniqueWriterIdentity")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sinkName",
+      "sink",
+      "uniqueWriterIdentity",
+      "updateMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sinkName) {
+      self.sinkName = value
+    }
+    self.sink = try container.decodeIfPresent(LogSink.self, forKey: .sink)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .uniqueWriterIdentity) {
+      self.uniqueWriterIdentity = value
+    }
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sinkName, forKey: .sinkName)
+    try container.encodeIfPresent(self.sink, forKey: .sink)
+    try container.encode(self.uniqueWriterIdentity, forKey: .uniqueWriterIdentity)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

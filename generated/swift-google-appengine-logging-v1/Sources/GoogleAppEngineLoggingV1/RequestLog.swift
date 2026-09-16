@@ -140,6 +140,8 @@ public struct RequestLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// distributed among multiple repositories.
   public var sourceReference: [SourceReference] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RequestLog`.
   public init() {}
 
@@ -154,6 +156,224 @@ public struct RequestLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let appId = CodingKeys(stringValue: "appId")
+    static let moduleId = CodingKeys(stringValue: "moduleId")
+    static let versionId = CodingKeys(stringValue: "versionId")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let ip = CodingKeys(stringValue: "ip")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let latency = CodingKeys(stringValue: "latency")
+    static let megaCycles = CodingKeys(stringValue: "megaCycles")
+    static let method = CodingKeys(stringValue: "method")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let httpVersion = CodingKeys(stringValue: "httpVersion")
+    static let status = CodingKeys(stringValue: "status")
+    static let responseSize = CodingKeys(stringValue: "responseSize")
+    static let referrer = CodingKeys(stringValue: "referrer")
+    static let userAgent = CodingKeys(stringValue: "userAgent")
+    static let nickname = CodingKeys(stringValue: "nickname")
+    static let urlMapEntry = CodingKeys(stringValue: "urlMapEntry")
+    static let host = CodingKeys(stringValue: "host")
+    static let cost = CodingKeys(stringValue: "cost")
+    static let taskQueueName = CodingKeys(stringValue: "taskQueueName")
+    static let taskName = CodingKeys(stringValue: "taskName")
+    static let wasLoadingRequest = CodingKeys(stringValue: "wasLoadingRequest")
+    static let pendingTime = CodingKeys(stringValue: "pendingTime")
+    static let instanceIndex = CodingKeys(stringValue: "instanceIndex")
+    static let finished = CodingKeys(stringValue: "finished")
+    static let first = CodingKeys(stringValue: "first")
+    static let instanceId = CodingKeys(stringValue: "instanceId")
+    static let line = CodingKeys(stringValue: "line")
+    static let appEngineRelease = CodingKeys(stringValue: "appEngineRelease")
+    static let traceId = CodingKeys(stringValue: "traceId")
+    static let traceSampled = CodingKeys(stringValue: "traceSampled")
+    static let sourceReference = CodingKeys(stringValue: "sourceReference")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "appId",
+      "moduleId",
+      "versionId",
+      "requestId",
+      "ip",
+      "startTime",
+      "endTime",
+      "latency",
+      "megaCycles",
+      "method",
+      "resource",
+      "httpVersion",
+      "status",
+      "responseSize",
+      "referrer",
+      "userAgent",
+      "nickname",
+      "urlMapEntry",
+      "host",
+      "cost",
+      "taskQueueName",
+      "taskName",
+      "wasLoadingRequest",
+      "pendingTime",
+      "instanceIndex",
+      "finished",
+      "first",
+      "instanceId",
+      "line",
+      "appEngineRelease",
+      "traceId",
+      "traceSampled",
+      "sourceReference",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appId) {
+      self.appId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .moduleId) {
+      self.moduleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionId) {
+      self.versionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ip) {
+      self.ip = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.latency = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .latency)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .megaCycles) {
+      self.megaCycles = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .method) {
+      self.method = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .httpVersion) {
+      self.httpVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .responseSize) {
+      self.responseSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referrer) {
+      self.referrer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgent) {
+      self.userAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nickname) {
+      self.nickname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .urlMapEntry) {
+      self.urlMapEntry = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .cost) {
+      self.cost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .taskQueueName) {
+      self.taskQueueName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .taskName) {
+      self.taskName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .wasLoadingRequest) {
+      self.wasLoadingRequest = value
+    }
+    self.pendingTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .pendingTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .instanceIndex) {
+      self.instanceIndex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .finished) {
+      self.finished = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .first) {
+      self.first = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
+      self.instanceId = value
+    }
+    if let value = try container.decodeIfPresent([LogLine].self, forKey: .line) {
+      self.line = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appEngineRelease) {
+      self.appEngineRelease = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .traceId) {
+      self.traceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .traceSampled) {
+      self.traceSampled = value
+    }
+    if let value = try container.decodeIfPresent([SourceReference].self, forKey: .sourceReference) {
+      self.sourceReference = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.appId, forKey: .appId)
+    try container.encode(self.moduleId, forKey: .moduleId)
+    try container.encode(self.versionId, forKey: .versionId)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.ip, forKey: .ip)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.latency, forKey: .latency)
+    try container.encode(self.megaCycles, forKey: .megaCycles)
+    try container.encode(self.method, forKey: .method)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.httpVersion, forKey: .httpVersion)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.responseSize, forKey: .responseSize)
+    try container.encode(self.referrer, forKey: .referrer)
+    try container.encode(self.userAgent, forKey: .userAgent)
+    try container.encode(self.nickname, forKey: .nickname)
+    try container.encode(self.urlMapEntry, forKey: .urlMapEntry)
+    try container.encode(self.host, forKey: .host)
+    try container.encode(self.cost, forKey: .cost)
+    try container.encode(self.taskQueueName, forKey: .taskQueueName)
+    try container.encode(self.taskName, forKey: .taskName)
+    try container.encode(self.wasLoadingRequest, forKey: .wasLoadingRequest)
+    try container.encodeIfPresent(self.pendingTime, forKey: .pendingTime)
+    try container.encode(self.instanceIndex, forKey: .instanceIndex)
+    try container.encode(self.finished, forKey: .finished)
+    try container.encode(self.first, forKey: .first)
+    try container.encode(self.instanceId, forKey: .instanceId)
+    try container.encode(self.line, forKey: .line)
+    try container.encode(self.appEngineRelease, forKey: .appEngineRelease)
+    try container.encode(self.traceId, forKey: .traceId)
+    try container.encode(self.traceSampled, forKey: .traceSampled)
+    try container.encode(self.sourceReference, forKey: .sourceReference)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

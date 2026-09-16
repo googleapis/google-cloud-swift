@@ -37,6 +37,8 @@ public struct PubsubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only populated on get requests.
   public var state: PubsubConfig.State = PubsubConfig.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PubsubConfig`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct PubsubConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subscription = CodingKeys(stringValue: "subscription")
+    static let topic = CodingKeys(stringValue: "topic")
+    static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subscription",
+      "topic",
+      "serviceAccountEmail",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscription) {
+      self.subscription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .topic) {
+      self.topic = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail) {
+      self.serviceAccountEmail = value
+    }
+    if let value = try container.decodeIfPresent(PubsubConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subscription, forKey: .subscription)
+    try container.encode(self.topic, forKey: .topic)
+    try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enumerates potential issues with the underlying Pub/Sub subscription

@@ -66,6 +66,8 @@
     /// The source of the input.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportDataConfig`.
     public init() {}
 
@@ -82,20 +84,40 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
-      case dataItemLabels = "dataItemLabels"
-      case annotationLabels = "annotationLabels"
-      case importSchemaUri = "importSchemaUri"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let dataItemLabels = CodingKeys(stringValue: "dataItemLabels")
+      static let annotationLabels = CodingKeys(stringValue: "annotationLabels")
+      static let importSchemaUri = CodingKeys(stringValue: "importSchemaUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource",
+        "dataItemLabels",
+        "annotationLabels",
+        "importSchemaUri",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.dataItemLabels = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .dataItemLabels)
-      self.annotationLabels = try container.decode(
+      {
+        self.dataItemLabels = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .annotationLabels)
-      self.importSchemaUri = try container.decode(Swift.String.self, forKey: .importSchemaUri)
+      {
+        self.annotationLabels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importSchemaUri) {
+        self.importSchemaUri = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -111,6 +133,10 @@
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,6 +150,9 @@
         case .gcsSource(let value):
           try container.encode(value, forKey: .gcsSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -93,6 +93,8 @@ public struct ComputeInstanceBackupProperties: Codable, Equatable, GoogleCloudWK
   /// Labels to apply to instances that are created from these properties.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeInstanceBackupProperties`.
   public init() {}
 
@@ -107,6 +109,103 @@ public struct ComputeInstanceBackupProperties: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let canIpForward = CodingKeys(stringValue: "canIpForward")
+    static let networkInterface = CodingKeys(stringValue: "networkInterface")
+    static let disk = CodingKeys(stringValue: "disk")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let scheduling = CodingKeys(stringValue: "scheduling")
+    static let guestAccelerator = CodingKeys(stringValue: "guestAccelerator")
+    static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+    static let keyRevocationActionType = CodingKeys(stringValue: "keyRevocationActionType")
+    static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "tags",
+      "machineType",
+      "canIpForward",
+      "networkInterface",
+      "disk",
+      "metadata",
+      "serviceAccount",
+      "scheduling",
+      "guestAccelerator",
+      "minCpuPlatform",
+      "keyRevocationActionType",
+      "sourceInstance",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.tags = try container.decodeIfPresent(Tags.self, forKey: .tags)
+    self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
+    self.canIpForward = try container.decodeIfPresent(Swift.Bool.self, forKey: .canIpForward)
+    if let value = try container.decodeIfPresent([NetworkInterface].self, forKey: .networkInterface)
+    {
+      self.networkInterface = value
+    }
+    if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disk) {
+      self.disk = value
+    }
+    self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.scheduling = try container.decodeIfPresent(Scheduling.self, forKey: .scheduling)
+    if let value = try container.decodeIfPresent(
+      [AcceleratorConfig].self, forKey: .guestAccelerator)
+    {
+      self.guestAccelerator = value
+    }
+    self.minCpuPlatform = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform)
+    self.keyRevocationActionType = try container.decodeIfPresent(
+      KeyRevocationActionType.self, forKey: .keyRevocationActionType)
+    self.sourceInstance = try container.decodeIfPresent(Swift.String.self, forKey: .sourceInstance)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.tags, forKey: .tags)
+    try container.encodeIfPresent(self.machineType, forKey: .machineType)
+    try container.encodeIfPresent(self.canIpForward, forKey: .canIpForward)
+    try container.encode(self.networkInterface, forKey: .networkInterface)
+    try container.encode(self.disk, forKey: .disk)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+    try container.encode(self.guestAccelerator, forKey: .guestAccelerator)
+    try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
+    try container.encodeIfPresent(self.keyRevocationActionType, forKey: .keyRevocationActionType)
+    try container.encodeIfPresent(self.sourceInstance, forKey: .sourceInstance)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

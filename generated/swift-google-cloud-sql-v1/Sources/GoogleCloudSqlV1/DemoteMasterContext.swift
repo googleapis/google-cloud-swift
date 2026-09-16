@@ -45,6 +45,8 @@
     /// Flag to skip replication setup on the instance.
     public var skipReplicationSetup: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DemoteMasterContext`.
     public init() {}
 
@@ -59,6 +61,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let verifyGtidConsistency = CodingKeys(stringValue: "verifyGtidConsistency")
+      static let masterInstanceName = CodingKeys(stringValue: "masterInstanceName")
+      static let replicaConfiguration = CodingKeys(stringValue: "replicaConfiguration")
+      static let skipReplicationSetup = CodingKeys(stringValue: "skipReplicationSetup")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "verifyGtidConsistency",
+        "masterInstanceName",
+        "replicaConfiguration",
+        "skipReplicationSetup",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.verifyGtidConsistency = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .verifyGtidConsistency)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterInstanceName) {
+        self.masterInstanceName = value
+      }
+      self.replicaConfiguration = try container.decodeIfPresent(
+        DemoteMasterConfiguration.self, forKey: .replicaConfiguration)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipReplicationSetup) {
+        self.skipReplicationSetup = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.verifyGtidConsistency, forKey: .verifyGtidConsistency)
+      try container.encode(self.masterInstanceName, forKey: .masterInstanceName)
+      try container.encodeIfPresent(self.replicaConfiguration, forKey: .replicaConfiguration)
+      try container.encode(self.skipReplicationSetup, forKey: .skipReplicationSetup)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

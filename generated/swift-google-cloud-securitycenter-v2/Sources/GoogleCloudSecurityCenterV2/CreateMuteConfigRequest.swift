@@ -36,6 +36,8 @@ public struct CreateMuteConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// characters or less.
   public var muteConfigId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateMuteConfigRequest`.
   public init() {}
 
@@ -50,6 +52,48 @@ public struct CreateMuteConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let muteConfig = CodingKeys(stringValue: "muteConfig")
+    static let muteConfigId = CodingKeys(stringValue: "muteConfigId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "muteConfig",
+      "muteConfigId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.muteConfig = try container.decodeIfPresent(MuteConfig.self, forKey: .muteConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .muteConfigId) {
+      self.muteConfigId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.muteConfig, forKey: .muteConfig)
+    try container.encode(self.muteConfigId, forKey: .muteConfigId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

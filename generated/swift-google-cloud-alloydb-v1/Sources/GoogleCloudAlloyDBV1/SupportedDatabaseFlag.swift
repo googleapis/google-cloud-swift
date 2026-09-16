@@ -58,6 +58,8 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The recommended value for the flag by type, if applicable.
   public var recommendedValue: OneOf_RecommendedValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SupportedDatabaseFlag`.
   public init() {}
 
@@ -74,31 +76,66 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringRestrictions = "stringRestrictions"
-    case integerRestrictions = "integerRestrictions"
-    case recommendedStringValue = "recommendedStringValue"
-    case recommendedIntegerValue = "recommendedIntegerValue"
-    case name = "name"
-    case flagName = "flagName"
-    case valueType = "valueType"
-    case acceptsMultipleValues = "acceptsMultipleValues"
-    case supportedDbVersions = "supportedDbVersions"
-    case requiresDbRestart = "requiresDbRestart"
-    case scope = "scope"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringRestrictions = CodingKeys(stringValue: "stringRestrictions")
+    static let integerRestrictions = CodingKeys(stringValue: "integerRestrictions")
+    static let recommendedStringValue = CodingKeys(stringValue: "recommendedStringValue")
+    static let recommendedIntegerValue = CodingKeys(stringValue: "recommendedIntegerValue")
+    static let name = CodingKeys(stringValue: "name")
+    static let flagName = CodingKeys(stringValue: "flagName")
+    static let valueType = CodingKeys(stringValue: "valueType")
+    static let acceptsMultipleValues = CodingKeys(stringValue: "acceptsMultipleValues")
+    static let supportedDbVersions = CodingKeys(stringValue: "supportedDbVersions")
+    static let requiresDbRestart = CodingKeys(stringValue: "requiresDbRestart")
+    static let scope = CodingKeys(stringValue: "scope")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringRestrictions",
+      "integerRestrictions",
+      "recommendedStringValue",
+      "recommendedIntegerValue",
+      "name",
+      "flagName",
+      "valueType",
+      "acceptsMultipleValues",
+      "supportedDbVersions",
+      "requiresDbRestart",
+      "scope",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.flagName = try container.decode(Swift.String.self, forKey: .flagName)
-    self.valueType = try container.decode(SupportedDatabaseFlag.ValueType.self, forKey: .valueType)
-    self.acceptsMultipleValues = try container.decode(
-      Swift.Bool.self, forKey: .acceptsMultipleValues)
-    self.supportedDbVersions = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .flagName) {
+      self.flagName = value
+    }
+    if let value = try container.decodeIfPresent(
+      SupportedDatabaseFlag.ValueType.self, forKey: .valueType)
+    {
+      self.valueType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .acceptsMultipleValues) {
+      self.acceptsMultipleValues = value
+    }
+    if let value = try container.decodeIfPresent(
       [DatabaseVersion].self, forKey: .supportedDbVersions)
-    self.requiresDbRestart = try container.decode(Swift.Bool.self, forKey: .requiresDbRestart)
-    self.scope = try container.decode(SupportedDatabaseFlag.Scope.self, forKey: .scope)
+    {
+      self.supportedDbVersions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requiresDbRestart) {
+      self.requiresDbRestart = value
+    }
+    if let value = try container.decodeIfPresent(SupportedDatabaseFlag.Scope.self, forKey: .scope) {
+      self.scope = value
+    }
 
     var restrictions: OneOf_Restrictions? = nil
     let restrictionsCheckAndSet = {
@@ -143,6 +180,10 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
       try recommendedValueCheckAndSet(.recommendedIntegerValue(recommendedIntegerValue))
     }
     self.recommendedValue = recommendedValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -172,6 +213,9 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
         try container.encode(value, forKey: .recommendedIntegerValue)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Restrictions on STRING type values
@@ -181,6 +225,8 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The list of allowed values, if bounded. This field will be empty
     /// if there is a unbounded number of allowed values.
     public var allowedValues: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StringRestrictions`.
     public init() {}
@@ -196,6 +242,38 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedValues = CodingKeys(stringValue: "allowedValues")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedValues"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
+        self.allowedValues = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedValues, forKey: .allowedValues)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -219,6 +297,8 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The maximum value that can be specified, if applicable.
     public var maxValue: GoogleCloudWKT.Int64Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IntegerRestrictions`.
     public init() {}
 
@@ -233,6 +313,42 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minValue = CodingKeys(stringValue: "minValue")
+      static let maxValue = CodingKeys(stringValue: "maxValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minValue",
+        "maxValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.minValue = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .minValue)
+      self.maxValue = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .maxValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.minValue, forKey: .minValue)
+      try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

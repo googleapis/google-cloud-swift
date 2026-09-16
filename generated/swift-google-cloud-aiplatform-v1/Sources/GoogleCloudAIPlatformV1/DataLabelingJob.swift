@@ -120,6 +120,8 @@
     /// iteration, it will select a batch of data based on the sampling strategy.
     public var activeLearningConfig: ActiveLearningConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataLabelingJob`.
     public init() {}
 
@@ -134,6 +136,135 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let datasets = CodingKeys(stringValue: "datasets")
+      static let annotationLabels = CodingKeys(stringValue: "annotationLabels")
+      static let labelerCount = CodingKeys(stringValue: "labelerCount")
+      static let instructionUri = CodingKeys(stringValue: "instructionUri")
+      static let inputsSchemaUri = CodingKeys(stringValue: "inputsSchemaUri")
+      static let inputs = CodingKeys(stringValue: "inputs")
+      static let state = CodingKeys(stringValue: "state")
+      static let labelingProgress = CodingKeys(stringValue: "labelingProgress")
+      static let currentSpend = CodingKeys(stringValue: "currentSpend")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let error = CodingKeys(stringValue: "error")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let specialistPools = CodingKeys(stringValue: "specialistPools")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let activeLearningConfig = CodingKeys(stringValue: "activeLearningConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "datasets",
+        "annotationLabels",
+        "labelerCount",
+        "instructionUri",
+        "inputsSchemaUri",
+        "inputs",
+        "state",
+        "labelingProgress",
+        "currentSpend",
+        "createTime",
+        "updateTime",
+        "error",
+        "labels",
+        "specialistPools",
+        "encryptionSpec",
+        "activeLearningConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .datasets) {
+        self.datasets = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .annotationLabels)
+      {
+        self.annotationLabels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .labelerCount) {
+        self.labelerCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instructionUri) {
+        self.instructionUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputsSchemaUri) {
+        self.inputsSchemaUri = value
+      }
+      self.inputs = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .inputs)
+      if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .labelingProgress) {
+        self.labelingProgress = value
+      }
+      self.currentSpend = try container.decodeIfPresent(
+        GoogleType.Money.self, forKey: .currentSpend)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .specialistPools) {
+        self.specialistPools = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      self.activeLearningConfig = try container.decodeIfPresent(
+        ActiveLearningConfig.self, forKey: .activeLearningConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.datasets, forKey: .datasets)
+      try container.encode(self.annotationLabels, forKey: .annotationLabels)
+      try container.encode(self.labelerCount, forKey: .labelerCount)
+      try container.encode(self.instructionUri, forKey: .instructionUri)
+      try container.encode(self.inputsSchemaUri, forKey: .inputsSchemaUri)
+      try container.encodeIfPresent(self.inputs, forKey: .inputs)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.labelingProgress, forKey: .labelingProgress)
+      try container.encodeIfPresent(self.currentSpend, forKey: .currentSpend)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.specialistPools, forKey: .specialistPools)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.activeLearningConfig, forKey: .activeLearningConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

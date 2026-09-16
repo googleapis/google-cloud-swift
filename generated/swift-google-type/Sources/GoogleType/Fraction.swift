@@ -28,6 +28,8 @@ public struct Fraction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// positive.
   public var denominator: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Fraction`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct Fraction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let numerator = CodingKeys(stringValue: "numerator")
+    static let denominator = CodingKeys(stringValue: "denominator")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "numerator",
+      "denominator",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .numerator) {
+      self.numerator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .denominator) {
+      self.denominator = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.numerator, forKey: .numerator)
+    try container.encode(self.denominator, forKey: .denominator)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -33,6 +33,8 @@
     public var adapterSize: SupervisedHyperParameters.AdapterSize =
       SupervisedHyperParameters.AdapterSize()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SupervisedHyperParameters`.
     public init() {}
 
@@ -47,6 +49,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let epochCount = CodingKeys(stringValue: "epochCount")
+      static let learningRateMultiplier = CodingKeys(stringValue: "learningRateMultiplier")
+      static let adapterSize = CodingKeys(stringValue: "adapterSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "epochCount",
+        "learningRateMultiplier",
+        "adapterSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .epochCount) {
+        self.epochCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .learningRateMultiplier)
+      {
+        self.learningRateMultiplier = value
+      }
+      if let value = try container.decodeIfPresent(
+        SupervisedHyperParameters.AdapterSize.self, forKey: .adapterSize)
+      {
+        self.adapterSize = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.epochCount, forKey: .epochCount)
+      try container.encode(self.learningRateMultiplier, forKey: .learningRateMultiplier)
+      try container.encode(self.adapterSize, forKey: .adapterSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Supported adapter sizes for tuning.

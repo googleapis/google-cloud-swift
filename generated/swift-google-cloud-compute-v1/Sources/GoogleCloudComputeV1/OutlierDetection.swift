@@ -100,6 +100,8 @@
     /// Not supported when the backend service uses Serverless NEG.
     public var successRateStdevFactor: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OutlierDetection`.
     public init() {}
 
@@ -114,6 +116,91 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let baseEjectionTime = CodingKeys(stringValue: "baseEjectionTime")
+      static let consecutiveErrors = CodingKeys(stringValue: "consecutiveErrors")
+      static let consecutiveGatewayFailure = CodingKeys(stringValue: "consecutiveGatewayFailure")
+      static let enforcingConsecutiveErrors = CodingKeys(stringValue: "enforcingConsecutiveErrors")
+      static let enforcingConsecutiveGatewayFailure = CodingKeys(
+        stringValue: "enforcingConsecutiveGatewayFailure")
+      static let enforcingSuccessRate = CodingKeys(stringValue: "enforcingSuccessRate")
+      static let interval = CodingKeys(stringValue: "interval")
+      static let maxEjectionPercent = CodingKeys(stringValue: "maxEjectionPercent")
+      static let successRateMinimumHosts = CodingKeys(stringValue: "successRateMinimumHosts")
+      static let successRateRequestVolume = CodingKeys(stringValue: "successRateRequestVolume")
+      static let successRateStdevFactor = CodingKeys(stringValue: "successRateStdevFactor")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "baseEjectionTime",
+        "consecutiveErrors",
+        "consecutiveGatewayFailure",
+        "enforcingConsecutiveErrors",
+        "enforcingConsecutiveGatewayFailure",
+        "enforcingSuccessRate",
+        "interval",
+        "maxEjectionPercent",
+        "successRateMinimumHosts",
+        "successRateRequestVolume",
+        "successRateStdevFactor",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.baseEjectionTime = try container.decodeIfPresent(
+        Duration.self, forKey: .baseEjectionTime)
+      self.consecutiveErrors = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .consecutiveErrors)
+      self.consecutiveGatewayFailure = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .consecutiveGatewayFailure)
+      self.enforcingConsecutiveErrors = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .enforcingConsecutiveErrors)
+      self.enforcingConsecutiveGatewayFailure = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .enforcingConsecutiveGatewayFailure)
+      self.enforcingSuccessRate = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .enforcingSuccessRate)
+      self.interval = try container.decodeIfPresent(Duration.self, forKey: .interval)
+      self.maxEjectionPercent = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxEjectionPercent)
+      self.successRateMinimumHosts = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .successRateMinimumHosts)
+      self.successRateRequestVolume = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .successRateRequestVolume)
+      self.successRateStdevFactor = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .successRateStdevFactor)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.baseEjectionTime, forKey: .baseEjectionTime)
+      try container.encodeIfPresent(self.consecutiveErrors, forKey: .consecutiveErrors)
+      try container.encodeIfPresent(
+        self.consecutiveGatewayFailure, forKey: .consecutiveGatewayFailure)
+      try container.encodeIfPresent(
+        self.enforcingConsecutiveErrors, forKey: .enforcingConsecutiveErrors)
+      try container.encodeIfPresent(
+        self.enforcingConsecutiveGatewayFailure, forKey: .enforcingConsecutiveGatewayFailure)
+      try container.encodeIfPresent(self.enforcingSuccessRate, forKey: .enforcingSuccessRate)
+      try container.encodeIfPresent(self.interval, forKey: .interval)
+      try container.encodeIfPresent(self.maxEjectionPercent, forKey: .maxEjectionPercent)
+      try container.encodeIfPresent(self.successRateMinimumHosts, forKey: .successRateMinimumHosts)
+      try container.encodeIfPresent(
+        self.successRateRequestVolume, forKey: .successRateRequestVolume)
+      try container.encodeIfPresent(self.successRateStdevFactor, forKey: .successRateStdevFactor)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

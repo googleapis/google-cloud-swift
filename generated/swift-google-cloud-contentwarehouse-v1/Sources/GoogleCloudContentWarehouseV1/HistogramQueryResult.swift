@@ -36,6 +36,8 @@ public struct HistogramQueryResult: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// * (for string histogram) string values stored in the field.
   public var histogram: [Swift.String: Swift.Int64] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HistogramQueryResult`.
   public init() {}
 
@@ -50,6 +52,46 @@ public struct HistogramQueryResult: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let histogramQuery = CodingKeys(stringValue: "histogramQuery")
+    static let histogram = CodingKeys(stringValue: "histogram")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "histogramQuery",
+      "histogram",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .histogramQuery) {
+      self.histogramQuery = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int64].self, forKey: .histogram)
+    {
+      self.histogram = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.histogramQuery, forKey: .histogramQuery)
+    try container.encode(self.histogram, forKey: .histogram)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

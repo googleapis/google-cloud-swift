@@ -125,6 +125,8 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// At least one of the template fields must be provided.
   public var buildTemplate: OneOf_BuildTemplate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildTrigger`.
   public init() {}
 
@@ -141,52 +143,105 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case resourceName = "resourceName"
-    case id = "id"
-    case description = "description"
-    case name = "name"
-    case tags = "tags"
-    case triggerTemplate = "triggerTemplate"
-    case github = "github"
-    case pubsubConfig = "pubsubConfig"
-    case webhookConfig = "webhookConfig"
-    case autodetect = "autodetect"
-    case build = "build"
-    case filename = "filename"
-    case gitFileSource = "gitFileSource"
-    case createTime = "createTime"
-    case disabled = "disabled"
-    case substitutions = "substitutions"
-    case ignoredFiles = "ignoredFiles"
-    case includedFiles = "includedFiles"
-    case filter = "filter"
-    case sourceToBuild = "sourceToBuild"
-    case serviceAccount = "serviceAccount"
-    case repositoryEventConfig = "repositoryEventConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let id = CodingKeys(stringValue: "id")
+    static let description = CodingKeys(stringValue: "description")
+    static let name = CodingKeys(stringValue: "name")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let triggerTemplate = CodingKeys(stringValue: "triggerTemplate")
+    static let github = CodingKeys(stringValue: "github")
+    static let pubsubConfig = CodingKeys(stringValue: "pubsubConfig")
+    static let webhookConfig = CodingKeys(stringValue: "webhookConfig")
+    static let autodetect = CodingKeys(stringValue: "autodetect")
+    static let build = CodingKeys(stringValue: "build")
+    static let filename = CodingKeys(stringValue: "filename")
+    static let gitFileSource = CodingKeys(stringValue: "gitFileSource")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let substitutions = CodingKeys(stringValue: "substitutions")
+    static let ignoredFiles = CodingKeys(stringValue: "ignoredFiles")
+    static let includedFiles = CodingKeys(stringValue: "includedFiles")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let sourceToBuild = CodingKeys(stringValue: "sourceToBuild")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let repositoryEventConfig = CodingKeys(stringValue: "repositoryEventConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceName",
+      "id",
+      "description",
+      "name",
+      "tags",
+      "triggerTemplate",
+      "github",
+      "pubsubConfig",
+      "webhookConfig",
+      "autodetect",
+      "build",
+      "filename",
+      "gitFileSource",
+      "createTime",
+      "disabled",
+      "substitutions",
+      "ignoredFiles",
+      "includedFiles",
+      "filter",
+      "sourceToBuild",
+      "serviceAccount",
+      "repositoryEventConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.resourceName = try container.decode(Swift.String.self, forKey: .resourceName)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.tags = try container.decode([Swift.String].self, forKey: .tags)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     self.triggerTemplate = try container.decodeIfPresent(RepoSource.self, forKey: .triggerTemplate)
     self.github = try container.decodeIfPresent(GitHubEventsConfig.self, forKey: .github)
     self.pubsubConfig = try container.decodeIfPresent(PubsubConfig.self, forKey: .pubsubConfig)
     self.webhookConfig = try container.decodeIfPresent(WebhookConfig.self, forKey: .webhookConfig)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
-    self.substitutions = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .substitutions)
-    self.ignoredFiles = try container.decode([Swift.String].self, forKey: .ignoredFiles)
-    self.includedFiles = try container.decode([Swift.String].self, forKey: .includedFiles)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
+    {
+      self.substitutions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ignoredFiles) {
+      self.ignoredFiles = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedFiles) {
+      self.includedFiles = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
     self.sourceToBuild = try container.decodeIfPresent(GitRepoSource.self, forKey: .sourceToBuild)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
     self.repositoryEventConfig = try container.decodeIfPresent(
       RepositoryEventConfig.self, forKey: .repositoryEventConfig)
 
@@ -215,6 +270,10 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try buildTemplateCheckAndSet(.gitFileSource(gitFileSource))
     }
     self.buildTemplate = buildTemplate
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -224,19 +283,19 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.triggerTemplate, forKey: .triggerTemplate)
-    try container.encode(self.github, forKey: .github)
-    try container.encode(self.pubsubConfig, forKey: .pubsubConfig)
-    try container.encode(self.webhookConfig, forKey: .webhookConfig)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.triggerTemplate, forKey: .triggerTemplate)
+    try container.encodeIfPresent(self.github, forKey: .github)
+    try container.encodeIfPresent(self.pubsubConfig, forKey: .pubsubConfig)
+    try container.encodeIfPresent(self.webhookConfig, forKey: .webhookConfig)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.disabled, forKey: .disabled)
     try container.encode(self.substitutions, forKey: .substitutions)
     try container.encode(self.ignoredFiles, forKey: .ignoredFiles)
     try container.encode(self.includedFiles, forKey: .includedFiles)
     try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.sourceToBuild, forKey: .sourceToBuild)
+    try container.encodeIfPresent(self.sourceToBuild, forKey: .sourceToBuild)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.repositoryEventConfig, forKey: .repositoryEventConfig)
+    try container.encodeIfPresent(self.repositoryEventConfig, forKey: .repositoryEventConfig)
 
     if let choice = self.buildTemplate {
       switch choice {
@@ -249,6 +308,9 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gitFileSource(let value):
         try container.encode(value, forKey: .gitFileSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

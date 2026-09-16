@@ -56,6 +56,8 @@ public struct SlurmOrchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// must not be empty.
   public var epilogBashScripts: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SlurmOrchestrator`.
   public init() {}
 
@@ -70,6 +72,66 @@ public struct SlurmOrchestrator: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let loginNodes = CodingKeys(stringValue: "loginNodes")
+    static let nodeSets = CodingKeys(stringValue: "nodeSets")
+    static let partitions = CodingKeys(stringValue: "partitions")
+    static let defaultPartition = CodingKeys(stringValue: "defaultPartition")
+    static let prologBashScripts = CodingKeys(stringValue: "prologBashScripts")
+    static let epilogBashScripts = CodingKeys(stringValue: "epilogBashScripts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "loginNodes",
+      "nodeSets",
+      "partitions",
+      "defaultPartition",
+      "prologBashScripts",
+      "epilogBashScripts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.loginNodes = try container.decodeIfPresent(SlurmLoginNodes.self, forKey: .loginNodes)
+    if let value = try container.decodeIfPresent([SlurmNodeSet].self, forKey: .nodeSets) {
+      self.nodeSets = value
+    }
+    if let value = try container.decodeIfPresent([SlurmPartition].self, forKey: .partitions) {
+      self.partitions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultPartition) {
+      self.defaultPartition = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .prologBashScripts) {
+      self.prologBashScripts = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .epilogBashScripts) {
+      self.epilogBashScripts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.loginNodes, forKey: .loginNodes)
+    try container.encode(self.nodeSets, forKey: .nodeSets)
+    try container.encode(self.partitions, forKey: .partitions)
+    try container.encode(self.defaultPartition, forKey: .defaultPartition)
+    try container.encode(self.prologBashScripts, forKey: .prologBashScripts)
+    try container.encode(self.epilogBashScripts, forKey: .epilogBashScripts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

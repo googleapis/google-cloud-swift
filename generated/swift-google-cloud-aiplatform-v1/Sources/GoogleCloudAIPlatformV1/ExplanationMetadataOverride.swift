@@ -37,6 +37,8 @@
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.inputs]: <doc:ExplanationMetadata/inputs>
     public var inputs: [Swift.String: ExplanationMetadataOverride.InputMetadataOverride] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExplanationMetadataOverride`.
     public init() {}
 
@@ -51,6 +53,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputs = CodingKeys(stringValue: "inputs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ExplanationMetadataOverride.InputMetadataOverride].self, forKey: .inputs)
+      {
+        self.inputs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputs, forKey: .inputs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The [input
@@ -71,6 +107,8 @@
       /// [google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata]: <doc:ExplanationMetadata/InputMetadata>
       public var inputBaselines: [GoogleCloudWKT.Value] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InputMetadataOverride`.
       public init() {}
 
@@ -85,6 +123,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let inputBaselines = CodingKeys(stringValue: "inputBaselines")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "inputBaselines"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [GoogleCloudWKT.Value].self, forKey: .inputBaselines)
+        {
+          self.inputBaselines = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.inputBaselines, forKey: .inputBaselines)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

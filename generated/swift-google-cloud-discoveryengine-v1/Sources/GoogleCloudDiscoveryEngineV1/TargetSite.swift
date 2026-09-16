@@ -61,6 +61,8 @@
     /// Output only. Failure reason.
     public var failureReason: TargetSite.FailureReason? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetSite`.
     public init() {}
 
@@ -77,12 +79,100 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let providedUriPattern = CodingKeys(stringValue: "providedUriPattern")
+      static let type = CodingKeys(stringValue: "type")
+      static let exactMatch = CodingKeys(stringValue: "exactMatch")
+      static let generatedUriPattern = CodingKeys(stringValue: "generatedUriPattern")
+      static let rootDomainUri = CodingKeys(stringValue: "rootDomainUri")
+      static let siteVerificationInfo = CodingKeys(stringValue: "siteVerificationInfo")
+      static let indexingStatus = CodingKeys(stringValue: "indexingStatus")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let failureReason = CodingKeys(stringValue: "failureReason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "providedUriPattern",
+        "type",
+        "exactMatch",
+        "generatedUriPattern",
+        "rootDomainUri",
+        "siteVerificationInfo",
+        "indexingStatus",
+        "updateTime",
+        "failureReason",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .providedUriPattern) {
+        self.providedUriPattern = value
+      }
+      if let value = try container.decodeIfPresent(TargetSite.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .exactMatch) {
+        self.exactMatch = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generatedUriPattern)
+      {
+        self.generatedUriPattern = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootDomainUri) {
+        self.rootDomainUri = value
+      }
+      self.siteVerificationInfo = try container.decodeIfPresent(
+        SiteVerificationInfo.self, forKey: .siteVerificationInfo)
+      if let value = try container.decodeIfPresent(
+        TargetSite.IndexingStatus.self, forKey: .indexingStatus)
+      {
+        self.indexingStatus = value
+      }
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.failureReason = try container.decodeIfPresent(
+        TargetSite.FailureReason.self, forKey: .failureReason)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.providedUriPattern, forKey: .providedUriPattern)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.exactMatch, forKey: .exactMatch)
+      try container.encode(self.generatedUriPattern, forKey: .generatedUriPattern)
+      try container.encode(self.rootDomainUri, forKey: .rootDomainUri)
+      try container.encodeIfPresent(self.siteVerificationInfo, forKey: .siteVerificationInfo)
+      try container.encode(self.indexingStatus, forKey: .indexingStatus)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.failureReason, forKey: .failureReason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Site search indexing failure reasons.
     public struct FailureReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Failure reason.
       public var failure: OneOf_Failure? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FailureReason`.
       public init() {}
@@ -100,8 +190,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case quotaFailure = "quotaFailure"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let quotaFailure = CodingKeys(stringValue: "quotaFailure")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "quotaFailure"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -123,6 +222,10 @@
           try failureCheckAndSet(.quotaFailure(quotaFailure))
         }
         self.failure = failure
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -134,6 +237,9 @@
             try container.encode(value, forKey: .quotaFailure)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Failed due to insufficient quota.
@@ -143,6 +249,9 @@
         /// This number is an estimation on how much total quota this project needs
         /// to successfully complete indexing.
         public var totalRequiredQuota: Swift.Int64 = Swift.Int64()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `QuotaFailure`.
         public init() {}
@@ -158,6 +267,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let totalRequiredQuota = CodingKeys(stringValue: "totalRequiredQuota")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "totalRequiredQuota"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Int64.self, forKey: .totalRequiredQuota)
+          {
+            self.totalRequiredQuota = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.totalRequiredQuota, forKey: .totalRequiredQuota)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

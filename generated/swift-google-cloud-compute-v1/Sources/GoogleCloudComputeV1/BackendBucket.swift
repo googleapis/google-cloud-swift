@@ -92,6 +92,8 @@
     /// Output only. [Output Only] List of resources referencing that backend bucket.
     public var usedBy: [BackendBucketUsedBy] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendBucket`.
     public init() {}
 
@@ -106,6 +108,107 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bucketName = CodingKeys(stringValue: "bucketName")
+      static let cdnPolicy = CodingKeys(stringValue: "cdnPolicy")
+      static let compressionMode = CodingKeys(stringValue: "compressionMode")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customResponseHeaders = CodingKeys(stringValue: "customResponseHeaders")
+      static let description = CodingKeys(stringValue: "description")
+      static let edgeSecurityPolicy = CodingKeys(stringValue: "edgeSecurityPolicy")
+      static let enableCdn = CodingKeys(stringValue: "enableCdn")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let loadBalancingScheme = CodingKeys(stringValue: "loadBalancingScheme")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let usedBy = CodingKeys(stringValue: "usedBy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bucketName",
+        "cdnPolicy",
+        "compressionMode",
+        "creationTimestamp",
+        "customResponseHeaders",
+        "description",
+        "edgeSecurityPolicy",
+        "enableCdn",
+        "id",
+        "kind",
+        "loadBalancingScheme",
+        "name",
+        "params",
+        "region",
+        "selfLink",
+        "usedBy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bucketName = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName)
+      self.cdnPolicy = try container.decodeIfPresent(
+        BackendBucketCdnPolicy.self, forKey: .cdnPolicy)
+      self.compressionMode = try container.decodeIfPresent(
+        BackendBucket.CompressionMode.self, forKey: .compressionMode)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .customResponseHeaders)
+      {
+        self.customResponseHeaders = value
+      }
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.edgeSecurityPolicy = try container.decodeIfPresent(
+        Swift.String.self, forKey: .edgeSecurityPolicy)
+      self.enableCdn = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCdn)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.loadBalancingScheme = try container.decodeIfPresent(
+        BackendBucket.LoadBalancingScheme.self, forKey: .loadBalancingScheme)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.params = try container.decodeIfPresent(BackendBucketParams.self, forKey: .params)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      if let value = try container.decodeIfPresent([BackendBucketUsedBy].self, forKey: .usedBy) {
+        self.usedBy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.bucketName, forKey: .bucketName)
+      try container.encodeIfPresent(self.cdnPolicy, forKey: .cdnPolicy)
+      try container.encodeIfPresent(self.compressionMode, forKey: .compressionMode)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encode(self.customResponseHeaders, forKey: .customResponseHeaders)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.edgeSecurityPolicy, forKey: .edgeSecurityPolicy)
+      try container.encodeIfPresent(self.enableCdn, forKey: .enableCdn)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encode(self.usedBy, forKey: .usedBy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [compressionMode][google.cloud.compute.v1.BackendBucket.compressionMode] field.

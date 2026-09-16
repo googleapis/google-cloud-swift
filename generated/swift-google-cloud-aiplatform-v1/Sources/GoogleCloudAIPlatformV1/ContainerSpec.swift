@@ -37,6 +37,8 @@
     /// Maximum limit is 100.
     public var env: [EnvVar] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ContainerSpec`.
     public init() {}
 
@@ -51,6 +53,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let imageUri = CodingKeys(stringValue: "imageUri")
+      static let command = CodingKeys(stringValue: "command")
+      static let args = CodingKeys(stringValue: "args")
+      static let env = CodingKeys(stringValue: "env")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "imageUri",
+        "command",
+        "args",
+        "env",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+        self.imageUri = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .command) {
+        self.command = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+        self.args = value
+      }
+      if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+        self.env = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.imageUri, forKey: .imageUri)
+      try container.encode(self.command, forKey: .command)
+      try container.encode(self.args, forKey: .args)
+      try container.encode(self.env, forKey: .env)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// persisted tool or a tool from a toolset.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ToolResponse`.
   public init() {}
 
@@ -56,18 +58,35 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tool = "tool"
-    case toolsetTool = "toolsetTool"
-    case id = "id"
-    case displayName = "displayName"
-    case response = "response"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tool = CodingKeys(stringValue: "tool")
+    static let toolsetTool = CodingKeys(stringValue: "toolsetTool")
+    static let id = CodingKeys(stringValue: "id")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let response = CodingKeys(stringValue: "response")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tool",
+      "toolsetTool",
+      "id",
+      "displayName",
+      "response",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.response = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .response)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
@@ -87,13 +106,17 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.response, forKey: .response)
+    try container.encodeIfPresent(self.response, forKey: .response)
 
     if let choice = self.toolIdentifier {
       switch choice {
@@ -102,6 +125,9 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .toolsetTool(let value):
         try container.encode(value, forKey: .toolsetTool)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

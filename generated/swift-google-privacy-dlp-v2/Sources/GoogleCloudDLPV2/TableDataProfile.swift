@@ -120,6 +120,8 @@ public struct TableDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Domains associated with the profile.
   public var domains: [Domain] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TableDataProfile`.
   public init() {}
 
@@ -134,6 +136,209 @@ public struct TableDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dataSourceType = CodingKeys(stringValue: "dataSourceType")
+    static let projectDataProfile = CodingKeys(stringValue: "projectDataProfile")
+    static let datasetProjectId = CodingKeys(stringValue: "datasetProjectId")
+    static let datasetLocation = CodingKeys(stringValue: "datasetLocation")
+    static let datasetId = CodingKeys(stringValue: "datasetId")
+    static let tableId = CodingKeys(stringValue: "tableId")
+    static let fullResource = CodingKeys(stringValue: "fullResource")
+    static let profileStatus = CodingKeys(stringValue: "profileStatus")
+    static let state = CodingKeys(stringValue: "state")
+    static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+    static let dataRiskLevel = CodingKeys(stringValue: "dataRiskLevel")
+    static let predictedInfoTypes = CodingKeys(stringValue: "predictedInfoTypes")
+    static let otherInfoTypes = CodingKeys(stringValue: "otherInfoTypes")
+    static let configSnapshot = CodingKeys(stringValue: "configSnapshot")
+    static let lastModifiedTime = CodingKeys(stringValue: "lastModifiedTime")
+    static let expirationTime = CodingKeys(stringValue: "expirationTime")
+    static let scannedColumnCount = CodingKeys(stringValue: "scannedColumnCount")
+    static let failedColumnCount = CodingKeys(stringValue: "failedColumnCount")
+    static let tableSizeBytes = CodingKeys(stringValue: "tableSizeBytes")
+    static let rowCount = CodingKeys(stringValue: "rowCount")
+    static let encryptionStatus = CodingKeys(stringValue: "encryptionStatus")
+    static let resourceVisibility = CodingKeys(stringValue: "resourceVisibility")
+    static let profileLastGenerated = CodingKeys(stringValue: "profileLastGenerated")
+    static let resourceLabels = CodingKeys(stringValue: "resourceLabels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let sampleFindingsTable = CodingKeys(stringValue: "sampleFindingsTable")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let relatedResources = CodingKeys(stringValue: "relatedResources")
+    static let domains = CodingKeys(stringValue: "domains")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dataSourceType",
+      "projectDataProfile",
+      "datasetProjectId",
+      "datasetLocation",
+      "datasetId",
+      "tableId",
+      "fullResource",
+      "profileStatus",
+      "state",
+      "sensitivityScore",
+      "dataRiskLevel",
+      "predictedInfoTypes",
+      "otherInfoTypes",
+      "configSnapshot",
+      "lastModifiedTime",
+      "expirationTime",
+      "scannedColumnCount",
+      "failedColumnCount",
+      "tableSizeBytes",
+      "rowCount",
+      "encryptionStatus",
+      "resourceVisibility",
+      "profileLastGenerated",
+      "resourceLabels",
+      "createTime",
+      "sampleFindingsTable",
+      "tags",
+      "relatedResources",
+      "domains",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.dataSourceType = try container.decodeIfPresent(
+      DataSourceType.self, forKey: .dataSourceType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectDataProfile) {
+      self.projectDataProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetProjectId) {
+      self.datasetProjectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetLocation) {
+      self.datasetLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
+      self.datasetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableId) {
+      self.tableId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResource) {
+      self.fullResource = value
+    }
+    self.profileStatus = try container.decodeIfPresent(ProfileStatus.self, forKey: .profileStatus)
+    if let value = try container.decodeIfPresent(TableDataProfile.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.sensitivityScore = try container.decodeIfPresent(
+      SensitivityScore.self, forKey: .sensitivityScore)
+    self.dataRiskLevel = try container.decodeIfPresent(DataRiskLevel.self, forKey: .dataRiskLevel)
+    if let value = try container.decodeIfPresent(
+      [InfoTypeSummary].self, forKey: .predictedInfoTypes)
+    {
+      self.predictedInfoTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [OtherInfoTypeSummary].self, forKey: .otherInfoTypes)
+    {
+      self.otherInfoTypes = value
+    }
+    self.configSnapshot = try container.decodeIfPresent(
+      DataProfileConfigSnapshot.self, forKey: .configSnapshot)
+    self.lastModifiedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModifiedTime)
+    self.expirationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .scannedColumnCount) {
+      self.scannedColumnCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedColumnCount) {
+      self.failedColumnCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .tableSizeBytes) {
+      self.tableSizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
+      self.rowCount = value
+    }
+    if let value = try container.decodeIfPresent(EncryptionStatus.self, forKey: .encryptionStatus) {
+      self.encryptionStatus = value
+    }
+    if let value = try container.decodeIfPresent(
+      ResourceVisibility.self, forKey: .resourceVisibility)
+    {
+      self.resourceVisibility = value
+    }
+    self.profileLastGenerated = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .profileLastGenerated)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceLabels)
+    {
+      self.resourceLabels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.sampleFindingsTable = try container.decodeIfPresent(
+      BigQueryTable.self, forKey: .sampleFindingsTable)
+    if let value = try container.decodeIfPresent([Tag].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent([RelatedResource].self, forKey: .relatedResources)
+    {
+      self.relatedResources = value
+    }
+    if let value = try container.decodeIfPresent([Domain].self, forKey: .domains) {
+      self.domains = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.dataSourceType, forKey: .dataSourceType)
+    try container.encode(self.projectDataProfile, forKey: .projectDataProfile)
+    try container.encode(self.datasetProjectId, forKey: .datasetProjectId)
+    try container.encode(self.datasetLocation, forKey: .datasetLocation)
+    try container.encode(self.datasetId, forKey: .datasetId)
+    try container.encode(self.tableId, forKey: .tableId)
+    try container.encode(self.fullResource, forKey: .fullResource)
+    try container.encodeIfPresent(self.profileStatus, forKey: .profileStatus)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
+    try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
+    try container.encode(self.predictedInfoTypes, forKey: .predictedInfoTypes)
+    try container.encode(self.otherInfoTypes, forKey: .otherInfoTypes)
+    try container.encodeIfPresent(self.configSnapshot, forKey: .configSnapshot)
+    try container.encodeIfPresent(self.lastModifiedTime, forKey: .lastModifiedTime)
+    try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+    try container.encode(self.scannedColumnCount, forKey: .scannedColumnCount)
+    try container.encode(self.failedColumnCount, forKey: .failedColumnCount)
+    try container.encode(self.tableSizeBytes, forKey: .tableSizeBytes)
+    try container.encode(self.rowCount, forKey: .rowCount)
+    try container.encode(self.encryptionStatus, forKey: .encryptionStatus)
+    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    try container.encodeIfPresent(self.profileLastGenerated, forKey: .profileLastGenerated)
+    try container.encode(self.resourceLabels, forKey: .resourceLabels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.sampleFindingsTable, forKey: .sampleFindingsTable)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.relatedResources, forKey: .relatedResources)
+    try container.encode(self.domains, forKey: .domains)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a profile. New items may be added.

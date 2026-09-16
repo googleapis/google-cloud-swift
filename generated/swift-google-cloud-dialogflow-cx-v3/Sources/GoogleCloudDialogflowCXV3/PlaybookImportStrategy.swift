@@ -41,6 +41,8 @@
     /// skipped.
     public var toolImportStrategy: ImportStrategy = ImportStrategy()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PlaybookImportStrategy`.
     public init() {}
 
@@ -55,6 +57,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mainPlaybookImportStrategy = CodingKeys(stringValue: "mainPlaybookImportStrategy")
+      static let nestedResourceImportStrategy = CodingKeys(
+        stringValue: "nestedResourceImportStrategy")
+      static let toolImportStrategy = CodingKeys(stringValue: "toolImportStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mainPlaybookImportStrategy",
+        "nestedResourceImportStrategy",
+        "toolImportStrategy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ImportStrategy.self, forKey: .mainPlaybookImportStrategy)
+      {
+        self.mainPlaybookImportStrategy = value
+      }
+      if let value = try container.decodeIfPresent(
+        ImportStrategy.self, forKey: .nestedResourceImportStrategy)
+      {
+        self.nestedResourceImportStrategy = value
+      }
+      if let value = try container.decodeIfPresent(ImportStrategy.self, forKey: .toolImportStrategy)
+      {
+        self.toolImportStrategy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.mainPlaybookImportStrategy, forKey: .mainPlaybookImportStrategy)
+      try container.encode(self.nestedResourceImportStrategy, forKey: .nestedResourceImportStrategy)
+      try container.encode(self.toolImportStrategy, forKey: .toolImportStrategy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

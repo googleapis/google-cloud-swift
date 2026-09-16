@@ -54,6 +54,8 @@ public struct CreateTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   ///     - Tablet 5 `[other, )                => {"other", "zz"}.`
   public var initialSplits: [CreateTableRequest.Split] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateTableRequest`.
   public init() {}
 
@@ -70,12 +72,64 @@ public struct CreateTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let tableId = CodingKeys(stringValue: "tableId")
+    static let table = CodingKeys(stringValue: "table")
+    static let initialSplits = CodingKeys(stringValue: "initialSplits")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "tableId",
+      "table",
+      "initialSplits",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableId) {
+      self.tableId = value
+    }
+    self.table = try container.decodeIfPresent(Table.self, forKey: .table)
+    if let value = try container.decodeIfPresent(
+      [CreateTableRequest.Split].self, forKey: .initialSplits)
+    {
+      self.initialSplits = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.tableId, forKey: .tableId)
+    try container.encodeIfPresent(self.table, forKey: .table)
+    try container.encode(self.initialSplits, forKey: .initialSplits)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// An initial split point for a newly created table.
   public struct Split: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Row key to use as an initial tablet boundary.
     public var key: Foundation.Data = Foundation.Data()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Split`.
     public init() {}
@@ -91,6 +145,38 @@ public struct CreateTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let key = CodingKeys(stringValue: "key")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "key"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .key) {
+        self.key = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.key, forKey: .key)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

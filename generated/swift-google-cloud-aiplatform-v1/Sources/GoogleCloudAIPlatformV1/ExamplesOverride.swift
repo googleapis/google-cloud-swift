@@ -37,6 +37,8 @@
     /// The format of the data being provided with each call.
     public var dataFormat: ExamplesOverride.DataFormat = ExamplesOverride.DataFormat()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExamplesOverride`.
     public init() {}
 
@@ -51,6 +53,66 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let neighborCount = CodingKeys(stringValue: "neighborCount")
+      static let crowdingCount = CodingKeys(stringValue: "crowdingCount")
+      static let restrictions = CodingKeys(stringValue: "restrictions")
+      static let returnEmbeddings = CodingKeys(stringValue: "returnEmbeddings")
+      static let dataFormat = CodingKeys(stringValue: "dataFormat")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "neighborCount",
+        "crowdingCount",
+        "restrictions",
+        "returnEmbeddings",
+        "dataFormat",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .neighborCount) {
+        self.neighborCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .crowdingCount) {
+        self.crowdingCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ExamplesRestrictionsNamespace].self, forKey: .restrictions)
+      {
+        self.restrictions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnEmbeddings) {
+        self.returnEmbeddings = value
+      }
+      if let value = try container.decodeIfPresent(
+        ExamplesOverride.DataFormat.self, forKey: .dataFormat)
+      {
+        self.dataFormat = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.neighborCount, forKey: .neighborCount)
+      try container.encode(self.crowdingCount, forKey: .crowdingCount)
+      try container.encode(self.restrictions, forKey: .restrictions)
+      try container.encode(self.returnEmbeddings, forKey: .returnEmbeddings)
+      try container.encode(self.dataFormat, forKey: .dataFormat)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Data format enum.

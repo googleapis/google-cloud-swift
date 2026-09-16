@@ -115,6 +115,8 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Whether the Node belongs to a Multislice group.
   public var multisliceNode: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Node`.
   public init() {}
 
@@ -129,6 +131,179 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let state = CodingKeys(stringValue: "state")
+    static let healthDescription = CodingKeys(stringValue: "healthDescription")
+    static let runtimeVersion = CodingKeys(stringValue: "runtimeVersion")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let networkConfigs = CodingKeys(stringValue: "networkConfigs")
+    static let cidrBlock = CodingKeys(stringValue: "cidrBlock")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let schedulingConfig = CodingKeys(stringValue: "schedulingConfig")
+    static let networkEndpoints = CodingKeys(stringValue: "networkEndpoints")
+    static let health = CodingKeys(stringValue: "health")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let id = CodingKeys(stringValue: "id")
+    static let dataDisks = CodingKeys(stringValue: "dataDisks")
+    static let apiVersion = CodingKeys(stringValue: "apiVersion")
+    static let symptoms = CodingKeys(stringValue: "symptoms")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let acceleratorConfig = CodingKeys(stringValue: "acceleratorConfig")
+    static let queuedResource = CodingKeys(stringValue: "queuedResource")
+    static let multisliceNode = CodingKeys(stringValue: "multisliceNode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "acceleratorType",
+      "state",
+      "healthDescription",
+      "runtimeVersion",
+      "networkConfig",
+      "networkConfigs",
+      "cidrBlock",
+      "serviceAccount",
+      "createTime",
+      "schedulingConfig",
+      "networkEndpoints",
+      "health",
+      "labels",
+      "metadata",
+      "tags",
+      "id",
+      "dataDisks",
+      "apiVersion",
+      "symptoms",
+      "shieldedInstanceConfig",
+      "acceleratorConfig",
+      "queuedResource",
+      "multisliceNode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+      self.acceleratorType = value
+    }
+    if let value = try container.decodeIfPresent(Node.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .healthDescription) {
+      self.healthDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeVersion) {
+      self.runtimeVersion = value
+    }
+    self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
+    if let value = try container.decodeIfPresent([NetworkConfig].self, forKey: .networkConfigs) {
+      self.networkConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidrBlock) {
+      self.cidrBlock = value
+    }
+    self.serviceAccount = try container.decodeIfPresent(
+      ServiceAccount.self, forKey: .serviceAccount)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.schedulingConfig = try container.decodeIfPresent(
+      SchedulingConfig.self, forKey: .schedulingConfig)
+    if let value = try container.decodeIfPresent([NetworkEndpoint].self, forKey: .networkEndpoints)
+    {
+      self.networkEndpoints = value
+    }
+    if let value = try container.decodeIfPresent(Node.Health.self, forKey: .health) {
+      self.health = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .dataDisks) {
+      self.dataDisks = value
+    }
+    if let value = try container.decodeIfPresent(Node.ApiVersion.self, forKey: .apiVersion) {
+      self.apiVersion = value
+    }
+    if let value = try container.decodeIfPresent([Symptom].self, forKey: .symptoms) {
+      self.symptoms = value
+    }
+    self.shieldedInstanceConfig = try container.decodeIfPresent(
+      ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
+    self.acceleratorConfig = try container.decodeIfPresent(
+      AcceleratorConfig.self, forKey: .acceleratorConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queuedResource) {
+      self.queuedResource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .multisliceNode) {
+      self.multisliceNode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.healthDescription, forKey: .healthDescription)
+    try container.encode(self.runtimeVersion, forKey: .runtimeVersion)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encode(self.networkConfigs, forKey: .networkConfigs)
+    try container.encode(self.cidrBlock, forKey: .cidrBlock)
+    try container.encodeIfPresent(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.schedulingConfig, forKey: .schedulingConfig)
+    try container.encode(self.networkEndpoints, forKey: .networkEndpoints)
+    try container.encode(self.health, forKey: .health)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.dataDisks, forKey: .dataDisks)
+    try container.encode(self.apiVersion, forKey: .apiVersion)
+    try container.encode(self.symptoms, forKey: .symptoms)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encodeIfPresent(self.acceleratorConfig, forKey: .acceleratorConfig)
+    try container.encode(self.queuedResource, forKey: .queuedResource)
+    try container.encode(self.multisliceNode, forKey: .multisliceNode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the different states of a TPU node during its lifecycle.

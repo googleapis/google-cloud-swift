@@ -31,6 +31,8 @@
     /// are covered.
     public var coverageScore: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransitionRouteGroupCoverage`.
     public init() {}
 
@@ -47,6 +49,46 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let coverages = CodingKeys(stringValue: "coverages")
+      static let coverageScore = CodingKeys(stringValue: "coverageScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "coverages",
+        "coverageScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [TransitionRouteGroupCoverage.Coverage].self, forKey: .coverages)
+      {
+        self.coverages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .coverageScore) {
+        self.coverageScore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.coverages, forKey: .coverages)
+      try container.encode(self.coverageScore, forKey: .coverageScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Coverage result message for one transition route group.
     public struct Coverage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -60,6 +102,8 @@
       /// The percent of transition routes in the transition route group that are
       /// covered.
       public var coverageScore: Swift.Float = Swift.Float()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Coverage`.
       public init() {}
@@ -77,6 +121,51 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let routeGroup = CodingKeys(stringValue: "routeGroup")
+        static let transitions = CodingKeys(stringValue: "transitions")
+        static let coverageScore = CodingKeys(stringValue: "coverageScore")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "routeGroup",
+          "transitions",
+          "coverageScore",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.routeGroup = try container.decodeIfPresent(
+          TransitionRouteGroup.self, forKey: .routeGroup)
+        if let value = try container.decodeIfPresent(
+          [TransitionRouteGroupCoverage.Coverage.Transition].self, forKey: .transitions)
+        {
+          self.transitions = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .coverageScore) {
+          self.coverageScore = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.routeGroup, forKey: .routeGroup)
+        try container.encode(self.transitions, forKey: .transitions)
+        try container.encode(self.coverageScore, forKey: .coverageScore)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// A transition coverage in a transition route group.
       public struct Transition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -87,6 +176,9 @@
         /// Whether the transition route is covered by at least one of the
         /// agent's test cases.
         public var covered: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Transition`.
         public init() {}
@@ -102,6 +194,43 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let transitionRoute = CodingKeys(stringValue: "transitionRoute")
+          static let covered = CodingKeys(stringValue: "covered")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "transitionRoute",
+            "covered",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.transitionRoute = try container.decodeIfPresent(
+            TransitionRoute.self, forKey: .transitionRoute)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .covered) {
+            self.covered = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.transitionRoute, forKey: .transitionRoute)
+          try container.encode(self.covered, forKey: .covered)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

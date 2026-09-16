@@ -34,6 +34,8 @@ public struct LoggedBackupPlanMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
   /// perspective.
   public var rpoRiskReason: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoggedBackupPlanMetadata`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct LoggedBackupPlanMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupChannel = CodingKeys(stringValue: "backupChannel")
+    static let rpoRiskLevel = CodingKeys(stringValue: "rpoRiskLevel")
+    static let rpoRiskReason = CodingKeys(stringValue: "rpoRiskReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupChannel",
+      "rpoRiskLevel",
+      "rpoRiskReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupChannel) {
+      self.backupChannel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rpoRiskLevel) {
+      self.rpoRiskLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rpoRiskReason) {
+      self.rpoRiskReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backupChannel, forKey: .backupChannel)
+    try container.encode(self.rpoRiskLevel, forKey: .rpoRiskLevel)
+    try container.encode(self.rpoRiskReason, forKey: .rpoRiskReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

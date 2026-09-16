@@ -140,6 +140,8 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.tasks.v2.RetryConfig.min_backoff]: <doc:RetryConfig/minBackoff>
   public var maxDoublings: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RetryConfig`.
   public init() {}
 
@@ -154,6 +156,59 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maxAttempts = CodingKeys(stringValue: "maxAttempts")
+    static let maxRetryDuration = CodingKeys(stringValue: "maxRetryDuration")
+    static let minBackoff = CodingKeys(stringValue: "minBackoff")
+    static let maxBackoff = CodingKeys(stringValue: "maxBackoff")
+    static let maxDoublings = CodingKeys(stringValue: "maxDoublings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maxAttempts",
+      "maxRetryDuration",
+      "minBackoff",
+      "maxBackoff",
+      "maxDoublings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxAttempts) {
+      self.maxAttempts = value
+    }
+    self.maxRetryDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxRetryDuration)
+    self.minBackoff = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .minBackoff)
+    self.maxBackoff = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxBackoff)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDoublings) {
+      self.maxDoublings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.maxAttempts, forKey: .maxAttempts)
+    try container.encodeIfPresent(self.maxRetryDuration, forKey: .maxRetryDuration)
+    try container.encodeIfPresent(self.minBackoff, forKey: .minBackoff)
+    try container.encodeIfPresent(self.maxBackoff, forKey: .maxBackoff)
+    try container.encode(self.maxDoublings, forKey: .maxDoublings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

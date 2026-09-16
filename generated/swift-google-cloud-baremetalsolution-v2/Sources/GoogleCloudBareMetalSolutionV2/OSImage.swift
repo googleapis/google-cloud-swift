@@ -38,6 +38,8 @@ public struct OSImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Network templates that can be used with this OS Image.
   public var supportedNetworkTemplates: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OSImage`.
   public init() {}
 
@@ -52,6 +54,66 @@ public struct OSImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let code = CodingKeys(stringValue: "code")
+    static let description = CodingKeys(stringValue: "description")
+    static let applicableInstanceTypes = CodingKeys(stringValue: "applicableInstanceTypes")
+    static let supportedNetworkTemplates = CodingKeys(stringValue: "supportedNetworkTemplates")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "code",
+      "description",
+      "applicableInstanceTypes",
+      "supportedNetworkTemplates",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .applicableInstanceTypes)
+    {
+      self.applicableInstanceTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .supportedNetworkTemplates)
+    {
+      self.supportedNetworkTemplates = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.applicableInstanceTypes, forKey: .applicableInstanceTypes)
+    try container.encode(self.supportedNetworkTemplates, forKey: .supportedNetworkTemplates)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

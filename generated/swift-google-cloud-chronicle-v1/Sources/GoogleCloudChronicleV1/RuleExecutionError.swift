@@ -39,6 +39,8 @@ public struct RuleExecutionError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The resource name of the source that generated the rule execution error.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuleExecutionError`.
   public init() {}
 
@@ -55,17 +57,32 @@ public struct RuleExecutionError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rule = "rule"
-    case curatedRule = "curatedRule"
-    case name = "name"
-    case error = "error"
-    case timeRange = "timeRange"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rule = CodingKeys(stringValue: "rule")
+    static let curatedRule = CodingKeys(stringValue: "curatedRule")
+    static let name = CodingKeys(stringValue: "name")
+    static let error = CodingKeys(stringValue: "error")
+    static let timeRange = CodingKeys(stringValue: "timeRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rule",
+      "curatedRule",
+      "name",
+      "error",
+      "timeRange",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
 
@@ -86,13 +103,17 @@ public struct RuleExecutionError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try sourceCheckAndSet(.curatedRule(curatedRule))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.error, forKey: .error)
-    try container.encode(self.timeRange, forKey: .timeRange)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
 
     if let choice = self.source {
       switch choice {
@@ -101,6 +122,9 @@ public struct RuleExecutionError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .curatedRule(let value):
         try container.encode(value, forKey: .curatedRule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

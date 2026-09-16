@@ -34,6 +34,8 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleCloudWKT._Any
 
   public var sourceFilter: OneOf_SourceFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConditionalColumnSetValue`.
   public init() {}
 
@@ -50,11 +52,23 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceTextFilter = "sourceTextFilter"
-    case sourceNumericFilter = "sourceNumericFilter"
-    case valueTransformation = "valueTransformation"
-    case customFeatures = "customFeatures"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceTextFilter = CodingKeys(stringValue: "sourceTextFilter")
+    static let sourceNumericFilter = CodingKeys(stringValue: "sourceNumericFilter")
+    static let valueTransformation = CodingKeys(stringValue: "valueTransformation")
+    static let customFeatures = CodingKeys(stringValue: "customFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceTextFilter",
+      "sourceNumericFilter",
+      "valueTransformation",
+      "customFeatures",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -85,12 +99,16 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleCloudWKT._Any
       try sourceFilterCheckAndSet(.sourceNumericFilter(sourceNumericFilter))
     }
     self.sourceFilter = sourceFilter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.valueTransformation, forKey: .valueTransformation)
-    try container.encode(self.customFeatures, forKey: .customFeatures)
+    try container.encodeIfPresent(self.valueTransformation, forKey: .valueTransformation)
+    try container.encodeIfPresent(self.customFeatures, forKey: .customFeatures)
 
     if let choice = self.sourceFilter {
       switch choice {
@@ -99,6 +117,9 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleCloudWKT._Any
       case .sourceNumericFilter(let value):
         try container.encode(value, forKey: .sourceNumericFilter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -93,6 +93,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   public var operation: OneOf_Operation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SingleTenantHsmInstanceProposal`.
   public init() {}
 
@@ -109,34 +111,73 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case state = "state"
-    case failureReason = "failureReason"
-    case quorumParameters = "quorumParameters"
-    case requiredActionQuorumParameters = "requiredActionQuorumParameters"
-    case expireTime = "expireTime"
-    case ttl = "ttl"
-    case deleteTime = "deleteTime"
-    case purgeTime = "purgeTime"
-    case registerTwoFactorAuthKeys = "registerTwoFactorAuthKeys"
-    case disableSingleTenantHsmInstance = "disableSingleTenantHsmInstance"
-    case enableSingleTenantHsmInstance = "enableSingleTenantHsmInstance"
-    case deleteSingleTenantHsmInstance = "deleteSingleTenantHsmInstance"
-    case addQuorumMember = "addQuorumMember"
-    case removeQuorumMember = "removeQuorumMember"
-    case refreshSingleTenantHsmInstance = "refreshSingleTenantHsmInstance"
-    case upgradeKeyTrust = "upgradeKeyTrust"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let failureReason = CodingKeys(stringValue: "failureReason")
+    static let quorumParameters = CodingKeys(stringValue: "quorumParameters")
+    static let requiredActionQuorumParameters = CodingKeys(
+      stringValue: "requiredActionQuorumParameters")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let purgeTime = CodingKeys(stringValue: "purgeTime")
+    static let registerTwoFactorAuthKeys = CodingKeys(stringValue: "registerTwoFactorAuthKeys")
+    static let disableSingleTenantHsmInstance = CodingKeys(
+      stringValue: "disableSingleTenantHsmInstance")
+    static let enableSingleTenantHsmInstance = CodingKeys(
+      stringValue: "enableSingleTenantHsmInstance")
+    static let deleteSingleTenantHsmInstance = CodingKeys(
+      stringValue: "deleteSingleTenantHsmInstance")
+    static let addQuorumMember = CodingKeys(stringValue: "addQuorumMember")
+    static let removeQuorumMember = CodingKeys(stringValue: "removeQuorumMember")
+    static let refreshSingleTenantHsmInstance = CodingKeys(
+      stringValue: "refreshSingleTenantHsmInstance")
+    static let upgradeKeyTrust = CodingKeys(stringValue: "upgradeKeyTrust")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "state",
+      "failureReason",
+      "quorumParameters",
+      "requiredActionQuorumParameters",
+      "expireTime",
+      "ttl",
+      "deleteTime",
+      "purgeTime",
+      "registerTwoFactorAuthKeys",
+      "disableSingleTenantHsmInstance",
+      "enableSingleTenantHsmInstance",
+      "deleteSingleTenantHsmInstance",
+      "addQuorumMember",
+      "removeQuorumMember",
+      "refreshSingleTenantHsmInstance",
+      "upgradeKeyTrust",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.state = try container.decode(SingleTenantHsmInstanceProposal.State.self, forKey: .state)
-    self.failureReason = try container.decode(Swift.String.self, forKey: .failureReason)
+    if let value = try container.decodeIfPresent(
+      SingleTenantHsmInstanceProposal.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureReason) {
+      self.failureReason = value
+    }
     self.deleteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.purgeTime = try container.decodeIfPresent(
@@ -242,16 +283,20 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       try operationCheckAndSet(.upgradeKeyTrust(upgradeKeyTrust))
     }
     self.operation = operation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.failureReason, forKey: .failureReason)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.purgeTime, forKey: .purgeTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.purgeTime, forKey: .purgeTime)
 
     if let choice = self.approvalParameters {
       switch choice {
@@ -291,6 +336,9 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
         try container.encode(value, forKey: .upgradeKeyTrust)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Parameters of quorum approval for the
@@ -317,6 +365,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
     public var approvedTwoFactorPublicKeyPems: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QuorumParameters`.
     public init() {}
 
@@ -331,6 +381,55 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let requiredApproverCount = CodingKeys(stringValue: "requiredApproverCount")
+      static let challenges = CodingKeys(stringValue: "challenges")
+      static let approvedTwoFactorPublicKeyPems = CodingKeys(
+        stringValue: "approvedTwoFactorPublicKeyPems")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "requiredApproverCount",
+        "challenges",
+        "approvedTwoFactorPublicKeyPems",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredApproverCount)
+      {
+        self.requiredApproverCount = value
+      }
+      if let value = try container.decodeIfPresent([Challenge].self, forKey: .challenges) {
+        self.challenges = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .approvedTwoFactorPublicKeyPems)
+      {
+        self.approvedTwoFactorPublicKeyPems = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
+      try container.encode(self.challenges, forKey: .challenges)
+      try container.encode(
+        self.approvedTwoFactorPublicKeyPems, forKey: .approvedTwoFactorPublicKeyPems)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -371,6 +470,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
     public var approvedTwoFactorPublicKeyPems: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RequiredActionQuorumParameters`.
     public init() {}
 
@@ -385,6 +486,61 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let requiredChallenges = CodingKeys(stringValue: "requiredChallenges")
+      static let requiredApproverCount = CodingKeys(stringValue: "requiredApproverCount")
+      static let quorumChallenges = CodingKeys(stringValue: "quorumChallenges")
+      static let approvedTwoFactorPublicKeyPems = CodingKeys(
+        stringValue: "approvedTwoFactorPublicKeyPems")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "requiredChallenges",
+        "requiredApproverCount",
+        "quorumChallenges",
+        "approvedTwoFactorPublicKeyPems",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Challenge].self, forKey: .requiredChallenges) {
+        self.requiredChallenges = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredApproverCount)
+      {
+        self.requiredApproverCount = value
+      }
+      if let value = try container.decodeIfPresent([Challenge].self, forKey: .quorumChallenges) {
+        self.quorumChallenges = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .approvedTwoFactorPublicKeyPems)
+      {
+        self.approvedTwoFactorPublicKeyPems = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.requiredChallenges, forKey: .requiredChallenges)
+      try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
+      try container.encode(self.quorumChallenges, forKey: .quorumChallenges)
+      try container.encode(
+        self.approvedTwoFactorPublicKeyPems, forKey: .approvedTwoFactorPublicKeyPems)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -427,6 +583,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// auth. Public keys must be associated with RSA 2048 keys.
     public var twoFactorPublicKeyPems: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RegisterTwoFactorAuthKeys`.
     public init() {}
 
@@ -441,6 +599,47 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let requiredApproverCount = CodingKeys(stringValue: "requiredApproverCount")
+      static let twoFactorPublicKeyPems = CodingKeys(stringValue: "twoFactorPublicKeyPems")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "requiredApproverCount",
+        "twoFactorPublicKeyPems",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredApproverCount)
+      {
+        self.requiredApproverCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .twoFactorPublicKeyPems)
+      {
+        self.twoFactorPublicKeyPems = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
+      try container.encode(self.twoFactorPublicKeyPems, forKey: .twoFactorPublicKeyPems)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -467,6 +666,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
   public struct DisableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DisableSingleTenantHsmInstance`.
     public init() {}
 
@@ -481,6 +682,30 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -507,6 +732,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
   public struct EnableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EnableSingleTenantHsmInstance`.
     public init() {}
 
@@ -521,6 +748,30 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -555,6 +806,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
   public struct DeleteSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeleteSingleTenantHsmInstance`.
     public init() {}
 
@@ -569,6 +822,30 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -603,6 +880,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// member to add. Public keys must be associated with RSA 2048 keys.
     public var twoFactorPublicKeyPem: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AddQuorumMember`.
     public init() {}
 
@@ -617,6 +896,40 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let twoFactorPublicKeyPem = CodingKeys(stringValue: "twoFactorPublicKeyPem")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "twoFactorPublicKeyPem"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .twoFactorPublicKeyPem)
+      {
+        self.twoFactorPublicKeyPem = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -651,6 +964,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// member to remove. Public keys must be associated with RSA 2048 keys.
     public var twoFactorPublicKeyPem: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RemoveQuorumMember`.
     public init() {}
 
@@ -665,6 +980,40 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let twoFactorPublicKeyPem = CodingKeys(stringValue: "twoFactorPublicKeyPem")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "twoFactorPublicKeyPem"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .twoFactorPublicKeyPem)
+      {
+        self.twoFactorPublicKeyPem = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -697,6 +1046,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
   public struct RefreshSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RefreshSingleTenantHsmInstance`.
     public init() {}
 
@@ -711,6 +1062,30 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -743,6 +1118,8 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
     /// login nonce for this operation.
     public var twoFactorPublicKeyPem: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UpgradeKeyTrust`.
     public init() {}
 
@@ -757,6 +1134,46 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let twoFactorPublicKeyPem = CodingKeys(stringValue: "twoFactorPublicKeyPem")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "twoFactorPublicKeyPem",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .twoFactorPublicKeyPem)
+      {
+        self.twoFactorPublicKeyPem = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

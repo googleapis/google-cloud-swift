@@ -50,6 +50,8 @@
     /// Effective VM DNS setting at Instance level.
     public var vmDnsSettingMetadataValue: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceStatusEffectiveInstanceMetadata`.
     public init() {}
 
@@ -64,6 +66,93 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let blockProjectSshKeysMetadataValue = CodingKeys(
+        stringValue: "blockProjectSshKeysMetadataValue")
+      static let enableGuestAttributesMetadataValue = CodingKeys(
+        stringValue: "enableGuestAttributesMetadataValue")
+      static let enableOsInventoryMetadataValue = CodingKeys(
+        stringValue: "enableOsInventoryMetadataValue")
+      static let enableOsconfigMetadataValue = CodingKeys(
+        stringValue: "enableOsconfigMetadataValue")
+      static let enableOsloginMetadataValue = CodingKeys(stringValue: "enableOsloginMetadataValue")
+      static let gceContainerDeclarationMetadataValue = CodingKeys(
+        stringValue: "gceContainerDeclarationMetadataValue")
+      static let serialPortEnableMetadataValue = CodingKeys(
+        stringValue: "serialPortEnableMetadataValue")
+      static let serialPortLoggingEnableMetadataValue = CodingKeys(
+        stringValue: "serialPortLoggingEnableMetadataValue")
+      static let vmDnsSettingMetadataValue = CodingKeys(stringValue: "vmDnsSettingMetadataValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "blockProjectSshKeysMetadataValue",
+        "enableGuestAttributesMetadataValue",
+        "enableOsInventoryMetadataValue",
+        "enableOsconfigMetadataValue",
+        "enableOsloginMetadataValue",
+        "gceContainerDeclarationMetadataValue",
+        "serialPortEnableMetadataValue",
+        "serialPortLoggingEnableMetadataValue",
+        "vmDnsSettingMetadataValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.blockProjectSshKeysMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .blockProjectSshKeysMetadataValue)
+      self.enableGuestAttributesMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableGuestAttributesMetadataValue)
+      self.enableOsInventoryMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableOsInventoryMetadataValue)
+      self.enableOsconfigMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableOsconfigMetadataValue)
+      self.enableOsloginMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableOsloginMetadataValue)
+      self.gceContainerDeclarationMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .gceContainerDeclarationMetadataValue)
+      self.serialPortEnableMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .serialPortEnableMetadataValue)
+      self.serialPortLoggingEnableMetadataValue = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .serialPortLoggingEnableMetadataValue)
+      self.vmDnsSettingMetadataValue = try container.decodeIfPresent(
+        Swift.String.self, forKey: .vmDnsSettingMetadataValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.blockProjectSshKeysMetadataValue, forKey: .blockProjectSshKeysMetadataValue)
+      try container.encodeIfPresent(
+        self.enableGuestAttributesMetadataValue, forKey: .enableGuestAttributesMetadataValue)
+      try container.encodeIfPresent(
+        self.enableOsInventoryMetadataValue, forKey: .enableOsInventoryMetadataValue)
+      try container.encodeIfPresent(
+        self.enableOsconfigMetadataValue, forKey: .enableOsconfigMetadataValue)
+      try container.encodeIfPresent(
+        self.enableOsloginMetadataValue, forKey: .enableOsloginMetadataValue)
+      try container.encodeIfPresent(
+        self.gceContainerDeclarationMetadataValue, forKey: .gceContainerDeclarationMetadataValue)
+      try container.encodeIfPresent(
+        self.serialPortEnableMetadataValue, forKey: .serialPortEnableMetadataValue)
+      try container.encodeIfPresent(
+        self.serialPortLoggingEnableMetadataValue, forKey: .serialPortLoggingEnableMetadataValue)
+      try container.encodeIfPresent(
+        self.vmDnsSettingMetadataValue, forKey: .vmDnsSettingMetadataValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

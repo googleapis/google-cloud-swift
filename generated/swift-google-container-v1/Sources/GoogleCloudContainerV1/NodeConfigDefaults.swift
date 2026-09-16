@@ -35,6 +35,8 @@ public struct NodeConfigDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
   public var nodeKubeletConfig: NodeKubeletConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeConfigDefaults`.
   public init() {}
 
@@ -49,6 +51,51 @@ public struct NodeConfigDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcfsConfig = CodingKeys(stringValue: "gcfsConfig")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let containerdConfig = CodingKeys(stringValue: "containerdConfig")
+    static let nodeKubeletConfig = CodingKeys(stringValue: "nodeKubeletConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcfsConfig",
+      "loggingConfig",
+      "containerdConfig",
+      "nodeKubeletConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gcfsConfig = try container.decodeIfPresent(GcfsConfig.self, forKey: .gcfsConfig)
+    self.loggingConfig = try container.decodeIfPresent(
+      NodePoolLoggingConfig.self, forKey: .loggingConfig)
+    self.containerdConfig = try container.decodeIfPresent(
+      ContainerdConfig.self, forKey: .containerdConfig)
+    self.nodeKubeletConfig = try container.decodeIfPresent(
+      NodeKubeletConfig.self, forKey: .nodeKubeletConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.gcfsConfig, forKey: .gcfsConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.containerdConfig, forKey: .containerdConfig)
+    try container.encodeIfPresent(self.nodeKubeletConfig, forKey: .nodeKubeletConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

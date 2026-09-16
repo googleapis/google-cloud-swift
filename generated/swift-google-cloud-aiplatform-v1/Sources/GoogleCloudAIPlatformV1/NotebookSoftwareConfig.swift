@@ -33,6 +33,8 @@
     /// The image to be used by the notebook runtime.
     public var runtimeImage: OneOf_RuntimeImage? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NotebookSoftwareConfig`.
     public init() {}
 
@@ -49,15 +51,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case colabImage = "colabImage"
-      case env = "env"
-      case postStartupScriptConfig = "postStartupScriptConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let colabImage = CodingKeys(stringValue: "colabImage")
+      static let env = CodingKeys(stringValue: "env")
+      static let postStartupScriptConfig = CodingKeys(stringValue: "postStartupScriptConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "colabImage",
+        "env",
+        "postStartupScriptConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.env = try container.decode([EnvVar].self, forKey: .env)
+      if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+        self.env = value
+      }
       self.postStartupScriptConfig = try container.decodeIfPresent(
         PostStartupScriptConfig.self, forKey: .postStartupScriptConfig)
 
@@ -75,18 +90,25 @@
         try runtimeImageCheckAndSet(.colabImage(colabImage))
       }
       self.runtimeImage = runtimeImage
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.env, forKey: .env)
-      try container.encode(self.postStartupScriptConfig, forKey: .postStartupScriptConfig)
+      try container.encodeIfPresent(self.postStartupScriptConfig, forKey: .postStartupScriptConfig)
 
       if let choice = self.runtimeImage {
         switch choice {
         case .colabImage(let value):
           try container.encode(value, forKey: .colabImage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

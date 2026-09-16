@@ -72,6 +72,8 @@
     /// Recommended flag value for UI display.
     public var recommendedValue: OneOf_RecommendedValue? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Flag`.
     public init() {}
 
@@ -88,39 +90,75 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case type = "type"
-      case appliesTo = "appliesTo"
-      case allowedStringValues = "allowedStringValues"
-      case minValue = "minValue"
-      case maxValue = "maxValue"
-      case requiresRestart = "requiresRestart"
-      case kind = "kind"
-      case inBeta = "inBeta"
-      case allowedIntValues = "allowedIntValues"
-      case flagScope = "flagScope"
-      case recommendedStringValue = "recommendedStringValue"
-      case recommendedIntValue = "recommendedIntValue"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+      static let appliesTo = CodingKeys(stringValue: "appliesTo")
+      static let allowedStringValues = CodingKeys(stringValue: "allowedStringValues")
+      static let minValue = CodingKeys(stringValue: "minValue")
+      static let maxValue = CodingKeys(stringValue: "maxValue")
+      static let requiresRestart = CodingKeys(stringValue: "requiresRestart")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let inBeta = CodingKeys(stringValue: "inBeta")
+      static let allowedIntValues = CodingKeys(stringValue: "allowedIntValues")
+      static let flagScope = CodingKeys(stringValue: "flagScope")
+      static let recommendedStringValue = CodingKeys(stringValue: "recommendedStringValue")
+      static let recommendedIntValue = CodingKeys(stringValue: "recommendedIntValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "type",
+        "appliesTo",
+        "allowedStringValues",
+        "minValue",
+        "maxValue",
+        "requiresRestart",
+        "kind",
+        "inBeta",
+        "allowedIntValues",
+        "flagScope",
+        "recommendedStringValue",
+        "recommendedIntValue",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.type = try container.decode(SqlFlagType.self, forKey: .type)
-      self.appliesTo = try container.decode([SqlDatabaseVersion].self, forKey: .appliesTo)
-      self.allowedStringValues = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(SqlFlagType.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent([SqlDatabaseVersion].self, forKey: .appliesTo) {
+        self.appliesTo = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .allowedStringValues)
+      {
+        self.allowedStringValues = value
+      }
       self.minValue = try container.decodeIfPresent(
         GoogleCloudWKT.Int64Value.self, forKey: .minValue)
       self.maxValue = try container.decodeIfPresent(
         GoogleCloudWKT.Int64Value.self, forKey: .maxValue)
       self.requiresRestart = try container.decodeIfPresent(
         GoogleCloudWKT.BoolValue.self, forKey: .requiresRestart)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
       self.inBeta = try container.decodeIfPresent(GoogleCloudWKT.BoolValue.self, forKey: .inBeta)
-      self.allowedIntValues = try container.decode([Swift.Int64].self, forKey: .allowedIntValues)
-      self.flagScope = try container.decode(SqlFlagScope.self, forKey: .flagScope)
+      if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .allowedIntValues) {
+        self.allowedIntValues = value
+      }
+      if let value = try container.decodeIfPresent(SqlFlagScope.self, forKey: .flagScope) {
+        self.flagScope = value
+      }
 
       var recommendedValue: OneOf_RecommendedValue? = nil
       let recommendedValueCheckAndSet = {
@@ -143,6 +181,10 @@
         try recommendedValueCheckAndSet(.recommendedIntValue(recommendedIntValue))
       }
       self.recommendedValue = recommendedValue
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,11 +193,11 @@
       try container.encode(self.type, forKey: .type)
       try container.encode(self.appliesTo, forKey: .appliesTo)
       try container.encode(self.allowedStringValues, forKey: .allowedStringValues)
-      try container.encode(self.minValue, forKey: .minValue)
-      try container.encode(self.maxValue, forKey: .maxValue)
-      try container.encode(self.requiresRestart, forKey: .requiresRestart)
+      try container.encodeIfPresent(self.minValue, forKey: .minValue)
+      try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+      try container.encodeIfPresent(self.requiresRestart, forKey: .requiresRestart)
       try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.inBeta, forKey: .inBeta)
+      try container.encodeIfPresent(self.inBeta, forKey: .inBeta)
       try container.encode(self.allowedIntValues, forKey: .allowedIntValues)
       try container.encode(self.flagScope, forKey: .flagScope)
 
@@ -166,6 +208,9 @@
         case .recommendedIntValue(let value):
           try container.encode(value, forKey: .recommendedIntValue)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

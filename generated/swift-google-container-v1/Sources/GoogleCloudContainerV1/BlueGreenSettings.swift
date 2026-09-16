@@ -28,6 +28,8 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The rollout policy controls the general rollout progress of blue-green.
   public var rolloutPolicy: OneOf_RolloutPolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BlueGreenSettings`.
   public init() {}
 
@@ -44,10 +46,21 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case standardRolloutPolicy = "standardRolloutPolicy"
-    case autoscaledRolloutPolicy = "autoscaledRolloutPolicy"
-    case nodePoolSoakDuration = "nodePoolSoakDuration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let standardRolloutPolicy = CodingKeys(stringValue: "standardRolloutPolicy")
+    static let autoscaledRolloutPolicy = CodingKeys(stringValue: "autoscaledRolloutPolicy")
+    static let nodePoolSoakDuration = CodingKeys(stringValue: "nodePoolSoakDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "standardRolloutPolicy",
+      "autoscaledRolloutPolicy",
+      "nodePoolSoakDuration",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,11 +89,15 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try rolloutPolicyCheckAndSet(.autoscaledRolloutPolicy(autoscaledRolloutPolicy))
     }
     self.rolloutPolicy = rolloutPolicy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.nodePoolSoakDuration, forKey: .nodePoolSoakDuration)
+    try container.encodeIfPresent(self.nodePoolSoakDuration, forKey: .nodePoolSoakDuration)
 
     if let choice = self.rolloutPolicy {
       switch choice {
@@ -89,6 +106,9 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .autoscaledRolloutPolicy(let value):
         try container.encode(value, forKey: .autoscaledRolloutPolicy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -101,6 +121,8 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Blue pool size to drain in a batch.
     public var updateBatchSize: OneOf_UpdateBatchSize? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StandardRolloutPolicy`.
     public init() {}
@@ -118,10 +140,21 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case batchPercentage = "batchPercentage"
-      case batchNodeCount = "batchNodeCount"
-      case batchSoakDuration = "batchSoakDuration"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let batchPercentage = CodingKeys(stringValue: "batchPercentage")
+      static let batchNodeCount = CodingKeys(stringValue: "batchNodeCount")
+      static let batchSoakDuration = CodingKeys(stringValue: "batchSoakDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "batchPercentage",
+        "batchNodeCount",
+        "batchSoakDuration",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -150,11 +183,15 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try updateBatchSizeCheckAndSet(.batchNodeCount(batchNodeCount))
       }
       self.updateBatchSize = updateBatchSize
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.batchSoakDuration, forKey: .batchSoakDuration)
+      try container.encodeIfPresent(self.batchSoakDuration, forKey: .batchSoakDuration)
 
       if let choice = self.updateBatchSize {
         switch choice {
@@ -163,6 +200,9 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .batchNodeCount(let value):
           try container.encode(value, forKey: .batchNodeCount)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -196,6 +236,8 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// inclusive.
     public var waitForDrainDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscaledRolloutPolicy`.
     public init() {}
 
@@ -210,6 +252,37 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let waitForDrainDuration = CodingKeys(stringValue: "waitForDrainDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "waitForDrainDuration"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.waitForDrainDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .waitForDrainDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.waitForDrainDuration, forKey: .waitForDrainDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

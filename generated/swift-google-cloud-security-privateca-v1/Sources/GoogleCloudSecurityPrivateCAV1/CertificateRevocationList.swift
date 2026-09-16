@@ -80,6 +80,8 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWKT._Any
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateRevocationList`.
   public init() {}
 
@@ -94,6 +96,95 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
+    static let revokedCertificates = CodingKeys(stringValue: "revokedCertificates")
+    static let pemCrl = CodingKeys(stringValue: "pemCrl")
+    static let accessUrl = CodingKeys(stringValue: "accessUrl")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sequenceNumber",
+      "revokedCertificates",
+      "pemCrl",
+      "accessUrl",
+      "state",
+      "createTime",
+      "updateTime",
+      "revisionId",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
+      self.sequenceNumber = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CertificateRevocationList.RevokedCertificate].self, forKey: .revokedCertificates)
+    {
+      self.revokedCertificates = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pemCrl) {
+      self.pemCrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessUrl) {
+      self.accessUrl = value
+    }
+    if let value = try container.decodeIfPresent(
+      CertificateRevocationList.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.sequenceNumber, forKey: .sequenceNumber)
+    try container.encode(self.revokedCertificates, forKey: .revokedCertificates)
+    try container.encode(self.pemCrl, forKey: .pemCrl)
+    try container.encode(self.accessUrl, forKey: .accessUrl)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.revisionId, forKey: .revisionId)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes a revoked
@@ -123,6 +214,8 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWKT._Any
     /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
     public var revocationReason: RevocationReason = RevocationReason()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RevokedCertificate`.
     public init() {}
 
@@ -137,6 +230,51 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let certificate = CodingKeys(stringValue: "certificate")
+      static let hexSerialNumber = CodingKeys(stringValue: "hexSerialNumber")
+      static let revocationReason = CodingKeys(stringValue: "revocationReason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "certificate",
+        "hexSerialNumber",
+        "revocationReason",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificate) {
+        self.certificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hexSerialNumber) {
+        self.hexSerialNumber = value
+      }
+      if let value = try container.decodeIfPresent(RevocationReason.self, forKey: .revocationReason)
+      {
+        self.revocationReason = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.certificate, forKey: .certificate)
+      try container.encode(self.hexSerialNumber, forKey: .hexSerialNumber)
+      try container.encode(self.revocationReason, forKey: .revocationReason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

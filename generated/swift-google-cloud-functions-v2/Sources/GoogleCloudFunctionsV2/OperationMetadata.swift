@@ -66,6 +66,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The operation type.
   public var operationType: OperationType = OperationType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
 
@@ -80,6 +82,100 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let target = CodingKeys(stringValue: "target")
+    static let verb = CodingKeys(stringValue: "verb")
+    static let statusDetail = CodingKeys(stringValue: "statusDetail")
+    static let cancelRequested = CodingKeys(stringValue: "cancelRequested")
+    static let apiVersion = CodingKeys(stringValue: "apiVersion")
+    static let requestResource = CodingKeys(stringValue: "requestResource")
+    static let stages = CodingKeys(stringValue: "stages")
+    static let sourceToken = CodingKeys(stringValue: "sourceToken")
+    static let buildName = CodingKeys(stringValue: "buildName")
+    static let operationType = CodingKeys(stringValue: "operationType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "target",
+      "verb",
+      "statusDetail",
+      "cancelRequested",
+      "apiVersion",
+      "requestResource",
+      "stages",
+      "sourceToken",
+      "buildName",
+      "operationType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .verb) {
+      self.verb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusDetail) {
+      self.statusDetail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cancelRequested) {
+      self.cancelRequested = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiVersion) {
+      self.apiVersion = value
+    }
+    self.requestResource = try container.decodeIfPresent(
+      GoogleCloudWKT.`Any`.self, forKey: .requestResource)
+    if let value = try container.decodeIfPresent([Stage].self, forKey: .stages) {
+      self.stages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceToken) {
+      self.sourceToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildName) {
+      self.buildName = value
+    }
+    if let value = try container.decodeIfPresent(OperationType.self, forKey: .operationType) {
+      self.operationType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.verb, forKey: .verb)
+    try container.encode(self.statusDetail, forKey: .statusDetail)
+    try container.encode(self.cancelRequested, forKey: .cancelRequested)
+    try container.encode(self.apiVersion, forKey: .apiVersion)
+    try container.encodeIfPresent(self.requestResource, forKey: .requestResource)
+    try container.encode(self.stages, forKey: .stages)
+    try container.encode(self.sourceToken, forKey: .sourceToken)
+    try container.encode(self.buildName, forKey: .buildName)
+    try container.encode(self.operationType, forKey: .operationType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

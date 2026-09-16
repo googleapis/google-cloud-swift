@@ -25,6 +25,8 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to others.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSource`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case entity = "entity"
-    case resource = "resource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entity = CodingKeys(stringValue: "entity")
+    static let resource = CodingKeys(stringValue: "resource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entity",
+      "resource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +78,10 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.resource(resource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +94,9 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .resource(let value):
         try container.encode(value, forKey: .resource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

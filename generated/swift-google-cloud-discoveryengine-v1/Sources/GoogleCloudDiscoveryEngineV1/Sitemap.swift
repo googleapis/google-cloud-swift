@@ -33,6 +33,8 @@
     /// Supported feed sources.
     public var feed: OneOf_Feed? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Sitemap`.
     public init() {}
 
@@ -49,15 +51,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case uri = "uri"
-      case name = "name"
-      case createTime = "createTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "name",
+        "createTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
 
@@ -75,18 +90,25 @@
         try feedCheckAndSet(.uri(uri))
       }
       self.feed = feed
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
 
       if let choice = self.feed {
         switch choice {
         case .uri(let value):
           try container.encode(value, forKey: .uri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

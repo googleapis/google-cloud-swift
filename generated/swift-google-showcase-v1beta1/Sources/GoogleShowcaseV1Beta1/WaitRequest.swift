@@ -26,6 +26,8 @@ public struct WaitRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var response: OneOf_Response? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WaitRequest`.
   public init() {}
 
@@ -42,11 +44,23 @@ public struct WaitRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case endTime = "endTime"
-    case ttl = "ttl"
-    case error = "error"
-    case success = "success"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let error = CodingKeys(stringValue: "error")
+    static let success = CodingKeys(stringValue: "success")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "endTime",
+      "ttl",
+      "error",
+      "success",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,6 +102,10 @@ public struct WaitRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try responseCheckAndSet(.success(success))
     }
     self.response = response
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +127,9 @@ public struct WaitRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .success(let value):
         try container.encode(value, forKey: .success)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

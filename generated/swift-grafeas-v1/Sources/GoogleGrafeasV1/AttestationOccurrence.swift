@@ -49,6 +49,8 @@ public struct AttestationOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// implementations.  The JWT itself is opaque to Grafeas.
   public var jwts: [Jwt] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttestationOccurrence`.
   public init() {}
 
@@ -63,6 +65,50 @@ public struct AttestationOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serializedPayload = CodingKeys(stringValue: "serializedPayload")
+    static let signatures = CodingKeys(stringValue: "signatures")
+    static let jwts = CodingKeys(stringValue: "jwts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serializedPayload",
+      "signatures",
+      "jwts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .serializedPayload) {
+      self.serializedPayload = value
+    }
+    if let value = try container.decodeIfPresent([Signature].self, forKey: .signatures) {
+      self.signatures = value
+    }
+    if let value = try container.decodeIfPresent([Jwt].self, forKey: .jwts) {
+      self.jwts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serializedPayload, forKey: .serializedPayload)
+    try container.encode(self.signatures, forKey: .signatures)
+    try container.encode(self.jwts, forKey: .jwts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

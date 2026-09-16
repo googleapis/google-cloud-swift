@@ -35,6 +35,8 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The most recent time when the encryption info was updated.
   public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptionInfo`.
   public init() {}
 
@@ -49,6 +51,58 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let encryptionType = CodingKeys(stringValue: "encryptionType")
+    static let kmsKeyVersions = CodingKeys(stringValue: "kmsKeyVersions")
+    static let kmsKeyPrimaryState = CodingKeys(stringValue: "kmsKeyPrimaryState")
+    static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "encryptionType",
+      "kmsKeyVersions",
+      "kmsKeyPrimaryState",
+      "lastUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(EncryptionInfo.Type_.self, forKey: .encryptionType)
+    {
+      self.encryptionType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kmsKeyVersions) {
+      self.kmsKeyVersions = value
+    }
+    if let value = try container.decodeIfPresent(
+      EncryptionInfo.KmsKeyState.self, forKey: .kmsKeyPrimaryState)
+    {
+      self.kmsKeyPrimaryState = value
+    }
+    self.lastUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.encryptionType, forKey: .encryptionType)
+    try container.encode(self.kmsKeyVersions, forKey: .kmsKeyVersions)
+    try container.encode(self.kmsKeyPrimaryState, forKey: .kmsKeyPrimaryState)
+    try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible encryption types.

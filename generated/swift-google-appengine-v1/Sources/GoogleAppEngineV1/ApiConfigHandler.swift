@@ -39,6 +39,8 @@ public struct ApiConfigHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// URL to serve the endpoint at.
   public var url: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApiConfigHandler`.
   public init() {}
 
@@ -53,6 +55,62 @@ public struct ApiConfigHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let authFailAction = CodingKeys(stringValue: "authFailAction")
+    static let login = CodingKeys(stringValue: "login")
+    static let script = CodingKeys(stringValue: "script")
+    static let securityLevel = CodingKeys(stringValue: "securityLevel")
+    static let url = CodingKeys(stringValue: "url")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "authFailAction",
+      "login",
+      "script",
+      "securityLevel",
+      "url",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AuthFailAction.self, forKey: .authFailAction) {
+      self.authFailAction = value
+    }
+    if let value = try container.decodeIfPresent(LoginRequirement.self, forKey: .login) {
+      self.login = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .script) {
+      self.script = value
+    }
+    if let value = try container.decodeIfPresent(SecurityLevel.self, forKey: .securityLevel) {
+      self.securityLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.authFailAction, forKey: .authFailAction)
+    try container.encode(self.login, forKey: .login)
+    try container.encode(self.script, forKey: .script)
+    try container.encode(self.securityLevel, forKey: .securityLevel)
+    try container.encode(self.url, forKey: .url)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

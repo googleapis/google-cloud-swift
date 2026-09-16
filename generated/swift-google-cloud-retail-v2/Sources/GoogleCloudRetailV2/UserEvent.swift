@@ -284,6 +284,8 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// completion, and prediction results.
   public var entity: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserEvent`.
   public init() {}
 
@@ -298,6 +300,155 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventType = CodingKeys(stringValue: "eventType")
+    static let visitorId = CodingKeys(stringValue: "visitorId")
+    static let sessionId = CodingKeys(stringValue: "sessionId")
+    static let eventTime = CodingKeys(stringValue: "eventTime")
+    static let experimentIds = CodingKeys(stringValue: "experimentIds")
+    static let attributionToken = CodingKeys(stringValue: "attributionToken")
+    static let productDetails = CodingKeys(stringValue: "productDetails")
+    static let completionDetail = CodingKeys(stringValue: "completionDetail")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let cartId = CodingKeys(stringValue: "cartId")
+    static let purchaseTransaction = CodingKeys(stringValue: "purchaseTransaction")
+    static let searchQuery = CodingKeys(stringValue: "searchQuery")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let orderBy = CodingKeys(stringValue: "orderBy")
+    static let offset = CodingKeys(stringValue: "offset")
+    static let pageCategories = CodingKeys(stringValue: "pageCategories")
+    static let userInfo = CodingKeys(stringValue: "userInfo")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let referrerUri = CodingKeys(stringValue: "referrerUri")
+    static let pageViewId = CodingKeys(stringValue: "pageViewId")
+    static let entity = CodingKeys(stringValue: "entity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventType",
+      "visitorId",
+      "sessionId",
+      "eventTime",
+      "experimentIds",
+      "attributionToken",
+      "productDetails",
+      "completionDetail",
+      "attributes",
+      "cartId",
+      "purchaseTransaction",
+      "searchQuery",
+      "filter",
+      "orderBy",
+      "offset",
+      "pageCategories",
+      "userInfo",
+      "uri",
+      "referrerUri",
+      "pageViewId",
+      "entity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventType) {
+      self.eventType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .visitorId) {
+      self.visitorId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
+      self.sessionId = value
+    }
+    self.eventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .experimentIds) {
+      self.experimentIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attributionToken) {
+      self.attributionToken = value
+    }
+    if let value = try container.decodeIfPresent([ProductDetail].self, forKey: .productDetails) {
+      self.productDetails = value
+    }
+    self.completionDetail = try container.decodeIfPresent(
+      CompletionDetail.self, forKey: .completionDetail)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CustomAttribute].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cartId) {
+      self.cartId = value
+    }
+    self.purchaseTransaction = try container.decodeIfPresent(
+      PurchaseTransaction.self, forKey: .purchaseTransaction)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchQuery) {
+      self.searchQuery = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+      self.orderBy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .offset) {
+      self.offset = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pageCategories) {
+      self.pageCategories = value
+    }
+    self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referrerUri) {
+      self.referrerUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageViewId) {
+      self.pageViewId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+      self.entity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.eventType, forKey: .eventType)
+    try container.encode(self.visitorId, forKey: .visitorId)
+    try container.encode(self.sessionId, forKey: .sessionId)
+    try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+    try container.encode(self.experimentIds, forKey: .experimentIds)
+    try container.encode(self.attributionToken, forKey: .attributionToken)
+    try container.encode(self.productDetails, forKey: .productDetails)
+    try container.encodeIfPresent(self.completionDetail, forKey: .completionDetail)
+    try container.encode(self.attributes, forKey: .attributes)
+    try container.encode(self.cartId, forKey: .cartId)
+    try container.encodeIfPresent(self.purchaseTransaction, forKey: .purchaseTransaction)
+    try container.encode(self.searchQuery, forKey: .searchQuery)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.orderBy, forKey: .orderBy)
+    try container.encode(self.offset, forKey: .offset)
+    try container.encode(self.pageCategories, forKey: .pageCategories)
+    try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.referrerUri, forKey: .referrerUri)
+    try container.encode(self.pageViewId, forKey: .pageViewId)
+    try container.encode(self.entity, forKey: .entity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

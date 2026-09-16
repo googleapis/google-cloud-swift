@@ -71,6 +71,8 @@ public struct BasicYarnAutoscalingConfig: Codable, Equatable, GoogleCloudWKT._An
   /// Bounds: [0.0, 1.0]. Default: 0.0.
   public var scaleDownMinWorkerFraction: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BasicYarnAutoscalingConfig`.
   public init() {}
 
@@ -85,6 +87,66 @@ public struct BasicYarnAutoscalingConfig: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gracefulDecommissionTimeout = CodingKeys(stringValue: "gracefulDecommissionTimeout")
+    static let scaleUpFactor = CodingKeys(stringValue: "scaleUpFactor")
+    static let scaleDownFactor = CodingKeys(stringValue: "scaleDownFactor")
+    static let scaleUpMinWorkerFraction = CodingKeys(stringValue: "scaleUpMinWorkerFraction")
+    static let scaleDownMinWorkerFraction = CodingKeys(stringValue: "scaleDownMinWorkerFraction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gracefulDecommissionTimeout",
+      "scaleUpFactor",
+      "scaleDownFactor",
+      "scaleUpMinWorkerFraction",
+      "scaleDownMinWorkerFraction",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gracefulDecommissionTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .gracefulDecommissionTimeout)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .scaleUpFactor) {
+      self.scaleUpFactor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .scaleDownFactor) {
+      self.scaleDownFactor = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .scaleUpMinWorkerFraction)
+    {
+      self.scaleUpMinWorkerFraction = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .scaleDownMinWorkerFraction)
+    {
+      self.scaleDownMinWorkerFraction = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.gracefulDecommissionTimeout, forKey: .gracefulDecommissionTimeout)
+    try container.encode(self.scaleUpFactor, forKey: .scaleUpFactor)
+    try container.encode(self.scaleDownFactor, forKey: .scaleDownFactor)
+    try container.encode(self.scaleUpMinWorkerFraction, forKey: .scaleUpMinWorkerFraction)
+    try container.encode(self.scaleDownMinWorkerFraction, forKey: .scaleDownMinWorkerFraction)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

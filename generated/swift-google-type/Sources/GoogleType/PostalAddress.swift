@@ -129,6 +129,8 @@ public struct PostalAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The name of the organization at the address.
   public var organization: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostalAddress`.
   public init() {}
 
@@ -143,6 +145,98 @@ public struct PostalAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let revision = CodingKeys(stringValue: "revision")
+    static let regionCode = CodingKeys(stringValue: "regionCode")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let postalCode = CodingKeys(stringValue: "postalCode")
+    static let sortingCode = CodingKeys(stringValue: "sortingCode")
+    static let administrativeArea = CodingKeys(stringValue: "administrativeArea")
+    static let locality = CodingKeys(stringValue: "locality")
+    static let sublocality = CodingKeys(stringValue: "sublocality")
+    static let addressLines = CodingKeys(stringValue: "addressLines")
+    static let recipients = CodingKeys(stringValue: "recipients")
+    static let organization = CodingKeys(stringValue: "organization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "revision",
+      "regionCode",
+      "languageCode",
+      "postalCode",
+      "sortingCode",
+      "administrativeArea",
+      "locality",
+      "sublocality",
+      "addressLines",
+      "recipients",
+      "organization",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
+      self.regionCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .postalCode) {
+      self.postalCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sortingCode) {
+      self.sortingCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .administrativeArea) {
+      self.administrativeArea = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locality) {
+      self.locality = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sublocality) {
+      self.sublocality = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addressLines) {
+      self.addressLines = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .recipients) {
+      self.recipients = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.regionCode, forKey: .regionCode)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.postalCode, forKey: .postalCode)
+    try container.encode(self.sortingCode, forKey: .sortingCode)
+    try container.encode(self.administrativeArea, forKey: .administrativeArea)
+    try container.encode(self.locality, forKey: .locality)
+    try container.encode(self.sublocality, forKey: .sublocality)
+    try container.encode(self.addressLines, forKey: .addressLines)
+    try container.encode(self.recipients, forKey: .recipients)
+    try container.encode(self.organization, forKey: .organization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ListRapidCachesResponse {
@@ -29,12 +29,16 @@ extension ListRapidCachesResponse {
     self.init()
     self.rapidCaches = try proto.rapidCaches.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.rapidCaches = try self.rapidCaches.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

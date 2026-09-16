@@ -73,6 +73,8 @@ public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleClo
   /// requirements including length, case sensitivity, and so on.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateMysqlConnectionProperties`.
   public init() {}
 
@@ -89,42 +91,94 @@ public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case username = "username"
-    case host = "host"
-    case port = "port"
-    case database = "database"
-    case securityProtocol = "securityProtocol"
-    case sslMode = "sslMode"
-    case sslCaFile = "sslCaFile"
-    case sslCrlFile = "sslCrlFile"
-    case sslCertFile = "sslCertFile"
-    case sslKeyFile = "sslKeyFile"
-    case additionalAttributes = "additionalAttributes"
-    case dbSystemId = "dbSystemId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let username = CodingKeys(stringValue: "username")
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let database = CodingKeys(stringValue: "database")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let sslMode = CodingKeys(stringValue: "sslMode")
+    static let sslCaFile = CodingKeys(stringValue: "sslCaFile")
+    static let sslCrlFile = CodingKeys(stringValue: "sslCrlFile")
+    static let sslCertFile = CodingKeys(stringValue: "sslCertFile")
+    static let sslKeyFile = CodingKeys(stringValue: "sslKeyFile")
+    static let additionalAttributes = CodingKeys(stringValue: "additionalAttributes")
+    static let dbSystemId = CodingKeys(stringValue: "dbSystemId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "username",
+      "host",
+      "port",
+      "database",
+      "securityProtocol",
+      "sslMode",
+      "sslCaFile",
+      "sslCrlFile",
+      "sslCertFile",
+      "sslKeyFile",
+      "additionalAttributes",
+      "dbSystemId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.database = try container.decode(Swift.String.self, forKey: .database)
-    self.securityProtocol = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateMysqlConnectionProperties.MysqlSecurityProtocol.self, forKey: .securityProtocol)
-    self.sslMode = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateMysqlConnectionProperties.SSLMode.self, forKey: .sslMode)
-    self.sslCaFile = try container.decode(Swift.String.self, forKey: .sslCaFile)
-    self.sslCrlFile = try container.decode(Swift.String.self, forKey: .sslCrlFile)
-    self.sslCertFile = try container.decode(Swift.String.self, forKey: .sslCertFile)
-    self.sslKeyFile = try container.decode(Swift.String.self, forKey: .sslKeyFile)
-    self.additionalAttributes = try container.decode(
+    {
+      self.sslMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCaFile) {
+      self.sslCaFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCrlFile) {
+      self.sslCrlFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCertFile) {
+      self.sslCertFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslKeyFile) {
+      self.sslKeyFile = value
+    }
+    if let value = try container.decodeIfPresent(
       [NameValuePair].self, forKey: .additionalAttributes)
-    self.dbSystemId = try container.decode(Swift.String.self, forKey: .dbSystemId)
+    {
+      self.additionalAttributes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbSystemId) {
+      self.dbSystemId = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -145,6 +199,10 @@ public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleClo
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -170,6 +228,9 @@ public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleClo
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

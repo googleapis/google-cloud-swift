@@ -54,6 +54,8 @@
     /// not treated as delimiters.
     public var queryStringWhitelist: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CacheKeyPolicy`.
     public init() {}
 
@@ -68,6 +70,77 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let includeHost = CodingKeys(stringValue: "includeHost")
+      static let includeHttpHeaders = CodingKeys(stringValue: "includeHttpHeaders")
+      static let includeNamedCookies = CodingKeys(stringValue: "includeNamedCookies")
+      static let includeProtocol = CodingKeys(stringValue: "includeProtocol")
+      static let includeQueryString = CodingKeys(stringValue: "includeQueryString")
+      static let queryStringBlacklist = CodingKeys(stringValue: "queryStringBlacklist")
+      static let queryStringWhitelist = CodingKeys(stringValue: "queryStringWhitelist")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "includeHost",
+        "includeHttpHeaders",
+        "includeNamedCookies",
+        "includeProtocol",
+        "includeQueryString",
+        "queryStringBlacklist",
+        "queryStringWhitelist",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.includeHost = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeHost)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeHttpHeaders)
+      {
+        self.includeHttpHeaders = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .includeNamedCookies)
+      {
+        self.includeNamedCookies = value
+      }
+      self.includeProtocol = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeProtocol)
+      self.includeQueryString = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeQueryString)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .queryStringBlacklist)
+      {
+        self.queryStringBlacklist = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .queryStringWhitelist)
+      {
+        self.queryStringWhitelist = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.includeHost, forKey: .includeHost)
+      try container.encode(self.includeHttpHeaders, forKey: .includeHttpHeaders)
+      try container.encode(self.includeNamedCookies, forKey: .includeNamedCookies)
+      try container.encodeIfPresent(self.includeProtocol, forKey: .includeProtocol)
+      try container.encodeIfPresent(self.includeQueryString, forKey: .includeQueryString)
+      try container.encode(self.queryStringBlacklist, forKey: .queryStringBlacklist)
+      try container.encode(self.queryStringWhitelist, forKey: .queryStringWhitelist)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

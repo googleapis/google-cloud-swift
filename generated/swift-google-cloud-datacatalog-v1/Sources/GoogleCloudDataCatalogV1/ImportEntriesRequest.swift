@@ -35,6 +35,8 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Source of imported entries, e.g. dump stored in a Cloud Storage
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportEntriesRequest`.
   public init() {}
 
@@ -51,16 +53,31 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case gcsBucketPath = "gcsBucketPath"
-    case jobId = "jobId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let gcsBucketPath = CodingKeys(stringValue: "gcsBucketPath")
+    static let jobId = CodingKeys(stringValue: "jobId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "gcsBucketPath",
+      "jobId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.jobId = try container.decode(Swift.String.self, forKey: .jobId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -77,6 +94,10 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try sourceCheckAndSet(.gcsBucketPath(gcsBucketPath))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +110,9 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .gcsBucketPath(let value):
         try container.encode(value, forKey: .gcsBucketPath)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -29,6 +29,8 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
   /// Result for test case in the corresponding request.
   public var result: SimulateSecurityHealthAnalyticsCustomModuleResponse.SimulatedResult? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SimulateSecurityHealthAnalyticsCustomModuleResponse`.
   public init() {}
 
@@ -45,12 +47,45 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let result = CodingKeys(stringValue: "result")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "result"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.result = try container.decodeIfPresent(
+      SimulateSecurityHealthAnalyticsCustomModuleResponse.SimulatedResult.self, forKey: .result)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.result, forKey: .result)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Possible test result.
   public struct SimulatedResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The result of the simulation.
     public var result: OneOf_Result? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SimulatedResult`.
     public init() {}
@@ -68,10 +103,21 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case finding = "finding"
-      case noViolation = "noViolation"
-      case error = "error"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let finding = CodingKeys(stringValue: "finding")
+      static let noViolation = CodingKeys(stringValue: "noViolation")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "finding",
+        "noViolation",
+        "error",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -99,6 +145,10 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
         try resultCheckAndSet(.error(error))
       }
       self.result = result
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -113,6 +163,9 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
         case .error(let value):
           try container.encode(value, forKey: .error)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

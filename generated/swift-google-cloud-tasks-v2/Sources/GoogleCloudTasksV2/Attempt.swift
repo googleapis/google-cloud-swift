@@ -43,6 +43,8 @@ public struct Attempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// currently running and the `response_status` field is meaningless.
   public var responseStatus: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attempt`.
   public init() {}
 
@@ -57,6 +59,52 @@ public struct Attempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scheduleTime = CodingKeys(stringValue: "scheduleTime")
+    static let dispatchTime = CodingKeys(stringValue: "dispatchTime")
+    static let responseTime = CodingKeys(stringValue: "responseTime")
+    static let responseStatus = CodingKeys(stringValue: "responseStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scheduleTime",
+      "dispatchTime",
+      "responseTime",
+      "responseStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.scheduleTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .scheduleTime)
+    self.dispatchTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .dispatchTime)
+    self.responseTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .responseTime)
+    self.responseStatus = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .responseStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
+    try container.encodeIfPresent(self.dispatchTime, forKey: .dispatchTime)
+    try container.encodeIfPresent(self.responseTime, forKey: .responseTime)
+    try container.encodeIfPresent(self.responseStatus, forKey: .responseStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

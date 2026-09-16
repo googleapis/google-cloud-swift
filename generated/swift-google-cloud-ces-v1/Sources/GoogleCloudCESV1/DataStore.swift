@@ -44,6 +44,8 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The connector config for the data store connection.
   public var connectorConfig: DataStore.ConnectorConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataStore`.
   public init() {}
 
@@ -60,6 +62,68 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let documentProcessingMode = CodingKeys(stringValue: "documentProcessingMode")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let connectorConfig = CodingKeys(stringValue: "connectorConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "documentProcessingMode",
+      "displayName",
+      "createTime",
+      "connectorConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(DataStore.DataStoreType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataStore.DocumentProcessingMode.self, forKey: .documentProcessingMode)
+    {
+      self.documentProcessingMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.connectorConfig = try container.decodeIfPresent(
+      DataStore.ConnectorConfig.self, forKey: .connectorConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.documentProcessingMode, forKey: .documentProcessingMode)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.connectorConfig, forKey: .connectorConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The connector config for the data store connection.
   public struct ConnectorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -73,6 +137,8 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The name of the data source.
     /// Example: `salesforce`, `jira`, `confluence`, `bigquery`.
     public var dataSource: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ConnectorConfig`.
     public init() {}
@@ -88,6 +154,52 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let collection = CodingKeys(stringValue: "collection")
+      static let collectionDisplayName = CodingKeys(stringValue: "collectionDisplayName")
+      static let dataSource = CodingKeys(stringValue: "dataSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "collection",
+        "collectionDisplayName",
+        "dataSource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collection) {
+        self.collection = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .collectionDisplayName)
+      {
+        self.collectionDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
+        self.dataSource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.collection, forKey: .collection)
+      try container.encode(self.collectionDisplayName, forKey: .collectionDisplayName)
+      try container.encode(self.dataSource, forKey: .dataSource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

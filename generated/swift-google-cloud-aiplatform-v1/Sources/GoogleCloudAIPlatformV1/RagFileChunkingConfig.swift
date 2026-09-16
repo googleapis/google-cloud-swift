@@ -25,6 +25,8 @@
     /// Specifies the chunking config for RagFiles.
     public var chunkingConfig: OneOf_ChunkingConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagFileChunkingConfig`.
     public init() {}
 
@@ -41,8 +43,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fixedLengthChunking = "fixedLengthChunking"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fixedLengthChunking = CodingKeys(stringValue: "fixedLengthChunking")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fixedLengthChunking"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@
         try chunkingConfigCheckAndSet(.fixedLengthChunking(fixedLengthChunking))
       }
       self.chunkingConfig = chunkingConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@
         case .fixedLengthChunking(let value):
           try container.encode(value, forKey: .fixedLengthChunking)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -86,6 +104,8 @@
 
       /// The overlap between chunks.
       public var chunkOverlap: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FixedLengthChunking`.
       public init() {}
@@ -101,6 +121,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let chunkSize = CodingKeys(stringValue: "chunkSize")
+        static let chunkOverlap = CodingKeys(stringValue: "chunkOverlap")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "chunkSize",
+          "chunkOverlap",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .chunkSize) {
+          self.chunkSize = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .chunkOverlap) {
+          self.chunkOverlap = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.chunkSize, forKey: .chunkSize)
+        try container.encode(self.chunkOverlap, forKey: .chunkOverlap)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

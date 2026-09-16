@@ -41,6 +41,8 @@ public struct FieldTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Transformation to apply. [required]
   public var transformation: OneOf_Transformation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FieldTransformation`.
   public init() {}
 
@@ -57,16 +59,30 @@ public struct FieldTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fields = "fields"
-    case condition = "condition"
-    case primitiveTransformation = "primitiveTransformation"
-    case infoTypeTransformations = "infoTypeTransformations"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fields = CodingKeys(stringValue: "fields")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let primitiveTransformation = CodingKeys(stringValue: "primitiveTransformation")
+    static let infoTypeTransformations = CodingKeys(stringValue: "infoTypeTransformations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fields",
+      "condition",
+      "primitiveTransformation",
+      "infoTypeTransformations",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.fields = try container.decode([FieldId].self, forKey: .fields)
+    if let value = try container.decodeIfPresent([FieldId].self, forKey: .fields) {
+      self.fields = value
+    }
     self.condition = try container.decodeIfPresent(RecordCondition.self, forKey: .condition)
 
     var transformation: OneOf_Transformation? = nil
@@ -90,12 +106,16 @@ public struct FieldTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try transformationCheckAndSet(.infoTypeTransformations(infoTypeTransformations))
     }
     self.transformation = transformation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fields, forKey: .fields)
-    try container.encode(self.condition, forKey: .condition)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
 
     if let choice = self.transformation {
       switch choice {
@@ -104,6 +124,9 @@ public struct FieldTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .infoTypeTransformations(let value):
         try container.encode(value, forKey: .infoTypeTransformations)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

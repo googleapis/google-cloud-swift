@@ -70,6 +70,8 @@
     /// Name of the source to generate embeddings for example based explanations.
     public var latentSpaceSource: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExplanationMetadata`.
     public init() {}
 
@@ -84,6 +86,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputs = CodingKeys(stringValue: "inputs")
+      static let outputs = CodingKeys(stringValue: "outputs")
+      static let featureAttributionsSchemaUri = CodingKeys(
+        stringValue: "featureAttributionsSchemaUri")
+      static let latentSpaceSource = CodingKeys(stringValue: "latentSpaceSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputs",
+        "outputs",
+        "featureAttributionsSchemaUri",
+        "latentSpaceSource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ExplanationMetadata.InputMetadata].self, forKey: .inputs)
+      {
+        self.inputs = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ExplanationMetadata.OutputMetadata].self, forKey: .outputs)
+      {
+        self.outputs = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .featureAttributionsSchemaUri)
+      {
+        self.featureAttributionsSchemaUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latentSpaceSource) {
+        self.latentSpaceSource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputs, forKey: .inputs)
+      try container.encode(self.outputs, forKey: .outputs)
+      try container.encode(self.featureAttributionsSchemaUri, forKey: .featureAttributionsSchemaUri)
+      try container.encode(self.latentSpaceSource, forKey: .latentSpaceSource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Metadata of the input of a feature.
@@ -194,6 +253,8 @@
       /// [google.cloud.aiplatform.v1.Attribution.feature_attributions]: <doc:Attribution/featureAttributions>
       public var groupName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InputMetadata`.
       public init() {}
 
@@ -208,6 +269,114 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let inputBaselines = CodingKeys(stringValue: "inputBaselines")
+        static let inputTensorName = CodingKeys(stringValue: "inputTensorName")
+        static let encoding = CodingKeys(stringValue: "encoding")
+        static let modality = CodingKeys(stringValue: "modality")
+        static let featureValueDomain = CodingKeys(stringValue: "featureValueDomain")
+        static let indicesTensorName = CodingKeys(stringValue: "indicesTensorName")
+        static let denseShapeTensorName = CodingKeys(stringValue: "denseShapeTensorName")
+        static let indexFeatureMapping = CodingKeys(stringValue: "indexFeatureMapping")
+        static let encodedTensorName = CodingKeys(stringValue: "encodedTensorName")
+        static let encodedBaselines = CodingKeys(stringValue: "encodedBaselines")
+        static let visualization = CodingKeys(stringValue: "visualization")
+        static let groupName = CodingKeys(stringValue: "groupName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "inputBaselines",
+          "inputTensorName",
+          "encoding",
+          "modality",
+          "featureValueDomain",
+          "indicesTensorName",
+          "denseShapeTensorName",
+          "indexFeatureMapping",
+          "encodedTensorName",
+          "encodedBaselines",
+          "visualization",
+          "groupName",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [GoogleCloudWKT.Value].self, forKey: .inputBaselines)
+        {
+          self.inputBaselines = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputTensorName) {
+          self.inputTensorName = value
+        }
+        if let value = try container.decodeIfPresent(
+          ExplanationMetadata.InputMetadata.Encoding.self, forKey: .encoding)
+        {
+          self.encoding = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modality) {
+          self.modality = value
+        }
+        self.featureValueDomain = try container.decodeIfPresent(
+          ExplanationMetadata.InputMetadata.FeatureValueDomain.self, forKey: .featureValueDomain)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indicesTensorName)
+        {
+          self.indicesTensorName = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .denseShapeTensorName)
+        {
+          self.denseShapeTensorName = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .indexFeatureMapping)
+        {
+          self.indexFeatureMapping = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encodedTensorName)
+        {
+          self.encodedTensorName = value
+        }
+        if let value = try container.decodeIfPresent(
+          [GoogleCloudWKT.Value].self, forKey: .encodedBaselines)
+        {
+          self.encodedBaselines = value
+        }
+        self.visualization = try container.decodeIfPresent(
+          ExplanationMetadata.InputMetadata.Visualization.self, forKey: .visualization)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupName) {
+          self.groupName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.inputBaselines, forKey: .inputBaselines)
+        try container.encode(self.inputTensorName, forKey: .inputTensorName)
+        try container.encode(self.encoding, forKey: .encoding)
+        try container.encode(self.modality, forKey: .modality)
+        try container.encodeIfPresent(self.featureValueDomain, forKey: .featureValueDomain)
+        try container.encode(self.indicesTensorName, forKey: .indicesTensorName)
+        try container.encode(self.denseShapeTensorName, forKey: .denseShapeTensorName)
+        try container.encode(self.indexFeatureMapping, forKey: .indexFeatureMapping)
+        try container.encode(self.encodedTensorName, forKey: .encodedTensorName)
+        try container.encode(self.encodedBaselines, forKey: .encodedBaselines)
+        try container.encodeIfPresent(self.visualization, forKey: .visualization)
+        try container.encode(self.groupName, forKey: .groupName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Domain details of the input feature value. Provides numeric information
@@ -237,6 +406,9 @@
         /// prior to normalization.
         public var originalStddev: Swift.Float = Swift.Float()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `FeatureValueDomain`.
         public init() {}
 
@@ -251,6 +423,56 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let minValue = CodingKeys(stringValue: "minValue")
+          static let maxValue = CodingKeys(stringValue: "maxValue")
+          static let originalMean = CodingKeys(stringValue: "originalMean")
+          static let originalStddev = CodingKeys(stringValue: "originalStddev")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "minValue",
+            "maxValue",
+            "originalMean",
+            "originalStddev",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .minValue) {
+            self.minValue = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .maxValue) {
+            self.maxValue = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .originalMean) {
+            self.originalMean = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .originalStddev) {
+            self.originalStddev = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.minValue, forKey: .minValue)
+          try container.encode(self.maxValue, forKey: .maxValue)
+          try container.encode(self.originalMean, forKey: .originalMean)
+          try container.encode(self.originalStddev, forKey: .originalStddev)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -319,6 +541,9 @@
         public var overlayType: ExplanationMetadata.InputMetadata.Visualization.OverlayType =
           ExplanationMetadata.InputMetadata.Visualization.OverlayType()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Visualization`.
         public init() {}
 
@@ -333,6 +558,80 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let type = CodingKeys(stringValue: "type")
+          static let polarity = CodingKeys(stringValue: "polarity")
+          static let colorMap = CodingKeys(stringValue: "colorMap")
+          static let clipPercentUpperbound = CodingKeys(stringValue: "clipPercentUpperbound")
+          static let clipPercentLowerbound = CodingKeys(stringValue: "clipPercentLowerbound")
+          static let overlayType = CodingKeys(stringValue: "overlayType")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "type",
+            "polarity",
+            "colorMap",
+            "clipPercentUpperbound",
+            "clipPercentLowerbound",
+            "overlayType",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            ExplanationMetadata.InputMetadata.Visualization.Type_.self, forKey: .type)
+          {
+            self.type = value
+          }
+          if let value = try container.decodeIfPresent(
+            ExplanationMetadata.InputMetadata.Visualization.Polarity.self, forKey: .polarity)
+          {
+            self.polarity = value
+          }
+          if let value = try container.decodeIfPresent(
+            ExplanationMetadata.InputMetadata.Visualization.ColorMap.self, forKey: .colorMap)
+          {
+            self.colorMap = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .clipPercentUpperbound)
+          {
+            self.clipPercentUpperbound = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .clipPercentLowerbound)
+          {
+            self.clipPercentLowerbound = value
+          }
+          if let value = try container.decodeIfPresent(
+            ExplanationMetadata.InputMetadata.Visualization.OverlayType.self, forKey: .overlayType)
+          {
+            self.overlayType = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.type, forKey: .type)
+          try container.encode(self.polarity, forKey: .polarity)
+          try container.encode(self.colorMap, forKey: .colorMap)
+          try container.encode(self.clipPercentUpperbound, forKey: .clipPercentUpperbound)
+          try container.encode(self.clipPercentLowerbound, forKey: .clipPercentLowerbound)
+          try container.encode(self.overlayType, forKey: .overlayType)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Type of the image visualization. Only applicable to
@@ -1044,6 +1343,8 @@
       /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
       public var displayNameMapping: OneOf_DisplayNameMapping? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OutputMetadata`.
       public init() {}
 
@@ -1060,15 +1361,28 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case indexDisplayNameMapping = "indexDisplayNameMapping"
-        case displayNameMappingKey = "displayNameMappingKey"
-        case outputTensorName = "outputTensorName"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let indexDisplayNameMapping = CodingKeys(stringValue: "indexDisplayNameMapping")
+        static let displayNameMappingKey = CodingKeys(stringValue: "displayNameMappingKey")
+        static let outputTensorName = CodingKeys(stringValue: "outputTensorName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "indexDisplayNameMapping",
+          "displayNameMappingKey",
+          "outputTensorName",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.outputTensorName = try container.decode(Swift.String.self, forKey: .outputTensorName)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputTensorName) {
+          self.outputTensorName = value
+        }
 
         var displayNameMapping: OneOf_DisplayNameMapping? = nil
         let displayNameMappingCheckAndSet = {
@@ -1091,6 +1405,10 @@
           try displayNameMappingCheckAndSet(.displayNameMappingKey(displayNameMappingKey))
         }
         self.displayNameMapping = displayNameMapping
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -1104,6 +1422,9 @@
           case .displayNameMappingKey(let value):
             try container.encode(value, forKey: .displayNameMappingKey)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

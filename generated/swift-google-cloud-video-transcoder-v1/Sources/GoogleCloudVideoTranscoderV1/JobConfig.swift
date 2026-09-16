@@ -62,6 +62,8 @@ public struct JobConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.video.transcoder.v1.MuxStream.encryption_id]: <doc:MuxStream/encryptionId>
   public var encryptions: [Encryption] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobConfig`.
   public init() {}
 
@@ -76,6 +78,97 @@ public struct JobConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputs = CodingKeys(stringValue: "inputs")
+    static let editList = CodingKeys(stringValue: "editList")
+    static let elementaryStreams = CodingKeys(stringValue: "elementaryStreams")
+    static let muxStreams = CodingKeys(stringValue: "muxStreams")
+    static let manifests = CodingKeys(stringValue: "manifests")
+    static let output = CodingKeys(stringValue: "output")
+    static let adBreaks = CodingKeys(stringValue: "adBreaks")
+    static let pubsubDestination = CodingKeys(stringValue: "pubsubDestination")
+    static let spriteSheets = CodingKeys(stringValue: "spriteSheets")
+    static let overlays = CodingKeys(stringValue: "overlays")
+    static let encryptions = CodingKeys(stringValue: "encryptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputs",
+      "editList",
+      "elementaryStreams",
+      "muxStreams",
+      "manifests",
+      "output",
+      "adBreaks",
+      "pubsubDestination",
+      "spriteSheets",
+      "overlays",
+      "encryptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Input].self, forKey: .inputs) {
+      self.inputs = value
+    }
+    if let value = try container.decodeIfPresent([EditAtom].self, forKey: .editList) {
+      self.editList = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ElementaryStream].self, forKey: .elementaryStreams)
+    {
+      self.elementaryStreams = value
+    }
+    if let value = try container.decodeIfPresent([MuxStream].self, forKey: .muxStreams) {
+      self.muxStreams = value
+    }
+    if let value = try container.decodeIfPresent([Manifest].self, forKey: .manifests) {
+      self.manifests = value
+    }
+    self.output = try container.decodeIfPresent(Output.self, forKey: .output)
+    if let value = try container.decodeIfPresent([AdBreak].self, forKey: .adBreaks) {
+      self.adBreaks = value
+    }
+    self.pubsubDestination = try container.decodeIfPresent(
+      PubsubDestination.self, forKey: .pubsubDestination)
+    if let value = try container.decodeIfPresent([SpriteSheet].self, forKey: .spriteSheets) {
+      self.spriteSheets = value
+    }
+    if let value = try container.decodeIfPresent([Overlay].self, forKey: .overlays) {
+      self.overlays = value
+    }
+    if let value = try container.decodeIfPresent([Encryption].self, forKey: .encryptions) {
+      self.encryptions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputs, forKey: .inputs)
+    try container.encode(self.editList, forKey: .editList)
+    try container.encode(self.elementaryStreams, forKey: .elementaryStreams)
+    try container.encode(self.muxStreams, forKey: .muxStreams)
+    try container.encode(self.manifests, forKey: .manifests)
+    try container.encodeIfPresent(self.output, forKey: .output)
+    try container.encode(self.adBreaks, forKey: .adBreaks)
+    try container.encodeIfPresent(self.pubsubDestination, forKey: .pubsubDestination)
+    try container.encode(self.spriteSheets, forKey: .spriteSheets)
+    try container.encode(self.overlays, forKey: .overlays)
+    try container.encode(self.encryptions, forKey: .encryptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

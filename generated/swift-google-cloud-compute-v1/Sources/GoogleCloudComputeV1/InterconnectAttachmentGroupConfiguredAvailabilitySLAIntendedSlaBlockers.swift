@@ -57,6 +57,8 @@
     /// (like  MISSING_ZONE) but does not apply to others.
     public var zones: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers`.
     public init() {}
 
@@ -71,6 +73,71 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attachments = CodingKeys(stringValue: "attachments")
+      static let blockerType = CodingKeys(stringValue: "blockerType")
+      static let documentationLink = CodingKeys(stringValue: "documentationLink")
+      static let explanation = CodingKeys(stringValue: "explanation")
+      static let metros = CodingKeys(stringValue: "metros")
+      static let regions = CodingKeys(stringValue: "regions")
+      static let zones = CodingKeys(stringValue: "zones")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attachments",
+        "blockerType",
+        "documentationLink",
+        "explanation",
+        "metros",
+        "regions",
+        "zones",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .attachments) {
+        self.attachments = value
+      }
+      self.blockerType = try container.decodeIfPresent(
+        InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers.BlockerType.self,
+        forKey: .blockerType)
+      self.documentationLink = try container.decodeIfPresent(
+        Swift.String.self, forKey: .documentationLink)
+      self.explanation = try container.decodeIfPresent(Swift.String.self, forKey: .explanation)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .metros) {
+        self.metros = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .regions) {
+        self.regions = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+        self.zones = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.attachments, forKey: .attachments)
+      try container.encodeIfPresent(self.blockerType, forKey: .blockerType)
+      try container.encodeIfPresent(self.documentationLink, forKey: .documentationLink)
+      try container.encodeIfPresent(self.explanation, forKey: .explanation)
+      try container.encode(self.metros, forKey: .metros)
+      try container.encode(self.regions, forKey: .regions)
+      try container.encode(self.zones, forKey: .zones)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [blockerType][google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers.blockerType] field.

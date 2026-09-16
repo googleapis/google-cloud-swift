@@ -55,6 +55,8 @@
     /// Output only. Primary IP of the VM for this NIC.
     public var sourceVirtualIp: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VmEndpointNatMappingsInterfaceNatMappings`.
     public init() {}
 
@@ -69,6 +71,74 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let drainNatIpPortRanges = CodingKeys(stringValue: "drainNatIpPortRanges")
+      static let natIpPortRanges = CodingKeys(stringValue: "natIpPortRanges")
+      static let numTotalDrainNatPorts = CodingKeys(stringValue: "numTotalDrainNatPorts")
+      static let numTotalNatPorts = CodingKeys(stringValue: "numTotalNatPorts")
+      static let ruleMappings = CodingKeys(stringValue: "ruleMappings")
+      static let sourceAliasIpRange = CodingKeys(stringValue: "sourceAliasIpRange")
+      static let sourceVirtualIp = CodingKeys(stringValue: "sourceVirtualIp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "drainNatIpPortRanges",
+        "natIpPortRanges",
+        "numTotalDrainNatPorts",
+        "numTotalNatPorts",
+        "ruleMappings",
+        "sourceAliasIpRange",
+        "sourceVirtualIp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .drainNatIpPortRanges)
+      {
+        self.drainNatIpPortRanges = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .natIpPortRanges) {
+        self.natIpPortRanges = value
+      }
+      self.numTotalDrainNatPorts = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .numTotalDrainNatPorts)
+      self.numTotalNatPorts = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .numTotalNatPorts)
+      if let value = try container.decodeIfPresent(
+        [VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings].self, forKey: .ruleMappings)
+      {
+        self.ruleMappings = value
+      }
+      self.sourceAliasIpRange = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceAliasIpRange)
+      self.sourceVirtualIp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceVirtualIp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.drainNatIpPortRanges, forKey: .drainNatIpPortRanges)
+      try container.encode(self.natIpPortRanges, forKey: .natIpPortRanges)
+      try container.encodeIfPresent(self.numTotalDrainNatPorts, forKey: .numTotalDrainNatPorts)
+      try container.encodeIfPresent(self.numTotalNatPorts, forKey: .numTotalNatPorts)
+      try container.encode(self.ruleMappings, forKey: .ruleMappings)
+      try container.encodeIfPresent(self.sourceAliasIpRange, forKey: .sourceAliasIpRange)
+      try container.encodeIfPresent(self.sourceVirtualIp, forKey: .sourceVirtualIp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

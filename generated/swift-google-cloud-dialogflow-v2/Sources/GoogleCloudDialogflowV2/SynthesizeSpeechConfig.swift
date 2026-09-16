@@ -54,6 +54,8 @@
     /// Optional. The custom pronunciations for the synthesized audio.
     public var pronunciations: [CustomPronunciationParams] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SynthesizeSpeechConfig`.
     public init() {}
 
@@ -68,6 +70,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let speakingRate = CodingKeys(stringValue: "speakingRate")
+      static let pitch = CodingKeys(stringValue: "pitch")
+      static let volumeGainDb = CodingKeys(stringValue: "volumeGainDb")
+      static let effectsProfileId = CodingKeys(stringValue: "effectsProfileId")
+      static let voice = CodingKeys(stringValue: "voice")
+      static let pronunciations = CodingKeys(stringValue: "pronunciations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "speakingRate",
+        "pitch",
+        "volumeGainDb",
+        "effectsProfileId",
+        "voice",
+        "pronunciations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .speakingRate) {
+        self.speakingRate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .pitch) {
+        self.pitch = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .volumeGainDb) {
+        self.volumeGainDb = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .effectsProfileId) {
+        self.effectsProfileId = value
+      }
+      self.voice = try container.decodeIfPresent(VoiceSelectionParams.self, forKey: .voice)
+      if let value = try container.decodeIfPresent(
+        [CustomPronunciationParams].self, forKey: .pronunciations)
+      {
+        self.pronunciations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.speakingRate, forKey: .speakingRate)
+      try container.encode(self.pitch, forKey: .pitch)
+      try container.encode(self.volumeGainDb, forKey: .volumeGainDb)
+      try container.encode(self.effectsProfileId, forKey: .effectsProfileId)
+      try container.encodeIfPresent(self.voice, forKey: .voice)
+      try container.encode(self.pronunciations, forKey: .pronunciations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -44,6 +44,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// interface.
   public var queueCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -58,6 +60,62 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let enableExternalIps = CodingKeys(stringValue: "enableExternalIps")
+    static let canIpForward = CodingKeys(stringValue: "canIpForward")
+    static let queueCount = CodingKeys(stringValue: "queueCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "subnetwork",
+      "enableExternalIps",
+      "canIpForward",
+      "queueCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableExternalIps) {
+      self.enableExternalIps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .canIpForward) {
+      self.canIpForward = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .queueCount) {
+      self.queueCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encode(self.enableExternalIps, forKey: .enableExternalIps)
+    try container.encode(self.canIpForward, forKey: .canIpForward)
+    try container.encode(self.queueCount, forKey: .queueCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -34,6 +34,8 @@
     /// the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
     public var poolProvisionedThroughput: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationStoragePoolProvisionedCapacity`.
     public init() {}
 
@@ -48,6 +50,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let poolProvisionedCapacityGb = CodingKeys(stringValue: "poolProvisionedCapacityGb")
+      static let poolProvisionedIops = CodingKeys(stringValue: "poolProvisionedIops")
+      static let poolProvisionedThroughput = CodingKeys(stringValue: "poolProvisionedThroughput")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "poolProvisionedCapacityGb",
+        "poolProvisionedIops",
+        "poolProvisionedThroughput",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.poolProvisionedCapacityGb = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolProvisionedCapacityGb)
+      self.poolProvisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolProvisionedIops)
+      self.poolProvisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .poolProvisionedThroughput)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.poolProvisionedCapacityGb, forKey: .poolProvisionedCapacityGb)
+      try container.encodeIfPresent(self.poolProvisionedIops, forKey: .poolProvisionedIops)
+      try container.encodeIfPresent(
+        self.poolProvisionedThroughput, forKey: .poolProvisionedThroughput)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

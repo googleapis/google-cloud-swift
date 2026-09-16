@@ -32,6 +32,8 @@
     /// The name of the intent.
     public var intent: OneOf_Intent? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IntentSuggestion`.
     public init() {}
 
@@ -48,16 +50,31 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case displayName = "displayName"
-      case intentV2 = "intentV2"
-      case description = "description"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let intentV2 = CodingKeys(stringValue: "intentV2")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "intentV2",
+        "description",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
 
       var intent: OneOf_Intent? = nil
       let intentCheckAndSet = {
@@ -73,6 +90,10 @@
         try intentCheckAndSet(.intentV2(intentV2))
       }
       self.intent = intent
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -85,6 +106,9 @@
         case .intentV2(let value):
           try container.encode(value, forKey: .intentV2)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

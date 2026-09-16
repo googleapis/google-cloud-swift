@@ -50,6 +50,8 @@
     /// Output only. Defines the histogram bucket.
     public var buckets: [SupervisedTuningDatasetDistribution.DatasetBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SupervisedTuningDatasetDistribution`.
     public init() {}
 
@@ -66,6 +68,88 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sum = CodingKeys(stringValue: "sum")
+      static let billableSum = CodingKeys(stringValue: "billableSum")
+      static let min = CodingKeys(stringValue: "min")
+      static let max = CodingKeys(stringValue: "max")
+      static let mean = CodingKeys(stringValue: "mean")
+      static let median = CodingKeys(stringValue: "median")
+      static let p5 = CodingKeys(stringValue: "p5")
+      static let p95 = CodingKeys(stringValue: "p95")
+      static let buckets = CodingKeys(stringValue: "buckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sum",
+        "billableSum",
+        "min",
+        "max",
+        "mean",
+        "median",
+        "p5",
+        "p95",
+        "buckets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sum) {
+        self.sum = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .billableSum) {
+        self.billableSum = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .min) {
+        self.min = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .max) {
+        self.max = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .mean) {
+        self.mean = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .median) {
+        self.median = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .p5) {
+        self.p5 = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .p95) {
+        self.p95 = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SupervisedTuningDatasetDistribution.DatasetBucket].self, forKey: .buckets)
+      {
+        self.buckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sum, forKey: .sum)
+      try container.encode(self.billableSum, forKey: .billableSum)
+      try container.encode(self.min, forKey: .min)
+      try container.encode(self.max, forKey: .max)
+      try container.encode(self.mean, forKey: .mean)
+      try container.encode(self.median, forKey: .median)
+      try container.encode(self.p5, forKey: .p5)
+      try container.encode(self.p95, forKey: .p95)
+      try container.encode(self.buckets, forKey: .buckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Dataset bucket used to create a histogram for the distribution given a
     /// population of values.
     public struct DatasetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -79,6 +163,8 @@
 
       /// Output only. Right bound of the bucket.
       public var `right`: Swift.Double = Swift.Double()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `DatasetBucket`.
       public init() {}
@@ -96,17 +182,38 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case count = "count"
-        case `left` = "left"
-        case `right` = "right"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let count = CodingKeys(stringValue: "count")
+        static let `left` = CodingKeys(stringValue: "left")
+        static let `right` = CodingKeys(stringValue: "right")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "count",
+          "left",
+          "right",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.count = try container.decode(Swift.Double.self, forKey: .count)
-        self.`left` = try container.decode(Swift.Double.self, forKey: .`left`)
-        self.`right` = try container.decode(Swift.Double.self, forKey: .`right`)
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .count) {
+          self.count = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .`left`) {
+          self.`left` = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .`right`) {
+          self.`right` = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -114,6 +221,9 @@
         try container.encode(self.count, forKey: .count)
         try container.encode(self.`left`, forKey: .`left`)
         try container.encode(self.`right`, forKey: .`right`)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Possible response types.
   public var response: OneOf_Response? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReceiveEventsResponse`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case eventUpdate = "eventUpdate"
-    case control = "control"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventUpdate = CodingKeys(stringValue: "eventUpdate")
+    static let control = CodingKeys(stringValue: "control")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventUpdate",
+      "control",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
       try responseCheckAndSet(.control(control))
     }
     self.response = response
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .control(let value):
         try container.encode(value, forKey: .control)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

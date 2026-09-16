@@ -98,6 +98,8 @@ public struct TranslateTextRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// information.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslateTextRequest`.
   public init() {}
 
@@ -112,6 +114,85 @@ public struct TranslateTextRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let contents = CodingKeys(stringValue: "contents")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let sourceLanguageCode = CodingKeys(stringValue: "sourceLanguageCode")
+    static let targetLanguageCode = CodingKeys(stringValue: "targetLanguageCode")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let model = CodingKeys(stringValue: "model")
+    static let glossaryConfig = CodingKeys(stringValue: "glossaryConfig")
+    static let transliterationConfig = CodingKeys(stringValue: "transliterationConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "contents",
+      "mimeType",
+      "sourceLanguageCode",
+      "targetLanguageCode",
+      "parent",
+      "model",
+      "glossaryConfig",
+      "transliterationConfig",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .contents) {
+      self.contents = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguageCode) {
+      self.sourceLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLanguageCode) {
+      self.targetLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    self.glossaryConfig = try container.decodeIfPresent(
+      TranslateTextGlossaryConfig.self, forKey: .glossaryConfig)
+    self.transliterationConfig = try container.decodeIfPresent(
+      TransliterationConfig.self, forKey: .transliterationConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.contents, forKey: .contents)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    try container.encode(self.sourceLanguageCode, forKey: .sourceLanguageCode)
+    try container.encode(self.targetLanguageCode, forKey: .targetLanguageCode)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.model, forKey: .model)
+    try container.encodeIfPresent(self.glossaryConfig, forKey: .glossaryConfig)
+    try container.encodeIfPresent(self.transliterationConfig, forKey: .transliterationConfig)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

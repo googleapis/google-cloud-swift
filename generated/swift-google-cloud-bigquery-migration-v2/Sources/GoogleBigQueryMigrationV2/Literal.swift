@@ -27,6 +27,8 @@ public struct Literal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The literal SQL contents.
   public var literalData: OneOf_LiteralData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Literal`.
   public init() {}
 
@@ -43,15 +45,28 @@ public struct Literal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case literalString = "literalString"
-    case literalBytes = "literalBytes"
-    case relativePath = "relativePath"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let literalString = CodingKeys(stringValue: "literalString")
+    static let literalBytes = CodingKeys(stringValue: "literalBytes")
+    static let relativePath = CodingKeys(stringValue: "relativePath")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "literalString",
+      "literalBytes",
+      "relativePath",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.relativePath = try container.decode(Swift.String.self, forKey: .relativePath)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .relativePath) {
+      self.relativePath = value
+    }
 
     var literalData: OneOf_LiteralData? = nil
     let literalDataCheckAndSet = {
@@ -72,6 +87,10 @@ public struct Literal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try literalDataCheckAndSet(.literalBytes(literalBytes))
     }
     self.literalData = literalData
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +104,9 @@ public struct Literal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .literalBytes(let value):
         try container.encode(value, forKey: .literalBytes)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

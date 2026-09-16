@@ -36,6 +36,8 @@
     /// Optional. Create time of the message entry.
     public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageEntry`.
     public init() {}
 
@@ -50,6 +52,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let role = CodingKeys(stringValue: "role")
+      static let text = CodingKeys(stringValue: "text")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let createTime = CodingKeys(stringValue: "createTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "role",
+        "text",
+        "languageCode",
+        "createTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(MessageEntry.Role.self, forKey: .role) {
+        self.role = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.role, forKey: .role)
+      try container.encode(self.text, forKey: .text)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enumeration of the roles a participant can play in a conversation.

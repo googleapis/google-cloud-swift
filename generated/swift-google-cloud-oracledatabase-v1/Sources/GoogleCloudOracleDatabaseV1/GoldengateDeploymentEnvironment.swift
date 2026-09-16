@@ -67,6 +67,8 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleCloudWK
   /// Deployment Environment resource.
   public var storageUsageLimitGbPerCpuCore: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDeploymentEnvironment`.
   public init() {}
 
@@ -81,6 +83,109 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let category = CodingKeys(stringValue: "category")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let defaultCpuCoreCount = CodingKeys(stringValue: "defaultCpuCoreCount")
+    static let environmentType = CodingKeys(stringValue: "environmentType")
+    static let autoScalingEnabled = CodingKeys(stringValue: "autoScalingEnabled")
+    static let maxCpuCoreCount = CodingKeys(stringValue: "maxCpuCoreCount")
+    static let memoryGbPerCpuCore = CodingKeys(stringValue: "memoryGbPerCpuCore")
+    static let minCpuCoreCount = CodingKeys(stringValue: "minCpuCoreCount")
+    static let networkBandwidthGbpsPerCpuCore = CodingKeys(
+      stringValue: "networkBandwidthGbpsPerCpuCore")
+    static let storageUsageLimitGbPerCpuCore = CodingKeys(
+      stringValue: "storageUsageLimitGbPerCpuCore")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "category",
+      "displayName",
+      "defaultCpuCoreCount",
+      "environmentType",
+      "autoScalingEnabled",
+      "maxCpuCoreCount",
+      "memoryGbPerCpuCore",
+      "minCpuCoreCount",
+      "networkBandwidthGbpsPerCpuCore",
+      "storageUsageLimitGbPerCpuCore",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentEnvironment.DeploymentCategory.self, forKey: .category)
+    {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .defaultCpuCoreCount) {
+      self.defaultCpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentEnvironment.DeploymentEnvironmentType.self, forKey: .environmentType)
+    {
+      self.environmentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoScalingEnabled) {
+      self.autoScalingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxCpuCoreCount) {
+      self.maxCpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryGbPerCpuCore) {
+      self.memoryGbPerCpuCore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minCpuCoreCount) {
+      self.minCpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .networkBandwidthGbpsPerCpuCore)
+    {
+      self.networkBandwidthGbpsPerCpuCore = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .storageUsageLimitGbPerCpuCore)
+    {
+      self.storageUsageLimitGbPerCpuCore = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.defaultCpuCoreCount, forKey: .defaultCpuCoreCount)
+    try container.encode(self.environmentType, forKey: .environmentType)
+    try container.encode(self.autoScalingEnabled, forKey: .autoScalingEnabled)
+    try container.encode(self.maxCpuCoreCount, forKey: .maxCpuCoreCount)
+    try container.encode(self.memoryGbPerCpuCore, forKey: .memoryGbPerCpuCore)
+    try container.encode(self.minCpuCoreCount, forKey: .minCpuCoreCount)
+    try container.encode(
+      self.networkBandwidthGbpsPerCpuCore, forKey: .networkBandwidthGbpsPerCpuCore)
+    try container.encode(self.storageUsageLimitGbPerCpuCore, forKey: .storageUsageLimitGbPerCpuCore)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Deployment category of the Goldengate Deployment resource.

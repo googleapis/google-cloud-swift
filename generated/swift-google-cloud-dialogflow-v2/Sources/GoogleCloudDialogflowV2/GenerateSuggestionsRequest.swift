@@ -42,6 +42,8 @@
     /// conversation_profile whose trigger_event is listed here will be triggered.
     public var triggerEvents: [TriggerEvent] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerateSuggestionsRequest`.
     public init() {}
 
@@ -56,6 +58,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversation = CodingKeys(stringValue: "conversation")
+      static let latestMessage = CodingKeys(stringValue: "latestMessage")
+      static let triggerEvents = CodingKeys(stringValue: "triggerEvents")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversation",
+        "latestMessage",
+        "triggerEvents",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversation) {
+        self.conversation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestMessage) {
+        self.latestMessage = value
+      }
+      if let value = try container.decodeIfPresent([TriggerEvent].self, forKey: .triggerEvents) {
+        self.triggerEvents = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.conversation, forKey: .conversation)
+      try container.encode(self.latestMessage, forKey: .latestMessage)
+      try container.encode(self.triggerEvents, forKey: .triggerEvents)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

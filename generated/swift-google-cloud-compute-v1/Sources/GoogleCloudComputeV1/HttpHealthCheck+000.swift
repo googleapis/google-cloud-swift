@@ -84,6 +84,8 @@
     /// many consecutive failures. The default value is 2.
     public var unhealthyThreshold: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpHealthCheck`.
     public init() {}
 
@@ -98,6 +100,88 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let checkIntervalSec = CodingKeys(stringValue: "checkIntervalSec")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let healthyThreshold = CodingKeys(stringValue: "healthyThreshold")
+      static let host = CodingKeys(stringValue: "host")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let port = CodingKeys(stringValue: "port")
+      static let requestPath = CodingKeys(stringValue: "requestPath")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let timeoutSec = CodingKeys(stringValue: "timeoutSec")
+      static let unhealthyThreshold = CodingKeys(stringValue: "unhealthyThreshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "checkIntervalSec",
+        "creationTimestamp",
+        "description",
+        "healthyThreshold",
+        "host",
+        "id",
+        "kind",
+        "name",
+        "port",
+        "requestPath",
+        "selfLink",
+        "timeoutSec",
+        "unhealthyThreshold",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.checkIntervalSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .checkIntervalSec)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.healthyThreshold = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .healthyThreshold)
+      self.host = try container.decodeIfPresent(Swift.String.self, forKey: .host)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
+      self.requestPath = try container.decodeIfPresent(Swift.String.self, forKey: .requestPath)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.timeoutSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeoutSec)
+      self.unhealthyThreshold = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .unhealthyThreshold)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.checkIntervalSec, forKey: .checkIntervalSec)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.healthyThreshold, forKey: .healthyThreshold)
+      try container.encodeIfPresent(self.host, forKey: .host)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      try container.encodeIfPresent(self.requestPath, forKey: .requestPath)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.timeoutSec, forKey: .timeoutSec)
+      try container.encodeIfPresent(self.unhealthyThreshold, forKey: .unhealthyThreshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

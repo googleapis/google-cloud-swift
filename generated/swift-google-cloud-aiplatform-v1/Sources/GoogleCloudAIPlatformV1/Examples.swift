@@ -30,6 +30,8 @@
 
     public var config: OneOf_Config? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Examples`.
     public init() {}
 
@@ -46,16 +48,31 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case exampleGcsSource = "exampleGcsSource"
-      case nearestNeighborSearchConfig = "nearestNeighborSearchConfig"
-      case presets = "presets"
-      case neighborCount = "neighborCount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exampleGcsSource = CodingKeys(stringValue: "exampleGcsSource")
+      static let nearestNeighborSearchConfig = CodingKeys(
+        stringValue: "nearestNeighborSearchConfig")
+      static let presets = CodingKeys(stringValue: "presets")
+      static let neighborCount = CodingKeys(stringValue: "neighborCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exampleGcsSource",
+        "nearestNeighborSearchConfig",
+        "presets",
+        "neighborCount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.neighborCount = try container.decode(Swift.Int32.self, forKey: .neighborCount)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .neighborCount) {
+        self.neighborCount = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -93,6 +110,10 @@
         try configCheckAndSet(.presets(presets))
       }
       self.config = config
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,6 +135,9 @@
           try container.encode(value, forKey: .presets)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The Cloud Storage input instances.
@@ -127,6 +151,8 @@
 
       /// The Cloud Storage location for the input instances.
       public var gcsSource: GcsSource? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ExampleGcsSource`.
       public init() {}
@@ -142,6 +168,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataFormat = CodingKeys(stringValue: "dataFormat")
+        static let gcsSource = CodingKeys(stringValue: "gcsSource")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataFormat",
+          "gcsSource",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Examples.ExampleGcsSource.DataFormat.self, forKey: .dataFormat)
+        {
+          self.dataFormat = value
+        }
+        self.gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+        try container.encodeIfPresent(self.gcsSource, forKey: .gcsSource)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The format of the input example instances.

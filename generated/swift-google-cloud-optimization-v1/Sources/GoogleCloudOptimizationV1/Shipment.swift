@@ -158,6 +158,8 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var demands: [CapacityQuantity] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Shipment`.
   public init() {}
 
@@ -172,6 +174,122 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pickups = CodingKeys(stringValue: "pickups")
+    static let deliveries = CodingKeys(stringValue: "deliveries")
+    static let loadDemands = CodingKeys(stringValue: "loadDemands")
+    static let penaltyCost = CodingKeys(stringValue: "penaltyCost")
+    static let allowedVehicleIndices = CodingKeys(stringValue: "allowedVehicleIndices")
+    static let costsPerVehicle = CodingKeys(stringValue: "costsPerVehicle")
+    static let costsPerVehicleIndices = CodingKeys(stringValue: "costsPerVehicleIndices")
+    static let pickupToDeliveryRelativeDetourLimit = CodingKeys(
+      stringValue: "pickupToDeliveryRelativeDetourLimit")
+    static let pickupToDeliveryAbsoluteDetourLimit = CodingKeys(
+      stringValue: "pickupToDeliveryAbsoluteDetourLimit")
+    static let pickupToDeliveryTimeLimit = CodingKeys(stringValue: "pickupToDeliveryTimeLimit")
+    static let shipmentType = CodingKeys(stringValue: "shipmentType")
+    static let label = CodingKeys(stringValue: "label")
+    static let ignore = CodingKeys(stringValue: "ignore")
+    static let demands = CodingKeys(stringValue: "demands")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pickups",
+      "deliveries",
+      "loadDemands",
+      "penaltyCost",
+      "allowedVehicleIndices",
+      "costsPerVehicle",
+      "costsPerVehicleIndices",
+      "pickupToDeliveryRelativeDetourLimit",
+      "pickupToDeliveryAbsoluteDetourLimit",
+      "pickupToDeliveryTimeLimit",
+      "shipmentType",
+      "label",
+      "ignore",
+      "demands",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Shipment.VisitRequest].self, forKey: .pickups) {
+      self.pickups = value
+    }
+    if let value = try container.decodeIfPresent([Shipment.VisitRequest].self, forKey: .deliveries)
+    {
+      self.deliveries = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Shipment.Load].self, forKey: .loadDemands)
+    {
+      self.loadDemands = value
+    }
+    self.penaltyCost = try container.decodeIfPresent(Swift.Double.self, forKey: .penaltyCost)
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .allowedVehicleIndices)
+    {
+      self.allowedVehicleIndices = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Double].self, forKey: .costsPerVehicle) {
+      self.costsPerVehicle = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.Int32].self, forKey: .costsPerVehicleIndices)
+    {
+      self.costsPerVehicleIndices = value
+    }
+    self.pickupToDeliveryRelativeDetourLimit = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .pickupToDeliveryRelativeDetourLimit)
+    self.pickupToDeliveryAbsoluteDetourLimit = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .pickupToDeliveryAbsoluteDetourLimit)
+    self.pickupToDeliveryTimeLimit = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .pickupToDeliveryTimeLimit)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shipmentType) {
+      self.shipmentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignore) {
+      self.ignore = value
+    }
+    if let value = try container.decodeIfPresent([CapacityQuantity].self, forKey: .demands) {
+      self.demands = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.pickups, forKey: .pickups)
+    try container.encode(self.deliveries, forKey: .deliveries)
+    try container.encode(self.loadDemands, forKey: .loadDemands)
+    try container.encodeIfPresent(self.penaltyCost, forKey: .penaltyCost)
+    try container.encode(self.allowedVehicleIndices, forKey: .allowedVehicleIndices)
+    try container.encode(self.costsPerVehicle, forKey: .costsPerVehicle)
+    try container.encode(self.costsPerVehicleIndices, forKey: .costsPerVehicleIndices)
+    try container.encodeIfPresent(
+      self.pickupToDeliveryRelativeDetourLimit, forKey: .pickupToDeliveryRelativeDetourLimit)
+    try container.encodeIfPresent(
+      self.pickupToDeliveryAbsoluteDetourLimit, forKey: .pickupToDeliveryAbsoluteDetourLimit)
+    try container.encodeIfPresent(
+      self.pickupToDeliveryTimeLimit, forKey: .pickupToDeliveryTimeLimit)
+    try container.encode(self.shipmentType, forKey: .shipmentType)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.ignore, forKey: .ignore)
+    try container.encode(self.demands, forKey: .demands)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Request for a visit which can be done by a vehicle: it has a geo-location
@@ -273,6 +391,8 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     @available(*, deprecated)
     public var demands: [CapacityQuantity] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VisitRequest`.
     public init() {}
 
@@ -287,6 +407,99 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let arrivalLocation = CodingKeys(stringValue: "arrivalLocation")
+      static let arrivalWaypoint = CodingKeys(stringValue: "arrivalWaypoint")
+      static let departureLocation = CodingKeys(stringValue: "departureLocation")
+      static let departureWaypoint = CodingKeys(stringValue: "departureWaypoint")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let timeWindows = CodingKeys(stringValue: "timeWindows")
+      static let duration = CodingKeys(stringValue: "duration")
+      static let cost = CodingKeys(stringValue: "cost")
+      static let loadDemands = CodingKeys(stringValue: "loadDemands")
+      static let visitTypes = CodingKeys(stringValue: "visitTypes")
+      static let label = CodingKeys(stringValue: "label")
+      static let demands = CodingKeys(stringValue: "demands")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "arrivalLocation",
+        "arrivalWaypoint",
+        "departureLocation",
+        "departureWaypoint",
+        "tags",
+        "timeWindows",
+        "duration",
+        "cost",
+        "loadDemands",
+        "visitTypes",
+        "label",
+        "demands",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.arrivalLocation = try container.decodeIfPresent(
+        GoogleType.LatLng.self, forKey: .arrivalLocation)
+      self.arrivalWaypoint = try container.decodeIfPresent(Waypoint.self, forKey: .arrivalWaypoint)
+      self.departureLocation = try container.decodeIfPresent(
+        GoogleType.LatLng.self, forKey: .departureLocation)
+      self.departureWaypoint = try container.decodeIfPresent(
+        Waypoint.self, forKey: .departureWaypoint)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+        self.tags = value
+      }
+      if let value = try container.decodeIfPresent([TimeWindow].self, forKey: .timeWindows) {
+        self.timeWindows = value
+      }
+      self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .cost) {
+        self.cost = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Shipment.Load].self, forKey: .loadDemands)
+      {
+        self.loadDemands = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .visitTypes) {
+        self.visitTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+        self.label = value
+      }
+      if let value = try container.decodeIfPresent([CapacityQuantity].self, forKey: .demands) {
+        self.demands = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.arrivalLocation, forKey: .arrivalLocation)
+      try container.encodeIfPresent(self.arrivalWaypoint, forKey: .arrivalWaypoint)
+      try container.encodeIfPresent(self.departureLocation, forKey: .departureLocation)
+      try container.encodeIfPresent(self.departureWaypoint, forKey: .departureWaypoint)
+      try container.encode(self.tags, forKey: .tags)
+      try container.encode(self.timeWindows, forKey: .timeWindows)
+      try container.encodeIfPresent(self.duration, forKey: .duration)
+      try container.encode(self.cost, forKey: .cost)
+      try container.encode(self.loadDemands, forKey: .loadDemands)
+      try container.encode(self.visitTypes, forKey: .visitTypes)
+      try container.encode(self.label, forKey: .label)
+      try container.encode(self.demands, forKey: .demands)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -314,6 +527,8 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// appropriate unit to avoid loss of precision. Must be ≥ 0.
     public var amount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Load`.
     public init() {}
 
@@ -328,6 +543,38 @@ public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let amount = CodingKeys(stringValue: "amount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "amount"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .amount) {
+        self.amount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.amount, forKey: .amount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

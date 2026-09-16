@@ -45,6 +45,8 @@ public struct Retrohunt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// 0.00 to 100.00.
   public var progressPercentage: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Retrohunt`.
   public init() {}
 
@@ -59,6 +61,60 @@ public struct Retrohunt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let processInterval = CodingKeys(stringValue: "processInterval")
+    static let executionInterval = CodingKeys(stringValue: "executionInterval")
+    static let state = CodingKeys(stringValue: "state")
+    static let progressPercentage = CodingKeys(stringValue: "progressPercentage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "processInterval",
+      "executionInterval",
+      "state",
+      "progressPercentage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.processInterval = try container.decodeIfPresent(
+      GoogleType.Interval.self, forKey: .processInterval)
+    self.executionInterval = try container.decodeIfPresent(
+      GoogleType.Interval.self, forKey: .executionInterval)
+    if let value = try container.decodeIfPresent(Retrohunt.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .progressPercentage) {
+      self.progressPercentage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.processInterval, forKey: .processInterval)
+    try container.encodeIfPresent(self.executionInterval, forKey: .executionInterval)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.progressPercentage, forKey: .progressPercentage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states a retrohunt can be in.

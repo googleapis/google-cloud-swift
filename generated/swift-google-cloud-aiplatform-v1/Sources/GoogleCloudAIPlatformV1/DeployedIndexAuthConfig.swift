@@ -25,6 +25,8 @@
     /// Defines the authentication provider that the DeployedIndex uses.
     public var authProvider: DeployedIndexAuthConfig.AuthProvider? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeployedIndexAuthConfig`.
     public init() {}
 
@@ -39,6 +41,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let authProvider = CodingKeys(stringValue: "authProvider")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "authProvider"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.authProvider = try container.decodeIfPresent(
+        DeployedIndexAuthConfig.AuthProvider.self, forKey: .authProvider)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.authProvider, forKey: .authProvider)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration for an authentication provider, including support for
@@ -59,6 +92,8 @@
       /// `service-account-name@project-id.iam.gserviceaccount.com`
       public var allowedIssuers: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AuthProvider`.
       public init() {}
 
@@ -73,6 +108,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let audiences = CodingKeys(stringValue: "audiences")
+        static let allowedIssuers = CodingKeys(stringValue: "allowedIssuers")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "audiences",
+          "allowedIssuers",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .audiences) {
+          self.audiences = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedIssuers) {
+          self.allowedIssuers = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.audiences, forKey: .audiences)
+        try container.encode(self.allowedIssuers, forKey: .allowedIssuers)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

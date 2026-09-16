@@ -25,6 +25,8 @@
     /// Union field principal. Principal can be a user or a group.
     public var principal: OneOf_Principal? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Principal`.
     public init() {}
 
@@ -41,10 +43,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case userId = "userId"
-      case groupId = "groupId"
-      case externalEntityId = "externalEntityId"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let userId = CodingKeys(stringValue: "userId")
+      static let groupId = CodingKeys(stringValue: "groupId")
+      static let externalEntityId = CodingKeys(stringValue: "externalEntityId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "userId",
+        "groupId",
+        "externalEntityId",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -72,6 +85,10 @@
         try principalCheckAndSet(.externalEntityId(externalEntityId))
       }
       self.principal = principal
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -86,6 +103,9 @@
         case .externalEntityId(let value):
           try container.encode(value, forKey: .externalEntityId)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

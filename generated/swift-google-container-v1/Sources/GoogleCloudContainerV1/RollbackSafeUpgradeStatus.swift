@@ -32,6 +32,8 @@ public struct RollbackSafeUpgradeStatus: Codable, Equatable, GoogleCloudWKT._Any
   /// step-one upgrade.
   public var previousVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RollbackSafeUpgradeStatus`.
   public init() {}
 
@@ -46,6 +48,52 @@ public struct RollbackSafeUpgradeStatus: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+    static let controlPlaneUpgradeRollbackEndTime = CodingKeys(
+      stringValue: "controlPlaneUpgradeRollbackEndTime")
+    static let previousVersion = CodingKeys(stringValue: "previousVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode",
+      "controlPlaneUpgradeRollbackEndTime",
+      "previousVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(RollbackSafeUpgradeStatus.Mode.self, forKey: .mode)
+    {
+      self.mode = value
+    }
+    self.controlPlaneUpgradeRollbackEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .controlPlaneUpgradeRollbackEndTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .previousVersion) {
+      self.previousVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encodeIfPresent(
+      self.controlPlaneUpgradeRollbackEndTime, forKey: .controlPlaneUpgradeRollbackEndTime)
+    try container.encode(self.previousVersion, forKey: .previousVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Mode indicates the mode of the rollback-safe upgrade.

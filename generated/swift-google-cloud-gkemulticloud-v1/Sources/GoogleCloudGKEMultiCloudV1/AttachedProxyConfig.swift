@@ -30,6 +30,8 @@ public struct AttachedProxyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// for AKS clusters.
   public var kubernetesSecret: KubernetesSecret? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttachedProxyConfig`.
   public init() {}
 
@@ -44,6 +46,37 @@ public struct AttachedProxyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kubernetesSecret = CodingKeys(stringValue: "kubernetesSecret")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kubernetesSecret"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.kubernetesSecret = try container.decodeIfPresent(
+      KubernetesSecret.self, forKey: .kubernetesSecret)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.kubernetesSecret, forKey: .kubernetesSecret)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

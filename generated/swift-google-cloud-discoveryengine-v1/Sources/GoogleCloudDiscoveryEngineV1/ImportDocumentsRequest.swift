@@ -138,6 +138,8 @@
     /// Required. The source of the input.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportDocumentsRequest`.
     public init() {}
 
@@ -154,36 +156,71 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineSource = "inlineSource"
-      case gcsSource = "gcsSource"
-      case bigquerySource = "bigquerySource"
-      case fhirStoreSource = "fhirStoreSource"
-      case spannerSource = "spannerSource"
-      case cloudSqlSource = "cloudSqlSource"
-      case firestoreSource = "firestoreSource"
-      case alloyDbSource = "alloyDbSource"
-      case bigtableSource = "bigtableSource"
-      case parent = "parent"
-      case errorConfig = "errorConfig"
-      case reconciliationMode = "reconciliationMode"
-      case updateMask = "updateMask"
-      case autoGenerateIds = "autoGenerateIds"
-      case idField = "idField"
-      case forceRefreshContent = "forceRefreshContent"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineSource = CodingKeys(stringValue: "inlineSource")
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let bigquerySource = CodingKeys(stringValue: "bigquerySource")
+      static let fhirStoreSource = CodingKeys(stringValue: "fhirStoreSource")
+      static let spannerSource = CodingKeys(stringValue: "spannerSource")
+      static let cloudSqlSource = CodingKeys(stringValue: "cloudSqlSource")
+      static let firestoreSource = CodingKeys(stringValue: "firestoreSource")
+      static let alloyDbSource = CodingKeys(stringValue: "alloyDbSource")
+      static let bigtableSource = CodingKeys(stringValue: "bigtableSource")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let errorConfig = CodingKeys(stringValue: "errorConfig")
+      static let reconciliationMode = CodingKeys(stringValue: "reconciliationMode")
+      static let updateMask = CodingKeys(stringValue: "updateMask")
+      static let autoGenerateIds = CodingKeys(stringValue: "autoGenerateIds")
+      static let idField = CodingKeys(stringValue: "idField")
+      static let forceRefreshContent = CodingKeys(stringValue: "forceRefreshContent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineSource",
+        "gcsSource",
+        "bigquerySource",
+        "fhirStoreSource",
+        "spannerSource",
+        "cloudSqlSource",
+        "firestoreSource",
+        "alloyDbSource",
+        "bigtableSource",
+        "parent",
+        "errorConfig",
+        "reconciliationMode",
+        "updateMask",
+        "autoGenerateIds",
+        "idField",
+        "forceRefreshContent",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
       self.errorConfig = try container.decodeIfPresent(ImportErrorConfig.self, forKey: .errorConfig)
-      self.reconciliationMode = try container.decode(
+      if let value = try container.decodeIfPresent(
         ImportDocumentsRequest.ReconciliationMode.self, forKey: .reconciliationMode)
+      {
+        self.reconciliationMode = value
+      }
       self.updateMask = try container.decodeIfPresent(
         GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
-      self.autoGenerateIds = try container.decode(Swift.Bool.self, forKey: .autoGenerateIds)
-      self.idField = try container.decode(Swift.String.self, forKey: .idField)
-      self.forceRefreshContent = try container.decode(Swift.Bool.self, forKey: .forceRefreshContent)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoGenerateIds) {
+        self.autoGenerateIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .idField) {
+        self.idField = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceRefreshContent) {
+        self.forceRefreshContent = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -239,14 +276,18 @@
         try sourceCheckAndSet(.bigtableSource(bigtableSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.errorConfig, forKey: .errorConfig)
+      try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
       try container.encode(self.reconciliationMode, forKey: .reconciliationMode)
-      try container.encode(self.updateMask, forKey: .updateMask)
+      try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
       try container.encode(self.autoGenerateIds, forKey: .autoGenerateIds)
       try container.encode(self.idField, forKey: .idField)
       try container.encode(self.forceRefreshContent, forKey: .forceRefreshContent)
@@ -273,6 +314,9 @@
           try container.encode(value, forKey: .bigtableSource)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The inline source for the input config for ImportDocuments method.
@@ -285,6 +329,8 @@
       ///
       /// [google.cloud.discoveryengine.v1.Document.id]: <doc:Document/id>
       public var documents: [Document] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `InlineSource`.
       public init() {}
@@ -300,6 +346,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let documents = CodingKeys(stringValue: "documents")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "documents"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Document].self, forKey: .documents) {
+          self.documents = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.documents, forKey: .documents)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

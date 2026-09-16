@@ -217,6 +217,8 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Range: [0, 120].
   public var shutdownGracePeriodCriticalPodsSeconds: Swift.Int32? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeKubeletConfig`.
   public init() {}
 
@@ -231,6 +233,171 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuManagerPolicy = CodingKeys(stringValue: "cpuManagerPolicy")
+    static let topologyManager = CodingKeys(stringValue: "topologyManager")
+    static let memoryManager = CodingKeys(stringValue: "memoryManager")
+    static let cpuCfsQuota = CodingKeys(stringValue: "cpuCfsQuota")
+    static let cpuCfsQuotaPeriod = CodingKeys(stringValue: "cpuCfsQuotaPeriod")
+    static let podPidsLimit = CodingKeys(stringValue: "podPidsLimit")
+    static let insecureKubeletReadonlyPortEnabled = CodingKeys(
+      stringValue: "insecureKubeletReadonlyPortEnabled")
+    static let imageGcLowThresholdPercent = CodingKeys(stringValue: "imageGcLowThresholdPercent")
+    static let imageGcHighThresholdPercent = CodingKeys(stringValue: "imageGcHighThresholdPercent")
+    static let imageMinimumGcAge = CodingKeys(stringValue: "imageMinimumGcAge")
+    static let imageMaximumGcAge = CodingKeys(stringValue: "imageMaximumGcAge")
+    static let containerLogMaxSize = CodingKeys(stringValue: "containerLogMaxSize")
+    static let containerLogMaxFiles = CodingKeys(stringValue: "containerLogMaxFiles")
+    static let allowedUnsafeSysctls = CodingKeys(stringValue: "allowedUnsafeSysctls")
+    static let evictionSoft = CodingKeys(stringValue: "evictionSoft")
+    static let evictionSoftGracePeriod = CodingKeys(stringValue: "evictionSoftGracePeriod")
+    static let evictionMinimumReclaim = CodingKeys(stringValue: "evictionMinimumReclaim")
+    static let evictionMaxPodGracePeriodSeconds = CodingKeys(
+      stringValue: "evictionMaxPodGracePeriodSeconds")
+    static let maxParallelImagePulls = CodingKeys(stringValue: "maxParallelImagePulls")
+    static let singleProcessOomKill = CodingKeys(stringValue: "singleProcessOomKill")
+    static let crashLoopBackOff = CodingKeys(stringValue: "crashLoopBackOff")
+    static let shutdownGracePeriodSeconds = CodingKeys(stringValue: "shutdownGracePeriodSeconds")
+    static let shutdownGracePeriodCriticalPodsSeconds = CodingKeys(
+      stringValue: "shutdownGracePeriodCriticalPodsSeconds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuManagerPolicy",
+      "topologyManager",
+      "memoryManager",
+      "cpuCfsQuota",
+      "cpuCfsQuotaPeriod",
+      "podPidsLimit",
+      "insecureKubeletReadonlyPortEnabled",
+      "imageGcLowThresholdPercent",
+      "imageGcHighThresholdPercent",
+      "imageMinimumGcAge",
+      "imageMaximumGcAge",
+      "containerLogMaxSize",
+      "containerLogMaxFiles",
+      "allowedUnsafeSysctls",
+      "evictionSoft",
+      "evictionSoftGracePeriod",
+      "evictionMinimumReclaim",
+      "evictionMaxPodGracePeriodSeconds",
+      "maxParallelImagePulls",
+      "singleProcessOomKill",
+      "crashLoopBackOff",
+      "shutdownGracePeriodSeconds",
+      "shutdownGracePeriodCriticalPodsSeconds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuManagerPolicy) {
+      self.cpuManagerPolicy = value
+    }
+    self.topologyManager = try container.decodeIfPresent(
+      TopologyManager.self, forKey: .topologyManager)
+    self.memoryManager = try container.decodeIfPresent(MemoryManager.self, forKey: .memoryManager)
+    self.cpuCfsQuota = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .cpuCfsQuota)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuCfsQuotaPeriod) {
+      self.cpuCfsQuotaPeriod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .podPidsLimit) {
+      self.podPidsLimit = value
+    }
+    self.insecureKubeletReadonlyPortEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .insecureKubeletReadonlyPortEnabled)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .imageGcLowThresholdPercent)
+    {
+      self.imageGcLowThresholdPercent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .imageGcHighThresholdPercent)
+    {
+      self.imageGcHighThresholdPercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageMinimumGcAge) {
+      self.imageMinimumGcAge = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageMaximumGcAge) {
+      self.imageMaximumGcAge = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerLogMaxSize) {
+      self.containerLogMaxSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .containerLogMaxFiles) {
+      self.containerLogMaxFiles = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedUnsafeSysctls)
+    {
+      self.allowedUnsafeSysctls = value
+    }
+    self.evictionSoft = try container.decodeIfPresent(EvictionSignals.self, forKey: .evictionSoft)
+    self.evictionSoftGracePeriod = try container.decodeIfPresent(
+      EvictionGracePeriod.self, forKey: .evictionSoftGracePeriod)
+    self.evictionMinimumReclaim = try container.decodeIfPresent(
+      EvictionMinimumReclaim.self, forKey: .evictionMinimumReclaim)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .evictionMaxPodGracePeriodSeconds)
+    {
+      self.evictionMaxPodGracePeriodSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxParallelImagePulls) {
+      self.maxParallelImagePulls = value
+    }
+    self.singleProcessOomKill = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .singleProcessOomKill)
+    self.crashLoopBackOff = try container.decodeIfPresent(
+      NodeKubeletConfig.CrashLoopBackOffConfig.self, forKey: .crashLoopBackOff)
+    self.shutdownGracePeriodSeconds = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .shutdownGracePeriodSeconds)
+    self.shutdownGracePeriodCriticalPodsSeconds = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .shutdownGracePeriodCriticalPodsSeconds)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuManagerPolicy, forKey: .cpuManagerPolicy)
+    try container.encodeIfPresent(self.topologyManager, forKey: .topologyManager)
+    try container.encodeIfPresent(self.memoryManager, forKey: .memoryManager)
+    try container.encodeIfPresent(self.cpuCfsQuota, forKey: .cpuCfsQuota)
+    try container.encode(self.cpuCfsQuotaPeriod, forKey: .cpuCfsQuotaPeriod)
+    try container.encode(self.podPidsLimit, forKey: .podPidsLimit)
+    try container.encodeIfPresent(
+      self.insecureKubeletReadonlyPortEnabled, forKey: .insecureKubeletReadonlyPortEnabled)
+    try container.encode(self.imageGcLowThresholdPercent, forKey: .imageGcLowThresholdPercent)
+    try container.encode(self.imageGcHighThresholdPercent, forKey: .imageGcHighThresholdPercent)
+    try container.encode(self.imageMinimumGcAge, forKey: .imageMinimumGcAge)
+    try container.encode(self.imageMaximumGcAge, forKey: .imageMaximumGcAge)
+    try container.encode(self.containerLogMaxSize, forKey: .containerLogMaxSize)
+    try container.encode(self.containerLogMaxFiles, forKey: .containerLogMaxFiles)
+    try container.encode(self.allowedUnsafeSysctls, forKey: .allowedUnsafeSysctls)
+    try container.encodeIfPresent(self.evictionSoft, forKey: .evictionSoft)
+    try container.encodeIfPresent(self.evictionSoftGracePeriod, forKey: .evictionSoftGracePeriod)
+    try container.encodeIfPresent(self.evictionMinimumReclaim, forKey: .evictionMinimumReclaim)
+    try container.encode(
+      self.evictionMaxPodGracePeriodSeconds, forKey: .evictionMaxPodGracePeriodSeconds)
+    try container.encode(self.maxParallelImagePulls, forKey: .maxParallelImagePulls)
+    try container.encodeIfPresent(self.singleProcessOomKill, forKey: .singleProcessOomKill)
+    try container.encodeIfPresent(self.crashLoopBackOff, forKey: .crashLoopBackOff)
+    try container.encodeIfPresent(
+      self.shutdownGracePeriodSeconds, forKey: .shutdownGracePeriodSeconds)
+    try container.encodeIfPresent(
+      self.shutdownGracePeriodCriticalPodsSeconds, forKey: .shutdownGracePeriodCriticalPodsSeconds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains config to modify node-level parameters for container restart
@@ -251,6 +418,8 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// for more details.
     public var maxContainerRestartPeriod: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CrashLoopBackOffConfig`.
     public init() {}
 
@@ -265,6 +434,40 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxContainerRestartPeriod = CodingKeys(stringValue: "maxContainerRestartPeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxContainerRestartPeriod"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .maxContainerRestartPeriod)
+      {
+        self.maxContainerRestartPeriod = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxContainerRestartPeriod, forKey: .maxContainerRestartPeriod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

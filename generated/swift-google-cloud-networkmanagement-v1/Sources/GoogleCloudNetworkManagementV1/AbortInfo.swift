@@ -34,6 +34,8 @@ public struct AbortInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// In this case, analysis is aborted with the PERMISSION_DENIED cause.
   public var projectsMissingPermission: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AbortInfo`.
   public init() {}
 
@@ -48,6 +50,58 @@ public struct AbortInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cause = CodingKeys(stringValue: "cause")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let projectsMissingPermission = CodingKeys(stringValue: "projectsMissingPermission")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cause",
+      "resourceUri",
+      "ipAddress",
+      "projectsMissingPermission",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AbortInfo.Cause.self, forKey: .cause) {
+      self.cause = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .projectsMissingPermission)
+    {
+      self.projectsMissingPermission = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cause, forKey: .cause)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.projectsMissingPermission, forKey: .projectsMissingPermission)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Abort cause types:

@@ -57,6 +57,8 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleCloudWKT
   /// The connection details.
   public var connectionDetails: OneOf_ConnectionDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateConnectionProperties`.
   public init() {}
 
@@ -73,63 +75,148 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oracleConnectionProperties = "oracleConnectionProperties"
-    case goldengateConnectionProperties = "goldengateConnectionProperties"
-    case genericConnectionProperties = "genericConnectionProperties"
-    case googleCloudStorageConnectionProperties = "googleCloudStorageConnectionProperties"
-    case googleBigQueryConnectionProperties = "googleBigQueryConnectionProperties"
-    case mysqlConnectionProperties = "mysqlConnectionProperties"
-    case kafkaConnectionProperties = "kafkaConnectionProperties"
-    case kafkaSchemaRegistryConnectionProperties = "kafkaSchemaRegistryConnectionProperties"
-    case ociObjectStorageConnectionProperties = "ociObjectStorageConnectionProperties"
-    case azureDataLakeStorageConnectionProperties = "azureDataLakeStorageConnectionProperties"
-    case azureSynapseAnalyticsConnectionProperties = "azureSynapseAnalyticsConnectionProperties"
-    case postgresqlConnectionProperties = "postgresqlConnectionProperties"
-    case microsoftSqlserverConnectionProperties = "microsoftSqlserverConnectionProperties"
-    case amazonS3ConnectionProperties = "amazonS3ConnectionProperties"
-    case hdfsConnectionProperties = "hdfsConnectionProperties"
-    case javaMessageServiceConnectionProperties = "javaMessageServiceConnectionProperties"
-    case mongodbConnectionProperties = "mongodbConnectionProperties"
-    case oracleNosqlConnectionProperties = "oracleNosqlConnectionProperties"
-    case snowflakeConnectionProperties = "snowflakeConnectionProperties"
-    case amazonRedshiftConnectionProperties = "amazonRedshiftConnectionProperties"
-    case elasticsearchConnectionProperties = "elasticsearchConnectionProperties"
-    case amazonKinesisConnectionProperties = "amazonKinesisConnectionProperties"
-    case db2ConnectionProperties = "db2ConnectionProperties"
-    case redisConnectionProperties = "redisConnectionProperties"
-    case databricksConnectionProperties = "databricksConnectionProperties"
-    case googlePubsubConnectionProperties = "googlePubsubConnectionProperties"
-    case microsoftFabricConnectionProperties = "microsoftFabricConnectionProperties"
-    case oracleAiDataPlatformConnectionProperties = "oracleAiDataPlatformConnectionProperties"
-    case icebergConnectionProperties = "icebergConnectionProperties"
-    case connectionType = "connectionType"
-    case ocid = "ocid"
-    case displayName = "displayName"
-    case description = "description"
-    case lifecycleState = "lifecycleState"
-    case lifecycleDetails = "lifecycleDetails"
-    case updateTime = "updateTime"
-    case routingMethod = "routingMethod"
-    case ingressIpAddresses = "ingressIpAddresses"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oracleConnectionProperties = CodingKeys(stringValue: "oracleConnectionProperties")
+    static let goldengateConnectionProperties = CodingKeys(
+      stringValue: "goldengateConnectionProperties")
+    static let genericConnectionProperties = CodingKeys(stringValue: "genericConnectionProperties")
+    static let googleCloudStorageConnectionProperties = CodingKeys(
+      stringValue: "googleCloudStorageConnectionProperties")
+    static let googleBigQueryConnectionProperties = CodingKeys(
+      stringValue: "googleBigQueryConnectionProperties")
+    static let mysqlConnectionProperties = CodingKeys(stringValue: "mysqlConnectionProperties")
+    static let kafkaConnectionProperties = CodingKeys(stringValue: "kafkaConnectionProperties")
+    static let kafkaSchemaRegistryConnectionProperties = CodingKeys(
+      stringValue: "kafkaSchemaRegistryConnectionProperties")
+    static let ociObjectStorageConnectionProperties = CodingKeys(
+      stringValue: "ociObjectStorageConnectionProperties")
+    static let azureDataLakeStorageConnectionProperties = CodingKeys(
+      stringValue: "azureDataLakeStorageConnectionProperties")
+    static let azureSynapseAnalyticsConnectionProperties = CodingKeys(
+      stringValue: "azureSynapseAnalyticsConnectionProperties")
+    static let postgresqlConnectionProperties = CodingKeys(
+      stringValue: "postgresqlConnectionProperties")
+    static let microsoftSqlserverConnectionProperties = CodingKeys(
+      stringValue: "microsoftSqlserverConnectionProperties")
+    static let amazonS3ConnectionProperties = CodingKeys(
+      stringValue: "amazonS3ConnectionProperties")
+    static let hdfsConnectionProperties = CodingKeys(stringValue: "hdfsConnectionProperties")
+    static let javaMessageServiceConnectionProperties = CodingKeys(
+      stringValue: "javaMessageServiceConnectionProperties")
+    static let mongodbConnectionProperties = CodingKeys(stringValue: "mongodbConnectionProperties")
+    static let oracleNosqlConnectionProperties = CodingKeys(
+      stringValue: "oracleNosqlConnectionProperties")
+    static let snowflakeConnectionProperties = CodingKeys(
+      stringValue: "snowflakeConnectionProperties")
+    static let amazonRedshiftConnectionProperties = CodingKeys(
+      stringValue: "amazonRedshiftConnectionProperties")
+    static let elasticsearchConnectionProperties = CodingKeys(
+      stringValue: "elasticsearchConnectionProperties")
+    static let amazonKinesisConnectionProperties = CodingKeys(
+      stringValue: "amazonKinesisConnectionProperties")
+    static let db2ConnectionProperties = CodingKeys(stringValue: "db2ConnectionProperties")
+    static let redisConnectionProperties = CodingKeys(stringValue: "redisConnectionProperties")
+    static let databricksConnectionProperties = CodingKeys(
+      stringValue: "databricksConnectionProperties")
+    static let googlePubsubConnectionProperties = CodingKeys(
+      stringValue: "googlePubsubConnectionProperties")
+    static let microsoftFabricConnectionProperties = CodingKeys(
+      stringValue: "microsoftFabricConnectionProperties")
+    static let oracleAiDataPlatformConnectionProperties = CodingKeys(
+      stringValue: "oracleAiDataPlatformConnectionProperties")
+    static let icebergConnectionProperties = CodingKeys(stringValue: "icebergConnectionProperties")
+    static let connectionType = CodingKeys(stringValue: "connectionType")
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let routingMethod = CodingKeys(stringValue: "routingMethod")
+    static let ingressIpAddresses = CodingKeys(stringValue: "ingressIpAddresses")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oracleConnectionProperties",
+      "goldengateConnectionProperties",
+      "genericConnectionProperties",
+      "googleCloudStorageConnectionProperties",
+      "googleBigQueryConnectionProperties",
+      "mysqlConnectionProperties",
+      "kafkaConnectionProperties",
+      "kafkaSchemaRegistryConnectionProperties",
+      "ociObjectStorageConnectionProperties",
+      "azureDataLakeStorageConnectionProperties",
+      "azureSynapseAnalyticsConnectionProperties",
+      "postgresqlConnectionProperties",
+      "microsoftSqlserverConnectionProperties",
+      "amazonS3ConnectionProperties",
+      "hdfsConnectionProperties",
+      "javaMessageServiceConnectionProperties",
+      "mongodbConnectionProperties",
+      "oracleNosqlConnectionProperties",
+      "snowflakeConnectionProperties",
+      "amazonRedshiftConnectionProperties",
+      "elasticsearchConnectionProperties",
+      "amazonKinesisConnectionProperties",
+      "db2ConnectionProperties",
+      "redisConnectionProperties",
+      "databricksConnectionProperties",
+      "googlePubsubConnectionProperties",
+      "microsoftFabricConnectionProperties",
+      "oracleAiDataPlatformConnectionProperties",
+      "icebergConnectionProperties",
+      "connectionType",
+      "ocid",
+      "displayName",
+      "description",
+      "lifecycleState",
+      "lifecycleDetails",
+      "updateTime",
+      "routingMethod",
+      "ingressIpAddresses",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.connectionType = try container.decode(
+    if let value = try container.decodeIfPresent(
       GoldengateConnectionProperties.GoldengateConnectionType.self, forKey: .connectionType)
-    self.ocid = try container.decode(Swift.String.self, forKey: .ocid)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.lifecycleState = try container.decode(
+    {
+      self.connectionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateConnectionProperties.GoldengateConnectionLifecycleState.self,
       forKey: .lifecycleState)
-    self.lifecycleDetails = try container.decode(Swift.String.self, forKey: .lifecycleDetails)
+    {
+      self.lifecycleState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.routingMethod = try container.decode(
+    if let value = try container.decodeIfPresent(
       GoldengateConnectionProperties.GoldengateConnectionRoutingMethod.self, forKey: .routingMethod)
-    self.ingressIpAddresses = try container.decode([Swift.String].self, forKey: .ingressIpAddresses)
+    {
+      self.routingMethod = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ingressIpAddresses) {
+      self.ingressIpAddresses = value
+    }
 
     var connectionDetails: OneOf_ConnectionDetails? = nil
     let connectionDetailsCheckAndSet = {
@@ -317,6 +404,10 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleCloudWKT
       try connectionDetailsCheckAndSet(.icebergConnectionProperties(icebergConnectionProperties))
     }
     self.connectionDetails = connectionDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -327,7 +418,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleCloudWKT
     try container.encode(self.description, forKey: .description)
     try container.encode(self.lifecycleState, forKey: .lifecycleState)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.routingMethod, forKey: .routingMethod)
     try container.encode(self.ingressIpAddresses, forKey: .ingressIpAddresses)
 
@@ -392,6 +483,9 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleCloudWKT
       case .icebergConnectionProperties(let value):
         try container.encode(value, forKey: .icebergConnectionProperties)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

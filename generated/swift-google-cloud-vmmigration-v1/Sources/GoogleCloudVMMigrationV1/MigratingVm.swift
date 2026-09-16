@@ -110,6 +110,8 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Details about the source VM.
   public var sourceVmDetails: OneOf_SourceVmDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigratingVm`.
   public init() {}
 
@@ -126,57 +128,109 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case computeEngineTargetDefaults = "computeEngineTargetDefaults"
-    case computeEngineDisksTargetDefaults = "computeEngineDisksTargetDefaults"
-    case vmwareSourceVmDetails = "vmwareSourceVmDetails"
-    case awsSourceVmDetails = "awsSourceVmDetails"
-    case azureSourceVmDetails = "azureSourceVmDetails"
-    case name = "name"
-    case sourceVmId = "sourceVmId"
-    case displayName = "displayName"
-    case description = "description"
-    case policy = "policy"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case lastSync = "lastSync"
-    case state = "state"
-    case stateTime = "stateTime"
-    case currentSyncInfo = "currentSyncInfo"
-    case lastReplicationCycle = "lastReplicationCycle"
-    case group = "group"
-    case labels = "labels"
-    case recentCloneJobs = "recentCloneJobs"
-    case error = "error"
-    case recentCutoverJobs = "recentCutoverJobs"
-    case cutoverForecast = "cutoverForecast"
-    case expiration = "expiration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let computeEngineTargetDefaults = CodingKeys(stringValue: "computeEngineTargetDefaults")
+    static let computeEngineDisksTargetDefaults = CodingKeys(
+      stringValue: "computeEngineDisksTargetDefaults")
+    static let vmwareSourceVmDetails = CodingKeys(stringValue: "vmwareSourceVmDetails")
+    static let awsSourceVmDetails = CodingKeys(stringValue: "awsSourceVmDetails")
+    static let azureSourceVmDetails = CodingKeys(stringValue: "azureSourceVmDetails")
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceVmId = CodingKeys(stringValue: "sourceVmId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let policy = CodingKeys(stringValue: "policy")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastSync = CodingKeys(stringValue: "lastSync")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateTime = CodingKeys(stringValue: "stateTime")
+    static let currentSyncInfo = CodingKeys(stringValue: "currentSyncInfo")
+    static let lastReplicationCycle = CodingKeys(stringValue: "lastReplicationCycle")
+    static let group = CodingKeys(stringValue: "group")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let recentCloneJobs = CodingKeys(stringValue: "recentCloneJobs")
+    static let error = CodingKeys(stringValue: "error")
+    static let recentCutoverJobs = CodingKeys(stringValue: "recentCutoverJobs")
+    static let cutoverForecast = CodingKeys(stringValue: "cutoverForecast")
+    static let expiration = CodingKeys(stringValue: "expiration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "computeEngineTargetDefaults",
+      "computeEngineDisksTargetDefaults",
+      "vmwareSourceVmDetails",
+      "awsSourceVmDetails",
+      "azureSourceVmDetails",
+      "name",
+      "sourceVmId",
+      "displayName",
+      "description",
+      "policy",
+      "createTime",
+      "updateTime",
+      "lastSync",
+      "state",
+      "stateTime",
+      "currentSyncInfo",
+      "lastReplicationCycle",
+      "group",
+      "labels",
+      "recentCloneJobs",
+      "error",
+      "recentCutoverJobs",
+      "cutoverForecast",
+      "expiration",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.sourceVmId = try container.decode(Swift.String.self, forKey: .sourceVmId)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceVmId) {
+      self.sourceVmId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.policy = try container.decodeIfPresent(SchedulePolicy.self, forKey: .policy)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.lastSync = try container.decodeIfPresent(ReplicationSync.self, forKey: .lastSync)
-    self.state = try container.decode(MigratingVm.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(MigratingVm.State.self, forKey: .state) {
+      self.state = value
+    }
     self.stateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
     self.currentSyncInfo = try container.decodeIfPresent(
       ReplicationCycle.self, forKey: .currentSyncInfo)
     self.lastReplicationCycle = try container.decodeIfPresent(
       ReplicationCycle.self, forKey: .lastReplicationCycle)
-    self.group = try container.decode(Swift.String.self, forKey: .group)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.recentCloneJobs = try container.decode([CloneJob].self, forKey: .recentCloneJobs)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
+      self.group = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([CloneJob].self, forKey: .recentCloneJobs) {
+      self.recentCloneJobs = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.recentCutoverJobs = try container.decode([CutoverJob].self, forKey: .recentCutoverJobs)
+    if let value = try container.decodeIfPresent([CutoverJob].self, forKey: .recentCutoverJobs) {
+      self.recentCutoverJobs = value
+    }
     self.cutoverForecast = try container.decodeIfPresent(
       CutoverForecast.self, forKey: .cutoverForecast)
     self.expiration = try container.decodeIfPresent(
@@ -231,6 +285,10 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceVmDetailsCheckAndSet(.azureSourceVmDetails(azureSourceVmDetails))
     }
     self.sourceVmDetails = sourceVmDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -239,21 +297,21 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.sourceVmId, forKey: .sourceVmId)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.policy, forKey: .policy)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.lastSync, forKey: .lastSync)
+    try container.encodeIfPresent(self.policy, forKey: .policy)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lastSync, forKey: .lastSync)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.stateTime, forKey: .stateTime)
-    try container.encode(self.currentSyncInfo, forKey: .currentSyncInfo)
-    try container.encode(self.lastReplicationCycle, forKey: .lastReplicationCycle)
+    try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
+    try container.encodeIfPresent(self.currentSyncInfo, forKey: .currentSyncInfo)
+    try container.encodeIfPresent(self.lastReplicationCycle, forKey: .lastReplicationCycle)
     try container.encode(self.group, forKey: .group)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.recentCloneJobs, forKey: .recentCloneJobs)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.recentCutoverJobs, forKey: .recentCutoverJobs)
-    try container.encode(self.cutoverForecast, forKey: .cutoverForecast)
-    try container.encode(self.expiration, forKey: .expiration)
+    try container.encodeIfPresent(self.cutoverForecast, forKey: .cutoverForecast)
+    try container.encodeIfPresent(self.expiration, forKey: .expiration)
 
     if let choice = self.targetVmDefaults {
       switch choice {
@@ -274,6 +332,9 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .azureSourceVmDetails)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Expiration holds information about the expiration of a MigratingVm.
@@ -289,6 +350,8 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. Describes whether the expiration can be extended.
     public var extendable: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Expiration`.
     public init() {}
 
@@ -303,6 +366,49 @@ public struct MigratingVm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expireTime = CodingKeys(stringValue: "expireTime")
+      static let extensionCount = CodingKeys(stringValue: "extensionCount")
+      static let extendable = CodingKeys(stringValue: "extendable")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expireTime",
+        "extensionCount",
+        "extendable",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.expireTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .extensionCount) {
+        self.extensionCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .extendable) {
+        self.extendable = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+      try container.encode(self.extensionCount, forKey: .extensionCount)
+      try container.encode(self.extendable, forKey: .extendable)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

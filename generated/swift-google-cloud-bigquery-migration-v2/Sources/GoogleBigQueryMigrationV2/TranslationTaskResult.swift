@@ -30,6 +30,8 @@ public struct TranslationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The Cloud Console URI for the migration workflow.
   public var consoleUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslationTaskResult`.
   public init() {}
 
@@ -44,6 +46,52 @@ public struct TranslationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let translatedLiterals = CodingKeys(stringValue: "translatedLiterals")
+    static let reportLogMessages = CodingKeys(stringValue: "reportLogMessages")
+    static let consoleUri = CodingKeys(stringValue: "consoleUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "translatedLiterals",
+      "reportLogMessages",
+      "consoleUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Literal].self, forKey: .translatedLiterals) {
+      self.translatedLiterals = value
+    }
+    if let value = try container.decodeIfPresent(
+      [GcsReportLogMessage].self, forKey: .reportLogMessages)
+    {
+      self.reportLogMessages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consoleUri) {
+      self.consoleUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.translatedLiterals, forKey: .translatedLiterals)
+    try container.encode(self.reportLogMessages, forKey: .reportLogMessages)
+    try container.encode(self.consoleUri, forKey: .consoleUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

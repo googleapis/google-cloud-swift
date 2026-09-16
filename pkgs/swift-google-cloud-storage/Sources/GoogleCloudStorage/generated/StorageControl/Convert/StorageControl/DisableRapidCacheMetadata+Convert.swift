@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension DisableRapidCacheMetadata {
@@ -31,6 +31,7 @@ extension DisableRapidCacheMetadata {
     self.rapidCacheId = proto.hasRapidCacheID ? proto.rapidCacheID : nil
     self.zone = proto.hasZone ? proto.zone : nil
     self.cacheType = proto.hasCacheType ? proto.cacheType : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -41,6 +42,9 @@ extension DisableRapidCacheMetadata {
     if let rapidCacheId = self.rapidCacheId { proto.rapidCacheID = rapidCacheId }
     if let zone = self.zone { proto.zone = zone }
     if let cacheType = self.cacheType { proto.cacheType = cacheType }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

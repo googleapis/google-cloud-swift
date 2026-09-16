@@ -38,6 +38,8 @@
     /// entities will significantly increase the latency and cost of the query.
     public var returnFullEntity: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchNearestEntitiesRequest`.
     public init() {}
 
@@ -52,6 +54,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let featureView = CodingKeys(stringValue: "featureView")
+      static let query = CodingKeys(stringValue: "query")
+      static let returnFullEntity = CodingKeys(stringValue: "returnFullEntity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "featureView",
+        "query",
+        "returnFullEntity",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureView) {
+        self.featureView = value
+      }
+      self.query = try container.decodeIfPresent(NearestNeighborQuery.self, forKey: .query)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnFullEntity) {
+        self.returnFullEntity = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.featureView, forKey: .featureView)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.returnFullEntity, forKey: .returnFullEntity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

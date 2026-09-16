@@ -32,6 +32,8 @@ public struct AuditScopeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specific format or delivery method for the exported audit scope report.
   public var auditReport: OneOf_AuditReport? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditScopeReport`.
   public init() {}
 
@@ -48,14 +50,26 @@ public struct AuditScopeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case scopeReportContents = "scopeReportContents"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scopeReportContents = CodingKeys(stringValue: "scopeReportContents")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scopeReportContents",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var auditReport: OneOf_AuditReport? = nil
     let auditReportCheckAndSet = {
@@ -73,6 +87,10 @@ public struct AuditScopeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try auditReportCheckAndSet(.scopeReportContents(scopeReportContents))
     }
     self.auditReport = auditReport
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +102,9 @@ public struct AuditScopeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .scopeReportContents(let value):
         try container.encode(value, forKey: .scopeReportContents)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

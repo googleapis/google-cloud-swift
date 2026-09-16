@@ -25,6 +25,8 @@ public struct PolicyAlternativeNameServerConfig: Codable, Equatable, GoogleCloud
   /// Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.
   public var targetNameServers: [PolicyAlternativeNameServerConfigTargetNameServer] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PolicyAlternativeNameServerConfig`.
   public init() {}
 
@@ -39,6 +41,44 @@ public struct PolicyAlternativeNameServerConfig: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kind = CodingKeys(stringValue: "kind")
+    static let targetNameServers = CodingKeys(stringValue: "targetNameServers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kind",
+      "targetNameServers",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent(
+      [PolicyAlternativeNameServerConfigTargetNameServer].self, forKey: .targetNameServers)
+    {
+      self.targetNameServers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.targetNameServers, forKey: .targetNameServers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

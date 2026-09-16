@@ -64,6 +64,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `oneof` must be set.
   public var deploymentMode: OneOf_DeploymentMode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AgentGateway`.
   public init() {}
 
@@ -80,33 +82,67 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case googleManaged = "googleManaged"
-    case selfManaged = "selfManaged"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case description = "description"
-    case etag = "etag"
-    case protocols = "protocols"
-    case registries = "registries"
-    case networkConfig = "networkConfig"
-    case agentGatewayCard = "agentGatewayCard"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let googleManaged = CodingKeys(stringValue: "googleManaged")
+    static let selfManaged = CodingKeys(stringValue: "selfManaged")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let protocols = CodingKeys(stringValue: "protocols")
+    static let registries = CodingKeys(stringValue: "registries")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let agentGatewayCard = CodingKeys(stringValue: "agentGatewayCard")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "googleManaged",
+      "selfManaged",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "etag",
+      "protocols",
+      "registries",
+      "networkConfig",
+      "agentGatewayCard",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.protocols = try container.decode([AgentGateway.Protocol_].self, forKey: .protocols)
-    self.registries = try container.decode([Swift.String].self, forKey: .registries)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([AgentGateway.Protocol_].self, forKey: .protocols)
+    {
+      self.protocols = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .registries) {
+      self.registries = value
+    }
     self.networkConfig = try container.decodeIfPresent(
       AgentGateway.NetworkConfig.self, forKey: .networkConfig)
     self.agentGatewayCard = try container.decodeIfPresent(
@@ -133,20 +169,24 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try deploymentModeCheckAndSet(.selfManaged(selfManaged))
     }
     self.deploymentMode = deploymentMode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.protocols, forKey: .protocols)
     try container.encode(self.registries, forKey: .registries)
-    try container.encode(self.networkConfig, forKey: .networkConfig)
-    try container.encode(self.agentGatewayCard, forKey: .agentGatewayCard)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.agentGatewayCard, forKey: .agentGatewayCard)
 
     if let choice = self.deploymentMode {
       switch choice {
@@ -155,6 +195,9 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .selfManaged(let value):
         try container.encode(value, forKey: .selfManaged)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -166,6 +209,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Operating Mode of Agent Gateway.
     public var governedAccessPath: AgentGateway.GoogleManaged.GovernedAccessPath = AgentGateway
       .GoogleManaged.GovernedAccessPath()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `GoogleManaged`.
     public init() {}
@@ -181,6 +226,40 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let governedAccessPath = CodingKeys(stringValue: "governedAccessPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "governedAccessPath"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        AgentGateway.GoogleManaged.GovernedAccessPath.self, forKey: .governedAccessPath)
+      {
+        self.governedAccessPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.governedAccessPath, forKey: .governedAccessPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// GovernedAccessPath defines the type of access to protect.
@@ -313,6 +392,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// resource_uris is mutually exclusive with resource_uri.
     public var resourceUris: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SelfManaged`.
     public init() {}
 
@@ -327,6 +408,44 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceUri = CodingKeys(stringValue: "resourceUri")
+      static let resourceUris = CodingKeys(stringValue: "resourceUris")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceUri",
+        "resourceUris",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+        self.resourceUri = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceUris) {
+        self.resourceUris = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceUri, forKey: .resourceUri)
+      try container.encode(self.resourceUris, forKey: .resourceUris)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -352,6 +471,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// private VPC network.
     public var dnsPeeringConfig: AgentGateway.NetworkConfig.DnsPeeringConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkConfig`.
     public init() {}
 
@@ -368,6 +489,42 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let egress = CodingKeys(stringValue: "egress")
+      static let dnsPeeringConfig = CodingKeys(stringValue: "dnsPeeringConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "egress",
+        "dnsPeeringConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.egress = try container.decodeIfPresent(
+        AgentGateway.NetworkConfig.Egress.self, forKey: .egress)
+      self.dnsPeeringConfig = try container.decodeIfPresent(
+        AgentGateway.NetworkConfig.DnsPeeringConfig.self, forKey: .dnsPeeringConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.egress, forKey: .egress)
+      try container.encodeIfPresent(self.dnsPeeringConfig, forKey: .dnsPeeringConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Configuration for Egress
     public struct Egress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -377,6 +534,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Optional. TrustConfig defines the trust configuration for egress.
       public var trustConfig: AgentGateway.NetworkConfig.Egress.TrustConfig? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Egress`.
       public init() {}
@@ -394,6 +553,44 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
+        static let trustConfig = CodingKeys(stringValue: "trustConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "networkAttachment",
+          "trustConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkAttachment)
+        {
+          self.networkAttachment = value
+        }
+        self.trustConfig = try container.decodeIfPresent(
+          AgentGateway.NetworkConfig.Egress.TrustConfig.self, forKey: .trustConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.networkAttachment, forKey: .networkAttachment)
+        try container.encodeIfPresent(self.trustConfig, forKey: .trustConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// TrustConfig defines the trust configuration for egress.
       public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -401,6 +598,9 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Required. PEM encoded root certificates used to validate the identity
         /// of the upstream servers/destinations during egress connections.
         public var pemCertificates: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `TrustConfig`.
         public init() {}
@@ -416,6 +616,40 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let pemCertificates = CodingKeys(stringValue: "pemCertificates")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "pemCertificates"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Swift.String].self, forKey: .pemCertificates)
+          {
+            self.pemCertificates = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.pemCertificates, forKey: .pemCertificates)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -460,6 +694,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// `projects/{project}/global/networks/{network}`.
       public var targetNetwork: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DnsPeeringConfig`.
       public init() {}
 
@@ -474,6 +710,50 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let domains = CodingKeys(stringValue: "domains")
+        static let targetProject = CodingKeys(stringValue: "targetProject")
+        static let targetNetwork = CodingKeys(stringValue: "targetNetwork")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "domains",
+          "targetProject",
+          "targetNetwork",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domains) {
+          self.domains = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+          self.targetProject = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetNetwork) {
+          self.targetNetwork = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.domains, forKey: .domains)
+        try container.encode(self.targetProject, forKey: .targetProject)
+        try container.encode(self.targetNetwork, forKey: .targetNetwork)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -512,6 +792,8 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. Service Account used by Service Extensions to operate.
     public var serviceExtensionsServiceAccount: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AgentGatewayOutputCard`.
     public init() {}
 
@@ -526,6 +808,54 @@ public struct AgentGateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mtlsEndpoint = CodingKeys(stringValue: "mtlsEndpoint")
+      static let rootCertificates = CodingKeys(stringValue: "rootCertificates")
+      static let serviceExtensionsServiceAccount = CodingKeys(
+        stringValue: "serviceExtensionsServiceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mtlsEndpoint",
+        "rootCertificates",
+        "serviceExtensionsServiceAccount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mtlsEndpoint) {
+        self.mtlsEndpoint = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rootCertificates) {
+        self.rootCertificates = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serviceExtensionsServiceAccount)
+      {
+        self.serviceExtensionsServiceAccount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.mtlsEndpoint, forKey: .mtlsEndpoint)
+      try container.encode(self.rootCertificates, forKey: .rootCertificates)
+      try container.encode(
+        self.serviceExtensionsServiceAccount, forKey: .serviceExtensionsServiceAccount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

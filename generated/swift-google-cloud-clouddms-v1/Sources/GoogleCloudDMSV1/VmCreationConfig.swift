@@ -30,6 +30,8 @@ public struct VmCreationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The subnet name the vm needs to be created in.
   public var subnet: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmCreationConfig`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct VmCreationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmMachineType = CodingKeys(stringValue: "vmMachineType")
+    static let vmZone = CodingKeys(stringValue: "vmZone")
+    static let subnet = CodingKeys(stringValue: "subnet")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmMachineType",
+      "vmZone",
+      "subnet",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmMachineType) {
+      self.vmMachineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmZone) {
+      self.vmZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnet) {
+      self.subnet = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmMachineType, forKey: .vmMachineType)
+    try container.encode(self.vmZone, forKey: .vmZone)
+    try container.encode(self.subnet, forKey: .subnet)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

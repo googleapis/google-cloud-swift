@@ -62,6 +62,8 @@ public struct FullManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// the same time with the field man_block.
   public var masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FullManagementConfig`.
   public init() {}
 
@@ -76,6 +78,81 @@ public struct FullManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let subnet = CodingKeys(stringValue: "subnet")
+    static let masterIpv4CidrBlock = CodingKeys(stringValue: "masterIpv4CidrBlock")
+    static let clusterCidrBlock = CodingKeys(stringValue: "clusterCidrBlock")
+    static let servicesCidrBlock = CodingKeys(stringValue: "servicesCidrBlock")
+    static let clusterNamedRange = CodingKeys(stringValue: "clusterNamedRange")
+    static let servicesNamedRange = CodingKeys(stringValue: "servicesNamedRange")
+    static let masterAuthorizedNetworksConfig = CodingKeys(
+      stringValue: "masterAuthorizedNetworksConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "subnet",
+      "masterIpv4CidrBlock",
+      "clusterCidrBlock",
+      "servicesCidrBlock",
+      "clusterNamedRange",
+      "servicesNamedRange",
+      "masterAuthorizedNetworksConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnet) {
+      self.subnet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterIpv4CidrBlock) {
+      self.masterIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterCidrBlock) {
+      self.clusterCidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesCidrBlock) {
+      self.servicesCidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterNamedRange) {
+      self.clusterNamedRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesNamedRange) {
+      self.servicesNamedRange = value
+    }
+    self.masterAuthorizedNetworksConfig = try container.decodeIfPresent(
+      MasterAuthorizedNetworksConfig.self, forKey: .masterAuthorizedNetworksConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.subnet, forKey: .subnet)
+    try container.encode(self.masterIpv4CidrBlock, forKey: .masterIpv4CidrBlock)
+    try container.encode(self.clusterCidrBlock, forKey: .clusterCidrBlock)
+    try container.encode(self.servicesCidrBlock, forKey: .servicesCidrBlock)
+    try container.encode(self.clusterNamedRange, forKey: .clusterNamedRange)
+    try container.encode(self.servicesNamedRange, forKey: .servicesNamedRange)
+    try container.encodeIfPresent(
+      self.masterAuthorizedNetworksConfig, forKey: .masterAuthorizedNetworksConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

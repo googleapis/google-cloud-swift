@@ -49,6 +49,8 @@ public struct RoundCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// certificate.
   public var isFinalized: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RoundCertificate`.
   public init() {}
 
@@ -63,6 +65,76 @@ public struct RoundCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let roundId = CodingKeys(stringValue: "roundId")
+    static let validatorId = CodingKeys(stringValue: "validatorId")
+    static let roundStateChecksumHex = CodingKeys(stringValue: "roundStateChecksumHex")
+    static let roundDeltaChecksumHex = CodingKeys(stringValue: "roundDeltaChecksumHex")
+    static let merkleTree = CodingKeys(stringValue: "merkleTree")
+    static let validatorSignatures = CodingKeys(stringValue: "validatorSignatures")
+    static let isFinalized = CodingKeys(stringValue: "isFinalized")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "roundId",
+      "validatorId",
+      "roundStateChecksumHex",
+      "roundDeltaChecksumHex",
+      "merkleTree",
+      "validatorSignatures",
+      "isFinalized",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .roundId) {
+      self.roundId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validatorId) {
+      self.validatorId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .roundStateChecksumHex)
+    {
+      self.roundStateChecksumHex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .roundDeltaChecksumHex)
+    {
+      self.roundDeltaChecksumHex = value
+    }
+    self.merkleTree = try container.decodeIfPresent(MerkleTree.self, forKey: .merkleTree)
+    if let value = try container.decodeIfPresent(
+      [Foundation.Data].self, forKey: .validatorSignatures)
+    {
+      self.validatorSignatures = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFinalized) {
+      self.isFinalized = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.roundId, forKey: .roundId)
+    try container.encode(self.validatorId, forKey: .validatorId)
+    try container.encode(self.roundStateChecksumHex, forKey: .roundStateChecksumHex)
+    try container.encode(self.roundDeltaChecksumHex, forKey: .roundDeltaChecksumHex)
+    try container.encodeIfPresent(self.merkleTree, forKey: .merkleTree)
+    try container.encode(self.validatorSignatures, forKey: .validatorSignatures)
+    try container.encode(self.isFinalized, forKey: .isFinalized)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

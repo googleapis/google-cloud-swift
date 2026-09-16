@@ -55,6 +55,8 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.bigtable.admin.v2.RestoreTableRequest]: <doc:RestoreTableRequest>
   public var sourceInfo: OneOf_SourceInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreTableMetadata`.
   public init() {}
 
@@ -71,20 +73,40 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case sourceType = "sourceType"
-    case backupInfo = "backupInfo"
-    case optimizeTableOperationName = "optimizeTableOperationName"
-    case progress = "progress"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let backupInfo = CodingKeys(stringValue: "backupInfo")
+    static let optimizeTableOperationName = CodingKeys(stringValue: "optimizeTableOperationName")
+    static let progress = CodingKeys(stringValue: "progress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceType",
+      "backupInfo",
+      "optimizeTableOperationName",
+      "progress",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.sourceType = try container.decode(RestoreSourceType.self, forKey: .sourceType)
-    self.optimizeTableOperationName = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(RestoreSourceType.self, forKey: .sourceType) {
+      self.sourceType = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .optimizeTableOperationName)
+    {
+      self.optimizeTableOperationName = value
+    }
     self.progress = try container.decodeIfPresent(OperationProgress.self, forKey: .progress)
 
     var sourceInfo: OneOf_SourceInfo? = nil
@@ -101,6 +123,10 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try sourceInfoCheckAndSet(.backupInfo(backupInfo))
     }
     self.sourceInfo = sourceInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,13 +134,16 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     try container.encode(self.name, forKey: .name)
     try container.encode(self.sourceType, forKey: .sourceType)
     try container.encode(self.optimizeTableOperationName, forKey: .optimizeTableOperationName)
-    try container.encode(self.progress, forKey: .progress)
+    try container.encodeIfPresent(self.progress, forKey: .progress)
 
     if let choice = self.sourceInfo {
       switch choice {
       case .backupInfo(let value):
         try container.encode(value, forKey: .backupInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

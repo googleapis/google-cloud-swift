@@ -71,6 +71,8 @@ public struct DiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. A list of attached disk configs for a group of VM instances.
   public var attachedDiskConfigs: [AttachedDiskConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskConfig`.
   public init() {}
 
@@ -85,6 +87,76 @@ public struct DiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bootDiskType = CodingKeys(stringValue: "bootDiskType")
+    static let bootDiskSizeGb = CodingKeys(stringValue: "bootDiskSizeGb")
+    static let numLocalSsds = CodingKeys(stringValue: "numLocalSsds")
+    static let localSsdInterface = CodingKeys(stringValue: "localSsdInterface")
+    static let bootDiskProvisionedIops = CodingKeys(stringValue: "bootDiskProvisionedIops")
+    static let bootDiskProvisionedThroughput = CodingKeys(
+      stringValue: "bootDiskProvisionedThroughput")
+    static let attachedDiskConfigs = CodingKeys(stringValue: "attachedDiskConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bootDiskType",
+      "bootDiskSizeGb",
+      "numLocalSsds",
+      "localSsdInterface",
+      "bootDiskProvisionedIops",
+      "bootDiskProvisionedThroughput",
+      "attachedDiskConfigs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bootDiskType) {
+      self.bootDiskType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bootDiskSizeGb) {
+      self.bootDiskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numLocalSsds) {
+      self.numLocalSsds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .localSsdInterface) {
+      self.localSsdInterface = value
+    }
+    self.bootDiskProvisionedIops = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .bootDiskProvisionedIops)
+    self.bootDiskProvisionedThroughput = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .bootDiskProvisionedThroughput)
+    if let value = try container.decodeIfPresent(
+      [AttachedDiskConfig].self, forKey: .attachedDiskConfigs)
+    {
+      self.attachedDiskConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.bootDiskType, forKey: .bootDiskType)
+    try container.encode(self.bootDiskSizeGb, forKey: .bootDiskSizeGb)
+    try container.encode(self.numLocalSsds, forKey: .numLocalSsds)
+    try container.encode(self.localSsdInterface, forKey: .localSsdInterface)
+    try container.encodeIfPresent(self.bootDiskProvisionedIops, forKey: .bootDiskProvisionedIops)
+    try container.encodeIfPresent(
+      self.bootDiskProvisionedThroughput, forKey: .bootDiskProvisionedThroughput)
+    try container.encode(self.attachedDiskConfigs, forKey: .attachedDiskConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct SignatureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// How this signature may be verified.
   public var verificationInfo: OneOf_VerificationInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SignatureInfo`.
   public init() {}
 
@@ -43,15 +45,28 @@ public struct SignatureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case signature = "signature"
-    case googlePublicKeyPem = "googlePublicKeyPem"
-    case customerKmsKeyVersion = "customerKmsKeyVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let signature = CodingKeys(stringValue: "signature")
+    static let googlePublicKeyPem = CodingKeys(stringValue: "googlePublicKeyPem")
+    static let customerKmsKeyVersion = CodingKeys(stringValue: "customerKmsKeyVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "signature",
+      "googlePublicKeyPem",
+      "customerKmsKeyVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.signature = try container.decode(Foundation.Data.self, forKey: .signature)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .signature) {
+      self.signature = value
+    }
 
     var verificationInfo: OneOf_VerificationInfo? = nil
     let verificationInfoCheckAndSet = {
@@ -74,6 +89,10 @@ public struct SignatureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try verificationInfoCheckAndSet(.customerKmsKeyVersion(customerKmsKeyVersion))
     }
     self.verificationInfo = verificationInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +106,9 @@ public struct SignatureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .customerKmsKeyVersion(let value):
         try container.encode(value, forKey: .customerKmsKeyVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -59,6 +59,8 @@ public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the toolset.
   public var toolsetType: OneOf_ToolsetType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Toolset`.
   public init() {}
 
@@ -75,33 +77,63 @@ public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mcpToolset = "mcpToolset"
-    case openApiToolset = "openApiToolset"
-    case connectorToolset = "connectorToolset"
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case timeout = "timeout"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case etag = "etag"
-    case executionType = "executionType"
-    case toolFakeConfig = "toolFakeConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mcpToolset = CodingKeys(stringValue: "mcpToolset")
+    static let openApiToolset = CodingKeys(stringValue: "openApiToolset")
+    static let connectorToolset = CodingKeys(stringValue: "connectorToolset")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let executionType = CodingKeys(stringValue: "executionType")
+    static let toolFakeConfig = CodingKeys(stringValue: "toolFakeConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mcpToolset",
+      "openApiToolset",
+      "connectorToolset",
+      "name",
+      "displayName",
+      "description",
+      "timeout",
+      "createTime",
+      "updateTime",
+      "etag",
+      "executionType",
+      "toolFakeConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.executionType = try container.decode(ExecutionType.self, forKey: .executionType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(ExecutionType.self, forKey: .executionType) {
+      self.executionType = value
+    }
     self.toolFakeConfig = try container.decodeIfPresent(
       ToolFakeConfig.self, forKey: .toolFakeConfig)
 
@@ -129,6 +161,10 @@ public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try toolsetTypeCheckAndSet(.connectorToolset(connectorToolset))
     }
     self.toolsetType = toolsetType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -136,12 +172,12 @@ public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.timeout, forKey: .timeout)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.executionType, forKey: .executionType)
-    try container.encode(self.toolFakeConfig, forKey: .toolFakeConfig)
+    try container.encodeIfPresent(self.toolFakeConfig, forKey: .toolFakeConfig)
 
     if let choice = self.toolsetType {
       switch choice {
@@ -152,6 +188,9 @@ public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .connectorToolset(let value):
         try container.encode(value, forKey: .connectorToolset)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

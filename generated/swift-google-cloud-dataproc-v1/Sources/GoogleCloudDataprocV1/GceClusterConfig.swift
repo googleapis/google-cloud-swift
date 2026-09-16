@@ -138,6 +138,8 @@ public struct GceClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
   public var resourceManagerTags: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GceClusterConfig`.
   public init() {}
 
@@ -152,6 +154,118 @@ public struct GceClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let zoneUri = CodingKeys(stringValue: "zoneUri")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let subnetworkUri = CodingKeys(stringValue: "subnetworkUri")
+    static let internalIpOnly = CodingKeys(stringValue: "internalIpOnly")
+    static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let serviceAccountScopes = CodingKeys(stringValue: "serviceAccountScopes")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let reservationAffinity = CodingKeys(stringValue: "reservationAffinity")
+    static let nodeGroupAffinity = CodingKeys(stringValue: "nodeGroupAffinity")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let confidentialInstanceConfig = CodingKeys(stringValue: "confidentialInstanceConfig")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "zoneUri",
+      "networkUri",
+      "subnetworkUri",
+      "internalIpOnly",
+      "privateIpv6GoogleAccess",
+      "serviceAccount",
+      "serviceAccountScopes",
+      "tags",
+      "metadata",
+      "reservationAffinity",
+      "nodeGroupAffinity",
+      "shieldedInstanceConfig",
+      "confidentialInstanceConfig",
+      "resourceManagerTags",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zoneUri) {
+      self.zoneUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetworkUri) {
+      self.subnetworkUri = value
+    }
+    self.internalIpOnly = try container.decodeIfPresent(Swift.Bool.self, forKey: .internalIpOnly)
+    if let value = try container.decodeIfPresent(
+      GceClusterConfig.PrivateIpv6GoogleAccess.self, forKey: .privateIpv6GoogleAccess)
+    {
+      self.privateIpv6GoogleAccess = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serviceAccountScopes)
+    {
+      self.serviceAccountScopes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    self.reservationAffinity = try container.decodeIfPresent(
+      ReservationAffinity.self, forKey: .reservationAffinity)
+    self.nodeGroupAffinity = try container.decodeIfPresent(
+      NodeGroupAffinity.self, forKey: .nodeGroupAffinity)
+    self.shieldedInstanceConfig = try container.decodeIfPresent(
+      ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
+    self.confidentialInstanceConfig = try container.decodeIfPresent(
+      ConfidentialInstanceConfig.self, forKey: .confidentialInstanceConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
+    {
+      self.resourceManagerTags = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.zoneUri, forKey: .zoneUri)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.subnetworkUri, forKey: .subnetworkUri)
+    try container.encodeIfPresent(self.internalIpOnly, forKey: .internalIpOnly)
+    try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.serviceAccountScopes, forKey: .serviceAccountScopes)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.reservationAffinity, forKey: .reservationAffinity)
+    try container.encodeIfPresent(self.nodeGroupAffinity, forKey: .nodeGroupAffinity)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encodeIfPresent(
+      self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
+    try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `PrivateIpv6GoogleAccess` controls whether and how Dataproc cluster nodes

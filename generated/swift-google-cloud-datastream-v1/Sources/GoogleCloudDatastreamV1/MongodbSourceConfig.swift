@@ -32,6 +32,8 @@ public struct MongodbSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// system's default value is used
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MongodbSourceConfig`.
   public init() {}
 
@@ -46,6 +48,50 @@ public struct MongodbSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeObjects = CodingKeys(stringValue: "includeObjects")
+    static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
+    static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeObjects",
+      "excludeObjects",
+      "maxConcurrentBackfillTasks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.includeObjects = try container.decodeIfPresent(
+      MongodbCluster.self, forKey: .includeObjects)
+    self.excludeObjects = try container.decodeIfPresent(
+      MongodbCluster.self, forKey: .excludeObjects)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .maxConcurrentBackfillTasks)
+    {
+      self.maxConcurrentBackfillTasks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
+    try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
+    try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

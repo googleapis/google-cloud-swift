@@ -31,6 +31,8 @@ public struct InputStreamProperty: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Properties of the audio streams.
   public var audioStreams: [AudioStreamProperty] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InputStreamProperty`.
   public init() {}
 
@@ -45,6 +47,51 @@ public struct InputStreamProperty: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lastEstablishTime = CodingKeys(stringValue: "lastEstablishTime")
+    static let videoStreams = CodingKeys(stringValue: "videoStreams")
+    static let audioStreams = CodingKeys(stringValue: "audioStreams")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lastEstablishTime",
+      "videoStreams",
+      "audioStreams",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.lastEstablishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastEstablishTime)
+    if let value = try container.decodeIfPresent([VideoStreamProperty].self, forKey: .videoStreams)
+    {
+      self.videoStreams = value
+    }
+    if let value = try container.decodeIfPresent([AudioStreamProperty].self, forKey: .audioStreams)
+    {
+      self.audioStreams = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.lastEstablishTime, forKey: .lastEstablishTime)
+    try container.encode(self.videoStreams, forKey: .videoStreams)
+    try container.encode(self.audioStreams, forKey: .audioStreams)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

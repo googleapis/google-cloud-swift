@@ -28,6 +28,8 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The algorithm outputs for the recommended cluster size.
   public var outputs: AutoscalerRecommendation.Outputs? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoscalerRecommendation`.
   public init() {}
 
@@ -42,6 +44,42 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputs = CodingKeys(stringValue: "inputs")
+    static let outputs = CodingKeys(stringValue: "outputs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputs",
+      "outputs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.inputs = try container.decodeIfPresent(
+      AutoscalerRecommendation.Inputs.self, forKey: .inputs)
+    self.outputs = try container.decodeIfPresent(
+      AutoscalerRecommendation.Outputs.self, forKey: .outputs)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.inputs, forKey: .inputs)
+    try container.encodeIfPresent(self.outputs, forKey: .outputs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The input values for the Autoscaling recommendation algorithm.
@@ -61,6 +99,8 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
     /// The maximum worker counts for each instance group.
     public var maxWorkerCounts: ClusterSize? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Inputs`.
     public init() {}
 
@@ -75,6 +115,55 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clusterMetrics = CodingKeys(stringValue: "clusterMetrics")
+      static let currentClusterSize = CodingKeys(stringValue: "currentClusterSize")
+      static let minWorkerCounts = CodingKeys(stringValue: "minWorkerCounts")
+      static let maxWorkerCounts = CodingKeys(stringValue: "maxWorkerCounts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clusterMetrics",
+        "currentClusterSize",
+        "minWorkerCounts",
+        "maxWorkerCounts",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .clusterMetrics)
+      {
+        self.clusterMetrics = value
+      }
+      self.currentClusterSize = try container.decodeIfPresent(
+        ClusterSize.self, forKey: .currentClusterSize)
+      self.minWorkerCounts = try container.decodeIfPresent(
+        ClusterSize.self, forKey: .minWorkerCounts)
+      self.maxWorkerCounts = try container.decodeIfPresent(
+        ClusterSize.self, forKey: .maxWorkerCounts)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clusterMetrics, forKey: .clusterMetrics)
+      try container.encodeIfPresent(self.currentClusterSize, forKey: .currentClusterSize)
+      try container.encodeIfPresent(self.minWorkerCounts, forKey: .minWorkerCounts)
+      try container.encodeIfPresent(self.maxWorkerCounts, forKey: .maxWorkerCounts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -116,6 +205,8 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
     /// The metric source deciding the autoscaling recommendation.
     public var decisionMetric: MetricType = MetricType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Outputs`.
     public init() {}
 
@@ -130,6 +221,80 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let decision = CodingKeys(stringValue: "decision")
+      static let recommendedClusterSize = CodingKeys(stringValue: "recommendedClusterSize")
+      static let gracefulDecommissionTimeout = CodingKeys(
+        stringValue: "gracefulDecommissionTimeout")
+      static let constraintsReached = CodingKeys(stringValue: "constraintsReached")
+      static let additionalRecommendationDetails = CodingKeys(
+        stringValue: "additionalRecommendationDetails")
+      static let recommendationId = CodingKeys(stringValue: "recommendationId")
+      static let decisionMetric = CodingKeys(stringValue: "decisionMetric")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "decision",
+        "recommendedClusterSize",
+        "gracefulDecommissionTimeout",
+        "constraintsReached",
+        "additionalRecommendationDetails",
+        "recommendationId",
+        "decisionMetric",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(ScalingDecisionType.self, forKey: .decision) {
+        self.decision = value
+      }
+      self.recommendedClusterSize = try container.decodeIfPresent(
+        ClusterSize.self, forKey: .recommendedClusterSize)
+      self.gracefulDecommissionTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .gracefulDecommissionTimeout)
+      if let value = try container.decodeIfPresent(
+        [ConstrainingFactor].self, forKey: .constraintsReached)
+      {
+        self.constraintsReached = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .additionalRecommendationDetails)
+      {
+        self.additionalRecommendationDetails = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recommendationId) {
+        self.recommendationId = value
+      }
+      if let value = try container.decodeIfPresent(MetricType.self, forKey: .decisionMetric) {
+        self.decisionMetric = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.decision, forKey: .decision)
+      try container.encodeIfPresent(self.recommendedClusterSize, forKey: .recommendedClusterSize)
+      try container.encodeIfPresent(
+        self.gracefulDecommissionTimeout, forKey: .gracefulDecommissionTimeout)
+      try container.encode(self.constraintsReached, forKey: .constraintsReached)
+      try container.encode(
+        self.additionalRecommendationDetails, forKey: .additionalRecommendationDetails)
+      try container.encode(self.recommendationId, forKey: .recommendationId)
+      try container.encode(self.decisionMetric, forKey: .decisionMetric)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

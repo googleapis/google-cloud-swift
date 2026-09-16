@@ -29,6 +29,8 @@ public struct QueryEligibleBillingAccountsRequest: Codable, Equatable, GoogleClo
   /// SKU is required. Format: products/{product_id}/skus/{sku_id}.
   public var skus: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryEligibleBillingAccountsRequest`.
   public init() {}
 
@@ -43,6 +45,44 @@ public struct QueryEligibleBillingAccountsRequest: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customer = CodingKeys(stringValue: "customer")
+    static let skus = CodingKeys(stringValue: "skus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customer",
+      "skus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customer) {
+      self.customer = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .skus) {
+      self.skus = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.customer, forKey: .customer)
+    try container.encode(self.skus, forKey: .skus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

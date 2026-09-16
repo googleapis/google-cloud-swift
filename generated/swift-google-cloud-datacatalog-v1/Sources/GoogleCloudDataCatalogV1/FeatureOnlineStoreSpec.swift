@@ -25,6 +25,8 @@ public struct FeatureOnlineStoreSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. Type of underlying storage for the FeatureOnlineStore.
   public var storageType: FeatureOnlineStoreSpec.StorageType = FeatureOnlineStoreSpec.StorageType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FeatureOnlineStoreSpec`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct FeatureOnlineStoreSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageType = CodingKeys(stringValue: "storageType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storageType"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      FeatureOnlineStoreSpec.StorageType.self, forKey: .storageType)
+    {
+      self.storageType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.storageType, forKey: .storageType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of underlying storage type.

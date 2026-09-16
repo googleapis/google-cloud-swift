@@ -125,6 +125,8 @@
     ///    Cross-Cloud Interconnects.
     public var status: InterconnectRemoteLocation.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectRemoteLocation`.
     public init() {}
 
@@ -139,6 +141,135 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let address = CodingKeys(stringValue: "address")
+      static let attachmentConfigurationConstraints = CodingKeys(
+        stringValue: "attachmentConfigurationConstraints")
+      static let city = CodingKeys(stringValue: "city")
+      static let constraints = CodingKeys(stringValue: "constraints")
+      static let continent = CodingKeys(stringValue: "continent")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let facilityProvider = CodingKeys(stringValue: "facilityProvider")
+      static let facilityProviderFacilityId = CodingKeys(stringValue: "facilityProviderFacilityId")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let lacp = CodingKeys(stringValue: "lacp")
+      static let maxLagSize100Gbps = CodingKeys(stringValue: "maxLagSize100Gbps")
+      static let maxLagSize10Gbps = CodingKeys(stringValue: "maxLagSize10Gbps")
+      static let maxLagSize400Gbps = CodingKeys(stringValue: "maxLagSize400Gbps")
+      static let name = CodingKeys(stringValue: "name")
+      static let peeringdbFacilityId = CodingKeys(stringValue: "peeringdbFacilityId")
+      static let permittedConnections = CodingKeys(stringValue: "permittedConnections")
+      static let remoteService = CodingKeys(stringValue: "remoteService")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "address",
+        "attachmentConfigurationConstraints",
+        "city",
+        "constraints",
+        "continent",
+        "creationTimestamp",
+        "description",
+        "facilityProvider",
+        "facilityProviderFacilityId",
+        "id",
+        "kind",
+        "lacp",
+        "maxLagSize100Gbps",
+        "maxLagSize10Gbps",
+        "maxLagSize400Gbps",
+        "name",
+        "peeringdbFacilityId",
+        "permittedConnections",
+        "remoteService",
+        "selfLink",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.address = try container.decodeIfPresent(Swift.String.self, forKey: .address)
+      self.attachmentConfigurationConstraints = try container.decodeIfPresent(
+        InterconnectAttachmentConfigurationConstraints.self,
+        forKey: .attachmentConfigurationConstraints)
+      self.city = try container.decodeIfPresent(Swift.String.self, forKey: .city)
+      self.constraints = try container.decodeIfPresent(
+        InterconnectRemoteLocationConstraints.self, forKey: .constraints)
+      self.continent = try container.decodeIfPresent(
+        InterconnectRemoteLocation.Continent.self, forKey: .continent)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.facilityProvider = try container.decodeIfPresent(
+        Swift.String.self, forKey: .facilityProvider)
+      self.facilityProviderFacilityId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .facilityProviderFacilityId)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.lacp = try container.decodeIfPresent(InterconnectRemoteLocation.Lacp.self, forKey: .lacp)
+      self.maxLagSize100Gbps = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxLagSize100Gbps)
+      self.maxLagSize10Gbps = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxLagSize10Gbps)
+      self.maxLagSize400Gbps = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxLagSize400Gbps)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.peeringdbFacilityId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peeringdbFacilityId)
+      if let value = try container.decodeIfPresent(
+        [InterconnectRemoteLocationPermittedConnections].self, forKey: .permittedConnections)
+      {
+        self.permittedConnections = value
+      }
+      self.remoteService = try container.decodeIfPresent(Swift.String.self, forKey: .remoteService)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.status = try container.decodeIfPresent(
+        InterconnectRemoteLocation.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.address, forKey: .address)
+      try container.encodeIfPresent(
+        self.attachmentConfigurationConstraints, forKey: .attachmentConfigurationConstraints)
+      try container.encodeIfPresent(self.city, forKey: .city)
+      try container.encodeIfPresent(self.constraints, forKey: .constraints)
+      try container.encodeIfPresent(self.continent, forKey: .continent)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.facilityProvider, forKey: .facilityProvider)
+      try container.encodeIfPresent(
+        self.facilityProviderFacilityId, forKey: .facilityProviderFacilityId)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.lacp, forKey: .lacp)
+      try container.encodeIfPresent(self.maxLagSize100Gbps, forKey: .maxLagSize100Gbps)
+      try container.encodeIfPresent(self.maxLagSize10Gbps, forKey: .maxLagSize10Gbps)
+      try container.encodeIfPresent(self.maxLagSize400Gbps, forKey: .maxLagSize400Gbps)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.peeringdbFacilityId, forKey: .peeringdbFacilityId)
+      try container.encode(self.permittedConnections, forKey: .permittedConnections)
+      try container.encodeIfPresent(self.remoteService, forKey: .remoteService)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [continent][google.cloud.compute.v1.InterconnectRemoteLocation.continent] field.

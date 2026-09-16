@@ -56,6 +56,8 @@ public struct ControlComplianceSummary: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Identifier. The name of the control compliance summary.
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ControlComplianceSummary`.
   public init() {}
 
@@ -70,6 +72,105 @@ public struct ControlComplianceSummary: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let control = CodingKeys(stringValue: "control")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let overallEvaluationState = CodingKeys(stringValue: "overallEvaluationState")
+    static let totalFindingsCount = CodingKeys(stringValue: "totalFindingsCount")
+    static let complianceFrameworks = CodingKeys(stringValue: "complianceFrameworks")
+    static let similarControls = CodingKeys(stringValue: "similarControls")
+    static let cloudControlReports = CodingKeys(stringValue: "cloudControlReports")
+    static let controlResponsibilityType = CodingKeys(stringValue: "controlResponsibilityType")
+    static let isFakeControl = CodingKeys(stringValue: "isFakeControl")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "control",
+      "displayName",
+      "description",
+      "overallEvaluationState",
+      "totalFindingsCount",
+      "complianceFrameworks",
+      "similarControls",
+      "cloudControlReports",
+      "controlResponsibilityType",
+      "isFakeControl",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .control) {
+      self.control = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      EvaluationState.self, forKey: .overallEvaluationState)
+    {
+      self.overallEvaluationState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalFindingsCount) {
+      self.totalFindingsCount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .complianceFrameworks)
+    {
+      self.complianceFrameworks = value
+    }
+    if let value = try container.decodeIfPresent([SimilarControls].self, forKey: .similarControls) {
+      self.similarControls = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudControlReport].self, forKey: .cloudControlReports)
+    {
+      self.cloudControlReports = value
+    }
+    if let value = try container.decodeIfPresent(
+      RegulatoryControlResponsibilityType.self, forKey: .controlResponsibilityType)
+    {
+      self.controlResponsibilityType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFakeControl) {
+      self.isFakeControl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.control, forKey: .control)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.overallEvaluationState, forKey: .overallEvaluationState)
+    try container.encode(self.totalFindingsCount, forKey: .totalFindingsCount)
+    try container.encode(self.complianceFrameworks, forKey: .complianceFrameworks)
+    try container.encode(self.similarControls, forKey: .similarControls)
+    try container.encode(self.cloudControlReports, forKey: .cloudControlReports)
+    try container.encode(self.controlResponsibilityType, forKey: .controlResponsibilityType)
+    try container.encode(self.isFakeControl, forKey: .isFakeControl)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

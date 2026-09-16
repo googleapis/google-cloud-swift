@@ -73,6 +73,8 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleCloudWKT._Any
 
   public var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MachineImageTargetDetails`.
   public init() {}
 
@@ -89,41 +91,82 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case osAdaptationParameters = "osAdaptationParameters"
-    case skipOsAdaptation = "skipOsAdaptation"
-    case machineImageName = "machineImageName"
-    case targetProject = "targetProject"
-    case description = "description"
-    case singleRegionStorage = "singleRegionStorage"
-    case encryption = "encryption"
-    case machineImageParametersOverrides = "machineImageParametersOverrides"
-    case serviceAccount = "serviceAccount"
-    case additionalLicenses = "additionalLicenses"
-    case labels = "labels"
-    case tags = "tags"
-    case shieldedInstanceConfig = "shieldedInstanceConfig"
-    case networkInterfaces = "networkInterfaces"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let osAdaptationParameters = CodingKeys(stringValue: "osAdaptationParameters")
+    static let skipOsAdaptation = CodingKeys(stringValue: "skipOsAdaptation")
+    static let machineImageName = CodingKeys(stringValue: "machineImageName")
+    static let targetProject = CodingKeys(stringValue: "targetProject")
+    static let description = CodingKeys(stringValue: "description")
+    static let singleRegionStorage = CodingKeys(stringValue: "singleRegionStorage")
+    static let encryption = CodingKeys(stringValue: "encryption")
+    static let machineImageParametersOverrides = CodingKeys(
+      stringValue: "machineImageParametersOverrides")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let additionalLicenses = CodingKeys(stringValue: "additionalLicenses")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "osAdaptationParameters",
+      "skipOsAdaptation",
+      "machineImageName",
+      "targetProject",
+      "description",
+      "singleRegionStorage",
+      "encryption",
+      "machineImageParametersOverrides",
+      "serviceAccount",
+      "additionalLicenses",
+      "labels",
+      "tags",
+      "shieldedInstanceConfig",
+      "networkInterfaces",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.machineImageName = try container.decode(Swift.String.self, forKey: .machineImageName)
-    self.targetProject = try container.decode(Swift.String.self, forKey: .targetProject)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.singleRegionStorage = try container.decode(Swift.Bool.self, forKey: .singleRegionStorage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineImageName) {
+      self.machineImageName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+      self.targetProject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .singleRegionStorage) {
+      self.singleRegionStorage = value
+    }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
     self.machineImageParametersOverrides = try container.decodeIfPresent(
       MachineImageParametersOverrides.self, forKey: .machineImageParametersOverrides)
     self.serviceAccount = try container.decodeIfPresent(
       ServiceAccount.self, forKey: .serviceAccount)
-    self.additionalLicenses = try container.decode([Swift.String].self, forKey: .additionalLicenses)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.tags = try container.decode([Swift.String].self, forKey: .tags)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .additionalLicenses) {
+      self.additionalLicenses = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     self.shieldedInstanceConfig = try container.decodeIfPresent(
       ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
-    self.networkInterfaces = try container.decode(
+    if let value = try container.decodeIfPresent(
       [NetworkInterface].self, forKey: .networkInterfaces)
+    {
+      self.networkInterfaces = value
+    }
 
     var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
     let osAdaptationConfigCheckAndSet = {
@@ -146,6 +189,10 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleCloudWKT._Any
       try osAdaptationConfigCheckAndSet(.skipOsAdaptation(skipOsAdaptation))
     }
     self.osAdaptationConfig = osAdaptationConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -154,14 +201,14 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleCloudWKT._Any
     try container.encode(self.targetProject, forKey: .targetProject)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.singleRegionStorage, forKey: .singleRegionStorage)
-    try container.encode(self.encryption, forKey: .encryption)
-    try container.encode(
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
+    try container.encodeIfPresent(
       self.machineImageParametersOverrides, forKey: .machineImageParametersOverrides)
-    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.additionalLicenses, forKey: .additionalLicenses)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
     try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
 
     if let choice = self.osAdaptationConfig {
@@ -171,6 +218,9 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleCloudWKT._Any
       case .skipOsAdaptation(let value):
         try container.encode(value, forKey: .skipOsAdaptation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

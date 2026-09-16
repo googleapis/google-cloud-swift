@@ -33,6 +33,8 @@
     /// Total number of conversations used to generate this metric.
     public var conversationCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SmartReplyMetrics`.
     public init() {}
 
@@ -47,6 +49,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowlistCoverage = CodingKeys(stringValue: "allowlistCoverage")
+      static let topNMetrics = CodingKeys(stringValue: "topNMetrics")
+      static let conversationCount = CodingKeys(stringValue: "conversationCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowlistCoverage",
+        "topNMetrics",
+        "conversationCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .allowlistCoverage) {
+        self.allowlistCoverage = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SmartReplyMetrics.TopNMetrics].self, forKey: .topNMetrics)
+      {
+        self.topNMetrics = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .conversationCount) {
+        self.conversationCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowlistCoverage, forKey: .allowlistCoverage)
+      try container.encode(self.topNMetrics, forKey: .topNMetrics)
+      try container.encode(self.conversationCount, forKey: .conversationCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Evaluation metrics when retrieving `n` smart replies with the model.
@@ -64,6 +112,8 @@
       /// Value ranges from 0.0 to 1.0 inclusive.
       public var recall: Swift.Float = Swift.Float()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TopNMetrics`.
       public init() {}
 
@@ -78,6 +128,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let n = CodingKeys(stringValue: "n")
+        static let recall = CodingKeys(stringValue: "recall")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "n",
+          "recall",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .n) {
+          self.n = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .recall) {
+          self.recall = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.n, forKey: .n)
+        try container.encode(self.recall, forKey: .recall)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

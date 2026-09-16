@@ -35,6 +35,8 @@ public struct ConversationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The maximum length is 63 characters.
   public var participantId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationMessage`.
   public init() {}
 
@@ -49,6 +51,52 @@ public struct ConversationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let messageType = CodingKeys(stringValue: "messageType")
+    static let participantId = CodingKeys(stringValue: "participantId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "messageType",
+      "participantId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(
+      ConversationMessage.MessageType.self, forKey: .messageType)
+    {
+      self.messageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .participantId) {
+      self.participantId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.messageType, forKey: .messageType)
+    try container.encode(self.participantId, forKey: .participantId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of message.

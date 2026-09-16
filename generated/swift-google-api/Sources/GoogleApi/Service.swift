@@ -165,6 +165,8 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// sets this field to `3`.
   public var configVersion: GoogleCloudWKT.UInt32Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Service`.
   public init() {}
 
@@ -179,6 +181,163 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let title = CodingKeys(stringValue: "title")
+    static let producerProjectId = CodingKeys(stringValue: "producerProjectId")
+    static let id = CodingKeys(stringValue: "id")
+    static let apis = CodingKeys(stringValue: "apis")
+    static let types = CodingKeys(stringValue: "types")
+    static let enums = CodingKeys(stringValue: "enums")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let backend = CodingKeys(stringValue: "backend")
+    static let http = CodingKeys(stringValue: "http")
+    static let quota = CodingKeys(stringValue: "quota")
+    static let authentication = CodingKeys(stringValue: "authentication")
+    static let context = CodingKeys(stringValue: "context")
+    static let usage = CodingKeys(stringValue: "usage")
+    static let endpoints = CodingKeys(stringValue: "endpoints")
+    static let control = CodingKeys(stringValue: "control")
+    static let logs = CodingKeys(stringValue: "logs")
+    static let metrics = CodingKeys(stringValue: "metrics")
+    static let monitoredResources = CodingKeys(stringValue: "monitoredResources")
+    static let billing = CodingKeys(stringValue: "billing")
+    static let logging = CodingKeys(stringValue: "logging")
+    static let monitoring = CodingKeys(stringValue: "monitoring")
+    static let systemParameters = CodingKeys(stringValue: "systemParameters")
+    static let sourceInfo = CodingKeys(stringValue: "sourceInfo")
+    static let publishing = CodingKeys(stringValue: "publishing")
+    static let configVersion = CodingKeys(stringValue: "configVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "title",
+      "producerProjectId",
+      "id",
+      "apis",
+      "types",
+      "enums",
+      "documentation",
+      "backend",
+      "http",
+      "quota",
+      "authentication",
+      "context",
+      "usage",
+      "endpoints",
+      "control",
+      "logs",
+      "metrics",
+      "monitoredResources",
+      "billing",
+      "logging",
+      "monitoring",
+      "systemParameters",
+      "sourceInfo",
+      "publishing",
+      "configVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .producerProjectId) {
+      self.producerProjectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Api].self, forKey: .apis) {
+      self.apis = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Type_].self, forKey: .types) {
+      self.types = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Enum].self, forKey: .enums) {
+      self.enums = value
+    }
+    self.documentation = try container.decodeIfPresent(Documentation.self, forKey: .documentation)
+    self.backend = try container.decodeIfPresent(Backend.self, forKey: .backend)
+    self.http = try container.decodeIfPresent(Http.self, forKey: .http)
+    self.quota = try container.decodeIfPresent(Quota.self, forKey: .quota)
+    self.authentication = try container.decodeIfPresent(
+      Authentication.self, forKey: .authentication)
+    self.context = try container.decodeIfPresent(Context.self, forKey: .context)
+    self.usage = try container.decodeIfPresent(Usage.self, forKey: .usage)
+    if let value = try container.decodeIfPresent([Endpoint].self, forKey: .endpoints) {
+      self.endpoints = value
+    }
+    self.control = try container.decodeIfPresent(Control.self, forKey: .control)
+    if let value = try container.decodeIfPresent([LogDescriptor].self, forKey: .logs) {
+      self.logs = value
+    }
+    if let value = try container.decodeIfPresent([MetricDescriptor].self, forKey: .metrics) {
+      self.metrics = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MonitoredResourceDescriptor].self, forKey: .monitoredResources)
+    {
+      self.monitoredResources = value
+    }
+    self.billing = try container.decodeIfPresent(Billing.self, forKey: .billing)
+    self.logging = try container.decodeIfPresent(Logging.self, forKey: .logging)
+    self.monitoring = try container.decodeIfPresent(Monitoring.self, forKey: .monitoring)
+    self.systemParameters = try container.decodeIfPresent(
+      SystemParameters.self, forKey: .systemParameters)
+    self.sourceInfo = try container.decodeIfPresent(SourceInfo.self, forKey: .sourceInfo)
+    self.publishing = try container.decodeIfPresent(Publishing.self, forKey: .publishing)
+    self.configVersion = try container.decodeIfPresent(
+      GoogleCloudWKT.UInt32Value.self, forKey: .configVersion)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.producerProjectId, forKey: .producerProjectId)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.apis, forKey: .apis)
+    try container.encode(self.types, forKey: .types)
+    try container.encode(self.enums, forKey: .enums)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
+    try container.encodeIfPresent(self.backend, forKey: .backend)
+    try container.encodeIfPresent(self.http, forKey: .http)
+    try container.encodeIfPresent(self.quota, forKey: .quota)
+    try container.encodeIfPresent(self.authentication, forKey: .authentication)
+    try container.encodeIfPresent(self.context, forKey: .context)
+    try container.encodeIfPresent(self.usage, forKey: .usage)
+    try container.encode(self.endpoints, forKey: .endpoints)
+    try container.encodeIfPresent(self.control, forKey: .control)
+    try container.encode(self.logs, forKey: .logs)
+    try container.encode(self.metrics, forKey: .metrics)
+    try container.encode(self.monitoredResources, forKey: .monitoredResources)
+    try container.encodeIfPresent(self.billing, forKey: .billing)
+    try container.encodeIfPresent(self.logging, forKey: .logging)
+    try container.encodeIfPresent(self.monitoring, forKey: .monitoring)
+    try container.encodeIfPresent(self.systemParameters, forKey: .systemParameters)
+    try container.encodeIfPresent(self.sourceInfo, forKey: .sourceInfo)
+    try container.encodeIfPresent(self.publishing, forKey: .publishing)
+    try container.encodeIfPresent(self.configVersion, forKey: .configVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

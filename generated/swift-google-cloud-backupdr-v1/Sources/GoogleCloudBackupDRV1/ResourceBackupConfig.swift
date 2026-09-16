@@ -70,6 +70,8 @@ public struct ResourceBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.cloud.backupdr.v1.ResourceBackupConfig.backup_configs_details]: <doc:ResourceBackupConfig/backupConfigsDetails>
   public var vaulted: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceBackupConfig`.
   public init() {}
 
@@ -84,6 +86,94 @@ public struct ResourceBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let targetResourceDisplayName = CodingKeys(stringValue: "targetResourceDisplayName")
+    static let targetResourceType = CodingKeys(stringValue: "targetResourceType")
+    static let targetResourceLabels = CodingKeys(stringValue: "targetResourceLabels")
+    static let backupConfigsDetails = CodingKeys(stringValue: "backupConfigsDetails")
+    static let backupConfigured = CodingKeys(stringValue: "backupConfigured")
+    static let vaulted = CodingKeys(stringValue: "vaulted")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "targetResource",
+      "targetResourceDisplayName",
+      "targetResourceType",
+      "targetResourceLabels",
+      "backupConfigsDetails",
+      "backupConfigured",
+      "vaulted",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .targetResourceDisplayName)
+    {
+      self.targetResourceDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      ResourceBackupConfig.ResourceType.self, forKey: .targetResourceType)
+    {
+      self.targetResourceType = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .targetResourceLabels)
+    {
+      self.targetResourceLabels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BackupConfigDetails].self, forKey: .backupConfigsDetails)
+    {
+      self.backupConfigsDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .backupConfigured) {
+      self.backupConfigured = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .vaulted) {
+      self.vaulted = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    try container.encode(self.targetResourceDisplayName, forKey: .targetResourceDisplayName)
+    try container.encode(self.targetResourceType, forKey: .targetResourceType)
+    try container.encode(self.targetResourceLabels, forKey: .targetResourceLabels)
+    try container.encode(self.backupConfigsDetails, forKey: .backupConfigsDetails)
+    try container.encode(self.backupConfigured, forKey: .backupConfigured)
+    try container.encode(self.vaulted, forKey: .vaulted)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the cloud resource.

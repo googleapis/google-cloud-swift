@@ -28,6 +28,8 @@ public struct TroubleshootIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._
   /// for a resource.
   public var accessTuple: AccessTuple? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TroubleshootIamPolicyRequest`.
   public init() {}
 
@@ -42,6 +44,36 @@ public struct TroubleshootIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accessTuple = CodingKeys(stringValue: "accessTuple")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accessTuple"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.accessTuple = try container.decodeIfPresent(AccessTuple.self, forKey: .accessTuple)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.accessTuple, forKey: .accessTuple)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

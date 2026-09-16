@@ -38,6 +38,8 @@ public struct CertificateExtensionConstraints: Codable, Equatable, GoogleCloudWK
   /// [google.cloud.security.privateca.v1.ObjectId]: <doc:ObjectId>
   public var additionalExtensions: [ObjectId] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateExtensionConstraints`.
   public init() {}
 
@@ -52,6 +54,46 @@ public struct CertificateExtensionConstraints: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let knownExtensions = CodingKeys(stringValue: "knownExtensions")
+    static let additionalExtensions = CodingKeys(stringValue: "additionalExtensions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "knownExtensions",
+      "additionalExtensions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [CertificateExtensionConstraints.KnownCertificateExtension].self, forKey: .knownExtensions)
+    {
+      self.knownExtensions = value
+    }
+    if let value = try container.decodeIfPresent([ObjectId].self, forKey: .additionalExtensions) {
+      self.additionalExtensions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.knownExtensions, forKey: .knownExtensions)
+    try container.encode(self.additionalExtensions, forKey: .additionalExtensions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes well-known X.509 extensions that can appear in a

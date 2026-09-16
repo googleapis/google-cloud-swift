@@ -62,6 +62,8 @@ public struct Processor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Reserved for future use.
   public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Processor`.
   public init() {}
 
@@ -76,6 +78,101 @@ public struct Processor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let defaultProcessorVersion = CodingKeys(stringValue: "defaultProcessorVersion")
+    static let processorVersionAliases = CodingKeys(stringValue: "processorVersionAliases")
+    static let processEndpoint = CodingKeys(stringValue: "processEndpoint")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "displayName",
+      "state",
+      "defaultProcessorVersion",
+      "processorVersionAliases",
+      "processEndpoint",
+      "createTime",
+      "kmsKeyName",
+      "satisfiesPzs",
+      "satisfiesPzi",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Processor.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .defaultProcessorVersion)
+    {
+      self.defaultProcessorVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ProcessorVersionAlias].self, forKey: .processorVersionAliases)
+    {
+      self.processorVersionAliases = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processEndpoint) {
+      self.processEndpoint = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.defaultProcessorVersion, forKey: .defaultProcessorVersion)
+    try container.encode(self.processorVersionAliases, forKey: .processorVersionAliases)
+    try container.encode(self.processEndpoint, forKey: .processEndpoint)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states of the processor.

@@ -43,6 +43,8 @@
     /// meaning the size of the snapshot is up-to-date.
     public var storageBytesStatus: SavedDisk.StorageBytesStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SavedDisk`.
     public init() {}
 
@@ -57,6 +59,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let sourceDisk = CodingKeys(stringValue: "sourceDisk")
+      static let storageBytes = CodingKeys(stringValue: "storageBytes")
+      static let storageBytesStatus = CodingKeys(stringValue: "storageBytesStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "architecture",
+        "kind",
+        "sourceDisk",
+        "storageBytes",
+        "storageBytesStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.architecture = try container.decodeIfPresent(
+        SavedDisk.Architecture.self, forKey: .architecture)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.sourceDisk = try container.decodeIfPresent(Swift.String.self, forKey: .sourceDisk)
+      self.storageBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .storageBytes)
+      self.storageBytesStatus = try container.decodeIfPresent(
+        SavedDisk.StorageBytesStatus.self, forKey: .storageBytesStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.architecture, forKey: .architecture)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.sourceDisk, forKey: .sourceDisk)
+      try container.encodeIfPresent(self.storageBytes, forKey: .storageBytes)
+      try container.encodeIfPresent(self.storageBytesStatus, forKey: .storageBytesStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [architecture][google.cloud.compute.v1.SavedDisk.architecture] field.

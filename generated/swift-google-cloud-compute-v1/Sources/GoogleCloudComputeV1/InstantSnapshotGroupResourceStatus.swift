@@ -27,6 +27,8 @@
     /// Output only. [Output Only]
     public var sourceInfo: InstantSnapshotGroupSourceInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstantSnapshotGroupResourceStatus`.
     public init() {}
 
@@ -41,6 +43,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consistencyMembershipResolutionTime = CodingKeys(
+        stringValue: "consistencyMembershipResolutionTime")
+      static let sourceInfo = CodingKeys(stringValue: "sourceInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consistencyMembershipResolutionTime",
+        "sourceInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consistencyMembershipResolutionTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .consistencyMembershipResolutionTime)
+      self.sourceInfo = try container.decodeIfPresent(
+        InstantSnapshotGroupSourceInfo.self, forKey: .sourceInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.consistencyMembershipResolutionTime, forKey: .consistencyMembershipResolutionTime)
+      try container.encodeIfPresent(self.sourceInfo, forKey: .sourceInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

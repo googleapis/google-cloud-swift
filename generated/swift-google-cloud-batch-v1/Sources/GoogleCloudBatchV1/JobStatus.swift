@@ -34,6 +34,8 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The duration of time that the Job spent in status RUNNING.
   public var runDuration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobStatus`.
   public init() {}
 
@@ -48,6 +50,57 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let statusEvents = CodingKeys(stringValue: "statusEvents")
+    static let taskGroups = CodingKeys(stringValue: "taskGroups")
+    static let runDuration = CodingKeys(stringValue: "runDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "statusEvents",
+      "taskGroups",
+      "runDuration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(JobStatus.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([StatusEvent].self, forKey: .statusEvents) {
+      self.statusEvents = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: JobStatus.TaskGroupStatus].self, forKey: .taskGroups)
+    {
+      self.taskGroups = value
+    }
+    self.runDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .runDuration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.statusEvents, forKey: .statusEvents)
+    try container.encode(self.taskGroups, forKey: .taskGroups)
+    try container.encodeIfPresent(self.runDuration, forKey: .runDuration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// VM instance status.
@@ -67,6 +120,8 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The VM boot disk.
     public var bootDisk: AllocationPolicy.Disk? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceStatus`.
     public init() {}
 
@@ -81,6 +136,56 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let provisioningModel = CodingKeys(stringValue: "provisioningModel")
+      static let taskPack = CodingKeys(stringValue: "taskPack")
+      static let bootDisk = CodingKeys(stringValue: "bootDisk")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineType",
+        "provisioningModel",
+        "taskPack",
+        "bootDisk",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+        self.machineType = value
+      }
+      if let value = try container.decodeIfPresent(
+        AllocationPolicy.ProvisioningModel.self, forKey: .provisioningModel)
+      {
+        self.provisioningModel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .taskPack) {
+        self.taskPack = value
+      }
+      self.bootDisk = try container.decodeIfPresent(AllocationPolicy.Disk.self, forKey: .bootDisk)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.machineType, forKey: .machineType)
+      try container.encode(self.provisioningModel, forKey: .provisioningModel)
+      try container.encode(self.taskPack, forKey: .taskPack)
+      try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -105,6 +210,8 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Status of instances allocated for the TaskGroup.
     public var instances: [JobStatus.InstanceStatus] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TaskGroupStatus`.
     public init() {}
 
@@ -119,6 +226,48 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let counts = CodingKeys(stringValue: "counts")
+      static let instances = CodingKeys(stringValue: "instances")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "counts",
+        "instances",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Int64].self, forKey: .counts)
+      {
+        self.counts = value
+      }
+      if let value = try container.decodeIfPresent(
+        [JobStatus.InstanceStatus].self, forKey: .instances)
+      {
+        self.instances = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.counts, forKey: .counts)
+      try container.encode(self.instances, forKey: .instances)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

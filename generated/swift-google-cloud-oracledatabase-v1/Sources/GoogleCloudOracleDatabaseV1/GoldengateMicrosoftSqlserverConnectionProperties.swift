@@ -59,6 +59,8 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
   /// SQL Server.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateMicrosoftSqlserverConnectionProperties`.
   public init() {}
 
@@ -75,35 +77,76 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case database = "database"
-    case host = "host"
-    case port = "port"
-    case username = "username"
-    case additionalAttributes = "additionalAttributes"
-    case securityProtocol = "securityProtocol"
-    case sslCaFile = "sslCaFile"
-    case serverCertificateValidationRequired = "serverCertificateValidationRequired"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let database = CodingKeys(stringValue: "database")
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let username = CodingKeys(stringValue: "username")
+    static let additionalAttributes = CodingKeys(stringValue: "additionalAttributes")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let sslCaFile = CodingKeys(stringValue: "sslCaFile")
+    static let serverCertificateValidationRequired = CodingKeys(
+      stringValue: "serverCertificateValidationRequired")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "database",
+      "host",
+      "port",
+      "username",
+      "additionalAttributes",
+      "securityProtocol",
+      "sslCaFile",
+      "serverCertificateValidationRequired",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.database = try container.decode(Swift.String.self, forKey: .database)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.additionalAttributes = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(
       [NameValuePair].self, forKey: .additionalAttributes)
-    self.securityProtocol = try container.decode(
+    {
+      self.additionalAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateMicrosoftSqlserverConnectionProperties.MicrosoftSqlserverSecurityProtocol.self,
       forKey: .securityProtocol)
-    self.sslCaFile = try container.decode(Swift.String.self, forKey: .sslCaFile)
-    self.serverCertificateValidationRequired = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCaFile) {
+      self.sslCaFile = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .serverCertificateValidationRequired)
+    {
+      self.serverCertificateValidationRequired = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -124,6 +167,10 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -146,6 +193,9 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

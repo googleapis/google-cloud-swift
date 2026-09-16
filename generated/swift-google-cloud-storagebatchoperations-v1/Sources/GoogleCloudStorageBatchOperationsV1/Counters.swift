@@ -49,6 +49,8 @@ public struct Counters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// UpdateObjectCustomContext transformation.
   public var objectCustomContextsUpdated: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Counters`.
   public init() {}
 
@@ -63,6 +65,72 @@ public struct Counters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalObjectCount = CodingKeys(stringValue: "totalObjectCount")
+    static let succeededObjectCount = CodingKeys(stringValue: "succeededObjectCount")
+    static let failedObjectCount = CodingKeys(stringValue: "failedObjectCount")
+    static let totalBytesFound = CodingKeys(stringValue: "totalBytesFound")
+    static let objectCustomContextsCreated = CodingKeys(stringValue: "objectCustomContextsCreated")
+    static let objectCustomContextsDeleted = CodingKeys(stringValue: "objectCustomContextsDeleted")
+    static let objectCustomContextsUpdated = CodingKeys(stringValue: "objectCustomContextsUpdated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalObjectCount",
+      "succeededObjectCount",
+      "failedObjectCount",
+      "totalBytesFound",
+      "objectCustomContextsCreated",
+      "objectCustomContextsDeleted",
+      "objectCustomContextsUpdated",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalObjectCount) {
+      self.totalObjectCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .succeededObjectCount) {
+      self.succeededObjectCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedObjectCount) {
+      self.failedObjectCount = value
+    }
+    self.totalBytesFound = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBytesFound)
+    self.objectCustomContextsCreated = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectCustomContextsCreated)
+    self.objectCustomContextsDeleted = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectCustomContextsDeleted)
+    self.objectCustomContextsUpdated = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .objectCustomContextsUpdated)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalObjectCount, forKey: .totalObjectCount)
+    try container.encode(self.succeededObjectCount, forKey: .succeededObjectCount)
+    try container.encode(self.failedObjectCount, forKey: .failedObjectCount)
+    try container.encodeIfPresent(self.totalBytesFound, forKey: .totalBytesFound)
+    try container.encodeIfPresent(
+      self.objectCustomContextsCreated, forKey: .objectCustomContextsCreated)
+    try container.encodeIfPresent(
+      self.objectCustomContextsDeleted, forKey: .objectCustomContextsDeleted)
+    try container.encodeIfPresent(
+      self.objectCustomContextsUpdated, forKey: .objectCustomContextsUpdated)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

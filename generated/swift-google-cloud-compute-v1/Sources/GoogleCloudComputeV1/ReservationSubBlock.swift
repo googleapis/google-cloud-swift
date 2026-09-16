@@ -73,6 +73,8 @@
     /// Output only. [Output Only] Zone in which the reservation subBlock resides.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReservationSubBlock`.
     public init() {}
 
@@ -87,6 +89,101 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let acceleratorTopologiesInfo = CodingKeys(stringValue: "acceleratorTopologiesInfo")
+      static let count = CodingKeys(stringValue: "count")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let healthInfo = CodingKeys(stringValue: "healthInfo")
+      static let id = CodingKeys(stringValue: "id")
+      static let inUseCount = CodingKeys(stringValue: "inUseCount")
+      static let inUseHostCount = CodingKeys(stringValue: "inUseHostCount")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let physicalTopology = CodingKeys(stringValue: "physicalTopology")
+      static let reservationSubBlockMaintenance = CodingKeys(
+        stringValue: "reservationSubBlockMaintenance")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let status = CodingKeys(stringValue: "status")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "acceleratorTopologiesInfo",
+        "count",
+        "creationTimestamp",
+        "healthInfo",
+        "id",
+        "inUseCount",
+        "inUseHostCount",
+        "kind",
+        "name",
+        "physicalTopology",
+        "reservationSubBlockMaintenance",
+        "selfLink",
+        "selfLinkWithId",
+        "status",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.acceleratorTopologiesInfo = try container.decodeIfPresent(
+        AcceleratorTopologiesInfo.self, forKey: .acceleratorTopologiesInfo)
+      self.count = try container.decodeIfPresent(Swift.Int32.self, forKey: .count)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.healthInfo = try container.decodeIfPresent(
+        ReservationSubBlockHealthInfo.self, forKey: .healthInfo)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.inUseCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .inUseCount)
+      self.inUseHostCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .inUseHostCount)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.physicalTopology = try container.decodeIfPresent(
+        ReservationSubBlockPhysicalTopology.self, forKey: .physicalTopology)
+      self.reservationSubBlockMaintenance = try container.decodeIfPresent(
+        GroupMaintenanceInfo.self, forKey: .reservationSubBlockMaintenance)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      self.status = try container.decodeIfPresent(ReservationSubBlock.Status.self, forKey: .status)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.acceleratorTopologiesInfo, forKey: .acceleratorTopologiesInfo)
+      try container.encodeIfPresent(self.count, forKey: .count)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.healthInfo, forKey: .healthInfo)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.inUseCount, forKey: .inUseCount)
+      try container.encodeIfPresent(self.inUseHostCount, forKey: .inUseHostCount)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.physicalTopology, forKey: .physicalTopology)
+      try container.encodeIfPresent(
+        self.reservationSubBlockMaintenance, forKey: .reservationSubBlockMaintenance)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.ReservationSubBlock.status] field.

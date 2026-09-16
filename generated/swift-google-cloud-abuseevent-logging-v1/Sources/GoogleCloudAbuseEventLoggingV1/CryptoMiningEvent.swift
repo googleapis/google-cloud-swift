@@ -36,6 +36,8 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// This field may be empty if this information is not available.
   public var vmIp: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoMiningEvent`.
   public init() {}
 
@@ -50,6 +52,54 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmResource = CodingKeys(stringValue: "vmResource")
+    static let detectedMiningStartTime = CodingKeys(stringValue: "detectedMiningStartTime")
+    static let detectedMiningEndTime = CodingKeys(stringValue: "detectedMiningEndTime")
+    static let vmIp = CodingKeys(stringValue: "vmIp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmResource",
+      "detectedMiningStartTime",
+      "detectedMiningEndTime",
+      "vmIp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .vmResource) {
+      self.vmResource = value
+    }
+    self.detectedMiningStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .detectedMiningStartTime)
+    self.detectedMiningEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .detectedMiningEndTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .vmIp) {
+      self.vmIp = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmResource, forKey: .vmResource)
+    try container.encodeIfPresent(self.detectedMiningStartTime, forKey: .detectedMiningStartTime)
+    try container.encodeIfPresent(self.detectedMiningEndTime, forKey: .detectedMiningEndTime)
+    try container.encode(self.vmIp, forKey: .vmIp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

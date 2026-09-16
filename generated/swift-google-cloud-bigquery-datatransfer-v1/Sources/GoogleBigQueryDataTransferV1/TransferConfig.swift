@@ -130,6 +130,8 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The desination of the transfer config.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferConfig`.
   public init() {}
 
@@ -146,52 +148,100 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case destinationDatasetId = "destinationDatasetId"
-    case displayName = "displayName"
-    case dataSourceId = "dataSourceId"
-    case params = "params"
-    case schedule = "schedule"
-    case scheduleOptions = "scheduleOptions"
-    case scheduleOptionsV2 = "scheduleOptionsV2"
-    case dataRefreshWindowDays = "dataRefreshWindowDays"
-    case disabled = "disabled"
-    case updateTime = "updateTime"
-    case nextRunTime = "nextRunTime"
-    case state = "state"
-    case userId = "userId"
-    case datasetRegion = "datasetRegion"
-    case notificationPubsubTopic = "notificationPubsubTopic"
-    case emailPreferences = "emailPreferences"
-    case ownerInfo = "ownerInfo"
-    case encryptionConfiguration = "encryptionConfiguration"
-    case error = "error"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let destinationDatasetId = CodingKeys(stringValue: "destinationDatasetId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let dataSourceId = CodingKeys(stringValue: "dataSourceId")
+    static let params = CodingKeys(stringValue: "params")
+    static let schedule = CodingKeys(stringValue: "schedule")
+    static let scheduleOptions = CodingKeys(stringValue: "scheduleOptions")
+    static let scheduleOptionsV2 = CodingKeys(stringValue: "scheduleOptionsV2")
+    static let dataRefreshWindowDays = CodingKeys(stringValue: "dataRefreshWindowDays")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let nextRunTime = CodingKeys(stringValue: "nextRunTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let userId = CodingKeys(stringValue: "userId")
+    static let datasetRegion = CodingKeys(stringValue: "datasetRegion")
+    static let notificationPubsubTopic = CodingKeys(stringValue: "notificationPubsubTopic")
+    static let emailPreferences = CodingKeys(stringValue: "emailPreferences")
+    static let ownerInfo = CodingKeys(stringValue: "ownerInfo")
+    static let encryptionConfiguration = CodingKeys(stringValue: "encryptionConfiguration")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "destinationDatasetId",
+      "displayName",
+      "dataSourceId",
+      "params",
+      "schedule",
+      "scheduleOptions",
+      "scheduleOptionsV2",
+      "dataRefreshWindowDays",
+      "disabled",
+      "updateTime",
+      "nextRunTime",
+      "state",
+      "userId",
+      "datasetRegion",
+      "notificationPubsubTopic",
+      "emailPreferences",
+      "ownerInfo",
+      "encryptionConfiguration",
+      "error",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.dataSourceId = try container.decode(Swift.String.self, forKey: .dataSourceId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSourceId) {
+      self.dataSourceId = value
+    }
     self.params = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .params)
-    self.schedule = try container.decode(Swift.String.self, forKey: .schedule)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schedule) {
+      self.schedule = value
+    }
     self.scheduleOptions = try container.decodeIfPresent(
       ScheduleOptions.self, forKey: .scheduleOptions)
     self.scheduleOptionsV2 = try container.decodeIfPresent(
       ScheduleOptionsV2.self, forKey: .scheduleOptionsV2)
-    self.dataRefreshWindowDays = try container.decode(
-      Swift.Int32.self, forKey: .dataRefreshWindowDays)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dataRefreshWindowDays) {
+      self.dataRefreshWindowDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.nextRunTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .nextRunTime)
-    self.state = try container.decode(TransferState.self, forKey: .state)
-    self.userId = try container.decode(Swift.Int64.self, forKey: .userId)
-    self.datasetRegion = try container.decode(Swift.String.self, forKey: .datasetRegion)
-    self.notificationPubsubTopic = try container.decode(
+    if let value = try container.decodeIfPresent(TransferState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .userId) {
+      self.userId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetRegion) {
+      self.datasetRegion = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .notificationPubsubTopic)
+    {
+      self.notificationPubsubTopic = value
+    }
     self.emailPreferences = try container.decodeIfPresent(
       EmailPreferences.self, forKey: .emailPreferences)
     self.ownerInfo = try container.decodeIfPresent(UserInfo.self, forKey: .ownerInfo)
@@ -215,6 +265,10 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try destinationCheckAndSet(.destinationDatasetId(destinationDatasetId))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -222,28 +276,31 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.dataSourceId, forKey: .dataSourceId)
-    try container.encode(self.params, forKey: .params)
+    try container.encodeIfPresent(self.params, forKey: .params)
     try container.encode(self.schedule, forKey: .schedule)
-    try container.encode(self.scheduleOptions, forKey: .scheduleOptions)
-    try container.encode(self.scheduleOptionsV2, forKey: .scheduleOptionsV2)
+    try container.encodeIfPresent(self.scheduleOptions, forKey: .scheduleOptions)
+    try container.encodeIfPresent(self.scheduleOptionsV2, forKey: .scheduleOptionsV2)
     try container.encode(self.dataRefreshWindowDays, forKey: .dataRefreshWindowDays)
     try container.encode(self.disabled, forKey: .disabled)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.nextRunTime, forKey: .nextRunTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.userId, forKey: .userId)
     try container.encode(self.datasetRegion, forKey: .datasetRegion)
     try container.encode(self.notificationPubsubTopic, forKey: .notificationPubsubTopic)
-    try container.encode(self.emailPreferences, forKey: .emailPreferences)
-    try container.encode(self.ownerInfo, forKey: .ownerInfo)
-    try container.encode(self.encryptionConfiguration, forKey: .encryptionConfiguration)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.emailPreferences, forKey: .emailPreferences)
+    try container.encodeIfPresent(self.ownerInfo, forKey: .ownerInfo)
+    try container.encodeIfPresent(self.encryptionConfiguration, forKey: .encryptionConfiguration)
+    try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.destination {
       switch choice {
       case .destinationDatasetId(let value):
         try container.encode(value, forKey: .destinationDatasetId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

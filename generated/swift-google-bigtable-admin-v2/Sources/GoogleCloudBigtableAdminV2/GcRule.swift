@@ -24,6 +24,8 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Garbage collection rules.
   public var rule: OneOf_Rule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcRule`.
   public init() {}
 
@@ -40,11 +42,23 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case maxNumVersions = "maxNumVersions"
-    case maxAge = "maxAge"
-    case intersection = "intersection"
-    case union = "union"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maxNumVersions = CodingKeys(stringValue: "maxNumVersions")
+    static let maxAge = CodingKeys(stringValue: "maxAge")
+    static let intersection = CodingKeys(stringValue: "intersection")
+    static let union = CodingKeys(stringValue: "union")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maxNumVersions",
+      "maxAge",
+      "intersection",
+      "union",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,6 +90,10 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try ruleCheckAndSet(.union(union))
     }
     self.rule = rule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +111,9 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .union)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A GcRule which deletes cells matching all of the given rules.
@@ -101,6 +122,8 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Only delete cells which would be deleted by every element of `rules`.
     public var rules: [GcRule] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Intersection`.
     public init() {}
@@ -116,6 +139,38 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rules = CodingKeys(stringValue: "rules")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rules"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GcRule].self, forKey: .rules) {
+        self.rules = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rules, forKey: .rules)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -136,6 +191,8 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Delete cells which would be deleted by any element of `rules`.
     public var rules: [GcRule] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Union`.
     public init() {}
 
@@ -150,6 +207,38 @@ public struct GcRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rules = CodingKeys(stringValue: "rules")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rules"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GcRule].self, forKey: .rules) {
+        self.rules = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rules, forKey: .rules)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct TypedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The typed value field.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TypedValue`.
   public init() {}
 
@@ -41,12 +43,25 @@ public struct TypedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case boolValue = "boolValue"
-    case int64Value = "int64Value"
-    case doubleValue = "doubleValue"
-    case stringValue = "stringValue"
-    case distributionValue = "distributionValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let int64Value = CodingKeys(stringValue: "int64Value")
+    static let doubleValue = CodingKeys(stringValue: "doubleValue")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let distributionValue = CodingKeys(stringValue: "distributionValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "boolValue",
+      "int64Value",
+      "doubleValue",
+      "stringValue",
+      "distributionValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -80,6 +95,10 @@ public struct TypedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.distributionValue(distributionValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,6 +117,9 @@ public struct TypedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .distributionValue(let value):
         try container.encode(value, forKey: .distributionValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

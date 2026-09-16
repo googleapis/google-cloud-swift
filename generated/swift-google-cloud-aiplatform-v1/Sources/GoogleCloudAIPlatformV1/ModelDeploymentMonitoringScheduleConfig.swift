@@ -40,6 +40,8 @@
     /// [google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig.monitor_interval]: <doc:ModelDeploymentMonitoringScheduleConfig/monitorInterval>
     public var monitorWindow: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelDeploymentMonitoringScheduleConfig`.
     public init() {}
 
@@ -54,6 +56,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let monitorInterval = CodingKeys(stringValue: "monitorInterval")
+      static let monitorWindow = CodingKeys(stringValue: "monitorWindow")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "monitorInterval",
+        "monitorWindow",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.monitorInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .monitorInterval)
+      self.monitorWindow = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .monitorWindow)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.monitorInterval, forKey: .monitorInterval)
+      try container.encodeIfPresent(self.monitorWindow, forKey: .monitorWindow)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

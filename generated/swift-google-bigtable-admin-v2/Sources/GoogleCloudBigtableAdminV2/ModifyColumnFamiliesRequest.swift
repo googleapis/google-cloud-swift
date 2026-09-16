@@ -38,6 +38,8 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Optional. If true, ignore safety checks when modifying the column families.
   public var ignoreWarnings: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ModifyColumnFamiliesRequest`.
   public init() {}
 
@@ -52,6 +54,52 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let modifications = CodingKeys(stringValue: "modifications")
+    static let ignoreWarnings = CodingKeys(stringValue: "ignoreWarnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "modifications",
+      "ignoreWarnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ModifyColumnFamiliesRequest.Modification].self, forKey: .modifications)
+    {
+      self.modifications = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreWarnings) {
+      self.ignoreWarnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.modifications, forKey: .modifications)
+    try container.encode(self.ignoreWarnings, forKey: .ignoreWarnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A create, update, or delete of a particular column family.
@@ -69,6 +117,8 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
     /// Column family modifications.
     public var mod: OneOf_Mod? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Modification`.
     public init() {}
 
@@ -85,17 +135,32 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case id = "id"
-      case create = "create"
-      case update = "update"
-      case drop = "drop"
-      case updateMask = "updateMask"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let create = CodingKeys(stringValue: "create")
+      static let update = CodingKeys(stringValue: "update")
+      static let drop = CodingKeys(stringValue: "drop")
+      static let updateMask = CodingKeys(stringValue: "updateMask")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "create",
+        "update",
+        "drop",
+        "updateMask",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.id = try container.decode(Swift.String.self, forKey: .id)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
       self.updateMask = try container.decodeIfPresent(
         GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
 
@@ -119,12 +184,16 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
         try modCheckAndSet(.drop(drop))
       }
       self.mod = mod
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
-      try container.encode(self.updateMask, forKey: .updateMask)
+      try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
 
       if let choice = self.mod {
         switch choice {
@@ -135,6 +204,9 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWKT._A
         case .drop(let value):
           try container.encode(value, forKey: .drop)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

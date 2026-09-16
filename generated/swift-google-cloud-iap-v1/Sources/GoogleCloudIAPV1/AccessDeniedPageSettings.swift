@@ -35,6 +35,8 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleCloudWKT._AnyP
   /// application.
   public var remediationTokenGenerationEnabled: GoogleCloudWKT.BoolValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessDeniedPageSettings`.
   public init() {}
 
@@ -49,6 +51,50 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accessDeniedPageUri = CodingKeys(stringValue: "accessDeniedPageUri")
+    static let generateTroubleshootingUri = CodingKeys(stringValue: "generateTroubleshootingUri")
+    static let remediationTokenGenerationEnabled = CodingKeys(
+      stringValue: "remediationTokenGenerationEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accessDeniedPageUri",
+      "generateTroubleshootingUri",
+      "remediationTokenGenerationEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.accessDeniedPageUri = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .accessDeniedPageUri)
+    self.generateTroubleshootingUri = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .generateTroubleshootingUri)
+    self.remediationTokenGenerationEnabled = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .remediationTokenGenerationEnabled)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.accessDeniedPageUri, forKey: .accessDeniedPageUri)
+    try container.encodeIfPresent(
+      self.generateTroubleshootingUri, forKey: .generateTroubleshootingUri)
+    try container.encodeIfPresent(
+      self.remediationTokenGenerationEnabled, forKey: .remediationTokenGenerationEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

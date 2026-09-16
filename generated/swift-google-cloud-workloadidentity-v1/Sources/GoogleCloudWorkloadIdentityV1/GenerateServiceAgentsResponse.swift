@@ -25,6 +25,8 @@ public struct GenerateServiceAgentsResponse: Codable, Equatable, GoogleCloudWKT.
   /// The list of service agents
   public var serviceAgents: [ServiceAgent] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateServiceAgentsResponse`.
   public init() {}
 
@@ -39,6 +41,38 @@ public struct GenerateServiceAgentsResponse: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAgents = CodingKeys(stringValue: "serviceAgents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAgents"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([ServiceAgent].self, forKey: .serviceAgents) {
+      self.serviceAgents = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAgents, forKey: .serviceAgents)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

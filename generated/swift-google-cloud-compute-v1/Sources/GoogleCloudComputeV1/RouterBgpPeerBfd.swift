@@ -64,6 +64,8 @@
     /// DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
     public var sessionInitializationMode: RouterBgpPeerBfd.SessionInitializationMode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterBgpPeerBfd`.
     public init() {}
 
@@ -78,6 +80,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minReceiveInterval = CodingKeys(stringValue: "minReceiveInterval")
+      static let minTransmitInterval = CodingKeys(stringValue: "minTransmitInterval")
+      static let multiplier = CodingKeys(stringValue: "multiplier")
+      static let sessionInitializationMode = CodingKeys(stringValue: "sessionInitializationMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minReceiveInterval",
+        "minTransmitInterval",
+        "multiplier",
+        "sessionInitializationMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.minReceiveInterval = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .minReceiveInterval)
+      self.minTransmitInterval = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .minTransmitInterval)
+      self.multiplier = try container.decodeIfPresent(Swift.UInt32.self, forKey: .multiplier)
+      self.sessionInitializationMode = try container.decodeIfPresent(
+        RouterBgpPeerBfd.SessionInitializationMode.self, forKey: .sessionInitializationMode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.minReceiveInterval, forKey: .minReceiveInterval)
+      try container.encodeIfPresent(self.minTransmitInterval, forKey: .minTransmitInterval)
+      try container.encodeIfPresent(self.multiplier, forKey: .multiplier)
+      try container.encodeIfPresent(
+        self.sessionInitializationMode, forKey: .sessionInitializationMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [sessionInitializationMode][google.cloud.compute.v1.RouterBgpPeerBfd.sessionInitializationMode] field.

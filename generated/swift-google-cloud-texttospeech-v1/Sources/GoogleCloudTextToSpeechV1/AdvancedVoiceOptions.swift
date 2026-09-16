@@ -40,6 +40,8 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// enabled by default. Only applies for Gemini TTS.
   public var enableTextnorm: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdvancedVoiceOptions`.
   public init() {}
 
@@ -56,6 +58,53 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lowLatencyJourneySynthesis = CodingKeys(stringValue: "lowLatencyJourneySynthesis")
+    static let relaxSafetyFilters = CodingKeys(stringValue: "relaxSafetyFilters")
+    static let safetySettings = CodingKeys(stringValue: "safetySettings")
+    static let enableTextnorm = CodingKeys(stringValue: "enableTextnorm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lowLatencyJourneySynthesis",
+      "relaxSafetyFilters",
+      "safetySettings",
+      "enableTextnorm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.lowLatencyJourneySynthesis = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .lowLatencyJourneySynthesis)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .relaxSafetyFilters) {
+      self.relaxSafetyFilters = value
+    }
+    self.safetySettings = try container.decodeIfPresent(
+      AdvancedVoiceOptions.SafetySettings.self, forKey: .safetySettings)
+    self.enableTextnorm = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextnorm)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.lowLatencyJourneySynthesis, forKey: .lowLatencyJourneySynthesis)
+    try container.encode(self.relaxSafetyFilters, forKey: .relaxSafetyFilters)
+    try container.encodeIfPresent(self.safetySettings, forKey: .safetySettings)
+    try container.encodeIfPresent(self.enableTextnorm, forKey: .enableTextnorm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Safety setting for a single harm category.
   public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -66,6 +115,8 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// The harm block threshold for the safety setting.
     public var threshold: AdvancedVoiceOptions.HarmBlockThreshold =
       AdvancedVoiceOptions.HarmBlockThreshold()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SafetySetting`.
     public init() {}
@@ -81,6 +132,48 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let category = CodingKeys(stringValue: "category")
+      static let threshold = CodingKeys(stringValue: "threshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "category",
+        "threshold",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        AdvancedVoiceOptions.HarmCategory.self, forKey: .category)
+      {
+        self.category = value
+      }
+      if let value = try container.decodeIfPresent(
+        AdvancedVoiceOptions.HarmBlockThreshold.self, forKey: .threshold)
+      {
+        self.threshold = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.category, forKey: .category)
+      try container.encode(self.threshold, forKey: .threshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -101,6 +194,8 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// The safety settings for the request.
     public var settings: [AdvancedVoiceOptions.SafetySetting] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SafetySettings`.
     public init() {}
 
@@ -115,6 +210,40 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let settings = CodingKeys(stringValue: "settings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "settings"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AdvancedVoiceOptions.SafetySetting].self, forKey: .settings)
+      {
+        self.settings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.settings, forKey: .settings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

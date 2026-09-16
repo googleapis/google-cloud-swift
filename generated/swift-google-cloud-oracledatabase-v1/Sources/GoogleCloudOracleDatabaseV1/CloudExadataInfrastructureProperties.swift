@@ -126,6 +126,8 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCl
   /// Output only. The Exascale configuration for the Exadata Infrastructure.
   public var exascaleConfig: ExascaleConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudExadataInfrastructureProperties`.
   public init() {}
 
@@ -140,6 +142,225 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let computeCount = CodingKeys(stringValue: "computeCount")
+    static let storageCount = CodingKeys(stringValue: "storageCount")
+    static let totalStorageSizeGb = CodingKeys(stringValue: "totalStorageSizeGb")
+    static let availableStorageSizeGb = CodingKeys(stringValue: "availableStorageSizeGb")
+    static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+    static let state = CodingKeys(stringValue: "state")
+    static let shape = CodingKeys(stringValue: "shape")
+    static let ociUrl = CodingKeys(stringValue: "ociUrl")
+    static let cpuCount = CodingKeys(stringValue: "cpuCount")
+    static let maxCpuCount = CodingKeys(stringValue: "maxCpuCount")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let maxMemoryGb = CodingKeys(stringValue: "maxMemoryGb")
+    static let dbNodeStorageSizeGb = CodingKeys(stringValue: "dbNodeStorageSizeGb")
+    static let maxDbNodeStorageSizeGb = CodingKeys(stringValue: "maxDbNodeStorageSizeGb")
+    static let dataStorageSizeTb = CodingKeys(stringValue: "dataStorageSizeTb")
+    static let maxDataStorageTb = CodingKeys(stringValue: "maxDataStorageTb")
+    static let activatedStorageCount = CodingKeys(stringValue: "activatedStorageCount")
+    static let additionalStorageCount = CodingKeys(stringValue: "additionalStorageCount")
+    static let dbServerVersion = CodingKeys(stringValue: "dbServerVersion")
+    static let storageServerVersion = CodingKeys(stringValue: "storageServerVersion")
+    static let nextMaintenanceRunId = CodingKeys(stringValue: "nextMaintenanceRunId")
+    static let nextMaintenanceRunTime = CodingKeys(stringValue: "nextMaintenanceRunTime")
+    static let nextSecurityMaintenanceRunTime = CodingKeys(
+      stringValue: "nextSecurityMaintenanceRunTime")
+    static let customerContacts = CodingKeys(stringValue: "customerContacts")
+    static let monthlyStorageServerVersion = CodingKeys(stringValue: "monthlyStorageServerVersion")
+    static let monthlyDbServerVersion = CodingKeys(stringValue: "monthlyDbServerVersion")
+    static let computeModel = CodingKeys(stringValue: "computeModel")
+    static let databaseServerType = CodingKeys(stringValue: "databaseServerType")
+    static let storageServerType = CodingKeys(stringValue: "storageServerType")
+    static let exascaleConfig = CodingKeys(stringValue: "exascaleConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "computeCount",
+      "storageCount",
+      "totalStorageSizeGb",
+      "availableStorageSizeGb",
+      "maintenanceWindow",
+      "state",
+      "shape",
+      "ociUrl",
+      "cpuCount",
+      "maxCpuCount",
+      "memorySizeGb",
+      "maxMemoryGb",
+      "dbNodeStorageSizeGb",
+      "maxDbNodeStorageSizeGb",
+      "dataStorageSizeTb",
+      "maxDataStorageTb",
+      "activatedStorageCount",
+      "additionalStorageCount",
+      "dbServerVersion",
+      "storageServerVersion",
+      "nextMaintenanceRunId",
+      "nextMaintenanceRunTime",
+      "nextSecurityMaintenanceRunTime",
+      "customerContacts",
+      "monthlyStorageServerVersion",
+      "monthlyDbServerVersion",
+      "computeModel",
+      "databaseServerType",
+      "storageServerType",
+      "exascaleConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .computeCount) {
+      self.computeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .storageCount) {
+      self.storageCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalStorageSizeGb) {
+      self.totalStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .availableStorageSizeGb)
+    {
+      self.availableStorageSizeGb = value
+    }
+    self.maintenanceWindow = try container.decodeIfPresent(
+      MaintenanceWindow.self, forKey: .maintenanceWindow)
+    if let value = try container.decodeIfPresent(
+      CloudExadataInfrastructureProperties.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shape) {
+      self.shape = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUrl) {
+      self.ociUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+      self.cpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxCpuCount) {
+      self.maxCpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxMemoryGb) {
+      self.maxMemoryGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dbNodeStorageSizeGb) {
+      self.dbNodeStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDbNodeStorageSizeGb)
+    {
+      self.maxDbNodeStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataStorageSizeTb) {
+      self.dataStorageSizeTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .maxDataStorageTb) {
+      self.maxDataStorageTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .activatedStorageCount) {
+      self.activatedStorageCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .additionalStorageCount)
+    {
+      self.additionalStorageCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbServerVersion) {
+      self.dbServerVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageServerVersion) {
+      self.storageServerVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextMaintenanceRunId) {
+      self.nextMaintenanceRunId = value
+    }
+    self.nextMaintenanceRunTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextMaintenanceRunTime)
+    self.nextSecurityMaintenanceRunTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextSecurityMaintenanceRunTime)
+    if let value = try container.decodeIfPresent([CustomerContact].self, forKey: .customerContacts)
+    {
+      self.customerContacts = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .monthlyStorageServerVersion)
+    {
+      self.monthlyStorageServerVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .monthlyDbServerVersion)
+    {
+      self.monthlyDbServerVersion = value
+    }
+    if let value = try container.decodeIfPresent(ComputeModel.self, forKey: .computeModel) {
+      self.computeModel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseServerType) {
+      self.databaseServerType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageServerType) {
+      self.storageServerType = value
+    }
+    self.exascaleConfig = try container.decodeIfPresent(
+      ExascaleConfig.self, forKey: .exascaleConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.computeCount, forKey: .computeCount)
+    try container.encode(self.storageCount, forKey: .storageCount)
+    try container.encode(self.totalStorageSizeGb, forKey: .totalStorageSizeGb)
+    try container.encode(self.availableStorageSizeGb, forKey: .availableStorageSizeGb)
+    try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.shape, forKey: .shape)
+    try container.encode(self.ociUrl, forKey: .ociUrl)
+    try container.encode(self.cpuCount, forKey: .cpuCount)
+    try container.encode(self.maxCpuCount, forKey: .maxCpuCount)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.maxMemoryGb, forKey: .maxMemoryGb)
+    try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
+    try container.encode(self.maxDbNodeStorageSizeGb, forKey: .maxDbNodeStorageSizeGb)
+    try container.encode(self.dataStorageSizeTb, forKey: .dataStorageSizeTb)
+    try container.encode(self.maxDataStorageTb, forKey: .maxDataStorageTb)
+    try container.encode(self.activatedStorageCount, forKey: .activatedStorageCount)
+    try container.encode(self.additionalStorageCount, forKey: .additionalStorageCount)
+    try container.encode(self.dbServerVersion, forKey: .dbServerVersion)
+    try container.encode(self.storageServerVersion, forKey: .storageServerVersion)
+    try container.encode(self.nextMaintenanceRunId, forKey: .nextMaintenanceRunId)
+    try container.encodeIfPresent(self.nextMaintenanceRunTime, forKey: .nextMaintenanceRunTime)
+    try container.encodeIfPresent(
+      self.nextSecurityMaintenanceRunTime, forKey: .nextSecurityMaintenanceRunTime)
+    try container.encode(self.customerContacts, forKey: .customerContacts)
+    try container.encode(self.monthlyStorageServerVersion, forKey: .monthlyStorageServerVersion)
+    try container.encode(self.monthlyDbServerVersion, forKey: .monthlyDbServerVersion)
+    try container.encode(self.computeModel, forKey: .computeModel)
+    try container.encode(self.databaseServerType, forKey: .databaseServerType)
+    try container.encode(self.storageServerType, forKey: .storageServerType)
+    try container.encodeIfPresent(self.exascaleConfig, forKey: .exascaleConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the Exadata Infrastructure.

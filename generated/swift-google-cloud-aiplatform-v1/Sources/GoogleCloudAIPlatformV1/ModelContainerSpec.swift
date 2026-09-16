@@ -293,6 +293,8 @@
     /// Immutable. Specification for Kubernetes liveness probe.
     public var livenessProbe: Probe? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelContainerSpec`.
     public init() {}
 
@@ -307,6 +309,109 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let imageUri = CodingKeys(stringValue: "imageUri")
+      static let command = CodingKeys(stringValue: "command")
+      static let args = CodingKeys(stringValue: "args")
+      static let env = CodingKeys(stringValue: "env")
+      static let ports = CodingKeys(stringValue: "ports")
+      static let predictRoute = CodingKeys(stringValue: "predictRoute")
+      static let healthRoute = CodingKeys(stringValue: "healthRoute")
+      static let invokeRoutePrefix = CodingKeys(stringValue: "invokeRoutePrefix")
+      static let grpcPorts = CodingKeys(stringValue: "grpcPorts")
+      static let deploymentTimeout = CodingKeys(stringValue: "deploymentTimeout")
+      static let sharedMemorySizeMb = CodingKeys(stringValue: "sharedMemorySizeMb")
+      static let startupProbe = CodingKeys(stringValue: "startupProbe")
+      static let healthProbe = CodingKeys(stringValue: "healthProbe")
+      static let livenessProbe = CodingKeys(stringValue: "livenessProbe")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "imageUri",
+        "command",
+        "args",
+        "env",
+        "ports",
+        "predictRoute",
+        "healthRoute",
+        "invokeRoutePrefix",
+        "grpcPorts",
+        "deploymentTimeout",
+        "sharedMemorySizeMb",
+        "startupProbe",
+        "healthProbe",
+        "livenessProbe",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+        self.imageUri = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .command) {
+        self.command = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+        self.args = value
+      }
+      if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+        self.env = value
+      }
+      if let value = try container.decodeIfPresent([Port].self, forKey: .ports) {
+        self.ports = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predictRoute) {
+        self.predictRoute = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .healthRoute) {
+        self.healthRoute = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .invokeRoutePrefix) {
+        self.invokeRoutePrefix = value
+      }
+      if let value = try container.decodeIfPresent([Port].self, forKey: .grpcPorts) {
+        self.grpcPorts = value
+      }
+      self.deploymentTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .deploymentTimeout)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sharedMemorySizeMb) {
+        self.sharedMemorySizeMb = value
+      }
+      self.startupProbe = try container.decodeIfPresent(Probe.self, forKey: .startupProbe)
+      self.healthProbe = try container.decodeIfPresent(Probe.self, forKey: .healthProbe)
+      self.livenessProbe = try container.decodeIfPresent(Probe.self, forKey: .livenessProbe)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.imageUri, forKey: .imageUri)
+      try container.encode(self.command, forKey: .command)
+      try container.encode(self.args, forKey: .args)
+      try container.encode(self.env, forKey: .env)
+      try container.encode(self.ports, forKey: .ports)
+      try container.encode(self.predictRoute, forKey: .predictRoute)
+      try container.encode(self.healthRoute, forKey: .healthRoute)
+      try container.encode(self.invokeRoutePrefix, forKey: .invokeRoutePrefix)
+      try container.encode(self.grpcPorts, forKey: .grpcPorts)
+      try container.encodeIfPresent(self.deploymentTimeout, forKey: .deploymentTimeout)
+      try container.encode(self.sharedMemorySizeMb, forKey: .sharedMemorySizeMb)
+      try container.encodeIfPresent(self.startupProbe, forKey: .startupProbe)
+      try container.encodeIfPresent(self.healthProbe, forKey: .healthProbe)
+      try container.encodeIfPresent(self.livenessProbe, forKey: .livenessProbe)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

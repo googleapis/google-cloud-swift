@@ -241,6 +241,8 @@
     /// this list is non-empty.
     public var wireGroups: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Interconnect`.
     public init() {}
 
@@ -257,45 +259,92 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case aaiEnabled = "aaiEnabled"
-      case adminEnabled = "adminEnabled"
-      case applicationAwareInterconnect = "applicationAwareInterconnect"
-      case availableFeatures = "availableFeatures"
-      case circuitInfos = "circuitInfos"
-      case creationTimestamp = "creationTimestamp"
-      case customerName = "customerName"
-      case description = "description"
-      case effectiveLocation = "effectiveLocation"
-      case expectedOutages = "expectedOutages"
-      case googleIpAddress = "googleIpAddress"
-      case googleReferenceId = "googleReferenceId"
-      case id = "id"
-      case interconnectAttachments = "interconnectAttachments"
-      case interconnectGroups = "interconnectGroups"
-      case interconnectType = "interconnectType"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case linkType = "linkType"
-      case location = "location"
-      case macsec = "macsec"
-      case macsecEnabled = "macsecEnabled"
-      case name = "name"
-      case nocContactEmail = "nocContactEmail"
-      case operationalStatus = "operationalStatus"
-      case params = "params"
-      case peerIpAddress = "peerIpAddress"
-      case provisionedLinkCount = "provisionedLinkCount"
-      case remoteLocation = "remoteLocation"
-      case requestedFeatures = "requestedFeatures"
-      case requestedLinkCount = "requestedLinkCount"
-      case satisfiesPzs = "satisfiesPzs"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case state = "state"
-      case subzone = "subzone"
-      case wireGroups = "wireGroups"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let aaiEnabled = CodingKeys(stringValue: "aaiEnabled")
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let applicationAwareInterconnect = CodingKeys(
+        stringValue: "applicationAwareInterconnect")
+      static let availableFeatures = CodingKeys(stringValue: "availableFeatures")
+      static let circuitInfos = CodingKeys(stringValue: "circuitInfos")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customerName = CodingKeys(stringValue: "customerName")
+      static let description = CodingKeys(stringValue: "description")
+      static let effectiveLocation = CodingKeys(stringValue: "effectiveLocation")
+      static let expectedOutages = CodingKeys(stringValue: "expectedOutages")
+      static let googleIpAddress = CodingKeys(stringValue: "googleIpAddress")
+      static let googleReferenceId = CodingKeys(stringValue: "googleReferenceId")
+      static let id = CodingKeys(stringValue: "id")
+      static let interconnectAttachments = CodingKeys(stringValue: "interconnectAttachments")
+      static let interconnectGroups = CodingKeys(stringValue: "interconnectGroups")
+      static let interconnectType = CodingKeys(stringValue: "interconnectType")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let linkType = CodingKeys(stringValue: "linkType")
+      static let location = CodingKeys(stringValue: "location")
+      static let macsec = CodingKeys(stringValue: "macsec")
+      static let macsecEnabled = CodingKeys(stringValue: "macsecEnabled")
+      static let name = CodingKeys(stringValue: "name")
+      static let nocContactEmail = CodingKeys(stringValue: "nocContactEmail")
+      static let operationalStatus = CodingKeys(stringValue: "operationalStatus")
+      static let params = CodingKeys(stringValue: "params")
+      static let peerIpAddress = CodingKeys(stringValue: "peerIpAddress")
+      static let provisionedLinkCount = CodingKeys(stringValue: "provisionedLinkCount")
+      static let remoteLocation = CodingKeys(stringValue: "remoteLocation")
+      static let requestedFeatures = CodingKeys(stringValue: "requestedFeatures")
+      static let requestedLinkCount = CodingKeys(stringValue: "requestedLinkCount")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let state = CodingKeys(stringValue: "state")
+      static let subzone = CodingKeys(stringValue: "subzone")
+      static let wireGroups = CodingKeys(stringValue: "wireGroups")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "aaiEnabled",
+        "adminEnabled",
+        "applicationAwareInterconnect",
+        "availableFeatures",
+        "circuitInfos",
+        "creationTimestamp",
+        "customerName",
+        "description",
+        "effectiveLocation",
+        "expectedOutages",
+        "googleIpAddress",
+        "googleReferenceId",
+        "id",
+        "interconnectAttachments",
+        "interconnectGroups",
+        "interconnectType",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "linkType",
+        "location",
+        "macsec",
+        "macsecEnabled",
+        "name",
+        "nocContactEmail",
+        "operationalStatus",
+        "params",
+        "peerIpAddress",
+        "provisionedLinkCount",
+        "remoteLocation",
+        "requestedFeatures",
+        "requestedLinkCount",
+        "satisfiesPzs",
+        "selfLink",
+        "selfLinkWithId",
+        "state",
+        "subzone",
+        "wireGroups",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -304,27 +353,41 @@
       self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
       self.applicationAwareInterconnect = try container.decodeIfPresent(
         InterconnectApplicationAwareInterconnect.self, forKey: .applicationAwareInterconnect)
-      self.availableFeatures = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Interconnect.AvailableFeatures].self, forKey: .availableFeatures)
-      self.circuitInfos = try container.decode(
+      {
+        self.availableFeatures = value
+      }
+      if let value = try container.decodeIfPresent(
         [InterconnectCircuitInfo].self, forKey: .circuitInfos)
+      {
+        self.circuitInfos = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.customerName = try container.decodeIfPresent(Swift.String.self, forKey: .customerName)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       self.effectiveLocation = try container.decodeIfPresent(
         Swift.String.self, forKey: .effectiveLocation)
-      self.expectedOutages = try container.decode(
+      if let value = try container.decodeIfPresent(
         [InterconnectOutageNotification].self, forKey: .expectedOutages)
+      {
+        self.expectedOutages = value
+      }
       self.googleIpAddress = try container.decodeIfPresent(
         Swift.String.self, forKey: .googleIpAddress)
       self.googleReferenceId = try container.decodeIfPresent(
         Swift.String.self, forKey: .googleReferenceId)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
-      self.interconnectAttachments = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .interconnectAttachments)
-      self.interconnectGroups = try container.decode(
-        [Swift.String].self, forKey: .interconnectGroups)
+      {
+        self.interconnectAttachments = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .interconnectGroups)
+      {
+        self.interconnectGroups = value
+      }
       self.interconnectType = try container.decodeIfPresent(
         Interconnect.InterconnectType.self, forKey: .interconnectType)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
@@ -337,7 +400,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.linkType = try container.decodeIfPresent(Interconnect.LinkType.self, forKey: .linkType)
       self.location = try container.decodeIfPresent(Swift.String.self, forKey: .location)
       self.macsec = try container.decodeIfPresent(InterconnectMacsec.self, forKey: .macsec)
@@ -353,8 +420,11 @@
         Swift.Int32.self, forKey: .provisionedLinkCount)
       self.remoteLocation = try container.decodeIfPresent(
         Swift.String.self, forKey: .remoteLocation)
-      self.requestedFeatures = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Interconnect.RequestedFeatures].self, forKey: .requestedFeatures)
+      {
+        self.requestedFeatures = value
+      }
       self.requestedLinkCount = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .requestedLinkCount)
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
@@ -363,53 +433,63 @@
         Swift.String.self, forKey: .selfLinkWithId)
       self.state = try container.decodeIfPresent(Interconnect.State.self, forKey: .state)
       self.subzone = try container.decodeIfPresent(Interconnect.Subzone.self, forKey: .subzone)
-      self.wireGroups = try container.decode([Swift.String].self, forKey: .wireGroups)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .wireGroups) {
+        self.wireGroups = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.aaiEnabled, forKey: .aaiEnabled)
-      try container.encode(self.adminEnabled, forKey: .adminEnabled)
-      try container.encode(self.applicationAwareInterconnect, forKey: .applicationAwareInterconnect)
+      try container.encodeIfPresent(self.aaiEnabled, forKey: .aaiEnabled)
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(
+        self.applicationAwareInterconnect, forKey: .applicationAwareInterconnect)
       try container.encode(self.availableFeatures, forKey: .availableFeatures)
       try container.encode(self.circuitInfos, forKey: .circuitInfos)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.customerName, forKey: .customerName)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.effectiveLocation, forKey: .effectiveLocation)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.customerName, forKey: .customerName)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.effectiveLocation, forKey: .effectiveLocation)
       try container.encode(self.expectedOutages, forKey: .expectedOutages)
-      try container.encode(self.googleIpAddress, forKey: .googleIpAddress)
-      try container.encode(self.googleReferenceId, forKey: .googleReferenceId)
-      try container.encode(self.id, forKey: .id)
+      try container.encodeIfPresent(self.googleIpAddress, forKey: .googleIpAddress)
+      try container.encodeIfPresent(self.googleReferenceId, forKey: .googleReferenceId)
+      try container.encodeIfPresent(self.id, forKey: .id)
       try container.encode(self.interconnectAttachments, forKey: .interconnectAttachments)
       try container.encode(self.interconnectGroups, forKey: .interconnectGroups)
-      try container.encode(self.interconnectType, forKey: .interconnectType)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.interconnectType, forKey: .interconnectType)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.linkType, forKey: .linkType)
-      try container.encode(self.location, forKey: .location)
-      try container.encode(self.macsec, forKey: .macsec)
-      try container.encode(self.macsecEnabled, forKey: .macsecEnabled)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.nocContactEmail, forKey: .nocContactEmail)
-      try container.encode(self.operationalStatus, forKey: .operationalStatus)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.peerIpAddress, forKey: .peerIpAddress)
-      try container.encode(self.provisionedLinkCount, forKey: .provisionedLinkCount)
-      try container.encode(self.remoteLocation, forKey: .remoteLocation)
+      try container.encodeIfPresent(self.linkType, forKey: .linkType)
+      try container.encodeIfPresent(self.location, forKey: .location)
+      try container.encodeIfPresent(self.macsec, forKey: .macsec)
+      try container.encodeIfPresent(self.macsecEnabled, forKey: .macsecEnabled)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.nocContactEmail, forKey: .nocContactEmail)
+      try container.encodeIfPresent(self.operationalStatus, forKey: .operationalStatus)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.peerIpAddress, forKey: .peerIpAddress)
+      try container.encodeIfPresent(self.provisionedLinkCount, forKey: .provisionedLinkCount)
+      try container.encodeIfPresent(self.remoteLocation, forKey: .remoteLocation)
       try container.encode(self.requestedFeatures, forKey: .requestedFeatures)
-      try container.encode(self.requestedLinkCount, forKey: .requestedLinkCount)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.subzone, forKey: .subzone)
+      try container.encodeIfPresent(self.requestedLinkCount, forKey: .requestedLinkCount)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.subzone, forKey: .subzone)
       try container.encode(self.wireGroups, forKey: .wireGroups)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [availableFeatures][google.cloud.compute.v1.Interconnect.availableFeatures] field.

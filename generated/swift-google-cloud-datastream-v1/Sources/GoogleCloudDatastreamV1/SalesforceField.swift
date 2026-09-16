@@ -30,6 +30,8 @@ public struct SalesforceField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Indicates whether the field can accept nil values.
   public var nillable: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SalesforceField`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct SalesforceField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dataType = CodingKeys(stringValue: "dataType")
+    static let nillable = CodingKeys(stringValue: "nillable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dataType",
+      "nillable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataType) {
+      self.dataType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nillable) {
+      self.nillable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.dataType, forKey: .dataType)
+    try container.encode(self.nillable, forKey: .nillable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

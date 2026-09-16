@@ -30,6 +30,8 @@ public struct IpMasqueradingSkippedInfo: Codable, Equatable, GoogleCloudWKT._Any
   /// DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE.
   public var nonMasqueradeRange: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IpMasqueradingSkippedInfo`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct IpMasqueradingSkippedInfo: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let reason = CodingKeys(stringValue: "reason")
+    static let nonMasqueradeRange = CodingKeys(stringValue: "nonMasqueradeRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "reason",
+      "nonMasqueradeRange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      IpMasqueradingSkippedInfo.Reason.self, forKey: .reason)
+    {
+      self.reason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nonMasqueradeRange) {
+      self.nonMasqueradeRange = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.reason, forKey: .reason)
+    try container.encode(self.nonMasqueradeRange, forKey: .nonMasqueradeRange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Reason why IP masquerading was skipped.

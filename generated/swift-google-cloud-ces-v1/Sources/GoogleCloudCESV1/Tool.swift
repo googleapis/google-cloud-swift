@@ -67,6 +67,8 @@ public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the tool.
   public var toolType: OneOf_ToolType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Tool`.
   public init() {}
 
@@ -83,42 +85,81 @@ public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case clientFunction = "clientFunction"
-    case openApiTool = "openApiTool"
-    case googleSearchTool = "googleSearchTool"
-    case connectorTool = "connectorTool"
-    case dataStoreTool = "dataStoreTool"
-    case pythonFunction = "pythonFunction"
-    case mcpTool = "mcpTool"
-    case fileSearchTool = "fileSearchTool"
-    case systemTool = "systemTool"
-    case agentTool = "agentTool"
-    case widgetTool = "widgetTool"
-    case remoteAgentTool = "remoteAgentTool"
-    case name = "name"
-    case displayName = "displayName"
-    case executionType = "executionType"
-    case timeout = "timeout"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case etag = "etag"
-    case generatedSummary = "generatedSummary"
-    case toolFakeConfig = "toolFakeConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clientFunction = CodingKeys(stringValue: "clientFunction")
+    static let openApiTool = CodingKeys(stringValue: "openApiTool")
+    static let googleSearchTool = CodingKeys(stringValue: "googleSearchTool")
+    static let connectorTool = CodingKeys(stringValue: "connectorTool")
+    static let dataStoreTool = CodingKeys(stringValue: "dataStoreTool")
+    static let pythonFunction = CodingKeys(stringValue: "pythonFunction")
+    static let mcpTool = CodingKeys(stringValue: "mcpTool")
+    static let fileSearchTool = CodingKeys(stringValue: "fileSearchTool")
+    static let systemTool = CodingKeys(stringValue: "systemTool")
+    static let agentTool = CodingKeys(stringValue: "agentTool")
+    static let widgetTool = CodingKeys(stringValue: "widgetTool")
+    static let remoteAgentTool = CodingKeys(stringValue: "remoteAgentTool")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let executionType = CodingKeys(stringValue: "executionType")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let generatedSummary = CodingKeys(stringValue: "generatedSummary")
+    static let toolFakeConfig = CodingKeys(stringValue: "toolFakeConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clientFunction",
+      "openApiTool",
+      "googleSearchTool",
+      "connectorTool",
+      "dataStoreTool",
+      "pythonFunction",
+      "mcpTool",
+      "fileSearchTool",
+      "systemTool",
+      "agentTool",
+      "widgetTool",
+      "remoteAgentTool",
+      "name",
+      "displayName",
+      "executionType",
+      "timeout",
+      "createTime",
+      "updateTime",
+      "etag",
+      "generatedSummary",
+      "toolFakeConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.executionType = try container.decode(ExecutionType.self, forKey: .executionType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(ExecutionType.self, forKey: .executionType) {
+      self.executionType = value
+    }
     self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.generatedSummary = try container.decode(Swift.String.self, forKey: .generatedSummary)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generatedSummary) {
+      self.generatedSummary = value
+    }
     self.toolFakeConfig = try container.decodeIfPresent(
       ToolFakeConfig.self, forKey: .toolFakeConfig)
 
@@ -183,6 +224,10 @@ public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try toolTypeCheckAndSet(.remoteAgentTool(remoteAgentTool))
     }
     self.toolType = toolType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -190,12 +235,12 @@ public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.executionType, forKey: .executionType)
-    try container.encode(self.timeout, forKey: .timeout)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.generatedSummary, forKey: .generatedSummary)
-    try container.encode(self.toolFakeConfig, forKey: .toolFakeConfig)
+    try container.encodeIfPresent(self.toolFakeConfig, forKey: .toolFakeConfig)
 
     if let choice = self.toolType {
       switch choice {
@@ -224,6 +269,9 @@ public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .remoteAgentTool(let value):
         try container.encode(value, forKey: .remoteAgentTool)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

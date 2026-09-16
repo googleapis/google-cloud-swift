@@ -35,6 +35,8 @@
     /// injection, before being sent to a backend service.
     public var delay: HttpFaultDelay? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpFaultInjection`.
     public init() {}
 
@@ -49,6 +51,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let abort = CodingKeys(stringValue: "abort")
+      static let delay = CodingKeys(stringValue: "delay")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "abort",
+        "delay",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.abort = try container.decodeIfPresent(HttpFaultAbort.self, forKey: .abort)
+      self.delay = try container.decodeIfPresent(HttpFaultDelay.self, forKey: .delay)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.abort, forKey: .abort)
+      try container.encodeIfPresent(self.delay, forKey: .delay)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

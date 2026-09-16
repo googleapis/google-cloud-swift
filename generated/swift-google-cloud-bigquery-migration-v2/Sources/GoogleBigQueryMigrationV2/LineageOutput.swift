@@ -46,6 +46,8 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// stage.
   public var processingProgressReports: [LineageOutput.ProgressReport] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LineageOutput`.
   public init() {}
 
@@ -60,6 +62,54 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let webappUri = CodingKeys(stringValue: "webappUri")
+    static let recognizedInputs = CodingKeys(stringValue: "recognizedInputs")
+    static let processingProgressReports = CodingKeys(stringValue: "processingProgressReports")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "webappUri",
+      "recognizedInputs",
+      "processingProgressReports",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webappUri) {
+      self.webappUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LineageOutput.RecognizedInput].self, forKey: .recognizedInputs)
+    {
+      self.recognizedInputs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LineageOutput.ProgressReport].self, forKey: .processingProgressReports)
+    {
+      self.processingProgressReports = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.webappUri, forKey: .webappUri)
+    try container.encode(self.recognizedInputs, forKey: .recognizedInputs)
+    try container.encode(self.processingProgressReports, forKey: .processingProgressReports)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Information about lineage input of the given type that lineage generation
@@ -78,6 +128,8 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// type.
     public var uncompressedSizeBytes: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RecognizedInput`.
     public init() {}
 
@@ -92,6 +144,47 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let uncompressedSizeBytes = CodingKeys(stringValue: "uncompressedSizeBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "uncompressedSizeBytes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        LineageOutput.RecognizedInput.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .uncompressedSizeBytes)
+      {
+        self.uncompressedSizeBytes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.uncompressedSizeBytes, forKey: .uncompressedSizeBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Input type recognized by the lineage processing.
@@ -232,6 +325,8 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// summaries.
     public var workSummaries: [LineageOutput.ProgressReport.WorkSummary] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProgressReport`.
     public init() {}
 
@@ -246,6 +341,48 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let processingStage = CodingKeys(stringValue: "processingStage")
+      static let workSummaries = CodingKeys(stringValue: "workSummaries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "processingStage",
+        "workSummaries",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        LineageOutput.ProgressReport.ProcessingStage.self, forKey: .processingStage)
+      {
+        self.processingStage = value
+      }
+      if let value = try container.decodeIfPresent(
+        [LineageOutput.ProgressReport.WorkSummary].self, forKey: .workSummaries)
+      {
+        self.workSummaries = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.processingStage, forKey: .processingStage)
+      try container.encode(self.workSummaries, forKey: .workSummaries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Summary of work in the given state.
@@ -265,6 +402,8 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Output only. Human-readable comment.
       public var comment: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `WorkSummary`.
       public init() {}
 
@@ -279,6 +418,52 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let state = CodingKeys(stringValue: "state")
+        static let size = CodingKeys(stringValue: "size")
+        static let comment = CodingKeys(stringValue: "comment")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "state",
+          "size",
+          "comment",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          LineageOutput.ProgressReport.WorkSummary.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .size) {
+          self.size = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comment) {
+          self.comment = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.state, forKey: .state)
+        try container.encode(self.size, forKey: .size)
+        try container.encode(self.comment, forKey: .comment)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// States of work. Each piece of work is in exactly one state.

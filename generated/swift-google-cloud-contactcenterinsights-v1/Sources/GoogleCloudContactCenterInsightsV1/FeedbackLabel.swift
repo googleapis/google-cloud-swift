@@ -38,6 +38,8 @@ public struct FeedbackLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Label type.
   public var labelType: OneOf_LabelType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FeedbackLabel`.
   public init() {}
 
@@ -54,19 +56,37 @@ public struct FeedbackLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case label = "label"
-    case qaAnswerLabel = "qaAnswerLabel"
-    case name = "name"
-    case labeledResource = "labeledResource"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let label = CodingKeys(stringValue: "label")
+    static let qaAnswerLabel = CodingKeys(stringValue: "qaAnswerLabel")
+    static let name = CodingKeys(stringValue: "name")
+    static let labeledResource = CodingKeys(stringValue: "labeledResource")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "label",
+      "qaAnswerLabel",
+      "name",
+      "labeledResource",
+      "createTime",
+      "updateTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.labeledResource = try container.decode(Swift.String.self, forKey: .labeledResource)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labeledResource) {
+      self.labeledResource = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -91,14 +111,18 @@ public struct FeedbackLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try labelTypeCheckAndSet(.qaAnswerLabel(qaAnswerLabel))
     }
     self.labelType = labelType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.labeledResource, forKey: .labeledResource)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.labelType {
       switch choice {
@@ -107,6 +131,9 @@ public struct FeedbackLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .qaAnswerLabel(let value):
         try container.encode(value, forKey: .qaAnswerLabel)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

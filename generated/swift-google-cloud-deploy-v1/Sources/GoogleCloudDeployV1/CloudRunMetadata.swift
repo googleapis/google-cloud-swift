@@ -38,6 +38,8 @@ public struct CloudRunMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{project}/locations/{location}/jobs/{job_name}`.
   public var job: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudRunMetadata`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct CloudRunMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let service = CodingKeys(stringValue: "service")
+    static let serviceUrls = CodingKeys(stringValue: "serviceUrls")
+    static let revision = CodingKeys(stringValue: "revision")
+    static let job = CodingKeys(stringValue: "job")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "service",
+      "serviceUrls",
+      "revision",
+      "job",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serviceUrls) {
+      self.serviceUrls = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .job) {
+      self.job = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.serviceUrls, forKey: .serviceUrls)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.job, forKey: .job)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. The source from which to restore.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreTableRequest`.
   public init() {}
 
@@ -53,16 +55,31 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case tableId = "tableId"
-    case backup = "backup"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let tableId = CodingKeys(stringValue: "tableId")
+    static let backup = CodingKeys(stringValue: "backup")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "tableId",
+      "backup",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.tableId = try container.decode(Swift.String.self, forKey: .tableId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableId) {
+      self.tableId = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -78,6 +95,10 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try sourceCheckAndSet(.backup(backup))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +111,9 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .backup(let value):
         try container.encode(value, forKey: .backup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

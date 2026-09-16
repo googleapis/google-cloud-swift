@@ -34,6 +34,8 @@
     /// Whether the input content was truncated before generating the embedding.
     public var truncated: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EmbedContentResponse`.
     public init() {}
 
@@ -50,12 +52,55 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let embedding = CodingKeys(stringValue: "embedding")
+      static let usageMetadata = CodingKeys(stringValue: "usageMetadata")
+      static let truncated = CodingKeys(stringValue: "truncated")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "embedding",
+        "usageMetadata",
+        "truncated",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.embedding = try container.decodeIfPresent(
+        EmbedContentResponse.Embedding.self, forKey: .embedding)
+      self.usageMetadata = try container.decodeIfPresent(UsageMetadata.self, forKey: .usageMetadata)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .truncated) {
+        self.truncated = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.embedding, forKey: .embedding)
+      try container.encodeIfPresent(self.usageMetadata, forKey: .usageMetadata)
+      try container.encode(self.truncated, forKey: .truncated)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A list of floats representing an embedding.
     public struct Embedding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Embedding vector values.
       public var values: [Swift.Float] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Embedding`.
       public init() {}
@@ -71,6 +116,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let values = CodingKeys(stringValue: "values")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "values"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .values) {
+          self.values = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.values, forKey: .values)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

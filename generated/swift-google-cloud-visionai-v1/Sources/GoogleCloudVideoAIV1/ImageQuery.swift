@@ -23,6 +23,8 @@ public struct ImageQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var image: OneOf_Image? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageQuery`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct ImageQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inputImage = "inputImage"
-    case asset = "asset"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputImage = CodingKeys(stringValue: "inputImage")
+    static let asset = CodingKeys(stringValue: "asset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputImage",
+      "asset",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +76,10 @@ public struct ImageQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try imageCheckAndSet(.asset(asset))
     }
     self.image = image
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,6 +92,9 @@ public struct ImageQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .asset(let value):
         try container.encode(value, forKey: .asset)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

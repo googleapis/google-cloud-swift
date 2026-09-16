@@ -25,6 +25,8 @@
     /// Action details.
     public var action: OneOf_Action? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Action`.
     public init() {}
 
@@ -41,14 +43,29 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case userUtterance = "userUtterance"
-      case agentUtterance = "agentUtterance"
-      case toolUse = "toolUse"
-      case playbookInvocation = "playbookInvocation"
-      case flowInvocation = "flowInvocation"
-      case playbookTransition = "playbookTransition"
-      case flowTransition = "flowTransition"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let userUtterance = CodingKeys(stringValue: "userUtterance")
+      static let agentUtterance = CodingKeys(stringValue: "agentUtterance")
+      static let toolUse = CodingKeys(stringValue: "toolUse")
+      static let playbookInvocation = CodingKeys(stringValue: "playbookInvocation")
+      static let flowInvocation = CodingKeys(stringValue: "flowInvocation")
+      static let playbookTransition = CodingKeys(stringValue: "playbookTransition")
+      static let flowTransition = CodingKeys(stringValue: "flowTransition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "userUtterance",
+        "agentUtterance",
+        "toolUse",
+        "playbookInvocation",
+        "flowInvocation",
+        "playbookTransition",
+        "flowTransition",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -98,6 +115,10 @@
         try actionCheckAndSet(.flowTransition(flowTransition))
       }
       self.action = action
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,6 +141,9 @@
         case .flowTransition(let value):
           try container.encode(value, forKey: .flowTransition)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

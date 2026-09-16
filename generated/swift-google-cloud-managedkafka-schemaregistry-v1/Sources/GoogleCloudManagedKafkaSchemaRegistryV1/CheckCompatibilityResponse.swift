@@ -28,6 +28,8 @@ public struct CheckCompatibilityResponse: Codable, Equatable, GoogleCloudWKT._An
   /// Failure reasons if verbose = true.
   public var messages: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckCompatibilityResponse`.
   public init() {}
 
@@ -44,21 +46,42 @@ public struct CheckCompatibilityResponse: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case isCompatible = "is_compatible"
-    case messages = "messages"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let isCompatible = CodingKeys(stringValue: "is_compatible")
+    static let messages = CodingKeys(stringValue: "messages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "is_compatible",
+      "messages",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.isCompatible = try container.decode(Swift.Bool.self, forKey: .isCompatible)
-    self.messages = try container.decode([Swift.String].self, forKey: .messages)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCompatible) {
+      self.isCompatible = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .messages) {
+      self.messages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.isCompatible, forKey: .isCompatible)
     try container.encode(self.messages, forKey: .messages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

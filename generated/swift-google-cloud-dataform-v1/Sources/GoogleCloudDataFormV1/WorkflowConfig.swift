@@ -62,6 +62,8 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// format of this field is a JSON string.
   public var internalMetadata: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkflowConfig`.
   public init() {}
 
@@ -78,6 +80,92 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let releaseConfig = CodingKeys(stringValue: "releaseConfig")
+    static let invocationConfig = CodingKeys(stringValue: "invocationConfig")
+    static let cronSchedule = CodingKeys(stringValue: "cronSchedule")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let recentScheduledExecutionRecords = CodingKeys(
+      stringValue: "recentScheduledExecutionRecords")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "releaseConfig",
+      "invocationConfig",
+      "cronSchedule",
+      "timeZone",
+      "recentScheduledExecutionRecords",
+      "disabled",
+      "createTime",
+      "updateTime",
+      "internalMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseConfig) {
+      self.releaseConfig = value
+    }
+    self.invocationConfig = try container.decodeIfPresent(
+      InvocationConfig.self, forKey: .invocationConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cronSchedule) {
+      self.cronSchedule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+      self.timeZone = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WorkflowConfig.ScheduledExecutionRecord].self, forKey: .recentScheduledExecutionRecords)
+    {
+      self.recentScheduledExecutionRecords = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.internalMetadata = try container.decodeIfPresent(
+      Swift.String.self, forKey: .internalMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.releaseConfig, forKey: .releaseConfig)
+    try container.encodeIfPresent(self.invocationConfig, forKey: .invocationConfig)
+    try container.encode(self.cronSchedule, forKey: .cronSchedule)
+    try container.encode(self.timeZone, forKey: .timeZone)
+    try container.encode(
+      self.recentScheduledExecutionRecords, forKey: .recentScheduledExecutionRecords)
+    try container.encode(self.disabled, forKey: .disabled)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A record of an attempt to create a workflow invocation for this workflow
   /// config.
   public struct ScheduledExecutionRecord: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -88,6 +176,8 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The result of this execution attempt.
     public var result: OneOf_Result? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ScheduledExecutionRecord`.
     public init() {}
@@ -105,10 +195,21 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case workflowInvocation = "workflowInvocation"
-      case errorStatus = "errorStatus"
-      case executionTime = "executionTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let workflowInvocation = CodingKeys(stringValue: "workflowInvocation")
+      static let errorStatus = CodingKeys(stringValue: "errorStatus")
+      static let executionTime = CodingKeys(stringValue: "executionTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "workflowInvocation",
+        "errorStatus",
+        "executionTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -137,11 +238,15 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try resultCheckAndSet(.errorStatus(errorStatus))
       }
       self.result = result
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.executionTime, forKey: .executionTime)
+      try container.encodeIfPresent(self.executionTime, forKey: .executionTime)
 
       if let choice = self.result {
         switch choice {
@@ -150,6 +255,9 @@ public struct WorkflowConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .errorStatus(let value):
           try container.encode(value, forKey: .errorStatus)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -121,6 +121,8 @@ public struct App: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Misconfigurations or warnings in the app.
   public var validationErrors: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `App`.
   public init() {}
 
@@ -137,6 +139,197 @@ public struct App: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let pinned = CodingKeys(stringValue: "pinned")
+    static let rootAgent = CodingKeys(stringValue: "rootAgent")
+    static let languageSettings = CodingKeys(stringValue: "languageSettings")
+    static let timeZoneSettings = CodingKeys(stringValue: "timeZoneSettings")
+    static let audioProcessingConfig = CodingKeys(stringValue: "audioProcessingConfig")
+    static let loggingSettings = CodingKeys(stringValue: "loggingSettings")
+    static let errorHandlingSettings = CodingKeys(stringValue: "errorHandlingSettings")
+    static let modelSettings = CodingKeys(stringValue: "modelSettings")
+    static let toolExecutionMode = CodingKeys(stringValue: "toolExecutionMode")
+    static let evaluationMetricsThresholds = CodingKeys(stringValue: "evaluationMetricsThresholds")
+    static let variableDeclarations = CodingKeys(stringValue: "variableDeclarations")
+    static let predefinedVariableDeclarations = CodingKeys(
+      stringValue: "predefinedVariableDeclarations")
+    static let globalInstruction = CodingKeys(stringValue: "globalInstruction")
+    static let guardrails = CodingKeys(stringValue: "guardrails")
+    static let dataStoreSettings = CodingKeys(stringValue: "dataStoreSettings")
+    static let defaultChannelProfile = CodingKeys(stringValue: "defaultChannelProfile")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let deploymentCount = CodingKeys(stringValue: "deploymentCount")
+    static let clientCertificateSettings = CodingKeys(stringValue: "clientCertificateSettings")
+    static let vpcScSettings = CodingKeys(stringValue: "vpcScSettings")
+    static let locked = CodingKeys(stringValue: "locked")
+    static let validationErrors = CodingKeys(stringValue: "validationErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "pinned",
+      "rootAgent",
+      "languageSettings",
+      "timeZoneSettings",
+      "audioProcessingConfig",
+      "loggingSettings",
+      "errorHandlingSettings",
+      "modelSettings",
+      "toolExecutionMode",
+      "evaluationMetricsThresholds",
+      "variableDeclarations",
+      "predefinedVariableDeclarations",
+      "globalInstruction",
+      "guardrails",
+      "dataStoreSettings",
+      "defaultChannelProfile",
+      "metadata",
+      "createTime",
+      "updateTime",
+      "etag",
+      "deploymentCount",
+      "clientCertificateSettings",
+      "vpcScSettings",
+      "locked",
+      "validationErrors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .pinned) {
+      self.pinned = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootAgent) {
+      self.rootAgent = value
+    }
+    self.languageSettings = try container.decodeIfPresent(
+      LanguageSettings.self, forKey: .languageSettings)
+    self.timeZoneSettings = try container.decodeIfPresent(
+      TimeZoneSettings.self, forKey: .timeZoneSettings)
+    self.audioProcessingConfig = try container.decodeIfPresent(
+      AudioProcessingConfig.self, forKey: .audioProcessingConfig)
+    self.loggingSettings = try container.decodeIfPresent(
+      LoggingSettings.self, forKey: .loggingSettings)
+    self.errorHandlingSettings = try container.decodeIfPresent(
+      ErrorHandlingSettings.self, forKey: .errorHandlingSettings)
+    self.modelSettings = try container.decodeIfPresent(ModelSettings.self, forKey: .modelSettings)
+    if let value = try container.decodeIfPresent(
+      App.ToolExecutionMode.self, forKey: .toolExecutionMode)
+    {
+      self.toolExecutionMode = value
+    }
+    self.evaluationMetricsThresholds = try container.decodeIfPresent(
+      EvaluationMetricsThresholds.self, forKey: .evaluationMetricsThresholds)
+    if let value = try container.decodeIfPresent(
+      [App.VariableDeclaration].self, forKey: .variableDeclarations)
+    {
+      self.variableDeclarations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [App.VariableDeclaration].self, forKey: .predefinedVariableDeclarations)
+    {
+      self.predefinedVariableDeclarations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .globalInstruction) {
+      self.globalInstruction = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .guardrails) {
+      self.guardrails = value
+    }
+    self.dataStoreSettings = try container.decodeIfPresent(
+      DataStoreSettings.self, forKey: .dataStoreSettings)
+    self.defaultChannelProfile = try container.decodeIfPresent(
+      ChannelProfile.self, forKey: .defaultChannelProfile)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .deploymentCount) {
+      self.deploymentCount = value
+    }
+    self.clientCertificateSettings = try container.decodeIfPresent(
+      ClientCertificateSettings.self, forKey: .clientCertificateSettings)
+    self.vpcScSettings = try container.decodeIfPresent(VpcScSettings.self, forKey: .vpcScSettings)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .locked) {
+      self.locked = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validationErrors) {
+      self.validationErrors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.pinned, forKey: .pinned)
+    try container.encode(self.rootAgent, forKey: .rootAgent)
+    try container.encodeIfPresent(self.languageSettings, forKey: .languageSettings)
+    try container.encodeIfPresent(self.timeZoneSettings, forKey: .timeZoneSettings)
+    try container.encodeIfPresent(self.audioProcessingConfig, forKey: .audioProcessingConfig)
+    try container.encodeIfPresent(self.loggingSettings, forKey: .loggingSettings)
+    try container.encodeIfPresent(self.errorHandlingSettings, forKey: .errorHandlingSettings)
+    try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
+    try container.encode(self.toolExecutionMode, forKey: .toolExecutionMode)
+    try container.encodeIfPresent(
+      self.evaluationMetricsThresholds, forKey: .evaluationMetricsThresholds)
+    try container.encode(self.variableDeclarations, forKey: .variableDeclarations)
+    try container.encode(
+      self.predefinedVariableDeclarations, forKey: .predefinedVariableDeclarations)
+    try container.encode(self.globalInstruction, forKey: .globalInstruction)
+    try container.encode(self.guardrails, forKey: .guardrails)
+    try container.encodeIfPresent(self.dataStoreSettings, forKey: .dataStoreSettings)
+    try container.encodeIfPresent(self.defaultChannelProfile, forKey: .defaultChannelProfile)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.deploymentCount, forKey: .deploymentCount)
+    try container.encodeIfPresent(
+      self.clientCertificateSettings, forKey: .clientCertificateSettings)
+    try container.encodeIfPresent(self.vpcScSettings, forKey: .vpcScSettings)
+    try container.encode(self.locked, forKey: .locked)
+    try container.encode(self.validationErrors, forKey: .validationErrors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Defines the structure and metadata for a variable.
   public struct VariableDeclaration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -150,6 +343,8 @@ public struct App: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Required. The schema of the variable.
     public var schema: Schema? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `VariableDeclaration`.
     public init() {}
@@ -165,6 +360,48 @@ public struct App: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let schema = CodingKeys(stringValue: "schema")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "schema",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.schema = try container.decodeIfPresent(Schema.self, forKey: .schema)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.schema, forKey: .schema)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

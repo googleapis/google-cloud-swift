@@ -25,6 +25,8 @@ public struct RequestBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The means to compute a ratio of `good_service` to `total_service`.
   public var method: OneOf_Method? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RequestBasedSli`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct RequestBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case goodTotalRatio = "goodTotalRatio"
-    case distributionCut = "distributionCut"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let goodTotalRatio = CodingKeys(stringValue: "goodTotalRatio")
+    static let distributionCut = CodingKeys(stringValue: "distributionCut")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "goodTotalRatio",
+      "distributionCut",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@ public struct RequestBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try methodCheckAndSet(.distributionCut(distributionCut))
     }
     self.method = method
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@ public struct RequestBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .distributionCut(let value):
         try container.encode(value, forKey: .distributionCut)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

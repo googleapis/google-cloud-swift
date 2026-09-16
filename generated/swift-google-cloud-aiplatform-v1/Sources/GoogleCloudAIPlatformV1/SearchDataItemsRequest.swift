@@ -104,6 +104,8 @@
 
     public var order: OneOf_Order? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchDataItemsRequest`.
     public init() {}
 
@@ -120,36 +122,78 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case orderByDataItem = "orderByDataItem"
-      case orderByAnnotation = "orderByAnnotation"
-      case dataset = "dataset"
-      case savedQuery = "savedQuery"
-      case dataLabelingJob = "dataLabelingJob"
-      case dataItemFilter = "dataItemFilter"
-      case annotationsFilter = "annotationsFilter"
-      case annotationFilters = "annotationFilters"
-      case fieldMask = "fieldMask"
-      case annotationsLimit = "annotationsLimit"
-      case pageSize = "pageSize"
-      case orderBy = "orderBy"
-      case pageToken = "pageToken"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let orderByDataItem = CodingKeys(stringValue: "orderByDataItem")
+      static let orderByAnnotation = CodingKeys(stringValue: "orderByAnnotation")
+      static let dataset = CodingKeys(stringValue: "dataset")
+      static let savedQuery = CodingKeys(stringValue: "savedQuery")
+      static let dataLabelingJob = CodingKeys(stringValue: "dataLabelingJob")
+      static let dataItemFilter = CodingKeys(stringValue: "dataItemFilter")
+      static let annotationsFilter = CodingKeys(stringValue: "annotationsFilter")
+      static let annotationFilters = CodingKeys(stringValue: "annotationFilters")
+      static let fieldMask = CodingKeys(stringValue: "fieldMask")
+      static let annotationsLimit = CodingKeys(stringValue: "annotationsLimit")
+      static let pageSize = CodingKeys(stringValue: "pageSize")
+      static let orderBy = CodingKeys(stringValue: "orderBy")
+      static let pageToken = CodingKeys(stringValue: "pageToken")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "orderByDataItem",
+        "orderByAnnotation",
+        "dataset",
+        "savedQuery",
+        "dataLabelingJob",
+        "dataItemFilter",
+        "annotationsFilter",
+        "annotationFilters",
+        "fieldMask",
+        "annotationsLimit",
+        "pageSize",
+        "orderBy",
+        "pageToken",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.dataset = try container.decode(Swift.String.self, forKey: .dataset)
-      self.savedQuery = try container.decode(Swift.String.self, forKey: .savedQuery)
-      self.dataLabelingJob = try container.decode(Swift.String.self, forKey: .dataLabelingJob)
-      self.dataItemFilter = try container.decode(Swift.String.self, forKey: .dataItemFilter)
-      self.annotationsFilter = try container.decode(Swift.String.self, forKey: .annotationsFilter)
-      self.annotationFilters = try container.decode([Swift.String].self, forKey: .annotationFilters)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+        self.dataset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savedQuery) {
+        self.savedQuery = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataLabelingJob) {
+        self.dataLabelingJob = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataItemFilter) {
+        self.dataItemFilter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationsFilter) {
+        self.annotationsFilter = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .annotationFilters)
+      {
+        self.annotationFilters = value
+      }
       self.fieldMask = try container.decodeIfPresent(
         GoogleCloudWKT.FieldMask.self, forKey: .fieldMask)
-      self.annotationsLimit = try container.decode(Swift.Int32.self, forKey: .annotationsLimit)
-      self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-      self.orderBy = try container.decode(Swift.String.self, forKey: .orderBy)
-      self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .annotationsLimit) {
+        self.annotationsLimit = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+        self.pageSize = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+        self.orderBy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+        self.pageToken = value
+      }
 
       var order: OneOf_Order? = nil
       let orderCheckAndSet = {
@@ -172,6 +216,10 @@
         try orderCheckAndSet(.orderByAnnotation(orderByAnnotation))
       }
       self.order = order
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -182,7 +230,7 @@
       try container.encode(self.dataItemFilter, forKey: .dataItemFilter)
       try container.encode(self.annotationsFilter, forKey: .annotationsFilter)
       try container.encode(self.annotationFilters, forKey: .annotationFilters)
-      try container.encode(self.fieldMask, forKey: .fieldMask)
+      try container.encodeIfPresent(self.fieldMask, forKey: .fieldMask)
       try container.encode(self.annotationsLimit, forKey: .annotationsLimit)
       try container.encode(self.pageSize, forKey: .pageSize)
       try container.encode(self.orderBy, forKey: .orderBy)
@@ -195,6 +243,9 @@
         case .orderByAnnotation(let value):
           try container.encode(value, forKey: .orderByAnnotation)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -211,6 +262,8 @@
       /// specify saved_query.
       public var orderBy: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OrderByAnnotation`.
       public init() {}
 
@@ -225,6 +278,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let savedQuery = CodingKeys(stringValue: "savedQuery")
+        static let orderBy = CodingKeys(stringValue: "orderBy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "savedQuery",
+          "orderBy",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savedQuery) {
+          self.savedQuery = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+          self.orderBy = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.savedQuery, forKey: .savedQuery)
+        try container.encode(self.orderBy, forKey: .orderBy)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -100,6 +100,8 @@ public struct AwsNodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Update settings control the speed and disruption of the update.
   public var updateSettings: UpdateSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsNodePool`.
   public init() {}
 
@@ -114,6 +116,126 @@ public struct AwsNodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let version = CodingKeys(stringValue: "version")
+    static let config = CodingKeys(stringValue: "config")
+    static let autoscaling = CodingKeys(stringValue: "autoscaling")
+    static let subnetId = CodingKeys(stringValue: "subnetId")
+    static let state = CodingKeys(stringValue: "state")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let maxPodsConstraint = CodingKeys(stringValue: "maxPodsConstraint")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let management = CodingKeys(stringValue: "management")
+    static let kubeletConfig = CodingKeys(stringValue: "kubeletConfig")
+    static let updateSettings = CodingKeys(stringValue: "updateSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "version",
+      "config",
+      "autoscaling",
+      "subnetId",
+      "state",
+      "uid",
+      "reconciling",
+      "createTime",
+      "updateTime",
+      "etag",
+      "annotations",
+      "maxPodsConstraint",
+      "errors",
+      "management",
+      "kubeletConfig",
+      "updateSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    self.config = try container.decodeIfPresent(AwsNodeConfig.self, forKey: .config)
+    self.autoscaling = try container.decodeIfPresent(
+      AwsNodePoolAutoscaling.self, forKey: .autoscaling)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetId) {
+      self.subnetId = value
+    }
+    if let value = try container.decodeIfPresent(AwsNodePool.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.maxPodsConstraint = try container.decodeIfPresent(
+      MaxPodsConstraint.self, forKey: .maxPodsConstraint)
+    if let value = try container.decodeIfPresent([AwsNodePoolError].self, forKey: .errors) {
+      self.errors = value
+    }
+    self.management = try container.decodeIfPresent(AwsNodeManagement.self, forKey: .management)
+    self.kubeletConfig = try container.decodeIfPresent(
+      NodeKubeletConfig.self, forKey: .kubeletConfig)
+    self.updateSettings = try container.decodeIfPresent(
+      UpdateSettings.self, forKey: .updateSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.autoscaling, forKey: .autoscaling)
+    try container.encode(self.subnetId, forKey: .subnetId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.maxPodsConstraint, forKey: .maxPodsConstraint)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encodeIfPresent(self.management, forKey: .management)
+    try container.encodeIfPresent(self.kubeletConfig, forKey: .kubeletConfig)
+    try container.encodeIfPresent(self.updateSettings, forKey: .updateSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The lifecycle state of the node pool.

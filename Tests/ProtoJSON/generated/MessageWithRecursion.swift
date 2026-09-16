@@ -33,6 +33,8 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// A map field, messages cannot be keys.
   public var map: [Swift.String: MessageWithRecursion.Level0] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageWithRecursion`.
   public init() {}
 
@@ -49,11 +51,23 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case singular = "singular"
-    case `optional` = "optional"
-    case repeated = "repeated"
-    case map = "map"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singular = CodingKeys(stringValue: "singular")
+    static let `optional` = CodingKeys(stringValue: "optional")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let map = CodingKeys(stringValue: "map")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singular",
+      "optional",
+      "repeated",
+      "map",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -62,16 +76,31 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
       GoogleCloudWKT.Recursive<MessageWithRecursion.Level0>.self, forKey: .singular)
     self.`optional` = try container.decodeIfPresent(
       GoogleCloudWKT.Recursive<MessageWithRecursion.Level0>.self, forKey: .`optional`)
-    self.repeated = try container.decode([MessageWithRecursion.Level0].self, forKey: .repeated)
-    self.map = try container.decode([Swift.String: MessageWithRecursion.Level0].self, forKey: .map)
+    if let value = try container.decodeIfPresent(
+      [MessageWithRecursion.Level0].self, forKey: .repeated)
+    {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: MessageWithRecursion.Level0].self, forKey: .map)
+    {
+      self.map = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.singular, forKey: .singular)
-    try container.encode(self.`optional`, forKey: .`optional`)
+    try container.encodeIfPresent(self.singular, forKey: .singular)
+    try container.encodeIfPresent(self.`optional`, forKey: .`optional`)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.map, forKey: .map)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public struct Level0: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -80,6 +109,8 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public var level1: GoogleCloudWKT.Recursive<MessageWithRecursion.Level1>? = nil
 
     public var side: MessageWithRecursion.NonRecursive? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Level0`.
     public init() {}
@@ -95,6 +126,42 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let level1 = CodingKeys(stringValue: "level1")
+      static let side = CodingKeys(stringValue: "side")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "level1",
+        "side",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.level1 = try container.decodeIfPresent(
+        GoogleCloudWKT.Recursive<MessageWithRecursion.Level1>.self, forKey: .level1)
+      self.side = try container.decodeIfPresent(
+        MessageWithRecursion.NonRecursive.self, forKey: .side)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.level1, forKey: .level1)
+      try container.encodeIfPresent(self.side, forKey: .side)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -113,6 +180,8 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
   {
     public var recurse: GoogleCloudWKT.Recursive<MessageWithRecursion>? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Level1`.
     public init() {}
 
@@ -127,6 +196,37 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let recurse = CodingKeys(stringValue: "recurse")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "recurse"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.recurse = try container.decodeIfPresent(
+        GoogleCloudWKT.Recursive<MessageWithRecursion>.self, forKey: .recurse)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.recurse, forKey: .recurse)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -145,6 +245,8 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
   {
     public var value: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NonRecursive`.
     public init() {}
 
@@ -159,6 +261,38 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "value"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

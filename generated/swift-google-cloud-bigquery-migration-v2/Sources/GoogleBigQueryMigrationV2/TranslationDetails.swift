@@ -45,6 +45,8 @@ public struct TranslationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The configuration for the suggestion if requested as a target type.
   public var suggestionConfig: SuggestionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslationDetails`.
   public init() {}
 
@@ -59,6 +61,69 @@ public struct TranslationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceTargetMapping = CodingKeys(stringValue: "sourceTargetMapping")
+    static let targetBaseUri = CodingKeys(stringValue: "targetBaseUri")
+    static let sourceEnvironment = CodingKeys(stringValue: "sourceEnvironment")
+    static let targetReturnLiterals = CodingKeys(stringValue: "targetReturnLiterals")
+    static let targetTypes = CodingKeys(stringValue: "targetTypes")
+    static let suggestionConfig = CodingKeys(stringValue: "suggestionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceTargetMapping",
+      "targetBaseUri",
+      "sourceEnvironment",
+      "targetReturnLiterals",
+      "targetTypes",
+      "suggestionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SourceTargetMapping].self, forKey: .sourceTargetMapping)
+    {
+      self.sourceTargetMapping = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetBaseUri) {
+      self.targetBaseUri = value
+    }
+    self.sourceEnvironment = try container.decodeIfPresent(
+      SourceEnvironment.self, forKey: .sourceEnvironment)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetReturnLiterals)
+    {
+      self.targetReturnLiterals = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetTypes) {
+      self.targetTypes = value
+    }
+    self.suggestionConfig = try container.decodeIfPresent(
+      SuggestionConfig.self, forKey: .suggestionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceTargetMapping, forKey: .sourceTargetMapping)
+    try container.encode(self.targetBaseUri, forKey: .targetBaseUri)
+    try container.encodeIfPresent(self.sourceEnvironment, forKey: .sourceEnvironment)
+    try container.encode(self.targetReturnLiterals, forKey: .targetReturnLiterals)
+    try container.encode(self.targetTypes, forKey: .targetTypes)
+    try container.encodeIfPresent(self.suggestionConfig, forKey: .suggestionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

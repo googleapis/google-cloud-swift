@@ -30,6 +30,8 @@ public struct EduData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Web address for the edu customer's institution.
   public var website: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EduData`.
   public init() {}
 
@@ -44,6 +46,52 @@ public struct EduData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instituteType = CodingKeys(stringValue: "instituteType")
+    static let instituteSize = CodingKeys(stringValue: "instituteSize")
+    static let website = CodingKeys(stringValue: "website")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instituteType",
+      "instituteSize",
+      "website",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(EduData.InstituteType.self, forKey: .instituteType)
+    {
+      self.instituteType = value
+    }
+    if let value = try container.decodeIfPresent(EduData.InstituteSize.self, forKey: .instituteSize)
+    {
+      self.instituteSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .website) {
+      self.website = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instituteType, forKey: .instituteType)
+    try container.encode(self.instituteSize, forKey: .instituteSize)
+    try container.encode(self.website, forKey: .website)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum to specify the institute type.

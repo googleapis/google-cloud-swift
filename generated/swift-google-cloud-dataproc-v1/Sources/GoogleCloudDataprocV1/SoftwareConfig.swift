@@ -53,6 +53,8 @@ public struct SoftwareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The set of components to activate on the cluster.
   public var optionalComponents: [Component] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SoftwareConfig`.
   public init() {}
 
@@ -67,6 +69,52 @@ public struct SoftwareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let imageVersion = CodingKeys(stringValue: "imageVersion")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let optionalComponents = CodingKeys(stringValue: "optionalComponents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "imageVersion",
+      "properties",
+      "optionalComponents",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageVersion) {
+      self.imageVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    if let value = try container.decodeIfPresent([Component].self, forKey: .optionalComponents) {
+      self.optionalComponents = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.imageVersion, forKey: .imageVersion)
+    try container.encode(self.properties, forKey: .properties)
+    try container.encode(self.optionalComponents, forKey: .optionalComponents)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

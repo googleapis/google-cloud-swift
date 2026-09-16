@@ -181,6 +181,8 @@ public struct AppEngineHttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.cloud.tasks.v2.HttpMethod]: <doc:HttpMethod>
   public var body: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppEngineHttpRequest`.
   public init() {}
 
@@ -195,6 +197,63 @@ public struct AppEngineHttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let httpMethod = CodingKeys(stringValue: "httpMethod")
+    static let appEngineRouting = CodingKeys(stringValue: "appEngineRouting")
+    static let relativeUri = CodingKeys(stringValue: "relativeUri")
+    static let headers = CodingKeys(stringValue: "headers")
+    static let body = CodingKeys(stringValue: "body")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "httpMethod",
+      "appEngineRouting",
+      "relativeUri",
+      "headers",
+      "body",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(HttpMethod.self, forKey: .httpMethod) {
+      self.httpMethod = value
+    }
+    self.appEngineRouting = try container.decodeIfPresent(
+      AppEngineRouting.self, forKey: .appEngineRouting)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .relativeUri) {
+      self.relativeUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .headers)
+    {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .body) {
+      self.body = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.httpMethod, forKey: .httpMethod)
+    try container.encodeIfPresent(self.appEngineRouting, forKey: .appEngineRouting)
+    try container.encode(self.relativeUri, forKey: .relativeUri)
+    try container.encode(self.headers, forKey: .headers)
+    try container.encode(self.body, forKey: .body)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

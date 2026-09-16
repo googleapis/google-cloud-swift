@@ -32,6 +32,8 @@
     /// [google.cloud.aiplatform.v1.ModelSourceInfo.source_type]: <doc:ModelSourceInfo/sourceType>
     public var copy: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelSourceInfo`.
     public init() {}
 
@@ -46,6 +48,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceType = CodingKeys(stringValue: "sourceType")
+      static let copy = CodingKeys(stringValue: "copy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceType",
+        "copy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ModelSourceInfo.ModelSourceType.self, forKey: .sourceType)
+      {
+        self.sourceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .copy) {
+        self.copy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceType, forKey: .sourceType)
+      try container.encode(self.copy, forKey: .copy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Source of the model.

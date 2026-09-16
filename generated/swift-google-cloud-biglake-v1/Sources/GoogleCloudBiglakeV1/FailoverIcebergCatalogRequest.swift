@@ -44,6 +44,8 @@ public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWKT.
   /// returned (also called "hard failover").
   public var conditionalFailoverReplicationTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FailoverIcebergCatalogRequest`.
   public init() {}
 
@@ -58,6 +60,57 @@ public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let primaryReplica = CodingKeys(stringValue: "primaryReplica")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let conditionalFailoverReplicationTime = CodingKeys(
+      stringValue: "conditionalFailoverReplicationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "primaryReplica",
+      "validateOnly",
+      "conditionalFailoverReplicationTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryReplica) {
+      self.primaryReplica = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    self.conditionalFailoverReplicationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .conditionalFailoverReplicationTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.primaryReplica, forKey: .primaryReplica)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encodeIfPresent(
+      self.conditionalFailoverReplicationTime, forKey: .conditionalFailoverReplicationTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

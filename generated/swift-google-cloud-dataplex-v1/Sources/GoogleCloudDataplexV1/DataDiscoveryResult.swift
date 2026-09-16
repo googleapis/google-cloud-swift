@@ -27,6 +27,8 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Output only. Describes result statistics of a data scan discovery job.
   public var scanStatistics: DataDiscoveryResult.ScanStatistics? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataDiscoveryResult`.
   public init() {}
 
@@ -43,6 +45,42 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigqueryPublishing = CodingKeys(stringValue: "bigqueryPublishing")
+    static let scanStatistics = CodingKeys(stringValue: "scanStatistics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigqueryPublishing",
+      "scanStatistics",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.bigqueryPublishing = try container.decodeIfPresent(
+      DataDiscoveryResult.BigQueryPublishing.self, forKey: .bigqueryPublishing)
+    self.scanStatistics = try container.decodeIfPresent(
+      DataDiscoveryResult.ScanStatistics.self, forKey: .scanStatistics)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.bigqueryPublishing, forKey: .bigqueryPublishing)
+    try container.encodeIfPresent(self.scanStatistics, forKey: .scanStatistics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Describes BigQuery publishing configurations.
   public struct BigQueryPublishing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +90,8 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
     /// Output only. The location of the BigQuery publishing dataset.
     public var location: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BigQueryPublishing`.
     public init() {}
@@ -67,6 +107,44 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataset = CodingKeys(stringValue: "dataset")
+      static let location = CodingKeys(stringValue: "location")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataset",
+        "location",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+        self.dataset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataset, forKey: .dataset)
+      try container.encode(self.location, forKey: .location)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -111,6 +189,8 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The number of filesets updated.
     public var filesetsUpdated: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ScanStatistics`.
     public init() {}
 
@@ -125,6 +205,86 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scannedFileCount = CodingKeys(stringValue: "scannedFileCount")
+      static let dataProcessedBytes = CodingKeys(stringValue: "dataProcessedBytes")
+      static let filesExcluded = CodingKeys(stringValue: "filesExcluded")
+      static let tablesCreated = CodingKeys(stringValue: "tablesCreated")
+      static let tablesDeleted = CodingKeys(stringValue: "tablesDeleted")
+      static let tablesUpdated = CodingKeys(stringValue: "tablesUpdated")
+      static let filesetsCreated = CodingKeys(stringValue: "filesetsCreated")
+      static let filesetsDeleted = CodingKeys(stringValue: "filesetsDeleted")
+      static let filesetsUpdated = CodingKeys(stringValue: "filesetsUpdated")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scannedFileCount",
+        "dataProcessedBytes",
+        "filesExcluded",
+        "tablesCreated",
+        "tablesDeleted",
+        "tablesUpdated",
+        "filesetsCreated",
+        "filesetsDeleted",
+        "filesetsUpdated",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scannedFileCount) {
+        self.scannedFileCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataProcessedBytes) {
+        self.dataProcessedBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .filesExcluded) {
+        self.filesExcluded = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .tablesCreated) {
+        self.tablesCreated = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .tablesDeleted) {
+        self.tablesDeleted = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .tablesUpdated) {
+        self.tablesUpdated = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .filesetsCreated) {
+        self.filesetsCreated = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .filesetsDeleted) {
+        self.filesetsDeleted = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .filesetsUpdated) {
+        self.filesetsUpdated = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.scannedFileCount, forKey: .scannedFileCount)
+      try container.encode(self.dataProcessedBytes, forKey: .dataProcessedBytes)
+      try container.encode(self.filesExcluded, forKey: .filesExcluded)
+      try container.encode(self.tablesCreated, forKey: .tablesCreated)
+      try container.encode(self.tablesDeleted, forKey: .tablesDeleted)
+      try container.encode(self.tablesUpdated, forKey: .tablesUpdated)
+      try container.encode(self.filesetsCreated, forKey: .filesetsCreated)
+      try container.encode(self.filesetsDeleted, forKey: .filesetsDeleted)
+      try container.encode(self.filesetsUpdated, forKey: .filesetsUpdated)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

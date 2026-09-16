@@ -118,6 +118,8 @@
     /// The IPs in these lists will be matched against traffic source.
     public var srcThreatIntelligences: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FirewallPolicyRuleMatcher`.
     public init() {}
 
@@ -132,6 +134,139 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let destAddressGroups = CodingKeys(stringValue: "destAddressGroups")
+      static let destFqdns = CodingKeys(stringValue: "destFqdns")
+      static let destIpRanges = CodingKeys(stringValue: "destIpRanges")
+      static let destNetworkContext = CodingKeys(stringValue: "destNetworkContext")
+      static let destNetworkType = CodingKeys(stringValue: "destNetworkType")
+      static let destRegionCodes = CodingKeys(stringValue: "destRegionCodes")
+      static let destThreatIntelligences = CodingKeys(stringValue: "destThreatIntelligences")
+      static let layer4Configs = CodingKeys(stringValue: "layer4Configs")
+      static let srcAddressGroups = CodingKeys(stringValue: "srcAddressGroups")
+      static let srcFqdns = CodingKeys(stringValue: "srcFqdns")
+      static let srcIpRanges = CodingKeys(stringValue: "srcIpRanges")
+      static let srcNetworkContext = CodingKeys(stringValue: "srcNetworkContext")
+      static let srcNetworkType = CodingKeys(stringValue: "srcNetworkType")
+      static let srcNetworks = CodingKeys(stringValue: "srcNetworks")
+      static let srcRegionCodes = CodingKeys(stringValue: "srcRegionCodes")
+      static let srcSecureTags = CodingKeys(stringValue: "srcSecureTags")
+      static let srcThreatIntelligences = CodingKeys(stringValue: "srcThreatIntelligences")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "destAddressGroups",
+        "destFqdns",
+        "destIpRanges",
+        "destNetworkContext",
+        "destNetworkType",
+        "destRegionCodes",
+        "destThreatIntelligences",
+        "layer4Configs",
+        "srcAddressGroups",
+        "srcFqdns",
+        "srcIpRanges",
+        "srcNetworkContext",
+        "srcNetworkType",
+        "srcNetworks",
+        "srcRegionCodes",
+        "srcSecureTags",
+        "srcThreatIntelligences",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destAddressGroups)
+      {
+        self.destAddressGroups = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destFqdns) {
+        self.destFqdns = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destIpRanges) {
+        self.destIpRanges = value
+      }
+      self.destNetworkContext = try container.decodeIfPresent(
+        FirewallPolicyRuleMatcher.DestNetworkContext.self, forKey: .destNetworkContext)
+      self.destNetworkType = try container.decodeIfPresent(
+        FirewallPolicyRuleMatcher.DestNetworkType.self, forKey: .destNetworkType)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destRegionCodes) {
+        self.destRegionCodes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .destThreatIntelligences)
+      {
+        self.destThreatIntelligences = value
+      }
+      if let value = try container.decodeIfPresent(
+        [FirewallPolicyRuleMatcherLayer4Config].self, forKey: .layer4Configs)
+      {
+        self.layer4Configs = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcAddressGroups) {
+        self.srcAddressGroups = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcFqdns) {
+        self.srcFqdns = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcIpRanges) {
+        self.srcIpRanges = value
+      }
+      self.srcNetworkContext = try container.decodeIfPresent(
+        FirewallPolicyRuleMatcher.SrcNetworkContext.self, forKey: .srcNetworkContext)
+      self.srcNetworkType = try container.decodeIfPresent(
+        FirewallPolicyRuleMatcher.SrcNetworkType.self, forKey: .srcNetworkType)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcNetworks) {
+        self.srcNetworks = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcRegionCodes) {
+        self.srcRegionCodes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [FirewallPolicyRuleSecureTag].self, forKey: .srcSecureTags)
+      {
+        self.srcSecureTags = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .srcThreatIntelligences)
+      {
+        self.srcThreatIntelligences = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.destAddressGroups, forKey: .destAddressGroups)
+      try container.encode(self.destFqdns, forKey: .destFqdns)
+      try container.encode(self.destIpRanges, forKey: .destIpRanges)
+      try container.encodeIfPresent(self.destNetworkContext, forKey: .destNetworkContext)
+      try container.encodeIfPresent(self.destNetworkType, forKey: .destNetworkType)
+      try container.encode(self.destRegionCodes, forKey: .destRegionCodes)
+      try container.encode(self.destThreatIntelligences, forKey: .destThreatIntelligences)
+      try container.encode(self.layer4Configs, forKey: .layer4Configs)
+      try container.encode(self.srcAddressGroups, forKey: .srcAddressGroups)
+      try container.encode(self.srcFqdns, forKey: .srcFqdns)
+      try container.encode(self.srcIpRanges, forKey: .srcIpRanges)
+      try container.encodeIfPresent(self.srcNetworkContext, forKey: .srcNetworkContext)
+      try container.encodeIfPresent(self.srcNetworkType, forKey: .srcNetworkType)
+      try container.encode(self.srcNetworks, forKey: .srcNetworks)
+      try container.encode(self.srcRegionCodes, forKey: .srcRegionCodes)
+      try container.encode(self.srcSecureTags, forKey: .srcSecureTags)
+      try container.encode(self.srcThreatIntelligences, forKey: .srcThreatIntelligences)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [destNetworkContext][google.cloud.compute.v1.FirewallPolicyRuleMatcher.destNetworkContext] field.

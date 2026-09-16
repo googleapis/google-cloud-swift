@@ -141,6 +141,8 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
   public var vmBackupStorageType: CloudVmClusterProperties.VmBackupStorageType =
     CloudVmClusterProperties.VmBackupStorageType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudVmClusterProperties`.
   public init() {}
 
@@ -155,6 +157,260 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let licenseType = CodingKeys(stringValue: "licenseType")
+    static let giVersion = CodingKeys(stringValue: "giVersion")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let sshPublicKeys = CodingKeys(stringValue: "sshPublicKeys")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let shape = CodingKeys(stringValue: "shape")
+    static let ocpuCount = CodingKeys(stringValue: "ocpuCount")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let dbNodeStorageSizeGb = CodingKeys(stringValue: "dbNodeStorageSizeGb")
+    static let storageSizeGb = CodingKeys(stringValue: "storageSizeGb")
+    static let dataStorageSizeTb = CodingKeys(stringValue: "dataStorageSizeTb")
+    static let diskRedundancy = CodingKeys(stringValue: "diskRedundancy")
+    static let sparseDiskgroupEnabled = CodingKeys(stringValue: "sparseDiskgroupEnabled")
+    static let localBackupEnabled = CodingKeys(stringValue: "localBackupEnabled")
+    static let hostnamePrefix = CodingKeys(stringValue: "hostnamePrefix")
+    static let diagnosticsDataCollectionOptions = CodingKeys(
+      stringValue: "diagnosticsDataCollectionOptions")
+    static let state = CodingKeys(stringValue: "state")
+    static let scanListenerPortTcp = CodingKeys(stringValue: "scanListenerPortTcp")
+    static let scanListenerPortTcpSsl = CodingKeys(stringValue: "scanListenerPortTcpSsl")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let scanDns = CodingKeys(stringValue: "scanDns")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let cpuCoreCount = CodingKeys(stringValue: "cpuCoreCount")
+    static let systemVersion = CodingKeys(stringValue: "systemVersion")
+    static let scanIpIds = CodingKeys(stringValue: "scanIpIds")
+    static let scanDnsRecordId = CodingKeys(stringValue: "scanDnsRecordId")
+    static let ociUrl = CodingKeys(stringValue: "ociUrl")
+    static let dbServerOcids = CodingKeys(stringValue: "dbServerOcids")
+    static let compartmentId = CodingKeys(stringValue: "compartmentId")
+    static let dnsListenerIp = CodingKeys(stringValue: "dnsListenerIp")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let computeModel = CodingKeys(stringValue: "computeModel")
+    static let storageManagementType = CodingKeys(stringValue: "storageManagementType")
+    static let vmFileSystemStorageType = CodingKeys(stringValue: "vmFileSystemStorageType")
+    static let vmBackupStorageType = CodingKeys(stringValue: "vmBackupStorageType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "licenseType",
+      "giVersion",
+      "timeZone",
+      "sshPublicKeys",
+      "nodeCount",
+      "shape",
+      "ocpuCount",
+      "memorySizeGb",
+      "dbNodeStorageSizeGb",
+      "storageSizeGb",
+      "dataStorageSizeTb",
+      "diskRedundancy",
+      "sparseDiskgroupEnabled",
+      "localBackupEnabled",
+      "hostnamePrefix",
+      "diagnosticsDataCollectionOptions",
+      "state",
+      "scanListenerPortTcp",
+      "scanListenerPortTcpSsl",
+      "domain",
+      "scanDns",
+      "hostname",
+      "cpuCoreCount",
+      "systemVersion",
+      "scanIpIds",
+      "scanDnsRecordId",
+      "ociUrl",
+      "dbServerOcids",
+      "compartmentId",
+      "dnsListenerIp",
+      "clusterName",
+      "computeModel",
+      "storageManagementType",
+      "vmFileSystemStorageType",
+      "vmBackupStorageType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.LicenseType.self, forKey: .licenseType)
+    {
+      self.licenseType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .giVersion) {
+      self.giVersion = value
+    }
+    self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sshPublicKeys) {
+      self.sshPublicKeys = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shape) {
+      self.shape = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .ocpuCount) {
+      self.ocpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dbNodeStorageSizeGb) {
+      self.dbNodeStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .storageSizeGb) {
+      self.storageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataStorageSizeTb) {
+      self.dataStorageSizeTb = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.DiskRedundancy.self, forKey: .diskRedundancy)
+    {
+      self.diskRedundancy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .sparseDiskgroupEnabled) {
+      self.sparseDiskgroupEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .localBackupEnabled) {
+      self.localBackupEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostnamePrefix) {
+      self.hostnamePrefix = value
+    }
+    self.diagnosticsDataCollectionOptions = try container.decodeIfPresent(
+      DataCollectionOptions.self, forKey: .diagnosticsDataCollectionOptions)
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scanListenerPortTcp) {
+      self.scanListenerPortTcp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scanListenerPortTcpSsl)
+    {
+      self.scanListenerPortTcpSsl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scanDns) {
+      self.scanDns = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCoreCount) {
+      self.cpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .systemVersion) {
+      self.systemVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scanIpIds) {
+      self.scanIpIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scanDnsRecordId) {
+      self.scanDnsRecordId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUrl) {
+      self.ociUrl = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dbServerOcids) {
+      self.dbServerOcids = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .compartmentId) {
+      self.compartmentId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dnsListenerIp) {
+      self.dnsListenerIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(ComputeModel.self, forKey: .computeModel) {
+      self.computeModel = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.StorageManagementType.self, forKey: .storageManagementType)
+    {
+      self.storageManagementType = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.VmFileSystemStorageType.self, forKey: .vmFileSystemStorageType)
+    {
+      self.vmFileSystemStorageType = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudVmClusterProperties.VmBackupStorageType.self, forKey: .vmBackupStorageType)
+    {
+      self.vmBackupStorageType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.licenseType, forKey: .licenseType)
+    try container.encode(self.giVersion, forKey: .giVersion)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    try container.encode(self.sshPublicKeys, forKey: .sshPublicKeys)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encode(self.shape, forKey: .shape)
+    try container.encode(self.ocpuCount, forKey: .ocpuCount)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
+    try container.encode(self.storageSizeGb, forKey: .storageSizeGb)
+    try container.encode(self.dataStorageSizeTb, forKey: .dataStorageSizeTb)
+    try container.encode(self.diskRedundancy, forKey: .diskRedundancy)
+    try container.encode(self.sparseDiskgroupEnabled, forKey: .sparseDiskgroupEnabled)
+    try container.encode(self.localBackupEnabled, forKey: .localBackupEnabled)
+    try container.encode(self.hostnamePrefix, forKey: .hostnamePrefix)
+    try container.encodeIfPresent(
+      self.diagnosticsDataCollectionOptions, forKey: .diagnosticsDataCollectionOptions)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.scanListenerPortTcp, forKey: .scanListenerPortTcp)
+    try container.encode(self.scanListenerPortTcpSsl, forKey: .scanListenerPortTcpSsl)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.scanDns, forKey: .scanDns)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
+    try container.encode(self.systemVersion, forKey: .systemVersion)
+    try container.encode(self.scanIpIds, forKey: .scanIpIds)
+    try container.encode(self.scanDnsRecordId, forKey: .scanDnsRecordId)
+    try container.encode(self.ociUrl, forKey: .ociUrl)
+    try container.encode(self.dbServerOcids, forKey: .dbServerOcids)
+    try container.encode(self.compartmentId, forKey: .compartmentId)
+    try container.encode(self.dnsListenerIp, forKey: .dnsListenerIp)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.computeModel, forKey: .computeModel)
+    try container.encode(self.storageManagementType, forKey: .storageManagementType)
+    try container.encode(self.vmFileSystemStorageType, forKey: .vmFileSystemStorageType)
+    try container.encode(self.vmBackupStorageType, forKey: .vmBackupStorageType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Different licenses supported.

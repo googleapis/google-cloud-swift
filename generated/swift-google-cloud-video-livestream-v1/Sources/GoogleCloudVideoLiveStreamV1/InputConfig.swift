@@ -24,6 +24,8 @@ public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Input switch mode. Default mode is `FAILOVER_PREFER_PRIMARY`.
   public var inputSwitchMode: InputConfig.InputSwitchMode = InputConfig.InputSwitchMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InputConfig`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputSwitchMode = CodingKeys(stringValue: "inputSwitchMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputSwitchMode"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      InputConfig.InputSwitchMode.self, forKey: .inputSwitchMode)
+    {
+      self.inputSwitchMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputSwitchMode, forKey: .inputSwitchMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Input switch mode.

@@ -54,6 +54,8 @@ public struct DiagnoseClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// performed.
   public var yarnApplicationIds: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiagnoseClusterRequest`.
   public init() {}
 
@@ -68,6 +70,81 @@ public struct DiagnoseClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let region = CodingKeys(stringValue: "region")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let tarballGcsDir = CodingKeys(stringValue: "tarballGcsDir")
+    static let tarballAccess = CodingKeys(stringValue: "tarballAccess")
+    static let diagnosisInterval = CodingKeys(stringValue: "diagnosisInterval")
+    static let jobs = CodingKeys(stringValue: "jobs")
+    static let yarnApplicationIds = CodingKeys(stringValue: "yarnApplicationIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "region",
+      "clusterName",
+      "tarballGcsDir",
+      "tarballAccess",
+      "diagnosisInterval",
+      "jobs",
+      "yarnApplicationIds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tarballGcsDir) {
+      self.tarballGcsDir = value
+    }
+    if let value = try container.decodeIfPresent(
+      DiagnoseClusterRequest.TarballAccess.self, forKey: .tarballAccess)
+    {
+      self.tarballAccess = value
+    }
+    self.diagnosisInterval = try container.decodeIfPresent(
+      GoogleType.Interval.self, forKey: .diagnosisInterval)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jobs) {
+      self.jobs = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .yarnApplicationIds) {
+      self.yarnApplicationIds = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.tarballGcsDir, forKey: .tarballGcsDir)
+    try container.encode(self.tarballAccess, forKey: .tarballAccess)
+    try container.encodeIfPresent(self.diagnosisInterval, forKey: .diagnosisInterval)
+    try container.encode(self.jobs, forKey: .jobs)
+    try container.encode(self.yarnApplicationIds, forKey: .yarnApplicationIds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines who has access to the diagnostic tarball

@@ -101,6 +101,8 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// technology (the software that serves metastore queries).
   public var metastoreConfig: OneOf_MetastoreConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Service`.
   public init() {}
 
@@ -117,55 +119,111 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hiveMetastoreConfig = "hiveMetastoreConfig"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case network = "network"
-    case endpointUri = "endpointUri"
-    case port = "port"
-    case state = "state"
-    case stateMessage = "stateMessage"
-    case artifactGcsUri = "artifactGcsUri"
-    case tier = "tier"
-    case maintenanceWindow = "maintenanceWindow"
-    case uid = "uid"
-    case metadataManagementActivity = "metadataManagementActivity"
-    case releaseChannel = "releaseChannel"
-    case encryptionConfig = "encryptionConfig"
-    case networkConfig = "networkConfig"
-    case databaseType = "databaseType"
-    case telemetryConfig = "telemetryConfig"
-    case scalingConfig = "scalingConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hiveMetastoreConfig = CodingKeys(stringValue: "hiveMetastoreConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let network = CodingKeys(stringValue: "network")
+    static let endpointUri = CodingKeys(stringValue: "endpointUri")
+    static let port = CodingKeys(stringValue: "port")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let artifactGcsUri = CodingKeys(stringValue: "artifactGcsUri")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let metadataManagementActivity = CodingKeys(stringValue: "metadataManagementActivity")
+    static let releaseChannel = CodingKeys(stringValue: "releaseChannel")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let databaseType = CodingKeys(stringValue: "databaseType")
+    static let telemetryConfig = CodingKeys(stringValue: "telemetryConfig")
+    static let scalingConfig = CodingKeys(stringValue: "scalingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hiveMetastoreConfig",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "network",
+      "endpointUri",
+      "port",
+      "state",
+      "stateMessage",
+      "artifactGcsUri",
+      "tier",
+      "maintenanceWindow",
+      "uid",
+      "metadataManagementActivity",
+      "releaseChannel",
+      "encryptionConfig",
+      "networkConfig",
+      "databaseType",
+      "telemetryConfig",
+      "scalingConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.network = try container.decode(Swift.String.self, forKey: .network)
-    self.endpointUri = try container.decode(Swift.String.self, forKey: .endpointUri)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.state = try container.decode(Service.State.self, forKey: .state)
-    self.stateMessage = try container.decode(Swift.String.self, forKey: .stateMessage)
-    self.artifactGcsUri = try container.decode(Swift.String.self, forKey: .artifactGcsUri)
-    self.tier = try container.decode(Service.Tier.self, forKey: .tier)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointUri) {
+      self.endpointUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Service.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactGcsUri) {
+      self.artifactGcsUri = value
+    }
+    if let value = try container.decodeIfPresent(Service.Tier.self, forKey: .tier) {
+      self.tier = value
+    }
     self.maintenanceWindow = try container.decodeIfPresent(
       MaintenanceWindow.self, forKey: .maintenanceWindow)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.metadataManagementActivity = try container.decodeIfPresent(
       MetadataManagementActivity.self, forKey: .metadataManagementActivity)
-    self.releaseChannel = try container.decode(Service.ReleaseChannel.self, forKey: .releaseChannel)
+    if let value = try container.decodeIfPresent(
+      Service.ReleaseChannel.self, forKey: .releaseChannel)
+    {
+      self.releaseChannel = value
+    }
     self.encryptionConfig = try container.decodeIfPresent(
       EncryptionConfig.self, forKey: .encryptionConfig)
     self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
-    self.databaseType = try container.decode(Service.DatabaseType.self, forKey: .databaseType)
+    if let value = try container.decodeIfPresent(Service.DatabaseType.self, forKey: .databaseType) {
+      self.databaseType = value
+    }
     self.telemetryConfig = try container.decodeIfPresent(
       TelemetryConfig.self, forKey: .telemetryConfig)
     self.scalingConfig = try container.decodeIfPresent(ScalingConfig.self, forKey: .scalingConfig)
@@ -186,13 +244,17 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try metastoreConfigCheckAndSet(.hiveMetastoreConfig(hiveMetastoreConfig))
     }
     self.metastoreConfig = metastoreConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.endpointUri, forKey: .endpointUri)
@@ -201,21 +263,25 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.artifactGcsUri, forKey: .artifactGcsUri)
     try container.encode(self.tier, forKey: .tier)
-    try container.encode(self.maintenanceWindow, forKey: .maintenanceWindow)
+    try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.metadataManagementActivity, forKey: .metadataManagementActivity)
+    try container.encodeIfPresent(
+      self.metadataManagementActivity, forKey: .metadataManagementActivity)
     try container.encode(self.releaseChannel, forKey: .releaseChannel)
-    try container.encode(self.encryptionConfig, forKey: .encryptionConfig)
-    try container.encode(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
     try container.encode(self.databaseType, forKey: .databaseType)
-    try container.encode(self.telemetryConfig, forKey: .telemetryConfig)
-    try container.encode(self.scalingConfig, forKey: .scalingConfig)
+    try container.encodeIfPresent(self.telemetryConfig, forKey: .telemetryConfig)
+    try container.encodeIfPresent(self.scalingConfig, forKey: .scalingConfig)
 
     if let choice = self.metastoreConfig {
       switch choice {
       case .hiveMetastoreConfig(let value):
         try container.encode(value, forKey: .hiveMetastoreConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

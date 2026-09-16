@@ -30,6 +30,8 @@ public struct ReplaceTaxonomyRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Required. Taxonomy to update along with its child policy tags.
   public var serializedTaxonomy: SerializedTaxonomy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplaceTaxonomyRequest`.
   public init() {}
 
@@ -44,6 +46,43 @@ public struct ReplaceTaxonomyRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let serializedTaxonomy = CodingKeys(stringValue: "serializedTaxonomy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "serializedTaxonomy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.serializedTaxonomy = try container.decodeIfPresent(
+      SerializedTaxonomy.self, forKey: .serializedTaxonomy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.serializedTaxonomy, forKey: .serializedTaxonomy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

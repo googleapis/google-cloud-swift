@@ -107,6 +107,8 @@ public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The priority of this case.
   public var priority: Case.Priority = Case.Priority()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Case`.
   public init() {}
 
@@ -121,6 +123,119 @@ public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let classification = CodingKeys(stringValue: "classification")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let subscriberEmailAddresses = CodingKeys(stringValue: "subscriberEmailAddresses")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let contactEmail = CodingKeys(stringValue: "contactEmail")
+    static let escalated = CodingKeys(stringValue: "escalated")
+    static let testCase = CodingKeys(stringValue: "testCase")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let priority = CodingKeys(stringValue: "priority")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "classification",
+      "timeZone",
+      "subscriberEmailAddresses",
+      "state",
+      "createTime",
+      "updateTime",
+      "creator",
+      "contactEmail",
+      "escalated",
+      "testCase",
+      "languageCode",
+      "priority",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.classification = try container.decodeIfPresent(
+      CaseClassification.self, forKey: .classification)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+      self.timeZone = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .subscriberEmailAddresses)
+    {
+      self.subscriberEmailAddresses = value
+    }
+    if let value = try container.decodeIfPresent(Case.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.creator = try container.decodeIfPresent(Actor.self, forKey: .creator)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contactEmail) {
+      self.contactEmail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .escalated) {
+      self.escalated = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .testCase) {
+      self.testCase = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Case.Priority.self, forKey: .priority) {
+      self.priority = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.classification, forKey: .classification)
+    try container.encode(self.timeZone, forKey: .timeZone)
+    try container.encode(self.subscriberEmailAddresses, forKey: .subscriberEmailAddresses)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.creator, forKey: .creator)
+    try container.encode(self.contactEmail, forKey: .contactEmail)
+    try container.encode(self.escalated, forKey: .escalated)
+    try container.encode(self.testCase, forKey: .testCase)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.priority, forKey: .priority)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The status of a support case.

@@ -77,6 +77,8 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// text and mTLS connections.
   public var mtlsPolicy: ServerTlsPolicy.MTLSPolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServerTlsPolicy`.
   public init() {}
 
@@ -91,6 +93,77 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let allowOpen = CodingKeys(stringValue: "allowOpen")
+    static let serverCertificate = CodingKeys(stringValue: "serverCertificate")
+    static let mtlsPolicy = CodingKeys(stringValue: "mtlsPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "labels",
+      "allowOpen",
+      "serverCertificate",
+      "mtlsPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowOpen) {
+      self.allowOpen = value
+    }
+    self.serverCertificate = try container.decodeIfPresent(
+      CertificateProvider.self, forKey: .serverCertificate)
+    self.mtlsPolicy = try container.decodeIfPresent(
+      ServerTlsPolicy.MTLSPolicy.self, forKey: .mtlsPolicy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.allowOpen, forKey: .allowOpen)
+    try container.encodeIfPresent(self.serverCertificate, forKey: .serverCertificate)
+    try container.encodeIfPresent(self.mtlsPolicy, forKey: .mtlsPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specification of the MTLSPolicy.
@@ -123,6 +196,8 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Balancers.
     public var clientValidationTrustConfig: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MTLSPolicy`.
     public init() {}
 
@@ -137,6 +212,56 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientValidationMode = CodingKeys(stringValue: "clientValidationMode")
+      static let clientValidationCa = CodingKeys(stringValue: "clientValidationCa")
+      static let clientValidationTrustConfig = CodingKeys(
+        stringValue: "clientValidationTrustConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientValidationMode",
+        "clientValidationCa",
+        "clientValidationTrustConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ServerTlsPolicy.MTLSPolicy.ClientValidationMode.self, forKey: .clientValidationMode)
+      {
+        self.clientValidationMode = value
+      }
+      if let value = try container.decodeIfPresent([ValidationCA].self, forKey: .clientValidationCa)
+      {
+        self.clientValidationCa = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientValidationTrustConfig)
+      {
+        self.clientValidationTrustConfig = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clientValidationMode, forKey: .clientValidationMode)
+      try container.encode(self.clientValidationCa, forKey: .clientValidationCa)
+      try container.encode(self.clientValidationTrustConfig, forKey: .clientValidationTrustConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Mutual TLS certificate validation mode.

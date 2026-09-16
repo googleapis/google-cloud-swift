@@ -31,6 +31,8 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Hint hints at the purpose of the attestation authority.
   public var hint: AttestationNote.Hint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttestationNote`.
   public init() {}
 
@@ -47,6 +49,36 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hint = CodingKeys(stringValue: "hint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hint"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.hint = try container.decodeIfPresent(AttestationNote.Hint.self, forKey: .hint)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.hint, forKey: .hint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// This submessage provides human-readable hints about the purpose of the
   /// authority. Because the name of a note acts as its resource reference, it is
   /// important to disambiguate the canonical name of the Note (which might be a
@@ -60,6 +92,8 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. The human readable name of this attestation authority, for
     /// example "qa".
     public var humanReadableName: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Hint`.
     public init() {}
@@ -75,6 +109,38 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let humanReadableName = CodingKeys(stringValue: "humanReadableName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "humanReadableName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .humanReadableName) {
+        self.humanReadableName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.humanReadableName, forKey: .humanReadableName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

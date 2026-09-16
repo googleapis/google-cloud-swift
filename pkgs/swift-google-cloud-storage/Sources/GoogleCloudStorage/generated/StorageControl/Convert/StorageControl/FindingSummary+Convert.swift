@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension FindingSummary {
@@ -33,6 +33,7 @@ extension FindingSummary {
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.severity = .init(proto: proto.severity)
     self.summaryDetails = try proto.summaryDetails.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -44,6 +45,9 @@ extension FindingSummary {
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.severity = try self.severity.toProto()
     proto.summaryDetails = try self.summaryDetails.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -64,6 +68,7 @@ extension FindingSummary.SummaryDetails {
         self.magnitude = .percentage(value)
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -77,6 +82,9 @@ extension FindingSummary.SummaryDetails {
       case .percentage(let value):
         proto.magnitude = .percentage(value)
       }
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

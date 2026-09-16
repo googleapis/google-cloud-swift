@@ -34,6 +34,8 @@ public struct Toleration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Effect indicates the taint effect to match e.g. 'NoSchedule'
   public var effect: Toleration.Effect = Toleration.Effect()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Toleration`.
   public init() {}
 
@@ -48,6 +50,57 @@ public struct Toleration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let value = CodingKeys(stringValue: "value")
+    static let keyOperator = CodingKeys(stringValue: "keyOperator")
+    static let effect = CodingKeys(stringValue: "effect")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "value",
+      "keyOperator",
+      "effect",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+      self.value = value
+    }
+    if let value = try container.decodeIfPresent(Toleration.KeyOperator.self, forKey: .keyOperator)
+    {
+      self.keyOperator = value
+    }
+    if let value = try container.decodeIfPresent(Toleration.Effect.self, forKey: .effect) {
+      self.effect = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.value, forKey: .value)
+    try container.encode(self.keyOperator, forKey: .keyOperator)
+    try container.encode(self.effect, forKey: .effect)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// KeyOperator represents a key's relationship to the value e.g. 'Equal'.

@@ -34,6 +34,8 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// [google.cloud.retail.v2.BigQuerySource.data_schema]: <doc:BigQuerySource/dataSchema>
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompletionDataInputConfig`.
   public init() {}
 
@@ -50,8 +52,17 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case bigQuerySource = "bigQuerySource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigQuerySource = CodingKeys(stringValue: "bigQuerySource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigQuerySource"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,6 +84,10 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleCloudWKT._Any
       try sourceCheckAndSet(.bigQuerySource(bigQuerySource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +98,9 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleCloudWKT._Any
       case .bigQuerySource(let value):
         try container.encode(value, forKey: .bigQuerySource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -31,6 +31,8 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT.
   /// Optional. Options for combining the results of the batch search operations.
   public var combine: BatchSearchDataObjectsRequest.CombineResultsOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchSearchDataObjectsRequest`.
   public init() {}
 
@@ -47,6 +49,49 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let searches = CodingKeys(stringValue: "searches")
+    static let combine = CodingKeys(stringValue: "combine")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "searches",
+      "combine",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent([Search].self, forKey: .searches) {
+      self.searches = value
+    }
+    self.combine = try container.decodeIfPresent(
+      BatchSearchDataObjectsRequest.CombineResultsOptions.self, forKey: .combine)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.searches, forKey: .searches)
+    try container.encodeIfPresent(self.combine, forKey: .combine)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Options for combining the results of the batch search operations.
   public struct CombineResultsOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -60,6 +105,8 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT.
     /// Optional. The number of results to return. If not set, a default value
     /// will be used.
     public var topK: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CombineResultsOptions`.
     public init() {}
@@ -75,6 +122,46 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ranker = CodingKeys(stringValue: "ranker")
+      static let outputFields = CodingKeys(stringValue: "outputFields")
+      static let topK = CodingKeys(stringValue: "topK")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ranker",
+        "outputFields",
+        "topK",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ranker = try container.decodeIfPresent(Ranker.self, forKey: .ranker)
+      self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK) {
+        self.topK = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ranker, forKey: .ranker)
+      try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
+      try container.encode(self.topK, forKey: .topK)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

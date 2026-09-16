@@ -34,6 +34,8 @@ public struct UpdateAuthorizedViewMetadata: Codable, Equatable, GoogleCloudWKT._
   /// The time at which the operation failed or was completed successfully.
   public var finishTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateAuthorizedViewMetadata`.
   public init() {}
 
@@ -48,6 +50,47 @@ public struct UpdateAuthorizedViewMetadata: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let originalRequest = CodingKeys(stringValue: "originalRequest")
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let finishTime = CodingKeys(stringValue: "finishTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "originalRequest",
+      "requestTime",
+      "finishTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.originalRequest = try container.decodeIfPresent(
+      UpdateAuthorizedViewRequest.self, forKey: .originalRequest)
+    self.requestTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .requestTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finishTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.originalRequest, forKey: .originalRequest)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

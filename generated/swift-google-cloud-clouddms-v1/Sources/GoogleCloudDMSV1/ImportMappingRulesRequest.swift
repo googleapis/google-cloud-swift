@@ -36,6 +36,8 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// the import operation.
   public var autoCommit: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportMappingRulesRequest`.
   public init() {}
 
@@ -52,6 +54,58 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let rulesFormat = CodingKeys(stringValue: "rulesFormat")
+    static let rulesFiles = CodingKeys(stringValue: "rulesFiles")
+    static let autoCommit = CodingKeys(stringValue: "autoCommit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "rulesFormat",
+      "rulesFiles",
+      "autoCommit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(ImportRulesFileFormat.self, forKey: .rulesFormat) {
+      self.rulesFormat = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ImportMappingRulesRequest.RulesFile].self, forKey: .rulesFiles)
+    {
+      self.rulesFiles = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoCommit) {
+      self.autoCommit = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.rulesFormat, forKey: .rulesFormat)
+    try container.encode(self.rulesFiles, forKey: .rulesFiles)
+    try container.encode(self.autoCommit, forKey: .autoCommit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details of a single rules file.
   public struct RulesFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -63,6 +117,8 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleCloudWKT._Any
 
     /// Required. The text content of the rules that needs to be converted.
     public var rulesContent: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RulesFile`.
     public init() {}
@@ -78,6 +134,45 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rulesSourceFilename = CodingKeys(stringValue: "rulesSourceFilename")
+      static let rulesContent = CodingKeys(stringValue: "rulesContent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rulesSourceFilename",
+        "rulesContent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rulesSourceFilename)
+      {
+        self.rulesSourceFilename = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rulesContent) {
+        self.rulesContent = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rulesSourceFilename, forKey: .rulesSourceFilename)
+      try container.encode(self.rulesContent, forKey: .rulesContent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

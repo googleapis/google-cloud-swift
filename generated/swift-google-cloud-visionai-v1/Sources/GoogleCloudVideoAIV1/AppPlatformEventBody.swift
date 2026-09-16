@@ -35,6 +35,8 @@ public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// treated as "".
   public var eventId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppPlatformEventBody`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventMessage = CodingKeys(stringValue: "eventMessage")
+    static let payload = CodingKeys(stringValue: "payload")
+    static let eventId = CodingKeys(stringValue: "eventId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventMessage",
+      "payload",
+      "eventId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventMessage) {
+      self.eventMessage = value
+    }
+    self.payload = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .payload)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventId) {
+      self.eventId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.eventMessage, forKey: .eventMessage)
+    try container.encodeIfPresent(self.payload, forKey: .payload)
+    try container.encode(self.eventId, forKey: .eventId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -41,6 +41,8 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// connecting to the CloudSQL instance specified in this connection.
   public var serviceAccountId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudSqlProperties`.
   public init() {}
 
@@ -55,6 +57,62 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instanceId = CodingKeys(stringValue: "instanceId")
+    static let database = CodingKeys(stringValue: "database")
+    static let type = CodingKeys(stringValue: "type")
+    static let credential = CodingKeys(stringValue: "credential")
+    static let serviceAccountId = CodingKeys(stringValue: "serviceAccountId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instanceId",
+      "database",
+      "type",
+      "credential",
+      "serviceAccountId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
+      self.instanceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudSqlProperties.DatabaseType.self, forKey: .type)
+    {
+      self.type = value
+    }
+    self.credential = try container.decodeIfPresent(CloudSqlCredential.self, forKey: .credential)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountId) {
+      self.serviceAccountId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instanceId, forKey: .instanceId)
+    try container.encode(self.database, forKey: .database)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.credential, forKey: .credential)
+    try container.encode(self.serviceAccountId, forKey: .serviceAccountId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Supported Cloud SQL database types.

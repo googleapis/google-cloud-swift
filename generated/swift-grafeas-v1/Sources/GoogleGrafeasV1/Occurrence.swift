@@ -55,6 +55,8 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// resource.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Occurrence`.
   public init() {}
 
@@ -71,36 +73,74 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case resourceUri = "resourceUri"
-    case noteName = "noteName"
-    case kind = "kind"
-    case remediation = "remediation"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case vulnerability = "vulnerability"
-    case build = "build"
-    case image = "image"
-    case `package` = "package"
-    case deployment = "deployment"
-    case discovery = "discovery"
-    case attestation = "attestation"
-    case upgrade = "upgrade"
-    case compliance = "compliance"
-    case dsseAttestation = "dsseAttestation"
-    case sbomReference = "sbomReference"
-    case secret = "secret"
-    case envelope = "envelope"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let noteName = CodingKeys(stringValue: "noteName")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let remediation = CodingKeys(stringValue: "remediation")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let vulnerability = CodingKeys(stringValue: "vulnerability")
+    static let build = CodingKeys(stringValue: "build")
+    static let image = CodingKeys(stringValue: "image")
+    static let `package` = CodingKeys(stringValue: "package")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let discovery = CodingKeys(stringValue: "discovery")
+    static let attestation = CodingKeys(stringValue: "attestation")
+    static let upgrade = CodingKeys(stringValue: "upgrade")
+    static let compliance = CodingKeys(stringValue: "compliance")
+    static let dsseAttestation = CodingKeys(stringValue: "dsseAttestation")
+    static let sbomReference = CodingKeys(stringValue: "sbomReference")
+    static let secret = CodingKeys(stringValue: "secret")
+    static let envelope = CodingKeys(stringValue: "envelope")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resourceUri",
+      "noteName",
+      "kind",
+      "remediation",
+      "createTime",
+      "updateTime",
+      "vulnerability",
+      "build",
+      "image",
+      "package",
+      "deployment",
+      "discovery",
+      "attestation",
+      "upgrade",
+      "compliance",
+      "dsseAttestation",
+      "sbomReference",
+      "secret",
+      "envelope",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.resourceUri = try container.decode(Swift.String.self, forKey: .resourceUri)
-    self.noteName = try container.decode(Swift.String.self, forKey: .noteName)
-    self.kind = try container.decode(NoteKind.self, forKey: .kind)
-    self.remediation = try container.decode(Swift.String.self, forKey: .remediation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .noteName) {
+      self.noteName = value
+    }
+    if let value = try container.decodeIfPresent(NoteKind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remediation) {
+      self.remediation = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -167,6 +207,10 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailsCheckAndSet(.secret(secret))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -176,9 +220,9 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.noteName, forKey: .noteName)
     try container.encode(self.kind, forKey: .kind)
     try container.encode(self.remediation, forKey: .remediation)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.envelope, forKey: .envelope)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.envelope, forKey: .envelope)
 
     if let choice = self.details {
       switch choice {
@@ -207,6 +251,9 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .secret(let value):
         try container.encode(value, forKey: .secret)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

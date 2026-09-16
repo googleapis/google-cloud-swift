@@ -30,6 +30,8 @@ public struct ThreatEntryRemovals: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// and stored as encoded_data.
   public var riceIndices: RiceDeltaEncoding? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ThreatEntryRemovals`.
   public init() {}
 
@@ -44,6 +46,40 @@ public struct ThreatEntryRemovals: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rawIndices = CodingKeys(stringValue: "rawIndices")
+    static let riceIndices = CodingKeys(stringValue: "riceIndices")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rawIndices",
+      "riceIndices",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.rawIndices = try container.decodeIfPresent(RawIndices.self, forKey: .rawIndices)
+    self.riceIndices = try container.decodeIfPresent(RiceDeltaEncoding.self, forKey: .riceIndices)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.rawIndices, forKey: .rawIndices)
+    try container.encodeIfPresent(self.riceIndices, forKey: .riceIndices)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -51,6 +51,8 @@ public struct InternalChecker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The current operational state of the internal checker.
   public var state: InternalChecker.State = InternalChecker.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InternalChecker`.
   public init() {}
 
@@ -65,6 +67,68 @@ public struct InternalChecker: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let network = CodingKeys(stringValue: "network")
+    static let gcpZone = CodingKeys(stringValue: "gcpZone")
+    static let peerProjectId = CodingKeys(stringValue: "peerProjectId")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "network",
+      "gcpZone",
+      "peerProjectId",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpZone) {
+      self.gcpZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerProjectId) {
+      self.peerProjectId = value
+    }
+    if let value = try container.decodeIfPresent(InternalChecker.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.gcpZone, forKey: .gcpZone)
+    try container.encode(self.peerProjectId, forKey: .peerProjectId)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Operational states for an internal checker.

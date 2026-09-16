@@ -39,6 +39,8 @@ public struct CloudDlpInspection: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Whether Cloud DLP scanned the complete resource or a sampled subset.
   public var fullScan: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudDlpInspection`.
   public init() {}
 
@@ -53,6 +55,56 @@ public struct CloudDlpInspection: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inspectJob = CodingKeys(stringValue: "inspectJob")
+    static let infoType = CodingKeys(stringValue: "infoType")
+    static let infoTypeCount = CodingKeys(stringValue: "infoTypeCount")
+    static let fullScan = CodingKeys(stringValue: "fullScan")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inspectJob",
+      "infoType",
+      "infoTypeCount",
+      "fullScan",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inspectJob) {
+      self.inspectJob = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .infoType) {
+      self.infoType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .infoTypeCount) {
+      self.infoTypeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fullScan) {
+      self.fullScan = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inspectJob, forKey: .inspectJob)
+    try container.encode(self.infoType, forKey: .infoType)
+    try container.encode(self.infoTypeCount, forKey: .infoTypeCount)
+    try container.encode(self.fullScan, forKey: .fullScan)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

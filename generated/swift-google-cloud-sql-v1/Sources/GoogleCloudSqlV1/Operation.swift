@@ -108,6 +108,8 @@
     /// Optional. The sub operation based on the operation type.
     public var subOperationType: SqlSubOperationType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Operation`.
     public init() {}
 
@@ -122,6 +124,141 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let targetLink = CodingKeys(stringValue: "targetLink")
+      static let status = CodingKeys(stringValue: "status")
+      static let user = CodingKeys(stringValue: "user")
+      static let insertTime = CodingKeys(stringValue: "insertTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let error = CodingKeys(stringValue: "error")
+      static let apiWarning = CodingKeys(stringValue: "apiWarning")
+      static let operationType = CodingKeys(stringValue: "operationType")
+      static let importContext = CodingKeys(stringValue: "importContext")
+      static let exportContext = CodingKeys(stringValue: "exportContext")
+      static let backupContext = CodingKeys(stringValue: "backupContext")
+      static let preCheckMajorVersionUpgradeContext = CodingKeys(
+        stringValue: "preCheckMajorVersionUpgradeContext")
+      static let name = CodingKeys(stringValue: "name")
+      static let targetId = CodingKeys(stringValue: "targetId")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let targetProject = CodingKeys(stringValue: "targetProject")
+      static let acquireSsrsLeaseContext = CodingKeys(stringValue: "acquireSsrsLeaseContext")
+      static let subOperationType = CodingKeys(stringValue: "subOperationType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "targetLink",
+        "status",
+        "user",
+        "insertTime",
+        "startTime",
+        "endTime",
+        "error",
+        "apiWarning",
+        "operationType",
+        "importContext",
+        "exportContext",
+        "backupContext",
+        "preCheckMajorVersionUpgradeContext",
+        "name",
+        "targetId",
+        "selfLink",
+        "targetProject",
+        "acquireSsrsLeaseContext",
+        "subOperationType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLink) {
+        self.targetLink = value
+      }
+      if let value = try container.decodeIfPresent(
+        Operation.SqlOperationStatus.self, forKey: .status)
+      {
+        self.status = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+        self.user = value
+      }
+      self.insertTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .insertTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.error = try container.decodeIfPresent(OperationErrors.self, forKey: .error)
+      self.apiWarning = try container.decodeIfPresent(ApiWarning.self, forKey: .apiWarning)
+      if let value = try container.decodeIfPresent(
+        Operation.SqlOperationType.self, forKey: .operationType)
+      {
+        self.operationType = value
+      }
+      self.importContext = try container.decodeIfPresent(ImportContext.self, forKey: .importContext)
+      self.exportContext = try container.decodeIfPresent(ExportContext.self, forKey: .exportContext)
+      self.backupContext = try container.decodeIfPresent(BackupContext.self, forKey: .backupContext)
+      self.preCheckMajorVersionUpgradeContext = try container.decodeIfPresent(
+        PreCheckMajorVersionUpgradeContext.self, forKey: .preCheckMajorVersionUpgradeContext)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+        self.targetId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+        self.targetProject = value
+      }
+      self.acquireSsrsLeaseContext = try container.decodeIfPresent(
+        AcquireSsrsLeaseContext.self, forKey: .acquireSsrsLeaseContext)
+      self.subOperationType = try container.decodeIfPresent(
+        SqlSubOperationType.self, forKey: .subOperationType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.targetLink, forKey: .targetLink)
+      try container.encode(self.status, forKey: .status)
+      try container.encode(self.user, forKey: .user)
+      try container.encodeIfPresent(self.insertTime, forKey: .insertTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(self.apiWarning, forKey: .apiWarning)
+      try container.encode(self.operationType, forKey: .operationType)
+      try container.encodeIfPresent(self.importContext, forKey: .importContext)
+      try container.encodeIfPresent(self.exportContext, forKey: .exportContext)
+      try container.encodeIfPresent(self.backupContext, forKey: .backupContext)
+      try container.encodeIfPresent(
+        self.preCheckMajorVersionUpgradeContext, forKey: .preCheckMajorVersionUpgradeContext)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.targetId, forKey: .targetId)
+      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encode(self.targetProject, forKey: .targetProject)
+      try container.encodeIfPresent(self.acquireSsrsLeaseContext, forKey: .acquireSsrsLeaseContext)
+      try container.encodeIfPresent(self.subOperationType, forKey: .subOperationType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of Cloud SQL operation.

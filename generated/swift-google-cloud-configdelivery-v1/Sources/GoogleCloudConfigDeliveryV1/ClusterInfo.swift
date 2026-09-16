@@ -46,6 +46,8 @@ public struct ClusterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Timestamp when reconciliation ends.
   public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterInfo`.
   public init() {}
 
@@ -60,6 +62,74 @@ public struct ClusterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let membership = CodingKeys(stringValue: "membership")
+    static let desired = CodingKeys(stringValue: "desired")
+    static let initial = CodingKeys(stringValue: "initial")
+    static let current = CodingKeys(stringValue: "current")
+    static let state = CodingKeys(stringValue: "state")
+    static let messages = CodingKeys(stringValue: "messages")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "membership",
+      "desired",
+      "initial",
+      "current",
+      "state",
+      "messages",
+      "startTime",
+      "endTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .membership) {
+      self.membership = value
+    }
+    self.desired = try container.decodeIfPresent(
+      ResourceBundleDeploymentInfo.self, forKey: .desired)
+    self.initial = try container.decodeIfPresent(
+      ResourceBundleDeploymentInfo.self, forKey: .initial)
+    self.current = try container.decodeIfPresent(
+      ResourceBundleDeploymentInfo.self, forKey: .current)
+    if let value = try container.decodeIfPresent(ClusterInfo.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .messages) {
+      self.messages = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.membership, forKey: .membership)
+    try container.encodeIfPresent(self.desired, forKey: .desired)
+    try container.encodeIfPresent(self.initial, forKey: .initial)
+    try container.encodeIfPresent(self.current, forKey: .current)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.messages, forKey: .messages)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the rollout for the cluster.

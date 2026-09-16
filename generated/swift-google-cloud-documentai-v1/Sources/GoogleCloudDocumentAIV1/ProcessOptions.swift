@@ -50,6 +50,8 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   public var pageRange: OneOf_PageRange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessOptions`.
   public init() {}
 
@@ -66,13 +68,27 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case individualPageSelector = "individualPageSelector"
-    case fromStart = "fromStart"
-    case fromEnd = "fromEnd"
-    case ocrConfig = "ocrConfig"
-    case layoutConfig = "layoutConfig"
-    case schemaOverride = "schemaOverride"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let individualPageSelector = CodingKeys(stringValue: "individualPageSelector")
+    static let fromStart = CodingKeys(stringValue: "fromStart")
+    static let fromEnd = CodingKeys(stringValue: "fromEnd")
+    static let ocrConfig = CodingKeys(stringValue: "ocrConfig")
+    static let layoutConfig = CodingKeys(stringValue: "layoutConfig")
+    static let schemaOverride = CodingKeys(stringValue: "schemaOverride")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "individualPageSelector",
+      "fromStart",
+      "fromEnd",
+      "ocrConfig",
+      "layoutConfig",
+      "schemaOverride",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -105,13 +121,17 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try pageRangeCheckAndSet(.fromEnd(fromEnd))
     }
     self.pageRange = pageRange
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.ocrConfig, forKey: .ocrConfig)
-    try container.encode(self.layoutConfig, forKey: .layoutConfig)
-    try container.encode(self.schemaOverride, forKey: .schemaOverride)
+    try container.encodeIfPresent(self.ocrConfig, forKey: .ocrConfig)
+    try container.encodeIfPresent(self.layoutConfig, forKey: .layoutConfig)
+    try container.encodeIfPresent(self.schemaOverride, forKey: .schemaOverride)
 
     if let choice = self.pageRange {
       switch choice {
@@ -122,6 +142,9 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .fromEnd(let value):
         try container.encode(value, forKey: .fromEnd)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -145,6 +168,8 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Whether to include table annotations in layout parser response.
     public var enableTableAnnotation: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LayoutConfig`.
     public init() {}
 
@@ -161,6 +186,63 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let chunkingConfig = CodingKeys(stringValue: "chunkingConfig")
+      static let returnImages = CodingKeys(stringValue: "returnImages")
+      static let returnBoundingBoxes = CodingKeys(stringValue: "returnBoundingBoxes")
+      static let enableImageAnnotation = CodingKeys(stringValue: "enableImageAnnotation")
+      static let enableTableAnnotation = CodingKeys(stringValue: "enableTableAnnotation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "chunkingConfig",
+        "returnImages",
+        "returnBoundingBoxes",
+        "enableImageAnnotation",
+        "enableTableAnnotation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.chunkingConfig = try container.decodeIfPresent(
+        ProcessOptions.LayoutConfig.ChunkingConfig.self, forKey: .chunkingConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnImages) {
+        self.returnImages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnBoundingBoxes) {
+        self.returnBoundingBoxes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableImageAnnotation)
+      {
+        self.enableImageAnnotation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTableAnnotation)
+      {
+        self.enableTableAnnotation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.chunkingConfig, forKey: .chunkingConfig)
+      try container.encode(self.returnImages, forKey: .returnImages)
+      try container.encode(self.returnBoundingBoxes, forKey: .returnBoundingBoxes)
+      try container.encode(self.enableImageAnnotation, forKey: .enableImageAnnotation)
+      try container.encode(self.enableTableAnnotation, forKey: .enableTableAnnotation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Serving config for chunking.
     public struct ChunkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -171,6 +253,8 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Optional. Whether or not to include ancestor headings when splitting.
       public var includeAncestorHeadings: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ChunkingConfig`.
       public init() {}
@@ -186,6 +270,46 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let chunkSize = CodingKeys(stringValue: "chunkSize")
+        static let includeAncestorHeadings = CodingKeys(stringValue: "includeAncestorHeadings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "chunkSize",
+          "includeAncestorHeadings",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .chunkSize) {
+          self.chunkSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .includeAncestorHeadings)
+        {
+          self.includeAncestorHeadings = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.chunkSize, forKey: .chunkSize)
+        try container.encode(self.includeAncestorHeadings, forKey: .includeAncestorHeadings)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -218,6 +342,8 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Indices of the pages (starting from 1).
     public var pages: [Swift.Int32] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndividualPageSelector`.
     public init() {}
 
@@ -232,6 +358,38 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pages = CodingKeys(stringValue: "pages")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pages"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .pages) {
+        self.pages = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pages, forKey: .pages)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

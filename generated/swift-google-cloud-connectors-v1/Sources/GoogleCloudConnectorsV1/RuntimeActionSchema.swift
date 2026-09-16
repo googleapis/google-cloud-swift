@@ -30,6 +30,8 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Output only. List of result field metadata.
   public var resultMetadata: [RuntimeActionSchema.ResultMetadata] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeActionSchema`.
   public init() {}
 
@@ -44,6 +46,54 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let action = CodingKeys(stringValue: "action")
+    static let inputParameters = CodingKeys(stringValue: "inputParameters")
+    static let resultMetadata = CodingKeys(stringValue: "resultMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "action",
+      "inputParameters",
+      "resultMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RuntimeActionSchema.InputParameter].self, forKey: .inputParameters)
+    {
+      self.inputParameters = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RuntimeActionSchema.ResultMetadata].self, forKey: .resultMetadata)
+    {
+      self.resultMetadata = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.inputParameters, forKey: .inputParameters)
+    try container.encode(self.resultMetadata, forKey: .resultMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Metadata of an input parameter.
@@ -66,6 +116,8 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// provided by the external system if a value is not provided.
     public var defaultValue: GoogleCloudWKT.Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputParameter`.
     public init() {}
 
@@ -80,6 +132,61 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parameter = CodingKeys(stringValue: "parameter")
+      static let description = CodingKeys(stringValue: "description")
+      static let dataType = CodingKeys(stringValue: "dataType")
+      static let nullable = CodingKeys(stringValue: "nullable")
+      static let defaultValue = CodingKeys(stringValue: "defaultValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parameter",
+        "description",
+        "dataType",
+        "nullable",
+        "defaultValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameter) {
+        self.parameter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+        self.dataType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
+        self.nullable = value
+      }
+      self.defaultValue = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .defaultValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parameter, forKey: .parameter)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.dataType, forKey: .dataType)
+      try container.encode(self.nullable, forKey: .nullable)
+      try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -106,6 +213,8 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The data type of the field.
     public var dataType: DataType = DataType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResultMetadata`.
     public init() {}
 
@@ -120,6 +229,50 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let field = CodingKeys(stringValue: "field")
+      static let description = CodingKeys(stringValue: "description")
+      static let dataType = CodingKeys(stringValue: "dataType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "field",
+        "description",
+        "dataType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+        self.field = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+        self.dataType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.field, forKey: .field)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.dataType, forKey: .dataType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

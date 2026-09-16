@@ -81,6 +81,8 @@ public struct Spec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The list of sources and metadata from the sources of the spec.
   public var sourceMetadata: [SourceMetadata] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Spec`.
   public init() {}
 
@@ -95,6 +97,100 @@ public struct Spec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let specType = CodingKeys(stringValue: "specType")
+    static let contents = CodingKeys(stringValue: "contents")
+    static let details = CodingKeys(stringValue: "details")
+    static let sourceUri = CodingKeys(stringValue: "sourceUri")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lintResponse = CodingKeys(stringValue: "lintResponse")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let parsingMode = CodingKeys(stringValue: "parsingMode")
+    static let sourceMetadata = CodingKeys(stringValue: "sourceMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "specType",
+      "contents",
+      "details",
+      "sourceUri",
+      "createTime",
+      "updateTime",
+      "lintResponse",
+      "attributes",
+      "documentation",
+      "parsingMode",
+      "sourceMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.specType = try container.decodeIfPresent(AttributeValues.self, forKey: .specType)
+    self.contents = try container.decodeIfPresent(SpecContents.self, forKey: .contents)
+    self.details = try container.decodeIfPresent(SpecDetails.self, forKey: .details)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceUri) {
+      self.sourceUri = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.lintResponse = try container.decodeIfPresent(LintResponse.self, forKey: .lintResponse)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AttributeValues].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    self.documentation = try container.decodeIfPresent(Documentation.self, forKey: .documentation)
+    if let value = try container.decodeIfPresent(Spec.ParsingMode.self, forKey: .parsingMode) {
+      self.parsingMode = value
+    }
+    if let value = try container.decodeIfPresent([SourceMetadata].self, forKey: .sourceMetadata) {
+      self.sourceMetadata = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.specType, forKey: .specType)
+    try container.encodeIfPresent(self.contents, forKey: .contents)
+    try container.encodeIfPresent(self.details, forKey: .details)
+    try container.encode(self.sourceUri, forKey: .sourceUri)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lintResponse, forKey: .lintResponse)
+    try container.encode(self.attributes, forKey: .attributes)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
+    try container.encode(self.parsingMode, forKey: .parsingMode)
+    try container.encode(self.sourceMetadata, forKey: .sourceMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies the parsing mode for API specifications during creation and

@@ -32,6 +32,8 @@
     /// The control flag that enables claim-level grounding score in the response.
     public var enableClaimLevelScore: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CheckGroundingSpec`.
     public init() {}
 
@@ -46,6 +48,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let citationThreshold = CodingKeys(stringValue: "citationThreshold")
+      static let enableClaimLevelScore = CodingKeys(stringValue: "enableClaimLevelScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "citationThreshold",
+        "enableClaimLevelScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.citationThreshold = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .citationThreshold)
+      self.enableClaimLevelScore = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableClaimLevelScore)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.citationThreshold, forKey: .citationThreshold)
+      try container.encodeIfPresent(self.enableClaimLevelScore, forKey: .enableClaimLevelScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

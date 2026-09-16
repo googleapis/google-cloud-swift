@@ -24,6 +24,8 @@ public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FacetValue`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValue = "stringValue"
-    case integerValue = "integerValue"
-    case datetimeValue = "datetimeValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let integerValue = CodingKeys(stringValue: "integerValue")
+    static let datetimeValue = CodingKeys(stringValue: "datetimeValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValue",
+      "integerValue",
+      "datetimeValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +84,10 @@ public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.datetimeValue(datetimeValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +102,9 @@ public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .datetimeValue(let value):
         try container.encode(value, forKey: .datetimeValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

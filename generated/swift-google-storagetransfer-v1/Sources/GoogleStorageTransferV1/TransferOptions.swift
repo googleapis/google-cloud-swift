@@ -56,6 +56,8 @@ public struct TransferOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Represents the selected metadata options for a transfer job.
   public var metadataOptions: MetadataOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferOptions`.
   public init() {}
 
@@ -70,6 +72,73 @@ public struct TransferOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let overwriteObjectsAlreadyExistingInSink = CodingKeys(
+      stringValue: "overwriteObjectsAlreadyExistingInSink")
+    static let deleteObjectsUniqueInSink = CodingKeys(stringValue: "deleteObjectsUniqueInSink")
+    static let deleteObjectsFromSourceAfterTransfer = CodingKeys(
+      stringValue: "deleteObjectsFromSourceAfterTransfer")
+    static let overwriteWhen = CodingKeys(stringValue: "overwriteWhen")
+    static let metadataOptions = CodingKeys(stringValue: "metadataOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "overwriteObjectsAlreadyExistingInSink",
+      "deleteObjectsUniqueInSink",
+      "deleteObjectsFromSourceAfterTransfer",
+      "overwriteWhen",
+      "metadataOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .overwriteObjectsAlreadyExistingInSink)
+    {
+      self.overwriteObjectsAlreadyExistingInSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .deleteObjectsUniqueInSink)
+    {
+      self.deleteObjectsUniqueInSink = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .deleteObjectsFromSourceAfterTransfer)
+    {
+      self.deleteObjectsFromSourceAfterTransfer = value
+    }
+    if let value = try container.decodeIfPresent(
+      TransferOptions.OverwriteWhen.self, forKey: .overwriteWhen)
+    {
+      self.overwriteWhen = value
+    }
+    self.metadataOptions = try container.decodeIfPresent(
+      MetadataOptions.self, forKey: .metadataOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.overwriteObjectsAlreadyExistingInSink, forKey: .overwriteObjectsAlreadyExistingInSink)
+    try container.encode(self.deleteObjectsUniqueInSink, forKey: .deleteObjectsUniqueInSink)
+    try container.encode(
+      self.deleteObjectsFromSourceAfterTransfer, forKey: .deleteObjectsFromSourceAfterTransfer)
+    try container.encode(self.overwriteWhen, forKey: .overwriteWhen)
+    try container.encodeIfPresent(self.metadataOptions, forKey: .metadataOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies when to overwrite an object in the sink when an object with

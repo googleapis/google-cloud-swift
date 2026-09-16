@@ -86,6 +86,8 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Supported variables will be added later.
   public var condition: GoogleType.Expr? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Assignment`.
   public init() {}
 
@@ -102,31 +104,65 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case assignee = "assignee"
-    case jobType = "jobType"
-    case state = "state"
-    case enableGeminiInBigquery = "enableGeminiInBigquery"
-    case schedulingPolicy = "schedulingPolicy"
-    case principal = "principal"
-    case `precedence` = "precedence"
-    case condition = "condition"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let assignee = CodingKeys(stringValue: "assignee")
+    static let jobType = CodingKeys(stringValue: "jobType")
+    static let state = CodingKeys(stringValue: "state")
+    static let enableGeminiInBigquery = CodingKeys(stringValue: "enableGeminiInBigquery")
+    static let schedulingPolicy = CodingKeys(stringValue: "schedulingPolicy")
+    static let principal = CodingKeys(stringValue: "principal")
+    static let `precedence` = CodingKeys(stringValue: "precedence")
+    static let condition = CodingKeys(stringValue: "condition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "assignee",
+      "jobType",
+      "state",
+      "enableGeminiInBigquery",
+      "schedulingPolicy",
+      "principal",
+      "precedence",
+      "condition",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.assignee = try container.decode(Swift.String.self, forKey: .assignee)
-    self.jobType = try container.decode(Assignment.JobType.self, forKey: .jobType)
-    self.state = try container.decode(Assignment.State.self, forKey: .state)
-    self.enableGeminiInBigquery = try container.decode(
-      Swift.Bool.self, forKey: .enableGeminiInBigquery)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assignee) {
+      self.assignee = value
+    }
+    if let value = try container.decodeIfPresent(Assignment.JobType.self, forKey: .jobType) {
+      self.jobType = value
+    }
+    if let value = try container.decodeIfPresent(Assignment.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableGeminiInBigquery) {
+      self.enableGeminiInBigquery = value
+    }
     self.schedulingPolicy = try container.decodeIfPresent(
       SchedulingPolicy.self, forKey: .schedulingPolicy)
-    self.principal = try container.decode(Swift.String.self, forKey: .principal)
-    self.`precedence` = try container.decode(Swift.Int64.self, forKey: .`precedence`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principal) {
+      self.principal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .`precedence`) {
+      self.`precedence` = value
+    }
     self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -136,10 +172,13 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.jobType, forKey: .jobType)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.enableGeminiInBigquery, forKey: .enableGeminiInBigquery)
-    try container.encode(self.schedulingPolicy, forKey: .schedulingPolicy)
+    try container.encodeIfPresent(self.schedulingPolicy, forKey: .schedulingPolicy)
     try container.encode(self.principal, forKey: .principal)
     try container.encode(self.`precedence`, forKey: .`precedence`)
-    try container.encode(self.condition, forKey: .condition)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of job, which could be specified when using the reservation.

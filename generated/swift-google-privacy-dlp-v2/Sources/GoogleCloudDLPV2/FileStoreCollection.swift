@@ -37,6 +37,8 @@ public struct FileStoreCollection: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// used.
   public var pattern: OneOf_Pattern? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileStoreCollection`.
   public init() {}
 
@@ -53,9 +55,19 @@ public struct FileStoreCollection: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeRegexes = "includeRegexes"
-    case includeTags = "includeTags"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeRegexes = CodingKeys(stringValue: "includeRegexes")
+    static let includeTags = CodingKeys(stringValue: "includeTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeRegexes",
+      "includeTags",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,17 +90,24 @@ public struct FileStoreCollection: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
     self.pattern = pattern
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.includeTags, forKey: .includeTags)
+    try container.encodeIfPresent(self.includeTags, forKey: .includeTags)
 
     if let choice = self.pattern {
       switch choice {
       case .includeRegexes(let value):
         try container.encode(value, forKey: .includeRegexes)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

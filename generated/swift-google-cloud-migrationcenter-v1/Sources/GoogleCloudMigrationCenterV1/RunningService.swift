@@ -39,6 +39,8 @@ public struct RunningService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Service pid.
   public var pid: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RunningService`.
   public init() {}
 
@@ -53,6 +55,69 @@ public struct RunningService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceName = CodingKeys(stringValue: "serviceName")
+    static let state = CodingKeys(stringValue: "state")
+    static let startMode = CodingKeys(stringValue: "startMode")
+    static let exePath = CodingKeys(stringValue: "exePath")
+    static let cmdline = CodingKeys(stringValue: "cmdline")
+    static let pid = CodingKeys(stringValue: "pid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceName",
+      "state",
+      "startMode",
+      "exePath",
+      "cmdline",
+      "pid",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
+      self.serviceName = value
+    }
+    if let value = try container.decodeIfPresent(RunningService.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(RunningService.StartMode.self, forKey: .startMode)
+    {
+      self.startMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exePath) {
+      self.exePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cmdline) {
+      self.cmdline = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .pid) {
+      self.pid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceName, forKey: .serviceName)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.startMode, forKey: .startMode)
+    try container.encode(self.exePath, forKey: .exePath)
+    try container.encode(self.cmdline, forKey: .cmdline)
+    try container.encode(self.pid, forKey: .pid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Service state (OS-agnostic).

@@ -24,6 +24,8 @@ public struct AwsProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Authentication method chosen at connection creation.
   public var authenticationMethod: OneOf_AuthenticationMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsProperties`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct AwsProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case crossAccountRole = "crossAccountRole"
-    case accessRole = "accessRole"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let crossAccountRole = CodingKeys(stringValue: "crossAccountRole")
+    static let accessRole = CodingKeys(stringValue: "accessRole")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "crossAccountRole",
+      "accessRole",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct AwsProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try authenticationMethodCheckAndSet(.accessRole(accessRole))
     }
     self.authenticationMethod = authenticationMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct AwsProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .accessRole(let value):
         try container.encode(value, forKey: .accessRole)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

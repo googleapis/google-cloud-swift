@@ -34,6 +34,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The start time of the operation.
   public var startTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
 
@@ -50,6 +52,55 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceNames = CodingKeys(stringValue: "resourceNames")
+    static let steps = CodingKeys(stringValue: "steps")
+    static let progressPercentage = CodingKeys(stringValue: "progressPercentage")
+    static let startTime = CodingKeys(stringValue: "startTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceNames",
+      "steps",
+      "progressPercentage",
+      "startTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceNames) {
+      self.resourceNames = value
+    }
+    if let value = try container.decodeIfPresent([OperationMetadata.Step].self, forKey: .steps) {
+      self.steps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercentage) {
+      self.progressPercentage = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceNames, forKey: .resourceNames)
+    try container.encode(self.steps, forKey: .steps)
+    try container.encode(self.progressPercentage, forKey: .progressPercentage)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents the status of one operation step.
   public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +110,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// The status code.
     public var status: OperationMetadata.Status = OperationMetadata.Status()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Step`.
     public init() {}
@@ -74,6 +127,44 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(OperationMetadata.Status.self, forKey: .status) {
+        self.status = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

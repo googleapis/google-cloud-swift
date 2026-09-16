@@ -39,6 +39,8 @@ public struct DisruptionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// POD_PDB_VIOLATION.
   public var pdbViolationTimeout: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DisruptionEvent`.
   public init() {}
 
@@ -55,6 +57,59 @@ public struct DisruptionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let disruptionType = CodingKeys(stringValue: "disruptionType")
+    static let pdbBlockedNode = CodingKeys(stringValue: "pdbBlockedNode")
+    static let pdbBlockedPod = CodingKeys(stringValue: "pdbBlockedPod")
+    static let pdbViolationTimeout = CodingKeys(stringValue: "pdbViolationTimeout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "disruptionType",
+      "pdbBlockedNode",
+      "pdbBlockedPod",
+      "pdbViolationTimeout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      DisruptionEvent.DisruptionType.self, forKey: .disruptionType)
+    {
+      self.disruptionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pdbBlockedNode) {
+      self.pdbBlockedNode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DisruptionEvent.PdbBlockedPod].self, forKey: .pdbBlockedPod)
+    {
+      self.pdbBlockedPod = value
+    }
+    self.pdbViolationTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .pdbViolationTimeout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.disruptionType, forKey: .disruptionType)
+    try container.encode(self.pdbBlockedNode, forKey: .pdbBlockedNode)
+    try container.encode(self.pdbBlockedPod, forKey: .pdbBlockedPod)
+    try container.encodeIfPresent(self.pdbViolationTimeout, forKey: .pdbViolationTimeout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The namespace/name of the pod whose eviction is blocked by PDB.
   public struct PdbBlockedPod: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -64,6 +119,8 @@ public struct DisruptionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The name of the pod.
     public var name: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PdbBlockedPod`.
     public init() {}
@@ -79,6 +136,44 @@ public struct DisruptionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let namespace = CodingKeys(stringValue: "namespace")
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "namespace",
+        "name",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+        self.namespace = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.namespace, forKey: .namespace)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -60,6 +60,8 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// compression ratio.
   public var quality: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpriteSheet`.
   public init() {}
 
@@ -74,6 +76,78 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let format = CodingKeys(stringValue: "format")
+    static let filePrefix = CodingKeys(stringValue: "filePrefix")
+    static let spriteWidthPixels = CodingKeys(stringValue: "spriteWidthPixels")
+    static let spriteHeightPixels = CodingKeys(stringValue: "spriteHeightPixels")
+    static let columnCount = CodingKeys(stringValue: "columnCount")
+    static let rowCount = CodingKeys(stringValue: "rowCount")
+    static let interval = CodingKeys(stringValue: "interval")
+    static let quality = CodingKeys(stringValue: "quality")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "format",
+      "filePrefix",
+      "spriteWidthPixels",
+      "spriteHeightPixels",
+      "columnCount",
+      "rowCount",
+      "interval",
+      "quality",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .format) {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filePrefix) {
+      self.filePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .spriteWidthPixels) {
+      self.spriteWidthPixels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .spriteHeightPixels) {
+      self.spriteHeightPixels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .columnCount) {
+      self.columnCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rowCount) {
+      self.rowCount = value
+    }
+    self.interval = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .interval)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quality) {
+      self.quality = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.format, forKey: .format)
+    try container.encode(self.filePrefix, forKey: .filePrefix)
+    try container.encode(self.spriteWidthPixels, forKey: .spriteWidthPixels)
+    try container.encode(self.spriteHeightPixels, forKey: .spriteHeightPixels)
+    try container.encode(self.columnCount, forKey: .columnCount)
+    try container.encode(self.rowCount, forKey: .rowCount)
+    try container.encodeIfPresent(self.interval, forKey: .interval)
+    try container.encode(self.quality, forKey: .quality)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

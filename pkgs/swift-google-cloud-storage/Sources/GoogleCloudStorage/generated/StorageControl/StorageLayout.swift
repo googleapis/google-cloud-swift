@@ -43,6 +43,8 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The Rapid Cache configuration for the bucket.
   public var rapidCacheInfo: StorageLayout.RapidCacheInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StorageLayout`.
   public init() {}
 
@@ -59,6 +61,65 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let location = CodingKeys(stringValue: "location")
+    static let locationType = CodingKeys(stringValue: "locationType")
+    static let customPlacementConfig = CodingKeys(stringValue: "customPlacementConfig")
+    static let hierarchicalNamespace = CodingKeys(stringValue: "hierarchicalNamespace")
+    static let rapidCacheInfo = CodingKeys(stringValue: "rapidCacheInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "location",
+      "locationType",
+      "customPlacementConfig",
+      "hierarchicalNamespace",
+      "rapidCacheInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationType) {
+      self.locationType = value
+    }
+    self.customPlacementConfig = try container.decodeIfPresent(
+      StorageLayout.CustomPlacementConfig.self, forKey: .customPlacementConfig)
+    self.hierarchicalNamespace = try container.decodeIfPresent(
+      StorageLayout.HierarchicalNamespace.self, forKey: .hierarchicalNamespace)
+    self.rapidCacheInfo = try container.decodeIfPresent(
+      StorageLayout.RapidCacheInfo.self, forKey: .rapidCacheInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.locationType, forKey: .locationType)
+    try container.encodeIfPresent(self.customPlacementConfig, forKey: .customPlacementConfig)
+    try container.encodeIfPresent(self.hierarchicalNamespace, forKey: .hierarchicalNamespace)
+    try container.encodeIfPresent(self.rapidCacheInfo, forKey: .rapidCacheInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration for Custom Dual Regions.  It should specify precisely two
   /// eligible regions within the same Multiregion. More information on regions
   /// may be found [here](https://cloud.google.com/storage/docs/locations).
@@ -67,6 +128,8 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// List of locations to use for data placement.
     public var dataLocations: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CustomPlacementConfig`.
     public init() {}
@@ -82,6 +145,38 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataLocations = CodingKeys(stringValue: "dataLocations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataLocations"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataLocations) {
+        self.dataLocations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataLocations, forKey: .dataLocations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -102,6 +197,8 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Enables the hierarchical namespace feature.
     public var enabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HierarchicalNamespace`.
     public init() {}
 
@@ -116,6 +213,38 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -137,6 +266,8 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `rapid-cache-ultra`, only if there is a cache present.
     public var cacheType: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RapidCacheInfo`.
     public init() {}
 
@@ -151,6 +282,38 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cacheType = CodingKeys(stringValue: "cacheType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cacheType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cacheType) {
+        self.cacheType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cacheType, forKey: .cacheType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

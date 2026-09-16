@@ -35,6 +35,8 @@ public struct ClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// status reported by the agent.
   public var substate: ClusterStatus.Substate = ClusterStatus.Substate()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterStatus`.
   public init() {}
 
@@ -49,6 +51,55 @@ public struct ClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let detail = CodingKeys(stringValue: "detail")
+    static let stateStartTime = CodingKeys(stringValue: "stateStartTime")
+    static let substate = CodingKeys(stringValue: "substate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "detail",
+      "stateStartTime",
+      "substate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ClusterStatus.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+      self.detail = value
+    }
+    self.stateStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .stateStartTime)
+    if let value = try container.decodeIfPresent(ClusterStatus.Substate.self, forKey: .substate) {
+      self.substate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.detail, forKey: .detail)
+    try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
+    try container.encode(self.substate, forKey: .substate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The cluster state.

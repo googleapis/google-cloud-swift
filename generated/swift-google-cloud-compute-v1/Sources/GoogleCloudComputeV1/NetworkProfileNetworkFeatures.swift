@@ -143,6 +143,8 @@
     /// Specifies which type of unicast is supported.
     public var unicast: NetworkProfileNetworkFeatures.Unicast? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkProfileNetworkFeatures`.
     public init() {}
 
@@ -159,51 +161,102 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case addressPurposes = "addressPurposes"
-      case allowAddressCreation = "allowAddressCreation"
-      case allowAliasIpRanges = "allowAliasIpRanges"
-      case allowAutoModeSubnet = "allowAutoModeSubnet"
-      case allowClassDfirewalls = "allowClassDFirewalls"
-      case allowCloudNat = "allowCloudNat"
-      case allowCloudRouter = "allowCloudRouter"
-      case allowDefaultNicAttachment = "allowDefaultNicAttachment"
-      case allowExternalIpAccess = "allowExternalIpAccess"
-      case allowFirewallPolicy = "allowFirewallPolicy"
-      case allowInterconnect = "allowInterconnect"
-      case allowIpForwarding = "allowIpForwarding"
-      case allowLoadBalancing = "allowLoadBalancing"
-      case allowMultiNicInSameNetwork = "allowMultiNicInSameNetwork"
-      case allowMultiNicInSameSubnetwork = "allowMultiNicInSameSubnetwork"
-      case allowMulticast = "allowMulticast"
-      case allowNcc = "allowNcc"
-      case allowNetworkMigration = "allowNetworkMigration"
-      case allowPacketMirroring = "allowPacketMirroring"
-      case allowPrivateGoogleAccess = "allowPrivateGoogleAccess"
-      case allowPsc = "allowPsc"
-      case allowSameNetworkUnicast = "allowSameNetworkUnicast"
-      case allowStaticRoutes = "allowStaticRoutes"
-      case allowSubInterfaces = "allowSubInterfaces"
-      case allowSubnetworkCreation = "allowSubnetworkCreation"
-      case allowVpcFirewallRules = "allowVpcFirewallRules"
-      case allowVpcPeering = "allowVpcPeering"
-      case allowVpn = "allowVpn"
-      case firewallPolicyTypes = "firewallPolicyTypes"
-      case interfaceTypes = "interfaceTypes"
-      case multicast = "multicast"
-      case predefinedNetworkInternalIpv6Range = "predefinedNetworkInternalIpv6Range"
-      case predefinedSubnetworkRanges = "predefinedSubnetworkRanges"
-      case subnetPurposes = "subnetPurposes"
-      case subnetStackTypes = "subnetStackTypes"
-      case subnetworkPurposes = "subnetworkPurposes"
-      case subnetworkStackTypes = "subnetworkStackTypes"
-      case unicast = "unicast"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let addressPurposes = CodingKeys(stringValue: "addressPurposes")
+      static let allowAddressCreation = CodingKeys(stringValue: "allowAddressCreation")
+      static let allowAliasIpRanges = CodingKeys(stringValue: "allowAliasIpRanges")
+      static let allowAutoModeSubnet = CodingKeys(stringValue: "allowAutoModeSubnet")
+      static let allowClassDfirewalls = CodingKeys(stringValue: "allowClassDFirewalls")
+      static let allowCloudNat = CodingKeys(stringValue: "allowCloudNat")
+      static let allowCloudRouter = CodingKeys(stringValue: "allowCloudRouter")
+      static let allowDefaultNicAttachment = CodingKeys(stringValue: "allowDefaultNicAttachment")
+      static let allowExternalIpAccess = CodingKeys(stringValue: "allowExternalIpAccess")
+      static let allowFirewallPolicy = CodingKeys(stringValue: "allowFirewallPolicy")
+      static let allowInterconnect = CodingKeys(stringValue: "allowInterconnect")
+      static let allowIpForwarding = CodingKeys(stringValue: "allowIpForwarding")
+      static let allowLoadBalancing = CodingKeys(stringValue: "allowLoadBalancing")
+      static let allowMultiNicInSameNetwork = CodingKeys(stringValue: "allowMultiNicInSameNetwork")
+      static let allowMultiNicInSameSubnetwork = CodingKeys(
+        stringValue: "allowMultiNicInSameSubnetwork")
+      static let allowMulticast = CodingKeys(stringValue: "allowMulticast")
+      static let allowNcc = CodingKeys(stringValue: "allowNcc")
+      static let allowNetworkMigration = CodingKeys(stringValue: "allowNetworkMigration")
+      static let allowPacketMirroring = CodingKeys(stringValue: "allowPacketMirroring")
+      static let allowPrivateGoogleAccess = CodingKeys(stringValue: "allowPrivateGoogleAccess")
+      static let allowPsc = CodingKeys(stringValue: "allowPsc")
+      static let allowSameNetworkUnicast = CodingKeys(stringValue: "allowSameNetworkUnicast")
+      static let allowStaticRoutes = CodingKeys(stringValue: "allowStaticRoutes")
+      static let allowSubInterfaces = CodingKeys(stringValue: "allowSubInterfaces")
+      static let allowSubnetworkCreation = CodingKeys(stringValue: "allowSubnetworkCreation")
+      static let allowVpcFirewallRules = CodingKeys(stringValue: "allowVpcFirewallRules")
+      static let allowVpcPeering = CodingKeys(stringValue: "allowVpcPeering")
+      static let allowVpn = CodingKeys(stringValue: "allowVpn")
+      static let firewallPolicyTypes = CodingKeys(stringValue: "firewallPolicyTypes")
+      static let interfaceTypes = CodingKeys(stringValue: "interfaceTypes")
+      static let multicast = CodingKeys(stringValue: "multicast")
+      static let predefinedNetworkInternalIpv6Range = CodingKeys(
+        stringValue: "predefinedNetworkInternalIpv6Range")
+      static let predefinedSubnetworkRanges = CodingKeys(stringValue: "predefinedSubnetworkRanges")
+      static let subnetPurposes = CodingKeys(stringValue: "subnetPurposes")
+      static let subnetStackTypes = CodingKeys(stringValue: "subnetStackTypes")
+      static let subnetworkPurposes = CodingKeys(stringValue: "subnetworkPurposes")
+      static let subnetworkStackTypes = CodingKeys(stringValue: "subnetworkStackTypes")
+      static let unicast = CodingKeys(stringValue: "unicast")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "addressPurposes",
+        "allowAddressCreation",
+        "allowAliasIpRanges",
+        "allowAutoModeSubnet",
+        "allowClassDFirewalls",
+        "allowCloudNat",
+        "allowCloudRouter",
+        "allowDefaultNicAttachment",
+        "allowExternalIpAccess",
+        "allowFirewallPolicy",
+        "allowInterconnect",
+        "allowIpForwarding",
+        "allowLoadBalancing",
+        "allowMultiNicInSameNetwork",
+        "allowMultiNicInSameSubnetwork",
+        "allowMulticast",
+        "allowNcc",
+        "allowNetworkMigration",
+        "allowPacketMirroring",
+        "allowPrivateGoogleAccess",
+        "allowPsc",
+        "allowSameNetworkUnicast",
+        "allowStaticRoutes",
+        "allowSubInterfaces",
+        "allowSubnetworkCreation",
+        "allowVpcFirewallRules",
+        "allowVpcPeering",
+        "allowVpn",
+        "firewallPolicyTypes",
+        "interfaceTypes",
+        "multicast",
+        "predefinedNetworkInternalIpv6Range",
+        "predefinedSubnetworkRanges",
+        "subnetPurposes",
+        "subnetStackTypes",
+        "subnetworkPurposes",
+        "subnetworkStackTypes",
+        "unicast",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.addressPurposes = try container.decode(
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.AddressPurposes].self, forKey: .addressPurposes)
+      {
+        self.addressPurposes = value
+      }
       self.allowAddressCreation = try container.decodeIfPresent(
         NetworkProfileNetworkFeatures.AllowAddressCreation.self, forKey: .allowAddressCreation)
       self.allowAliasIpRanges = try container.decodeIfPresent(
@@ -264,71 +317,102 @@
         NetworkProfileNetworkFeatures.AllowVpcPeering.self, forKey: .allowVpcPeering)
       self.allowVpn = try container.decodeIfPresent(
         NetworkProfileNetworkFeatures.AllowVpn.self, forKey: .allowVpn)
-      self.firewallPolicyTypes = try container.decode(
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.FirewallPolicyTypes].self, forKey: .firewallPolicyTypes)
-      self.interfaceTypes = try container.decode(
+      {
+        self.firewallPolicyTypes = value
+      }
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.InterfaceTypes].self, forKey: .interfaceTypes)
+      {
+        self.interfaceTypes = value
+      }
       self.multicast = try container.decodeIfPresent(
         NetworkProfileNetworkFeatures.Multicast.self, forKey: .multicast)
       self.predefinedNetworkInternalIpv6Range = try container.decodeIfPresent(
         Swift.String.self, forKey: .predefinedNetworkInternalIpv6Range)
-      self.predefinedSubnetworkRanges = try container.decode(
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeaturesPredefinedSubnetworkRange].self,
         forKey: .predefinedSubnetworkRanges)
-      self.subnetPurposes = try container.decode(
+      {
+        self.predefinedSubnetworkRanges = value
+      }
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.SubnetPurposes].self, forKey: .subnetPurposes)
-      self.subnetStackTypes = try container.decode(
+      {
+        self.subnetPurposes = value
+      }
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.SubnetStackTypes].self, forKey: .subnetStackTypes)
-      self.subnetworkPurposes = try container.decode(
+      {
+        self.subnetStackTypes = value
+      }
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.SubnetworkPurposes].self, forKey: .subnetworkPurposes)
-      self.subnetworkStackTypes = try container.decode(
+      {
+        self.subnetworkPurposes = value
+      }
+      if let value = try container.decodeIfPresent(
         [NetworkProfileNetworkFeatures.SubnetworkStackTypes].self, forKey: .subnetworkStackTypes)
+      {
+        self.subnetworkStackTypes = value
+      }
       self.unicast = try container.decodeIfPresent(
         NetworkProfileNetworkFeatures.Unicast.self, forKey: .unicast)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.addressPurposes, forKey: .addressPurposes)
-      try container.encode(self.allowAddressCreation, forKey: .allowAddressCreation)
-      try container.encode(self.allowAliasIpRanges, forKey: .allowAliasIpRanges)
-      try container.encode(self.allowAutoModeSubnet, forKey: .allowAutoModeSubnet)
-      try container.encode(self.allowClassDfirewalls, forKey: .allowClassDfirewalls)
-      try container.encode(self.allowCloudNat, forKey: .allowCloudNat)
-      try container.encode(self.allowCloudRouter, forKey: .allowCloudRouter)
-      try container.encode(self.allowDefaultNicAttachment, forKey: .allowDefaultNicAttachment)
-      try container.encode(self.allowExternalIpAccess, forKey: .allowExternalIpAccess)
-      try container.encode(self.allowFirewallPolicy, forKey: .allowFirewallPolicy)
-      try container.encode(self.allowInterconnect, forKey: .allowInterconnect)
-      try container.encode(self.allowIpForwarding, forKey: .allowIpForwarding)
-      try container.encode(self.allowLoadBalancing, forKey: .allowLoadBalancing)
-      try container.encode(self.allowMultiNicInSameNetwork, forKey: .allowMultiNicInSameNetwork)
-      try container.encode(
+      try container.encodeIfPresent(self.allowAddressCreation, forKey: .allowAddressCreation)
+      try container.encodeIfPresent(self.allowAliasIpRanges, forKey: .allowAliasIpRanges)
+      try container.encodeIfPresent(self.allowAutoModeSubnet, forKey: .allowAutoModeSubnet)
+      try container.encodeIfPresent(self.allowClassDfirewalls, forKey: .allowClassDfirewalls)
+      try container.encodeIfPresent(self.allowCloudNat, forKey: .allowCloudNat)
+      try container.encodeIfPresent(self.allowCloudRouter, forKey: .allowCloudRouter)
+      try container.encodeIfPresent(
+        self.allowDefaultNicAttachment, forKey: .allowDefaultNicAttachment)
+      try container.encodeIfPresent(self.allowExternalIpAccess, forKey: .allowExternalIpAccess)
+      try container.encodeIfPresent(self.allowFirewallPolicy, forKey: .allowFirewallPolicy)
+      try container.encodeIfPresent(self.allowInterconnect, forKey: .allowInterconnect)
+      try container.encodeIfPresent(self.allowIpForwarding, forKey: .allowIpForwarding)
+      try container.encodeIfPresent(self.allowLoadBalancing, forKey: .allowLoadBalancing)
+      try container.encodeIfPresent(
+        self.allowMultiNicInSameNetwork, forKey: .allowMultiNicInSameNetwork)
+      try container.encodeIfPresent(
         self.allowMultiNicInSameSubnetwork, forKey: .allowMultiNicInSameSubnetwork)
-      try container.encode(self.allowMulticast, forKey: .allowMulticast)
-      try container.encode(self.allowNcc, forKey: .allowNcc)
-      try container.encode(self.allowNetworkMigration, forKey: .allowNetworkMigration)
-      try container.encode(self.allowPacketMirroring, forKey: .allowPacketMirroring)
-      try container.encode(self.allowPrivateGoogleAccess, forKey: .allowPrivateGoogleAccess)
-      try container.encode(self.allowPsc, forKey: .allowPsc)
-      try container.encode(self.allowSameNetworkUnicast, forKey: .allowSameNetworkUnicast)
-      try container.encode(self.allowStaticRoutes, forKey: .allowStaticRoutes)
-      try container.encode(self.allowSubInterfaces, forKey: .allowSubInterfaces)
-      try container.encode(self.allowSubnetworkCreation, forKey: .allowSubnetworkCreation)
-      try container.encode(self.allowVpcFirewallRules, forKey: .allowVpcFirewallRules)
-      try container.encode(self.allowVpcPeering, forKey: .allowVpcPeering)
-      try container.encode(self.allowVpn, forKey: .allowVpn)
+      try container.encodeIfPresent(self.allowMulticast, forKey: .allowMulticast)
+      try container.encodeIfPresent(self.allowNcc, forKey: .allowNcc)
+      try container.encodeIfPresent(self.allowNetworkMigration, forKey: .allowNetworkMigration)
+      try container.encodeIfPresent(self.allowPacketMirroring, forKey: .allowPacketMirroring)
+      try container.encodeIfPresent(
+        self.allowPrivateGoogleAccess, forKey: .allowPrivateGoogleAccess)
+      try container.encodeIfPresent(self.allowPsc, forKey: .allowPsc)
+      try container.encodeIfPresent(self.allowSameNetworkUnicast, forKey: .allowSameNetworkUnicast)
+      try container.encodeIfPresent(self.allowStaticRoutes, forKey: .allowStaticRoutes)
+      try container.encodeIfPresent(self.allowSubInterfaces, forKey: .allowSubInterfaces)
+      try container.encodeIfPresent(self.allowSubnetworkCreation, forKey: .allowSubnetworkCreation)
+      try container.encodeIfPresent(self.allowVpcFirewallRules, forKey: .allowVpcFirewallRules)
+      try container.encodeIfPresent(self.allowVpcPeering, forKey: .allowVpcPeering)
+      try container.encodeIfPresent(self.allowVpn, forKey: .allowVpn)
       try container.encode(self.firewallPolicyTypes, forKey: .firewallPolicyTypes)
       try container.encode(self.interfaceTypes, forKey: .interfaceTypes)
-      try container.encode(self.multicast, forKey: .multicast)
-      try container.encode(
+      try container.encodeIfPresent(self.multicast, forKey: .multicast)
+      try container.encodeIfPresent(
         self.predefinedNetworkInternalIpv6Range, forKey: .predefinedNetworkInternalIpv6Range)
       try container.encode(self.predefinedSubnetworkRanges, forKey: .predefinedSubnetworkRanges)
       try container.encode(self.subnetPurposes, forKey: .subnetPurposes)
       try container.encode(self.subnetStackTypes, forKey: .subnetStackTypes)
       try container.encode(self.subnetworkPurposes, forKey: .subnetworkPurposes)
       try container.encode(self.subnetworkStackTypes, forKey: .subnetworkStackTypes)
-      try container.encode(self.unicast, forKey: .unicast)
+      try container.encodeIfPresent(self.unicast, forKey: .unicast)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [addressPurposes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.addressPurposes] field.

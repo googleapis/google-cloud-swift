@@ -66,6 +66,8 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// is created.
   public var organization: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubEnterpriseConfig`.
   public init() {}
 
@@ -80,6 +82,101 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostUri = CodingKeys(stringValue: "hostUri")
+    static let appId = CodingKeys(stringValue: "appId")
+    static let appSlug = CodingKeys(stringValue: "appSlug")
+    static let privateKeySecretVersion = CodingKeys(stringValue: "privateKeySecretVersion")
+    static let webhookSecretSecretVersion = CodingKeys(stringValue: "webhookSecretSecretVersion")
+    static let appInstallationId = CodingKeys(stringValue: "appInstallationId")
+    static let installationUri = CodingKeys(stringValue: "installationUri")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+    static let serverVersion = CodingKeys(stringValue: "serverVersion")
+    static let sslCaCertificate = CodingKeys(stringValue: "sslCaCertificate")
+    static let organization = CodingKeys(stringValue: "organization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostUri",
+      "appId",
+      "appSlug",
+      "privateKeySecretVersion",
+      "webhookSecretSecretVersion",
+      "appInstallationId",
+      "installationUri",
+      "serviceDirectoryConfig",
+      "serverVersion",
+      "sslCaCertificate",
+      "organization",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostUri) {
+      self.hostUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appId) {
+      self.appId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appSlug) {
+      self.appSlug = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .privateKeySecretVersion)
+    {
+      self.privateKeySecretVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .webhookSecretSecretVersion)
+    {
+      self.webhookSecretSecretVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appInstallationId) {
+      self.appInstallationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .installationUri) {
+      self.installationUri = value
+    }
+    self.serviceDirectoryConfig = try container.decodeIfPresent(
+      ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverVersion) {
+      self.serverVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCaCertificate) {
+      self.sslCaCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.hostUri, forKey: .hostUri)
+    try container.encode(self.appId, forKey: .appId)
+    try container.encode(self.appSlug, forKey: .appSlug)
+    try container.encode(self.privateKeySecretVersion, forKey: .privateKeySecretVersion)
+    try container.encode(self.webhookSecretSecretVersion, forKey: .webhookSecretSecretVersion)
+    try container.encode(self.appInstallationId, forKey: .appInstallationId)
+    try container.encode(self.installationUri, forKey: .installationUri)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    try container.encode(self.serverVersion, forKey: .serverVersion)
+    try container.encode(self.sslCaCertificate, forKey: .sslCaCertificate)
+    try container.encode(self.organization, forKey: .organization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@ public struct Aspect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Information related to the source system of the aspect.
   public var aspectSource: AspectSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Aspect`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct Aspect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let aspectType = CodingKeys(stringValue: "aspectType")
+    static let path = CodingKeys(stringValue: "path")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let data = CodingKeys(stringValue: "data")
+    static let aspectSource = CodingKeys(stringValue: "aspectSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "aspectType",
+      "path",
+      "createTime",
+      "updateTime",
+      "data",
+      "aspectSource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .aspectType) {
+      self.aspectType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.data = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .data)
+    self.aspectSource = try container.decodeIfPresent(AspectSource.self, forKey: .aspectSource)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.aspectType, forKey: .aspectType)
+    try container.encode(self.path, forKey: .path)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.data, forKey: .data)
+    try container.encodeIfPresent(self.aspectSource, forKey: .aspectSource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

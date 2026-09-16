@@ -65,6 +65,8 @@
     /// If not set, indicates feching stats till the latest possible one.
     public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchModelDeploymentMonitoringStatsAnomaliesRequest`.
     public init() {}
 
@@ -79,6 +81,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modelDeploymentMonitoringJob = CodingKeys(
+        stringValue: "modelDeploymentMonitoringJob")
+      static let deployedModelId = CodingKeys(stringValue: "deployedModelId")
+      static let featureDisplayName = CodingKeys(stringValue: "featureDisplayName")
+      static let objectives = CodingKeys(stringValue: "objectives")
+      static let pageSize = CodingKeys(stringValue: "pageSize")
+      static let pageToken = CodingKeys(stringValue: "pageToken")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modelDeploymentMonitoringJob",
+        "deployedModelId",
+        "featureDisplayName",
+        "objectives",
+        "pageSize",
+        "pageToken",
+        "startTime",
+        "endTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .modelDeploymentMonitoringJob)
+      {
+        self.modelDeploymentMonitoringJob = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {
+        self.deployedModelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureDisplayName) {
+        self.featureDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SearchModelDeploymentMonitoringStatsAnomaliesRequest.StatsAnomaliesObjective].self,
+        forKey: .objectives)
+      {
+        self.objectives = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+        self.pageSize = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+        self.pageToken = value
+      }
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.modelDeploymentMonitoringJob, forKey: .modelDeploymentMonitoringJob)
+      try container.encode(self.deployedModelId, forKey: .deployedModelId)
+      try container.encode(self.featureDisplayName, forKey: .featureDisplayName)
+      try container.encode(self.objectives, forKey: .objectives)
+      try container.encode(self.pageSize, forKey: .pageSize)
+      try container.encode(self.pageToken, forKey: .pageToken)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Stats requested for specific objective.
@@ -100,6 +179,8 @@
       /// [google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.start_time]: <doc:SearchModelDeploymentMonitoringStatsAnomaliesRequest/startTime>
       public var topFeatureCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `StatsAnomaliesObjective`.
       public init() {}
 
@@ -114,6 +195,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let type = CodingKeys(stringValue: "type")
+        static let topFeatureCount = CodingKeys(stringValue: "topFeatureCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "type",
+          "topFeatureCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          ModelDeploymentMonitoringObjectiveType.self, forKey: .type)
+        {
+          self.type = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topFeatureCount) {
+          self.topFeatureCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.topFeatureCount, forKey: .topFeatureCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

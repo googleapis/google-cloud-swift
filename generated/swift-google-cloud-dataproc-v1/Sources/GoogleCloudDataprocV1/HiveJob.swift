@@ -46,6 +46,8 @@ public struct HiveJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// an HCFS file URI or a list of queries.
   public var queries: OneOf_Queries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HiveJob`.
   public init() {}
 
@@ -62,22 +64,47 @@ public struct HiveJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case queryFileUri = "queryFileUri"
-    case queryList = "queryList"
-    case continueOnFailure = "continueOnFailure"
-    case scriptVariables = "scriptVariables"
-    case properties = "properties"
-    case jarFileUris = "jarFileUris"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queryFileUri = CodingKeys(stringValue: "queryFileUri")
+    static let queryList = CodingKeys(stringValue: "queryList")
+    static let continueOnFailure = CodingKeys(stringValue: "continueOnFailure")
+    static let scriptVariables = CodingKeys(stringValue: "scriptVariables")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queryFileUri",
+      "queryList",
+      "continueOnFailure",
+      "scriptVariables",
+      "properties",
+      "jarFileUris",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.continueOnFailure = try container.decode(Swift.Bool.self, forKey: .continueOnFailure)
-    self.scriptVariables = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .continueOnFailure) {
+      self.continueOnFailure = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .scriptVariables)
-    self.properties = try container.decode([Swift.String: Swift.String].self, forKey: .properties)
-    self.jarFileUris = try container.decode([Swift.String].self, forKey: .jarFileUris)
+    {
+      self.scriptVariables = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
 
     var queries: OneOf_Queries? = nil
     let queriesCheckAndSet = {
@@ -96,6 +123,10 @@ public struct HiveJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try queriesCheckAndSet(.queryList(queryList))
     }
     self.queries = queries
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -112,6 +143,9 @@ public struct HiveJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .queryList(let value):
         try container.encode(value, forKey: .queryList)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

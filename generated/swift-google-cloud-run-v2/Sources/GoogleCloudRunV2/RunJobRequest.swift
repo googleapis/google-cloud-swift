@@ -38,6 +38,8 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// overrides will be applied to update the execution or task spec.
   public var overrides: RunJobRequest.Overrides? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RunJobRequest`.
   public init() {}
 
@@ -52,6 +54,54 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let overrides = CodingKeys(stringValue: "overrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "validateOnly",
+      "etag",
+      "overrides",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.overrides = try container.decodeIfPresent(RunJobRequest.Overrides.self, forKey: .overrides)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.overrides, forKey: .overrides)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// RunJob Overrides that contains Execution fields to be overridden.
@@ -70,6 +120,8 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// replace existing timeout_seconds value.
     public var timeout: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Overrides`.
     public init() {}
 
@@ -84,6 +136,50 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let containerOverrides = CodingKeys(stringValue: "containerOverrides")
+      static let taskCount = CodingKeys(stringValue: "taskCount")
+      static let timeout = CodingKeys(stringValue: "timeout")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "containerOverrides",
+        "taskCount",
+        "timeout",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RunJobRequest.Overrides.ContainerOverride].self, forKey: .containerOverrides)
+      {
+        self.containerOverrides = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .taskCount) {
+        self.taskCount = value
+      }
+      self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.containerOverrides, forKey: .containerOverrides)
+      try container.encode(self.taskCount, forKey: .taskCount)
+      try container.encodeIfPresent(self.timeout, forKey: .timeout)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Per-container override specification.
@@ -104,6 +200,8 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. True if the intention is to clear out existing args list.
       public var clearArgs: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ContainerOverride`.
       public init() {}
 
@@ -118,6 +216,56 @@ public struct RunJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let args = CodingKeys(stringValue: "args")
+        static let env = CodingKeys(stringValue: "env")
+        static let clearArgs = CodingKeys(stringValue: "clearArgs")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "args",
+          "env",
+          "clearArgs",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+          self.args = value
+        }
+        if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+          self.env = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clearArgs) {
+          self.clearArgs = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.args, forKey: .args)
+        try container.encode(self.env, forKey: .env)
+        try container.encode(self.clearArgs, forKey: .clearArgs)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

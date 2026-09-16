@@ -32,6 +32,8 @@
     /// Required. The input specification.
     public var input: OneOf_Input? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryInput`.
     public init() {}
 
@@ -48,10 +50,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case audioConfig = "audioConfig"
-      case text = "text"
-      case event = "event"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audioConfig = CodingKeys(stringValue: "audioConfig")
+      static let text = CodingKeys(stringValue: "text")
+      static let event = CodingKeys(stringValue: "event")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audioConfig",
+        "text",
+        "event",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -79,6 +92,10 @@
         try inputCheckAndSet(.event(event))
       }
       self.input = input
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,6 +110,9 @@
         case .event(let value):
           try container.encode(value, forKey: .event)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

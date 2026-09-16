@@ -43,6 +43,8 @@ public struct LoggedBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Human-readable description of why the backup is in the current `state`.
   public var stateReason: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoggedBackup`.
   public init() {}
 
@@ -57,6 +59,69 @@ public struct LoggedBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labels = CodingKeys(stringValue: "labels")
+    static let deleteLockDays = CodingKeys(stringValue: "deleteLockDays")
+    static let retainDays = CodingKeys(stringValue: "retainDays")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateReason = CodingKeys(stringValue: "stateReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labels",
+      "deleteLockDays",
+      "retainDays",
+      "description",
+      "state",
+      "stateReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .deleteLockDays) {
+      self.deleteLockDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retainDays) {
+      self.retainDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(LoggedBackup.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateReason) {
+      self.stateReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.deleteLockDays, forKey: .deleteLockDays)
+    try container.encode(self.retainDays, forKey: .retainDays)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateReason, forKey: .stateReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State

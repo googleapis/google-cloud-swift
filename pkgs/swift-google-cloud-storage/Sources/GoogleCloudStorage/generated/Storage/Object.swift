@@ -191,6 +191,8 @@ public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Might only be configured if the bucket has object retention enabled.
   public var retention: Object.Retention? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Object`.
   public init() {}
 
@@ -207,6 +209,210 @@ public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let generation = CodingKeys(stringValue: "generation")
+    static let restoreToken = CodingKeys(stringValue: "restoreToken")
+    static let metageneration = CodingKeys(stringValue: "metageneration")
+    static let storageClass = CodingKeys(stringValue: "storageClass")
+    static let size = CodingKeys(stringValue: "size")
+    static let contentEncoding = CodingKeys(stringValue: "contentEncoding")
+    static let contentDisposition = CodingKeys(stringValue: "contentDisposition")
+    static let cacheControl = CodingKeys(stringValue: "cacheControl")
+    static let acl = CodingKeys(stringValue: "acl")
+    static let contentLanguage = CodingKeys(stringValue: "contentLanguage")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let finalizeTime = CodingKeys(stringValue: "finalizeTime")
+    static let contentType = CodingKeys(stringValue: "contentType")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let componentCount = CodingKeys(stringValue: "componentCount")
+    static let checksums = CodingKeys(stringValue: "checksums")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let updateStorageClassTime = CodingKeys(stringValue: "updateStorageClassTime")
+    static let temporaryHold = CodingKeys(stringValue: "temporaryHold")
+    static let retentionExpireTime = CodingKeys(stringValue: "retentionExpireTime")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let contexts = CodingKeys(stringValue: "contexts")
+    static let eventBasedHold = CodingKeys(stringValue: "eventBasedHold")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let customerEncryption = CodingKeys(stringValue: "customerEncryption")
+    static let customTime = CodingKeys(stringValue: "customTime")
+    static let softDeleteTime = CodingKeys(stringValue: "softDeleteTime")
+    static let hardDeleteTime = CodingKeys(stringValue: "hardDeleteTime")
+    static let retention = CodingKeys(stringValue: "retention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "bucket",
+      "etag",
+      "generation",
+      "restoreToken",
+      "metageneration",
+      "storageClass",
+      "size",
+      "contentEncoding",
+      "contentDisposition",
+      "cacheControl",
+      "acl",
+      "contentLanguage",
+      "deleteTime",
+      "finalizeTime",
+      "contentType",
+      "createTime",
+      "componentCount",
+      "checksums",
+      "updateTime",
+      "kmsKey",
+      "updateStorageClassTime",
+      "temporaryHold",
+      "retentionExpireTime",
+      "metadata",
+      "contexts",
+      "eventBasedHold",
+      "owner",
+      "customerEncryption",
+      "customTime",
+      "softDeleteTime",
+      "hardDeleteTime",
+      "retention",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    self.restoreToken = try container.decodeIfPresent(Swift.String.self, forKey: .restoreToken)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .metageneration) {
+      self.metageneration = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageClass) {
+      self.storageClass = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .size) {
+      self.size = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentEncoding) {
+      self.contentEncoding = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentDisposition) {
+      self.contentDisposition = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cacheControl) {
+      self.cacheControl = value
+    }
+    if let value = try container.decodeIfPresent([ObjectAccessControl].self, forKey: .acl) {
+      self.acl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentLanguage) {
+      self.contentLanguage = value
+    }
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.finalizeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finalizeTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentType) {
+      self.contentType = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .componentCount) {
+      self.componentCount = value
+    }
+    self.checksums = try container.decodeIfPresent(ObjectChecksums.self, forKey: .checksums)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    self.updateStorageClassTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateStorageClassTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .temporaryHold) {
+      self.temporaryHold = value
+    }
+    self.retentionExpireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .retentionExpireTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    self.contexts = try container.decodeIfPresent(ObjectContexts.self, forKey: .contexts)
+    self.eventBasedHold = try container.decodeIfPresent(Swift.Bool.self, forKey: .eventBasedHold)
+    self.owner = try container.decodeIfPresent(Owner.self, forKey: .owner)
+    self.customerEncryption = try container.decodeIfPresent(
+      CustomerEncryption.self, forKey: .customerEncryption)
+    self.customTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .customTime)
+    self.softDeleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .softDeleteTime)
+    self.hardDeleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .hardDeleteTime)
+    self.retention = try container.decodeIfPresent(Object.Retention.self, forKey: .retention)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.generation, forKey: .generation)
+    try container.encodeIfPresent(self.restoreToken, forKey: .restoreToken)
+    try container.encode(self.metageneration, forKey: .metageneration)
+    try container.encode(self.storageClass, forKey: .storageClass)
+    try container.encode(self.size, forKey: .size)
+    try container.encode(self.contentEncoding, forKey: .contentEncoding)
+    try container.encode(self.contentDisposition, forKey: .contentDisposition)
+    try container.encode(self.cacheControl, forKey: .cacheControl)
+    try container.encode(self.acl, forKey: .acl)
+    try container.encode(self.contentLanguage, forKey: .contentLanguage)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.finalizeTime, forKey: .finalizeTime)
+    try container.encode(self.contentType, forKey: .contentType)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.componentCount, forKey: .componentCount)
+    try container.encodeIfPresent(self.checksums, forKey: .checksums)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encodeIfPresent(self.updateStorageClassTime, forKey: .updateStorageClassTime)
+    try container.encode(self.temporaryHold, forKey: .temporaryHold)
+    try container.encodeIfPresent(self.retentionExpireTime, forKey: .retentionExpireTime)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.contexts, forKey: .contexts)
+    try container.encodeIfPresent(self.eventBasedHold, forKey: .eventBasedHold)
+    try container.encodeIfPresent(self.owner, forKey: .owner)
+    try container.encodeIfPresent(self.customerEncryption, forKey: .customerEncryption)
+    try container.encodeIfPresent(self.customTime, forKey: .customTime)
+    try container.encodeIfPresent(self.softDeleteTime, forKey: .softDeleteTime)
+    try container.encodeIfPresent(self.hardDeleteTime, forKey: .hardDeleteTime)
+    try container.encodeIfPresent(self.retention, forKey: .retention)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Specifies retention parameters of the object. Objects under retention
   /// cannot be deleted or overwritten until their retention expires.
   public struct Retention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -218,6 +424,8 @@ public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The timestamp that the object needs to be retained until.
     /// Value cannot be set in the past or more than 100 years in the future.
     public var retainUntilTime: GoogleCloudWKT.Timestamp? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Retention`.
     public init() {}
@@ -233,6 +441,43 @@ public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mode = CodingKeys(stringValue: "mode")
+      static let retainUntilTime = CodingKeys(stringValue: "retainUntilTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mode",
+        "retainUntilTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Object.Retention.Mode.self, forKey: .mode) {
+        self.mode = value
+      }
+      self.retainUntilTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .retainUntilTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encodeIfPresent(self.retainUntilTime, forKey: .retainUntilTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Retention mode values.

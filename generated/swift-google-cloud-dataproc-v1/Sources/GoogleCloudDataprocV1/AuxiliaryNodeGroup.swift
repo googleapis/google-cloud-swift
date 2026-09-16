@@ -31,6 +31,8 @@ public struct AuxiliaryNodeGroup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// or hyphen. Must consist of from 3 to 33 characters.
   public var nodeGroupId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuxiliaryNodeGroup`.
   public init() {}
 
@@ -45,6 +47,42 @@ public struct AuxiliaryNodeGroup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nodeGroup = CodingKeys(stringValue: "nodeGroup")
+    static let nodeGroupId = CodingKeys(stringValue: "nodeGroupId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nodeGroup",
+      "nodeGroupId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.nodeGroup = try container.decodeIfPresent(NodeGroup.self, forKey: .nodeGroup)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeGroupId) {
+      self.nodeGroupId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.nodeGroup, forKey: .nodeGroup)
+    try container.encode(self.nodeGroupId, forKey: .nodeGroupId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

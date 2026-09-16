@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CommonLongRunningOperationMetadata {
@@ -33,6 +33,7 @@ extension CommonLongRunningOperationMetadata {
     self.type = proto.type
     self.requestedCancellation = proto.requestedCancellation
     self.progressPercent = proto.progressPercent
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -43,6 +44,9 @@ extension CommonLongRunningOperationMetadata {
     proto.type = self.type
     proto.requestedCancellation = self.requestedCancellation
     proto.progressPercent = self.progressPercent
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

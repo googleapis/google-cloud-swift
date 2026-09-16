@@ -55,6 +55,8 @@ public struct CreateBucketRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. If true, enable object retention on the bucket.
   public var enableObjectRetention: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateBucketRequest`.
   public init() {}
 
@@ -69,6 +71,68 @@ public struct CreateBucketRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let bucketId = CodingKeys(stringValue: "bucketId")
+    static let predefinedAcl = CodingKeys(stringValue: "predefinedAcl")
+    static let predefinedDefaultObjectAcl = CodingKeys(stringValue: "predefinedDefaultObjectAcl")
+    static let enableObjectRetention = CodingKeys(stringValue: "enableObjectRetention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "bucket",
+      "bucketId",
+      "predefinedAcl",
+      "predefinedDefaultObjectAcl",
+      "enableObjectRetention",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.bucket = try container.decodeIfPresent(Bucket.self, forKey: .bucket)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketId) {
+      self.bucketId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predefinedAcl) {
+      self.predefinedAcl = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .predefinedDefaultObjectAcl)
+    {
+      self.predefinedDefaultObjectAcl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableObjectRetention) {
+      self.enableObjectRetention = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.bucket, forKey: .bucket)
+    try container.encode(self.bucketId, forKey: .bucketId)
+    try container.encode(self.predefinedAcl, forKey: .predefinedAcl)
+    try container.encode(self.predefinedDefaultObjectAcl, forKey: .predefinedDefaultObjectAcl)
+    try container.encode(self.enableObjectRetention, forKey: .enableObjectRetention)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

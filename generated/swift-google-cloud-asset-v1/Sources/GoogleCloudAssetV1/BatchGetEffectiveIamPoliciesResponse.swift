@@ -36,6 +36,8 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
   /// [google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies]: <doc:BatchGetEffectiveIamPoliciesResponse/EffectiveIamPolicy/policies>
   public var policyResults: [BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchGetEffectiveIamPoliciesResponse`.
   public init() {}
 
@@ -50,6 +52,40 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policyResults = CodingKeys(stringValue: "policyResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policyResults"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy].self, forKey: .policyResults)
+    {
+      self.policyResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.policyResults, forKey: .policyResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The effective IAM policies on one resource.
@@ -94,6 +130,8 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
     /// [google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.full_resource_name]: <doc:BatchGetEffectiveIamPoliciesResponse/EffectiveIamPolicy/fullResourceName>
     public var policies: [BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EffectiveIamPolicy`.
     public init() {}
 
@@ -108,6 +146,46 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+      static let policies = CodingKeys(stringValue: "policies")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fullResourceName",
+        "policies",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+        self.fullResourceName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo].self, forKey: .policies
+      ) {
+        self.policies = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fullResourceName, forKey: .fullResourceName)
+      try container.encode(self.policies, forKey: .policies)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The IAM policy and its attached resource.
@@ -127,6 +205,8 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
       /// [google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource]: <doc:BatchGetEffectiveIamPoliciesResponse/EffectiveIamPolicy/PolicyInfo/attachedResource>
       public var policy: GoogleIAMV1.Policy? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PolicyInfo`.
       public init() {}
 
@@ -141,6 +221,42 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let attachedResource = CodingKeys(stringValue: "attachedResource")
+        static let policy = CodingKeys(stringValue: "policy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "attachedResource",
+          "policy",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attachedResource) {
+          self.attachedResource = value
+        }
+        self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.attachedResource, forKey: .attachedResource)
+        try container.encodeIfPresent(self.policy, forKey: .policy)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

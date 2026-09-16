@@ -59,6 +59,8 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Details of the VM to create as the target of this clone job.
   public var targetVmDetails: OneOf_TargetVmDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloneJob`.
   public init() {}
 
@@ -75,16 +77,34 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case computeEngineTargetDetails = "computeEngineTargetDetails"
-    case computeEngineDisksTargetDetails = "computeEngineDisksTargetDetails"
-    case createTime = "createTime"
-    case endTime = "endTime"
-    case name = "name"
-    case state = "state"
-    case stateTime = "stateTime"
-    case error = "error"
-    case steps = "steps"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let computeEngineTargetDetails = CodingKeys(stringValue: "computeEngineTargetDetails")
+    static let computeEngineDisksTargetDetails = CodingKeys(
+      stringValue: "computeEngineDisksTargetDetails")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateTime = CodingKeys(stringValue: "stateTime")
+    static let error = CodingKeys(stringValue: "error")
+    static let steps = CodingKeys(stringValue: "steps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "computeEngineTargetDetails",
+      "computeEngineDisksTargetDetails",
+      "createTime",
+      "endTime",
+      "name",
+      "state",
+      "stateTime",
+      "error",
+      "steps",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -92,12 +112,18 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.state = try container.decode(CloneJob.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(CloneJob.State.self, forKey: .state) {
+      self.state = value
+    }
     self.stateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.steps = try container.decode([CloneStep].self, forKey: .steps)
+    if let value = try container.decodeIfPresent([CloneStep].self, forKey: .steps) {
+      self.steps = value
+    }
 
     var targetVmDetails: OneOf_TargetVmDetails? = nil
     let targetVmDetailsCheckAndSet = {
@@ -121,16 +147,20 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .computeEngineDisksTargetDetails(computeEngineDisksTargetDetails))
     }
     self.targetVmDetails = targetVmDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.stateTime, forKey: .stateTime)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
+    try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.steps, forKey: .steps)
 
     if let choice = self.targetVmDetails {
@@ -140,6 +170,9 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .computeEngineDisksTargetDetails(let value):
         try container.encode(value, forKey: .computeEngineDisksTargetDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -63,6 +63,8 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Build type must be one of the following.
   public var buildType: OneOf_BuildType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubmitBuildRequest`.
   public init() {}
 
@@ -79,30 +81,66 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case storageSource = "storageSource"
-    case imageUri = "imageUri"
-    case buildpackBuild = "buildpackBuild"
-    case dockerBuild = "dockerBuild"
-    case serviceAccount = "serviceAccount"
-    case workerPool = "workerPool"
-    case tags = "tags"
-    case machineType = "machineType"
-    case releaseTrack = "releaseTrack"
-    case client = "client"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let storageSource = CodingKeys(stringValue: "storageSource")
+    static let imageUri = CodingKeys(stringValue: "imageUri")
+    static let buildpackBuild = CodingKeys(stringValue: "buildpackBuild")
+    static let dockerBuild = CodingKeys(stringValue: "dockerBuild")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let releaseTrack = CodingKeys(stringValue: "releaseTrack")
+    static let client = CodingKeys(stringValue: "client")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "storageSource",
+      "imageUri",
+      "buildpackBuild",
+      "dockerBuild",
+      "serviceAccount",
+      "workerPool",
+      "tags",
+      "machineType",
+      "releaseTrack",
+      "client",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.imageUri = try container.decode(Swift.String.self, forKey: .imageUri)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.workerPool = try container.decode(Swift.String.self, forKey: .workerPool)
-    self.tags = try container.decode([Swift.String].self, forKey: .tags)
-    self.machineType = try container.decode(Swift.String.self, forKey: .machineType)
-    self.releaseTrack = try container.decode(GoogleApi.LaunchStage.self, forKey: .releaseTrack)
-    self.client = try container.decode(Swift.String.self, forKey: .client)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+      self.imageUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(GoogleApi.LaunchStage.self, forKey: .releaseTrack)
+    {
+      self.releaseTrack = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -142,6 +180,10 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try buildTypeCheckAndSet(.dockerBuild(dockerBuild))
     }
     self.buildType = buildType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -170,12 +212,17 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .dockerBuild)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Build the source using Docker. This means the source has a Dockerfile.
   public struct DockerBuild: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DockerBuild`.
     public init() {}
 
@@ -190,6 +237,30 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -238,6 +309,8 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// the source.
     public var projectDescriptor: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BuildpacksBuild`.
     public init() {}
 
@@ -252,6 +325,77 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let runtime = CodingKeys(stringValue: "runtime")
+      static let functionTarget = CodingKeys(stringValue: "functionTarget")
+      static let cacheImageUri = CodingKeys(stringValue: "cacheImageUri")
+      static let baseImage = CodingKeys(stringValue: "baseImage")
+      static let environmentVariables = CodingKeys(stringValue: "environmentVariables")
+      static let enableAutomaticUpdates = CodingKeys(stringValue: "enableAutomaticUpdates")
+      static let projectDescriptor = CodingKeys(stringValue: "projectDescriptor")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "runtime",
+        "functionTarget",
+        "cacheImageUri",
+        "baseImage",
+        "environmentVariables",
+        "enableAutomaticUpdates",
+        "projectDescriptor",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtime) {
+        self.runtime = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .functionTarget) {
+        self.functionTarget = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cacheImageUri) {
+        self.cacheImageUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseImage) {
+        self.baseImage = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .environmentVariables)
+      {
+        self.environmentVariables = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAutomaticUpdates)
+      {
+        self.enableAutomaticUpdates = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectDescriptor) {
+        self.projectDescriptor = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.runtime, forKey: .runtime)
+      try container.encode(self.functionTarget, forKey: .functionTarget)
+      try container.encode(self.cacheImageUri, forKey: .cacheImageUri)
+      try container.encode(self.baseImage, forKey: .baseImage)
+      try container.encode(self.environmentVariables, forKey: .environmentVariables)
+      try container.encode(self.enableAutomaticUpdates, forKey: .enableAutomaticUpdates)
+      try container.encode(self.projectDescriptor, forKey: .projectDescriptor)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

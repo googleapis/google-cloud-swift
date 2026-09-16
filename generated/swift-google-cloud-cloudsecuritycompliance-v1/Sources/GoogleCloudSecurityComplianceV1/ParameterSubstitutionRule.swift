@@ -24,6 +24,8 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleCloudWKT._Any
   /// The type of substitution.
   public var substitutionType: OneOf_SubstitutionType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ParameterSubstitutionRule`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case placeholderSubstitutionRule = "placeholderSubstitutionRule"
-    case attributeSubstitutionRule = "attributeSubstitutionRule"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let placeholderSubstitutionRule = CodingKeys(stringValue: "placeholderSubstitutionRule")
+    static let attributeSubstitutionRule = CodingKeys(stringValue: "attributeSubstitutionRule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "placeholderSubstitutionRule",
+      "attributeSubstitutionRule",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleCloudWKT._Any
       try substitutionTypeCheckAndSet(.attributeSubstitutionRule(attributeSubstitutionRule))
     }
     self.substitutionType = substitutionType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleCloudWKT._Any
       case .attributeSubstitutionRule(let value):
         try container.encode(value, forKey: .attributeSubstitutionRule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

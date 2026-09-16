@@ -38,6 +38,8 @@ public struct ImportDataFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var fileInfo: OneOf_FileInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportDataFile`.
   public init() {}
 
@@ -54,23 +56,45 @@ public struct ImportDataFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case format = "format"
-    case createTime = "createTime"
-    case state = "state"
-    case uploadFileInfo = "uploadFileInfo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let format = CodingKeys(stringValue: "format")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let uploadFileInfo = CodingKeys(stringValue: "uploadFileInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "format",
+      "createTime",
+      "state",
+      "uploadFileInfo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.format = try container.decode(ImportJobFormat.self, forKey: .format)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(ImportJobFormat.self, forKey: .format) {
+      self.format = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.state = try container.decode(ImportDataFile.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(ImportDataFile.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var fileInfo: OneOf_FileInfo? = nil
     let fileInfoCheckAndSet = {
@@ -88,6 +112,10 @@ public struct ImportDataFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try fileInfoCheckAndSet(.uploadFileInfo(uploadFileInfo))
     }
     self.fileInfo = fileInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -95,7 +123,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.format, forKey: .format)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.state, forKey: .state)
 
     if let choice = self.fileInfo {
@@ -103,6 +131,9 @@ public struct ImportDataFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .uploadFileInfo(let value):
         try container.encode(value, forKey: .uploadFileInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

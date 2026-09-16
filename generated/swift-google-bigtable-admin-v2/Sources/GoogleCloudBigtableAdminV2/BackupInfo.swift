@@ -41,6 +41,8 @@ public struct BackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
   public var sourceBackup: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupInfo`.
   public init() {}
 
@@ -55,6 +57,59 @@ public struct BackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backup = CodingKeys(stringValue: "backup")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let sourceTable = CodingKeys(stringValue: "sourceTable")
+    static let sourceBackup = CodingKeys(stringValue: "sourceBackup")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backup",
+      "startTime",
+      "endTime",
+      "sourceTable",
+      "sourceBackup",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backup) {
+      self.backup = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceTable) {
+      self.sourceTable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceBackup) {
+      self.sourceBackup = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backup, forKey: .backup)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.sourceTable, forKey: .sourceTable)
+    try container.encode(self.sourceBackup, forKey: .sourceBackup)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

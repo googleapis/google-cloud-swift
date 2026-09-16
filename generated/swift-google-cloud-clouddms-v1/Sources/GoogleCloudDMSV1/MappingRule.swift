@@ -54,6 +54,8 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The rule specific details.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MappingRule`.
   public init() {}
 
@@ -70,37 +72,76 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case state = "state"
-    case ruleScope = "ruleScope"
-    case filter = "filter"
-    case ruleOrder = "ruleOrder"
-    case revisionId = "revisionId"
-    case revisionCreateTime = "revisionCreateTime"
-    case singleEntityRename = "singleEntityRename"
-    case multiEntityRename = "multiEntityRename"
-    case entityMove = "entityMove"
-    case singleColumnChange = "singleColumnChange"
-    case multiColumnDataTypeChange = "multiColumnDataTypeChange"
-    case conditionalColumnSetValue = "conditionalColumnSetValue"
-    case convertRowidColumn = "convertRowidColumn"
-    case setTablePrimaryKey = "setTablePrimaryKey"
-    case singlePackageChange = "singlePackageChange"
-    case sourceSqlChange = "sourceSqlChange"
-    case filterTableColumns = "filterTableColumns"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let ruleScope = CodingKeys(stringValue: "ruleScope")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let ruleOrder = CodingKeys(stringValue: "ruleOrder")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let revisionCreateTime = CodingKeys(stringValue: "revisionCreateTime")
+    static let singleEntityRename = CodingKeys(stringValue: "singleEntityRename")
+    static let multiEntityRename = CodingKeys(stringValue: "multiEntityRename")
+    static let entityMove = CodingKeys(stringValue: "entityMove")
+    static let singleColumnChange = CodingKeys(stringValue: "singleColumnChange")
+    static let multiColumnDataTypeChange = CodingKeys(stringValue: "multiColumnDataTypeChange")
+    static let conditionalColumnSetValue = CodingKeys(stringValue: "conditionalColumnSetValue")
+    static let convertRowidColumn = CodingKeys(stringValue: "convertRowidColumn")
+    static let setTablePrimaryKey = CodingKeys(stringValue: "setTablePrimaryKey")
+    static let singlePackageChange = CodingKeys(stringValue: "singlePackageChange")
+    static let sourceSqlChange = CodingKeys(stringValue: "sourceSqlChange")
+    static let filterTableColumns = CodingKeys(stringValue: "filterTableColumns")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "state",
+      "ruleScope",
+      "filter",
+      "ruleOrder",
+      "revisionId",
+      "revisionCreateTime",
+      "singleEntityRename",
+      "multiEntityRename",
+      "entityMove",
+      "singleColumnChange",
+      "multiColumnDataTypeChange",
+      "conditionalColumnSetValue",
+      "convertRowidColumn",
+      "setTablePrimaryKey",
+      "singlePackageChange",
+      "sourceSqlChange",
+      "filterTableColumns",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.state = try container.decode(MappingRule.State.self, forKey: .state)
-    self.ruleScope = try container.decode(DatabaseEntityType.self, forKey: .ruleScope)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(MappingRule.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntityType.self, forKey: .ruleScope) {
+      self.ruleScope = value
+    }
     self.filter = try container.decodeIfPresent(MappingRuleFilter.self, forKey: .filter)
-    self.ruleOrder = try container.decode(Swift.Int64.self, forKey: .ruleOrder)
-    self.revisionId = try container.decode(Swift.String.self, forKey: .revisionId)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .ruleOrder) {
+      self.ruleOrder = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
     self.revisionCreateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
 
@@ -168,6 +209,10 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailsCheckAndSet(.filterTableColumns(filterTableColumns))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -176,10 +221,10 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.ruleScope, forKey: .ruleScope)
-    try container.encode(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
     try container.encode(self.ruleOrder, forKey: .ruleOrder)
     try container.encode(self.revisionId, forKey: .revisionId)
-    try container.encode(self.revisionCreateTime, forKey: .revisionCreateTime)
+    try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
 
     if let choice = self.details {
       switch choice {
@@ -206,6 +251,9 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .filterTableColumns(let value):
         try container.encode(value, forKey: .filterTableColumns)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

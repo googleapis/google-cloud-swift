@@ -84,6 +84,8 @@ public struct Route: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Immutable. The next-hop VLAN attachment for packets on this route.
   public var nextHopInterconnectAttachment: NextHopInterconnectAttachment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Route`.
   public init() {}
 
@@ -98,6 +100,127 @@ public struct Route: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+    static let type = CodingKeys(stringValue: "type")
+    static let nextHopVpcNetwork = CodingKeys(stringValue: "nextHopVpcNetwork")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let state = CodingKeys(stringValue: "state")
+    static let spoke = CodingKeys(stringValue: "spoke")
+    static let location = CodingKeys(stringValue: "location")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let nextHopVpnTunnel = CodingKeys(stringValue: "nextHopVpnTunnel")
+    static let nextHopRouterApplianceInstance = CodingKeys(
+      stringValue: "nextHopRouterApplianceInstance")
+    static let nextHopInterconnectAttachment = CodingKeys(
+      stringValue: "nextHopInterconnectAttachment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "ipCidrRange",
+      "type",
+      "nextHopVpcNetwork",
+      "labels",
+      "description",
+      "uid",
+      "state",
+      "spoke",
+      "location",
+      "priority",
+      "nextHopVpnTunnel",
+      "nextHopRouterApplianceInstance",
+      "nextHopInterconnectAttachment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange) {
+      self.ipCidrRange = value
+    }
+    if let value = try container.decodeIfPresent(RouteType.self, forKey: .type) {
+      self.type = value
+    }
+    self.nextHopVpcNetwork = try container.decodeIfPresent(
+      NextHopVpcNetwork.self, forKey: .nextHopVpcNetwork)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .spoke) {
+      self.spoke = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .priority) {
+      self.priority = value
+    }
+    self.nextHopVpnTunnel = try container.decodeIfPresent(
+      NextHopVPNTunnel.self, forKey: .nextHopVpnTunnel)
+    self.nextHopRouterApplianceInstance = try container.decodeIfPresent(
+      NextHopRouterApplianceInstance.self, forKey: .nextHopRouterApplianceInstance)
+    self.nextHopInterconnectAttachment = try container.decodeIfPresent(
+      NextHopInterconnectAttachment.self, forKey: .nextHopInterconnectAttachment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.nextHopVpcNetwork, forKey: .nextHopVpcNetwork)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.spoke, forKey: .spoke)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.priority, forKey: .priority)
+    try container.encodeIfPresent(self.nextHopVpnTunnel, forKey: .nextHopVpnTunnel)
+    try container.encodeIfPresent(
+      self.nextHopRouterApplianceInstance, forKey: .nextHopRouterApplianceInstance)
+    try container.encodeIfPresent(
+      self.nextHopInterconnectAttachment, forKey: .nextHopInterconnectAttachment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

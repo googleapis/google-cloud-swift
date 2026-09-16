@@ -217,6 +217,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var breakRules: [ShipmentModel.BreakRule] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ShipmentModel`.
   public init() {}
 
@@ -231,6 +233,134 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let shipments = CodingKeys(stringValue: "shipments")
+    static let vehicles = CodingKeys(stringValue: "vehicles")
+    static let maxActiveVehicles = CodingKeys(stringValue: "maxActiveVehicles")
+    static let globalStartTime = CodingKeys(stringValue: "globalStartTime")
+    static let globalEndTime = CodingKeys(stringValue: "globalEndTime")
+    static let globalDurationCostPerHour = CodingKeys(stringValue: "globalDurationCostPerHour")
+    static let durationDistanceMatrices = CodingKeys(stringValue: "durationDistanceMatrices")
+    static let durationDistanceMatrixSrcTags = CodingKeys(
+      stringValue: "durationDistanceMatrixSrcTags")
+    static let durationDistanceMatrixDstTags = CodingKeys(
+      stringValue: "durationDistanceMatrixDstTags")
+    static let transitionAttributes = CodingKeys(stringValue: "transitionAttributes")
+    static let shipmentTypeIncompatibilities = CodingKeys(
+      stringValue: "shipmentTypeIncompatibilities")
+    static let shipmentTypeRequirements = CodingKeys(stringValue: "shipmentTypeRequirements")
+    static let precedenceRules = CodingKeys(stringValue: "precedenceRules")
+    static let breakRules = CodingKeys(stringValue: "breakRules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "shipments",
+      "vehicles",
+      "maxActiveVehicles",
+      "globalStartTime",
+      "globalEndTime",
+      "globalDurationCostPerHour",
+      "durationDistanceMatrices",
+      "durationDistanceMatrixSrcTags",
+      "durationDistanceMatrixDstTags",
+      "transitionAttributes",
+      "shipmentTypeIncompatibilities",
+      "shipmentTypeRequirements",
+      "precedenceRules",
+      "breakRules",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Shipment].self, forKey: .shipments) {
+      self.shipments = value
+    }
+    if let value = try container.decodeIfPresent([Vehicle].self, forKey: .vehicles) {
+      self.vehicles = value
+    }
+    self.maxActiveVehicles = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .maxActiveVehicles)
+    self.globalStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .globalStartTime)
+    self.globalEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .globalEndTime)
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .globalDurationCostPerHour)
+    {
+      self.globalDurationCostPerHour = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentModel.DurationDistanceMatrix].self, forKey: .durationDistanceMatrices)
+    {
+      self.durationDistanceMatrices = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .durationDistanceMatrixSrcTags)
+    {
+      self.durationDistanceMatrixSrcTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .durationDistanceMatrixDstTags)
+    {
+      self.durationDistanceMatrixDstTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TransitionAttributes].self, forKey: .transitionAttributes)
+    {
+      self.transitionAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentTypeIncompatibility].self, forKey: .shipmentTypeIncompatibilities)
+    {
+      self.shipmentTypeIncompatibilities = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentTypeRequirement].self, forKey: .shipmentTypeRequirements)
+    {
+      self.shipmentTypeRequirements = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentModel.PrecedenceRule].self, forKey: .precedenceRules)
+    {
+      self.precedenceRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ShipmentModel.BreakRule].self, forKey: .breakRules)
+    {
+      self.breakRules = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.shipments, forKey: .shipments)
+    try container.encode(self.vehicles, forKey: .vehicles)
+    try container.encodeIfPresent(self.maxActiveVehicles, forKey: .maxActiveVehicles)
+    try container.encodeIfPresent(self.globalStartTime, forKey: .globalStartTime)
+    try container.encodeIfPresent(self.globalEndTime, forKey: .globalEndTime)
+    try container.encode(self.globalDurationCostPerHour, forKey: .globalDurationCostPerHour)
+    try container.encode(self.durationDistanceMatrices, forKey: .durationDistanceMatrices)
+    try container.encode(self.durationDistanceMatrixSrcTags, forKey: .durationDistanceMatrixSrcTags)
+    try container.encode(self.durationDistanceMatrixDstTags, forKey: .durationDistanceMatrixDstTags)
+    try container.encode(self.transitionAttributes, forKey: .transitionAttributes)
+    try container.encode(self.shipmentTypeIncompatibilities, forKey: .shipmentTypeIncompatibilities)
+    try container.encode(self.shipmentTypeRequirements, forKey: .shipmentTypeRequirements)
+    try container.encode(self.precedenceRules, forKey: .precedenceRules)
+    try container.encode(self.breakRules, forKey: .breakRules)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies a duration and distance matrix from visit and vehicle start
@@ -256,6 +386,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// All matrices must have a different `vehicle_start_tag`.
     public var vehicleStartTag: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DurationDistanceMatrix`.
     public init() {}
 
@@ -270,6 +402,46 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rows = CodingKeys(stringValue: "rows")
+      static let vehicleStartTag = CodingKeys(stringValue: "vehicleStartTag")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rows",
+        "vehicleStartTag",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ShipmentModel.DurationDistanceMatrix.Row].self, forKey: .rows)
+      {
+        self.rows = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vehicleStartTag) {
+        self.vehicleStartTag = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rows, forKey: .rows)
+      try container.encode(self.vehicleStartTag, forKey: .vehicleStartTag)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Specifies a row of the duration and distance matrix.
@@ -287,6 +459,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// as many elements as `durations`.
       public var meters: [Swift.Double] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Row`.
       public init() {}
 
@@ -301,6 +475,46 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let durations = CodingKeys(stringValue: "durations")
+        static let meters = CodingKeys(stringValue: "meters")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "durations",
+          "meters",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [GoogleCloudWKT.Duration].self, forKey: .durations)
+        {
+          self.durations = value
+        }
+        if let value = try container.decodeIfPresent([Swift.Double].self, forKey: .meters) {
+          self.meters = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.durations, forKey: .durations)
+        try container.encode(self.meters, forKey: .meters)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -354,6 +568,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The offset between the "first" and "second" event. It can be negative.
     public var offsetDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PrecedenceRule`.
     public init() {}
 
@@ -368,6 +584,57 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let firstIndex = CodingKeys(stringValue: "firstIndex")
+      static let firstIsDelivery = CodingKeys(stringValue: "firstIsDelivery")
+      static let secondIndex = CodingKeys(stringValue: "secondIndex")
+      static let secondIsDelivery = CodingKeys(stringValue: "secondIsDelivery")
+      static let offsetDuration = CodingKeys(stringValue: "offsetDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "firstIndex",
+        "firstIsDelivery",
+        "secondIndex",
+        "secondIsDelivery",
+        "offsetDuration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.firstIndex = try container.decodeIfPresent(Swift.Int32.self, forKey: .firstIndex)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .firstIsDelivery) {
+        self.firstIsDelivery = value
+      }
+      self.secondIndex = try container.decodeIfPresent(Swift.Int32.self, forKey: .secondIndex)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .secondIsDelivery) {
+        self.secondIsDelivery = value
+      }
+      self.offsetDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .offsetDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.firstIndex, forKey: .firstIndex)
+      try container.encode(self.firstIsDelivery, forKey: .firstIsDelivery)
+      try container.encodeIfPresent(self.secondIndex, forKey: .secondIndex)
+      try container.encode(self.secondIsDelivery, forKey: .secondIsDelivery)
+      try container.encodeIfPresent(self.offsetDuration, forKey: .offsetDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -407,6 +674,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
     public var frequencyConstraints: [ShipmentModel.BreakRule.FrequencyConstraint] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BreakRule`.
     public init() {}
 
@@ -421,6 +690,48 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let breakRequests = CodingKeys(stringValue: "breakRequests")
+      static let frequencyConstraints = CodingKeys(stringValue: "frequencyConstraints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "breakRequests",
+        "frequencyConstraints",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ShipmentModel.BreakRule.BreakRequest].self, forKey: .breakRequests)
+      {
+        self.breakRequests = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ShipmentModel.BreakRule.FrequencyConstraint].self, forKey: .frequencyConstraints)
+      {
+        self.frequencyConstraints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.breakRequests, forKey: .breakRequests)
+      try container.encode(self.frequencyConstraints, forKey: .frequencyConstraints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The sequence of breaks (i.e. their number and order) that apply to each
@@ -440,6 +751,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Required. Minimum duration of the break. Must be positive.
       public var minDuration: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BreakRequest`.
       public init() {}
 
@@ -454,6 +767,47 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let earliestStartTime = CodingKeys(stringValue: "earliestStartTime")
+        static let latestStartTime = CodingKeys(stringValue: "latestStartTime")
+        static let minDuration = CodingKeys(stringValue: "minDuration")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "earliestStartTime",
+          "latestStartTime",
+          "minDuration",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.earliestStartTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .earliestStartTime)
+        self.latestStartTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .latestStartTime)
+        self.minDuration = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .minDuration)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.earliestStartTime, forKey: .earliestStartTime)
+        try container.encodeIfPresent(self.latestStartTime, forKey: .latestStartTime)
+        try container.encodeIfPresent(self.minDuration, forKey: .minDuration)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -513,6 +867,8 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// min_break_duration`. Must be positive.
       public var maxInterBreakDuration: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `FrequencyConstraint`.
       public init() {}
 
@@ -527,6 +883,42 @@ public struct ShipmentModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let minBreakDuration = CodingKeys(stringValue: "minBreakDuration")
+        static let maxInterBreakDuration = CodingKeys(stringValue: "maxInterBreakDuration")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "minBreakDuration",
+          "maxInterBreakDuration",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.minBreakDuration = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .minBreakDuration)
+        self.maxInterBreakDuration = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .maxInterBreakDuration)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.minBreakDuration, forKey: .minBreakDuration)
+        try container.encodeIfPresent(self.maxInterBreakDuration, forKey: .maxInterBreakDuration)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

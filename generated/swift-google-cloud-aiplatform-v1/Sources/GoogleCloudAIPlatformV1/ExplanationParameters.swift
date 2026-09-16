@@ -47,6 +47,8 @@
 
     public var method: OneOf_Method? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExplanationParameters`.
     public init() {}
 
@@ -63,18 +65,35 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case sampledShapleyAttribution = "sampledShapleyAttribution"
-      case integratedGradientsAttribution = "integratedGradientsAttribution"
-      case xraiAttribution = "xraiAttribution"
-      case examples = "examples"
-      case topK = "topK"
-      case outputIndices = "outputIndices"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sampledShapleyAttribution = CodingKeys(stringValue: "sampledShapleyAttribution")
+      static let integratedGradientsAttribution = CodingKeys(
+        stringValue: "integratedGradientsAttribution")
+      static let xraiAttribution = CodingKeys(stringValue: "xraiAttribution")
+      static let examples = CodingKeys(stringValue: "examples")
+      static let topK = CodingKeys(stringValue: "topK")
+      static let outputIndices = CodingKeys(stringValue: "outputIndices")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sampledShapleyAttribution",
+        "integratedGradientsAttribution",
+        "xraiAttribution",
+        "examples",
+        "topK",
+        "outputIndices",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.topK = try container.decode(Swift.Int32.self, forKey: .topK)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK) {
+        self.topK = value
+      }
       self.outputIndices = try container.decodeIfPresent(
         GoogleCloudWKT.ListValue.self, forKey: .outputIndices)
 
@@ -107,12 +126,16 @@
         try methodCheckAndSet(.examples(examples))
       }
       self.method = method
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.topK, forKey: .topK)
-      try container.encode(self.outputIndices, forKey: .outputIndices)
+      try container.encodeIfPresent(self.outputIndices, forKey: .outputIndices)
 
       if let choice = self.method {
         switch choice {
@@ -125,6 +148,9 @@
         case .examples(let value):
           try container.encode(value, forKey: .examples)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

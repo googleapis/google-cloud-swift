@@ -63,6 +63,8 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWKT.
   /// required to look up transferrable Offers.
   public var transferredCustomerIdentity: OneOf_TransferredCustomerIdentity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListTransferableOffersRequest`.
   public init() {}
 
@@ -79,25 +81,53 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudIdentityId = "cloudIdentityId"
-    case customerName = "customerName"
-    case parent = "parent"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case sku = "sku"
-    case languageCode = "languageCode"
-    case billingAccount = "billingAccount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudIdentityId = CodingKeys(stringValue: "cloudIdentityId")
+    static let customerName = CodingKeys(stringValue: "customerName")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let sku = CodingKeys(stringValue: "sku")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let billingAccount = CodingKeys(stringValue: "billingAccount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudIdentityId",
+      "customerName",
+      "parent",
+      "pageSize",
+      "pageToken",
+      "sku",
+      "languageCode",
+      "billingAccount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
-    self.sku = try container.decode(Swift.String.self, forKey: .sku)
-    self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
-    self.billingAccount = try container.decode(Swift.String.self, forKey: .billingAccount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sku) {
+      self.sku = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .billingAccount) {
+      self.billingAccount = value
+    }
 
     var transferredCustomerIdentity: OneOf_TransferredCustomerIdentity? = nil
     let transferredCustomerIdentityCheckAndSet = {
@@ -118,6 +148,10 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWKT.
       try transferredCustomerIdentityCheckAndSet(.customerName(customerName))
     }
     self.transferredCustomerIdentity = transferredCustomerIdentity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -136,6 +170,9 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWKT.
       case .customerName(let value):
         try container.encode(value, forKey: .customerName)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -65,6 +65,8 @@
     /// Output only. Backup tier that manages the backups for the instance.
     public var backupTier: BackupConfiguration.BackupTier? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackupConfiguration`.
     public init() {}
 
@@ -79,6 +81,97 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let binaryLogEnabled = CodingKeys(stringValue: "binaryLogEnabled")
+      static let replicationLogArchivingEnabled = CodingKeys(
+        stringValue: "replicationLogArchivingEnabled")
+      static let location = CodingKeys(stringValue: "location")
+      static let pointInTimeRecoveryEnabled = CodingKeys(stringValue: "pointInTimeRecoveryEnabled")
+      static let backupRetentionSettings = CodingKeys(stringValue: "backupRetentionSettings")
+      static let transactionLogRetentionDays = CodingKeys(
+        stringValue: "transactionLogRetentionDays")
+      static let transactionalLogStorageState = CodingKeys(
+        stringValue: "transactionalLogStorageState")
+      static let backupTier = CodingKeys(stringValue: "backupTier")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTime",
+        "enabled",
+        "kind",
+        "binaryLogEnabled",
+        "replicationLogArchivingEnabled",
+        "location",
+        "pointInTimeRecoveryEnabled",
+        "backupRetentionSettings",
+        "transactionLogRetentionDays",
+        "transactionalLogStorageState",
+        "backupTier",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startTime) {
+        self.startTime = value
+      }
+      self.enabled = try container.decodeIfPresent(GoogleCloudWKT.BoolValue.self, forKey: .enabled)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.binaryLogEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .binaryLogEnabled)
+      self.replicationLogArchivingEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .replicationLogArchivingEnabled)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      self.pointInTimeRecoveryEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .pointInTimeRecoveryEnabled)
+      self.backupRetentionSettings = try container.decodeIfPresent(
+        BackupRetentionSettings.self, forKey: .backupRetentionSettings)
+      self.transactionLogRetentionDays = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .transactionLogRetentionDays)
+      self.transactionalLogStorageState = try container.decodeIfPresent(
+        BackupConfiguration.TransactionalLogStorageState.self, forKey: .transactionalLogStorageState
+      )
+      self.backupTier = try container.decodeIfPresent(
+        BackupConfiguration.BackupTier.self, forKey: .backupTier)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.binaryLogEnabled, forKey: .binaryLogEnabled)
+      try container.encodeIfPresent(
+        self.replicationLogArchivingEnabled, forKey: .replicationLogArchivingEnabled)
+      try container.encode(self.location, forKey: .location)
+      try container.encodeIfPresent(
+        self.pointInTimeRecoveryEnabled, forKey: .pointInTimeRecoveryEnabled)
+      try container.encodeIfPresent(self.backupRetentionSettings, forKey: .backupRetentionSettings)
+      try container.encodeIfPresent(
+        self.transactionLogRetentionDays, forKey: .transactionLogRetentionDays)
+      try container.encodeIfPresent(
+        self.transactionalLogStorageState, forKey: .transactionalLogStorageState)
+      try container.encodeIfPresent(self.backupTier, forKey: .backupTier)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// This value contains the storage location of the transactional logs

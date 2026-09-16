@@ -74,6 +74,8 @@ public struct WorkerPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration for the `WorkerPool`.
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkerPool`.
   public init() {}
 
@@ -90,33 +92,65 @@ public struct WorkerPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case uid = "uid"
-    case annotations = "annotations"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case state = "state"
-    case privatePoolV1Config = "privatePoolV1Config"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let privatePoolV1Config = CodingKeys(stringValue: "privatePoolV1Config")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "uid",
+      "annotations",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "state",
+      "privatePoolV1Config",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
-    self.state = try container.decode(WorkerPool.State.self, forKey: .state)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(WorkerPool.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var config: OneOf_Config? = nil
     let configCheckAndSet = {
@@ -134,6 +168,10 @@ public struct WorkerPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try configCheckAndSet(.privatePoolV1Config(privatePoolV1Config))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -142,9 +180,9 @@ public struct WorkerPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.etag, forKey: .etag)
 
@@ -153,6 +191,9 @@ public struct WorkerPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .privatePoolV1Config(let value):
         try container.encode(value, forKey: .privatePoolV1Config)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

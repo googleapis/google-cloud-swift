@@ -37,6 +37,8 @@ public struct SearchHypernym: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Hyponyms that the hypernym is mapped to.
   public var hyponyms: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchHypernym`.
   public init() {}
 
@@ -51,6 +53,50 @@ public struct SearchHypernym: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let hypernym = CodingKeys(stringValue: "hypernym")
+    static let hyponyms = CodingKeys(stringValue: "hyponyms")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "hypernym",
+      "hyponyms",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hypernym) {
+      self.hypernym = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .hyponyms) {
+      self.hyponyms = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.hypernym, forKey: .hypernym)
+    try container.encode(self.hyponyms, forKey: .hyponyms)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

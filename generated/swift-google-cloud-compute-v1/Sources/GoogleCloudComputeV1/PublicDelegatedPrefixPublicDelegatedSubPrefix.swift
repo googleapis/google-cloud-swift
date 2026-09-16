@@ -62,6 +62,8 @@
     /// Output only. [Output Only] The status of the sub public delegated prefix.
     public var status: PublicDelegatedPrefixPublicDelegatedSubPrefix.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublicDelegatedPrefixPublicDelegatedSubPrefix`.
     public init() {}
 
@@ -76,6 +78,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allocatablePrefixLength = CodingKeys(stringValue: "allocatablePrefixLength")
+      static let delegateeProject = CodingKeys(stringValue: "delegateeProject")
+      static let description = CodingKeys(stringValue: "description")
+      static let enableEnhancedIpv4Allocation = CodingKeys(
+        stringValue: "enableEnhancedIpv4Allocation")
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let isAddress = CodingKeys(stringValue: "isAddress")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let name = CodingKeys(stringValue: "name")
+      static let region = CodingKeys(stringValue: "region")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allocatablePrefixLength",
+        "delegateeProject",
+        "description",
+        "enableEnhancedIpv4Allocation",
+        "ipCidrRange",
+        "ipv6AccessType",
+        "isAddress",
+        "mode",
+        "name",
+        "region",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.allocatablePrefixLength = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .allocatablePrefixLength)
+      self.delegateeProject = try container.decodeIfPresent(
+        Swift.String.self, forKey: .delegateeProject)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.enableEnhancedIpv4Allocation = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableEnhancedIpv4Allocation)
+      self.ipCidrRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange)
+      self.ipv6AccessType = try container.decodeIfPresent(
+        PublicDelegatedPrefixPublicDelegatedSubPrefix.Ipv6AccessType.self, forKey: .ipv6AccessType)
+      self.isAddress = try container.decodeIfPresent(Swift.Bool.self, forKey: .isAddress)
+      self.mode = try container.decodeIfPresent(
+        PublicDelegatedPrefixPublicDelegatedSubPrefix.Mode.self, forKey: .mode)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.status = try container.decodeIfPresent(
+        PublicDelegatedPrefixPublicDelegatedSubPrefix.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.allocatablePrefixLength, forKey: .allocatablePrefixLength)
+      try container.encodeIfPresent(self.delegateeProject, forKey: .delegateeProject)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
+        self.enableEnhancedIpv4Allocation, forKey: .enableEnhancedIpv4Allocation)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.isAddress, forKey: .isAddress)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [ipv6AccessType][google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.ipv6AccessType] field.

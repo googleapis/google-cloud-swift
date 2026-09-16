@@ -30,6 +30,8 @@ public struct NFSVolumeSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If true, the volume will be mounted as read only for all mounts.
   public var readOnly: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NFSVolumeSource`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct NFSVolumeSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let server = CodingKeys(stringValue: "server")
+    static let path = CodingKeys(stringValue: "path")
+    static let readOnly = CodingKeys(stringValue: "readOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "server",
+      "path",
+      "readOnly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .server) {
+      self.server = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .readOnly) {
+      self.readOnly = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.server, forKey: .server)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.readOnly, forKey: .readOnly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

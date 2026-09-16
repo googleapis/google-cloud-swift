@@ -31,6 +31,8 @@
     /// The localized error message in the above locale.
     public var message: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LocalizedMessage`.
     public init() {}
 
@@ -45,6 +47,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locale = CodingKeys(stringValue: "locale")
+      static let message = CodingKeys(stringValue: "message")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locale",
+        "message",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.locale = try container.decodeIfPresent(Swift.String.self, forKey: .locale)
+      self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.locale, forKey: .locale)
+      try container.encodeIfPresent(self.message, forKey: .message)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

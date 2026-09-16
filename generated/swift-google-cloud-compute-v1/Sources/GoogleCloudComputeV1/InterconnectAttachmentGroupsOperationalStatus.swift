@@ -35,6 +35,8 @@
     /// Output only. The operational state of the group, including only active Attachments.
     public var operational: InterconnectAttachmentGroupConfigured? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentGroupsOperationalStatus`.
     public init() {}
 
@@ -49,6 +51,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attachmentStatuses = CodingKeys(stringValue: "attachmentStatuses")
+      static let configured = CodingKeys(stringValue: "configured")
+      static let groupStatus = CodingKeys(stringValue: "groupStatus")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let operational = CodingKeys(stringValue: "operational")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attachmentStatuses",
+        "configured",
+        "groupStatus",
+        "intent",
+        "operational",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [InterconnectAttachmentGroupsOperationalStatusAttachmentStatus].self,
+        forKey: .attachmentStatuses)
+      {
+        self.attachmentStatuses = value
+      }
+      self.configured = try container.decodeIfPresent(
+        InterconnectAttachmentGroupConfigured.self, forKey: .configured)
+      self.groupStatus = try container.decodeIfPresent(
+        InterconnectAttachmentGroupsOperationalStatus.GroupStatus.self, forKey: .groupStatus)
+      self.intent = try container.decodeIfPresent(
+        InterconnectAttachmentGroupIntent.self, forKey: .intent)
+      self.operational = try container.decodeIfPresent(
+        InterconnectAttachmentGroupConfigured.self, forKey: .operational)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.attachmentStatuses, forKey: .attachmentStatuses)
+      try container.encodeIfPresent(self.configured, forKey: .configured)
+      try container.encodeIfPresent(self.groupStatus, forKey: .groupStatus)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
+      try container.encodeIfPresent(self.operational, forKey: .operational)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [groupStatus][google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatus.groupStatus] field.

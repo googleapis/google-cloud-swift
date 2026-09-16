@@ -68,6 +68,8 @@ public struct SecurityCenterService: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// utilize this field.
   public var serviceConfig: GoogleCloudWKT.Struct? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityCenterService`.
   public init() {}
 
@@ -82,6 +84,72 @@ public struct SecurityCenterService: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let intendedEnablementState = CodingKeys(stringValue: "intendedEnablementState")
+    static let effectiveEnablementState = CodingKeys(stringValue: "effectiveEnablementState")
+    static let modules = CodingKeys(stringValue: "modules")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let serviceConfig = CodingKeys(stringValue: "serviceConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "intendedEnablementState",
+      "effectiveEnablementState",
+      "modules",
+      "updateTime",
+      "serviceConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      SecurityCenterService.EnablementState.self, forKey: .intendedEnablementState)
+    {
+      self.intendedEnablementState = value
+    }
+    if let value = try container.decodeIfPresent(
+      SecurityCenterService.EnablementState.self, forKey: .effectiveEnablementState)
+    {
+      self.effectiveEnablementState = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: SecurityCenterService.ModuleSettings].self, forKey: .modules)
+    {
+      self.modules = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.serviceConfig = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .serviceConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.intendedEnablementState, forKey: .intendedEnablementState)
+    try container.encode(self.effectiveEnablementState, forKey: .effectiveEnablementState)
+    try container.encode(self.modules, forKey: .modules)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.serviceConfig, forKey: .serviceConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The settings for individual modules.
@@ -101,6 +169,8 @@ public struct SecurityCenterService: Codable, Equatable, GoogleCloudWKT._AnyPack
     public var effectiveEnablementState: SecurityCenterService.EnablementState =
       SecurityCenterService.EnablementState()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModuleSettings`.
     public init() {}
 
@@ -115,6 +185,48 @@ public struct SecurityCenterService: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intendedEnablementState = CodingKeys(stringValue: "intendedEnablementState")
+      static let effectiveEnablementState = CodingKeys(stringValue: "effectiveEnablementState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intendedEnablementState",
+        "effectiveEnablementState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        SecurityCenterService.EnablementState.self, forKey: .intendedEnablementState)
+      {
+        self.intendedEnablementState = value
+      }
+      if let value = try container.decodeIfPresent(
+        SecurityCenterService.EnablementState.self, forKey: .effectiveEnablementState)
+      {
+        self.effectiveEnablementState = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.intendedEnablementState, forKey: .intendedEnablementState)
+      try container.encode(self.effectiveEnablementState, forKey: .effectiveEnablementState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

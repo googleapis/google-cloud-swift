@@ -85,6 +85,8 @@ public struct BatchTranslateTextRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// information.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchTranslateTextRequest`.
   public init() {}
 
@@ -99,6 +101,83 @@ public struct BatchTranslateTextRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let sourceLanguageCode = CodingKeys(stringValue: "sourceLanguageCode")
+    static let targetLanguageCodes = CodingKeys(stringValue: "targetLanguageCodes")
+    static let models = CodingKeys(stringValue: "models")
+    static let inputConfigs = CodingKeys(stringValue: "inputConfigs")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+    static let glossaries = CodingKeys(stringValue: "glossaries")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "sourceLanguageCode",
+      "targetLanguageCodes",
+      "models",
+      "inputConfigs",
+      "outputConfig",
+      "glossaries",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguageCode) {
+      self.sourceLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetLanguageCodes)
+    {
+      self.targetLanguageCodes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .models)
+    {
+      self.models = value
+    }
+    if let value = try container.decodeIfPresent([InputConfig].self, forKey: .inputConfigs) {
+      self.inputConfigs = value
+    }
+    self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: TranslateTextGlossaryConfig].self, forKey: .glossaries)
+    {
+      self.glossaries = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.sourceLanguageCode, forKey: .sourceLanguageCode)
+    try container.encode(self.targetLanguageCodes, forKey: .targetLanguageCodes)
+    try container.encode(self.models, forKey: .models)
+    try container.encode(self.inputConfigs, forKey: .inputConfigs)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+    try container.encode(self.glossaries, forKey: .glossaries)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

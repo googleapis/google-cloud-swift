@@ -71,6 +71,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// versions.
   public var genAiModelInfo: ProcessorVersion.GenAiModelInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessorVersion`.
   public init() {}
 
@@ -87,6 +89,113 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let documentSchema = CodingKeys(stringValue: "documentSchema")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let latestEvaluation = CodingKeys(stringValue: "latestEvaluation")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let kmsKeyVersionName = CodingKeys(stringValue: "kmsKeyVersionName")
+    static let googleManaged = CodingKeys(stringValue: "googleManaged")
+    static let deprecationInfo = CodingKeys(stringValue: "deprecationInfo")
+    static let modelType = CodingKeys(stringValue: "modelType")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let genAiModelInfo = CodingKeys(stringValue: "genAiModelInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "documentSchema",
+      "state",
+      "createTime",
+      "latestEvaluation",
+      "kmsKeyName",
+      "kmsKeyVersionName",
+      "googleManaged",
+      "deprecationInfo",
+      "modelType",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "genAiModelInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.documentSchema = try container.decodeIfPresent(
+      DocumentSchema.self, forKey: .documentSchema)
+    if let value = try container.decodeIfPresent(ProcessorVersion.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.latestEvaluation = try container.decodeIfPresent(
+      EvaluationReference.self, forKey: .latestEvaluation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersionName) {
+      self.kmsKeyVersionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .googleManaged) {
+      self.googleManaged = value
+    }
+    self.deprecationInfo = try container.decodeIfPresent(
+      ProcessorVersion.DeprecationInfo.self, forKey: .deprecationInfo)
+    if let value = try container.decodeIfPresent(
+      ProcessorVersion.ModelType.self, forKey: .modelType)
+    {
+      self.modelType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    self.genAiModelInfo = try container.decodeIfPresent(
+      ProcessorVersion.GenAiModelInfo.self, forKey: .genAiModelInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.documentSchema, forKey: .documentSchema)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.latestEvaluation, forKey: .latestEvaluation)
+    try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+    try container.encode(self.kmsKeyVersionName, forKey: .kmsKeyVersionName)
+    try container.encode(self.googleManaged, forKey: .googleManaged)
+    try container.encodeIfPresent(self.deprecationInfo, forKey: .deprecationInfo)
+    try container.encode(self.modelType, forKey: .modelType)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(self.genAiModelInfo, forKey: .genAiModelInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Information about the upcoming deprecation of this processor version.
   public struct DeprecationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -96,6 +205,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// If set, the processor version that will be used as a replacement.
     public var replacementProcessorVersion: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DeprecationInfo`.
     public init() {}
@@ -111,6 +222,46 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deprecationTime = CodingKeys(stringValue: "deprecationTime")
+      static let replacementProcessorVersion = CodingKeys(
+        stringValue: "replacementProcessorVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deprecationTime",
+        "replacementProcessorVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.deprecationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .deprecationTime)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .replacementProcessorVersion)
+      {
+        self.replacementProcessorVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.deprecationTime, forKey: .deprecationTime)
+      try container.encode(self.replacementProcessorVersion, forKey: .replacementProcessorVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -132,6 +283,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// model or a custom Generative AI model created by the user.
     public var modelInfo: OneOf_ModelInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenAiModelInfo`.
     public init() {}
 
@@ -148,9 +301,19 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case foundationGenAiModelInfo = "foundationGenAiModelInfo"
-      case customGenAiModelInfo = "customGenAiModelInfo"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let foundationGenAiModelInfo = CodingKeys(stringValue: "foundationGenAiModelInfo")
+      static let customGenAiModelInfo = CodingKeys(stringValue: "customGenAiModelInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "foundationGenAiModelInfo",
+        "customGenAiModelInfo",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -178,6 +341,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try modelInfoCheckAndSet(.customGenAiModelInfo(customGenAiModelInfo))
       }
       self.modelInfo = modelInfo
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -191,6 +358,9 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .customGenAiModelInfo)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Information for a pretrained Google-managed foundation model.
@@ -203,6 +373,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The minimum number of labeled documents in the training dataset
       /// required for finetuning.
       public var minTrainLabeledDocuments: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FoundationGenAiModelInfo`.
       public init() {}
@@ -218,6 +390,46 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let finetuningAllowed = CodingKeys(stringValue: "finetuningAllowed")
+        static let minTrainLabeledDocuments = CodingKeys(stringValue: "minTrainLabeledDocuments")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "finetuningAllowed",
+          "minTrainLabeledDocuments",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .finetuningAllowed) {
+          self.finetuningAllowed = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .minTrainLabeledDocuments)
+        {
+          self.minTrainLabeledDocuments = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.finetuningAllowed, forKey: .finetuningAllowed)
+        try container.encode(self.minTrainLabeledDocuments, forKey: .minTrainLabeledDocuments)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -246,6 +458,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The base processor version ID for the custom model.
       public var baseProcessorVersionId: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CustomGenAiModelInfo`.
       public init() {}
 
@@ -260,6 +474,49 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let customModelType = CodingKeys(stringValue: "customModelType")
+        static let baseProcessorVersionId = CodingKeys(stringValue: "baseProcessorVersionId")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "customModelType",
+          "baseProcessorVersionId",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo.CustomModelType.self,
+          forKey: .customModelType)
+        {
+          self.customModelType = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .baseProcessorVersionId)
+        {
+          self.baseProcessorVersionId = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.customModelType, forKey: .customModelType)
+        try container.encode(self.baseProcessorVersionId, forKey: .baseProcessorVersionId)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The type of custom model created by the user.

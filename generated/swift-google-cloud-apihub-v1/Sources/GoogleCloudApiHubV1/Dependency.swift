@@ -64,6 +64,8 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The value is the attribute values associated with the resource.
   public var attributes: [Swift.String: AttributeValues] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dependency`.
   public init() {}
 
@@ -78,6 +80,89 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let consumer = CodingKeys(stringValue: "consumer")
+    static let supplier = CodingKeys(stringValue: "supplier")
+    static let state = CodingKeys(stringValue: "state")
+    static let description = CodingKeys(stringValue: "description")
+    static let discoveryMode = CodingKeys(stringValue: "discoveryMode")
+    static let errorDetail = CodingKeys(stringValue: "errorDetail")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let attributes = CodingKeys(stringValue: "attributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "consumer",
+      "supplier",
+      "state",
+      "description",
+      "discoveryMode",
+      "errorDetail",
+      "createTime",
+      "updateTime",
+      "attributes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.consumer = try container.decodeIfPresent(DependencyEntityReference.self, forKey: .consumer)
+    self.supplier = try container.decodeIfPresent(DependencyEntityReference.self, forKey: .supplier)
+    if let value = try container.decodeIfPresent(Dependency.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      Dependency.DiscoveryMode.self, forKey: .discoveryMode)
+    {
+      self.discoveryMode = value
+    }
+    self.errorDetail = try container.decodeIfPresent(
+      DependencyErrorDetail.self, forKey: .errorDetail)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AttributeValues].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.consumer, forKey: .consumer)
+    try container.encodeIfPresent(self.supplier, forKey: .supplier)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.discoveryMode, forKey: .discoveryMode)
+    try container.encodeIfPresent(self.errorDetail, forKey: .errorDetail)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.attributes, forKey: .attributes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states for a dependency.

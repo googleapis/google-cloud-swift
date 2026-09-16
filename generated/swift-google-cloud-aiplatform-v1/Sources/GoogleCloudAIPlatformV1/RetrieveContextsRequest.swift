@@ -37,6 +37,8 @@
     /// Data Source to retrieve contexts.
     public var dataSource: OneOf_DataSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RetrieveContextsRequest`.
     public init() {}
 
@@ -53,15 +55,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case vertexRagStore = "vertexRagStore"
-      case parent = "parent"
-      case query = "query"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let vertexRagStore = CodingKeys(stringValue: "vertexRagStore")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let query = CodingKeys(stringValue: "query")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "vertexRagStore",
+        "parent",
+        "query",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
       self.query = try container.decodeIfPresent(RagQuery.self, forKey: .query)
 
       var dataSource: OneOf_DataSource? = nil
@@ -80,18 +95,25 @@
         try dataSourceCheckAndSet(.vertexRagStore(vertexRagStore))
       }
       self.dataSource = dataSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.query, forKey: .query)
+      try container.encodeIfPresent(self.query, forKey: .query)
 
       if let choice = self.dataSource {
         switch choice {
         case .vertexRagStore(let value):
           try container.encode(value, forKey: .vertexRagStore)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -110,6 +132,8 @@
       @available(*, deprecated)
       public var vectorDistanceThreshold: Swift.Double? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `VertexRagStore`.
       public init() {}
 
@@ -126,6 +150,46 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ragResources = CodingKeys(stringValue: "ragResources")
+        static let vectorDistanceThreshold = CodingKeys(stringValue: "vectorDistanceThreshold")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "ragResources",
+          "vectorDistanceThreshold",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [RetrieveContextsRequest.VertexRagStore.RagResource].self, forKey: .ragResources)
+        {
+          self.ragResources = value
+        }
+        self.vectorDistanceThreshold = try container.decodeIfPresent(
+          Swift.Double.self, forKey: .vectorDistanceThreshold)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.ragResources, forKey: .ragResources)
+        try container.encodeIfPresent(
+          self.vectorDistanceThreshold, forKey: .vectorDistanceThreshold)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// The definition of the Rag resource.
       public struct RagResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -138,6 +202,9 @@
         /// Optional. rag_file_id. The files should be in the same rag_corpus set
         /// in rag_corpus field.
         public var ragFileIds: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `RagResource`.
         public init() {}
@@ -153,6 +220,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let ragCorpus = CodingKeys(stringValue: "ragCorpus")
+          static let ragFileIds = CodingKeys(stringValue: "ragFileIds")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "ragCorpus",
+            "ragFileIds",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ragCorpus) {
+            self.ragCorpus = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ragFileIds) {
+            self.ragFileIds = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.ragCorpus, forKey: .ragCorpus)
+          try container.encode(self.ragFileIds, forKey: .ragFileIds)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

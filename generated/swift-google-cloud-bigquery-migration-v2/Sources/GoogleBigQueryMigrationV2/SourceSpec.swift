@@ -27,6 +27,8 @@ public struct SourceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The specific source SQL.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceSpec`.
   public init() {}
 
@@ -43,16 +45,30 @@ public struct SourceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case baseUri = "baseUri"
-    case literal = "literal"
-    case gcsFilePath = "gcsFilePath"
-    case encoding = "encoding"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseUri = CodingKeys(stringValue: "baseUri")
+    static let literal = CodingKeys(stringValue: "literal")
+    static let gcsFilePath = CodingKeys(stringValue: "gcsFilePath")
+    static let encoding = CodingKeys(stringValue: "encoding")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseUri",
+      "literal",
+      "gcsFilePath",
+      "encoding",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.encoding = try container.decode(Swift.String.self, forKey: .encoding)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encoding) {
+      self.encoding = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -74,6 +90,10 @@ public struct SourceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.gcsFilePath(gcsFilePath))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +109,9 @@ public struct SourceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsFilePath(let value):
         try container.encode(value, forKey: .gcsFilePath)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

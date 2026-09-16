@@ -81,6 +81,8 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The operation that the `AutomationRun` will perform.
   public var operation: OneOf_Operation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomationRun`.
   public init() {}
 
@@ -97,47 +99,90 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case etag = "etag"
-    case serviceAccount = "serviceAccount"
-    case automationSnapshot = "automationSnapshot"
-    case targetId = "targetId"
-    case state = "state"
-    case stateDescription = "stateDescription"
-    case policyViolation = "policyViolation"
-    case expireTime = "expireTime"
-    case ruleId = "ruleId"
-    case automationId = "automationId"
-    case promoteReleaseOperation = "promoteReleaseOperation"
-    case advanceRolloutOperation = "advanceRolloutOperation"
-    case repairRolloutOperation = "repairRolloutOperation"
-    case timedPromoteReleaseOperation = "timedPromoteReleaseOperation"
-    case waitUntilTime = "waitUntilTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let automationSnapshot = CodingKeys(stringValue: "automationSnapshot")
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDescription = CodingKeys(stringValue: "stateDescription")
+    static let policyViolation = CodingKeys(stringValue: "policyViolation")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ruleId = CodingKeys(stringValue: "ruleId")
+    static let automationId = CodingKeys(stringValue: "automationId")
+    static let promoteReleaseOperation = CodingKeys(stringValue: "promoteReleaseOperation")
+    static let advanceRolloutOperation = CodingKeys(stringValue: "advanceRolloutOperation")
+    static let repairRolloutOperation = CodingKeys(stringValue: "repairRolloutOperation")
+    static let timedPromoteReleaseOperation = CodingKeys(
+      stringValue: "timedPromoteReleaseOperation")
+    static let waitUntilTime = CodingKeys(stringValue: "waitUntilTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "etag",
+      "serviceAccount",
+      "automationSnapshot",
+      "targetId",
+      "state",
+      "stateDescription",
+      "policyViolation",
+      "expireTime",
+      "ruleId",
+      "automationId",
+      "promoteReleaseOperation",
+      "advanceRolloutOperation",
+      "repairRolloutOperation",
+      "timedPromoteReleaseOperation",
+      "waitUntilTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
     self.automationSnapshot = try container.decodeIfPresent(
       Automation.self, forKey: .automationSnapshot)
-    self.targetId = try container.decode(Swift.String.self, forKey: .targetId)
-    self.state = try container.decode(AutomationRun.State.self, forKey: .state)
-    self.stateDescription = try container.decode(Swift.String.self, forKey: .stateDescription)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent(AutomationRun.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDescription) {
+      self.stateDescription = value
+    }
     self.policyViolation = try container.decodeIfPresent(
       PolicyViolation.self, forKey: .policyViolation)
     self.expireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
-    self.ruleId = try container.decode(Swift.String.self, forKey: .ruleId)
-    self.automationId = try container.decode(Swift.String.self, forKey: .automationId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleId) {
+      self.ruleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .automationId) {
+      self.automationId = value
+    }
     self.waitUntilTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .waitUntilTime)
 
@@ -172,24 +217,28 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try operationCheckAndSet(.timedPromoteReleaseOperation(timedPromoteReleaseOperation))
     }
     self.operation = operation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.automationSnapshot, forKey: .automationSnapshot)
+    try container.encodeIfPresent(self.automationSnapshot, forKey: .automationSnapshot)
     try container.encode(self.targetId, forKey: .targetId)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateDescription, forKey: .stateDescription)
-    try container.encode(self.policyViolation, forKey: .policyViolation)
-    try container.encode(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.policyViolation, forKey: .policyViolation)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.ruleId, forKey: .ruleId)
     try container.encode(self.automationId, forKey: .automationId)
-    try container.encode(self.waitUntilTime, forKey: .waitUntilTime)
+    try container.encodeIfPresent(self.waitUntilTime, forKey: .waitUntilTime)
 
     if let choice = self.operation {
       switch choice {
@@ -202,6 +251,9 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .timedPromoteReleaseOperation(let value):
         try container.encode(value, forKey: .timedPromoteReleaseOperation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

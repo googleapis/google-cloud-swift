@@ -37,6 +37,8 @@ public struct GKEMasterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// DNS endpoint of a GKE cluster control plane.
   public var dnsEndpoint: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GKEMasterInfo`.
   public init() {}
 
@@ -51,6 +53,62 @@ public struct GKEMasterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterUri = CodingKeys(stringValue: "clusterUri")
+    static let clusterNetworkUri = CodingKeys(stringValue: "clusterNetworkUri")
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let externalIp = CodingKeys(stringValue: "externalIp")
+    static let dnsEndpoint = CodingKeys(stringValue: "dnsEndpoint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterUri",
+      "clusterNetworkUri",
+      "internalIp",
+      "externalIp",
+      "dnsEndpoint",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUri) {
+      self.clusterUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterNetworkUri) {
+      self.clusterNetworkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalIp) {
+      self.externalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dnsEndpoint) {
+      self.dnsEndpoint = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterUri, forKey: .clusterUri)
+    try container.encode(self.clusterNetworkUri, forKey: .clusterNetworkUri)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.externalIp, forKey: .externalIp)
+    try container.encode(self.dnsEndpoint, forKey: .dnsEndpoint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

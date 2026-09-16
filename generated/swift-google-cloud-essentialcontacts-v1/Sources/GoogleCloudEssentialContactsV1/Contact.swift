@@ -48,6 +48,8 @@ public struct Contact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// updated more than 1 year ago.
   public var validateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Contact`.
   public init() {}
 
@@ -62,6 +64,71 @@ public struct Contact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let email = CodingKeys(stringValue: "email")
+    static let notificationCategorySubscriptions = CodingKeys(
+      stringValue: "notificationCategorySubscriptions")
+    static let languageTag = CodingKeys(stringValue: "languageTag")
+    static let validationState = CodingKeys(stringValue: "validationState")
+    static let validateTime = CodingKeys(stringValue: "validateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "email",
+      "notificationCategorySubscriptions",
+      "languageTag",
+      "validationState",
+      "validateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+      self.email = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NotificationCategory].self, forKey: .notificationCategorySubscriptions)
+    {
+      self.notificationCategorySubscriptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageTag) {
+      self.languageTag = value
+    }
+    if let value = try container.decodeIfPresent(ValidationState.self, forKey: .validationState) {
+      self.validationState = value
+    }
+    self.validateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .validateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.email, forKey: .email)
+    try container.encode(
+      self.notificationCategorySubscriptions, forKey: .notificationCategorySubscriptions)
+    try container.encode(self.languageTag, forKey: .languageTag)
+    try container.encode(self.validationState, forKey: .validationState)
+    try container.encodeIfPresent(self.validateTime, forKey: .validateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

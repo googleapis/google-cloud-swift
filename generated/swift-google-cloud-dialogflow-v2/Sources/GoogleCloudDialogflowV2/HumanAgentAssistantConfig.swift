@@ -37,6 +37,8 @@
     /// Configuration for message analysis.
     public var messageAnalysisConfig: HumanAgentAssistantConfig.MessageAnalysisConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HumanAgentAssistantConfig`.
     public init() {}
 
@@ -53,6 +55,53 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+      static let humanAgentSuggestionConfig = CodingKeys(stringValue: "humanAgentSuggestionConfig")
+      static let endUserSuggestionConfig = CodingKeys(stringValue: "endUserSuggestionConfig")
+      static let messageAnalysisConfig = CodingKeys(stringValue: "messageAnalysisConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "notificationConfig",
+        "humanAgentSuggestionConfig",
+        "endUserSuggestionConfig",
+        "messageAnalysisConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.notificationConfig = try container.decodeIfPresent(
+        NotificationConfig.self, forKey: .notificationConfig)
+      self.humanAgentSuggestionConfig = try container.decodeIfPresent(
+        HumanAgentAssistantConfig.SuggestionConfig.self, forKey: .humanAgentSuggestionConfig)
+      self.endUserSuggestionConfig = try container.decodeIfPresent(
+        HumanAgentAssistantConfig.SuggestionConfig.self, forKey: .endUserSuggestionConfig)
+      self.messageAnalysisConfig = try container.decodeIfPresent(
+        HumanAgentAssistantConfig.MessageAnalysisConfig.self, forKey: .messageAnalysisConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+      try container.encodeIfPresent(
+        self.humanAgentSuggestionConfig, forKey: .humanAgentSuggestionConfig)
+      try container.encodeIfPresent(self.endUserSuggestionConfig, forKey: .endUserSuggestionConfig)
+      try container.encodeIfPresent(self.messageAnalysisConfig, forKey: .messageAnalysisConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Settings of suggestion trigger.
     public struct SuggestionTriggerSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -63,6 +112,8 @@
       /// Only trigger suggestion if participant role of last utterance is
       /// END_USER.
       public var onlyEndUser: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SuggestionTriggerSettings`.
       public init() {}
@@ -78,6 +129,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let noSmalltalk = CodingKeys(stringValue: "noSmalltalk")
+        static let onlyEndUser = CodingKeys(stringValue: "onlyEndUser")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "noSmalltalk",
+          "onlyEndUser",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noSmalltalk) {
+          self.noSmalltalk = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .onlyEndUser) {
+          self.onlyEndUser = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.noSmalltalk, forKey: .noSmalltalk)
+        try container.encode(self.onlyEndUser, forKey: .onlyEndUser)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -169,6 +258,8 @@
       public var conversationProcessConfig: HumanAgentAssistantConfig.ConversationProcessConfig? =
         nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SuggestionFeatureConfig`.
       public init() {}
 
@@ -183,6 +274,135 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let suggestionFeature = CodingKeys(stringValue: "suggestionFeature")
+        static let enableEventBasedSuggestion = CodingKeys(
+          stringValue: "enableEventBasedSuggestion")
+        static let disableAgentQueryLogging = CodingKeys(stringValue: "disableAgentQueryLogging")
+        static let enableQuerySuggestionWhenNoAnswer = CodingKeys(
+          stringValue: "enableQuerySuggestionWhenNoAnswer")
+        static let enableConversationAugmentedQuery = CodingKeys(
+          stringValue: "enableConversationAugmentedQuery")
+        static let enableQuerySuggestionOnly = CodingKeys(stringValue: "enableQuerySuggestionOnly")
+        static let enableResponseDebugInfo = CodingKeys(stringValue: "enableResponseDebugInfo")
+        static let raiSettings = CodingKeys(stringValue: "raiSettings")
+        static let suggestionTriggerEvent = CodingKeys(stringValue: "suggestionTriggerEvent")
+        static let disableQuerySearchContext = CodingKeys(stringValue: "disableQuerySearchContext")
+        static let suggestionTriggerSettings = CodingKeys(stringValue: "suggestionTriggerSettings")
+        static let queryConfig = CodingKeys(stringValue: "queryConfig")
+        static let conversationModelConfig = CodingKeys(stringValue: "conversationModelConfig")
+        static let conversationProcessConfig = CodingKeys(stringValue: "conversationProcessConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "suggestionFeature",
+          "enableEventBasedSuggestion",
+          "disableAgentQueryLogging",
+          "enableQuerySuggestionWhenNoAnswer",
+          "enableConversationAugmentedQuery",
+          "enableQuerySuggestionOnly",
+          "enableResponseDebugInfo",
+          "raiSettings",
+          "suggestionTriggerEvent",
+          "disableQuerySearchContext",
+          "suggestionTriggerSettings",
+          "queryConfig",
+          "conversationModelConfig",
+          "conversationProcessConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.suggestionFeature = try container.decodeIfPresent(
+          SuggestionFeature.self, forKey: .suggestionFeature)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableEventBasedSuggestion)
+        {
+          self.enableEventBasedSuggestion = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableAgentQueryLogging)
+        {
+          self.disableAgentQueryLogging = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableQuerySuggestionWhenNoAnswer)
+        {
+          self.enableQuerySuggestionWhenNoAnswer = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableConversationAugmentedQuery)
+        {
+          self.enableConversationAugmentedQuery = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableQuerySuggestionOnly)
+        {
+          self.enableQuerySuggestionOnly = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableResponseDebugInfo)
+        {
+          self.enableResponseDebugInfo = value
+        }
+        self.raiSettings = try container.decodeIfPresent(RaiSettings.self, forKey: .raiSettings)
+        if let value = try container.decodeIfPresent(
+          TriggerEvent.self, forKey: .suggestionTriggerEvent)
+        {
+          self.suggestionTriggerEvent = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableQuerySearchContext)
+        {
+          self.disableQuerySearchContext = value
+        }
+        self.suggestionTriggerSettings = try container.decodeIfPresent(
+          HumanAgentAssistantConfig.SuggestionTriggerSettings.self,
+          forKey: .suggestionTriggerSettings)
+        self.queryConfig = try container.decodeIfPresent(
+          HumanAgentAssistantConfig.SuggestionQueryConfig.self, forKey: .queryConfig)
+        self.conversationModelConfig = try container.decodeIfPresent(
+          HumanAgentAssistantConfig.ConversationModelConfig.self, forKey: .conversationModelConfig)
+        self.conversationProcessConfig = try container.decodeIfPresent(
+          HumanAgentAssistantConfig.ConversationProcessConfig.self,
+          forKey: .conversationProcessConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.suggestionFeature, forKey: .suggestionFeature)
+        try container.encode(self.enableEventBasedSuggestion, forKey: .enableEventBasedSuggestion)
+        try container.encode(self.disableAgentQueryLogging, forKey: .disableAgentQueryLogging)
+        try container.encode(
+          self.enableQuerySuggestionWhenNoAnswer, forKey: .enableQuerySuggestionWhenNoAnswer)
+        try container.encode(
+          self.enableConversationAugmentedQuery, forKey: .enableConversationAugmentedQuery)
+        try container.encode(self.enableQuerySuggestionOnly, forKey: .enableQuerySuggestionOnly)
+        try container.encode(self.enableResponseDebugInfo, forKey: .enableResponseDebugInfo)
+        try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
+        try container.encode(self.suggestionTriggerEvent, forKey: .suggestionTriggerEvent)
+        try container.encode(self.disableQuerySearchContext, forKey: .disableQuerySearchContext)
+        try container.encodeIfPresent(
+          self.suggestionTriggerSettings, forKey: .suggestionTriggerSettings)
+        try container.encodeIfPresent(self.queryConfig, forKey: .queryConfig)
+        try container.encodeIfPresent(
+          self.conversationModelConfig, forKey: .conversationModelConfig)
+        try container.encodeIfPresent(
+          self.conversationProcessConfig, forKey: .conversationProcessConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -247,6 +467,8 @@
       /// Optional. If true, enable asynchronous execution of tools.
       public var enableAsyncToolCall: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SuggestionConfig`.
       public init() {}
 
@@ -261,6 +483,92 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let featureConfigs = CodingKeys(stringValue: "featureConfigs")
+        static let groupSuggestionResponses = CodingKeys(stringValue: "groupSuggestionResponses")
+        static let generators = CodingKeys(stringValue: "generators")
+        static let disableHighLatencyFeaturesSyncDelivery = CodingKeys(
+          stringValue: "disableHighLatencyFeaturesSyncDelivery")
+        static let skipEmptyEventBasedSuggestion = CodingKeys(
+          stringValue: "skipEmptyEventBasedSuggestion")
+        static let useUnredactedConversationData = CodingKeys(
+          stringValue: "useUnredactedConversationData")
+        static let enableAsyncToolCall = CodingKeys(stringValue: "enableAsyncToolCall")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "featureConfigs",
+          "groupSuggestionResponses",
+          "generators",
+          "disableHighLatencyFeaturesSyncDelivery",
+          "skipEmptyEventBasedSuggestion",
+          "useUnredactedConversationData",
+          "enableAsyncToolCall",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [HumanAgentAssistantConfig.SuggestionFeatureConfig].self, forKey: .featureConfigs)
+        {
+          self.featureConfigs = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .groupSuggestionResponses)
+        {
+          self.groupSuggestionResponses = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .generators) {
+          self.generators = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableHighLatencyFeaturesSyncDelivery)
+        {
+          self.disableHighLatencyFeaturesSyncDelivery = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .skipEmptyEventBasedSuggestion)
+        {
+          self.skipEmptyEventBasedSuggestion = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .useUnredactedConversationData)
+        {
+          self.useUnredactedConversationData = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAsyncToolCall)
+        {
+          self.enableAsyncToolCall = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.featureConfigs, forKey: .featureConfigs)
+        try container.encode(self.groupSuggestionResponses, forKey: .groupSuggestionResponses)
+        try container.encode(self.generators, forKey: .generators)
+        try container.encode(
+          self.disableHighLatencyFeaturesSyncDelivery,
+          forKey: .disableHighLatencyFeaturesSyncDelivery)
+        try container.encode(
+          self.skipEmptyEventBasedSuggestion, forKey: .skipEmptyEventBasedSuggestion)
+        try container.encode(
+          self.useUnredactedConversationData, forKey: .useUnredactedConversationData)
+        try container.encode(self.enableAsyncToolCall, forKey: .enableAsyncToolCall)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -321,6 +629,8 @@
       /// Source of query.
       public var querySource: OneOf_QuerySource? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SuggestionQueryConfig`.
       public init() {}
 
@@ -337,28 +647,50 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case knowledgeBaseQuerySource = "knowledgeBaseQuerySource"
-        case documentQuerySource = "documentQuerySource"
-        case dialogflowQuerySource = "dialogflowQuerySource"
-        case maxResults = "maxResults"
-        case confidenceThreshold = "confidenceThreshold"
-        case contextFilterSettings = "contextFilterSettings"
-        case sections = "sections"
-        case contextSize = "contextSize"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let knowledgeBaseQuerySource = CodingKeys(stringValue: "knowledgeBaseQuerySource")
+        static let documentQuerySource = CodingKeys(stringValue: "documentQuerySource")
+        static let dialogflowQuerySource = CodingKeys(stringValue: "dialogflowQuerySource")
+        static let maxResults = CodingKeys(stringValue: "maxResults")
+        static let confidenceThreshold = CodingKeys(stringValue: "confidenceThreshold")
+        static let contextFilterSettings = CodingKeys(stringValue: "contextFilterSettings")
+        static let sections = CodingKeys(stringValue: "sections")
+        static let contextSize = CodingKeys(stringValue: "contextSize")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "knowledgeBaseQuerySource",
+          "documentQuerySource",
+          "dialogflowQuerySource",
+          "maxResults",
+          "confidenceThreshold",
+          "contextFilterSettings",
+          "sections",
+          "contextSize",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.maxResults = try container.decode(Swift.Int32.self, forKey: .maxResults)
-        self.confidenceThreshold = try container.decode(
-          Swift.Float.self, forKey: .confidenceThreshold)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults) {
+          self.maxResults = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceThreshold)
+        {
+          self.confidenceThreshold = value
+        }
         self.contextFilterSettings = try container.decodeIfPresent(
           HumanAgentAssistantConfig.SuggestionQueryConfig.ContextFilterSettings.self,
           forKey: .contextFilterSettings)
         self.sections = try container.decodeIfPresent(
           HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.self, forKey: .sections)
-        self.contextSize = try container.decode(Swift.Int32.self, forKey: .contextSize)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .contextSize) {
+          self.contextSize = value
+        }
 
         var querySource: OneOf_QuerySource? = nil
         let querySourceCheckAndSet = {
@@ -389,14 +721,18 @@
           try querySourceCheckAndSet(.dialogflowQuerySource(dialogflowQuerySource))
         }
         self.querySource = querySource
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.maxResults, forKey: .maxResults)
         try container.encode(self.confidenceThreshold, forKey: .confidenceThreshold)
-        try container.encode(self.contextFilterSettings, forKey: .contextFilterSettings)
-        try container.encode(self.sections, forKey: .sections)
+        try container.encodeIfPresent(self.contextFilterSettings, forKey: .contextFilterSettings)
+        try container.encodeIfPresent(self.sections, forKey: .sections)
         try container.encode(self.contextSize, forKey: .contextSize)
 
         if let choice = self.querySource {
@@ -408,6 +744,9 @@
           case .dialogflowQuerySource(let value):
             try container.encode(value, forKey: .dialogflowQuerySource)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -423,6 +762,9 @@
         /// bases are supported.
         public var knowledgeBases: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `KnowledgeBaseQuerySource`.
         public init() {}
 
@@ -437,6 +779,39 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let knowledgeBases = CodingKeys(stringValue: "knowledgeBases")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "knowledgeBases"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .knowledgeBases)
+          {
+            self.knowledgeBases = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.knowledgeBases, forKey: .knowledgeBases)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -463,6 +838,9 @@
         /// Currently, at most 5 documents are supported.
         public var documents: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DocumentQuerySource`.
         public init() {}
 
@@ -477,6 +855,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let documents = CodingKeys(stringValue: "documents")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "documents"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documents) {
+            self.documents = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.documents, forKey: .documents)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -508,6 +918,9 @@
           HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource
             .HumanAgentSideConfig? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DialogflowQuerySource`.
         public init() {}
 
@@ -524,6 +937,44 @@
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let agent = CodingKeys(stringValue: "agent")
+          static let humanAgentSideConfig = CodingKeys(stringValue: "humanAgentSideConfig")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "agent",
+            "humanAgentSideConfig",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+            self.agent = value
+          }
+          self.humanAgentSideConfig = try container.decodeIfPresent(
+            HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource
+              .HumanAgentSideConfig.self, forKey: .humanAgentSideConfig)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.agent, forKey: .agent)
+          try container.encodeIfPresent(self.humanAgentSideConfig, forKey: .humanAgentSideConfig)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// The configuration used for human agent side Dialogflow assist
         /// suggestion.
         public struct HumanAgentSideConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -533,6 +984,9 @@
           /// detection and suggestion triggered by human agent.
           /// Format: `projects/<Project ID>/locations/<Location ID>/agent`.
           public var agent: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `HumanAgentSideConfig`.
           public init() {}
@@ -548,6 +1002,38 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let agent = CodingKeys(stringValue: "agent")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "agent"
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+              self.agent = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.agent, forKey: .agent)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -589,6 +1075,9 @@
         /// If set to true, all messages from ivr stage are dropped.
         public var dropIvrMessages: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ContextFilterSettings`.
         public init() {}
 
@@ -603,6 +1092,54 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let dropHandoffMessages = CodingKeys(stringValue: "dropHandoffMessages")
+          static let dropVirtualAgentMessages = CodingKeys(stringValue: "dropVirtualAgentMessages")
+          static let dropIvrMessages = CodingKeys(stringValue: "dropIvrMessages")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "dropHandoffMessages",
+            "dropVirtualAgentMessages",
+            "dropIvrMessages",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .dropHandoffMessages)
+          {
+            self.dropHandoffMessages = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .dropVirtualAgentMessages)
+          {
+            self.dropVirtualAgentMessages = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dropIvrMessages) {
+            self.dropIvrMessages = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.dropHandoffMessages, forKey: .dropHandoffMessages)
+          try container.encode(self.dropVirtualAgentMessages, forKey: .dropVirtualAgentMessages)
+          try container.encode(self.dropIvrMessages, forKey: .dropIvrMessages)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -632,6 +1169,9 @@
         public var sectionTypes:
           [HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.SectionType] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Sections`.
         public init() {}
 
@@ -646,6 +1186,41 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let sectionTypes = CodingKeys(stringValue: "sectionTypes")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "sectionTypes"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.SectionType].self,
+            forKey: .sectionTypes)
+          {
+            self.sectionTypes = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.sectionTypes, forKey: .sectionTypes)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Selectable sections to return when requesting a summary of a
@@ -855,6 +1430,8 @@
       /// [google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]: <doc:HumanAgentAssistantConfig/ConversationModelConfig/model>
       public var baselineModelVersion: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ConversationModelConfig`.
       public init() {}
 
@@ -869,6 +1446,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let model = CodingKeys(stringValue: "model")
+        static let baselineModelVersion = CodingKeys(stringValue: "baselineModelVersion")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "model",
+          "baselineModelVersion",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+          self.model = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .baselineModelVersion)
+        {
+          self.baselineModelVersion = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.model, forKey: .model)
+        try container.encode(self.baselineModelVersion, forKey: .baselineModelVersion)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -891,6 +1508,8 @@
       /// and FAQ suggestion
       public var recentSentencesCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ConversationProcessConfig`.
       public init() {}
 
@@ -905,6 +1524,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let recentSentencesCount = CodingKeys(stringValue: "recentSentencesCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "recentSentencesCount"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .recentSentencesCount)
+        {
+          self.recentSentencesCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.recentSentencesCount, forKey: .recentSentencesCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -993,6 +1646,8 @@
       /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message]: <doc:StreamingAnalyzeContentResponse/message>
       public var enableSentimentAnalysisV3: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MessageAnalysisConfig`.
       public init() {}
 
@@ -1007,6 +1662,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableEntityExtraction = CodingKeys(stringValue: "enableEntityExtraction")
+        static let enableSentimentAnalysis = CodingKeys(stringValue: "enableSentimentAnalysis")
+        static let enableSentimentAnalysisV3 = CodingKeys(stringValue: "enableSentimentAnalysisV3")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableEntityExtraction",
+          "enableSentimentAnalysis",
+          "enableSentimentAnalysisV3",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableEntityExtraction)
+        {
+          self.enableEntityExtraction = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableSentimentAnalysis)
+        {
+          self.enableSentimentAnalysis = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableSentimentAnalysisV3)
+        {
+          self.enableSentimentAnalysisV3 = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableEntityExtraction, forKey: .enableEntityExtraction)
+        try container.encode(self.enableSentimentAnalysis, forKey: .enableSentimentAnalysis)
+        try container.encode(self.enableSentimentAnalysisV3, forKey: .enableSentimentAnalysisV3)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

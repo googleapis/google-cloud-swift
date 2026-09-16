@@ -48,6 +48,8 @@ public struct CloudArmor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// minutes).
   public var duration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudArmor`.
   public init() {}
 
@@ -62,6 +64,60 @@ public struct CloudArmor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let securityPolicy = CodingKeys(stringValue: "securityPolicy")
+    static let requests = CodingKeys(stringValue: "requests")
+    static let adaptiveProtection = CodingKeys(stringValue: "adaptiveProtection")
+    static let attack = CodingKeys(stringValue: "attack")
+    static let threatVector = CodingKeys(stringValue: "threatVector")
+    static let duration = CodingKeys(stringValue: "duration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "securityPolicy",
+      "requests",
+      "adaptiveProtection",
+      "attack",
+      "threatVector",
+      "duration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.securityPolicy = try container.decodeIfPresent(
+      SecurityPolicy.self, forKey: .securityPolicy)
+    self.requests = try container.decodeIfPresent(Requests.self, forKey: .requests)
+    self.adaptiveProtection = try container.decodeIfPresent(
+      AdaptiveProtection.self, forKey: .adaptiveProtection)
+    self.attack = try container.decodeIfPresent(Attack.self, forKey: .attack)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .threatVector) {
+      self.threatVector = value
+    }
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.securityPolicy, forKey: .securityPolicy)
+    try container.encodeIfPresent(self.requests, forKey: .requests)
+    try container.encodeIfPresent(self.adaptiveProtection, forKey: .adaptiveProtection)
+    try container.encodeIfPresent(self.attack, forKey: .attack)
+    try container.encode(self.threatVector, forKey: .threatVector)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

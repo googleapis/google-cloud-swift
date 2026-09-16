@@ -49,6 +49,8 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var rolloutUpdateType: RolloutUpdateEvent.RolloutUpdateType =
     RolloutUpdateEvent.RolloutUpdateType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RolloutUpdateEvent`.
   public init() {}
 
@@ -63,6 +65,82 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let pipelineUid = CodingKeys(stringValue: "pipelineUid")
+    static let releaseUid = CodingKeys(stringValue: "releaseUid")
+    static let release = CodingKeys(stringValue: "release")
+    static let rollout = CodingKeys(stringValue: "rollout")
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let type = CodingKeys(stringValue: "type")
+    static let rolloutUpdateType = CodingKeys(stringValue: "rolloutUpdateType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "pipelineUid",
+      "releaseUid",
+      "release",
+      "rollout",
+      "targetId",
+      "type",
+      "rolloutUpdateType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pipelineUid) {
+      self.pipelineUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseUid) {
+      self.releaseUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .release) {
+      self.release = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rollout) {
+      self.rollout = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
+      RolloutUpdateEvent.RolloutUpdateType.self, forKey: .rolloutUpdateType)
+    {
+      self.rolloutUpdateType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.pipelineUid, forKey: .pipelineUid)
+    try container.encode(self.releaseUid, forKey: .releaseUid)
+    try container.encode(self.release, forKey: .release)
+    try container.encode(self.rollout, forKey: .rollout)
+    try container.encode(self.targetId, forKey: .targetId)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.rolloutUpdateType, forKey: .rolloutUpdateType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// RolloutUpdateType indicates the type of the rollout update.

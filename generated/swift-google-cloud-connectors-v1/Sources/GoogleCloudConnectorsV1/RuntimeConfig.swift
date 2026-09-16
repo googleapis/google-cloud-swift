@@ -61,6 +61,8 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Format: projects/{project}/locations/{location}/runtimeConfig
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeConfig`.
   public init() {}
 
@@ -75,6 +77,94 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let locationId = CodingKeys(stringValue: "locationId")
+    static let conndTopic = CodingKeys(stringValue: "conndTopic")
+    static let conndSubscription = CodingKeys(stringValue: "conndSubscription")
+    static let controlPlaneTopic = CodingKeys(stringValue: "controlPlaneTopic")
+    static let controlPlaneSubscription = CodingKeys(stringValue: "controlPlaneSubscription")
+    static let runtimeEndpoint = CodingKeys(stringValue: "runtimeEndpoint")
+    static let state = CodingKeys(stringValue: "state")
+    static let schemaGcsBucket = CodingKeys(stringValue: "schemaGcsBucket")
+    static let serviceDirectory = CodingKeys(stringValue: "serviceDirectory")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "locationId",
+      "conndTopic",
+      "conndSubscription",
+      "controlPlaneTopic",
+      "controlPlaneSubscription",
+      "runtimeEndpoint",
+      "state",
+      "schemaGcsBucket",
+      "serviceDirectory",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conndTopic) {
+      self.conndTopic = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conndSubscription) {
+      self.conndSubscription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .controlPlaneTopic) {
+      self.controlPlaneTopic = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .controlPlaneSubscription)
+    {
+      self.controlPlaneSubscription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeEndpoint) {
+      self.runtimeEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(RuntimeConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaGcsBucket) {
+      self.schemaGcsBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceDirectory) {
+      self.serviceDirectory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.locationId, forKey: .locationId)
+    try container.encode(self.conndTopic, forKey: .conndTopic)
+    try container.encode(self.conndSubscription, forKey: .conndSubscription)
+    try container.encode(self.controlPlaneTopic, forKey: .controlPlaneTopic)
+    try container.encode(self.controlPlaneSubscription, forKey: .controlPlaneSubscription)
+    try container.encode(self.runtimeEndpoint, forKey: .runtimeEndpoint)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.schemaGcsBucket, forKey: .schemaGcsBucket)
+    try container.encode(self.serviceDirectory, forKey: .serviceDirectory)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the location.

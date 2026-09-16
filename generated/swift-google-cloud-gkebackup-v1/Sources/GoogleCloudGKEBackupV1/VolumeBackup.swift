@@ -87,6 +87,8 @@ public struct VolumeBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. [Output Only] Reserved for future use.
   public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VolumeBackup`.
   public init() {}
 
@@ -101,6 +103,119 @@ public struct VolumeBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let sourcePvc = CodingKeys(stringValue: "sourcePvc")
+    static let volumeBackupHandle = CodingKeys(stringValue: "volumeBackupHandle")
+    static let format = CodingKeys(stringValue: "format")
+    static let storageBytes = CodingKeys(stringValue: "storageBytes")
+    static let diskSizeBytes = CodingKeys(stringValue: "diskSizeBytes")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "sourcePvc",
+      "volumeBackupHandle",
+      "format",
+      "storageBytes",
+      "diskSizeBytes",
+      "completeTime",
+      "state",
+      "stateMessage",
+      "etag",
+      "satisfiesPzs",
+      "satisfiesPzi",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.sourcePvc = try container.decodeIfPresent(NamespacedName.self, forKey: .sourcePvc)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeBackupHandle) {
+      self.volumeBackupHandle = value
+    }
+    if let value = try container.decodeIfPresent(
+      VolumeBackup.VolumeBackupFormat.self, forKey: .format)
+    {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .storageBytes) {
+      self.storageBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeBytes) {
+      self.diskSizeBytes = value
+    }
+    self.completeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
+    if let value = try container.decodeIfPresent(VolumeBackup.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.sourcePvc, forKey: .sourcePvc)
+    try container.encode(self.volumeBackupHandle, forKey: .volumeBackupHandle)
+    try container.encode(self.format, forKey: .format)
+    try container.encode(self.storageBytes, forKey: .storageBytes)
+    try container.encode(self.diskSizeBytes, forKey: .diskSizeBytes)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Identifies the format used for the volume backup.

@@ -34,6 +34,8 @@ public struct SdpContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// future.
   public var location: OneOf_Location? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpContentLocation`.
   public init() {}
 
@@ -50,14 +52,26 @@ public struct SdpContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case imageFindingLocation = "imageFindingLocation"
-    case containerName = "containerName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let imageFindingLocation = CodingKeys(stringValue: "imageFindingLocation")
+    static let containerName = CodingKeys(stringValue: "containerName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "imageFindingLocation",
+      "containerName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.containerName = try container.decode(Swift.String.self, forKey: .containerName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerName) {
+      self.containerName = value
+    }
 
     var location: OneOf_Location? = nil
     let locationCheckAndSet = {
@@ -75,6 +89,10 @@ public struct SdpContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try locationCheckAndSet(.imageFindingLocation(imageFindingLocation))
     }
     self.location = location
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +104,9 @@ public struct SdpContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .imageFindingLocation(let value):
         try container.encode(value, forKey: .imageFindingLocation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

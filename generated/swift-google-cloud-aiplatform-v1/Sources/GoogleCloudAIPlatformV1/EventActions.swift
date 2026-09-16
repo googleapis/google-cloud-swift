@@ -46,6 +46,8 @@
     /// Optional. If set, the event transfers to the specified agent.
     public var transferAgent: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EventActions`.
     public init() {}
 
@@ -60,6 +62,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let skipSummarization = CodingKeys(stringValue: "skipSummarization")
+      static let stateDelta = CodingKeys(stringValue: "stateDelta")
+      static let artifactDelta = CodingKeys(stringValue: "artifactDelta")
+      static let escalate = CodingKeys(stringValue: "escalate")
+      static let requestedAuthConfigs = CodingKeys(stringValue: "requestedAuthConfigs")
+      static let transferAgent = CodingKeys(stringValue: "transferAgent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "skipSummarization",
+        "stateDelta",
+        "artifactDelta",
+        "escalate",
+        "requestedAuthConfigs",
+        "transferAgent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipSummarization) {
+        self.skipSummarization = value
+      }
+      self.stateDelta = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .stateDelta)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Int32].self, forKey: .artifactDelta)
+      {
+        self.artifactDelta = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .escalate) {
+        self.escalate = value
+      }
+      self.requestedAuthConfigs = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .requestedAuthConfigs)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transferAgent) {
+        self.transferAgent = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.skipSummarization, forKey: .skipSummarization)
+      try container.encodeIfPresent(self.stateDelta, forKey: .stateDelta)
+      try container.encode(self.artifactDelta, forKey: .artifactDelta)
+      try container.encode(self.escalate, forKey: .escalate)
+      try container.encodeIfPresent(self.requestedAuthConfigs, forKey: .requestedAuthConfigs)
+      try container.encode(self.transferAgent, forKey: .transferAgent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The action to take.
   public var action: OneOf_Action? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TriggerAction`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case respondImmediately = "respondImmediately"
-    case transferAgent = "transferAgent"
-    case generativeAnswer = "generativeAnswer"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let respondImmediately = CodingKeys(stringValue: "respondImmediately")
+    static let transferAgent = CodingKeys(stringValue: "transferAgent")
+    static let generativeAnswer = CodingKeys(stringValue: "generativeAnswer")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "respondImmediately",
+      "transferAgent",
+      "generativeAnswer",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -75,6 +88,10 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try actionCheckAndSet(.generativeAnswer(generativeAnswer))
     }
     self.action = action
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +107,9 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .generativeAnswer)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a response from the agent.
@@ -102,6 +122,8 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Whether the response is disabled. Disabled responses are not
     /// used by the agent.
     public var disabled: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Response`.
     public init() {}
@@ -117,6 +139,44 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let disabled = CodingKeys(stringValue: "disabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "disabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.text, forKey: .text)
+      try container.encode(self.disabled, forKey: .disabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -138,6 +198,8 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// is chosen randomly.
     public var responses: [TriggerAction.Response] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RespondImmediately`.
     public init() {}
 
@@ -152,6 +214,40 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let responses = CodingKeys(stringValue: "responses")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "responses"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [TriggerAction.Response].self, forKey: .responses)
+      {
+        self.responses = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.responses, forKey: .responses)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -172,6 +268,8 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. The prompt to use for the generative answer.
     public var prompt: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerativeAnswer`.
     public init() {}
 
@@ -186,6 +284,38 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let prompt = CodingKeys(stringValue: "prompt")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "prompt"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .prompt) {
+        self.prompt = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.prompt, forKey: .prompt)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -208,6 +338,8 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
     public var agent: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransferAgent`.
     public init() {}
 
@@ -222,6 +354,38 @@ public struct TriggerAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agent = CodingKeys(stringValue: "agent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agent"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+        self.agent = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.agent, forKey: .agent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -130,6 +130,8 @@ public struct Gateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
   public var allowGlobalAccess: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Gateway`.
   public init() {}
 
@@ -144,6 +146,150 @@ public struct Gateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let type = CodingKeys(stringValue: "type")
+    static let addresses = CodingKeys(stringValue: "addresses")
+    static let ports = CodingKeys(stringValue: "ports")
+    static let allPorts = CodingKeys(stringValue: "allPorts")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let serverTlsPolicy = CodingKeys(stringValue: "serverTlsPolicy")
+    static let certificateUrls = CodingKeys(stringValue: "certificateUrls")
+    static let gatewaySecurityPolicy = CodingKeys(stringValue: "gatewaySecurityPolicy")
+    static let network = CodingKeys(stringValue: "network")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let ipVersion = CodingKeys(stringValue: "ipVersion")
+    static let envoyHeaders = CodingKeys(stringValue: "envoyHeaders")
+    static let routingMode = CodingKeys(stringValue: "routingMode")
+    static let allowGlobalAccess = CodingKeys(stringValue: "allowGlobalAccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "selfLink",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "type",
+      "addresses",
+      "ports",
+      "allPorts",
+      "scope",
+      "serverTlsPolicy",
+      "certificateUrls",
+      "gatewaySecurityPolicy",
+      "network",
+      "subnetwork",
+      "ipVersion",
+      "envoyHeaders",
+      "routingMode",
+      "allowGlobalAccess",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Gateway.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addresses) {
+      self.addresses = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .ports) {
+      self.ports = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allPorts) {
+      self.allPorts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverTlsPolicy) {
+      self.serverTlsPolicy = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .certificateUrls) {
+      self.certificateUrls = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gatewaySecurityPolicy)
+    {
+      self.gatewaySecurityPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent(Gateway.IpVersion.self, forKey: .ipVersion) {
+      self.ipVersion = value
+    }
+    self.envoyHeaders = try container.decodeIfPresent(EnvoyHeaders.self, forKey: .envoyHeaders)
+    if let value = try container.decodeIfPresent(Gateway.RoutingMode.self, forKey: .routingMode) {
+      self.routingMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowGlobalAccess) {
+      self.allowGlobalAccess = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.selfLink, forKey: .selfLink)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.addresses, forKey: .addresses)
+    try container.encode(self.ports, forKey: .ports)
+    try container.encode(self.allPorts, forKey: .allPorts)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.serverTlsPolicy, forKey: .serverTlsPolicy)
+    try container.encode(self.certificateUrls, forKey: .certificateUrls)
+    try container.encode(self.gatewaySecurityPolicy, forKey: .gatewaySecurityPolicy)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encode(self.ipVersion, forKey: .ipVersion)
+    try container.encodeIfPresent(self.envoyHeaders, forKey: .envoyHeaders)
+    try container.encode(self.routingMode, forKey: .routingMode)
+    try container.encode(self.allowGlobalAccess, forKey: .allowGlobalAccess)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the customer-managed gateway.

@@ -72,6 +72,8 @@
     /// such as us-central1-a.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeType`.
     public init() {}
 
@@ -86,6 +88,85 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpuPlatform = CodingKeys(stringValue: "cpuPlatform")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deprecated = CodingKeys(stringValue: "deprecated")
+      static let description = CodingKeys(stringValue: "description")
+      static let guestCpus = CodingKeys(stringValue: "guestCpus")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let localSsdGb = CodingKeys(stringValue: "localSsdGb")
+      static let maxVms = CodingKeys(stringValue: "maxVms")
+      static let memoryMb = CodingKeys(stringValue: "memoryMb")
+      static let name = CodingKeys(stringValue: "name")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpuPlatform",
+        "creationTimestamp",
+        "deprecated",
+        "description",
+        "guestCpus",
+        "id",
+        "kind",
+        "localSsdGb",
+        "maxVms",
+        "memoryMb",
+        "name",
+        "selfLink",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cpuPlatform = try container.decodeIfPresent(Swift.String.self, forKey: .cpuPlatform)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.deprecated = try container.decodeIfPresent(DeprecationStatus.self, forKey: .deprecated)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.guestCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .guestCpus)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.localSsdGb = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdGb)
+      self.maxVms = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxVms)
+      self.memoryMb = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cpuPlatform, forKey: .cpuPlatform)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deprecated, forKey: .deprecated)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.guestCpus, forKey: .guestCpus)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.localSsdGb, forKey: .localSsdGb)
+      try container.encodeIfPresent(self.maxVms, forKey: .maxVms)
+      try container.encodeIfPresent(self.memoryMb, forKey: .memoryMb)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

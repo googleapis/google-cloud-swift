@@ -48,6 +48,8 @@ public struct ListIcebergCatalogsRequest: Codable, Equatable, GoogleCloudWKT._An
   /// * `NOT catalog_type = CATALOG_TYPE_GCS_BUCKET`
   public var filter: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListIcebergCatalogsRequest`.
   public init() {}
 
@@ -64,21 +66,50 @@ public struct ListIcebergCatalogsRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case view = "view"
-    case pageSize = "page-size"
-    case pageToken = "page-token"
-    case filter = "filter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let view = CodingKeys(stringValue: "view")
+    static let pageSize = CodingKeys(stringValue: "page-size")
+    static let pageToken = CodingKeys(stringValue: "page-token")
+    static let filter = CodingKeys(stringValue: "filter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "view",
+      "page-size",
+      "page-token",
+      "filter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.view = try container.decode(ListIcebergCatalogsRequest.CatalogView.self, forKey: .view)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      ListIcebergCatalogsRequest.CatalogView.self, forKey: .view)
+    {
+      self.view = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +119,9 @@ public struct ListIcebergCatalogsRequest: Codable, Equatable, GoogleCloudWKT._An
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.filter, forKey: .filter)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumeration of the views that can be returned.

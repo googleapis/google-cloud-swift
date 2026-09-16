@@ -39,6 +39,8 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The policy that is bound to this data policy.
   public var policy: OneOf_Policy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataPolicy`.
   public init() {}
 
@@ -55,20 +57,40 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case policyTag = "policyTag"
-    case dataMaskingPolicy = "dataMaskingPolicy"
-    case name = "name"
-    case dataPolicyType = "dataPolicyType"
-    case dataPolicyId = "dataPolicyId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policyTag = CodingKeys(stringValue: "policyTag")
+    static let dataMaskingPolicy = CodingKeys(stringValue: "dataMaskingPolicy")
+    static let name = CodingKeys(stringValue: "name")
+    static let dataPolicyType = CodingKeys(stringValue: "dataPolicyType")
+    static let dataPolicyId = CodingKeys(stringValue: "dataPolicyId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policyTag",
+      "dataMaskingPolicy",
+      "name",
+      "dataPolicyType",
+      "dataPolicyId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.dataPolicyType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
       DataPolicy.DataPolicyType.self, forKey: .dataPolicyType)
-    self.dataPolicyId = try container.decode(Swift.String.self, forKey: .dataPolicyId)
+    {
+      self.dataPolicyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataPolicyId) {
+      self.dataPolicyId = value
+    }
 
     var matchingLabel: OneOf_MatchingLabel? = nil
     let matchingLabelCheckAndSet = {
@@ -101,6 +123,10 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try policyCheckAndSet(.dataMaskingPolicy(dataMaskingPolicy))
     }
     self.policy = policy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -121,6 +147,9 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dataMaskingPolicy(let value):
         try container.encode(value, forKey: .dataMaskingPolicy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

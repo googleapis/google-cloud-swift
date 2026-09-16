@@ -46,6 +46,8 @@ public struct CloudIdentityCustomerAccount: Codable, Equatable, GoogleCloudWKT._
   /// customer.
   public var channelPartnerCloudIdentityId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudIdentityCustomerAccount`.
   public init() {}
 
@@ -60,6 +62,75 @@ public struct CloudIdentityCustomerAccount: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let existing = CodingKeys(stringValue: "existing")
+    static let owned = CodingKeys(stringValue: "owned")
+    static let customerName = CodingKeys(stringValue: "customerName")
+    static let customerCloudIdentityId = CodingKeys(stringValue: "customerCloudIdentityId")
+    static let customerType = CodingKeys(stringValue: "customerType")
+    static let channelPartnerCloudIdentityId = CodingKeys(
+      stringValue: "channelPartnerCloudIdentityId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "existing",
+      "owned",
+      "customerName",
+      "customerCloudIdentityId",
+      "customerType",
+      "channelPartnerCloudIdentityId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .existing) {
+      self.existing = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .owned) {
+      self.owned = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customerName) {
+      self.customerName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerCloudIdentityId)
+    {
+      self.customerCloudIdentityId = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudIdentityInfo.CustomerType.self, forKey: .customerType)
+    {
+      self.customerType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .channelPartnerCloudIdentityId)
+    {
+      self.channelPartnerCloudIdentityId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.existing, forKey: .existing)
+    try container.encode(self.owned, forKey: .owned)
+    try container.encode(self.customerName, forKey: .customerName)
+    try container.encode(self.customerCloudIdentityId, forKey: .customerCloudIdentityId)
+    try container.encode(self.customerType, forKey: .customerType)
+    try container.encode(self.channelPartnerCloudIdentityId, forKey: .channelPartnerCloudIdentityId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

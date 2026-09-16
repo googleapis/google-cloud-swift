@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CustomerEncryption {
@@ -28,12 +28,16 @@ extension CustomerEncryption {
     self.init()
     self.encryptionAlgorithm = proto.encryptionAlgorithm
     self.keySha256Bytes = proto.keySha256Bytes
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.encryptionAlgorithm = self.encryptionAlgorithm
     proto.keySha256Bytes = self.keySha256Bytes
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

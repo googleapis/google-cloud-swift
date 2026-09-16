@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ListAnywhereCachesResponse {
@@ -29,12 +29,16 @@ extension ListAnywhereCachesResponse {
     self.init()
     self.anywhereCaches = try proto.anywhereCaches.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.anywhereCaches = try self.anywhereCaches.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

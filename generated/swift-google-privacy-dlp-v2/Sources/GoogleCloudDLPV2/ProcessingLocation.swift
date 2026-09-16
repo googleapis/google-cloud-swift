@@ -29,6 +29,8 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Document processing falls back using this configuration.
   public var documentFallbackLocation: ProcessingLocation.DocumentFallbackLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessingLocation`.
   public init() {}
 
@@ -45,11 +47,49 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let imageFallbackLocation = CodingKeys(stringValue: "imageFallbackLocation")
+    static let documentFallbackLocation = CodingKeys(stringValue: "documentFallbackLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "imageFallbackLocation",
+      "documentFallbackLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.imageFallbackLocation = try container.decodeIfPresent(
+      ProcessingLocation.ImageFallbackLocation.self, forKey: .imageFallbackLocation)
+    self.documentFallbackLocation = try container.decodeIfPresent(
+      ProcessingLocation.DocumentFallbackLocation.self, forKey: .documentFallbackLocation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.imageFallbackLocation, forKey: .imageFallbackLocation)
+    try container.encodeIfPresent(self.documentFallbackLocation, forKey: .documentFallbackLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Processing occurs in a multi-region that contains the current region
   /// if available.
   public struct MultiRegionProcessing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MultiRegionProcessing`.
     public init() {}
 
@@ -64,6 +104,30 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -81,6 +145,8 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public struct GlobalProcessing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GlobalProcessing`.
     public init() {}
 
@@ -95,6 +161,30 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -121,6 +211,8 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Processing occurs in the global region.
     public var globalProcessing: ProcessingLocation.GlobalProcessing? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImageFallbackLocation`.
     public init() {}
 
@@ -135,6 +227,42 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let multiRegionProcessing = CodingKeys(stringValue: "multiRegionProcessing")
+      static let globalProcessing = CodingKeys(stringValue: "globalProcessing")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "multiRegionProcessing",
+        "globalProcessing",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.multiRegionProcessing = try container.decodeIfPresent(
+        ProcessingLocation.MultiRegionProcessing.self, forKey: .multiRegionProcessing)
+      self.globalProcessing = try container.decodeIfPresent(
+        ProcessingLocation.GlobalProcessing.self, forKey: .globalProcessing)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.multiRegionProcessing, forKey: .multiRegionProcessing)
+      try container.encodeIfPresent(self.globalProcessing, forKey: .globalProcessing)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -161,6 +289,8 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Processing occurs in the global region.
     public var globalProcessing: ProcessingLocation.GlobalProcessing? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DocumentFallbackLocation`.
     public init() {}
 
@@ -175,6 +305,42 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let multiRegionProcessing = CodingKeys(stringValue: "multiRegionProcessing")
+      static let globalProcessing = CodingKeys(stringValue: "globalProcessing")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "multiRegionProcessing",
+        "globalProcessing",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.multiRegionProcessing = try container.decodeIfPresent(
+        ProcessingLocation.MultiRegionProcessing.self, forKey: .multiRegionProcessing)
+      self.globalProcessing = try container.decodeIfPresent(
+        ProcessingLocation.GlobalProcessing.self, forKey: .globalProcessing)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.multiRegionProcessing, forKey: .multiRegionProcessing)
+      try container.encodeIfPresent(self.globalProcessing, forKey: .globalProcessing)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

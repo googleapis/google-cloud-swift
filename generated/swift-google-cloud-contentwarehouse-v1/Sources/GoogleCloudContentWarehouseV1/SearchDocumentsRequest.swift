@@ -137,6 +137,8 @@ public struct SearchDocumentsRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// [DocumentQuery].[is_nl_query][] to true.
   public var qaSizeLimit: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchDocumentsRequest`.
   public init() {}
 
@@ -151,6 +153,97 @@ public struct SearchDocumentsRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let requestMetadata = CodingKeys(stringValue: "requestMetadata")
+    static let documentQuery = CodingKeys(stringValue: "documentQuery")
+    static let offset = CodingKeys(stringValue: "offset")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let orderBy = CodingKeys(stringValue: "orderBy")
+    static let histogramQueries = CodingKeys(stringValue: "histogramQueries")
+    static let requireTotalSize = CodingKeys(stringValue: "requireTotalSize")
+    static let totalResultSize = CodingKeys(stringValue: "totalResultSize")
+    static let qaSizeLimit = CodingKeys(stringValue: "qaSizeLimit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "requestMetadata",
+      "documentQuery",
+      "offset",
+      "pageSize",
+      "pageToken",
+      "orderBy",
+      "histogramQueries",
+      "requireTotalSize",
+      "totalResultSize",
+      "qaSizeLimit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.requestMetadata = try container.decodeIfPresent(
+      RequestMetadata.self, forKey: .requestMetadata)
+    self.documentQuery = try container.decodeIfPresent(DocumentQuery.self, forKey: .documentQuery)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .offset) {
+      self.offset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+      self.orderBy = value
+    }
+    if let value = try container.decodeIfPresent([HistogramQuery].self, forKey: .histogramQueries) {
+      self.histogramQueries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireTotalSize) {
+      self.requireTotalSize = value
+    }
+    if let value = try container.decodeIfPresent(
+      SearchDocumentsRequest.TotalResultSize.self, forKey: .totalResultSize)
+    {
+      self.totalResultSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .qaSizeLimit) {
+      self.qaSizeLimit = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.requestMetadata, forKey: .requestMetadata)
+    try container.encodeIfPresent(self.documentQuery, forKey: .documentQuery)
+    try container.encode(self.offset, forKey: .offset)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.orderBy, forKey: .orderBy)
+    try container.encode(self.histogramQueries, forKey: .histogramQueries)
+    try container.encode(self.requireTotalSize, forKey: .requireTotalSize)
+    try container.encode(self.totalResultSize, forKey: .totalResultSize)
+    try container.encode(self.qaSizeLimit, forKey: .qaSizeLimit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The total number of matching documents.

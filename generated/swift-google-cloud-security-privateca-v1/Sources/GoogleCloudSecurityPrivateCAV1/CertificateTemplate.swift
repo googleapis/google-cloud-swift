@@ -126,6 +126,8 @@ public struct CertificateTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateTemplate`.
   public init() {}
 
@@ -140,6 +142,81 @@ public struct CertificateTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let maximumLifetime = CodingKeys(stringValue: "maximumLifetime")
+    static let predefinedValues = CodingKeys(stringValue: "predefinedValues")
+    static let identityConstraints = CodingKeys(stringValue: "identityConstraints")
+    static let passthroughExtensions = CodingKeys(stringValue: "passthroughExtensions")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "maximumLifetime",
+      "predefinedValues",
+      "identityConstraints",
+      "passthroughExtensions",
+      "description",
+      "createTime",
+      "updateTime",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.maximumLifetime = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maximumLifetime)
+    self.predefinedValues = try container.decodeIfPresent(
+      X509Parameters.self, forKey: .predefinedValues)
+    self.identityConstraints = try container.decodeIfPresent(
+      CertificateIdentityConstraints.self, forKey: .identityConstraints)
+    self.passthroughExtensions = try container.decodeIfPresent(
+      CertificateExtensionConstraints.self, forKey: .passthroughExtensions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.maximumLifetime, forKey: .maximumLifetime)
+    try container.encodeIfPresent(self.predefinedValues, forKey: .predefinedValues)
+    try container.encodeIfPresent(self.identityConstraints, forKey: .identityConstraints)
+    try container.encodeIfPresent(self.passthroughExtensions, forKey: .passthroughExtensions)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

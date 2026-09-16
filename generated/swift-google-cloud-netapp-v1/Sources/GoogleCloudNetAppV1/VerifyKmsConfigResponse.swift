@@ -33,6 +33,8 @@ public struct VerifyKmsConfigResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// encryption key.
   public var instructions: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VerifyKmsConfigResponse`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct VerifyKmsConfigResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let healthy = CodingKeys(stringValue: "healthy")
+    static let healthError = CodingKeys(stringValue: "healthError")
+    static let instructions = CodingKeys(stringValue: "instructions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "healthy",
+      "healthError",
+      "instructions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .healthy) {
+      self.healthy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .healthError) {
+      self.healthError = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instructions) {
+      self.instructions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.healthy, forKey: .healthy)
+    try container.encode(self.healthError, forKey: .healthError)
+    try container.encode(self.instructions, forKey: .instructions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -47,6 +47,8 @@ public struct SafeSearchAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// body areas.
   public var racy: Likelihood = Likelihood()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SafeSearchAnnotation`.
   public init() {}
 
@@ -61,6 +63,62 @@ public struct SafeSearchAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adult = CodingKeys(stringValue: "adult")
+    static let spoof = CodingKeys(stringValue: "spoof")
+    static let medical = CodingKeys(stringValue: "medical")
+    static let violence = CodingKeys(stringValue: "violence")
+    static let racy = CodingKeys(stringValue: "racy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adult",
+      "spoof",
+      "medical",
+      "violence",
+      "racy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .adult) {
+      self.adult = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .spoof) {
+      self.spoof = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .medical) {
+      self.medical = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .violence) {
+      self.violence = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .racy) {
+      self.racy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.adult, forKey: .adult)
+    try container.encode(self.spoof, forKey: .spoof)
+    try container.encode(self.medical, forKey: .medical)
+    try container.encode(self.violence, forKey: .violence)
+    try container.encode(self.racy, forKey: .racy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

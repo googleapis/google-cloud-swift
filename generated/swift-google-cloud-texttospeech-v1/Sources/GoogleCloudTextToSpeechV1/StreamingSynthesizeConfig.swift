@@ -42,6 +42,8 @@ public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// Optional. Advanced voice options.
   public var advancedVoiceOptions: AdvancedVoiceOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamingSynthesizeConfig`.
   public init() {}
 
@@ -56,6 +58,51 @@ public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let voice = CodingKeys(stringValue: "voice")
+    static let streamingAudioConfig = CodingKeys(stringValue: "streamingAudioConfig")
+    static let customPronunciations = CodingKeys(stringValue: "customPronunciations")
+    static let advancedVoiceOptions = CodingKeys(stringValue: "advancedVoiceOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "voice",
+      "streamingAudioConfig",
+      "customPronunciations",
+      "advancedVoiceOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.voice = try container.decodeIfPresent(VoiceSelectionParams.self, forKey: .voice)
+    self.streamingAudioConfig = try container.decodeIfPresent(
+      StreamingAudioConfig.self, forKey: .streamingAudioConfig)
+    self.customPronunciations = try container.decodeIfPresent(
+      CustomPronunciations.self, forKey: .customPronunciations)
+    self.advancedVoiceOptions = try container.decodeIfPresent(
+      AdvancedVoiceOptions.self, forKey: .advancedVoiceOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.voice, forKey: .voice)
+    try container.encodeIfPresent(self.streamingAudioConfig, forKey: .streamingAudioConfig)
+    try container.encodeIfPresent(self.customPronunciations, forKey: .customPronunciations)
+    try container.encodeIfPresent(self.advancedVoiceOptions, forKey: .advancedVoiceOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

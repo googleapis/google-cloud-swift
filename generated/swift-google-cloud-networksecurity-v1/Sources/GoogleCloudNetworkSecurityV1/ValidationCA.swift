@@ -25,6 +25,8 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of certificate provider which provides the CA certificate.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValidationCA`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case grpcEndpoint = "grpcEndpoint"
-    case certificateProviderInstance = "certificateProviderInstance"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let grpcEndpoint = CodingKeys(stringValue: "grpcEndpoint")
+    static let certificateProviderInstance = CodingKeys(stringValue: "certificateProviderInstance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "grpcEndpoint",
+      "certificateProviderInstance",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.certificateProviderInstance(certificateProviderInstance))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .certificateProviderInstance(let value):
         try container.encode(value, forKey: .certificateProviderInstance)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

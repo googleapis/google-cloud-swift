@@ -32,6 +32,8 @@ public struct DeployJobRunMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Output only. Custom metadata provided by user-defined deploy operation.
   public var custom: CustomMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeployJobRunMetadata`.
   public init() {}
 
@@ -46,6 +48,45 @@ public struct DeployJobRunMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudRun = CodingKeys(stringValue: "cloudRun")
+    static let customTarget = CodingKeys(stringValue: "customTarget")
+    static let custom = CodingKeys(stringValue: "custom")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudRun",
+      "customTarget",
+      "custom",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.cloudRun = try container.decodeIfPresent(CloudRunMetadata.self, forKey: .cloudRun)
+    self.customTarget = try container.decodeIfPresent(
+      CustomTargetDeployMetadata.self, forKey: .customTarget)
+    self.custom = try container.decodeIfPresent(CustomMetadata.self, forKey: .custom)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.cloudRun, forKey: .cloudRun)
+    try container.encodeIfPresent(self.customTarget, forKey: .customTarget)
+    try container.encodeIfPresent(self.custom, forKey: .custom)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

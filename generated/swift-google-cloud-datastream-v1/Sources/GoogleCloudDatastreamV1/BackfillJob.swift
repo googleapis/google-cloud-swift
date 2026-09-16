@@ -36,6 +36,8 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Errors which caused the backfill job to fail.
   public var errors: [Error] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackfillJob`.
   public init() {}
 
@@ -50,6 +52,60 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let trigger = CodingKeys(stringValue: "trigger")
+    static let lastStartTime = CodingKeys(stringValue: "lastStartTime")
+    static let lastEndTime = CodingKeys(stringValue: "lastEndTime")
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "trigger",
+      "lastStartTime",
+      "lastEndTime",
+      "errors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(BackfillJob.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(BackfillJob.Trigger.self, forKey: .trigger) {
+      self.trigger = value
+    }
+    self.lastStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastStartTime)
+    self.lastEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastEndTime)
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.trigger, forKey: .trigger)
+    try container.encodeIfPresent(self.lastStartTime, forKey: .lastStartTime)
+    try container.encodeIfPresent(self.lastEndTime, forKey: .lastEndTime)
+    try container.encode(self.errors, forKey: .errors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the stream object's backfill job.

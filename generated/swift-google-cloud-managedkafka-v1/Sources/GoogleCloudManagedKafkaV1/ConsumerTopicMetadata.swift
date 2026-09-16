@@ -25,6 +25,8 @@ public struct ConsumerTopicMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// indexes it has metadata for.
   public var partitions: [Swift.Int32: ConsumerPartitionMetadata] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConsumerTopicMetadata`.
   public init() {}
 
@@ -41,15 +43,24 @@ public struct ConsumerTopicMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case partitions = "partitions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let partitions = CodingKeys(stringValue: "partitions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "partitions"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.partitions = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: ConsumerPartitionMetadata].self, forKey: .partitions)
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: ConsumerPartitionMetadata].self, forKey: .partitions)
+    {
       let tuples = try stringKeyed.lazy.map {
         (key, value) throws -> (Swift.Int32, ConsumerPartitionMetadata) in
         guard let newKey = Swift.Int32(key) else {
@@ -61,8 +72,12 @@ public struct ConsumerTopicMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
+      self.partitions = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@ public struct ConsumerTopicMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
         uniqueKeysWithValues: self.partitions.lazy.map { (Swift.String($0), $1) }
       )
       try container.encode(stringKeyed, forKey: .partitions)
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

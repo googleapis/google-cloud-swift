@@ -49,6 +49,8 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the cluster maximum age.
   public var stopTtl: OneOf_StopTtl? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LifecycleConfig`.
   public init() {}
 
@@ -65,14 +67,29 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case idleDeleteTtl = "idleDeleteTtl"
-    case autoDeleteTime = "autoDeleteTime"
-    case autoDeleteTtl = "autoDeleteTtl"
-    case idleStopTtl = "idleStopTtl"
-    case autoStopTime = "autoStopTime"
-    case autoStopTtl = "autoStopTtl"
-    case idleStartTime = "idleStartTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let idleDeleteTtl = CodingKeys(stringValue: "idleDeleteTtl")
+    static let autoDeleteTime = CodingKeys(stringValue: "autoDeleteTime")
+    static let autoDeleteTtl = CodingKeys(stringValue: "autoDeleteTtl")
+    static let idleStopTtl = CodingKeys(stringValue: "idleStopTtl")
+    static let autoStopTime = CodingKeys(stringValue: "autoStopTime")
+    static let autoStopTtl = CodingKeys(stringValue: "autoStopTtl")
+    static let idleStartTime = CodingKeys(stringValue: "idleStartTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "idleDeleteTtl",
+      "autoDeleteTime",
+      "autoDeleteTtl",
+      "idleStopTtl",
+      "autoStopTime",
+      "autoStopTtl",
+      "idleStartTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -127,13 +144,17 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try stopTtlCheckAndSet(.autoStopTtl(autoStopTtl))
     }
     self.stopTtl = stopTtl
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.idleDeleteTtl, forKey: .idleDeleteTtl)
-    try container.encode(self.idleStopTtl, forKey: .idleStopTtl)
-    try container.encode(self.idleStartTime, forKey: .idleStartTime)
+    try container.encodeIfPresent(self.idleDeleteTtl, forKey: .idleDeleteTtl)
+    try container.encodeIfPresent(self.idleStopTtl, forKey: .idleStopTtl)
+    try container.encodeIfPresent(self.idleStartTime, forKey: .idleStartTime)
 
     if let choice = self.ttl {
       switch choice {
@@ -151,6 +172,9 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .autoStopTtl(let value):
         try container.encode(value, forKey: .autoStopTtl)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

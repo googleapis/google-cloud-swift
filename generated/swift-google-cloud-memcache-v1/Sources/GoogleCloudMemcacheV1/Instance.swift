@@ -106,6 +106,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Published maintenance schedule.
   public var maintenanceSchedule: MaintenanceSchedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -122,6 +124,135 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let authorizedNetwork = CodingKeys(stringValue: "authorizedNetwork")
+    static let zones = CodingKeys(stringValue: "zones")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let nodeConfig = CodingKeys(stringValue: "nodeConfig")
+    static let memcacheVersion = CodingKeys(stringValue: "memcacheVersion")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let memcacheNodes = CodingKeys(stringValue: "memcacheNodes")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let memcacheFullVersion = CodingKeys(stringValue: "memcacheFullVersion")
+    static let instanceMessages = CodingKeys(stringValue: "instanceMessages")
+    static let discoveryEndpoint = CodingKeys(stringValue: "discoveryEndpoint")
+    static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+    static let maintenanceSchedule = CodingKeys(stringValue: "maintenanceSchedule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "labels",
+      "authorizedNetwork",
+      "zones",
+      "nodeCount",
+      "nodeConfig",
+      "memcacheVersion",
+      "parameters",
+      "memcacheNodes",
+      "createTime",
+      "updateTime",
+      "state",
+      "memcacheFullVersion",
+      "instanceMessages",
+      "discoveryEndpoint",
+      "maintenancePolicy",
+      "maintenanceSchedule",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizedNetwork) {
+      self.authorizedNetwork = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+      self.zones = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    self.nodeConfig = try container.decodeIfPresent(Instance.NodeConfig.self, forKey: .nodeConfig)
+    if let value = try container.decodeIfPresent(MemcacheVersion.self, forKey: .memcacheVersion) {
+      self.memcacheVersion = value
+    }
+    self.parameters = try container.decodeIfPresent(MemcacheParameters.self, forKey: .parameters)
+    if let value = try container.decodeIfPresent([Instance.Node].self, forKey: .memcacheNodes) {
+      self.memcacheNodes = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Instance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .memcacheFullVersion) {
+      self.memcacheFullVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Instance.InstanceMessage].self, forKey: .instanceMessages)
+    {
+      self.instanceMessages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .discoveryEndpoint) {
+      self.discoveryEndpoint = value
+    }
+    self.maintenancePolicy = try container.decodeIfPresent(
+      MaintenancePolicy.self, forKey: .maintenancePolicy)
+    self.maintenanceSchedule = try container.decodeIfPresent(
+      MaintenanceSchedule.self, forKey: .maintenanceSchedule)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.authorizedNetwork, forKey: .authorizedNetwork)
+    try container.encode(self.zones, forKey: .zones)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
+    try container.encode(self.memcacheVersion, forKey: .memcacheVersion)
+    try container.encodeIfPresent(self.parameters, forKey: .parameters)
+    try container.encode(self.memcacheNodes, forKey: .memcacheNodes)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.memcacheFullVersion, forKey: .memcacheFullVersion)
+    try container.encode(self.instanceMessages, forKey: .instanceMessages)
+    try container.encode(self.discoveryEndpoint, forKey: .discoveryEndpoint)
+    try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+    try container.encodeIfPresent(self.maintenanceSchedule, forKey: .maintenanceSchedule)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration for a Memcached Node.
   public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -131,6 +262,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Required. Memory size in MiB for each Memcached node.
     public var memorySizeMb: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NodeConfig`.
     public init() {}
@@ -146,6 +279,44 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpuCount = CodingKeys(stringValue: "cpuCount")
+      static let memorySizeMb = CodingKeys(stringValue: "memorySizeMb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpuCount",
+        "memorySizeMb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+        self.cpuCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeMb) {
+        self.memorySizeMb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cpuCount, forKey: .cpuCount)
+      try container.encode(self.memorySizeMb, forKey: .memorySizeMb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -182,6 +353,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// User defined parameters currently applied to the node.
     public var parameters: MemcacheParameters? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Node`.
     public init() {}
 
@@ -196,6 +369,66 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nodeId = CodingKeys(stringValue: "nodeId")
+      static let zone = CodingKeys(stringValue: "zone")
+      static let state = CodingKeys(stringValue: "state")
+      static let host = CodingKeys(stringValue: "host")
+      static let port = CodingKeys(stringValue: "port")
+      static let parameters = CodingKeys(stringValue: "parameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nodeId",
+        "zone",
+        "state",
+        "host",
+        "port",
+        "parameters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeId) {
+        self.nodeId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+        self.zone = value
+      }
+      if let value = try container.decodeIfPresent(Instance.Node.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+        self.host = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+        self.port = value
+      }
+      self.parameters = try container.decodeIfPresent(MemcacheParameters.self, forKey: .parameters)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nodeId, forKey: .nodeId)
+      try container.encode(self.zone, forKey: .zone)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.host, forKey: .host)
+      try container.encode(self.port, forKey: .port)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Different states of a Memcached node.
@@ -337,6 +570,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Message on memcached instance which will be exposed to users.
     public var message: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceMessage`.
     public init() {}
 
@@ -351,6 +586,46 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let code = CodingKeys(stringValue: "code")
+      static let message = CodingKeys(stringValue: "message")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "code",
+        "message",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Instance.InstanceMessage.Code.self, forKey: .code)
+      {
+        self.code = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+        self.message = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.code, forKey: .code)
+      try container.encode(self.message, forKey: .message)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public enum Code: Codable, Equatable, Sendable {

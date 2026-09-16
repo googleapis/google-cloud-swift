@@ -35,6 +35,8 @@ public struct RRSetRoutingPolicyGeoPolicyGeoPolicyItem: Codable, Equatable, Goog
   /// DNSSEC generated signatures for all the `rrdata` within this item. When using health-checked targets for DNSSEC-enabled zones, you can only use at most one health-checked IP address per item.
   public var signatureRrdatas: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RRSetRoutingPolicyGeoPolicyGeoPolicyItem`.
   public init() {}
 
@@ -49,6 +51,57 @@ public struct RRSetRoutingPolicyGeoPolicyGeoPolicyItem: Codable, Equatable, Goog
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let healthCheckedTargets = CodingKeys(stringValue: "healthCheckedTargets")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let location = CodingKeys(stringValue: "location")
+    static let rrdatas = CodingKeys(stringValue: "rrdatas")
+    static let signatureRrdatas = CodingKeys(stringValue: "signatureRrdatas")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "healthCheckedTargets",
+      "kind",
+      "location",
+      "rrdatas",
+      "signatureRrdatas",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.healthCheckedTargets = try container.decodeIfPresent(
+      RRSetRoutingPolicyHealthCheckTargets.self, forKey: .healthCheckedTargets)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.location = try container.decodeIfPresent(Swift.String.self, forKey: .location)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rrdatas) {
+      self.rrdatas = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .signatureRrdatas) {
+      self.signatureRrdatas = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.healthCheckedTargets, forKey: .healthCheckedTargets)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.location, forKey: .location)
+    try container.encode(self.rrdatas, forKey: .rrdatas)
+    try container.encode(self.signatureRrdatas, forKey: .signatureRrdatas)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

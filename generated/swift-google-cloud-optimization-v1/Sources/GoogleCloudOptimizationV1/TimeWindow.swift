@@ -84,6 +84,8 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `soft_end_time` has been set.
   public var costPerHourAfterSoftEndTime: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeWindow`.
   public init() {}
 
@@ -98,6 +100,64 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let softStartTime = CodingKeys(stringValue: "softStartTime")
+    static let softEndTime = CodingKeys(stringValue: "softEndTime")
+    static let costPerHourBeforeSoftStartTime = CodingKeys(
+      stringValue: "costPerHourBeforeSoftStartTime")
+    static let costPerHourAfterSoftEndTime = CodingKeys(stringValue: "costPerHourAfterSoftEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startTime",
+      "endTime",
+      "softStartTime",
+      "softEndTime",
+      "costPerHourBeforeSoftStartTime",
+      "costPerHourAfterSoftEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.softStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .softStartTime)
+    self.softEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .softEndTime)
+    self.costPerHourBeforeSoftStartTime = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .costPerHourBeforeSoftStartTime)
+    self.costPerHourAfterSoftEndTime = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .costPerHourAfterSoftEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.softStartTime, forKey: .softStartTime)
+    try container.encodeIfPresent(self.softEndTime, forKey: .softEndTime)
+    try container.encodeIfPresent(
+      self.costPerHourBeforeSoftStartTime, forKey: .costPerHourBeforeSoftStartTime)
+    try container.encodeIfPresent(
+      self.costPerHourAfterSoftEndTime, forKey: .costPerHourAfterSoftEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -50,6 +50,8 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// only when the raw_json is set.
   public var conversionRule: OneOf_ConversionRule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CollectUserEventRequest`.
   public init() {}
 
@@ -66,22 +68,46 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case prebuiltRule = "prebuiltRule"
-    case parent = "parent"
-    case userEvent = "userEvent"
-    case uri = "uri"
-    case ets = "ets"
-    case rawJson = "rawJson"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let prebuiltRule = CodingKeys(stringValue: "prebuiltRule")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let userEvent = CodingKeys(stringValue: "userEvent")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let ets = CodingKeys(stringValue: "ets")
+    static let rawJson = CodingKeys(stringValue: "rawJson")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "prebuiltRule",
+      "parent",
+      "userEvent",
+      "uri",
+      "ets",
+      "rawJson",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.userEvent = try container.decode(Swift.String.self, forKey: .userEvent)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
-    self.ets = try container.decode(Swift.Int64.self, forKey: .ets)
-    self.rawJson = try container.decode(Swift.String.self, forKey: .rawJson)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEvent) {
+      self.userEvent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .ets) {
+      self.ets = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rawJson) {
+      self.rawJson = value
+    }
 
     var conversionRule: OneOf_ConversionRule? = nil
     let conversionRuleCheckAndSet = {
@@ -97,6 +123,10 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       try conversionRuleCheckAndSet(.prebuiltRule(prebuiltRule))
     }
     self.conversionRule = conversionRule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -112,6 +142,9 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .prebuiltRule(let value):
         try container.encode(value, forKey: .prebuiltRule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

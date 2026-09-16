@@ -76,6 +76,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The desired state of the fleet package.
   public var state: FleetPackage.State = FleetPackage.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FleetPackage`.
   public init() {}
 
@@ -92,6 +94,92 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let resourceBundleSelector = CodingKeys(stringValue: "resourceBundleSelector")
+    static let target = CodingKeys(stringValue: "target")
+    static let rolloutStrategy = CodingKeys(stringValue: "rolloutStrategy")
+    static let variantSelector = CodingKeys(stringValue: "variantSelector")
+    static let info = CodingKeys(stringValue: "info")
+    static let deletionPropagationPolicy = CodingKeys(stringValue: "deletionPropagationPolicy")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "resourceBundleSelector",
+      "target",
+      "rolloutStrategy",
+      "variantSelector",
+      "info",
+      "deletionPropagationPolicy",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.resourceBundleSelector = try container.decodeIfPresent(
+      FleetPackage.ResourceBundleSelector.self, forKey: .resourceBundleSelector)
+    self.target = try container.decodeIfPresent(FleetPackage.Target.self, forKey: .target)
+    self.rolloutStrategy = try container.decodeIfPresent(
+      RolloutStrategy.self, forKey: .rolloutStrategy)
+    self.variantSelector = try container.decodeIfPresent(
+      FleetPackage.VariantSelector.self, forKey: .variantSelector)
+    self.info = try container.decodeIfPresent(FleetPackageInfo.self, forKey: .info)
+    if let value = try container.decodeIfPresent(
+      DeletionPropagationPolicy.self, forKey: .deletionPropagationPolicy)
+    {
+      self.deletionPropagationPolicy = value
+    }
+    if let value = try container.decodeIfPresent(FleetPackage.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.resourceBundleSelector, forKey: .resourceBundleSelector)
+    try container.encodeIfPresent(self.target, forKey: .target)
+    try container.encodeIfPresent(self.rolloutStrategy, forKey: .rolloutStrategy)
+    try container.encodeIfPresent(self.variantSelector, forKey: .variantSelector)
+    try container.encodeIfPresent(self.info, forKey: .info)
+    try container.encode(self.deletionPropagationPolicy, forKey: .deletionPropagationPolicy)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Information specifying the source of kubernetes configuration to deploy.
   public struct ResourceBundleSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -99,6 +187,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// source can be a directly pushed `ResourceBundle` or
     /// `CloudBuildRepository` containing the kubernetes configuration.
     public var source: OneOf_Source? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ResourceBundleSelector`.
     public init() {}
@@ -116,9 +206,19 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case resourceBundle = "resourceBundle"
-      case cloudBuildRepository = "cloudBuildRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceBundle = CodingKeys(stringValue: "resourceBundle")
+      static let cloudBuildRepository = CodingKeys(stringValue: "cloudBuildRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceBundle",
+        "cloudBuildRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -145,6 +245,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try sourceCheckAndSet(.cloudBuildRepository(cloudBuildRepository))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -157,6 +261,9 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .cloudBuildRepository(let value):
           try container.encode(value, forKey: .cloudBuildRepository)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -194,6 +301,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// This is a Git tag in the semantic version format `vX.Y.Z`.
     public var tag: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceBundleTag`.
     public init() {}
 
@@ -208,6 +317,44 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let tag = CodingKeys(stringValue: "tag")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "tag",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+        self.tag = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.tag, forKey: .tag)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -247,6 +394,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// to find variants.
     public var variants: OneOf_Variants? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudBuildRepository`.
     public init() {}
 
@@ -263,20 +412,41 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case variantsPattern = "variantsPattern"
-      case name = "name"
-      case path = "path"
-      case tag = "tag"
-      case serviceAccount = "serviceAccount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let variantsPattern = CodingKeys(stringValue: "variantsPattern")
+      static let name = CodingKeys(stringValue: "name")
+      static let path = CodingKeys(stringValue: "path")
+      static let tag = CodingKeys(stringValue: "tag")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "variantsPattern",
+        "name",
+        "path",
+        "tag",
+        "serviceAccount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.path = try container.decode(Swift.String.self, forKey: .path)
-      self.tag = try container.decode(Swift.String.self, forKey: .tag)
-      self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+        self.tag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
 
       var variants: OneOf_Variants? = nil
       let variantsCheckAndSet = {
@@ -294,6 +464,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try variantsCheckAndSet(.variantsPattern(variantsPattern))
       }
       self.variants = variants
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -308,6 +482,9 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .variantsPattern(let value):
           try container.encode(value, forKey: .variantsPattern)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -337,6 +514,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// target for the fleet package.
     public var target: OneOf_Target? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Target`.
     public init() {}
 
@@ -353,8 +532,17 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fleet = "fleet"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fleet = CodingKeys(stringValue: "fleet")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fleet"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -374,6 +562,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try targetCheckAndSet(.fleet(fleet))
       }
       self.target = target
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -384,6 +576,9 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .fleet(let value):
           try container.encode(value, forKey: .fleet)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -412,6 +607,8 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// strategy for selecting a variant.
     public var strategy: OneOf_Strategy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VariantSelector`.
     public init() {}
 
@@ -428,8 +625,17 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case variantNameTemplate = "variantNameTemplate"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let variantNameTemplate = CodingKeys(stringValue: "variantNameTemplate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "variantNameTemplate"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -451,6 +657,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try strategyCheckAndSet(.variantNameTemplate(variantNameTemplate))
       }
       self.strategy = strategy
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -461,6 +671,9 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .variantNameTemplate(let value):
           try container.encode(value, forKey: .variantNameTemplate)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

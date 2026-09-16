@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension IntelligenceConfig {
@@ -34,6 +34,7 @@ extension IntelligenceConfig {
       proto.hasEffectiveIntelligenceConfig
       ? try .init(proto: proto.effectiveIntelligenceConfig) : nil
     self.trialConfig = proto.hasTrialConfig ? try .init(proto: proto.trialConfig) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -46,6 +47,9 @@ extension IntelligenceConfig {
       proto.effectiveIntelligenceConfig = try effectiveIntelligenceConfig.toProto()
     }
     if let trialConfig = self.trialConfig { proto.trialConfig = try trialConfig.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -72,6 +76,7 @@ extension IntelligenceConfig.Filter {
         self.cloudStorageBuckets = .excludedCloudStorageBuckets(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -100,6 +105,9 @@ extension IntelligenceConfig.Filter {
         }
       }
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -111,11 +119,15 @@ extension IntelligenceConfig.Filter.CloudStorageLocations {
   internal init(proto: ProtoType) throws {
     self.init()
     self.locations = proto.locations
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.locations = self.locations
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -127,11 +139,15 @@ extension IntelligenceConfig.Filter.CloudStorageBuckets {
   internal init(proto: ProtoType) throws {
     self.init()
     self.bucketIdRegexes = proto.bucketIDRegexes
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.bucketIDRegexes = self.bucketIdRegexes
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -144,12 +160,16 @@ extension IntelligenceConfig.EffectiveIntelligenceConfig {
     self.init()
     self.effectiveEdition = .init(proto: proto.effectiveEdition)
     self.intelligenceConfig = proto.intelligenceConfig
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.effectiveEdition = try self.effectiveEdition.toProto()
     proto.intelligenceConfig = self.intelligenceConfig
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -199,11 +219,15 @@ extension IntelligenceConfig.TrialConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.expireTime = proto.hasExpireTime ? try .init(proto: proto.expireTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let expireTime = self.expireTime { proto.expireTime = try expireTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

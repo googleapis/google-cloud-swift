@@ -58,6 +58,8 @@ public struct Dataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The timezone of the data, default will act as UTC.
   public var timeZone: GoogleType.TimeZone? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dataset`.
   public init() {}
 
@@ -72,6 +74,77 @@ public struct Dataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let tableSpecs = CodingKeys(stringValue: "tableSpecs")
+    static let state = CodingKeys(stringValue: "state")
+    static let dateRange = CodingKeys(stringValue: "dateRange")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "tableSpecs",
+      "state",
+      "dateRange",
+      "timeZone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .tableSpecs)
+    {
+      self.tableSpecs = value
+    }
+    if let value = try container.decodeIfPresent(Dataset.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.dateRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .dateRange)
+    self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.tableSpecs, forKey: .tableSpecs)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.dateRange, forKey: .dateRange)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states of a resource.

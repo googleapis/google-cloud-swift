@@ -40,6 +40,8 @@
     /// Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
     public var oauth2ClientSecretSha256: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceIAP`.
     public init() {}
 
@@ -54,6 +56,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let oauth2ClientId = CodingKeys(stringValue: "oauth2ClientId")
+      static let oauth2ClientSecret = CodingKeys(stringValue: "oauth2ClientSecret")
+      static let oauth2ClientSecretSha256 = CodingKeys(stringValue: "oauth2ClientSecretSha256")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "oauth2ClientId",
+        "oauth2ClientSecret",
+        "oauth2ClientSecretSha256",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+      self.oauth2ClientId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .oauth2ClientId)
+      self.oauth2ClientSecret = try container.decodeIfPresent(
+        Swift.String.self, forKey: .oauth2ClientSecret)
+      self.oauth2ClientSecretSha256 = try container.decodeIfPresent(
+        Swift.String.self, forKey: .oauth2ClientSecretSha256)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.oauth2ClientId, forKey: .oauth2ClientId)
+      try container.encodeIfPresent(self.oauth2ClientSecret, forKey: .oauth2ClientSecret)
+      try container.encodeIfPresent(
+        self.oauth2ClientSecretSha256, forKey: .oauth2ClientSecretSha256)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

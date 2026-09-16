@@ -64,6 +64,8 @@
     public var storagePoolProvisionedCapacity: FutureReservationStoragePoolProvisionedCapacity? =
       nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationStatus`.
     public init() {}
 
@@ -78,6 +80,89 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let amendmentStatus = CodingKeys(stringValue: "amendmentStatus")
+      static let autoCreatedReservations = CodingKeys(stringValue: "autoCreatedReservations")
+      static let exapoolProvisionedCapacityGb = CodingKeys(
+        stringValue: "exapoolProvisionedCapacityGb")
+      static let existingMatchingUsageInfo = CodingKeys(stringValue: "existingMatchingUsageInfo")
+      static let fulfilledCount = CodingKeys(stringValue: "fulfilledCount")
+      static let lastKnownGoodState = CodingKeys(stringValue: "lastKnownGoodState")
+      static let lockTime = CodingKeys(stringValue: "lockTime")
+      static let procurementStatus = CodingKeys(stringValue: "procurementStatus")
+      static let specificSkuProperties = CodingKeys(stringValue: "specificSkuProperties")
+      static let storagePoolProvisionedCapacity = CodingKeys(
+        stringValue: "storagePoolProvisionedCapacity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "amendmentStatus",
+        "autoCreatedReservations",
+        "exapoolProvisionedCapacityGb",
+        "existingMatchingUsageInfo",
+        "fulfilledCount",
+        "lastKnownGoodState",
+        "lockTime",
+        "procurementStatus",
+        "specificSkuProperties",
+        "storagePoolProvisionedCapacity",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.amendmentStatus = try container.decodeIfPresent(
+        FutureReservationStatus.AmendmentStatus.self, forKey: .amendmentStatus)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .autoCreatedReservations)
+      {
+        self.autoCreatedReservations = value
+      }
+      self.exapoolProvisionedCapacityGb = try container.decodeIfPresent(
+        StoragePoolExapoolProvisionedCapacityGb.self, forKey: .exapoolProvisionedCapacityGb)
+      self.existingMatchingUsageInfo = try container.decodeIfPresent(
+        FutureReservationStatusExistingMatchingUsageInfo.self, forKey: .existingMatchingUsageInfo)
+      self.fulfilledCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .fulfilledCount)
+      self.lastKnownGoodState = try container.decodeIfPresent(
+        FutureReservationStatusLastKnownGoodState.self, forKey: .lastKnownGoodState)
+      self.lockTime = try container.decodeIfPresent(Swift.String.self, forKey: .lockTime)
+      self.procurementStatus = try container.decodeIfPresent(
+        FutureReservationStatus.ProcurementStatus.self, forKey: .procurementStatus)
+      self.specificSkuProperties = try container.decodeIfPresent(
+        FutureReservationStatusSpecificSKUProperties.self, forKey: .specificSkuProperties)
+      self.storagePoolProvisionedCapacity = try container.decodeIfPresent(
+        FutureReservationStoragePoolProvisionedCapacity.self,
+        forKey: .storagePoolProvisionedCapacity)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.amendmentStatus, forKey: .amendmentStatus)
+      try container.encode(self.autoCreatedReservations, forKey: .autoCreatedReservations)
+      try container.encodeIfPresent(
+        self.exapoolProvisionedCapacityGb, forKey: .exapoolProvisionedCapacityGb)
+      try container.encodeIfPresent(
+        self.existingMatchingUsageInfo, forKey: .existingMatchingUsageInfo)
+      try container.encodeIfPresent(self.fulfilledCount, forKey: .fulfilledCount)
+      try container.encodeIfPresent(self.lastKnownGoodState, forKey: .lastKnownGoodState)
+      try container.encodeIfPresent(self.lockTime, forKey: .lockTime)
+      try container.encodeIfPresent(self.procurementStatus, forKey: .procurementStatus)
+      try container.encodeIfPresent(self.specificSkuProperties, forKey: .specificSkuProperties)
+      try container.encodeIfPresent(
+        self.storagePoolProvisionedCapacity, forKey: .storagePoolProvisionedCapacity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [amendmentStatus][google.cloud.compute.v1.FutureReservationStatus.amendmentStatus] field.

@@ -200,6 +200,8 @@
     /// Industry vertical specific config.
     public var verticalConfig: OneOf_VerticalConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServingConfig`.
     public init() {}
 
@@ -216,54 +218,115 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case mediaConfig = "mediaConfig"
-      case genericConfig = "genericConfig"
-      case name = "name"
-      case displayName = "displayName"
-      case solutionType = "solutionType"
-      case modelId = "modelId"
-      case diversityLevel = "diversityLevel"
-      case rankingExpression = "rankingExpression"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case filterControlIds = "filterControlIds"
-      case boostControlIds = "boostControlIds"
-      case redirectControlIds = "redirectControlIds"
-      case synonymsControlIds = "synonymsControlIds"
-      case onewaySynonymsControlIds = "onewaySynonymsControlIds"
-      case dissociateControlIds = "dissociateControlIds"
-      case replacementControlIds = "replacementControlIds"
-      case ignoreControlIds = "ignoreControlIds"
-      case promoteControlIds = "promoteControlIds"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mediaConfig = CodingKeys(stringValue: "mediaConfig")
+      static let genericConfig = CodingKeys(stringValue: "genericConfig")
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let solutionType = CodingKeys(stringValue: "solutionType")
+      static let modelId = CodingKeys(stringValue: "modelId")
+      static let diversityLevel = CodingKeys(stringValue: "diversityLevel")
+      static let rankingExpression = CodingKeys(stringValue: "rankingExpression")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let filterControlIds = CodingKeys(stringValue: "filterControlIds")
+      static let boostControlIds = CodingKeys(stringValue: "boostControlIds")
+      static let redirectControlIds = CodingKeys(stringValue: "redirectControlIds")
+      static let synonymsControlIds = CodingKeys(stringValue: "synonymsControlIds")
+      static let onewaySynonymsControlIds = CodingKeys(stringValue: "onewaySynonymsControlIds")
+      static let dissociateControlIds = CodingKeys(stringValue: "dissociateControlIds")
+      static let replacementControlIds = CodingKeys(stringValue: "replacementControlIds")
+      static let ignoreControlIds = CodingKeys(stringValue: "ignoreControlIds")
+      static let promoteControlIds = CodingKeys(stringValue: "promoteControlIds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mediaConfig",
+        "genericConfig",
+        "name",
+        "displayName",
+        "solutionType",
+        "modelId",
+        "diversityLevel",
+        "rankingExpression",
+        "createTime",
+        "updateTime",
+        "filterControlIds",
+        "boostControlIds",
+        "redirectControlIds",
+        "synonymsControlIds",
+        "onewaySynonymsControlIds",
+        "dissociateControlIds",
+        "replacementControlIds",
+        "ignoreControlIds",
+        "promoteControlIds",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.solutionType = try container.decode(SolutionType.self, forKey: .solutionType)
-      self.modelId = try container.decode(Swift.String.self, forKey: .modelId)
-      self.diversityLevel = try container.decode(Swift.String.self, forKey: .diversityLevel)
-      self.rankingExpression = try container.decode(Swift.String.self, forKey: .rankingExpression)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(SolutionType.self, forKey: .solutionType) {
+        self.solutionType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+        self.modelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diversityLevel) {
+        self.diversityLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rankingExpression) {
+        self.rankingExpression = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.filterControlIds = try container.decode([Swift.String].self, forKey: .filterControlIds)
-      self.boostControlIds = try container.decode([Swift.String].self, forKey: .boostControlIds)
-      self.redirectControlIds = try container.decode(
-        [Swift.String].self, forKey: .redirectControlIds)
-      self.synonymsControlIds = try container.decode(
-        [Swift.String].self, forKey: .synonymsControlIds)
-      self.onewaySynonymsControlIds = try container.decode(
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .filterControlIds) {
+        self.filterControlIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .boostControlIds) {
+        self.boostControlIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .redirectControlIds)
+      {
+        self.redirectControlIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .synonymsControlIds)
+      {
+        self.synonymsControlIds = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .onewaySynonymsControlIds)
-      self.dissociateControlIds = try container.decode(
+      {
+        self.onewaySynonymsControlIds = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .dissociateControlIds)
-      self.replacementControlIds = try container.decode(
+      {
+        self.dissociateControlIds = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .replacementControlIds)
-      self.ignoreControlIds = try container.decode([Swift.String].self, forKey: .ignoreControlIds)
-      self.promoteControlIds = try container.decode([Swift.String].self, forKey: .promoteControlIds)
+      {
+        self.replacementControlIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ignoreControlIds) {
+        self.ignoreControlIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .promoteControlIds)
+      {
+        self.promoteControlIds = value
+      }
 
       var verticalConfig: OneOf_VerticalConfig? = nil
       let verticalConfigCheckAndSet = {
@@ -286,6 +349,10 @@
         try verticalConfigCheckAndSet(.genericConfig(genericConfig))
       }
       self.verticalConfig = verticalConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -296,8 +363,8 @@
       try container.encode(self.modelId, forKey: .modelId)
       try container.encode(self.diversityLevel, forKey: .diversityLevel)
       try container.encode(self.rankingExpression, forKey: .rankingExpression)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.filterControlIds, forKey: .filterControlIds)
       try container.encode(self.boostControlIds, forKey: .boostControlIds)
       try container.encode(self.redirectControlIds, forKey: .redirectControlIds)
@@ -315,6 +382,9 @@
         case .genericConfig(let value):
           try container.encode(value, forKey: .genericConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -365,6 +435,8 @@
       /// This must be set for `media-complete` event type.
       public var demoteContentWatched: OneOf_DemoteContentWatched? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MediaConfig`.
       public init() {}
 
@@ -381,21 +453,47 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case contentWatchedPercentageThreshold = "contentWatchedPercentageThreshold"
-        case contentWatchedSecondsThreshold = "contentWatchedSecondsThreshold"
-        case demotionEventType = "demotionEventType"
-        case demoteContentWatchedPastDays = "demoteContentWatchedPastDays"
-        case contentFreshnessCutoffDays = "contentFreshnessCutoffDays"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let contentWatchedPercentageThreshold = CodingKeys(
+          stringValue: "contentWatchedPercentageThreshold")
+        static let contentWatchedSecondsThreshold = CodingKeys(
+          stringValue: "contentWatchedSecondsThreshold")
+        static let demotionEventType = CodingKeys(stringValue: "demotionEventType")
+        static let demoteContentWatchedPastDays = CodingKeys(
+          stringValue: "demoteContentWatchedPastDays")
+        static let contentFreshnessCutoffDays = CodingKeys(
+          stringValue: "contentFreshnessCutoffDays")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "contentWatchedPercentageThreshold",
+          "contentWatchedSecondsThreshold",
+          "demotionEventType",
+          "demoteContentWatchedPastDays",
+          "contentFreshnessCutoffDays",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.demotionEventType = try container.decode(Swift.String.self, forKey: .demotionEventType)
-        self.demoteContentWatchedPastDays = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .demotionEventType)
+        {
+          self.demotionEventType = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .demoteContentWatchedPastDays)
-        self.contentFreshnessCutoffDays = try container.decode(
+        {
+          self.demoteContentWatchedPastDays = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .contentFreshnessCutoffDays)
+        {
+          self.contentFreshnessCutoffDays = value
+        }
 
         var demoteContentWatched: OneOf_DemoteContentWatched? = nil
         let demoteContentWatchedCheckAndSet = {
@@ -420,6 +518,10 @@
             .contentWatchedSecondsThreshold(contentWatchedSecondsThreshold))
         }
         self.demoteContentWatched = demoteContentWatched
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -436,6 +538,9 @@
           case .contentWatchedSecondsThreshold(let value):
             try container.encode(value, forKey: .contentWatchedSecondsThreshold)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -472,6 +577,8 @@
       /// Only valid for content-search enabled data store.
       public var contentSearchSpec: SearchRequest.ContentSearchSpec? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GenericConfig`.
       public init() {}
 
@@ -486,6 +593,37 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let contentSearchSpec = CodingKeys(stringValue: "contentSearchSpec")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "contentSearchSpec"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.contentSearchSpec = try container.decodeIfPresent(
+          SearchRequest.ContentSearchSpec.self, forKey: .contentSearchSpec)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.contentSearchSpec, forKey: .contentSearchSpec)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

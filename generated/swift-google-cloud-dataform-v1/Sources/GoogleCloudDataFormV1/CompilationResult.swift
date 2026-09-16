@@ -61,6 +61,8 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The source of the compilation result.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompilationResult`.
   public init() {}
 
@@ -77,32 +79,62 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gitCommitish = "gitCommitish"
-    case workspace = "workspace"
-    case releaseConfig = "releaseConfig"
-    case name = "name"
-    case codeCompilationConfig = "codeCompilationConfig"
-    case resolvedGitCommitSha = "resolvedGitCommitSha"
-    case dataformCoreVersion = "dataformCoreVersion"
-    case compilationErrors = "compilationErrors"
-    case dataEncryptionState = "dataEncryptionState"
-    case createTime = "createTime"
-    case internalMetadata = "internalMetadata"
-    case privateResourceMetadata = "privateResourceMetadata"
-    case gcsRepositorySnapshotMetadata = "gcsRepositorySnapshotMetadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gitCommitish = CodingKeys(stringValue: "gitCommitish")
+    static let workspace = CodingKeys(stringValue: "workspace")
+    static let releaseConfig = CodingKeys(stringValue: "releaseConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let codeCompilationConfig = CodingKeys(stringValue: "codeCompilationConfig")
+    static let resolvedGitCommitSha = CodingKeys(stringValue: "resolvedGitCommitSha")
+    static let dataformCoreVersion = CodingKeys(stringValue: "dataformCoreVersion")
+    static let compilationErrors = CodingKeys(stringValue: "compilationErrors")
+    static let dataEncryptionState = CodingKeys(stringValue: "dataEncryptionState")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+    static let privateResourceMetadata = CodingKeys(stringValue: "privateResourceMetadata")
+    static let gcsRepositorySnapshotMetadata = CodingKeys(
+      stringValue: "gcsRepositorySnapshotMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gitCommitish",
+      "workspace",
+      "releaseConfig",
+      "name",
+      "codeCompilationConfig",
+      "resolvedGitCommitSha",
+      "dataformCoreVersion",
+      "compilationErrors",
+      "dataEncryptionState",
+      "createTime",
+      "internalMetadata",
+      "privateResourceMetadata",
+      "gcsRepositorySnapshotMetadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.codeCompilationConfig = try container.decodeIfPresent(
       CodeCompilationConfig.self, forKey: .codeCompilationConfig)
-    self.resolvedGitCommitSha = try container.decode(
-      Swift.String.self, forKey: .resolvedGitCommitSha)
-    self.dataformCoreVersion = try container.decode(Swift.String.self, forKey: .dataformCoreVersion)
-    self.compilationErrors = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resolvedGitCommitSha) {
+      self.resolvedGitCommitSha = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataformCoreVersion) {
+      self.dataformCoreVersion = value
+    }
+    if let value = try container.decodeIfPresent(
       [CompilationResult.CompilationError].self, forKey: .compilationErrors)
+    {
+      self.compilationErrors = value
+    }
     self.dataEncryptionState = try container.decodeIfPresent(
       DataEncryptionState.self, forKey: .dataEncryptionState)
     self.createTime = try container.decodeIfPresent(
@@ -135,20 +167,25 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try sourceCheckAndSet(.releaseConfig(releaseConfig))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.codeCompilationConfig, forKey: .codeCompilationConfig)
+    try container.encodeIfPresent(self.codeCompilationConfig, forKey: .codeCompilationConfig)
     try container.encode(self.resolvedGitCommitSha, forKey: .resolvedGitCommitSha)
     try container.encode(self.dataformCoreVersion, forKey: .dataformCoreVersion)
     try container.encode(self.compilationErrors, forKey: .compilationErrors)
-    try container.encode(self.dataEncryptionState, forKey: .dataEncryptionState)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.internalMetadata, forKey: .internalMetadata)
-    try container.encode(self.privateResourceMetadata, forKey: .privateResourceMetadata)
-    try container.encode(self.gcsRepositorySnapshotMetadata, forKey: .gcsRepositorySnapshotMetadata)
+    try container.encodeIfPresent(self.dataEncryptionState, forKey: .dataEncryptionState)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    try container.encodeIfPresent(self.privateResourceMetadata, forKey: .privateResourceMetadata)
+    try container.encodeIfPresent(
+      self.gcsRepositorySnapshotMetadata, forKey: .gcsRepositorySnapshotMetadata)
 
     if let choice = self.source {
       switch choice {
@@ -159,6 +196,9 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .releaseConfig(let value):
         try container.encode(value, forKey: .releaseConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -180,6 +220,8 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// available.
     public var actionTarget: Target? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompilationError`.
     public init() {}
 
@@ -194,6 +236,54 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let message = CodingKeys(stringValue: "message")
+      static let stack = CodingKeys(stringValue: "stack")
+      static let path = CodingKeys(stringValue: "path")
+      static let actionTarget = CodingKeys(stringValue: "actionTarget")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "message",
+        "stack",
+        "path",
+        "actionTarget",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+        self.message = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stack) {
+        self.stack = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      self.actionTarget = try container.decodeIfPresent(Target.self, forKey: .actionTarget)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.message, forKey: .message)
+      try container.encode(self.stack, forKey: .stack)
+      try container.encode(self.path, forKey: .path)
+      try container.encodeIfPresent(self.actionTarget, forKey: .actionTarget)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

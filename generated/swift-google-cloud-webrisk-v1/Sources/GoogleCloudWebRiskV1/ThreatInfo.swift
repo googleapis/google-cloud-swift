@@ -31,6 +31,8 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Context about why the URI is unsafe.
   public var threatJustification: ThreatInfo.ThreatJustification? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ThreatInfo`.
   public init() {}
 
@@ -47,11 +49,55 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let abuseType = CodingKeys(stringValue: "abuseType")
+    static let threatConfidence = CodingKeys(stringValue: "threatConfidence")
+    static let threatJustification = CodingKeys(stringValue: "threatJustification")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "abuseType",
+      "threatConfidence",
+      "threatJustification",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ThreatInfo.AbuseType.self, forKey: .abuseType) {
+      self.abuseType = value
+    }
+    self.threatConfidence = try container.decodeIfPresent(
+      ThreatInfo.Confidence.self, forKey: .threatConfidence)
+    self.threatJustification = try container.decodeIfPresent(
+      ThreatInfo.ThreatJustification.self, forKey: .threatJustification)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.abuseType, forKey: .abuseType)
+    try container.encodeIfPresent(self.threatConfidence, forKey: .threatConfidence)
+    try container.encodeIfPresent(self.threatJustification, forKey: .threatJustification)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Confidence that a URI is unsafe.
   public struct Confidence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var value: OneOf_Value? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Confidence`.
     public init() {}
@@ -69,9 +115,19 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case score = "score"
-      case level = "level"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let score = CodingKeys(stringValue: "score")
+      static let level = CodingKeys(stringValue: "level")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "score",
+        "level",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -96,6 +152,10 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try valueCheckAndSet(.level(level))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -108,6 +168,9 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .level(let value):
           try container.encode(value, forKey: .level)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -253,6 +316,8 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Free-form context on why this URI is unsafe.
     public var comments: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ThreatJustification`.
     public init() {}
 
@@ -267,6 +332,46 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let labels = CodingKeys(stringValue: "labels")
+      static let comments = CodingKeys(stringValue: "comments")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "labels",
+        "comments",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ThreatInfo.ThreatJustification.JustificationLabel].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .comments) {
+        self.comments = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.comments, forKey: .comments)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Labels that explain how the URI was classified.

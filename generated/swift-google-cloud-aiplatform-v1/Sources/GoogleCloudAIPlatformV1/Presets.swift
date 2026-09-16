@@ -32,6 +32,8 @@
     /// it is okay to choose the closest type.
     public var modality: Presets.Modality = Presets.Modality()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Presets`.
     public init() {}
 
@@ -46,6 +48,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let query = CodingKeys(stringValue: "query")
+      static let modality = CodingKeys(stringValue: "modality")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "query",
+        "modality",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.query = try container.decodeIfPresent(Presets.Query.self, forKey: .query)
+      if let value = try container.decodeIfPresent(Presets.Modality.self, forKey: .modality) {
+        self.modality = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.modality, forKey: .modality)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Preset option controlling parameters for query speed-precision trade-off

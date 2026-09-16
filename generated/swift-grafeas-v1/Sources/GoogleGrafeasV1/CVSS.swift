@@ -82,6 +82,8 @@ public struct CVSS: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Exploit Maturity (E). Defined in CVSS v4.
   public var exploitMaturity: CVSS.ExploitMaturity = CVSS.ExploitMaturity()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CVSS`.
   public init() {}
 
@@ -96,6 +98,187 @@ public struct CVSS: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseScore = CodingKeys(stringValue: "baseScore")
+    static let exploitabilityScore = CodingKeys(stringValue: "exploitabilityScore")
+    static let impactScore = CodingKeys(stringValue: "impactScore")
+    static let attackVector = CodingKeys(stringValue: "attackVector")
+    static let attackComplexity = CodingKeys(stringValue: "attackComplexity")
+    static let authentication = CodingKeys(stringValue: "authentication")
+    static let privilegesRequired = CodingKeys(stringValue: "privilegesRequired")
+    static let userInteraction = CodingKeys(stringValue: "userInteraction")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let confidentialityImpact = CodingKeys(stringValue: "confidentialityImpact")
+    static let integrityImpact = CodingKeys(stringValue: "integrityImpact")
+    static let availabilityImpact = CodingKeys(stringValue: "availabilityImpact")
+    static let attackRequirements = CodingKeys(stringValue: "attackRequirements")
+    static let vulnerableSystemConfidentialityImpact = CodingKeys(
+      stringValue: "vulnerableSystemConfidentialityImpact")
+    static let vulnerableSystemIntegrityImpact = CodingKeys(
+      stringValue: "vulnerableSystemIntegrityImpact")
+    static let vulnerableSystemAvailabilityImpact = CodingKeys(
+      stringValue: "vulnerableSystemAvailabilityImpact")
+    static let subsequentSystemConfidentialityImpact = CodingKeys(
+      stringValue: "subsequentSystemConfidentialityImpact")
+    static let subsequentSystemIntegrityImpact = CodingKeys(
+      stringValue: "subsequentSystemIntegrityImpact")
+    static let subsequentSystemAvailabilityImpact = CodingKeys(
+      stringValue: "subsequentSystemAvailabilityImpact")
+    static let exploitMaturity = CodingKeys(stringValue: "exploitMaturity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseScore",
+      "exploitabilityScore",
+      "impactScore",
+      "attackVector",
+      "attackComplexity",
+      "authentication",
+      "privilegesRequired",
+      "userInteraction",
+      "scope",
+      "confidentialityImpact",
+      "integrityImpact",
+      "availabilityImpact",
+      "attackRequirements",
+      "vulnerableSystemConfidentialityImpact",
+      "vulnerableSystemIntegrityImpact",
+      "vulnerableSystemAvailabilityImpact",
+      "subsequentSystemConfidentialityImpact",
+      "subsequentSystemIntegrityImpact",
+      "subsequentSystemAvailabilityImpact",
+      "exploitMaturity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .baseScore) {
+      self.baseScore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .exploitabilityScore) {
+      self.exploitabilityScore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .impactScore) {
+      self.impactScore = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.AttackVector.self, forKey: .attackVector) {
+      self.attackVector = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.AttackComplexity.self, forKey: .attackComplexity)
+    {
+      self.attackComplexity = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.Authentication.self, forKey: .authentication)
+    {
+      self.authentication = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.PrivilegesRequired.self, forKey: .privilegesRequired)
+    {
+      self.privilegesRequired = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.UserInteraction.self, forKey: .userInteraction)
+    {
+      self.userInteraction = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.Scope.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.Impact.self, forKey: .confidentialityImpact) {
+      self.confidentialityImpact = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.Impact.self, forKey: .integrityImpact) {
+      self.integrityImpact = value
+    }
+    if let value = try container.decodeIfPresent(CVSS.Impact.self, forKey: .availabilityImpact) {
+      self.availabilityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.AttackRequirements.self, forKey: .attackRequirements)
+    {
+      self.attackRequirements = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .vulnerableSystemConfidentialityImpact)
+    {
+      self.vulnerableSystemConfidentialityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .vulnerableSystemIntegrityImpact)
+    {
+      self.vulnerableSystemIntegrityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .vulnerableSystemAvailabilityImpact)
+    {
+      self.vulnerableSystemAvailabilityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .subsequentSystemConfidentialityImpact)
+    {
+      self.subsequentSystemConfidentialityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .subsequentSystemIntegrityImpact)
+    {
+      self.subsequentSystemIntegrityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.Impact.self, forKey: .subsequentSystemAvailabilityImpact)
+    {
+      self.subsequentSystemAvailabilityImpact = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSS.ExploitMaturity.self, forKey: .exploitMaturity)
+    {
+      self.exploitMaturity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.baseScore, forKey: .baseScore)
+    try container.encode(self.exploitabilityScore, forKey: .exploitabilityScore)
+    try container.encode(self.impactScore, forKey: .impactScore)
+    try container.encode(self.attackVector, forKey: .attackVector)
+    try container.encode(self.attackComplexity, forKey: .attackComplexity)
+    try container.encode(self.authentication, forKey: .authentication)
+    try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
+    try container.encode(self.userInteraction, forKey: .userInteraction)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
+    try container.encode(self.integrityImpact, forKey: .integrityImpact)
+    try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    try container.encode(self.attackRequirements, forKey: .attackRequirements)
+    try container.encode(
+      self.vulnerableSystemConfidentialityImpact, forKey: .vulnerableSystemConfidentialityImpact)
+    try container.encode(
+      self.vulnerableSystemIntegrityImpact, forKey: .vulnerableSystemIntegrityImpact)
+    try container.encode(
+      self.vulnerableSystemAvailabilityImpact, forKey: .vulnerableSystemAvailabilityImpact)
+    try container.encode(
+      self.subsequentSystemConfidentialityImpact, forKey: .subsequentSystemConfidentialityImpact)
+    try container.encode(
+      self.subsequentSystemIntegrityImpact, forKey: .subsequentSystemIntegrityImpact)
+    try container.encode(
+      self.subsequentSystemAvailabilityImpact, forKey: .subsequentSystemAvailabilityImpact)
+    try container.encode(self.exploitMaturity, forKey: .exploitMaturity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Attack Vector.

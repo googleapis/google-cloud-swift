@@ -70,6 +70,8 @@ public struct VolumeRestore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// race conditions.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VolumeRestore`.
   public init() {}
 
@@ -84,6 +86,100 @@ public struct VolumeRestore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let volumeBackup = CodingKeys(stringValue: "volumeBackup")
+    static let targetPvc = CodingKeys(stringValue: "targetPvc")
+    static let volumeHandle = CodingKeys(stringValue: "volumeHandle")
+    static let volumeType = CodingKeys(stringValue: "volumeType")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "volumeBackup",
+      "targetPvc",
+      "volumeHandle",
+      "volumeType",
+      "completeTime",
+      "state",
+      "stateMessage",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeBackup) {
+      self.volumeBackup = value
+    }
+    self.targetPvc = try container.decodeIfPresent(NamespacedName.self, forKey: .targetPvc)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeHandle) {
+      self.volumeHandle = value
+    }
+    if let value = try container.decodeIfPresent(VolumeRestore.VolumeType.self, forKey: .volumeType)
+    {
+      self.volumeType = value
+    }
+    self.completeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
+    if let value = try container.decodeIfPresent(VolumeRestore.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.volumeBackup, forKey: .volumeBackup)
+    try container.encodeIfPresent(self.targetPvc, forKey: .targetPvc)
+    try container.encode(self.volumeHandle, forKey: .volumeHandle)
+    try container.encode(self.volumeType, forKey: .volumeType)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Supported volume types.

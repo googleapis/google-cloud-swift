@@ -31,6 +31,8 @@
     /// Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.
     public var idleShutdownDisabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NotebookIdleShutdownConfig`.
     public init() {}
 
@@ -45,6 +47,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let idleTimeout = CodingKeys(stringValue: "idleTimeout")
+      static let idleShutdownDisabled = CodingKeys(stringValue: "idleShutdownDisabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "idleTimeout",
+        "idleShutdownDisabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.idleTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .idleTimeout)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .idleShutdownDisabled) {
+        self.idleShutdownDisabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.idleTimeout, forKey: .idleTimeout)
+      try container.encode(self.idleShutdownDisabled, forKey: .idleShutdownDisabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

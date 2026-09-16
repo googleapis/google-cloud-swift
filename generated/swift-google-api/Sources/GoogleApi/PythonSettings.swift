@@ -27,6 +27,8 @@ public struct PythonSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Experimental features to be included during client library generation.
   public var experimentalFeatures: PythonSettings.ExperimentalFeatures? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PythonSettings`.
   public init() {}
 
@@ -41,6 +43,41 @@ public struct PythonSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let common = CodingKeys(stringValue: "common")
+    static let experimentalFeatures = CodingKeys(stringValue: "experimentalFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "common",
+      "experimentalFeatures",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.common = try container.decodeIfPresent(CommonLanguageSettings.self, forKey: .common)
+    self.experimentalFeatures = try container.decodeIfPresent(
+      PythonSettings.ExperimentalFeatures.self, forKey: .experimentalFeatures)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.common, forKey: .common)
+    try container.encodeIfPresent(self.experimentalFeatures, forKey: .experimentalFeatures)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Experimental features to be included during client library generation.
@@ -67,6 +104,8 @@ public struct PythonSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// of `import google.cloud.library`.
     public var unversionedPackageDisabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExperimentalFeatures`.
     public init() {}
 
@@ -81,6 +120,55 @@ public struct PythonSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let restAsyncIoEnabled = CodingKeys(stringValue: "restAsyncIoEnabled")
+      static let protobufPythonicTypesEnabled = CodingKeys(
+        stringValue: "protobufPythonicTypesEnabled")
+      static let unversionedPackageDisabled = CodingKeys(stringValue: "unversionedPackageDisabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "restAsyncIoEnabled",
+        "protobufPythonicTypesEnabled",
+        "unversionedPackageDisabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .restAsyncIoEnabled) {
+        self.restAsyncIoEnabled = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .protobufPythonicTypesEnabled)
+      {
+        self.protobufPythonicTypesEnabled = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .unversionedPackageDisabled)
+      {
+        self.unversionedPackageDisabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.restAsyncIoEnabled, forKey: .restAsyncIoEnabled)
+      try container.encode(self.protobufPythonicTypesEnabled, forKey: .protobufPythonicTypesEnabled)
+      try container.encode(self.unversionedPackageDisabled, forKey: .unversionedPackageDisabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

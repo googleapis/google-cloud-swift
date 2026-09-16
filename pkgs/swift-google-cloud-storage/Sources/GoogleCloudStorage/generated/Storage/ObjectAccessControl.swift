@@ -73,6 +73,8 @@ public struct ObjectAccessControl: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. The project team associated with the entity, if any.
   public var projectTeam: ProjectTeam? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectAccessControl`.
   public init() {}
 
@@ -87,6 +89,84 @@ public struct ObjectAccessControl: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let role = CodingKeys(stringValue: "role")
+    static let id = CodingKeys(stringValue: "id")
+    static let entity = CodingKeys(stringValue: "entity")
+    static let entityAlt = CodingKeys(stringValue: "entityAlt")
+    static let entityId = CodingKeys(stringValue: "entityId")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let email = CodingKeys(stringValue: "email")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let projectTeam = CodingKeys(stringValue: "projectTeam")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "role",
+      "id",
+      "entity",
+      "entityAlt",
+      "entityId",
+      "etag",
+      "email",
+      "domain",
+      "projectTeam",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+      self.role = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+      self.entity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityAlt) {
+      self.entityAlt = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityId) {
+      self.entityId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+      self.email = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    self.projectTeam = try container.decodeIfPresent(ProjectTeam.self, forKey: .projectTeam)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.role, forKey: .role)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.entity, forKey: .entity)
+    try container.encode(self.entityAlt, forKey: .entityAlt)
+    try container.encode(self.entityId, forKey: .entityId)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.email, forKey: .email)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encodeIfPresent(self.projectTeam, forKey: .projectTeam)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

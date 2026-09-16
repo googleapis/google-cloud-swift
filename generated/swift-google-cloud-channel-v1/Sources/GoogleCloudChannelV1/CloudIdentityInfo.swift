@@ -49,6 +49,8 @@ public struct CloudIdentityInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Edu information about the customer.
   public var eduData: EduData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudIdentityInfo`.
   public init() {}
 
@@ -63,6 +65,80 @@ public struct CloudIdentityInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customerType = CodingKeys(stringValue: "customerType")
+    static let primaryDomain = CodingKeys(stringValue: "primaryDomain")
+    static let isDomainVerified = CodingKeys(stringValue: "isDomainVerified")
+    static let alternateEmail = CodingKeys(stringValue: "alternateEmail")
+    static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let adminConsoleUri = CodingKeys(stringValue: "adminConsoleUri")
+    static let eduData = CodingKeys(stringValue: "eduData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customerType",
+      "primaryDomain",
+      "isDomainVerified",
+      "alternateEmail",
+      "phoneNumber",
+      "languageCode",
+      "adminConsoleUri",
+      "eduData",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      CloudIdentityInfo.CustomerType.self, forKey: .customerType)
+    {
+      self.customerType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryDomain) {
+      self.primaryDomain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isDomainVerified) {
+      self.isDomainVerified = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alternateEmail) {
+      self.alternateEmail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumber) {
+      self.phoneNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adminConsoleUri) {
+      self.adminConsoleUri = value
+    }
+    self.eduData = try container.decodeIfPresent(EduData.self, forKey: .eduData)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.customerType, forKey: .customerType)
+    try container.encode(self.primaryDomain, forKey: .primaryDomain)
+    try container.encode(self.isDomainVerified, forKey: .isDomainVerified)
+    try container.encode(self.alternateEmail, forKey: .alternateEmail)
+    try container.encode(self.phoneNumber, forKey: .phoneNumber)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.adminConsoleUri, forKey: .adminConsoleUri)
+    try container.encodeIfPresent(self.eduData, forKey: .eduData)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// CustomerType of the customer

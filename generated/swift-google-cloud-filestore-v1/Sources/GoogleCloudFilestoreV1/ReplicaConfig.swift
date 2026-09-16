@@ -35,6 +35,8 @@ public struct ReplicaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// active instance and is already replicated safely.
   public var lastActiveSyncTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplicaConfig`.
   public init() {}
 
@@ -49,6 +51,57 @@ public struct ReplicaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let stateReasons = CodingKeys(stringValue: "stateReasons")
+    static let peerInstance = CodingKeys(stringValue: "peerInstance")
+    static let lastActiveSyncTime = CodingKeys(stringValue: "lastActiveSyncTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "stateReasons",
+      "peerInstance",
+      "lastActiveSyncTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ReplicaConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ReplicaConfig.StateReason].self, forKey: .stateReasons)
+    {
+      self.stateReasons = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerInstance) {
+      self.peerInstance = value
+    }
+    self.lastActiveSyncTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastActiveSyncTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateReasons, forKey: .stateReasons)
+    try container.encode(self.peerInstance, forKey: .peerInstance)
+    try container.encodeIfPresent(self.lastActiveSyncTime, forKey: .lastActiveSyncTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The replica state.

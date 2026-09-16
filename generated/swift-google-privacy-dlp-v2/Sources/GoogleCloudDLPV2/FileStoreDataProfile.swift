@@ -134,6 +134,8 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Domains associated with the profile.
   public var domains: [Domain] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileStoreDataProfile`.
   public init() {}
 
@@ -148,6 +150,195 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dataSourceType = CodingKeys(stringValue: "dataSourceType")
+    static let projectDataProfile = CodingKeys(stringValue: "projectDataProfile")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let fileStoreLocation = CodingKeys(stringValue: "fileStoreLocation")
+    static let dataStorageLocations = CodingKeys(stringValue: "dataStorageLocations")
+    static let locationType = CodingKeys(stringValue: "locationType")
+    static let fileStorePath = CodingKeys(stringValue: "fileStorePath")
+    static let fullResource = CodingKeys(stringValue: "fullResource")
+    static let configSnapshot = CodingKeys(stringValue: "configSnapshot")
+    static let profileStatus = CodingKeys(stringValue: "profileStatus")
+    static let state = CodingKeys(stringValue: "state")
+    static let profileLastGenerated = CodingKeys(stringValue: "profileLastGenerated")
+    static let resourceVisibility = CodingKeys(stringValue: "resourceVisibility")
+    static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+    static let dataRiskLevel = CodingKeys(stringValue: "dataRiskLevel")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let lastModifiedTime = CodingKeys(stringValue: "lastModifiedTime")
+    static let fileClusterSummaries = CodingKeys(stringValue: "fileClusterSummaries")
+    static let resourceAttributes = CodingKeys(stringValue: "resourceAttributes")
+    static let resourceLabels = CodingKeys(stringValue: "resourceLabels")
+    static let fileStoreInfoTypeSummaries = CodingKeys(stringValue: "fileStoreInfoTypeSummaries")
+    static let sampleFindingsTable = CodingKeys(stringValue: "sampleFindingsTable")
+    static let fileStoreIsEmpty = CodingKeys(stringValue: "fileStoreIsEmpty")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let relatedResources = CodingKeys(stringValue: "relatedResources")
+    static let domains = CodingKeys(stringValue: "domains")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dataSourceType",
+      "projectDataProfile",
+      "projectId",
+      "fileStoreLocation",
+      "dataStorageLocations",
+      "locationType",
+      "fileStorePath",
+      "fullResource",
+      "configSnapshot",
+      "profileStatus",
+      "state",
+      "profileLastGenerated",
+      "resourceVisibility",
+      "sensitivityScore",
+      "dataRiskLevel",
+      "createTime",
+      "lastModifiedTime",
+      "fileClusterSummaries",
+      "resourceAttributes",
+      "resourceLabels",
+      "fileStoreInfoTypeSummaries",
+      "sampleFindingsTable",
+      "fileStoreIsEmpty",
+      "tags",
+      "relatedResources",
+      "domains",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.dataSourceType = try container.decodeIfPresent(
+      DataSourceType.self, forKey: .dataSourceType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectDataProfile) {
+      self.projectDataProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileStoreLocation) {
+      self.fileStoreLocation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStorageLocations)
+    {
+      self.dataStorageLocations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationType) {
+      self.locationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileStorePath) {
+      self.fileStorePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResource) {
+      self.fullResource = value
+    }
+    self.configSnapshot = try container.decodeIfPresent(
+      DataProfileConfigSnapshot.self, forKey: .configSnapshot)
+    self.profileStatus = try container.decodeIfPresent(ProfileStatus.self, forKey: .profileStatus)
+    if let value = try container.decodeIfPresent(FileStoreDataProfile.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.profileLastGenerated = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .profileLastGenerated)
+    if let value = try container.decodeIfPresent(
+      ResourceVisibility.self, forKey: .resourceVisibility)
+    {
+      self.resourceVisibility = value
+    }
+    self.sensitivityScore = try container.decodeIfPresent(
+      SensitivityScore.self, forKey: .sensitivityScore)
+    self.dataRiskLevel = try container.decodeIfPresent(DataRiskLevel.self, forKey: .dataRiskLevel)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.lastModifiedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModifiedTime)
+    if let value = try container.decodeIfPresent(
+      [FileClusterSummary].self, forKey: .fileClusterSummaries)
+    {
+      self.fileClusterSummaries = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Value].self, forKey: .resourceAttributes)
+    {
+      self.resourceAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceLabels)
+    {
+      self.resourceLabels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FileStoreInfoTypeSummary].self, forKey: .fileStoreInfoTypeSummaries)
+    {
+      self.fileStoreInfoTypeSummaries = value
+    }
+    self.sampleFindingsTable = try container.decodeIfPresent(
+      BigQueryTable.self, forKey: .sampleFindingsTable)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fileStoreIsEmpty) {
+      self.fileStoreIsEmpty = value
+    }
+    if let value = try container.decodeIfPresent([Tag].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent([RelatedResource].self, forKey: .relatedResources)
+    {
+      self.relatedResources = value
+    }
+    if let value = try container.decodeIfPresent([Domain].self, forKey: .domains) {
+      self.domains = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.dataSourceType, forKey: .dataSourceType)
+    try container.encode(self.projectDataProfile, forKey: .projectDataProfile)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.fileStoreLocation, forKey: .fileStoreLocation)
+    try container.encode(self.dataStorageLocations, forKey: .dataStorageLocations)
+    try container.encode(self.locationType, forKey: .locationType)
+    try container.encode(self.fileStorePath, forKey: .fileStorePath)
+    try container.encode(self.fullResource, forKey: .fullResource)
+    try container.encodeIfPresent(self.configSnapshot, forKey: .configSnapshot)
+    try container.encodeIfPresent(self.profileStatus, forKey: .profileStatus)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.profileLastGenerated, forKey: .profileLastGenerated)
+    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
+    try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.lastModifiedTime, forKey: .lastModifiedTime)
+    try container.encode(self.fileClusterSummaries, forKey: .fileClusterSummaries)
+    try container.encode(self.resourceAttributes, forKey: .resourceAttributes)
+    try container.encode(self.resourceLabels, forKey: .resourceLabels)
+    try container.encode(self.fileStoreInfoTypeSummaries, forKey: .fileStoreInfoTypeSummaries)
+    try container.encodeIfPresent(self.sampleFindingsTable, forKey: .sampleFindingsTable)
+    try container.encode(self.fileStoreIsEmpty, forKey: .fileStoreIsEmpty)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.relatedResources, forKey: .relatedResources)
+    try container.encode(self.domains, forKey: .domains)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a profile. New items may be added.

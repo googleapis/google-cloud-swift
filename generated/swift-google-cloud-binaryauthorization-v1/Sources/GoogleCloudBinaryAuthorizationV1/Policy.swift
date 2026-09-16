@@ -85,6 +85,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// update it. See https://google.aip.dev/154.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Policy`.
   public init() {}
 
@@ -99,6 +101,114 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let globalPolicyEvaluationMode = CodingKeys(stringValue: "globalPolicyEvaluationMode")
+    static let admissionWhitelistPatterns = CodingKeys(stringValue: "admissionWhitelistPatterns")
+    static let clusterAdmissionRules = CodingKeys(stringValue: "clusterAdmissionRules")
+    static let kubernetesNamespaceAdmissionRules = CodingKeys(
+      stringValue: "kubernetesNamespaceAdmissionRules")
+    static let kubernetesServiceAccountAdmissionRules = CodingKeys(
+      stringValue: "kubernetesServiceAccountAdmissionRules")
+    static let istioServiceIdentityAdmissionRules = CodingKeys(
+      stringValue: "istioServiceIdentityAdmissionRules")
+    static let defaultAdmissionRule = CodingKeys(stringValue: "defaultAdmissionRule")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "globalPolicyEvaluationMode",
+      "admissionWhitelistPatterns",
+      "clusterAdmissionRules",
+      "kubernetesNamespaceAdmissionRules",
+      "kubernetesServiceAccountAdmissionRules",
+      "istioServiceIdentityAdmissionRules",
+      "defaultAdmissionRule",
+      "updateTime",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      Policy.GlobalPolicyEvaluationMode.self, forKey: .globalPolicyEvaluationMode)
+    {
+      self.globalPolicyEvaluationMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AdmissionWhitelistPattern].self, forKey: .admissionWhitelistPatterns)
+    {
+      self.admissionWhitelistPatterns = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AdmissionRule].self, forKey: .clusterAdmissionRules)
+    {
+      self.clusterAdmissionRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AdmissionRule].self, forKey: .kubernetesNamespaceAdmissionRules)
+    {
+      self.kubernetesNamespaceAdmissionRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AdmissionRule].self, forKey: .kubernetesServiceAccountAdmissionRules)
+    {
+      self.kubernetesServiceAccountAdmissionRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AdmissionRule].self, forKey: .istioServiceIdentityAdmissionRules)
+    {
+      self.istioServiceIdentityAdmissionRules = value
+    }
+    self.defaultAdmissionRule = try container.decodeIfPresent(
+      AdmissionRule.self, forKey: .defaultAdmissionRule)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.globalPolicyEvaluationMode, forKey: .globalPolicyEvaluationMode)
+    try container.encode(self.admissionWhitelistPatterns, forKey: .admissionWhitelistPatterns)
+    try container.encode(self.clusterAdmissionRules, forKey: .clusterAdmissionRules)
+    try container.encode(
+      self.kubernetesNamespaceAdmissionRules, forKey: .kubernetesNamespaceAdmissionRules)
+    try container.encode(
+      self.kubernetesServiceAccountAdmissionRules, forKey: .kubernetesServiceAccountAdmissionRules)
+    try container.encode(
+      self.istioServiceIdentityAdmissionRules, forKey: .istioServiceIdentityAdmissionRules)
+    try container.encodeIfPresent(self.defaultAdmissionRule, forKey: .defaultAdmissionRule)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public enum GlobalPolicyEvaluationMode: Codable, Equatable, Sendable {

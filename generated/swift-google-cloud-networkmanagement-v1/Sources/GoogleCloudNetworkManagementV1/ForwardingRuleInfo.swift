@@ -56,6 +56,8 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// PSC Google API target this forwarding rule targets (if applicable).
   public var pscGoogleApiTarget: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ForwardingRuleInfo`.
   public init() {}
 
@@ -70,6 +72,100 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let matchedProtocol = CodingKeys(stringValue: "matchedProtocol")
+    static let matchedPortRange = CodingKeys(stringValue: "matchedPortRange")
+    static let vip = CodingKeys(stringValue: "vip")
+    static let target = CodingKeys(stringValue: "target")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let region = CodingKeys(stringValue: "region")
+    static let loadBalancerName = CodingKeys(stringValue: "loadBalancerName")
+    static let pscServiceAttachmentUri = CodingKeys(stringValue: "pscServiceAttachmentUri")
+    static let pscGoogleApiTarget = CodingKeys(stringValue: "pscGoogleApiTarget")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "matchedProtocol",
+      "matchedPortRange",
+      "vip",
+      "target",
+      "networkUri",
+      "region",
+      "loadBalancerName",
+      "pscServiceAttachmentUri",
+      "pscGoogleApiTarget",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .matchedProtocol) {
+      self.matchedProtocol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .matchedPortRange) {
+      self.matchedPortRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vip) {
+      self.vip = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancerName) {
+      self.loadBalancerName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .pscServiceAttachmentUri)
+    {
+      self.pscServiceAttachmentUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pscGoogleApiTarget) {
+      self.pscGoogleApiTarget = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.matchedProtocol, forKey: .matchedProtocol)
+    try container.encode(self.matchedPortRange, forKey: .matchedPortRange)
+    try container.encode(self.vip, forKey: .vip)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.loadBalancerName, forKey: .loadBalancerName)
+    try container.encode(self.pscServiceAttachmentUri, forKey: .pscServiceAttachmentUri)
+    try container.encode(self.pscGoogleApiTarget, forKey: .pscGoogleApiTarget)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

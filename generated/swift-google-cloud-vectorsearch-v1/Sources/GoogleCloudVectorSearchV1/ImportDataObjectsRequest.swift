@@ -31,6 +31,8 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The configuration for the import data and error results.
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportDataObjectsRequest`.
   public init() {}
 
@@ -47,14 +49,26 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsImport = "gcsImport"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsImport = CodingKeys(stringValue: "gcsImport")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsImport",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var config: OneOf_Config? = nil
     let configCheckAndSet = {
@@ -72,6 +86,10 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       try configCheckAndSet(.gcsImport(gcsImport))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +101,9 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       case .gcsImport(let value):
         try container.encode(value, forKey: .gcsImport)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -103,6 +124,8 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     /// under this prefix. If this field is empty, no output will be written.
     public var outputUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsImportConfig`.
     public init() {}
 
@@ -117,6 +140,50 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let contentsUri = CodingKeys(stringValue: "contentsUri")
+      static let errorUri = CodingKeys(stringValue: "errorUri")
+      static let outputUri = CodingKeys(stringValue: "outputUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "contentsUri",
+        "errorUri",
+        "outputUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentsUri) {
+        self.contentsUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorUri) {
+        self.errorUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+        self.outputUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.contentsUri, forKey: .contentsUri)
+      try container.encode(self.errorUri, forKey: .errorUri)
+      try container.encode(self.outputUri, forKey: .outputUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

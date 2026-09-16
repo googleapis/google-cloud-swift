@@ -35,6 +35,8 @@
     /// Different type of suggestion response.
     public var suggestionResponse: OneOf_SuggestionResponse? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuggestionResult`.
     public init() {}
 
@@ -51,13 +53,30 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case error = "error"
-      case suggestArticlesResponse = "suggestArticlesResponse"
-      case suggestKnowledgeAssistResponse = "suggestKnowledgeAssistResponse"
-      case suggestFaqAnswersResponse = "suggestFaqAnswersResponse"
-      case suggestSmartRepliesResponse = "suggestSmartRepliesResponse"
-      case generateSuggestionsResponse = "generateSuggestionsResponse"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let error = CodingKeys(stringValue: "error")
+      static let suggestArticlesResponse = CodingKeys(stringValue: "suggestArticlesResponse")
+      static let suggestKnowledgeAssistResponse = CodingKeys(
+        stringValue: "suggestKnowledgeAssistResponse")
+      static let suggestFaqAnswersResponse = CodingKeys(stringValue: "suggestFaqAnswersResponse")
+      static let suggestSmartRepliesResponse = CodingKeys(
+        stringValue: "suggestSmartRepliesResponse")
+      static let generateSuggestionsResponse = CodingKeys(
+        stringValue: "generateSuggestionsResponse")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "error",
+        "suggestArticlesResponse",
+        "suggestKnowledgeAssistResponse",
+        "suggestFaqAnswersResponse",
+        "suggestSmartRepliesResponse",
+        "generateSuggestionsResponse",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -103,6 +122,10 @@
         try suggestionResponseCheckAndSet(.generateSuggestionsResponse(generateSuggestionsResponse))
       }
       self.suggestionResponse = suggestionResponse
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -123,6 +146,9 @@
         case .generateSuggestionsResponse(let value):
           try container.encode(value, forKey: .generateSuggestionsResponse)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

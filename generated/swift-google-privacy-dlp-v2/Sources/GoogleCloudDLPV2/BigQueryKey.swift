@@ -31,6 +31,8 @@ public struct BigQueryKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `CreateDlpJobRequest`.
   public var rowNumber: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryKey`.
   public init() {}
 
@@ -45,6 +47,42 @@ public struct BigQueryKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tableReference = CodingKeys(stringValue: "tableReference")
+    static let rowNumber = CodingKeys(stringValue: "rowNumber")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tableReference",
+      "rowNumber",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tableReference = try container.decodeIfPresent(BigQueryTable.self, forKey: .tableReference)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowNumber) {
+      self.rowNumber = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tableReference, forKey: .tableReference)
+    try container.encode(self.rowNumber, forKey: .rowNumber)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -71,6 +71,8 @@ public struct AnnotateImageResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// comes from.
   public var context: ImageAnnotationContext? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotateImageResponse`.
   public init() {}
 
@@ -85,6 +87,113 @@ public struct AnnotateImageResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let faceAnnotations = CodingKeys(stringValue: "faceAnnotations")
+    static let landmarkAnnotations = CodingKeys(stringValue: "landmarkAnnotations")
+    static let logoAnnotations = CodingKeys(stringValue: "logoAnnotations")
+    static let labelAnnotations = CodingKeys(stringValue: "labelAnnotations")
+    static let localizedObjectAnnotations = CodingKeys(stringValue: "localizedObjectAnnotations")
+    static let textAnnotations = CodingKeys(stringValue: "textAnnotations")
+    static let fullTextAnnotation = CodingKeys(stringValue: "fullTextAnnotation")
+    static let safeSearchAnnotation = CodingKeys(stringValue: "safeSearchAnnotation")
+    static let imagePropertiesAnnotation = CodingKeys(stringValue: "imagePropertiesAnnotation")
+    static let cropHintsAnnotation = CodingKeys(stringValue: "cropHintsAnnotation")
+    static let webDetection = CodingKeys(stringValue: "webDetection")
+    static let productSearchResults = CodingKeys(stringValue: "productSearchResults")
+    static let error = CodingKeys(stringValue: "error")
+    static let context = CodingKeys(stringValue: "context")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "faceAnnotations",
+      "landmarkAnnotations",
+      "logoAnnotations",
+      "labelAnnotations",
+      "localizedObjectAnnotations",
+      "textAnnotations",
+      "fullTextAnnotation",
+      "safeSearchAnnotation",
+      "imagePropertiesAnnotation",
+      "cropHintsAnnotation",
+      "webDetection",
+      "productSearchResults",
+      "error",
+      "context",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([FaceAnnotation].self, forKey: .faceAnnotations) {
+      self.faceAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [EntityAnnotation].self, forKey: .landmarkAnnotations)
+    {
+      self.landmarkAnnotations = value
+    }
+    if let value = try container.decodeIfPresent([EntityAnnotation].self, forKey: .logoAnnotations)
+    {
+      self.logoAnnotations = value
+    }
+    if let value = try container.decodeIfPresent([EntityAnnotation].self, forKey: .labelAnnotations)
+    {
+      self.labelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LocalizedObjectAnnotation].self, forKey: .localizedObjectAnnotations)
+    {
+      self.localizedObjectAnnotations = value
+    }
+    if let value = try container.decodeIfPresent([EntityAnnotation].self, forKey: .textAnnotations)
+    {
+      self.textAnnotations = value
+    }
+    self.fullTextAnnotation = try container.decodeIfPresent(
+      TextAnnotation.self, forKey: .fullTextAnnotation)
+    self.safeSearchAnnotation = try container.decodeIfPresent(
+      SafeSearchAnnotation.self, forKey: .safeSearchAnnotation)
+    self.imagePropertiesAnnotation = try container.decodeIfPresent(
+      ImageProperties.self, forKey: .imagePropertiesAnnotation)
+    self.cropHintsAnnotation = try container.decodeIfPresent(
+      CropHintsAnnotation.self, forKey: .cropHintsAnnotation)
+    self.webDetection = try container.decodeIfPresent(WebDetection.self, forKey: .webDetection)
+    self.productSearchResults = try container.decodeIfPresent(
+      ProductSearchResults.self, forKey: .productSearchResults)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    self.context = try container.decodeIfPresent(ImageAnnotationContext.self, forKey: .context)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.faceAnnotations, forKey: .faceAnnotations)
+    try container.encode(self.landmarkAnnotations, forKey: .landmarkAnnotations)
+    try container.encode(self.logoAnnotations, forKey: .logoAnnotations)
+    try container.encode(self.labelAnnotations, forKey: .labelAnnotations)
+    try container.encode(self.localizedObjectAnnotations, forKey: .localizedObjectAnnotations)
+    try container.encode(self.textAnnotations, forKey: .textAnnotations)
+    try container.encodeIfPresent(self.fullTextAnnotation, forKey: .fullTextAnnotation)
+    try container.encodeIfPresent(self.safeSearchAnnotation, forKey: .safeSearchAnnotation)
+    try container.encodeIfPresent(
+      self.imagePropertiesAnnotation, forKey: .imagePropertiesAnnotation)
+    try container.encodeIfPresent(self.cropHintsAnnotation, forKey: .cropHintsAnnotation)
+    try container.encodeIfPresent(self.webDetection, forKey: .webDetection)
+    try container.encodeIfPresent(self.productSearchResults, forKey: .productSearchResults)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.context, forKey: .context)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

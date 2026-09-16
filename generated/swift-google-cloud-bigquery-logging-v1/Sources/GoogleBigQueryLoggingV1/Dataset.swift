@@ -44,6 +44,8 @@ public struct Dataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// there is no default table expiration time.
   public var defaultTableExpireDuration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dataset`.
   public init() {}
 
@@ -58,6 +60,60 @@ public struct Dataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let datasetName = CodingKeys(stringValue: "datasetName")
+    static let info = CodingKeys(stringValue: "info")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let acl = CodingKeys(stringValue: "acl")
+    static let defaultTableExpireDuration = CodingKeys(stringValue: "defaultTableExpireDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "datasetName",
+      "info",
+      "createTime",
+      "updateTime",
+      "acl",
+      "defaultTableExpireDuration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.datasetName = try container.decodeIfPresent(DatasetName.self, forKey: .datasetName)
+    self.info = try container.decodeIfPresent(DatasetInfo.self, forKey: .info)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.acl = try container.decodeIfPresent(BigQueryAcl.self, forKey: .acl)
+    self.defaultTableExpireDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .defaultTableExpireDuration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.datasetName, forKey: .datasetName)
+    try container.encodeIfPresent(self.info, forKey: .info)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.acl, forKey: .acl)
+    try container.encodeIfPresent(
+      self.defaultTableExpireDuration, forKey: .defaultTableExpireDuration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

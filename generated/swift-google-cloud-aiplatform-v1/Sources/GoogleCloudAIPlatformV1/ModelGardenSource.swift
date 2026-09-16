@@ -32,6 +32,8 @@
     /// Optional. Whether to avoid pulling the model from the HF cache.
     public var skipHfModelCache: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelGardenSource`.
     public init() {}
 
@@ -46,6 +48,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicModelName = CodingKeys(stringValue: "publicModelName")
+      static let versionId = CodingKeys(stringValue: "versionId")
+      static let skipHfModelCache = CodingKeys(stringValue: "skipHfModelCache")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicModelName",
+        "versionId",
+        "skipHfModelCache",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicModelName) {
+        self.publicModelName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionId) {
+        self.versionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipHfModelCache) {
+        self.skipHfModelCache = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.publicModelName, forKey: .publicModelName)
+      try container.encode(self.versionId, forKey: .versionId)
+      try container.encode(self.skipHfModelCache, forKey: .skipHfModelCache)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

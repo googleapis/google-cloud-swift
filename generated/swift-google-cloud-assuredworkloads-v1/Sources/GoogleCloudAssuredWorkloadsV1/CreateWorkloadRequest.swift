@@ -34,6 +34,8 @@ public struct CreateWorkloadRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// projects with the identifier as the value.
   public var externalId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateWorkloadRequest`.
   public init() {}
 
@@ -48,6 +50,48 @@ public struct CreateWorkloadRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let workload = CodingKeys(stringValue: "workload")
+    static let externalId = CodingKeys(stringValue: "externalId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "workload",
+      "externalId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.workload = try container.decodeIfPresent(Workload.self, forKey: .workload)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalId) {
+      self.externalId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.workload, forKey: .workload)
+    try container.encode(self.externalId, forKey: .externalId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

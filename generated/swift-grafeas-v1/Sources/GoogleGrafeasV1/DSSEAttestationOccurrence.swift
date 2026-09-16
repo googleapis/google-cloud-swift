@@ -28,6 +28,8 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleCloudWKT._Any
 
   public var decodedPayload: OneOf_DecodedPayload? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DSSEAttestationOccurrence`.
   public init() {}
 
@@ -44,9 +46,19 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case envelope = "envelope"
-    case statement = "statement"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let envelope = CodingKeys(stringValue: "envelope")
+    static let statement = CodingKeys(stringValue: "statement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "envelope",
+      "statement",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,17 +79,24 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleCloudWKT._Any
       try decodedPayloadCheckAndSet(.statement(statement))
     }
     self.decodedPayload = decodedPayload
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.envelope, forKey: .envelope)
+    try container.encodeIfPresent(self.envelope, forKey: .envelope)
 
     if let choice = self.decodedPayload {
       switch choice {
       case .statement(let value):
         try container.encode(value, forKey: .statement)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

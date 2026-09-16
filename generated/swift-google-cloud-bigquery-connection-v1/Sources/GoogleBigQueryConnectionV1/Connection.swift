@@ -44,6 +44,8 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Properties specific to the underlying data source.
   public var properties: OneOf_Properties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Connection`.
   public init() {}
 
@@ -60,30 +62,63 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case friendlyName = "friendlyName"
-    case description = "description"
-    case cloudSql = "cloudSql"
-    case aws = "aws"
-    case azure = "azure"
-    case cloudSpanner = "cloudSpanner"
-    case cloudResource = "cloudResource"
-    case spark = "spark"
-    case salesforceDataCloud = "salesforceDataCloud"
-    case creationTime = "creationTime"
-    case lastModifiedTime = "lastModifiedTime"
-    case hasCredential = "hasCredential"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let friendlyName = CodingKeys(stringValue: "friendlyName")
+    static let description = CodingKeys(stringValue: "description")
+    static let cloudSql = CodingKeys(stringValue: "cloudSql")
+    static let aws = CodingKeys(stringValue: "aws")
+    static let azure = CodingKeys(stringValue: "azure")
+    static let cloudSpanner = CodingKeys(stringValue: "cloudSpanner")
+    static let cloudResource = CodingKeys(stringValue: "cloudResource")
+    static let spark = CodingKeys(stringValue: "spark")
+    static let salesforceDataCloud = CodingKeys(stringValue: "salesforceDataCloud")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let lastModifiedTime = CodingKeys(stringValue: "lastModifiedTime")
+    static let hasCredential = CodingKeys(stringValue: "hasCredential")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "friendlyName",
+      "description",
+      "cloudSql",
+      "aws",
+      "azure",
+      "cloudSpanner",
+      "cloudResource",
+      "spark",
+      "salesforceDataCloud",
+      "creationTime",
+      "lastModifiedTime",
+      "hasCredential",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.friendlyName = try container.decode(Swift.String.self, forKey: .friendlyName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.creationTime = try container.decode(Swift.Int64.self, forKey: .creationTime)
-    self.lastModifiedTime = try container.decode(Swift.Int64.self, forKey: .lastModifiedTime)
-    self.hasCredential = try container.decode(Swift.Bool.self, forKey: .hasCredential)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .friendlyName) {
+      self.friendlyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .creationTime) {
+      self.creationTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .lastModifiedTime) {
+      self.lastModifiedTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasCredential) {
+      self.hasCredential = value
+    }
 
     var properties: OneOf_Properties? = nil
     let propertiesCheckAndSet = {
@@ -123,6 +158,10 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try propertiesCheckAndSet(.salesforceDataCloud(salesforceDataCloud))
     }
     self.properties = properties
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -151,6 +190,9 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .salesforceDataCloud(let value):
         try container.encode(value, forKey: .salesforceDataCloud)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

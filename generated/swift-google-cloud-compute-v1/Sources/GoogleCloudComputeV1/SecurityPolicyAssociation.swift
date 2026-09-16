@@ -43,6 +43,8 @@
     /// Output only. [Output Only] The short name of the security policy of the association.
     public var shortName: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyAssociation`.
     public init() {}
 
@@ -57,6 +59,65 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attachmentId = CodingKeys(stringValue: "attachmentId")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let excludedFolders = CodingKeys(stringValue: "excludedFolders")
+      static let excludedProjects = CodingKeys(stringValue: "excludedProjects")
+      static let name = CodingKeys(stringValue: "name")
+      static let securityPolicyId = CodingKeys(stringValue: "securityPolicyId")
+      static let shortName = CodingKeys(stringValue: "shortName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attachmentId",
+        "displayName",
+        "excludedFolders",
+        "excludedProjects",
+        "name",
+        "securityPolicyId",
+        "shortName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.attachmentId = try container.decodeIfPresent(Swift.String.self, forKey: .attachmentId)
+      self.displayName = try container.decodeIfPresent(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedFolders) {
+        self.excludedFolders = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedProjects) {
+        self.excludedProjects = value
+      }
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.securityPolicyId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .securityPolicyId)
+      self.shortName = try container.decodeIfPresent(Swift.String.self, forKey: .shortName)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.attachmentId, forKey: .attachmentId)
+      try container.encodeIfPresent(self.displayName, forKey: .displayName)
+      try container.encode(self.excludedFolders, forKey: .excludedFolders)
+      try container.encode(self.excludedProjects, forKey: .excludedProjects)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.securityPolicyId, forKey: .securityPolicyId)
+      try container.encodeIfPresent(self.shortName, forKey: .shortName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// This field is only populated if the request specifies a Dimension.
   public var macroAverageSlice: QueryMetricsResponse.Slice? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryMetricsResponse`.
   public init() {}
 
@@ -54,6 +56,55 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let location = CodingKeys(stringValue: "location")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let slices = CodingKeys(stringValue: "slices")
+    static let macroAverageSlice = CodingKeys(stringValue: "macroAverageSlice")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "location",
+      "updateTime",
+      "slices",
+      "macroAverageSlice",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([QueryMetricsResponse.Slice].self, forKey: .slices)
+    {
+      self.slices = value
+    }
+    self.macroAverageSlice = try container.decodeIfPresent(
+      QueryMetricsResponse.Slice.self, forKey: .macroAverageSlice)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.location, forKey: .location)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.slices, forKey: .slices)
+    try container.encodeIfPresent(self.macroAverageSlice, forKey: .macroAverageSlice)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A slice contains a total and (if the request specified a time granularity)
@@ -80,6 +131,8 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// specifies a time granularity other than NONE.
     public var timeSeries: QueryMetricsResponse.Slice.TimeSeries? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Slice`.
     public init() {}
 
@@ -94,6 +147,48 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dimensions = CodingKeys(stringValue: "dimensions")
+      static let total = CodingKeys(stringValue: "total")
+      static let timeSeries = CodingKeys(stringValue: "timeSeries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dimensions",
+        "total",
+        "timeSeries",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Dimension].self, forKey: .dimensions) {
+        self.dimensions = value
+      }
+      self.total = try container.decodeIfPresent(
+        QueryMetricsResponse.Slice.DataPoint.self, forKey: .total)
+      self.timeSeries = try container.decodeIfPresent(
+        QueryMetricsResponse.Slice.TimeSeries.self, forKey: .timeSeries)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dimensions, forKey: .dimensions)
+      try container.encodeIfPresent(self.total, forKey: .total)
+      try container.encodeIfPresent(self.timeSeries, forKey: .timeSeries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A data point contains the metric values mapped to an interval.
@@ -111,6 +206,8 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       /// The measure included in this data point.
       public var measure: OneOf_Measure? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DataPoint`.
       public init() {}
 
@@ -127,9 +224,19 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case conversationMeasure = "conversationMeasure"
-        case interval = "interval"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let conversationMeasure = CodingKeys(stringValue: "conversationMeasure")
+        static let interval = CodingKeys(stringValue: "interval")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "conversationMeasure",
+          "interval",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -153,17 +260,24 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
           try measureCheckAndSet(.conversationMeasure(conversationMeasure))
         }
         self.measure = measure
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.interval, forKey: .interval)
+        try container.encodeIfPresent(self.interval, forKey: .interval)
 
         if let choice = self.measure {
           switch choice {
           case .conversationMeasure(let value):
             try container.encode(value, forKey: .conversationMeasure)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -206,6 +320,9 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
         /// QA_QUESTION_ID.
         public var averageQaQuestionNormalizedScore: Swift.Double? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ConversationMeasure`.
         public init() {}
 
@@ -222,6 +339,96 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let conversationCount = CodingKeys(stringValue: "conversationCount")
+          static let averageSilencePercentage = CodingKeys(stringValue: "averageSilencePercentage")
+          static let averageDuration = CodingKeys(stringValue: "averageDuration")
+          static let averageTurnCount = CodingKeys(stringValue: "averageTurnCount")
+          static let averageAgentSentimentScore = CodingKeys(
+            stringValue: "averageAgentSentimentScore")
+          static let averageClientSentimentScore = CodingKeys(
+            stringValue: "averageClientSentimentScore")
+          static let averageCustomerSatisfactionRating = CodingKeys(
+            stringValue: "averageCustomerSatisfactionRating")
+          static let averageQaNormalizedScore = CodingKeys(stringValue: "averageQaNormalizedScore")
+          static let qaTagScores = CodingKeys(stringValue: "qaTagScores")
+          static let averageQaQuestionNormalizedScore = CodingKeys(
+            stringValue: "averageQaQuestionNormalizedScore")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "conversationCount",
+            "averageSilencePercentage",
+            "averageDuration",
+            "averageTurnCount",
+            "averageAgentSentimentScore",
+            "averageClientSentimentScore",
+            "averageCustomerSatisfactionRating",
+            "averageQaNormalizedScore",
+            "qaTagScores",
+            "averageQaQuestionNormalizedScore",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.conversationCount = try container.decodeIfPresent(
+            Swift.Int32.self, forKey: .conversationCount)
+          self.averageSilencePercentage = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .averageSilencePercentage)
+          self.averageDuration = try container.decodeIfPresent(
+            GoogleCloudWKT.Duration.self, forKey: .averageDuration)
+          self.averageTurnCount = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .averageTurnCount)
+          self.averageAgentSentimentScore = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .averageAgentSentimentScore)
+          self.averageClientSentimentScore = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .averageClientSentimentScore)
+          self.averageCustomerSatisfactionRating = try container.decodeIfPresent(
+            Swift.Double.self, forKey: .averageCustomerSatisfactionRating)
+          self.averageQaNormalizedScore = try container.decodeIfPresent(
+            Swift.Double.self, forKey: .averageQaNormalizedScore)
+          if let value = try container.decodeIfPresent(
+            [QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore].self,
+            forKey: .qaTagScores)
+          {
+            self.qaTagScores = value
+          }
+          self.averageQaQuestionNormalizedScore = try container.decodeIfPresent(
+            Swift.Double.self, forKey: .averageQaQuestionNormalizedScore)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.conversationCount, forKey: .conversationCount)
+          try container.encodeIfPresent(
+            self.averageSilencePercentage, forKey: .averageSilencePercentage)
+          try container.encodeIfPresent(self.averageDuration, forKey: .averageDuration)
+          try container.encodeIfPresent(self.averageTurnCount, forKey: .averageTurnCount)
+          try container.encodeIfPresent(
+            self.averageAgentSentimentScore, forKey: .averageAgentSentimentScore)
+          try container.encodeIfPresent(
+            self.averageClientSentimentScore, forKey: .averageClientSentimentScore)
+          try container.encodeIfPresent(
+            self.averageCustomerSatisfactionRating, forKey: .averageCustomerSatisfactionRating)
+          try container.encodeIfPresent(
+            self.averageQaNormalizedScore, forKey: .averageQaNormalizedScore)
+          try container.encode(self.qaTagScores, forKey: .qaTagScores)
+          try container.encodeIfPresent(
+            self.averageQaQuestionNormalizedScore, forKey: .averageQaQuestionNormalizedScore)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Average QA normalized score for the tag.
         public struct QaTagScore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -231,6 +438,9 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
           /// Average tag normalized score per tag.
           public var averageTagNormalizedScore: Swift.Double = Swift.Double()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `QaTagScore`.
           public init() {}
@@ -246,6 +456,47 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let tag = CodingKeys(stringValue: "tag")
+            static let averageTagNormalizedScore = CodingKeys(
+              stringValue: "averageTagNormalizedScore")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "tag",
+              "averageTagNormalizedScore",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+              self.tag = value
+            }
+            if let value = try container.decodeIfPresent(
+              Swift.Double.self, forKey: .averageTagNormalizedScore)
+            {
+              self.averageTagNormalizedScore = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.tag, forKey: .tag)
+            try container.encode(self.averageTagNormalizedScore, forKey: .averageTagNormalizedScore)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -297,6 +548,8 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       /// The data points that make up the time series .
       public var dataPoints: [QueryMetricsResponse.Slice.DataPoint] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TimeSeries`.
       public init() {}
 
@@ -311,6 +564,40 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataPoints = CodingKeys(stringValue: "dataPoints")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataPoints"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [QueryMetricsResponse.Slice.DataPoint].self, forKey: .dataPoints)
+        {
+          self.dataPoints = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataPoints, forKey: .dataPoints)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

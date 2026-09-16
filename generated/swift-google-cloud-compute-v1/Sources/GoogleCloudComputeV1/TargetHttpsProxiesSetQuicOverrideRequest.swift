@@ -25,6 +25,8 @@
     /// QUIC policy for the TargetHttpsProxy resource.
     public var quicOverride: TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetHttpsProxiesSetQuicOverrideRequest`.
     public init() {}
 
@@ -39,6 +41,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quicOverride = CodingKeys(stringValue: "quicOverride")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quicOverride"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.quicOverride = try container.decodeIfPresent(
+        TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride.self, forKey: .quicOverride)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.quicOverride, forKey: .quicOverride)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [quicOverride][google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.quicOverride] field.

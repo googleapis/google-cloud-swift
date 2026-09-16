@@ -24,6 +24,8 @@ public struct DataprocMetricConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Required. Metrics sources to enable.
   public var metrics: [DataprocMetricConfig.Metric] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataprocMetricConfig`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct DataprocMetricConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let metrics = CodingKeys(stringValue: "metrics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "metrics"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [DataprocMetricConfig.Metric].self, forKey: .metrics)
+    {
+      self.metrics = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.metrics, forKey: .metrics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A Dataproc custom metric.
@@ -81,6 +117,8 @@ public struct DataprocMetricConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     ///   metrics only, all YARN metrics are collected.
     public var metricOverrides: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Metric`.
     public init() {}
 
@@ -95,6 +133,46 @@ public struct DataprocMetricConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metricSource = CodingKeys(stringValue: "metricSource")
+      static let metricOverrides = CodingKeys(stringValue: "metricOverrides")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metricSource",
+        "metricOverrides",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DataprocMetricConfig.MetricSource.self, forKey: .metricSource)
+      {
+        self.metricSource = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .metricOverrides) {
+        self.metricOverrides = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.metricSource, forKey: .metricSource)
+      try container.encode(self.metricOverrides, forKey: .metricOverrides)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

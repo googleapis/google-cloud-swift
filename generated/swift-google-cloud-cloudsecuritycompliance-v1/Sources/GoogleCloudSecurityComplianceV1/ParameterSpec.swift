@@ -50,6 +50,8 @@ public struct ParameterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The permitted set of values for the parameter.
   public var validation: Validation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ParameterSpec`.
   public init() {}
 
@@ -64,6 +66,84 @@ public struct ParameterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let isRequired = CodingKeys(stringValue: "isRequired")
+    static let valueType = CodingKeys(stringValue: "valueType")
+    static let defaultValue = CodingKeys(stringValue: "defaultValue")
+    static let substitutionRules = CodingKeys(stringValue: "substitutionRules")
+    static let subParameters = CodingKeys(stringValue: "subParameters")
+    static let validation = CodingKeys(stringValue: "validation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "isRequired",
+      "valueType",
+      "defaultValue",
+      "substitutionRules",
+      "subParameters",
+      "validation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRequired) {
+      self.isRequired = value
+    }
+    if let value = try container.decodeIfPresent(ParameterSpec.ValueType.self, forKey: .valueType) {
+      self.valueType = value
+    }
+    self.defaultValue = try container.decodeIfPresent(ParamValue.self, forKey: .defaultValue)
+    if let value = try container.decodeIfPresent(
+      [ParameterSubstitutionRule].self, forKey: .substitutionRules)
+    {
+      self.substitutionRules = value
+    }
+    if let value = try container.decodeIfPresent([ParameterSpec].self, forKey: .subParameters) {
+      self.subParameters = value
+    }
+    self.validation = try container.decodeIfPresent(Validation.self, forKey: .validation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.isRequired, forKey: .isRequired)
+    try container.encode(self.valueType, forKey: .valueType)
+    try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
+    try container.encode(self.substitutionRules, forKey: .substitutionRules)
+    try container.encode(self.subParameters, forKey: .subParameters)
+    try container.encodeIfPresent(self.validation, forKey: .validation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of parameter value.

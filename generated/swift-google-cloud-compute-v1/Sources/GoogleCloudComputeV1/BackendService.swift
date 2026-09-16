@@ -546,6 +546,8 @@
     /// Output only. [Output Only] List of resources referencing given backend service.
     public var usedBy: [BackendServiceUsedBy] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendService`.
     public init() {}
 
@@ -562,66 +564,132 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case affinityCookieTtlSec = "affinityCookieTtlSec"
-      case backends = "backends"
-      case cdnPolicy = "cdnPolicy"
-      case circuitBreakers = "circuitBreakers"
-      case compressionMode = "compressionMode"
-      case connectionDraining = "connectionDraining"
-      case connectionTrackingPolicy = "connectionTrackingPolicy"
-      case consistentHash = "consistentHash"
-      case creationTimestamp = "creationTimestamp"
-      case customMetrics = "customMetrics"
-      case customRequestHeaders = "customRequestHeaders"
-      case customResponseHeaders = "customResponseHeaders"
-      case description = "description"
-      case edgeSecurityPolicy = "edgeSecurityPolicy"
-      case enableCdn = "enableCDN"
-      case externalManagedMigrationState = "externalManagedMigrationState"
-      case externalManagedMigrationTestingPercentage = "externalManagedMigrationTestingPercentage"
-      case failoverPolicy = "failoverPolicy"
-      case fingerprint = "fingerprint"
-      case haPolicy = "haPolicy"
-      case healthChecks = "healthChecks"
-      case iap = "iap"
-      case id = "id"
-      case ipAddressSelectionPolicy = "ipAddressSelectionPolicy"
-      case kind = "kind"
-      case loadBalancingScheme = "loadBalancingScheme"
-      case localityLbPolicies = "localityLbPolicies"
-      case localityLbPolicy = "localityLbPolicy"
-      case logConfig = "logConfig"
-      case maxStreamDuration = "maxStreamDuration"
-      case metadatas = "metadatas"
-      case name = "name"
-      case network = "network"
-      case networkPassThroughLbTrafficPolicy = "networkPassThroughLbTrafficPolicy"
-      case orchestrationInfo = "orchestrationInfo"
-      case outlierDetection = "outlierDetection"
-      case params = "params"
-      case port = "port"
-      case portName = "portName"
-      case `protocol` = "protocol"
-      case region = "region"
-      case securityPolicy = "securityPolicy"
-      case securitySettings = "securitySettings"
-      case selfLink = "selfLink"
-      case serviceBindings = "serviceBindings"
-      case serviceLbPolicy = "serviceLbPolicy"
-      case sessionAffinity = "sessionAffinity"
-      case strongSessionAffinityCookie = "strongSessionAffinityCookie"
-      case subsetting = "subsetting"
-      case timeoutSec = "timeoutSec"
-      case tlsSettings = "tlsSettings"
-      case usedBy = "usedBy"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let affinityCookieTtlSec = CodingKeys(stringValue: "affinityCookieTtlSec")
+      static let backends = CodingKeys(stringValue: "backends")
+      static let cdnPolicy = CodingKeys(stringValue: "cdnPolicy")
+      static let circuitBreakers = CodingKeys(stringValue: "circuitBreakers")
+      static let compressionMode = CodingKeys(stringValue: "compressionMode")
+      static let connectionDraining = CodingKeys(stringValue: "connectionDraining")
+      static let connectionTrackingPolicy = CodingKeys(stringValue: "connectionTrackingPolicy")
+      static let consistentHash = CodingKeys(stringValue: "consistentHash")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customMetrics = CodingKeys(stringValue: "customMetrics")
+      static let customRequestHeaders = CodingKeys(stringValue: "customRequestHeaders")
+      static let customResponseHeaders = CodingKeys(stringValue: "customResponseHeaders")
+      static let description = CodingKeys(stringValue: "description")
+      static let edgeSecurityPolicy = CodingKeys(stringValue: "edgeSecurityPolicy")
+      static let enableCdn = CodingKeys(stringValue: "enableCDN")
+      static let externalManagedMigrationState = CodingKeys(
+        stringValue: "externalManagedMigrationState")
+      static let externalManagedMigrationTestingPercentage = CodingKeys(
+        stringValue: "externalManagedMigrationTestingPercentage")
+      static let failoverPolicy = CodingKeys(stringValue: "failoverPolicy")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let haPolicy = CodingKeys(stringValue: "haPolicy")
+      static let healthChecks = CodingKeys(stringValue: "healthChecks")
+      static let iap = CodingKeys(stringValue: "iap")
+      static let id = CodingKeys(stringValue: "id")
+      static let ipAddressSelectionPolicy = CodingKeys(stringValue: "ipAddressSelectionPolicy")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let loadBalancingScheme = CodingKeys(stringValue: "loadBalancingScheme")
+      static let localityLbPolicies = CodingKeys(stringValue: "localityLbPolicies")
+      static let localityLbPolicy = CodingKeys(stringValue: "localityLbPolicy")
+      static let logConfig = CodingKeys(stringValue: "logConfig")
+      static let maxStreamDuration = CodingKeys(stringValue: "maxStreamDuration")
+      static let metadatas = CodingKeys(stringValue: "metadatas")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let networkPassThroughLbTrafficPolicy = CodingKeys(
+        stringValue: "networkPassThroughLbTrafficPolicy")
+      static let orchestrationInfo = CodingKeys(stringValue: "orchestrationInfo")
+      static let outlierDetection = CodingKeys(stringValue: "outlierDetection")
+      static let params = CodingKeys(stringValue: "params")
+      static let port = CodingKeys(stringValue: "port")
+      static let portName = CodingKeys(stringValue: "portName")
+      static let `protocol` = CodingKeys(stringValue: "protocol")
+      static let region = CodingKeys(stringValue: "region")
+      static let securityPolicy = CodingKeys(stringValue: "securityPolicy")
+      static let securitySettings = CodingKeys(stringValue: "securitySettings")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let serviceBindings = CodingKeys(stringValue: "serviceBindings")
+      static let serviceLbPolicy = CodingKeys(stringValue: "serviceLbPolicy")
+      static let sessionAffinity = CodingKeys(stringValue: "sessionAffinity")
+      static let strongSessionAffinityCookie = CodingKeys(
+        stringValue: "strongSessionAffinityCookie")
+      static let subsetting = CodingKeys(stringValue: "subsetting")
+      static let timeoutSec = CodingKeys(stringValue: "timeoutSec")
+      static let tlsSettings = CodingKeys(stringValue: "tlsSettings")
+      static let usedBy = CodingKeys(stringValue: "usedBy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "affinityCookieTtlSec",
+        "backends",
+        "cdnPolicy",
+        "circuitBreakers",
+        "compressionMode",
+        "connectionDraining",
+        "connectionTrackingPolicy",
+        "consistentHash",
+        "creationTimestamp",
+        "customMetrics",
+        "customRequestHeaders",
+        "customResponseHeaders",
+        "description",
+        "edgeSecurityPolicy",
+        "enableCDN",
+        "externalManagedMigrationState",
+        "externalManagedMigrationTestingPercentage",
+        "failoverPolicy",
+        "fingerprint",
+        "haPolicy",
+        "healthChecks",
+        "iap",
+        "id",
+        "ipAddressSelectionPolicy",
+        "kind",
+        "loadBalancingScheme",
+        "localityLbPolicies",
+        "localityLbPolicy",
+        "logConfig",
+        "maxStreamDuration",
+        "metadatas",
+        "name",
+        "network",
+        "networkPassThroughLbTrafficPolicy",
+        "orchestrationInfo",
+        "outlierDetection",
+        "params",
+        "port",
+        "portName",
+        "protocol",
+        "region",
+        "securityPolicy",
+        "securitySettings",
+        "selfLink",
+        "serviceBindings",
+        "serviceLbPolicy",
+        "sessionAffinity",
+        "strongSessionAffinityCookie",
+        "subsetting",
+        "timeoutSec",
+        "tlsSettings",
+        "usedBy",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.affinityCookieTtlSec = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .affinityCookieTtlSec)
-      self.backends = try container.decode([Backend].self, forKey: .backends)
+      if let value = try container.decodeIfPresent([Backend].self, forKey: .backends) {
+        self.backends = value
+      }
       self.cdnPolicy = try container.decodeIfPresent(
         BackendServiceCdnPolicy.self, forKey: .cdnPolicy)
       self.circuitBreakers = try container.decodeIfPresent(
@@ -636,12 +704,21 @@
         ConsistentHashLoadBalancerSettings.self, forKey: .consistentHash)
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
-      self.customMetrics = try container.decode(
+      if let value = try container.decodeIfPresent(
         [BackendServiceCustomMetric].self, forKey: .customMetrics)
-      self.customRequestHeaders = try container.decode(
+      {
+        self.customMetrics = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .customRequestHeaders)
-      self.customResponseHeaders = try container.decode(
+      {
+        self.customRequestHeaders = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .customResponseHeaders)
+      {
+        self.customResponseHeaders = value
+      }
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       self.edgeSecurityPolicy = try container.decodeIfPresent(
         Swift.String.self, forKey: .edgeSecurityPolicy)
@@ -662,7 +739,9 @@
         self.fingerprint = v
       }
       self.haPolicy = try container.decodeIfPresent(BackendServiceHAPolicy.self, forKey: .haPolicy)
-      self.healthChecks = try container.decode([Swift.String].self, forKey: .healthChecks)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .healthChecks) {
+        self.healthChecks = value
+      }
       self.iap = try container.decodeIfPresent(BackendServiceIAP.self, forKey: .iap)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.ipAddressSelectionPolicy = try container.decodeIfPresent(
@@ -670,15 +749,22 @@
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.loadBalancingScheme = try container.decodeIfPresent(
         BackendService.LoadBalancingScheme.self, forKey: .loadBalancingScheme)
-      self.localityLbPolicies = try container.decode(
+      if let value = try container.decodeIfPresent(
         [BackendServiceLocalityLoadBalancingPolicyConfig].self, forKey: .localityLbPolicies)
+      {
+        self.localityLbPolicies = value
+      }
       self.localityLbPolicy = try container.decodeIfPresent(
         BackendService.LocalityLbPolicy.self, forKey: .localityLbPolicy)
       self.logConfig = try container.decodeIfPresent(
         BackendServiceLogConfig.self, forKey: .logConfig)
       self.maxStreamDuration = try container.decodeIfPresent(
         Duration.self, forKey: .maxStreamDuration)
-      self.metadatas = try container.decode([Swift.String: Swift.String].self, forKey: .metadatas)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .metadatas)
+      {
+        self.metadatas = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
       self.networkPassThroughLbTrafficPolicy = try container.decodeIfPresent(
@@ -699,7 +785,9 @@
       self.securitySettings = try container.decodeIfPresent(
         SecuritySettings.self, forKey: .securitySettings)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.serviceBindings = try container.decode([Swift.String].self, forKey: .serviceBindings)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serviceBindings) {
+        self.serviceBindings = value
+      }
       self.serviceLbPolicy = try container.decodeIfPresent(
         Swift.String.self, forKey: .serviceLbPolicy)
       self.sessionAffinity = try container.decodeIfPresent(
@@ -710,71 +798,83 @@
       self.timeoutSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeoutSec)
       self.tlsSettings = try container.decodeIfPresent(
         BackendServiceTlsSettings.self, forKey: .tlsSettings)
-      self.usedBy = try container.decode([BackendServiceUsedBy].self, forKey: .usedBy)
+      if let value = try container.decodeIfPresent([BackendServiceUsedBy].self, forKey: .usedBy) {
+        self.usedBy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.affinityCookieTtlSec, forKey: .affinityCookieTtlSec)
+      try container.encodeIfPresent(self.affinityCookieTtlSec, forKey: .affinityCookieTtlSec)
       try container.encode(self.backends, forKey: .backends)
-      try container.encode(self.cdnPolicy, forKey: .cdnPolicy)
-      try container.encode(self.circuitBreakers, forKey: .circuitBreakers)
-      try container.encode(self.compressionMode, forKey: .compressionMode)
-      try container.encode(self.connectionDraining, forKey: .connectionDraining)
-      try container.encode(self.connectionTrackingPolicy, forKey: .connectionTrackingPolicy)
-      try container.encode(self.consistentHash, forKey: .consistentHash)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.cdnPolicy, forKey: .cdnPolicy)
+      try container.encodeIfPresent(self.circuitBreakers, forKey: .circuitBreakers)
+      try container.encodeIfPresent(self.compressionMode, forKey: .compressionMode)
+      try container.encodeIfPresent(self.connectionDraining, forKey: .connectionDraining)
+      try container.encodeIfPresent(
+        self.connectionTrackingPolicy, forKey: .connectionTrackingPolicy)
+      try container.encodeIfPresent(self.consistentHash, forKey: .consistentHash)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
       try container.encode(self.customMetrics, forKey: .customMetrics)
       try container.encode(self.customRequestHeaders, forKey: .customRequestHeaders)
       try container.encode(self.customResponseHeaders, forKey: .customResponseHeaders)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.edgeSecurityPolicy, forKey: .edgeSecurityPolicy)
-      try container.encode(self.enableCdn, forKey: .enableCdn)
-      try container.encode(
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.edgeSecurityPolicy, forKey: .edgeSecurityPolicy)
+      try container.encodeIfPresent(self.enableCdn, forKey: .enableCdn)
+      try container.encodeIfPresent(
         self.externalManagedMigrationState, forKey: .externalManagedMigrationState)
-      try container.encode(
+      try container.encodeIfPresent(
         self.externalManagedMigrationTestingPercentage,
         forKey: .externalManagedMigrationTestingPercentage)
-      try container.encode(self.failoverPolicy, forKey: .failoverPolicy)
+      try container.encodeIfPresent(self.failoverPolicy, forKey: .failoverPolicy)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.haPolicy, forKey: .haPolicy)
+      try container.encodeIfPresent(self.haPolicy, forKey: .haPolicy)
       try container.encode(self.healthChecks, forKey: .healthChecks)
-      try container.encode(self.iap, forKey: .iap)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ipAddressSelectionPolicy, forKey: .ipAddressSelectionPolicy)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+      try container.encodeIfPresent(self.iap, forKey: .iap)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(
+        self.ipAddressSelectionPolicy, forKey: .ipAddressSelectionPolicy)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.loadBalancingScheme, forKey: .loadBalancingScheme)
       try container.encode(self.localityLbPolicies, forKey: .localityLbPolicies)
-      try container.encode(self.localityLbPolicy, forKey: .localityLbPolicy)
-      try container.encode(self.logConfig, forKey: .logConfig)
-      try container.encode(self.maxStreamDuration, forKey: .maxStreamDuration)
+      try container.encodeIfPresent(self.localityLbPolicy, forKey: .localityLbPolicy)
+      try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+      try container.encodeIfPresent(self.maxStreamDuration, forKey: .maxStreamDuration)
       try container.encode(self.metadatas, forKey: .metadatas)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(
         self.networkPassThroughLbTrafficPolicy, forKey: .networkPassThroughLbTrafficPolicy)
-      try container.encode(self.orchestrationInfo, forKey: .orchestrationInfo)
-      try container.encode(self.outlierDetection, forKey: .outlierDetection)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.port, forKey: .port)
-      try container.encode(self.portName, forKey: .portName)
-      try container.encode(self.`protocol`, forKey: .`protocol`)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.securityPolicy, forKey: .securityPolicy)
-      try container.encode(self.securitySettings, forKey: .securitySettings)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.orchestrationInfo, forKey: .orchestrationInfo)
+      try container.encodeIfPresent(self.outlierDetection, forKey: .outlierDetection)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      try container.encodeIfPresent(self.portName, forKey: .portName)
+      try container.encodeIfPresent(self.`protocol`, forKey: .`protocol`)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.securityPolicy, forKey: .securityPolicy)
+      try container.encodeIfPresent(self.securitySettings, forKey: .securitySettings)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encode(self.serviceBindings, forKey: .serviceBindings)
-      try container.encode(self.serviceLbPolicy, forKey: .serviceLbPolicy)
-      try container.encode(self.sessionAffinity, forKey: .sessionAffinity)
-      try container.encode(self.strongSessionAffinityCookie, forKey: .strongSessionAffinityCookie)
-      try container.encode(self.subsetting, forKey: .subsetting)
-      try container.encode(self.timeoutSec, forKey: .timeoutSec)
-      try container.encode(self.tlsSettings, forKey: .tlsSettings)
+      try container.encodeIfPresent(self.serviceLbPolicy, forKey: .serviceLbPolicy)
+      try container.encodeIfPresent(self.sessionAffinity, forKey: .sessionAffinity)
+      try container.encodeIfPresent(
+        self.strongSessionAffinityCookie, forKey: .strongSessionAffinityCookie)
+      try container.encodeIfPresent(self.subsetting, forKey: .subsetting)
+      try container.encodeIfPresent(self.timeoutSec, forKey: .timeoutSec)
+      try container.encodeIfPresent(self.tlsSettings, forKey: .tlsSettings)
       try container.encode(self.usedBy, forKey: .usedBy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [compressionMode][google.cloud.compute.v1.BackendService.compressionMode] field.

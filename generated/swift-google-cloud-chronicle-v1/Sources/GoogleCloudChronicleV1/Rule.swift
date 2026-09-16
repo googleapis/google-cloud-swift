@@ -107,6 +107,8 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// uses $e.principal.hostname, then the uses_udm field will be true.
   public var inputsUsed: InputsUsed? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rule`.
   public init() {}
 
@@ -121,6 +123,145 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let text = CodingKeys(stringValue: "text")
+    static let author = CodingKeys(stringValue: "author")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let revisionCreateTime = CodingKeys(stringValue: "revisionCreateTime")
+    static let compilationState = CodingKeys(stringValue: "compilationState")
+    static let type = CodingKeys(stringValue: "type")
+    static let referenceLists = CodingKeys(stringValue: "referenceLists")
+    static let allowedRunFrequencies = CodingKeys(stringValue: "allowedRunFrequencies")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let compilationDiagnostics = CodingKeys(stringValue: "compilationDiagnostics")
+    static let nearRealTimeLiveRuleEligible = CodingKeys(
+      stringValue: "nearRealTimeLiveRuleEligible")
+    static let inputsUsed = CodingKeys(stringValue: "inputsUsed")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "revisionId",
+      "displayName",
+      "text",
+      "author",
+      "severity",
+      "metadata",
+      "createTime",
+      "revisionCreateTime",
+      "compilationState",
+      "type",
+      "referenceLists",
+      "allowedRunFrequencies",
+      "etag",
+      "scope",
+      "compilationDiagnostics",
+      "nearRealTimeLiveRuleEligible",
+      "inputsUsed",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+      self.text = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
+      self.author = value
+    }
+    self.severity = try container.decodeIfPresent(Severity.self, forKey: .severity)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.revisionCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
+    if let value = try container.decodeIfPresent(
+      Rule.CompilationState.self, forKey: .compilationState)
+    {
+      self.compilationState = value
+    }
+    if let value = try container.decodeIfPresent(RuleType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .referenceLists) {
+      self.referenceLists = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RunFrequency].self, forKey: .allowedRunFrequencies)
+    {
+      self.allowedRunFrequencies = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CompilationDiagnostic].self, forKey: .compilationDiagnostics)
+    {
+      self.compilationDiagnostics = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .nearRealTimeLiveRuleEligible)
+    {
+      self.nearRealTimeLiveRuleEligible = value
+    }
+    self.inputsUsed = try container.decodeIfPresent(InputsUsed.self, forKey: .inputsUsed)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.revisionId, forKey: .revisionId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.text, forKey: .text)
+    try container.encode(self.author, forKey: .author)
+    try container.encodeIfPresent(self.severity, forKey: .severity)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
+    try container.encode(self.compilationState, forKey: .compilationState)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.referenceLists, forKey: .referenceLists)
+    try container.encode(self.allowedRunFrequencies, forKey: .allowedRunFrequencies)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.compilationDiagnostics, forKey: .compilationDiagnostics)
+    try container.encode(self.nearRealTimeLiveRuleEligible, forKey: .nearRealTimeLiveRuleEligible)
+    try container.encodeIfPresent(self.inputsUsed, forKey: .inputsUsed)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The current compilation state of the rule.

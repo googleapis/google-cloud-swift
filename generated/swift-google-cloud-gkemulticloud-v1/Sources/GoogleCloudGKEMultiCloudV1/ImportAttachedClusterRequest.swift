@@ -56,6 +56,8 @@ public struct ImportAttachedClusterRequest: Codable, Equatable, GoogleCloudWKT._
   /// Optional. Proxy configuration for outbound HTTP(S) traffic.
   public var proxyConfig: AttachedProxyConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportAttachedClusterRequest`.
   public init() {}
 
@@ -70,6 +72,66 @@ public struct ImportAttachedClusterRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let fleetMembership = CodingKeys(stringValue: "fleetMembership")
+    static let platformVersion = CodingKeys(stringValue: "platformVersion")
+    static let distribution = CodingKeys(stringValue: "distribution")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "validateOnly",
+      "fleetMembership",
+      "platformVersion",
+      "distribution",
+      "proxyConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fleetMembership) {
+      self.fleetMembership = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .platformVersion) {
+      self.platformVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .distribution) {
+      self.distribution = value
+    }
+    self.proxyConfig = try container.decodeIfPresent(AttachedProxyConfig.self, forKey: .proxyConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.fleetMembership, forKey: .fleetMembership)
+    try container.encode(self.platformVersion, forKey: .platformVersion)
+    try container.encode(self.distribution, forKey: .distribution)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

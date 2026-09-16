@@ -101,6 +101,8 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Raw document file.
   public var rawDocument: OneOf_RawDocument? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Document`.
   public init() {}
 
@@ -117,60 +119,121 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case referenceId = "referenceId"
-    case displayName = "displayName"
-    case title = "title"
-    case displayUri = "displayUri"
-    case documentSchemaName = "documentSchemaName"
-    case plainText = "plainText"
-    case cloudAiDocument = "cloudAiDocument"
-    case structuredContentUri = "structuredContentUri"
-    case rawDocumentPath = "rawDocumentPath"
-    case inlineRawDocument = "inlineRawDocument"
-    case properties = "properties"
-    case updateTime = "updateTime"
-    case createTime = "createTime"
-    case rawDocumentFileType = "rawDocumentFileType"
-    case asyncEnabled = "asyncEnabled"
-    case contentCategory = "contentCategory"
-    case textExtractionDisabled = "textExtractionDisabled"
-    case textExtractionEnabled = "textExtractionEnabled"
-    case creator = "creator"
-    case updater = "updater"
-    case dispositionTime = "dispositionTime"
-    case legalHold = "legalHold"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let referenceId = CodingKeys(stringValue: "referenceId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let title = CodingKeys(stringValue: "title")
+    static let displayUri = CodingKeys(stringValue: "displayUri")
+    static let documentSchemaName = CodingKeys(stringValue: "documentSchemaName")
+    static let plainText = CodingKeys(stringValue: "plainText")
+    static let cloudAiDocument = CodingKeys(stringValue: "cloudAiDocument")
+    static let structuredContentUri = CodingKeys(stringValue: "structuredContentUri")
+    static let rawDocumentPath = CodingKeys(stringValue: "rawDocumentPath")
+    static let inlineRawDocument = CodingKeys(stringValue: "inlineRawDocument")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let rawDocumentFileType = CodingKeys(stringValue: "rawDocumentFileType")
+    static let asyncEnabled = CodingKeys(stringValue: "asyncEnabled")
+    static let contentCategory = CodingKeys(stringValue: "contentCategory")
+    static let textExtractionDisabled = CodingKeys(stringValue: "textExtractionDisabled")
+    static let textExtractionEnabled = CodingKeys(stringValue: "textExtractionEnabled")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let updater = CodingKeys(stringValue: "updater")
+    static let dispositionTime = CodingKeys(stringValue: "dispositionTime")
+    static let legalHold = CodingKeys(stringValue: "legalHold")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "referenceId",
+      "displayName",
+      "title",
+      "displayUri",
+      "documentSchemaName",
+      "plainText",
+      "cloudAiDocument",
+      "structuredContentUri",
+      "rawDocumentPath",
+      "inlineRawDocument",
+      "properties",
+      "updateTime",
+      "createTime",
+      "rawDocumentFileType",
+      "asyncEnabled",
+      "contentCategory",
+      "textExtractionDisabled",
+      "textExtractionEnabled",
+      "creator",
+      "updater",
+      "dispositionTime",
+      "legalHold",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.referenceId = try container.decode(Swift.String.self, forKey: .referenceId)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.title = try container.decode(Swift.String.self, forKey: .title)
-    self.displayUri = try container.decode(Swift.String.self, forKey: .displayUri)
-    self.documentSchemaName = try container.decode(Swift.String.self, forKey: .documentSchemaName)
-    self.structuredContentUri = try container.decode(
-      Swift.String.self, forKey: .structuredContentUri)
-    self.properties = try container.decode([Property].self, forKey: .properties)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referenceId) {
+      self.referenceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayUri) {
+      self.displayUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentSchemaName) {
+      self.documentSchemaName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .structuredContentUri) {
+      self.structuredContentUri = value
+    }
+    if let value = try container.decodeIfPresent([Property].self, forKey: .properties) {
+      self.properties = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.rawDocumentFileType = try container.decode(
+    if let value = try container.decodeIfPresent(
       RawDocumentFileType.self, forKey: .rawDocumentFileType)
-    self.asyncEnabled = try container.decode(Swift.Bool.self, forKey: .asyncEnabled)
-    self.contentCategory = try container.decode(ContentCategory.self, forKey: .contentCategory)
-    self.textExtractionDisabled = try container.decode(
-      Swift.Bool.self, forKey: .textExtractionDisabled)
-    self.textExtractionEnabled = try container.decode(
-      Swift.Bool.self, forKey: .textExtractionEnabled)
-    self.creator = try container.decode(Swift.String.self, forKey: .creator)
-    self.updater = try container.decode(Swift.String.self, forKey: .updater)
+    {
+      self.rawDocumentFileType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .asyncEnabled) {
+      self.asyncEnabled = value
+    }
+    if let value = try container.decodeIfPresent(ContentCategory.self, forKey: .contentCategory) {
+      self.contentCategory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .textExtractionDisabled) {
+      self.textExtractionDisabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .textExtractionEnabled) {
+      self.textExtractionEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .updater) {
+      self.updater = value
+    }
     self.dispositionTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .dispositionTime)
-    self.legalHold = try container.decode(Swift.Bool.self, forKey: .legalHold)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .legalHold) {
+      self.legalHold = value
+    }
 
     var structuredContent: OneOf_StructuredContent? = nil
     let structuredContentCheckAndSet = {
@@ -213,6 +276,10 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try rawDocumentCheckAndSet(.inlineRawDocument(inlineRawDocument))
     }
     self.rawDocument = rawDocument
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -225,8 +292,8 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.documentSchemaName, forKey: .documentSchemaName)
     try container.encode(self.structuredContentUri, forKey: .structuredContentUri)
     try container.encode(self.properties, forKey: .properties)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.rawDocumentFileType, forKey: .rawDocumentFileType)
     try container.encode(self.asyncEnabled, forKey: .asyncEnabled)
     try container.encode(self.contentCategory, forKey: .contentCategory)
@@ -234,7 +301,7 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.textExtractionEnabled, forKey: .textExtractionEnabled)
     try container.encode(self.creator, forKey: .creator)
     try container.encode(self.updater, forKey: .updater)
-    try container.encode(self.dispositionTime, forKey: .dispositionTime)
+    try container.encodeIfPresent(self.dispositionTime, forKey: .dispositionTime)
     try container.encode(self.legalHold, forKey: .legalHold)
 
     if let choice = self.structuredContent {
@@ -253,6 +320,9 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .inlineRawDocument(let value):
         try container.encode(value, forKey: .inlineRawDocument)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

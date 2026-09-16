@@ -34,6 +34,8 @@ public struct CreateClientTlsPolicyRequest: Codable, Equatable, GoogleCloudWKT._
   /// Required. ClientTlsPolicy resource to be created.
   public var clientTlsPolicy: ClientTlsPolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateClientTlsPolicyRequest`.
   public init() {}
 
@@ -48,6 +50,49 @@ public struct CreateClientTlsPolicyRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let clientTlsPolicyId = CodingKeys(stringValue: "clientTlsPolicyId")
+    static let clientTlsPolicy = CodingKeys(stringValue: "clientTlsPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "clientTlsPolicyId",
+      "clientTlsPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientTlsPolicyId) {
+      self.clientTlsPolicyId = value
+    }
+    self.clientTlsPolicy = try container.decodeIfPresent(
+      ClientTlsPolicy.self, forKey: .clientTlsPolicy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.clientTlsPolicyId, forKey: .clientTlsPolicyId)
+    try container.encodeIfPresent(self.clientTlsPolicy, forKey: .clientTlsPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

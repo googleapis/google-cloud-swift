@@ -41,6 +41,8 @@ public struct ResourceRecordSet: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The identifier of a supported record type. See the list of Supported DNS record types.
   public var type: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceRecordSet`.
   public init() {}
 
@@ -55,6 +57,65 @@ public struct ResourceRecordSet: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kind = CodingKeys(stringValue: "kind")
+    static let name = CodingKeys(stringValue: "name")
+    static let routingPolicy = CodingKeys(stringValue: "routingPolicy")
+    static let rrdatas = CodingKeys(stringValue: "rrdatas")
+    static let signatureRrdatas = CodingKeys(stringValue: "signatureRrdatas")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kind",
+      "name",
+      "routingPolicy",
+      "rrdatas",
+      "signatureRrdatas",
+      "ttl",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+    self.routingPolicy = try container.decodeIfPresent(
+      RRSetRoutingPolicy.self, forKey: .routingPolicy)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rrdatas) {
+      self.rrdatas = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .signatureRrdatas) {
+      self.signatureRrdatas = value
+    }
+    self.ttl = try container.decodeIfPresent(Swift.Int32.self, forKey: .ttl)
+    self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.routingPolicy, forKey: .routingPolicy)
+    try container.encode(self.rrdatas, forKey: .rrdatas)
+    try container.encode(self.signatureRrdatas, forKey: .signatureRrdatas)
+    try container.encodeIfPresent(self.ttl, forKey: .ttl)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -32,6 +32,8 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// clusters associated with this cluster.
   public var clusterUpgradeDetails: [UpgradeClusterResponse.ClusterUpgradeDetails] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeClusterResponse`.
   public init() {}
 
@@ -46,6 +48,54 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let status = CodingKeys(stringValue: "status")
+    static let message = CodingKeys(stringValue: "message")
+    static let clusterUpgradeDetails = CodingKeys(stringValue: "clusterUpgradeDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "status",
+      "message",
+      "clusterUpgradeDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      UpgradeClusterResponse.Status.self, forKey: .status)
+    {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(
+      [UpgradeClusterResponse.ClusterUpgradeDetails].self, forKey: .clusterUpgradeDetails)
+    {
+      self.clusterUpgradeDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.clusterUpgradeDetails, forKey: .clusterUpgradeDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Stage information for different stages in the upgrade process.
@@ -63,6 +113,8 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// PG_UPGRADE_CHECK, PRIMARY_INSTANCE_UPGRADE.
     public var logsUrl: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StageInfo`.
     public init() {}
 
@@ -77,6 +129,54 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let stage = CodingKeys(stringValue: "stage")
+      static let status = CodingKeys(stringValue: "status")
+      static let logsUrl = CodingKeys(stringValue: "logsUrl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "stage",
+        "status",
+        "logsUrl",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Stage.self, forKey: .stage)
+      {
+        self.stage = value
+      }
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Status.self, forKey: .status)
+      {
+        self.status = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logsUrl) {
+        self.logsUrl = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.stage, forKey: .stage)
+      try container.encode(self.status, forKey: .status)
+      try container.encode(self.logsUrl, forKey: .logsUrl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -103,6 +203,8 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Instance type.
     public var instanceType: Instance.InstanceType = Instance.InstanceType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceUpgradeDetails`.
     public init() {}
 
@@ -117,6 +219,54 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let upgradeStatus = CodingKeys(stringValue: "upgradeStatus")
+      static let instanceType = CodingKeys(stringValue: "instanceType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "upgradeStatus",
+        "instanceType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Status.self, forKey: .upgradeStatus)
+      {
+        self.upgradeStatus = value
+      }
+      if let value = try container.decodeIfPresent(
+        Instance.InstanceType.self, forKey: .instanceType)
+      {
+        self.instanceType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
+      try container.encode(self.instanceType, forKey: .instanceType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -155,6 +305,8 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Upgrade details of the instances directly associated with this cluster.
     public var instanceUpgradeDetails: [UpgradeClusterResponse.InstanceUpgradeDetails] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClusterUpgradeDetails`.
     public init() {}
 
@@ -169,6 +321,74 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let upgradeStatus = CodingKeys(stringValue: "upgradeStatus")
+      static let clusterType = CodingKeys(stringValue: "clusterType")
+      static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+      static let stageInfo = CodingKeys(stringValue: "stageInfo")
+      static let instanceUpgradeDetails = CodingKeys(stringValue: "instanceUpgradeDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "upgradeStatus",
+        "clusterType",
+        "databaseVersion",
+        "stageInfo",
+        "instanceUpgradeDetails",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Status.self, forKey: .upgradeStatus)
+      {
+        self.upgradeStatus = value
+      }
+      if let value = try container.decodeIfPresent(Cluster.ClusterType.self, forKey: .clusterType) {
+        self.clusterType = value
+      }
+      if let value = try container.decodeIfPresent(DatabaseVersion.self, forKey: .databaseVersion) {
+        self.databaseVersion = value
+      }
+      if let value = try container.decodeIfPresent(
+        [UpgradeClusterResponse.StageInfo].self, forKey: .stageInfo)
+      {
+        self.stageInfo = value
+      }
+      if let value = try container.decodeIfPresent(
+        [UpgradeClusterResponse.InstanceUpgradeDetails].self, forKey: .instanceUpgradeDetails)
+      {
+        self.instanceUpgradeDetails = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
+      try container.encode(self.clusterType, forKey: .clusterType)
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      try container.encode(self.stageInfo, forKey: .stageInfo)
+      try container.encode(self.instanceUpgradeDetails, forKey: .instanceUpgradeDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

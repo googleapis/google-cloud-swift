@@ -25,6 +25,8 @@
     /// The parser to use for RagFiles.
     public var parser: OneOf_Parser? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagFileParsingConfig`.
     public init() {}
 
@@ -41,9 +43,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case layoutParser = "layoutParser"
-      case llmParser = "llmParser"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let layoutParser = CodingKeys(stringValue: "layoutParser")
+      static let llmParser = CodingKeys(stringValue: "llmParser")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "layoutParser",
+        "llmParser",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@
         try parserCheckAndSet(.llmParser(llmParser))
       }
       self.parser = parser
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@
         case .llmParser(let value):
           try container.encode(value, forKey: .llmParser)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -104,6 +123,8 @@
       /// of 120 QPM would be used.
       public var maxParsingRequestsPerMin: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LayoutParser`.
       public init() {}
 
@@ -118,6 +139,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let processorName = CodingKeys(stringValue: "processorName")
+        static let maxParsingRequestsPerMin = CodingKeys(stringValue: "maxParsingRequestsPerMin")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "processorName",
+          "maxParsingRequestsPerMin",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processorName) {
+          self.processorName = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .maxParsingRequestsPerMin)
+        {
+          self.maxParsingRequestsPerMin = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.processorName, forKey: .processorName)
+        try container.encode(self.maxParsingRequestsPerMin, forKey: .maxParsingRequestsPerMin)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -151,6 +212,8 @@
       /// be used.
       public var customParsingPrompt: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LlmParser`.
       public init() {}
 
@@ -165,6 +228,54 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let modelName = CodingKeys(stringValue: "modelName")
+        static let maxParsingRequestsPerMin = CodingKeys(stringValue: "maxParsingRequestsPerMin")
+        static let customParsingPrompt = CodingKeys(stringValue: "customParsingPrompt")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "modelName",
+          "maxParsingRequestsPerMin",
+          "customParsingPrompt",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelName) {
+          self.modelName = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .maxParsingRequestsPerMin)
+        {
+          self.maxParsingRequestsPerMin = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .customParsingPrompt)
+        {
+          self.customParsingPrompt = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.modelName, forKey: .modelName)
+        try container.encode(self.maxParsingRequestsPerMin, forKey: .maxParsingRequestsPerMin)
+        try container.encode(self.customParsingPrompt, forKey: .customParsingPrompt)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

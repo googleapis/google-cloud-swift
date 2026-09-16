@@ -32,6 +32,8 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The rule type.
   public var ruleType: OneOf_RuleType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferRule`.
   public init() {}
 
@@ -48,17 +50,33 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case deterministicTransfer = "deterministicTransfer"
-    case disablePlannerTransfer = "disablePlannerTransfer"
-    case childAgent = "childAgent"
-    case direction = "direction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deterministicTransfer = CodingKeys(stringValue: "deterministicTransfer")
+    static let disablePlannerTransfer = CodingKeys(stringValue: "disablePlannerTransfer")
+    static let childAgent = CodingKeys(stringValue: "childAgent")
+    static let direction = CodingKeys(stringValue: "direction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deterministicTransfer",
+      "disablePlannerTransfer",
+      "childAgent",
+      "direction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.childAgent = try container.decode(Swift.String.self, forKey: .childAgent)
-    self.direction = try container.decode(TransferRule.Direction.self, forKey: .direction)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .childAgent) {
+      self.childAgent = value
+    }
+    if let value = try container.decodeIfPresent(TransferRule.Direction.self, forKey: .direction) {
+      self.direction = value
+    }
 
     var ruleType: OneOf_RuleType? = nil
     let ruleTypeCheckAndSet = {
@@ -81,6 +99,10 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try ruleTypeCheckAndSet(.disablePlannerTransfer(disablePlannerTransfer))
     }
     self.ruleType = ruleType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,6 +118,9 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .disablePlannerTransfer)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Deterministic transfer rule. When the condition evaluates to true, the
@@ -105,6 +130,8 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// The condition to evaluate.
     public var conditionType: OneOf_ConditionType? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DeterministicTransfer`.
     public init() {}
@@ -122,9 +149,19 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case expressionCondition = "expressionCondition"
-      case pythonCodeCondition = "pythonCodeCondition"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expressionCondition = CodingKeys(stringValue: "expressionCondition")
+      static let pythonCodeCondition = CodingKeys(stringValue: "pythonCodeCondition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expressionCondition",
+        "pythonCodeCondition",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -151,6 +188,10 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try conditionTypeCheckAndSet(.pythonCodeCondition(pythonCodeCondition))
       }
       self.conditionType = conditionType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -163,6 +204,9 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .pythonCodeCondition(let value):
           try container.encode(value, forKey: .pythonCodeCondition)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -195,6 +239,8 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// to transfer to the target agent.
     public var expressionCondition: ExpressionCondition? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DisablePlannerTransfer`.
     public init() {}
 
@@ -209,6 +255,37 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expressionCondition = CodingKeys(stringValue: "expressionCondition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expressionCondition"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.expressionCondition = try container.decodeIfPresent(
+        ExpressionCondition.self, forKey: .expressionCondition)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.expressionCondition, forKey: .expressionCondition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

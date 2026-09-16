@@ -87,6 +87,8 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// @OutputOnly
   public var domainMappingsCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthorizedCertificate`.
   public init() {}
 
@@ -101,6 +103,85 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let domainNames = CodingKeys(stringValue: "domainNames")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let certificateRawData = CodingKeys(stringValue: "certificateRawData")
+    static let managedCertificate = CodingKeys(stringValue: "managedCertificate")
+    static let visibleDomainMappings = CodingKeys(stringValue: "visibleDomainMappings")
+    static let domainMappingsCount = CodingKeys(stringValue: "domainMappingsCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "displayName",
+      "domainNames",
+      "expireTime",
+      "certificateRawData",
+      "managedCertificate",
+      "visibleDomainMappings",
+      "domainMappingsCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domainNames) {
+      self.domainNames = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    self.certificateRawData = try container.decodeIfPresent(
+      CertificateRawData.self, forKey: .certificateRawData)
+    self.managedCertificate = try container.decodeIfPresent(
+      ManagedCertificate.self, forKey: .managedCertificate)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .visibleDomainMappings)
+    {
+      self.visibleDomainMappings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .domainMappingsCount) {
+      self.domainMappingsCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.domainNames, forKey: .domainNames)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.certificateRawData, forKey: .certificateRawData)
+    try container.encodeIfPresent(self.managedCertificate, forKey: .managedCertificate)
+    try container.encode(self.visibleDomainMappings, forKey: .visibleDomainMappings)
+    try container.encode(self.domainMappingsCount, forKey: .domainMappingsCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

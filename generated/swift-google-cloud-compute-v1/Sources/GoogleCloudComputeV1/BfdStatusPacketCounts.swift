@@ -37,6 +37,8 @@
     /// session.
     public var numTx: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BfdStatusPacketCounts`.
     public init() {}
 
@@ -51,6 +53,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let numRx = CodingKeys(stringValue: "numRx")
+      static let numRxRejected = CodingKeys(stringValue: "numRxRejected")
+      static let numRxSuccessful = CodingKeys(stringValue: "numRxSuccessful")
+      static let numTx = CodingKeys(stringValue: "numTx")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "numRx",
+        "numRxRejected",
+        "numRxSuccessful",
+        "numTx",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.numRx = try container.decodeIfPresent(Swift.UInt32.self, forKey: .numRx)
+      self.numRxRejected = try container.decodeIfPresent(Swift.UInt32.self, forKey: .numRxRejected)
+      self.numRxSuccessful = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .numRxSuccessful)
+      self.numTx = try container.decodeIfPresent(Swift.UInt32.self, forKey: .numTx)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.numRx, forKey: .numRx)
+      try container.encodeIfPresent(self.numRxRejected, forKey: .numRxRejected)
+      try container.encodeIfPresent(self.numRxSuccessful, forKey: .numRxSuccessful)
+      try container.encodeIfPresent(self.numTx, forKey: .numTx)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

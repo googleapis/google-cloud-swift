@@ -30,6 +30,8 @@
     /// regardless of language detection results.
     public var preferredLanguageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AssistUserMetadata`.
     public init() {}
 
@@ -44,6 +46,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let preferredLanguageCode = CodingKeys(stringValue: "preferredLanguageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeZone",
+        "preferredLanguageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .preferredLanguageCode)
+      {
+        self.preferredLanguageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encode(self.preferredLanguageCode, forKey: .preferredLanguageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -30,6 +30,8 @@ public struct ShellCommand: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. If not specified, the default timeout is 60 seconds.
   public var timeoutSeconds: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ShellCommand`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct ShellCommand: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let command = CodingKeys(stringValue: "command")
+    static let args = CodingKeys(stringValue: "args")
+    static let timeoutSeconds = CodingKeys(stringValue: "timeoutSeconds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "command",
+      "args",
+      "timeoutSeconds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .command) {
+      self.command = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeoutSeconds) {
+      self.timeoutSeconds = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.command, forKey: .command)
+    try container.encode(self.args, forKey: .args)
+    try container.encode(self.timeoutSeconds, forKey: .timeoutSeconds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

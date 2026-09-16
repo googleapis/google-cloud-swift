@@ -40,6 +40,8 @@ public struct CreateApiHubInstanceRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Required. The ApiHub instance.
   public var apiHubInstance: ApiHubInstance? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateApiHubInstanceRequest`.
   public init() {}
 
@@ -54,6 +56,49 @@ public struct CreateApiHubInstanceRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let apiHubInstanceId = CodingKeys(stringValue: "apiHubInstanceId")
+    static let apiHubInstance = CodingKeys(stringValue: "apiHubInstance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "apiHubInstanceId",
+      "apiHubInstance",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiHubInstanceId) {
+      self.apiHubInstanceId = value
+    }
+    self.apiHubInstance = try container.decodeIfPresent(
+      ApiHubInstance.self, forKey: .apiHubInstance)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.apiHubInstanceId, forKey: .apiHubInstanceId)
+    try container.encodeIfPresent(self.apiHubInstance, forKey: .apiHubInstance)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@
     /// Source of the rubrics to be used for evaluation.
     public var rubricsSource: OneOf_RubricsSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LLMBasedMetricSpec`.
     public init() {}
 
@@ -53,13 +55,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case rubricGroupKey = "rubricGroupKey"
-      case predefinedRubricGenerationSpec = "predefinedRubricGenerationSpec"
-      case metricPromptTemplate = "metricPromptTemplate"
-      case systemInstruction = "systemInstruction"
-      case judgeAutoraterConfig = "judgeAutoraterConfig"
-      case additionalConfig = "additionalConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rubricGroupKey = CodingKeys(stringValue: "rubricGroupKey")
+      static let predefinedRubricGenerationSpec = CodingKeys(
+        stringValue: "predefinedRubricGenerationSpec")
+      static let metricPromptTemplate = CodingKeys(stringValue: "metricPromptTemplate")
+      static let systemInstruction = CodingKeys(stringValue: "systemInstruction")
+      static let judgeAutoraterConfig = CodingKeys(stringValue: "judgeAutoraterConfig")
+      static let additionalConfig = CodingKeys(stringValue: "additionalConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rubricGroupKey",
+        "predefinedRubricGenerationSpec",
+        "metricPromptTemplate",
+        "systemInstruction",
+        "judgeAutoraterConfig",
+        "additionalConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -95,14 +112,18 @@
           .predefinedRubricGenerationSpec(predefinedRubricGenerationSpec))
       }
       self.rubricsSource = rubricsSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.metricPromptTemplate, forKey: .metricPromptTemplate)
-      try container.encode(self.systemInstruction, forKey: .systemInstruction)
-      try container.encode(self.judgeAutoraterConfig, forKey: .judgeAutoraterConfig)
-      try container.encode(self.additionalConfig, forKey: .additionalConfig)
+      try container.encodeIfPresent(self.metricPromptTemplate, forKey: .metricPromptTemplate)
+      try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
+      try container.encodeIfPresent(self.judgeAutoraterConfig, forKey: .judgeAutoraterConfig)
+      try container.encodeIfPresent(self.additionalConfig, forKey: .additionalConfig)
 
       if let choice = self.rubricsSource {
         switch choice {
@@ -111,6 +132,9 @@
         case .predefinedRubricGenerationSpec(let value):
           try container.encode(value, forKey: .predefinedRubricGenerationSpec)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

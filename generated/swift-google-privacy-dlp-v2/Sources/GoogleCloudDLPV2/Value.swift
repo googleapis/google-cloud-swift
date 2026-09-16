@@ -30,6 +30,8 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Value types
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Value`.
   public init() {}
 
@@ -46,15 +48,31 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case integerValue = "integerValue"
-    case floatValue = "floatValue"
-    case stringValue = "stringValue"
-    case booleanValue = "booleanValue"
-    case timestampValue = "timestampValue"
-    case timeValue = "timeValue"
-    case dateValue = "dateValue"
-    case dayOfWeekValue = "dayOfWeekValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let integerValue = CodingKeys(stringValue: "integerValue")
+    static let floatValue = CodingKeys(stringValue: "floatValue")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let booleanValue = CodingKeys(stringValue: "booleanValue")
+    static let timestampValue = CodingKeys(stringValue: "timestampValue")
+    static let timeValue = CodingKeys(stringValue: "timeValue")
+    static let dateValue = CodingKeys(stringValue: "dateValue")
+    static let dayOfWeekValue = CodingKeys(stringValue: "dayOfWeekValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "integerValue",
+      "floatValue",
+      "stringValue",
+      "booleanValue",
+      "timestampValue",
+      "timeValue",
+      "dateValue",
+      "dayOfWeekValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -100,6 +118,10 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.dayOfWeekValue(dayOfWeekValue))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -124,6 +146,9 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dayOfWeekValue(let value):
         try container.encode(value, forKey: .dayOfWeekValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

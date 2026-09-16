@@ -47,6 +47,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of network names specifying networks to which this policy is applied.
   public var networks: [PolicyNetwork] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Policy`.
   public init() {}
 
@@ -61,6 +63,73 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let alternativeNameServerConfig = CodingKeys(stringValue: "alternativeNameServerConfig")
+    static let description = CodingKeys(stringValue: "description")
+    static let dns64Config = CodingKeys(stringValue: "dns64Config")
+    static let enableInboundForwarding = CodingKeys(stringValue: "enableInboundForwarding")
+    static let enableLogging = CodingKeys(stringValue: "enableLogging")
+    static let id = CodingKeys(stringValue: "id")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let name = CodingKeys(stringValue: "name")
+    static let networks = CodingKeys(stringValue: "networks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "alternativeNameServerConfig",
+      "description",
+      "dns64Config",
+      "enableInboundForwarding",
+      "enableLogging",
+      "id",
+      "kind",
+      "name",
+      "networks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.alternativeNameServerConfig = try container.decodeIfPresent(
+      PolicyAlternativeNameServerConfig.self, forKey: .alternativeNameServerConfig)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.dns64Config = try container.decodeIfPresent(PolicyDns64Config.self, forKey: .dns64Config)
+    self.enableInboundForwarding = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableInboundForwarding)
+    self.enableLogging = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableLogging)
+    self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent([PolicyNetwork].self, forKey: .networks) {
+      self.networks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.alternativeNameServerConfig, forKey: .alternativeNameServerConfig)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.dns64Config, forKey: .dns64Config)
+    try container.encodeIfPresent(self.enableInboundForwarding, forKey: .enableInboundForwarding)
+    try container.encodeIfPresent(self.enableLogging, forKey: .enableLogging)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encode(self.networks, forKey: .networks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

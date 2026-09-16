@@ -159,6 +159,8 @@
     /// is populated in private_endpoints.psc_automated_endpoints.
     public var pscAutomationConfigs: [PSCAutomationConfig] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeployedIndex`.
     public init() {}
 
@@ -173,6 +175,123 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let index = CodingKeys(stringValue: "index")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let privateEndpoints = CodingKeys(stringValue: "privateEndpoints")
+      static let indexSyncTime = CodingKeys(stringValue: "indexSyncTime")
+      static let automaticResources = CodingKeys(stringValue: "automaticResources")
+      static let dedicatedResources = CodingKeys(stringValue: "dedicatedResources")
+      static let enableAccessLogging = CodingKeys(stringValue: "enableAccessLogging")
+      static let enableDatapointUpsertLogging = CodingKeys(
+        stringValue: "enableDatapointUpsertLogging")
+      static let deployedIndexAuthConfig = CodingKeys(stringValue: "deployedIndexAuthConfig")
+      static let reservedIpRanges = CodingKeys(stringValue: "reservedIpRanges")
+      static let deploymentGroup = CodingKeys(stringValue: "deploymentGroup")
+      static let deploymentTier = CodingKeys(stringValue: "deploymentTier")
+      static let pscAutomationConfigs = CodingKeys(stringValue: "pscAutomationConfigs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "index",
+        "displayName",
+        "createTime",
+        "privateEndpoints",
+        "indexSyncTime",
+        "automaticResources",
+        "dedicatedResources",
+        "enableAccessLogging",
+        "enableDatapointUpsertLogging",
+        "deployedIndexAuthConfig",
+        "reservedIpRanges",
+        "deploymentGroup",
+        "deploymentTier",
+        "pscAutomationConfigs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .index) {
+        self.index = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.privateEndpoints = try container.decodeIfPresent(
+        IndexPrivateEndpoints.self, forKey: .privateEndpoints)
+      self.indexSyncTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .indexSyncTime)
+      self.automaticResources = try container.decodeIfPresent(
+        AutomaticResources.self, forKey: .automaticResources)
+      self.dedicatedResources = try container.decodeIfPresent(
+        DedicatedResources.self, forKey: .dedicatedResources)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAccessLogging) {
+        self.enableAccessLogging = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableDatapointUpsertLogging)
+      {
+        self.enableDatapointUpsertLogging = value
+      }
+      self.deployedIndexAuthConfig = try container.decodeIfPresent(
+        DeployedIndexAuthConfig.self, forKey: .deployedIndexAuthConfig)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reservedIpRanges) {
+        self.reservedIpRanges = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentGroup) {
+        self.deploymentGroup = value
+      }
+      if let value = try container.decodeIfPresent(
+        DeployedIndex.DeploymentTier.self, forKey: .deploymentTier)
+      {
+        self.deploymentTier = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PSCAutomationConfig].self, forKey: .pscAutomationConfigs)
+      {
+        self.pscAutomationConfigs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.index, forKey: .index)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.privateEndpoints, forKey: .privateEndpoints)
+      try container.encodeIfPresent(self.indexSyncTime, forKey: .indexSyncTime)
+      try container.encodeIfPresent(self.automaticResources, forKey: .automaticResources)
+      try container.encodeIfPresent(self.dedicatedResources, forKey: .dedicatedResources)
+      try container.encode(self.enableAccessLogging, forKey: .enableAccessLogging)
+      try container.encode(self.enableDatapointUpsertLogging, forKey: .enableDatapointUpsertLogging)
+      try container.encodeIfPresent(self.deployedIndexAuthConfig, forKey: .deployedIndexAuthConfig)
+      try container.encode(self.reservedIpRanges, forKey: .reservedIpRanges)
+      try container.encode(self.deploymentGroup, forKey: .deploymentGroup)
+      try container.encode(self.deploymentTier, forKey: .deploymentTier)
+      try container.encode(self.pscAutomationConfigs, forKey: .pscAutomationConfigs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Tiers encapsulate serving time attributes like latency and throughput.

@@ -31,6 +31,8 @@
     /// Output only. Timestamp when the matching usage was calculated
     public var timestamp: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationStatusExistingMatchingUsageInfo`.
     public init() {}
 
@@ -45,6 +47,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let count = CodingKeys(stringValue: "count")
+      static let timestamp = CodingKeys(stringValue: "timestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "count",
+        "timestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.count = try container.decodeIfPresent(Swift.Int64.self, forKey: .count)
+      self.timestamp = try container.decodeIfPresent(Swift.String.self, forKey: .timestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.count, forKey: .count)
+      try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

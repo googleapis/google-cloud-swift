@@ -63,6 +63,8 @@
     /// reason why the example was dropped.
     public var droppedExampleReasons: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SupervisedTuningDataStats`.
     public init() {}
 
@@ -77,6 +79,121 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tuningDatasetExampleCount = CodingKeys(stringValue: "tuningDatasetExampleCount")
+      static let totalTuningCharacterCount = CodingKeys(stringValue: "totalTuningCharacterCount")
+      static let totalBillableCharacterCount = CodingKeys(
+        stringValue: "totalBillableCharacterCount")
+      static let totalBillableTokenCount = CodingKeys(stringValue: "totalBillableTokenCount")
+      static let tuningStepCount = CodingKeys(stringValue: "tuningStepCount")
+      static let userInputTokenDistribution = CodingKeys(stringValue: "userInputTokenDistribution")
+      static let userOutputTokenDistribution = CodingKeys(
+        stringValue: "userOutputTokenDistribution")
+      static let userMessagePerExampleDistribution = CodingKeys(
+        stringValue: "userMessagePerExampleDistribution")
+      static let userDatasetExamples = CodingKeys(stringValue: "userDatasetExamples")
+      static let totalTruncatedExampleCount = CodingKeys(stringValue: "totalTruncatedExampleCount")
+      static let truncatedExampleIndices = CodingKeys(stringValue: "truncatedExampleIndices")
+      static let droppedExampleReasons = CodingKeys(stringValue: "droppedExampleReasons")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tuningDatasetExampleCount",
+        "totalTuningCharacterCount",
+        "totalBillableCharacterCount",
+        "totalBillableTokenCount",
+        "tuningStepCount",
+        "userInputTokenDistribution",
+        "userOutputTokenDistribution",
+        "userMessagePerExampleDistribution",
+        "userDatasetExamples",
+        "totalTruncatedExampleCount",
+        "truncatedExampleIndices",
+        "droppedExampleReasons",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .tuningDatasetExampleCount)
+      {
+        self.tuningDatasetExampleCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalTuningCharacterCount)
+      {
+        self.totalTuningCharacterCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalBillableCharacterCount)
+      {
+        self.totalBillableCharacterCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalBillableTokenCount)
+      {
+        self.totalBillableTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .tuningStepCount) {
+        self.tuningStepCount = value
+      }
+      self.userInputTokenDistribution = try container.decodeIfPresent(
+        SupervisedTuningDatasetDistribution.self, forKey: .userInputTokenDistribution)
+      self.userOutputTokenDistribution = try container.decodeIfPresent(
+        SupervisedTuningDatasetDistribution.self, forKey: .userOutputTokenDistribution)
+      self.userMessagePerExampleDistribution = try container.decodeIfPresent(
+        SupervisedTuningDatasetDistribution.self, forKey: .userMessagePerExampleDistribution)
+      if let value = try container.decodeIfPresent([Content].self, forKey: .userDatasetExamples) {
+        self.userDatasetExamples = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalTruncatedExampleCount)
+      {
+        self.totalTruncatedExampleCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.Int64].self, forKey: .truncatedExampleIndices)
+      {
+        self.truncatedExampleIndices = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .droppedExampleReasons)
+      {
+        self.droppedExampleReasons = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tuningDatasetExampleCount, forKey: .tuningDatasetExampleCount)
+      try container.encode(self.totalTuningCharacterCount, forKey: .totalTuningCharacterCount)
+      try container.encode(self.totalBillableCharacterCount, forKey: .totalBillableCharacterCount)
+      try container.encode(self.totalBillableTokenCount, forKey: .totalBillableTokenCount)
+      try container.encode(self.tuningStepCount, forKey: .tuningStepCount)
+      try container.encodeIfPresent(
+        self.userInputTokenDistribution, forKey: .userInputTokenDistribution)
+      try container.encodeIfPresent(
+        self.userOutputTokenDistribution, forKey: .userOutputTokenDistribution)
+      try container.encodeIfPresent(
+        self.userMessagePerExampleDistribution, forKey: .userMessagePerExampleDistribution)
+      try container.encode(self.userDatasetExamples, forKey: .userDatasetExamples)
+      try container.encode(self.totalTruncatedExampleCount, forKey: .totalTruncatedExampleCount)
+      try container.encode(self.truncatedExampleIndices, forKey: .truncatedExampleIndices)
+      try container.encode(self.droppedExampleReasons, forKey: .droppedExampleReasons)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

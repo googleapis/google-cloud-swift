@@ -27,6 +27,8 @@ public struct StreamStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The result of the stream. Either "Okay" for success or "Fail" for failure.
   public var status: OneOf_Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamStatus`.
   public init() {}
 
@@ -43,15 +45,28 @@ public struct StreamStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case streamId = "streamId"
-    case okay = "okay"
-    case fail = "fail"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let streamId = CodingKeys(stringValue: "streamId")
+    static let okay = CodingKeys(stringValue: "okay")
+    static let fail = CodingKeys(stringValue: "fail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "streamId",
+      "okay",
+      "fail",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.streamId = try container.decode(Swift.Int32.self, forKey: .streamId)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .streamId) {
+      self.streamId = value
+    }
 
     var status: OneOf_Status? = nil
     let statusCheckAndSet = {
@@ -70,6 +85,10 @@ public struct StreamStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try statusCheckAndSet(.fail(fail))
     }
     self.status = status
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +102,9 @@ public struct StreamStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .fail(let value):
         try container.encode(value, forKey: .fail)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

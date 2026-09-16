@@ -37,6 +37,8 @@
     /// The type of risk.
     public var type: RiskDetails.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RiskDetails`.
     public init() {}
 
@@ -51,6 +53,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let duration = CodingKeys(stringValue: "duration")
+      static let globalDnsInsight = CodingKeys(stringValue: "globalDnsInsight")
+      static let lastUpdateTimestamp = CodingKeys(stringValue: "lastUpdateTimestamp")
+      static let severity = CodingKeys(stringValue: "severity")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "duration",
+        "globalDnsInsight",
+        "lastUpdateTimestamp",
+        "severity",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+      self.globalDnsInsight = try container.decodeIfPresent(
+        RiskDetailsGlobalDnsInsight.self, forKey: .globalDnsInsight)
+      self.lastUpdateTimestamp = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTimestamp)
+      self.severity = try container.decodeIfPresent(RiskDetails.Severity.self, forKey: .severity)
+      self.type = try container.decodeIfPresent(RiskDetails.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.duration, forKey: .duration)
+      try container.encodeIfPresent(self.globalDnsInsight, forKey: .globalDnsInsight)
+      try container.encodeIfPresent(self.lastUpdateTimestamp, forKey: .lastUpdateTimestamp)
+      try container.encodeIfPresent(self.severity, forKey: .severity)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [severity][google.cloud.compute.v1.RiskDetails.severity] field.

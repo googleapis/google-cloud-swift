@@ -34,6 +34,8 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Output only. The certificate chains needed to validate the attestation
   public var certChains: KeyOperationAttestation.CertificateChains? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KeyOperationAttestation`.
   public init() {}
 
@@ -48,6 +50,51 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let format = CodingKeys(stringValue: "format")
+    static let content = CodingKeys(stringValue: "content")
+    static let certChains = CodingKeys(stringValue: "certChains")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "format",
+      "content",
+      "certChains",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      KeyOperationAttestation.AttestationFormat.self, forKey: .format)
+    {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .content) {
+      self.content = value
+    }
+    self.certChains = try container.decodeIfPresent(
+      KeyOperationAttestation.CertificateChains.self, forKey: .certChains)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.format, forKey: .format)
+    try container.encode(self.content, forKey: .content)
+    try container.encodeIfPresent(self.certChains, forKey: .certChains)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Certificate chains needed to verify the attestation.
@@ -65,6 +112,8 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// Google partition certificate chain corresponding to the attestation.
     public var googlePartitionCerts: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CertificateChains`.
     public init() {}
 
@@ -79,6 +128,52 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caviumCerts = CodingKeys(stringValue: "caviumCerts")
+      static let googleCardCerts = CodingKeys(stringValue: "googleCardCerts")
+      static let googlePartitionCerts = CodingKeys(stringValue: "googlePartitionCerts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caviumCerts",
+        "googleCardCerts",
+        "googlePartitionCerts",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .caviumCerts) {
+        self.caviumCerts = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .googleCardCerts) {
+        self.googleCardCerts = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .googlePartitionCerts)
+      {
+        self.googlePartitionCerts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caviumCerts, forKey: .caviumCerts)
+      try container.encode(self.googleCardCerts, forKey: .googleCardCerts)
+      try container.encode(self.googlePartitionCerts, forKey: .googlePartitionCerts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -62,6 +62,8 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Defaults to false.
   public var ingestOnWrite: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnywhereCache`.
   public init() {}
 
@@ -76,6 +78,80 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let admissionPolicy = CodingKeys(stringValue: "admissionPolicy")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let pendingUpdate = CodingKeys(stringValue: "pendingUpdate")
+    static let ingestOnWrite = CodingKeys(stringValue: "ingestOnWrite")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "zone",
+      "ttl",
+      "admissionPolicy",
+      "state",
+      "createTime",
+      "updateTime",
+      "pendingUpdate",
+      "ingestOnWrite",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    self.ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .ttl)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .admissionPolicy) {
+      self.admissionPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .pendingUpdate) {
+      self.pendingUpdate = value
+    }
+    self.ingestOnWrite = try container.decodeIfPresent(Swift.Bool.self, forKey: .ingestOnWrite)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encodeIfPresent(self.ttl, forKey: .ttl)
+    try container.encode(self.admissionPolicy, forKey: .admissionPolicy)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.pendingUpdate, forKey: .pendingUpdate)
+    try container.encodeIfPresent(self.ingestOnWrite, forKey: .ingestOnWrite)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

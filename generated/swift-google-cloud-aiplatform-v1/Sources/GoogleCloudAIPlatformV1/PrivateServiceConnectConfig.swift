@@ -38,6 +38,8 @@
     /// PrivateServiceConnect.
     public var serviceAttachment: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PrivateServiceConnectConfig`.
     public init() {}
 
@@ -52,6 +54,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enablePrivateServiceConnect = CodingKeys(
+        stringValue: "enablePrivateServiceConnect")
+      static let projectAllowlist = CodingKeys(stringValue: "projectAllowlist")
+      static let pscAutomationConfigs = CodingKeys(stringValue: "pscAutomationConfigs")
+      static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enablePrivateServiceConnect",
+        "projectAllowlist",
+        "pscAutomationConfigs",
+        "serviceAttachment",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePrivateServiceConnect)
+      {
+        self.enablePrivateServiceConnect = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .projectAllowlist) {
+        self.projectAllowlist = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PSCAutomationConfig].self, forKey: .pscAutomationConfigs)
+      {
+        self.pscAutomationConfigs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+        self.serviceAttachment = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enablePrivateServiceConnect, forKey: .enablePrivateServiceConnect)
+      try container.encode(self.projectAllowlist, forKey: .projectAllowlist)
+      try container.encode(self.pscAutomationConfigs, forKey: .pscAutomationConfigs)
+      try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

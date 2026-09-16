@@ -61,6 +61,8 @@
     /// Migration Service.
     public var dmsManaged: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OnPremisesConfiguration`.
     public init() {}
 
@@ -75,6 +77,106 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hostPort = CodingKeys(stringValue: "hostPort")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let username = CodingKeys(stringValue: "username")
+      static let password = CodingKeys(stringValue: "password")
+      static let caCertificate = CodingKeys(stringValue: "caCertificate")
+      static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+      static let dumpFilePath = CodingKeys(stringValue: "dumpFilePath")
+      static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
+      static let selectedObjects = CodingKeys(stringValue: "selectedObjects")
+      static let sslOption = CodingKeys(stringValue: "sslOption")
+      static let dmsManaged = CodingKeys(stringValue: "dmsManaged")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hostPort",
+        "kind",
+        "username",
+        "password",
+        "caCertificate",
+        "clientCertificate",
+        "clientKey",
+        "dumpFilePath",
+        "sourceInstance",
+        "selectedObjects",
+        "sslOption",
+        "dmsManaged",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostPort) {
+        self.hostPort = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+        self.caCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+        self.clientCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+        self.clientKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dumpFilePath) {
+        self.dumpFilePath = value
+      }
+      self.sourceInstance = try container.decodeIfPresent(
+        InstanceReference.self, forKey: .sourceInstance)
+      if let value = try container.decodeIfPresent([SelectedObjects].self, forKey: .selectedObjects)
+      {
+        self.selectedObjects = value
+      }
+      if let value = try container.decodeIfPresent(
+        OnPremisesConfiguration.SslOption.self, forKey: .sslOption)
+      {
+        self.sslOption = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dmsManaged) {
+        self.dmsManaged = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.hostPort, forKey: .hostPort)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.username, forKey: .username)
+      try container.encode(self.password, forKey: .password)
+      try container.encode(self.caCertificate, forKey: .caCertificate)
+      try container.encode(self.clientCertificate, forKey: .clientCertificate)
+      try container.encode(self.clientKey, forKey: .clientKey)
+      try container.encode(self.dumpFilePath, forKey: .dumpFilePath)
+      try container.encodeIfPresent(self.sourceInstance, forKey: .sourceInstance)
+      try container.encode(self.selectedObjects, forKey: .selectedObjects)
+      try container.encode(self.sslOption, forKey: .sslOption)
+      try container.encode(self.dmsManaged, forKey: .dmsManaged)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// SslOption defines the SSL mode to be used for replica connection to the

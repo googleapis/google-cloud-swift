@@ -73,6 +73,8 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// MANIFEST.
   public var outputType: Clip.OutputType = Clip.OutputType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Clip`.
   public init() {}
 
@@ -89,6 +91,94 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let outputUri = CodingKeys(stringValue: "outputUri")
+    static let error = CodingKeys(stringValue: "error")
+    static let slices = CodingKeys(stringValue: "slices")
+    static let clipManifests = CodingKeys(stringValue: "clipManifests")
+    static let outputType = CodingKeys(stringValue: "outputType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "startTime",
+      "updateTime",
+      "labels",
+      "state",
+      "outputUri",
+      "error",
+      "slices",
+      "clipManifests",
+      "outputType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Clip.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+      self.outputUri = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent([Clip.Slice].self, forKey: .slices) {
+      self.slices = value
+    }
+    if let value = try container.decodeIfPresent([Clip.ClipManifest].self, forKey: .clipManifests) {
+      self.clipManifests = value
+    }
+    if let value = try container.decodeIfPresent(Clip.OutputType.self, forKey: .outputType) {
+      self.outputType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.outputUri, forKey: .outputUri)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.slices, forKey: .slices)
+    try container.encode(self.clipManifests, forKey: .clipManifests)
+    try container.encode(self.outputType, forKey: .outputType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// TimeSlice represents a tuple of Unix epoch timestamps that specifies a time
   /// range.
   public struct TimeSlice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -99,6 +189,8 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The mark-out Unix epoch time in the original live stream manifest.
     public var markoutTime: GoogleCloudWKT.Timestamp? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TimeSlice`.
     public init() {}
@@ -114,6 +206,42 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let markinTime = CodingKeys(stringValue: "markinTime")
+      static let markoutTime = CodingKeys(stringValue: "markoutTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "markinTime",
+        "markoutTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.markinTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .markinTime)
+      self.markoutTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .markoutTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.markinTime, forKey: .markinTime)
+      try container.encodeIfPresent(self.markoutTime, forKey: .markoutTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -134,6 +262,8 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The allowlist forms of a slice.
     public var kind: OneOf_Kind? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Slice`.
     public init() {}
 
@@ -150,8 +280,17 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case timeSlice = "timeSlice"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeSlice = CodingKeys(stringValue: "timeSlice")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeSlice"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -171,6 +310,10 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try kindCheckAndSet(.timeSlice(timeSlice))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -181,6 +324,9 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .timeSlice(let value):
           try container.encode(value, forKey: .timeSlice)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -218,6 +364,8 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// gs://my-bucket/clip-outputs/main.m3u8
     public var outputUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClipManifest`.
     public init() {}
 
@@ -232,6 +380,44 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let manifestKey = CodingKeys(stringValue: "manifestKey")
+      static let outputUri = CodingKeys(stringValue: "outputUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "manifestKey",
+        "outputUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifestKey) {
+        self.manifestKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+        self.outputUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.manifestKey, forKey: .manifestKey)
+      try container.encode(self.outputUri, forKey: .outputUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

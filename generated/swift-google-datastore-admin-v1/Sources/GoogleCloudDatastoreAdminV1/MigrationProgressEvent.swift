@@ -32,6 +32,8 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Details about this step.
   public var stepDetails: OneOf_StepDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationProgressEvent`.
   public init() {}
 
@@ -48,15 +50,28 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case step = "step"
-    case prepareStepDetails = "prepareStepDetails"
-    case redirectWritesStepDetails = "redirectWritesStepDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let step = CodingKeys(stringValue: "step")
+    static let prepareStepDetails = CodingKeys(stringValue: "prepareStepDetails")
+    static let redirectWritesStepDetails = CodingKeys(stringValue: "redirectWritesStepDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "step",
+      "prepareStepDetails",
+      "redirectWritesStepDetails",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.step = try container.decode(MigrationStep.self, forKey: .step)
+    if let value = try container.decodeIfPresent(MigrationStep.self, forKey: .step) {
+      self.step = value
+    }
 
     var stepDetails: OneOf_StepDetails? = nil
     let stepDetailsCheckAndSet = {
@@ -79,6 +94,10 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
       try stepDetailsCheckAndSet(.redirectWritesStepDetails(redirectWritesStepDetails))
     }
     self.stepDetails = stepDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +112,9 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
         try container.encode(value, forKey: .redirectWritesStepDetails)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details for the `PREPARE` step.
@@ -103,6 +125,8 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// `REDIRECT_WRITES` step.
     public var concurrencyMode: MigrationProgressEvent.ConcurrencyMode =
       MigrationProgressEvent.ConcurrencyMode()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PrepareStepDetails`.
     public init() {}
@@ -118,6 +142,40 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let concurrencyMode = CodingKeys(stringValue: "concurrencyMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "concurrencyMode"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MigrationProgressEvent.ConcurrencyMode.self, forKey: .concurrencyMode)
+      {
+        self.concurrencyMode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.concurrencyMode, forKey: .concurrencyMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -140,6 +198,8 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
     public var concurrencyMode: MigrationProgressEvent.ConcurrencyMode =
       MigrationProgressEvent.ConcurrencyMode()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RedirectWritesStepDetails`.
     public init() {}
 
@@ -154,6 +214,40 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let concurrencyMode = CodingKeys(stringValue: "concurrencyMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "concurrencyMode"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MigrationProgressEvent.ConcurrencyMode.self, forKey: .concurrencyMode)
+      {
+        self.concurrencyMode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.concurrencyMode, forKey: .concurrencyMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

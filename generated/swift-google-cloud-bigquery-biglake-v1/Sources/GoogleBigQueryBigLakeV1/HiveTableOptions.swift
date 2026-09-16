@@ -30,6 +30,8 @@ public struct HiveTableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Stores physical storage information of the data.
   public var storageDescriptor: HiveTableOptions.StorageDescriptor? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HiveTableOptions`.
   public init() {}
 
@@ -46,12 +48,59 @@ public struct HiveTableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let tableType = CodingKeys(stringValue: "tableType")
+    static let storageDescriptor = CodingKeys(stringValue: "storageDescriptor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parameters",
+      "tableType",
+      "storageDescriptor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .parameters)
+    {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableType) {
+      self.tableType = value
+    }
+    self.storageDescriptor = try container.decodeIfPresent(
+      HiveTableOptions.StorageDescriptor.self, forKey: .storageDescriptor)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encode(self.tableType, forKey: .tableType)
+    try container.encodeIfPresent(self.storageDescriptor, forKey: .storageDescriptor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Serializer and deserializer information.
   public struct SerDeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fully qualified Java class name of the serialization library.
     public var serializationLib: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SerDeInfo`.
     public init() {}
@@ -67,6 +116,38 @@ public struct HiveTableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let serializationLib = CodingKeys(stringValue: "serializationLib")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "serializationLib"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serializationLib) {
+        self.serializationLib = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.serializationLib, forKey: .serializationLib)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -97,6 +178,8 @@ public struct HiveTableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Serializer and deserializer information.
     public var serdeInfo: HiveTableOptions.SerDeInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StorageDescriptor`.
     public init() {}
 
@@ -111,6 +194,55 @@ public struct HiveTableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locationUri = CodingKeys(stringValue: "locationUri")
+      static let inputFormat = CodingKeys(stringValue: "inputFormat")
+      static let outputFormat = CodingKeys(stringValue: "outputFormat")
+      static let serdeInfo = CodingKeys(stringValue: "serdeInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locationUri",
+        "inputFormat",
+        "outputFormat",
+        "serdeInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationUri) {
+        self.locationUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputFormat) {
+        self.inputFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputFormat) {
+        self.outputFormat = value
+      }
+      self.serdeInfo = try container.decodeIfPresent(
+        HiveTableOptions.SerDeInfo.self, forKey: .serdeInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.locationUri, forKey: .locationUri)
+      try container.encode(self.inputFormat, forKey: .inputFormat)
+      try container.encode(self.outputFormat, forKey: .outputFormat)
+      try container.encodeIfPresent(self.serdeInfo, forKey: .serdeInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -164,6 +164,8 @@
     /// applicable when performing per-zone operations.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Operation`.
     public init() {}
 
@@ -180,6 +182,164 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let error = CodingKeys(stringValue: "error")
+      static let getHealthOperationMetadata = CodingKeys(stringValue: "getHealthOperationMetadata")
+      static let getVersionOperationMetadata = CodingKeys(
+        stringValue: "getVersionOperationMetadata")
+      static let httpErrorMessage = CodingKeys(stringValue: "httpErrorMessage")
+      static let httpErrorStatusCode = CodingKeys(stringValue: "httpErrorStatusCode")
+      static let id = CodingKeys(stringValue: "id")
+      static let insertTime = CodingKeys(stringValue: "insertTime")
+      static let instancesBulkInsertOperationMetadata = CodingKeys(
+        stringValue: "instancesBulkInsertOperationMetadata")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let operationGroupId = CodingKeys(stringValue: "operationGroupId")
+      static let operationType = CodingKeys(stringValue: "operationType")
+      static let progress = CodingKeys(stringValue: "progress")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let setCommonInstanceMetadataOperationMetadata = CodingKeys(
+        stringValue: "setCommonInstanceMetadataOperationMetadata")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusMessage = CodingKeys(stringValue: "statusMessage")
+      static let targetId = CodingKeys(stringValue: "targetId")
+      static let targetLink = CodingKeys(stringValue: "targetLink")
+      static let user = CodingKeys(stringValue: "user")
+      static let warnings = CodingKeys(stringValue: "warnings")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "creationTimestamp",
+        "description",
+        "endTime",
+        "error",
+        "getHealthOperationMetadata",
+        "getVersionOperationMetadata",
+        "httpErrorMessage",
+        "httpErrorStatusCode",
+        "id",
+        "insertTime",
+        "instancesBulkInsertOperationMetadata",
+        "kind",
+        "name",
+        "operationGroupId",
+        "operationType",
+        "progress",
+        "region",
+        "selfLink",
+        "setCommonInstanceMetadataOperationMetadata",
+        "startTime",
+        "status",
+        "statusMessage",
+        "targetId",
+        "targetLink",
+        "user",
+        "warnings",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.endTime = try container.decodeIfPresent(Swift.String.self, forKey: .endTime)
+      self.error = try container.decodeIfPresent(Operation.Error.self, forKey: .error)
+      self.getHealthOperationMetadata = try container.decodeIfPresent(
+        GetHealthOperationMetadata.self, forKey: .getHealthOperationMetadata)
+      self.getVersionOperationMetadata = try container.decodeIfPresent(
+        GetVersionOperationMetadata.self, forKey: .getVersionOperationMetadata)
+      self.httpErrorMessage = try container.decodeIfPresent(
+        Swift.String.self, forKey: .httpErrorMessage)
+      self.httpErrorStatusCode = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .httpErrorStatusCode)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.insertTime = try container.decodeIfPresent(Swift.String.self, forKey: .insertTime)
+      self.instancesBulkInsertOperationMetadata = try container.decodeIfPresent(
+        InstancesBulkInsertOperationMetadata.self, forKey: .instancesBulkInsertOperationMetadata)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.operationGroupId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .operationGroupId)
+      self.operationType = try container.decodeIfPresent(Swift.String.self, forKey: .operationType)
+      self.progress = try container.decodeIfPresent(Swift.Int32.self, forKey: .progress)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.setCommonInstanceMetadataOperationMetadata = try container.decodeIfPresent(
+        SetCommonInstanceMetadataOperationMetadata.self,
+        forKey: .setCommonInstanceMetadataOperationMetadata)
+      self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
+      self.status = try container.decodeIfPresent(Operation.Status.self, forKey: .status)
+      self.statusMessage = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage)
+      self.targetId = try container.decodeIfPresent(Swift.UInt64.self, forKey: .targetId)
+      self.targetLink = try container.decodeIfPresent(Swift.String.self, forKey: .targetLink)
+      self.user = try container.decodeIfPresent(Swift.String.self, forKey: .user)
+      if let value = try container.decodeIfPresent([Operation.Warnings].self, forKey: .warnings) {
+        self.warnings = value
+      }
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(
+        self.getHealthOperationMetadata, forKey: .getHealthOperationMetadata)
+      try container.encodeIfPresent(
+        self.getVersionOperationMetadata, forKey: .getVersionOperationMetadata)
+      try container.encodeIfPresent(self.httpErrorMessage, forKey: .httpErrorMessage)
+      try container.encodeIfPresent(self.httpErrorStatusCode, forKey: .httpErrorStatusCode)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.insertTime, forKey: .insertTime)
+      try container.encodeIfPresent(
+        self.instancesBulkInsertOperationMetadata, forKey: .instancesBulkInsertOperationMetadata)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.operationGroupId, forKey: .operationGroupId)
+      try container.encodeIfPresent(self.operationType, forKey: .operationType)
+      try container.encodeIfPresent(self.progress, forKey: .progress)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(
+        self.setCommonInstanceMetadataOperationMetadata,
+        forKey: .setCommonInstanceMetadataOperationMetadata)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.statusMessage, forKey: .statusMessage)
+      try container.encodeIfPresent(self.targetId, forKey: .targetId)
+      try container.encodeIfPresent(self.targetLink, forKey: .targetLink)
+      try container.encodeIfPresent(self.user, forKey: .user)
+      try container.encode(self.warnings, forKey: .warnings)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The message type for the [error][google.cloud.compute.v1.Operation.error] field.
     ///
     /// [google.cloud.compute.v1.Operation.error]: <doc:Operation/Error>
@@ -189,6 +349,8 @@
       /// [Output Only] The array of errors encountered while processing this
       /// operation.
       public var errors: [Operation.Error.Errors] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Error`.
       public init() {}
@@ -204,6 +366,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let errors = CodingKeys(stringValue: "errors")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "errors"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Operation.Error.Errors].self, forKey: .errors)
+        {
+          self.errors = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.errors, forKey: .errors)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [errors][google.cloud.compute.v1.Operation.error.errors] field.
@@ -229,6 +424,9 @@
         /// [Output Only] An optional, human-readable error message.
         public var message: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Errors`.
         public init() {}
 
@@ -243,6 +441,52 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let code = CodingKeys(stringValue: "code")
+          static let errorDetails = CodingKeys(stringValue: "errorDetails")
+          static let location = CodingKeys(stringValue: "location")
+          static let message = CodingKeys(stringValue: "message")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "code",
+            "errorDetails",
+            "location",
+            "message",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.code = try container.decodeIfPresent(Swift.String.self, forKey: .code)
+          if let value = try container.decodeIfPresent(
+            [Operation.Error.Errors.ErrorDetails].self, forKey: .errorDetails)
+          {
+            self.errorDetails = value
+          }
+          self.location = try container.decodeIfPresent(Swift.String.self, forKey: .location)
+          self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.code, forKey: .code)
+          try container.encode(self.errorDetails, forKey: .errorDetails)
+          try container.encodeIfPresent(self.location, forKey: .location)
+          try container.encodeIfPresent(self.message, forKey: .message)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// The message type for the [errorDetails][google.cloud.compute.v1.Operation.error.errors.errorDetails] field.
@@ -263,6 +507,9 @@
           /// Details about quota limits and metrics when a quota is exceeded.
           public var quotaInfo: QuotaExceededInfo? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `ErrorDetails`.
           public init() {}
 
@@ -277,6 +524,50 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let errorInfo = CodingKeys(stringValue: "errorInfo")
+            static let help = CodingKeys(stringValue: "help")
+            static let localizedMessage = CodingKeys(stringValue: "localizedMessage")
+            static let quotaInfo = CodingKeys(stringValue: "quotaInfo")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "errorInfo",
+              "help",
+              "localizedMessage",
+              "quotaInfo",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.errorInfo = try container.decodeIfPresent(ErrorInfo.self, forKey: .errorInfo)
+            self.help = try container.decodeIfPresent(Help.self, forKey: .help)
+            self.localizedMessage = try container.decodeIfPresent(
+              LocalizedMessage.self, forKey: .localizedMessage)
+            self.quotaInfo = try container.decodeIfPresent(
+              QuotaExceededInfo.self, forKey: .quotaInfo)
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(self.errorInfo, forKey: .errorInfo)
+            try container.encodeIfPresent(self.help, forKey: .help)
+            try container.encodeIfPresent(self.localizedMessage, forKey: .localizedMessage)
+            try container.encodeIfPresent(self.quotaInfo, forKey: .quotaInfo)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -336,6 +627,8 @@
       /// [Output Only] A human-readable description of the warning code.
       public var message: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Warnings`.
       public init() {}
 
@@ -350,6 +643,47 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let code = CodingKeys(stringValue: "code")
+        static let data = CodingKeys(stringValue: "data")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "code",
+          "data",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decodeIfPresent(Operation.Warnings.Code.self, forKey: .code)
+        if let value = try container.decodeIfPresent([Operation.Warnings.Data].self, forKey: .data)
+        {
+          self.data = value
+        }
+        self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.data, forKey: .data)
+        try container.encodeIfPresent(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [data][google.cloud.compute.v1.Operation.warnings.data] field.
@@ -370,6 +704,9 @@
         /// [Output Only] A warning data value corresponding to the key.
         public var value: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Data`.
         public init() {}
 
@@ -384,6 +721,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
+          self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

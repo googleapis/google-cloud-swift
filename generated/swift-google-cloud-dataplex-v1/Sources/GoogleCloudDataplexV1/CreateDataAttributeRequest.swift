@@ -40,6 +40,8 @@ public struct CreateDataAttributeRequest: Codable, Equatable, GoogleCloudWKT._An
   /// The default is false.
   public var validateOnly: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDataAttributeRequest`.
   public init() {}
 
@@ -54,6 +56,54 @@ public struct CreateDataAttributeRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let dataAttributeId = CodingKeys(stringValue: "dataAttributeId")
+    static let dataAttribute = CodingKeys(stringValue: "dataAttribute")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "dataAttributeId",
+      "dataAttribute",
+      "validateOnly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataAttributeId) {
+      self.dataAttributeId = value
+    }
+    self.dataAttribute = try container.decodeIfPresent(DataAttribute.self, forKey: .dataAttribute)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.dataAttributeId, forKey: .dataAttributeId)
+    try container.encodeIfPresent(self.dataAttribute, forKey: .dataAttribute)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

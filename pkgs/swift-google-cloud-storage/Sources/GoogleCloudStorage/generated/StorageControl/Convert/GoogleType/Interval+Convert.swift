@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension GoogleType.Interval {
@@ -29,12 +29,16 @@ extension GoogleType.Interval {
     self.init()
     self.startTime = proto.hasStartTime ? try .init(proto: proto.startTime) : nil
     self.endTime = proto.hasEndTime ? try .init(proto: proto.endTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let startTime = self.startTime { proto.startTime = try startTime.toProto() }
     if let endTime = self.endTime { proto.endTime = try endTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

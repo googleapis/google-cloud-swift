@@ -90,6 +90,8 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The Fraud Prevention setting for this assessment.
   public var fraudPrevention: Event.FraudPrevention = Event.FraudPrevention()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Event`.
   public init() {}
 
@@ -104,6 +106,128 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let token = CodingKeys(stringValue: "token")
+    static let siteKey = CodingKeys(stringValue: "siteKey")
+    static let userAgent = CodingKeys(stringValue: "userAgent")
+    static let userIpAddress = CodingKeys(stringValue: "userIpAddress")
+    static let expectedAction = CodingKeys(stringValue: "expectedAction")
+    static let hashedAccountId = CodingKeys(stringValue: "hashedAccountId")
+    static let express = CodingKeys(stringValue: "express")
+    static let requestedUri = CodingKeys(stringValue: "requestedUri")
+    static let wafTokenAssessment = CodingKeys(stringValue: "wafTokenAssessment")
+    static let ja3 = CodingKeys(stringValue: "ja3")
+    static let ja4 = CodingKeys(stringValue: "ja4")
+    static let headers = CodingKeys(stringValue: "headers")
+    static let firewallPolicyEvaluation = CodingKeys(stringValue: "firewallPolicyEvaluation")
+    static let transactionData = CodingKeys(stringValue: "transactionData")
+    static let userInfo = CodingKeys(stringValue: "userInfo")
+    static let fraudPrevention = CodingKeys(stringValue: "fraudPrevention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "token",
+      "siteKey",
+      "userAgent",
+      "userIpAddress",
+      "expectedAction",
+      "hashedAccountId",
+      "express",
+      "requestedUri",
+      "wafTokenAssessment",
+      "ja3",
+      "ja4",
+      "headers",
+      "firewallPolicyEvaluation",
+      "transactionData",
+      "userInfo",
+      "fraudPrevention",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .token) {
+      self.token = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .siteKey) {
+      self.siteKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgent) {
+      self.userAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userIpAddress) {
+      self.userIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expectedAction) {
+      self.expectedAction = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .hashedAccountId) {
+      self.hashedAccountId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .express) {
+      self.express = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestedUri) {
+      self.requestedUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .wafTokenAssessment) {
+      self.wafTokenAssessment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ja3) {
+      self.ja3 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ja4) {
+      self.ja4 = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .headers) {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .firewallPolicyEvaluation)
+    {
+      self.firewallPolicyEvaluation = value
+    }
+    self.transactionData = try container.decodeIfPresent(
+      TransactionData.self, forKey: .transactionData)
+    self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
+    if let value = try container.decodeIfPresent(
+      Event.FraudPrevention.self, forKey: .fraudPrevention)
+    {
+      self.fraudPrevention = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.token, forKey: .token)
+    try container.encode(self.siteKey, forKey: .siteKey)
+    try container.encode(self.userAgent, forKey: .userAgent)
+    try container.encode(self.userIpAddress, forKey: .userIpAddress)
+    try container.encode(self.expectedAction, forKey: .expectedAction)
+    try container.encode(self.hashedAccountId, forKey: .hashedAccountId)
+    try container.encode(self.express, forKey: .express)
+    try container.encode(self.requestedUri, forKey: .requestedUri)
+    try container.encode(self.wafTokenAssessment, forKey: .wafTokenAssessment)
+    try container.encode(self.ja3, forKey: .ja3)
+    try container.encode(self.ja4, forKey: .ja4)
+    try container.encode(self.headers, forKey: .headers)
+    try container.encode(self.firewallPolicyEvaluation, forKey: .firewallPolicyEvaluation)
+    try container.encodeIfPresent(self.transactionData, forKey: .transactionData)
+    try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
+    try container.encode(self.fraudPrevention, forKey: .fraudPrevention)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Setting that controls Fraud Prevention assessments.

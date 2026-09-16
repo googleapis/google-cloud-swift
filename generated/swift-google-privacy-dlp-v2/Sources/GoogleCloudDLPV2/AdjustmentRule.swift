@@ -28,6 +28,8 @@ public struct AdjustmentRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Condition under which the adjustment rule is applied.
   public var conditions: OneOf_Conditions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdjustmentRule`.
   public init() {}
 
@@ -44,10 +46,21 @@ public struct AdjustmentRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case adjustByMatchingInfoTypes = "adjustByMatchingInfoTypes"
-    case adjustByImageFindings = "adjustByImageFindings"
-    case likelihoodAdjustment = "likelihoodAdjustment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adjustByMatchingInfoTypes = CodingKeys(stringValue: "adjustByMatchingInfoTypes")
+    static let adjustByImageFindings = CodingKeys(stringValue: "adjustByImageFindings")
+    static let likelihoodAdjustment = CodingKeys(stringValue: "likelihoodAdjustment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adjustByMatchingInfoTypes",
+      "adjustByImageFindings",
+      "likelihoodAdjustment",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,11 +89,15 @@ public struct AdjustmentRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try conditionsCheckAndSet(.adjustByImageFindings(adjustByImageFindings))
     }
     self.conditions = conditions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.likelihoodAdjustment, forKey: .likelihoodAdjustment)
+    try container.encodeIfPresent(self.likelihoodAdjustment, forKey: .likelihoodAdjustment)
 
     if let choice = self.conditions {
       switch choice {
@@ -89,6 +106,9 @@ public struct AdjustmentRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .adjustByImageFindings(let value):
         try container.encode(value, forKey: .adjustByImageFindings)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

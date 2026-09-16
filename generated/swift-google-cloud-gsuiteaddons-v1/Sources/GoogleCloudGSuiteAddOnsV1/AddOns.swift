@@ -52,6 +52,8 @@ public struct AddOns: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options for sending requests to add-on HTTP endpoints
   public var httpOptions: GoogleAppsScriptType.HttpOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddOns`.
   public init() {}
 
@@ -66,6 +68,72 @@ public struct AddOns: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let common = CodingKeys(stringValue: "common")
+    static let gmail = CodingKeys(stringValue: "gmail")
+    static let drive = CodingKeys(stringValue: "drive")
+    static let calendar = CodingKeys(stringValue: "calendar")
+    static let docs = CodingKeys(stringValue: "docs")
+    static let sheets = CodingKeys(stringValue: "sheets")
+    static let slides = CodingKeys(stringValue: "slides")
+    static let httpOptions = CodingKeys(stringValue: "httpOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "common",
+      "gmail",
+      "drive",
+      "calendar",
+      "docs",
+      "sheets",
+      "slides",
+      "httpOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.common = try container.decodeIfPresent(
+      GoogleAppsScriptType.CommonAddOnManifest.self, forKey: .common)
+    self.gmail = try container.decodeIfPresent(
+      GoogleAppsScriptTypeGmail.GmailAddOnManifest.self, forKey: .gmail)
+    self.drive = try container.decodeIfPresent(
+      GoogleAppsScriptTypeDrive.DriveAddOnManifest.self, forKey: .drive)
+    self.calendar = try container.decodeIfPresent(
+      GoogleAppsScriptTypeCalendar.CalendarAddOnManifest.self, forKey: .calendar)
+    self.docs = try container.decodeIfPresent(
+      GoogleAppsScriptTypeDocs.DocsAddOnManifest.self, forKey: .docs)
+    self.sheets = try container.decodeIfPresent(
+      GoogleAppsScriptTypeSheets.SheetsAddOnManifest.self, forKey: .sheets)
+    self.slides = try container.decodeIfPresent(
+      GoogleAppsScriptTypeSlides.SlidesAddOnManifest.self, forKey: .slides)
+    self.httpOptions = try container.decodeIfPresent(
+      GoogleAppsScriptType.HttpOptions.self, forKey: .httpOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.common, forKey: .common)
+    try container.encodeIfPresent(self.gmail, forKey: .gmail)
+    try container.encodeIfPresent(self.drive, forKey: .drive)
+    try container.encodeIfPresent(self.calendar, forKey: .calendar)
+    try container.encodeIfPresent(self.docs, forKey: .docs)
+    try container.encodeIfPresent(self.sheets, forKey: .sheets)
+    try container.encodeIfPresent(self.slides, forKey: .slides)
+    try container.encodeIfPresent(self.httpOptions, forKey: .httpOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

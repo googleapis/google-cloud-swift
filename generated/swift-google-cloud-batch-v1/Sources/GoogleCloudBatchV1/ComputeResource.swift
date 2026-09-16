@@ -68,6 +68,8 @@ public struct ComputeResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Extra boot disk size in MiB for each task.
   public var bootDiskMib: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeResource`.
   public init() {}
 
@@ -82,6 +84,50 @@ public struct ComputeResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuMilli = CodingKeys(stringValue: "cpuMilli")
+    static let memoryMib = CodingKeys(stringValue: "memoryMib")
+    static let bootDiskMib = CodingKeys(stringValue: "bootDiskMib")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuMilli",
+      "memoryMib",
+      "bootDiskMib",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .cpuMilli) {
+      self.cpuMilli = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .memoryMib) {
+      self.memoryMib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bootDiskMib) {
+      self.bootDiskMib = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuMilli, forKey: .cpuMilli)
+    try container.encode(self.memoryMib, forKey: .memoryMib)
+    try container.encode(self.bootDiskMib, forKey: .bootDiskMib)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

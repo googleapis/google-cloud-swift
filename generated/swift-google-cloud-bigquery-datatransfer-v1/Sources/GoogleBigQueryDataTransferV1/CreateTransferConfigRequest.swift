@@ -90,6 +90,8 @@ public struct CreateTransferConfigRequest: Codable, Equatable, GoogleCloudWKT._A
   /// accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).
   public var serviceAccountName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateTransferConfigRequest`.
   public init() {}
 
@@ -104,6 +106,61 @@ public struct CreateTransferConfigRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let transferConfig = CodingKeys(stringValue: "transferConfig")
+    static let authorizationCode = CodingKeys(stringValue: "authorizationCode")
+    static let versionInfo = CodingKeys(stringValue: "versionInfo")
+    static let serviceAccountName = CodingKeys(stringValue: "serviceAccountName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "transferConfig",
+      "authorizationCode",
+      "versionInfo",
+      "serviceAccountName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.transferConfig = try container.decodeIfPresent(
+      TransferConfig.self, forKey: .transferConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizationCode) {
+      self.authorizationCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionInfo) {
+      self.versionInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountName) {
+      self.serviceAccountName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.transferConfig, forKey: .transferConfig)
+    try container.encode(self.authorizationCode, forKey: .authorizationCode)
+    try container.encode(self.versionInfo, forKey: .versionInfo)
+    try container.encode(self.serviceAccountName, forKey: .serviceAccountName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

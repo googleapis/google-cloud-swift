@@ -50,6 +50,8 @@ public struct GoldengateOracleNosqlConnectionProperties: Codable, Equatable, Goo
   /// using a resource principal.
   public var useResourcePrincipal: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateOracleNosqlConnectionProperties`.
   public init() {}
 
@@ -64,6 +66,82 @@ public struct GoldengateOracleNosqlConnectionProperties: Codable, Equatable, Goo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let tenancyId = CodingKeys(stringValue: "tenancyId")
+    static let region = CodingKeys(stringValue: "region")
+    static let userId = CodingKeys(stringValue: "userId")
+    static let privateKeyFile = CodingKeys(stringValue: "privateKeyFile")
+    static let privateKeyPassphraseSecret = CodingKeys(stringValue: "privateKeyPassphraseSecret")
+    static let publicKeyFingerprint = CodingKeys(stringValue: "publicKeyFingerprint")
+    static let useResourcePrincipal = CodingKeys(stringValue: "useResourcePrincipal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "technologyType",
+      "tenancyId",
+      "region",
+      "userId",
+      "privateKeyFile",
+      "privateKeyPassphraseSecret",
+      "publicKeyFingerprint",
+      "useResourcePrincipal",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenancyId) {
+      self.tenancyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userId) {
+      self.userId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKeyFile) {
+      self.privateKeyFile = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .privateKeyPassphraseSecret)
+    {
+      self.privateKeyPassphraseSecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicKeyFingerprint) {
+      self.publicKeyFingerprint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useResourcePrincipal) {
+      self.useResourcePrincipal = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.technologyType, forKey: .technologyType)
+    try container.encode(self.tenancyId, forKey: .tenancyId)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.userId, forKey: .userId)
+    try container.encode(self.privateKeyFile, forKey: .privateKeyFile)
+    try container.encode(self.privateKeyPassphraseSecret, forKey: .privateKeyPassphraseSecret)
+    try container.encode(self.publicKeyFingerprint, forKey: .publicKeyFingerprint)
+    try container.encode(self.useResourcePrincipal, forKey: .useResourcePrincipal)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

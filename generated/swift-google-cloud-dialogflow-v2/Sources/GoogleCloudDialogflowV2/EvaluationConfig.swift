@@ -28,6 +28,8 @@
     /// Specific configurations for different models in order to do evaluation.
     public var modelSpecificConfig: OneOf_ModelSpecificConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluationConfig`.
     public init() {}
 
@@ -44,15 +46,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case datasets = "datasets"
-      case smartReplyConfig = "smartReplyConfig"
-      case smartComposeConfig = "smartComposeConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datasets = CodingKeys(stringValue: "datasets")
+      static let smartReplyConfig = CodingKeys(stringValue: "smartReplyConfig")
+      static let smartComposeConfig = CodingKeys(stringValue: "smartComposeConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datasets",
+        "smartReplyConfig",
+        "smartComposeConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.datasets = try container.decode([InputDataset].self, forKey: .datasets)
+      if let value = try container.decodeIfPresent([InputDataset].self, forKey: .datasets) {
+        self.datasets = value
+      }
 
       var modelSpecificConfig: OneOf_ModelSpecificConfig? = nil
       let modelSpecificConfigCheckAndSet = {
@@ -75,6 +90,10 @@
         try modelSpecificConfigCheckAndSet(.smartComposeConfig(smartComposeConfig))
       }
       self.modelSpecificConfig = modelSpecificConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@
         case .smartComposeConfig(let value):
           try container.encode(value, forKey: .smartComposeConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -106,6 +128,8 @@
       /// max_result_count results as the final results to evaluate.
       public var maxResultCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SmartReplyConfig`.
       public init() {}
 
@@ -120,6 +144,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let allowlistDocument = CodingKeys(stringValue: "allowlistDocument")
+        static let maxResultCount = CodingKeys(stringValue: "maxResultCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "allowlistDocument",
+          "maxResultCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allowlistDocument)
+        {
+          self.allowlistDocument = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResultCount) {
+          self.maxResultCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.allowlistDocument, forKey: .allowlistDocument)
+        try container.encode(self.maxResultCount, forKey: .maxResultCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -148,6 +211,8 @@
       /// max_result_count results as the final results to evaluate.
       public var maxResultCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SmartComposeConfig`.
       public init() {}
 
@@ -162,6 +227,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let allowlistDocument = CodingKeys(stringValue: "allowlistDocument")
+        static let maxResultCount = CodingKeys(stringValue: "maxResultCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "allowlistDocument",
+          "maxResultCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allowlistDocument)
+        {
+          self.allowlistDocument = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResultCount) {
+          self.maxResultCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.allowlistDocument, forKey: .allowlistDocument)
+        try container.encode(self.maxResultCount, forKey: .maxResultCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

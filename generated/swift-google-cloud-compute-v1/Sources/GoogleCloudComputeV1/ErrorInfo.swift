@@ -71,6 +71,8 @@
     /// UPPER_SNAKE_CASE.
     public var reason: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ErrorInfo`.
     public init() {}
 
@@ -85,6 +87,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let domain = CodingKeys(stringValue: "domain")
+      static let metadatas = CodingKeys(stringValue: "metadatas")
+      static let reason = CodingKeys(stringValue: "reason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "domain",
+        "metadatas",
+        "reason",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.domain = try container.decodeIfPresent(Swift.String.self, forKey: .domain)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .metadatas)
+      {
+        self.metadatas = value
+      }
+      self.reason = try container.decodeIfPresent(Swift.String.self, forKey: .reason)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.domain, forKey: .domain)
+      try container.encode(self.metadatas, forKey: .metadatas)
+      try container.encodeIfPresent(self.reason, forKey: .reason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

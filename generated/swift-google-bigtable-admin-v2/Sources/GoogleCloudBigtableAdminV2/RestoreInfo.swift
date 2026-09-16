@@ -27,6 +27,8 @@ public struct RestoreInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Information about the source used to restore the table.
   public var sourceInfo: OneOf_SourceInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreInfo`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct RestoreInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceType = "sourceType"
-    case backupInfo = "backupInfo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let backupInfo = CodingKeys(stringValue: "backupInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceType",
+      "backupInfo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sourceType = try container.decode(RestoreSourceType.self, forKey: .sourceType)
+    if let value = try container.decodeIfPresent(RestoreSourceType.self, forKey: .sourceType) {
+      self.sourceType = value
+    }
 
     var sourceInfo: OneOf_SourceInfo? = nil
     let sourceInfoCheckAndSet = {
@@ -66,6 +80,10 @@ public struct RestoreInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceInfoCheckAndSet(.backupInfo(backupInfo))
     }
     self.sourceInfo = sourceInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +95,9 @@ public struct RestoreInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backupInfo(let value):
         try container.encode(value, forKey: .backupInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

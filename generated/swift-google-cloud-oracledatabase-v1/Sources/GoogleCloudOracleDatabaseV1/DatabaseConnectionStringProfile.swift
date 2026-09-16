@@ -58,6 +58,8 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
   /// Output only. The value of the connection string.
   public var value: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseConnectionStringProfile`.
   public init() {}
 
@@ -74,35 +76,80 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case consumerGroup = "consumerGroup"
-    case displayName = "displayName"
-    case hostFormat = "hostFormat"
-    case isRegional = "isRegional"
-    case `protocol` = "protocol"
-    case sessionMode = "sessionMode"
-    case syntaxFormat = "syntaxFormat"
-    case tlsAuthentication = "tlsAuthentication"
-    case value = "value"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let consumerGroup = CodingKeys(stringValue: "consumerGroup")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let hostFormat = CodingKeys(stringValue: "hostFormat")
+    static let isRegional = CodingKeys(stringValue: "isRegional")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let sessionMode = CodingKeys(stringValue: "sessionMode")
+    static let syntaxFormat = CodingKeys(stringValue: "syntaxFormat")
+    static let tlsAuthentication = CodingKeys(stringValue: "tlsAuthentication")
+    static let value = CodingKeys(stringValue: "value")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "consumerGroup",
+      "displayName",
+      "hostFormat",
+      "isRegional",
+      "protocol",
+      "sessionMode",
+      "syntaxFormat",
+      "tlsAuthentication",
+      "value",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.consumerGroup = try container.decode(
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.ConsumerGroup.self, forKey: .consumerGroup)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.hostFormat = try container.decode(
+    {
+      self.consumerGroup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.HostFormat.self, forKey: .hostFormat)
-    self.isRegional = try container.decode(Swift.Bool.self, forKey: .isRegional)
-    self.`protocol` = try container.decode(
+    {
+      self.hostFormat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRegional) {
+      self.isRegional = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.Protocol_.self, forKey: .`protocol`)
-    self.sessionMode = try container.decode(
+    {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.SessionMode.self, forKey: .sessionMode)
-    self.syntaxFormat = try container.decode(
+    {
+      self.sessionMode = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.SyntaxFormat.self, forKey: .syntaxFormat)
-    self.tlsAuthentication = try container.decode(
+    {
+      self.syntaxFormat = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.TLSAuthentication.self, forKey: .tlsAuthentication)
-    self.value = try container.decode(Swift.String.self, forKey: .value)
+    {
+      self.tlsAuthentication = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+      self.value = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -116,6 +163,9 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     try container.encode(self.syntaxFormat, forKey: .syntaxFormat)
     try container.encode(self.tlsAuthentication, forKey: .tlsAuthentication)
     try container.encode(self.value, forKey: .value)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various consumer groups available in the connection string profile.

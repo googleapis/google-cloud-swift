@@ -106,6 +106,8 @@
     /// Example: ['vertex-ai-ip-range'].
     public var reservedIpRanges: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PersistentResource`.
     public init() {}
 
@@ -120,6 +122,115 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let resourcePools = CodingKeys(stringValue: "resourcePools")
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let network = CodingKeys(stringValue: "network")
+      static let pscInterfaceConfig = CodingKeys(stringValue: "pscInterfaceConfig")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let resourceRuntimeSpec = CodingKeys(stringValue: "resourceRuntimeSpec")
+      static let resourceRuntime = CodingKeys(stringValue: "resourceRuntime")
+      static let reservedIpRanges = CodingKeys(stringValue: "reservedIpRanges")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "resourcePools",
+        "state",
+        "error",
+        "createTime",
+        "startTime",
+        "updateTime",
+        "labels",
+        "network",
+        "pscInterfaceConfig",
+        "encryptionSpec",
+        "resourceRuntimeSpec",
+        "resourceRuntime",
+        "reservedIpRanges",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent([ResourcePool].self, forKey: .resourcePools) {
+        self.resourcePools = value
+      }
+      if let value = try container.decodeIfPresent(PersistentResource.State.self, forKey: .state) {
+        self.state = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      self.pscInterfaceConfig = try container.decodeIfPresent(
+        PscInterfaceConfig.self, forKey: .pscInterfaceConfig)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      self.resourceRuntimeSpec = try container.decodeIfPresent(
+        ResourceRuntimeSpec.self, forKey: .resourceRuntimeSpec)
+      self.resourceRuntime = try container.decodeIfPresent(
+        ResourceRuntime.self, forKey: .resourceRuntime)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reservedIpRanges) {
+        self.reservedIpRanges = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.resourcePools, forKey: .resourcePools)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.network, forKey: .network)
+      try container.encodeIfPresent(self.pscInterfaceConfig, forKey: .pscInterfaceConfig)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.resourceRuntimeSpec, forKey: .resourceRuntimeSpec)
+      try container.encodeIfPresent(self.resourceRuntime, forKey: .resourceRuntime)
+      try container.encode(self.reservedIpRanges, forKey: .reservedIpRanges)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes the PersistentResource state.

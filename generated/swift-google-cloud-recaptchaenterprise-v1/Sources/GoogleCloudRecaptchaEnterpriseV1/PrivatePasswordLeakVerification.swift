@@ -41,6 +41,8 @@ public struct PrivatePasswordLeakVerification: Codable, Equatable, GoogleCloudWK
   /// password leaks within `encrypted_leak_match_prefixes`.
   public var reencryptedUserCredentialsHash: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivatePasswordLeakVerification`.
   public init() {}
 
@@ -55,6 +57,65 @@ public struct PrivatePasswordLeakVerification: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lookupHashPrefix = CodingKeys(stringValue: "lookupHashPrefix")
+    static let encryptedUserCredentialsHash = CodingKeys(
+      stringValue: "encryptedUserCredentialsHash")
+    static let encryptedLeakMatchPrefixes = CodingKeys(stringValue: "encryptedLeakMatchPrefixes")
+    static let reencryptedUserCredentialsHash = CodingKeys(
+      stringValue: "reencryptedUserCredentialsHash")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lookupHashPrefix",
+      "encryptedUserCredentialsHash",
+      "encryptedLeakMatchPrefixes",
+      "reencryptedUserCredentialsHash",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .lookupHashPrefix) {
+      self.lookupHashPrefix = value
+    }
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .encryptedUserCredentialsHash)
+    {
+      self.encryptedUserCredentialsHash = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Foundation.Data].self, forKey: .encryptedLeakMatchPrefixes)
+    {
+      self.encryptedLeakMatchPrefixes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .reencryptedUserCredentialsHash)
+    {
+      self.reencryptedUserCredentialsHash = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.lookupHashPrefix, forKey: .lookupHashPrefix)
+    try container.encode(self.encryptedUserCredentialsHash, forKey: .encryptedUserCredentialsHash)
+    try container.encode(self.encryptedLeakMatchPrefixes, forKey: .encryptedLeakMatchPrefixes)
+    try container.encode(
+      self.reencryptedUserCredentialsHash, forKey: .reencryptedUserCredentialsHash)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

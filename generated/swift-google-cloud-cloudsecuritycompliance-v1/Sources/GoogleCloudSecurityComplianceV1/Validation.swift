@@ -24,6 +24,8 @@ public struct Validation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Defines validators for parameter values.
   public var constraint: OneOf_Constraint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Validation`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct Validation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case allowedValues = "allowedValues"
-    case intRange = "intRange"
-    case regexpPattern = "regexpPattern"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowedValues = CodingKeys(stringValue: "allowedValues")
+    static let intRange = CodingKeys(stringValue: "intRange")
+    static let regexpPattern = CodingKeys(stringValue: "regexpPattern")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowedValues",
+      "intRange",
+      "regexpPattern",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,6 +86,10 @@ public struct Validation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try constraintCheckAndSet(.regexpPattern(regexpPattern))
     }
     self.constraint = constraint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +104,9 @@ public struct Validation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .regexpPattern(let value):
         try container.encode(value, forKey: .regexpPattern)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

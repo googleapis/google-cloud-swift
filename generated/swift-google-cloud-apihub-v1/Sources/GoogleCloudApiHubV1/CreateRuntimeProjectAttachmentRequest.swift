@@ -39,6 +39,8 @@ public struct CreateRuntimeProjectAttachmentRequest: Codable, Equatable, GoogleC
   /// Required. The Runtime Project Attachment to create.
   public var runtimeProjectAttachment: RuntimeProjectAttachment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateRuntimeProjectAttachmentRequest`.
   public init() {}
 
@@ -53,6 +55,51 @@ public struct CreateRuntimeProjectAttachmentRequest: Codable, Equatable, GoogleC
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let runtimeProjectAttachmentId = CodingKeys(stringValue: "runtimeProjectAttachmentId")
+    static let runtimeProjectAttachment = CodingKeys(stringValue: "runtimeProjectAttachment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "runtimeProjectAttachmentId",
+      "runtimeProjectAttachment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .runtimeProjectAttachmentId)
+    {
+      self.runtimeProjectAttachmentId = value
+    }
+    self.runtimeProjectAttachment = try container.decodeIfPresent(
+      RuntimeProjectAttachment.self, forKey: .runtimeProjectAttachment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.runtimeProjectAttachmentId, forKey: .runtimeProjectAttachmentId)
+    try container.encodeIfPresent(self.runtimeProjectAttachment, forKey: .runtimeProjectAttachment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

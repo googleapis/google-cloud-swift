@@ -33,6 +33,8 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Metadata of the schema.
   public var metadata: DocumentSchema.Metadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentSchema`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let entityTypes = CodingKeys(stringValue: "entityTypes")
+    static let metadata = CodingKeys(stringValue: "metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "description",
+      "entityTypes",
+      "metadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DocumentSchema.EntityType].self, forKey: .entityTypes)
+    {
+      self.entityTypes = value
+    }
+    self.metadata = try container.decodeIfPresent(DocumentSchema.Metadata.self, forKey: .metadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.entityTypes, forKey: .entityTypes)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// EntityType is the wrapper of a label of the corresponding model with
@@ -82,6 +134,8 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public var valueSource: OneOf_ValueSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EntityType`.
     public init() {}
 
@@ -98,21 +152,43 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case enumValues = "enumValues"
-      case displayName = "displayName"
-      case name = "name"
-      case baseTypes = "baseTypes"
-      case properties = "properties"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enumValues = CodingKeys(stringValue: "enumValues")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let name = CodingKeys(stringValue: "name")
+      static let baseTypes = CodingKeys(stringValue: "baseTypes")
+      static let properties = CodingKeys(stringValue: "properties")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enumValues",
+        "displayName",
+        "name",
+        "baseTypes",
+        "properties",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.baseTypes = try container.decode([Swift.String].self, forKey: .baseTypes)
-      self.properties = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .baseTypes) {
+        self.baseTypes = value
+      }
+      if let value = try container.decodeIfPresent(
         [DocumentSchema.EntityType.Property].self, forKey: .properties)
+      {
+        self.properties = value
+      }
 
       var valueSource: OneOf_ValueSource? = nil
       let valueSourceCheckAndSet = {
@@ -130,6 +206,10 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try valueSourceCheckAndSet(.enumValues(enumValues))
       }
       self.valueSource = valueSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -145,6 +225,9 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .enumValues)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the a list of enum values.
@@ -153,6 +236,8 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     {
       /// The individual values that this enum values type can include.
       public var values: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `EnumValues`.
       public init() {}
@@ -168,6 +253,38 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let values = CodingKeys(stringValue: "values")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "values"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+          self.values = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.values, forKey: .values)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -205,6 +322,8 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public var method: DocumentSchema.EntityType.Property.Method = DocumentSchema.EntityType
         .Property.Method()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Property`.
       public init() {}
 
@@ -219,6 +338,66 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let valueType = CodingKeys(stringValue: "valueType")
+        static let occurrenceType = CodingKeys(stringValue: "occurrenceType")
+        static let method = CodingKeys(stringValue: "method")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "displayName",
+          "valueType",
+          "occurrenceType",
+          "method",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .valueType) {
+          self.valueType = value
+        }
+        if let value = try container.decodeIfPresent(
+          DocumentSchema.EntityType.Property.OccurrenceType.self, forKey: .occurrenceType)
+        {
+          self.occurrenceType = value
+        }
+        if let value = try container.decodeIfPresent(
+          DocumentSchema.EntityType.Property.Method.self, forKey: .method)
+        {
+          self.method = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encode(self.valueType, forKey: .valueType)
+        try container.encode(self.occurrenceType, forKey: .occurrenceType)
+        try container.encode(self.method, forKey: .method)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Types of occurrences of the entity type in the document.  This
@@ -509,6 +688,8 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `DocumentSchema.EntityType.Property.name` will not be checked.
     public var skipNamingValidation: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Metadata`.
     public init() {}
 
@@ -523,6 +704,61 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let documentSplitter = CodingKeys(stringValue: "documentSplitter")
+      static let documentAllowMultipleLabels = CodingKeys(
+        stringValue: "documentAllowMultipleLabels")
+      static let prefixedNamingOnProperties = CodingKeys(stringValue: "prefixedNamingOnProperties")
+      static let skipNamingValidation = CodingKeys(stringValue: "skipNamingValidation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "documentSplitter",
+        "documentAllowMultipleLabels",
+        "prefixedNamingOnProperties",
+        "skipNamingValidation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .documentSplitter) {
+        self.documentSplitter = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .documentAllowMultipleLabels)
+      {
+        self.documentAllowMultipleLabels = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .prefixedNamingOnProperties)
+      {
+        self.prefixedNamingOnProperties = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipNamingValidation) {
+        self.skipNamingValidation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.documentSplitter, forKey: .documentSplitter)
+      try container.encode(self.documentAllowMultipleLabels, forKey: .documentAllowMultipleLabels)
+      try container.encode(self.prefixedNamingOnProperties, forKey: .prefixedNamingOnProperties)
+      try container.encode(self.skipNamingValidation, forKey: .skipNamingValidation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

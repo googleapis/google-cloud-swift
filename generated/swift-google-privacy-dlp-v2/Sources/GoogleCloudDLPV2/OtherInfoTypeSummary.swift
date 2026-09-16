@@ -32,6 +32,8 @@ public struct OtherInfoTypeSummary: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// to factors such as low prevalence (subject to change).
   public var excludedFromAnalysis: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OtherInfoTypeSummary`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct OtherInfoTypeSummary: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoType = CodingKeys(stringValue: "infoType")
+    static let estimatedPrevalence = CodingKeys(stringValue: "estimatedPrevalence")
+    static let excludedFromAnalysis = CodingKeys(stringValue: "excludedFromAnalysis")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoType",
+      "estimatedPrevalence",
+      "excludedFromAnalysis",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .estimatedPrevalence) {
+      self.estimatedPrevalence = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .excludedFromAnalysis) {
+      self.excludedFromAnalysis = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.infoType, forKey: .infoType)
+    try container.encode(self.estimatedPrevalence, forKey: .estimatedPrevalence)
+    try container.encode(self.excludedFromAnalysis, forKey: .excludedFromAnalysis)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

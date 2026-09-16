@@ -25,6 +25,8 @@
     /// The model config to use.
     public var modelConfig: OneOf_ModelConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagEmbeddingModelConfig`.
     public init() {}
 
@@ -41,8 +43,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case vertexPredictionEndpoint = "vertexPredictionEndpoint"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let vertexPredictionEndpoint = CodingKeys(stringValue: "vertexPredictionEndpoint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "vertexPredictionEndpoint"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@
         try modelConfigCheckAndSet(.vertexPredictionEndpoint(vertexPredictionEndpoint))
       }
       self.modelConfig = modelConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@
         case .vertexPredictionEndpoint(let value):
           try container.encode(value, forKey: .vertexPredictionEndpoint)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -98,6 +116,8 @@
       /// Present only when the endpoint is not a publisher model.
       public var modelVersionId: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `VertexPredictionEndpoint`.
       public init() {}
 
@@ -112,6 +132,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let endpoint = CodingKeys(stringValue: "endpoint")
+        static let model = CodingKeys(stringValue: "model")
+        static let modelVersionId = CodingKeys(stringValue: "modelVersionId")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "endpoint",
+          "model",
+          "modelVersionId",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+          self.endpoint = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+          self.model = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersionId) {
+          self.modelVersionId = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.endpoint, forKey: .endpoint)
+        try container.encode(self.model, forKey: .model)
+        try container.encode(self.modelVersionId, forKey: .modelVersionId)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

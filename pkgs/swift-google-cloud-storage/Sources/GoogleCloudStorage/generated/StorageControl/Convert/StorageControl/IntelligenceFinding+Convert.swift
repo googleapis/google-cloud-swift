@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleRpc
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension IntelligenceFinding {
@@ -52,6 +52,7 @@ extension IntelligenceFinding {
         self.intelligenceFindingDetails = .storageGrowthAboveTrend(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -89,6 +90,9 @@ extension IntelligenceFinding {
         }
       }
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -102,6 +106,7 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike {
     self.percentageIncrease = proto.percentageIncrease
     self.totalOperationsCount = proto.totalOperationsCount
     self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -109,6 +114,9 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike {
     proto.percentageIncrease = self.percentageIncrease
     proto.totalOperationsCount = self.totalOperationsCount
     proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -130,6 +138,7 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
         self.details = .error(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -149,6 +158,9 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
         }
       }
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -162,11 +174,15 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
   internal init(proto: ProtoType) throws {
     self.init()
     self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -182,6 +198,7 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
     self.`prefix` = proto.`prefix`
     self.percentageIncrease = proto.percentageIncrease
     self.totalOperationsCount = proto.totalOperationsCount
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -189,6 +206,9 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
     proto.`prefix` = self.`prefix`
     proto.percentageIncrease = self.percentageIncrease
     proto.totalOperationsCount = self.totalOperationsCount
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -202,6 +222,7 @@ extension IntelligenceFinding.CrossRegionEgressSpike {
     self.totalEgressBytes = proto.totalEgressBytes
     self.percentageIncrease = proto.percentageIncrease
     self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -209,6 +230,9 @@ extension IntelligenceFinding.CrossRegionEgressSpike {
     proto.totalEgressBytes = self.totalEgressBytes
     proto.percentageIncrease = self.percentageIncrease
     proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -230,6 +254,7 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
         self.details = .error(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -249,6 +274,9 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
         }
       }
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -260,11 +288,15 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribu
   internal init(proto: ProtoType) throws {
     self.init()
     self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -280,6 +312,7 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribu
     self.`prefix` = proto.`prefix`
     self.totalEgressBytes = proto.totalEgressBytes
     self.percentageIncrease = proto.percentageIncrease
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -287,6 +320,9 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribu
     proto.`prefix` = self.`prefix`
     proto.totalEgressBytes = self.totalEgressBytes
     proto.percentageIncrease = self.percentageIncrease
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -300,6 +336,7 @@ extension IntelligenceFinding.ThrottledRequestSpike {
     self.throttledRequests = proto.throttledRequests
     self.percentageIncrease = proto.percentageIncrease
     self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -307,6 +344,9 @@ extension IntelligenceFinding.ThrottledRequestSpike {
     proto.throttledRequests = self.throttledRequests
     proto.percentageIncrease = self.percentageIncrease
     proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -328,6 +368,7 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
         self.details = .error(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -347,6 +388,9 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
         }
       }
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -358,11 +402,15 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribut
   internal init(proto: ProtoType) throws {
     self.init()
     self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -378,6 +426,7 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribut
     self.`prefix` = proto.`prefix`
     self.throttledRequests = proto.throttledRequests
     self.percentageIncrease = proto.percentageIncrease
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -385,6 +434,9 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribut
     proto.`prefix` = self.`prefix`
     proto.throttledRequests = self.throttledRequests
     proto.percentageIncrease = self.percentageIncrease
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -398,6 +450,7 @@ extension IntelligenceFinding.StorageGrowthAboveTrend {
     self.totalStorageGrowthBytes = proto.totalStorageGrowthBytes
     self.percentageIncrease = proto.percentageIncrease
     self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -405,6 +458,9 @@ extension IntelligenceFinding.StorageGrowthAboveTrend {
     proto.totalStorageGrowthBytes = self.totalStorageGrowthBytes
     proto.percentageIncrease = self.percentageIncrease
     proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -424,6 +480,7 @@ extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
         self.details = .error(try .init(proto: value))
       }
     }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -438,6 +495,9 @@ extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
           proto.details = .error(try value.toProto())
         }
       }
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

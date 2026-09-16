@@ -53,6 +53,8 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The configuration details for the specific type of job to run.
   public var job: OneOf_Job? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDlpJobRequest`.
   public init() {}
 
@@ -69,19 +71,38 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case inspectJob = "inspectJob"
-    case riskJob = "riskJob"
-    case jobId = "jobId"
-    case locationId = "locationId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let inspectJob = CodingKeys(stringValue: "inspectJob")
+    static let riskJob = CodingKeys(stringValue: "riskJob")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let locationId = CodingKeys(stringValue: "locationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "inspectJob",
+      "riskJob",
+      "jobId",
+      "locationId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.jobId = try container.decode(Swift.String.self, forKey: .jobId)
-    self.locationId = try container.decode(Swift.String.self, forKey: .locationId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
 
     var job: OneOf_Job? = nil
     let jobCheckAndSet = {
@@ -100,6 +121,10 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try jobCheckAndSet(.riskJob(riskJob))
     }
     self.job = job
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +140,9 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .riskJob(let value):
         try container.encode(value, forKey: .riskJob)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

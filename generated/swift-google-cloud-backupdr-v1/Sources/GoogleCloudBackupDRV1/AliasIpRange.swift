@@ -29,6 +29,8 @@ public struct AliasIpRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// subnetwork is used.
   public var subnetworkRangeName: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AliasIpRange`.
   public init() {}
 
@@ -43,6 +45,41 @@ public struct AliasIpRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+    static let subnetworkRangeName = CodingKeys(stringValue: "subnetworkRangeName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipCidrRange",
+      "subnetworkRangeName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.ipCidrRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange)
+    self.subnetworkRangeName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .subnetworkRangeName)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+    try container.encodeIfPresent(self.subnetworkRangeName, forKey: .subnetworkRangeName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWKT._A
   /// If not set, the conversation will be retained for 365 days.
   public var retentionWindow: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationLoggingSettings`.
   public init() {}
 
@@ -42,6 +44,45 @@ public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let disableConversationLogging = CodingKeys(stringValue: "disableConversationLogging")
+    static let retentionWindow = CodingKeys(stringValue: "retentionWindow")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "disableConversationLogging",
+      "retentionWindow",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .disableConversationLogging)
+    {
+      self.disableConversationLogging = value
+    }
+    self.retentionWindow = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .retentionWindow)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.disableConversationLogging, forKey: .disableConversationLogging)
+    try container.encodeIfPresent(self.retentionWindow, forKey: .retentionWindow)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

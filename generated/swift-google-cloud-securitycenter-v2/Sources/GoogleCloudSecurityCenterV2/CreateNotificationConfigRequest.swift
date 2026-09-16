@@ -38,6 +38,8 @@ public struct CreateNotificationConfigRequest: Codable, Equatable, GoogleCloudWK
   /// resource.
   public var notificationConfig: NotificationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateNotificationConfigRequest`.
   public init() {}
 
@@ -52,6 +54,49 @@ public struct CreateNotificationConfigRequest: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let configId = CodingKeys(stringValue: "configId")
+    static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "configId",
+      "notificationConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .configId) {
+      self.configId = value
+    }
+    self.notificationConfig = try container.decodeIfPresent(
+      NotificationConfig.self, forKey: .notificationConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.configId, forKey: .configId)
+    try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

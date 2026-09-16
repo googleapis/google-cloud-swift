@@ -24,6 +24,8 @@ public struct PostgresqlRdbms: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// PostgreSQL schemas in the database server.
   public var postgresqlSchemas: [PostgresqlSchema] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostgresqlRdbms`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct PostgresqlRdbms: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let postgresqlSchemas = CodingKeys(stringValue: "postgresqlSchemas")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "postgresqlSchemas"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [PostgresqlSchema].self, forKey: .postgresqlSchemas)
+    {
+      self.postgresqlSchemas = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.postgresqlSchemas, forKey: .postgresqlSchemas)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -50,6 +50,8 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This SLI can be evaluated on the basis of availability or latency.
   public var sliCriteria: OneOf_SliCriteria? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BasicSli`.
   public init() {}
 
@@ -66,19 +68,38 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case method = "method"
-    case location = "location"
-    case version = "version"
-    case availability = "availability"
-    case latency = "latency"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let method = CodingKeys(stringValue: "method")
+    static let location = CodingKeys(stringValue: "location")
+    static let version = CodingKeys(stringValue: "version")
+    static let availability = CodingKeys(stringValue: "availability")
+    static let latency = CodingKeys(stringValue: "latency")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "method",
+      "location",
+      "version",
+      "availability",
+      "latency",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.method = try container.decode([Swift.String].self, forKey: .method)
-    self.location = try container.decode([Swift.String].self, forKey: .location)
-    self.version = try container.decode([Swift.String].self, forKey: .version)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .method) {
+      self.method = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .version) {
+      self.version = value
+    }
 
     var sliCriteria: OneOf_SliCriteria? = nil
     let sliCriteriaCheckAndSet = {
@@ -100,6 +121,10 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sliCriteriaCheckAndSet(.latency(latency))
     }
     self.sliCriteria = sliCriteria
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -116,12 +141,17 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .latency)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Future parameters for the availability SLI.
   public struct AvailabilityCriteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AvailabilityCriteria`.
     public init() {}
 
@@ -136,6 +166,30 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -157,6 +211,8 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// that return in no more than `threshold`.
     public var threshold: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LatencyCriteria`.
     public init() {}
 
@@ -171,6 +227,37 @@ public struct BasicSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let threshold = CodingKeys(stringValue: "threshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "threshold"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.threshold = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .threshold)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.threshold, forKey: .threshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

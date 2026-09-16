@@ -31,6 +31,8 @@ public struct CreateCertificateMapRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Required. A definition of the certificate map to create.
   public var certificateMap: CertificateMap? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateCertificateMapRequest`.
   public init() {}
 
@@ -45,6 +47,49 @@ public struct CreateCertificateMapRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let certificateMapId = CodingKeys(stringValue: "certificateMapId")
+    static let certificateMap = CodingKeys(stringValue: "certificateMap")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "certificateMapId",
+      "certificateMap",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificateMapId) {
+      self.certificateMapId = value
+    }
+    self.certificateMap = try container.decodeIfPresent(
+      CertificateMap.self, forKey: .certificateMap)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.certificateMapId, forKey: .certificateMapId)
+    try container.encodeIfPresent(self.certificateMap, forKey: .certificateMap)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

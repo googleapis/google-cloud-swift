@@ -97,6 +97,8 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration for access approval for the data product.
   public var accessApprovalConfig: DataProduct.AccessApprovalConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProduct`.
   public init() {}
 
@@ -113,6 +115,110 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let icon = CodingKeys(stringValue: "icon")
+    static let ownerEmails = CodingKeys(stringValue: "ownerEmails")
+    static let assetCount = CodingKeys(stringValue: "assetCount")
+    static let accessGroups = CodingKeys(stringValue: "accessGroups")
+    static let accessApprovalConfig = CodingKeys(stringValue: "accessApprovalConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "displayName",
+      "createTime",
+      "updateTime",
+      "etag",
+      "labels",
+      "description",
+      "icon",
+      "ownerEmails",
+      "assetCount",
+      "accessGroups",
+      "accessApprovalConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .icon) {
+      self.icon = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ownerEmails) {
+      self.ownerEmails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .assetCount) {
+      self.assetCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: DataProduct.AccessGroup].self, forKey: .accessGroups)
+    {
+      self.accessGroups = value
+    }
+    self.accessApprovalConfig = try container.decodeIfPresent(
+      DataProduct.AccessApprovalConfig.self, forKey: .accessApprovalConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.icon, forKey: .icon)
+    try container.encode(self.ownerEmails, forKey: .ownerEmails)
+    try container.encode(self.assetCount, forKey: .assetCount)
+    try container.encode(self.accessGroups, forKey: .accessGroups)
+    try container.encodeIfPresent(self.accessApprovalConfig, forKey: .accessApprovalConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents the principal entity associated with an access group, as per
   /// https://cloud.google.com/iam/docs/principals-overview.
   public struct Principal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -124,6 +230,8 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The type of the principal entity.
     public var type: OneOf_Type? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Principal`.
     public init() {}
@@ -141,9 +249,19 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case googleGroup = "googleGroup"
-      case serviceAccount = "serviceAccount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let googleGroup = CodingKeys(stringValue: "googleGroup")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "googleGroup",
+        "serviceAccount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -165,17 +283,24 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try typeCheckAndSet(.googleGroup(googleGroup))
       }
       self.type = type
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encodeIfPresent(self.serviceAccount, forKey: .serviceAccount)
 
       if let choice = self.type {
         switch choice {
         case .googleGroup(let value):
           try container.encode(value, forKey: .googleGroup)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -217,6 +342,8 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. The principal entity associated with this access group.
     public var principal: DataProduct.Principal? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccessGroup`.
     public init() {}
 
@@ -231,6 +358,54 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let principal = CodingKeys(stringValue: "principal")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "displayName",
+        "description",
+        "principal",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.principal = try container.decodeIfPresent(DataProduct.Principal.self, forKey: .principal)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.principal, forKey: .principal)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -253,6 +428,8 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// product. The maximum number of emails allowed is 10.
     public var approverEmails: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccessApprovalConfig`.
     public init() {}
 
@@ -267,6 +444,38 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let approverEmails = CodingKeys(stringValue: "approverEmails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "approverEmails"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .approverEmails) {
+        self.approverEmails = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.approverEmails, forKey: .approverEmails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

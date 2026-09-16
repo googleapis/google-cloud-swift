@@ -29,6 +29,8 @@ public struct ManagedZoneServiceDirectoryConfigNamespace: Codable, Equatable, Go
   /// The fully qualified URL of the namespace associated with the zone. Format must be `https://servicedirectory.googleapis.com/v1/projects/{project}/locations/{location}/namespaces/{namespace}`
   public var namespaceUrl: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZoneServiceDirectoryConfigNamespace`.
   public init() {}
 
@@ -43,6 +45,44 @@ public struct ManagedZoneServiceDirectoryConfigNamespace: Codable, Equatable, Go
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deletionTime = CodingKeys(stringValue: "deletionTime")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let namespaceUrl = CodingKeys(stringValue: "namespaceUrl")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deletionTime",
+      "kind",
+      "namespaceUrl",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.deletionTime = try container.decodeIfPresent(Swift.String.self, forKey: .deletionTime)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.namespaceUrl = try container.decodeIfPresent(Swift.String.self, forKey: .namespaceUrl)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.deletionTime, forKey: .deletionTime)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.namespaceUrl, forKey: .namespaceUrl)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

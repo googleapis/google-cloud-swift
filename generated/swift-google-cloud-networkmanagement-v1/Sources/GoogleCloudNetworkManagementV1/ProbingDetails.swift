@@ -62,6 +62,8 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether all relevant edge devices were probed.
   public var probedAllDevices: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProbingDetails`.
   public init() {}
 
@@ -78,6 +80,97 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let result = CodingKeys(stringValue: "result")
+    static let verifyTime = CodingKeys(stringValue: "verifyTime")
+    static let error = CodingKeys(stringValue: "error")
+    static let abortCause = CodingKeys(stringValue: "abortCause")
+    static let sentProbeCount = CodingKeys(stringValue: "sentProbeCount")
+    static let successfulProbeCount = CodingKeys(stringValue: "successfulProbeCount")
+    static let endpointInfo = CodingKeys(stringValue: "endpointInfo")
+    static let probingLatency = CodingKeys(stringValue: "probingLatency")
+    static let destinationEgressLocation = CodingKeys(stringValue: "destinationEgressLocation")
+    static let edgeResponses = CodingKeys(stringValue: "edgeResponses")
+    static let probedAllDevices = CodingKeys(stringValue: "probedAllDevices")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "result",
+      "verifyTime",
+      "error",
+      "abortCause",
+      "sentProbeCount",
+      "successfulProbeCount",
+      "endpointInfo",
+      "probingLatency",
+      "destinationEgressLocation",
+      "edgeResponses",
+      "probedAllDevices",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ProbingDetails.ProbingResult.self, forKey: .result)
+    {
+      self.result = value
+    }
+    self.verifyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .verifyTime)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent(
+      ProbingDetails.ProbingAbortCause.self, forKey: .abortCause)
+    {
+      self.abortCause = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sentProbeCount) {
+      self.sentProbeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successfulProbeCount) {
+      self.successfulProbeCount = value
+    }
+    self.endpointInfo = try container.decodeIfPresent(EndpointInfo.self, forKey: .endpointInfo)
+    self.probingLatency = try container.decodeIfPresent(
+      LatencyDistribution.self, forKey: .probingLatency)
+    self.destinationEgressLocation = try container.decodeIfPresent(
+      ProbingDetails.EdgeLocation.self, forKey: .destinationEgressLocation)
+    if let value = try container.decodeIfPresent(
+      [ProbingDetails.SingleEdgeResponse].self, forKey: .edgeResponses)
+    {
+      self.edgeResponses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .probedAllDevices) {
+      self.probedAllDevices = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.result, forKey: .result)
+    try container.encodeIfPresent(self.verifyTime, forKey: .verifyTime)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.abortCause, forKey: .abortCause)
+    try container.encode(self.sentProbeCount, forKey: .sentProbeCount)
+    try container.encode(self.successfulProbeCount, forKey: .successfulProbeCount)
+    try container.encodeIfPresent(self.endpointInfo, forKey: .endpointInfo)
+    try container.encodeIfPresent(self.probingLatency, forKey: .probingLatency)
+    try container.encodeIfPresent(
+      self.destinationEgressLocation, forKey: .destinationEgressLocation)
+    try container.encode(self.edgeResponses, forKey: .edgeResponses)
+    try container.encode(self.probedAllDevices, forKey: .probedAllDevices)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Representation of a network edge location as per
   /// https://cloud.google.com/vpc/docs/edge-locations.
   public struct EdgeLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -85,6 +178,8 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Name of the metropolitan area.
     public var metropolitanArea: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EdgeLocation`.
     public init() {}
@@ -100,6 +195,38 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metropolitanArea = CodingKeys(stringValue: "metropolitanArea")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metropolitanArea"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metropolitanArea) {
+        self.metropolitanArea = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.metropolitanArea, forKey: .metropolitanArea)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -142,6 +269,8 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// pf01.aaa01, pr02.aaa01.
     public var destinationRouter: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SingleEdgeResponse`.
     public init() {}
 
@@ -156,6 +285,70 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let result = CodingKeys(stringValue: "result")
+      static let sentProbeCount = CodingKeys(stringValue: "sentProbeCount")
+      static let successfulProbeCount = CodingKeys(stringValue: "successfulProbeCount")
+      static let probingLatency = CodingKeys(stringValue: "probingLatency")
+      static let destinationEgressLocation = CodingKeys(stringValue: "destinationEgressLocation")
+      static let destinationRouter = CodingKeys(stringValue: "destinationRouter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "result",
+        "sentProbeCount",
+        "successfulProbeCount",
+        "probingLatency",
+        "destinationEgressLocation",
+        "destinationRouter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ProbingDetails.ProbingResult.self, forKey: .result)
+      {
+        self.result = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sentProbeCount) {
+        self.sentProbeCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successfulProbeCount)
+      {
+        self.successfulProbeCount = value
+      }
+      self.probingLatency = try container.decodeIfPresent(
+        LatencyDistribution.self, forKey: .probingLatency)
+      self.destinationEgressLocation = try container.decodeIfPresent(
+        ProbingDetails.EdgeLocation.self, forKey: .destinationEgressLocation)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationRouter) {
+        self.destinationRouter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.result, forKey: .result)
+      try container.encode(self.sentProbeCount, forKey: .sentProbeCount)
+      try container.encode(self.successfulProbeCount, forKey: .successfulProbeCount)
+      try container.encodeIfPresent(self.probingLatency, forKey: .probingLatency)
+      try container.encodeIfPresent(
+        self.destinationEgressLocation, forKey: .destinationEgressLocation)
+      try container.encode(self.destinationRouter, forKey: .destinationRouter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@
     /// other description otherwise.
     public var output: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CodeExecutionResult`.
     public init() {}
 
@@ -45,6 +47,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let outcome = CodingKeys(stringValue: "outcome")
+      static let output = CodingKeys(stringValue: "output")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "outcome",
+        "output",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        CodeExecutionResult.Outcome.self, forKey: .outcome)
+      {
+        self.outcome = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .output) {
+        self.output = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.outcome, forKey: .outcome)
+      try container.encode(self.output, forKey: .output)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enumeration of possible outcomes of the code execution.

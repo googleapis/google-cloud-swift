@@ -33,6 +33,8 @@ public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// if this is set to true.
   public var allowMissing: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateJobRequest`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let job = CodingKeys(stringValue: "job")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let allowMissing = CodingKeys(stringValue: "allowMissing")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "job",
+      "validateOnly",
+      "allowMissing",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.job = try container.decodeIfPresent(Job.self, forKey: .job)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
+      self.allowMissing = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.job, forKey: .job)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.allowMissing, forKey: .allowMissing)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

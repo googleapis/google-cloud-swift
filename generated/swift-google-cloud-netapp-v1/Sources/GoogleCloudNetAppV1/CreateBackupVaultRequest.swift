@@ -35,6 +35,8 @@ public struct CreateBackupVaultRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Required. A backupVault resource
   public var backupVault: BackupVault? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateBackupVaultRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateBackupVaultRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let backupVaultId = CodingKeys(stringValue: "backupVaultId")
+    static let backupVault = CodingKeys(stringValue: "backupVault")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "backupVaultId",
+      "backupVault",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupVaultId) {
+      self.backupVaultId = value
+    }
+    self.backupVault = try container.decodeIfPresent(BackupVault.self, forKey: .backupVault)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.backupVaultId, forKey: .backupVaultId)
+    try container.encodeIfPresent(self.backupVault, forKey: .backupVault)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

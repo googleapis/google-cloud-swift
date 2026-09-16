@@ -25,6 +25,8 @@
     /// Required. Errors destination.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportErrorConfig`.
     public init() {}
 
@@ -41,8 +43,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsPrefix = "gcsPrefix"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsPrefix = CodingKeys(stringValue: "gcsPrefix")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsPrefix"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -62,6 +73,10 @@
         try destinationCheckAndSet(.gcsPrefix(gcsPrefix))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@
         case .gcsPrefix(let value):
           try container.encode(value, forKey: .gcsPrefix)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

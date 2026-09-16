@@ -25,6 +25,8 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// selected.
   public var patchMode: GkeAutoUpgradeConfig.PatchMode = GkeAutoUpgradeConfig.PatchMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GkeAutoUpgradeConfig`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let patchMode = CodingKeys(stringValue: "patchMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "patchMode"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      GkeAutoUpgradeConfig.PatchMode.self, forKey: .patchMode)
+    {
+      self.patchMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.patchMode, forKey: .patchMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// PatchMode specifies how auto upgrade patch builds should be

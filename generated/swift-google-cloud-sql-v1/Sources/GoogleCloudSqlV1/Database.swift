@@ -51,6 +51,8 @@
 
     public var databaseDetails: OneOf_DatabaseDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Database`.
     public init() {}
 
@@ -67,28 +69,61 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case kind = "kind"
-      case charset = "charset"
-      case collation = "collation"
-      case etag = "etag"
-      case name = "name"
-      case instance = "instance"
-      case selfLink = "selfLink"
-      case project = "project"
-      case sqlserverDatabaseDetails = "sqlserverDatabaseDetails"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let charset = CodingKeys(stringValue: "charset")
+      static let collation = CodingKeys(stringValue: "collation")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let name = CodingKeys(stringValue: "name")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let project = CodingKeys(stringValue: "project")
+      static let sqlserverDatabaseDetails = CodingKeys(stringValue: "sqlserverDatabaseDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "charset",
+        "collation",
+        "etag",
+        "name",
+        "instance",
+        "selfLink",
+        "project",
+        "sqlserverDatabaseDetails",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
-      self.charset = try container.decode(Swift.String.self, forKey: .charset)
-      self.collation = try container.decode(Swift.String.self, forKey: .collation)
-      self.etag = try container.decode(Swift.String.self, forKey: .etag)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.selfLink = try container.decode(Swift.String.self, forKey: .selfLink)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .charset) {
+        self.charset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collation) {
+        self.collation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
 
       var databaseDetails: OneOf_DatabaseDetails? = nil
       let databaseDetailsCheckAndSet = {
@@ -106,6 +141,10 @@
         try databaseDetailsCheckAndSet(.sqlserverDatabaseDetails(sqlserverDatabaseDetails))
       }
       self.databaseDetails = databaseDetails
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,6 +163,9 @@
         case .sqlserverDatabaseDetails(let value):
           try container.encode(value, forKey: .sqlserverDatabaseDetails)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

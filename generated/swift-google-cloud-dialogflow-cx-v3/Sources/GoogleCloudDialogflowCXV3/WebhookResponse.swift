@@ -45,6 +45,8 @@
     /// different flow in the same agent.
     public var transition: OneOf_Transition? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebhookResponse`.
     public init() {}
 
@@ -61,13 +63,27 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fulfillmentResponse = "fulfillmentResponse"
-      case pageInfo = "pageInfo"
-      case sessionInfo = "sessionInfo"
-      case payload = "payload"
-      case targetPage = "targetPage"
-      case targetFlow = "targetFlow"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fulfillmentResponse = CodingKeys(stringValue: "fulfillmentResponse")
+      static let pageInfo = CodingKeys(stringValue: "pageInfo")
+      static let sessionInfo = CodingKeys(stringValue: "sessionInfo")
+      static let payload = CodingKeys(stringValue: "payload")
+      static let targetPage = CodingKeys(stringValue: "targetPage")
+      static let targetFlow = CodingKeys(stringValue: "targetFlow")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fulfillmentResponse",
+        "pageInfo",
+        "sessionInfo",
+        "payload",
+        "targetPage",
+        "targetFlow",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -95,14 +111,18 @@
         try transitionCheckAndSet(.targetFlow(targetFlow))
       }
       self.transition = transition
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.fulfillmentResponse, forKey: .fulfillmentResponse)
-      try container.encode(self.pageInfo, forKey: .pageInfo)
-      try container.encode(self.sessionInfo, forKey: .sessionInfo)
-      try container.encode(self.payload, forKey: .payload)
+      try container.encodeIfPresent(self.fulfillmentResponse, forKey: .fulfillmentResponse)
+      try container.encodeIfPresent(self.pageInfo, forKey: .pageInfo)
+      try container.encodeIfPresent(self.sessionInfo, forKey: .sessionInfo)
+      try container.encodeIfPresent(self.payload, forKey: .payload)
 
       if let choice = self.transition {
         switch choice {
@@ -111,6 +131,9 @@
         case .targetFlow(let value):
           try container.encode(value, forKey: .targetFlow)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -124,6 +147,8 @@
       /// Merge behavior for `messages`.
       public var mergeBehavior: WebhookResponse.FulfillmentResponse.MergeBehavior = WebhookResponse
         .FulfillmentResponse.MergeBehavior()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FulfillmentResponse`.
       public init() {}
@@ -139,6 +164,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let messages = CodingKeys(stringValue: "messages")
+        static let mergeBehavior = CodingKeys(stringValue: "mergeBehavior")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "messages",
+          "mergeBehavior",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([ResponseMessage].self, forKey: .messages) {
+          self.messages = value
+        }
+        if let value = try container.decodeIfPresent(
+          WebhookResponse.FulfillmentResponse.MergeBehavior.self, forKey: .mergeBehavior)
+        {
+          self.mergeBehavior = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.messages, forKey: .messages)
+        try container.encode(self.mergeBehavior, forKey: .mergeBehavior)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Defines merge behavior for `messages`.

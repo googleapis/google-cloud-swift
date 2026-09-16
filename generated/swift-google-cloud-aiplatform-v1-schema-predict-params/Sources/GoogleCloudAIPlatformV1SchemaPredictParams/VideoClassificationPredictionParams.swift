@@ -55,6 +55,8 @@ public struct VideoClassificationPredictionParams: Codable, Equatable, GoogleClo
   /// provided to describe that quality. Default value is false
   public var oneSecIntervalClassification: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoClassificationPredictionParams`.
   public init() {}
 
@@ -69,6 +71,65 @@ public struct VideoClassificationPredictionParams: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let confidenceThreshold = CodingKeys(stringValue: "confidenceThreshold")
+    static let maxPredictions = CodingKeys(stringValue: "maxPredictions")
+    static let segmentClassification = CodingKeys(stringValue: "segmentClassification")
+    static let shotClassification = CodingKeys(stringValue: "shotClassification")
+    static let oneSecIntervalClassification = CodingKeys(
+      stringValue: "oneSecIntervalClassification")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "confidenceThreshold",
+      "maxPredictions",
+      "segmentClassification",
+      "shotClassification",
+      "oneSecIntervalClassification",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceThreshold) {
+      self.confidenceThreshold = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPredictions) {
+      self.maxPredictions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .segmentClassification) {
+      self.segmentClassification = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .shotClassification) {
+      self.shotClassification = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .oneSecIntervalClassification)
+    {
+      self.oneSecIntervalClassification = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.confidenceThreshold, forKey: .confidenceThreshold)
+    try container.encode(self.maxPredictions, forKey: .maxPredictions)
+    try container.encode(self.segmentClassification, forKey: .segmentClassification)
+    try container.encode(self.shotClassification, forKey: .shotClassification)
+    try container.encode(self.oneSecIntervalClassification, forKey: .oneSecIntervalClassification)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

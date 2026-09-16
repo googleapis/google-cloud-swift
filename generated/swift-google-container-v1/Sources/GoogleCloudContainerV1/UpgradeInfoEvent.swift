@@ -69,6 +69,8 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// when event_type is DISRUPTION_EVENT.
   public var disruptionEvent: DisruptionEvent? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeInfoEvent`.
   public init() {}
 
@@ -83,6 +85,120 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let currentVersion = CodingKeys(stringValue: "currentVersion")
+    static let targetVersion = CodingKeys(stringValue: "targetVersion")
+    static let currentEmulatedVersion = CodingKeys(stringValue: "currentEmulatedVersion")
+    static let targetEmulatedVersion = CodingKeys(stringValue: "targetEmulatedVersion")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let state = CodingKeys(stringValue: "state")
+    static let standardSupportEndTime = CodingKeys(stringValue: "standardSupportEndTime")
+    static let extendedSupportEndTime = CodingKeys(stringValue: "extendedSupportEndTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let eventType = CodingKeys(stringValue: "eventType")
+    static let disruptionEvent = CodingKeys(stringValue: "disruptionEvent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceType",
+      "operation",
+      "startTime",
+      "endTime",
+      "currentVersion",
+      "targetVersion",
+      "currentEmulatedVersion",
+      "targetEmulatedVersion",
+      "resource",
+      "state",
+      "standardSupportEndTime",
+      "extendedSupportEndTime",
+      "description",
+      "eventType",
+      "disruptionEvent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(UpgradeResourceType.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operation) {
+      self.operation = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentVersion) {
+      self.currentVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetVersion) {
+      self.targetVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentEmulatedVersion)
+    {
+      self.currentEmulatedVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetEmulatedVersion)
+    {
+      self.targetEmulatedVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(UpgradeInfoEvent.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.standardSupportEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .standardSupportEndTime)
+    self.extendedSupportEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .extendedSupportEndTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      UpgradeInfoEvent.EventType.self, forKey: .eventType)
+    {
+      self.eventType = value
+    }
+    self.disruptionEvent = try container.decodeIfPresent(
+      DisruptionEvent.self, forKey: .disruptionEvent)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.currentVersion, forKey: .currentVersion)
+    try container.encode(self.targetVersion, forKey: .targetVersion)
+    try container.encode(self.currentEmulatedVersion, forKey: .currentEmulatedVersion)
+    try container.encode(self.targetEmulatedVersion, forKey: .targetEmulatedVersion)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.standardSupportEndTime, forKey: .standardSupportEndTime)
+    try container.encodeIfPresent(self.extendedSupportEndTime, forKey: .extendedSupportEndTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.eventType, forKey: .eventType)
+    try container.encodeIfPresent(self.disruptionEvent, forKey: .disruptionEvent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the upgrade.

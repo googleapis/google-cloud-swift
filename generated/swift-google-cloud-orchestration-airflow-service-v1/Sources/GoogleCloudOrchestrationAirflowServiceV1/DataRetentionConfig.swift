@@ -27,6 +27,8 @@ public struct DataRetentionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. The configuration settings for task logs retention
   public var taskLogsRetentionConfig: TaskLogsRetentionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataRetentionConfig`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct DataRetentionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let airflowMetadataRetentionConfig = CodingKeys(
+      stringValue: "airflowMetadataRetentionConfig")
+    static let taskLogsRetentionConfig = CodingKeys(stringValue: "taskLogsRetentionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "airflowMetadataRetentionConfig",
+      "taskLogsRetentionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.airflowMetadataRetentionConfig = try container.decodeIfPresent(
+      AirflowMetadataRetentionPolicyConfig.self, forKey: .airflowMetadataRetentionConfig)
+    self.taskLogsRetentionConfig = try container.decodeIfPresent(
+      TaskLogsRetentionConfig.self, forKey: .taskLogsRetentionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.airflowMetadataRetentionConfig, forKey: .airflowMetadataRetentionConfig)
+    try container.encodeIfPresent(self.taskLogsRetentionConfig, forKey: .taskLogsRetentionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -93,6 +93,8 @@ public struct Feed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// for all supported asset types and relationship types.
   public var relationshipTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Feed`.
   public init() {}
 
@@ -107,6 +109,71 @@ public struct Feed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let assetNames = CodingKeys(stringValue: "assetNames")
+    static let assetTypes = CodingKeys(stringValue: "assetTypes")
+    static let contentType = CodingKeys(stringValue: "contentType")
+    static let feedOutputConfig = CodingKeys(stringValue: "feedOutputConfig")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let relationshipTypes = CodingKeys(stringValue: "relationshipTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "assetNames",
+      "assetTypes",
+      "contentType",
+      "feedOutputConfig",
+      "condition",
+      "relationshipTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assetNames) {
+      self.assetNames = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assetTypes) {
+      self.assetTypes = value
+    }
+    if let value = try container.decodeIfPresent(ContentType.self, forKey: .contentType) {
+      self.contentType = value
+    }
+    self.feedOutputConfig = try container.decodeIfPresent(
+      FeedOutputConfig.self, forKey: .feedOutputConfig)
+    self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relationshipTypes) {
+      self.relationshipTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.assetNames, forKey: .assetNames)
+    try container.encode(self.assetTypes, forKey: .assetTypes)
+    try container.encode(self.contentType, forKey: .contentType)
+    try container.encodeIfPresent(self.feedOutputConfig, forKey: .feedOutputConfig)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encode(self.relationshipTypes, forKey: .relationshipTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

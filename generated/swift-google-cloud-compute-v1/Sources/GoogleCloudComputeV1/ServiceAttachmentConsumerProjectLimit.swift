@@ -35,6 +35,8 @@
     /// The project id or number for the project to set the limit for.
     public var projectIdOrNum: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServiceAttachmentConsumerProjectLimit`.
     public init() {}
 
@@ -49,6 +51,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let connectionLimit = CodingKeys(stringValue: "connectionLimit")
+      static let endpointUrl = CodingKeys(stringValue: "endpointUrl")
+      static let networkUrl = CodingKeys(stringValue: "networkUrl")
+      static let projectIdOrNum = CodingKeys(stringValue: "projectIdOrNum")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "connectionLimit",
+        "endpointUrl",
+        "networkUrl",
+        "projectIdOrNum",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.connectionLimit = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .connectionLimit)
+      self.endpointUrl = try container.decodeIfPresent(Swift.String.self, forKey: .endpointUrl)
+      self.networkUrl = try container.decodeIfPresent(Swift.String.self, forKey: .networkUrl)
+      self.projectIdOrNum = try container.decodeIfPresent(
+        Swift.String.self, forKey: .projectIdOrNum)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.connectionLimit, forKey: .connectionLimit)
+      try container.encodeIfPresent(self.endpointUrl, forKey: .endpointUrl)
+      try container.encodeIfPresent(self.networkUrl, forKey: .networkUrl)
+      try container.encodeIfPresent(self.projectIdOrNum, forKey: .projectIdOrNum)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

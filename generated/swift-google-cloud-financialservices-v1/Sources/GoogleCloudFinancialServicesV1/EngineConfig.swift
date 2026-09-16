@@ -67,6 +67,8 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration of hyperparameters source EngineConfig.
   public var hyperparameterSource: EngineConfig.HyperparameterSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EngineConfig`.
   public init() {}
 
@@ -81,6 +83,95 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let engineVersion = CodingKeys(stringValue: "engineVersion")
+    static let tuning = CodingKeys(stringValue: "tuning")
+    static let performanceTarget = CodingKeys(stringValue: "performanceTarget")
+    static let lineOfBusiness = CodingKeys(stringValue: "lineOfBusiness")
+    static let hyperparameterSourceType = CodingKeys(stringValue: "hyperparameterSourceType")
+    static let hyperparameterSource = CodingKeys(stringValue: "hyperparameterSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "state",
+      "engineVersion",
+      "tuning",
+      "performanceTarget",
+      "lineOfBusiness",
+      "hyperparameterSourceType",
+      "hyperparameterSource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(EngineConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engineVersion) {
+      self.engineVersion = value
+    }
+    self.tuning = try container.decodeIfPresent(EngineConfig.Tuning.self, forKey: .tuning)
+    self.performanceTarget = try container.decodeIfPresent(
+      EngineConfig.PerformanceTarget.self, forKey: .performanceTarget)
+    if let value = try container.decodeIfPresent(LineOfBusiness.self, forKey: .lineOfBusiness) {
+      self.lineOfBusiness = value
+    }
+    if let value = try container.decodeIfPresent(
+      EngineConfig.HyperparameterSourceType.self, forKey: .hyperparameterSourceType)
+    {
+      self.hyperparameterSourceType = value
+    }
+    self.hyperparameterSource = try container.decodeIfPresent(
+      EngineConfig.HyperparameterSource.self, forKey: .hyperparameterSource)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.engineVersion, forKey: .engineVersion)
+    try container.encodeIfPresent(self.tuning, forKey: .tuning)
+    try container.encodeIfPresent(self.performanceTarget, forKey: .performanceTarget)
+    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    try container.encode(self.hyperparameterSourceType, forKey: .hyperparameterSourceType)
+    try container.encodeIfPresent(self.hyperparameterSource, forKey: .hyperparameterSource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The parameters needed for the tuning operation, these are used only in
@@ -99,6 +190,8 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// should be no later than the end of the date_range of the dataset.
     public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Tuning`.
     public init() {}
 
@@ -113,6 +206,42 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let primaryDataset = CodingKeys(stringValue: "primaryDataset")
+      static let endTime = CodingKeys(stringValue: "endTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "primaryDataset",
+        "endTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryDataset) {
+        self.primaryDataset = value
+      }
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.primaryDataset, forKey: .primaryDataset)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -139,6 +268,8 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// automated alerting system.
     public var partyInvestigationsPerPeriodHint: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PerformanceTarget`.
     public init() {}
 
@@ -153,6 +284,42 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let partyInvestigationsPerPeriodHint = CodingKeys(
+        stringValue: "partyInvestigationsPerPeriodHint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "partyInvestigationsPerPeriodHint"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .partyInvestigationsPerPeriodHint)
+      {
+        self.partyInvestigationsPerPeriodHint = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.partyInvestigationsPerPeriodHint, forKey: .partyInvestigationsPerPeriodHint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -181,6 +348,8 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `/projects/{project_num}/locations/{location}/instances/{instance}/engineVersions/{engine_version}`
     public var sourceEngineVersion: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HyperparameterSource`.
     public init() {}
 
@@ -195,6 +364,45 @@ public struct EngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceEngineConfig = CodingKeys(stringValue: "sourceEngineConfig")
+      static let sourceEngineVersion = CodingKeys(stringValue: "sourceEngineVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceEngineConfig",
+        "sourceEngineVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceEngineConfig) {
+        self.sourceEngineConfig = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceEngineVersion)
+      {
+        self.sourceEngineVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceEngineConfig, forKey: .sourceEngineConfig)
+      try container.encode(self.sourceEngineVersion, forKey: .sourceEngineVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

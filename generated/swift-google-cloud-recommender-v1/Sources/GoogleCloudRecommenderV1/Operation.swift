@@ -100,6 +100,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// describe a value for 'path' field.
   public var pathValue: OneOf_PathValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Operation`.
   public init() {}
 
@@ -116,31 +118,67 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case action = "action"
-    case resourceType = "resourceType"
-    case resource = "resource"
-    case path = "path"
-    case sourceResource = "sourceResource"
-    case sourcePath = "sourcePath"
-    case value = "value"
-    case valueMatcher = "valueMatcher"
-    case pathFilters = "pathFilters"
-    case pathValueMatchers = "pathValueMatchers"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let action = CodingKeys(stringValue: "action")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let path = CodingKeys(stringValue: "path")
+    static let sourceResource = CodingKeys(stringValue: "sourceResource")
+    static let sourcePath = CodingKeys(stringValue: "sourcePath")
+    static let value = CodingKeys(stringValue: "value")
+    static let valueMatcher = CodingKeys(stringValue: "valueMatcher")
+    static let pathFilters = CodingKeys(stringValue: "pathFilters")
+    static let pathValueMatchers = CodingKeys(stringValue: "pathValueMatchers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "action",
+      "resourceType",
+      "resource",
+      "path",
+      "sourceResource",
+      "sourcePath",
+      "value",
+      "valueMatcher",
+      "pathFilters",
+      "pathValueMatchers",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.action = try container.decode(Swift.String.self, forKey: .action)
-    self.resourceType = try container.decode(Swift.String.self, forKey: .resourceType)
-    self.resource = try container.decode(Swift.String.self, forKey: .resource)
-    self.path = try container.decode(Swift.String.self, forKey: .path)
-    self.sourceResource = try container.decode(Swift.String.self, forKey: .sourceResource)
-    self.sourcePath = try container.decode(Swift.String.self, forKey: .sourcePath)
-    self.pathFilters = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceResource) {
+      self.sourceResource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourcePath) {
+      self.sourcePath = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: GoogleCloudWKT.Value].self, forKey: .pathFilters)
-    self.pathValueMatchers = try container.decode(
+    {
+      self.pathFilters = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: ValueMatcher].self, forKey: .pathValueMatchers)
+    {
+      self.pathValueMatchers = value
+    }
 
     var pathValue: OneOf_PathValue? = nil
     let pathValueCheckAndSet = {
@@ -159,6 +197,10 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try pathValueCheckAndSet(.valueMatcher(valueMatcher))
     }
     self.pathValue = pathValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -179,6 +221,9 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .valueMatcher(let value):
         try container.encode(value, forKey: .valueMatcher)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

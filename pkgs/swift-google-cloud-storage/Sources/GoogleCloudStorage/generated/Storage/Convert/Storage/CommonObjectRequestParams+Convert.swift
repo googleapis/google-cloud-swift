@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CommonObjectRequestParams {
@@ -29,6 +29,7 @@ extension CommonObjectRequestParams {
     self.encryptionAlgorithm = proto.encryptionAlgorithm
     self.encryptionKeyBytes = proto.encryptionKeyBytes
     self.encryptionKeySha256Bytes = proto.encryptionKeySha256Bytes
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -36,6 +37,9 @@ extension CommonObjectRequestParams {
     proto.encryptionAlgorithm = self.encryptionAlgorithm
     proto.encryptionKeyBytes = self.encryptionKeyBytes
     proto.encryptionKeySha256Bytes = self.encryptionKeySha256Bytes
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

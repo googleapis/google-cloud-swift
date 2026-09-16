@@ -67,6 +67,8 @@
     /// resource URLs.
     public var zones: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Region`.
     public init() {}
 
@@ -81,6 +83,86 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deprecated = CodingKeys(stringValue: "deprecated")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let quotaStatusWarning = CodingKeys(stringValue: "quotaStatusWarning")
+      static let quotas = CodingKeys(stringValue: "quotas")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
+      static let supportsPzs = CodingKeys(stringValue: "supportsPzs")
+      static let zones = CodingKeys(stringValue: "zones")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "deprecated",
+        "description",
+        "id",
+        "kind",
+        "name",
+        "quotaStatusWarning",
+        "quotas",
+        "selfLink",
+        "status",
+        "supportsPzs",
+        "zones",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.deprecated = try container.decodeIfPresent(DeprecationStatus.self, forKey: .deprecated)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.quotaStatusWarning = try container.decodeIfPresent(
+        Region.QuotaStatusWarning.self, forKey: .quotaStatusWarning)
+      if let value = try container.decodeIfPresent([Quota].self, forKey: .quotas) {
+        self.quotas = value
+      }
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.status = try container.decodeIfPresent(Region.Status.self, forKey: .status)
+      self.supportsPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsPzs)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+        self.zones = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deprecated, forKey: .deprecated)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.quotaStatusWarning, forKey: .quotaStatusWarning)
+      try container.encode(self.quotas, forKey: .quotas)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.supportsPzs, forKey: .supportsPzs)
+      try container.encode(self.zones, forKey: .zones)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The message type for the [quotaStatusWarning][google.cloud.compute.v1.Region.quotaStatusWarning] field.
@@ -107,6 +189,8 @@
       /// [Output Only] A human-readable description of the warning code.
       public var message: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `QuotaStatusWarning`.
       public init() {}
 
@@ -121,6 +205,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let code = CodingKeys(stringValue: "code")
+        static let data = CodingKeys(stringValue: "data")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "code",
+          "data",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decodeIfPresent(
+          Region.QuotaStatusWarning.Code.self, forKey: .code)
+        if let value = try container.decodeIfPresent(
+          [Region.QuotaStatusWarning.Data].self, forKey: .data)
+        {
+          self.data = value
+        }
+        self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.data, forKey: .data)
+        try container.encodeIfPresent(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [data][google.cloud.compute.v1.Region.quotaStatusWarning.data] field.
@@ -141,6 +268,9 @@
         /// [Output Only] A warning data value corresponding to the key.
         public var value: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Data`.
         public init() {}
 
@@ -155,6 +285,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
+          self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

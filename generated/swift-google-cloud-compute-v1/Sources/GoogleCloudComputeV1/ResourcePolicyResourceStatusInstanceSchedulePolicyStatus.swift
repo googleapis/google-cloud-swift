@@ -31,6 +31,8 @@
     /// The timestamp is an RFC3339 string.
     public var nextRunStartTime: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicyResourceStatusInstanceSchedulePolicyStatus`.
     public init() {}
 
@@ -45,6 +47,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lastRunStartTime = CodingKeys(stringValue: "lastRunStartTime")
+      static let nextRunStartTime = CodingKeys(stringValue: "nextRunStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lastRunStartTime",
+        "nextRunStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.lastRunStartTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .lastRunStartTime)
+      self.nextRunStartTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextRunStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.lastRunStartTime, forKey: .lastRunStartTime)
+      try container.encodeIfPresent(self.nextRunStartTime, forKey: .nextRunStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

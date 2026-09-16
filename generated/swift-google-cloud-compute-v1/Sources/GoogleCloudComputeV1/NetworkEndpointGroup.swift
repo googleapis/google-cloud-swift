@@ -122,6 +122,8 @@
     /// where the network endpoint group is located.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkEndpointGroup`.
     public init() {}
 
@@ -136,6 +138,119 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let annotations = CodingKeys(stringValue: "annotations")
+      static let appEngine = CodingKeys(stringValue: "appEngine")
+      static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
+      static let cloudRun = CodingKeys(stringValue: "cloudRun")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let defaultPort = CodingKeys(stringValue: "defaultPort")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let networkEndpointType = CodingKeys(stringValue: "networkEndpointType")
+      static let pscData = CodingKeys(stringValue: "pscData")
+      static let pscTargetService = CodingKeys(stringValue: "pscTargetService")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let size = CodingKeys(stringValue: "size")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "annotations",
+        "appEngine",
+        "cloudFunction",
+        "cloudRun",
+        "creationTimestamp",
+        "defaultPort",
+        "description",
+        "id",
+        "kind",
+        "name",
+        "network",
+        "networkEndpointType",
+        "pscData",
+        "pscTargetService",
+        "region",
+        "selfLink",
+        "size",
+        "subnetwork",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .annotations)
+      {
+        self.annotations = value
+      }
+      self.appEngine = try container.decodeIfPresent(
+        NetworkEndpointGroupAppEngine.self, forKey: .appEngine)
+      self.cloudFunction = try container.decodeIfPresent(
+        NetworkEndpointGroupCloudFunction.self, forKey: .cloudFunction)
+      self.cloudRun = try container.decodeIfPresent(
+        NetworkEndpointGroupCloudRun.self, forKey: .cloudRun)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.defaultPort = try container.decodeIfPresent(Swift.Int32.self, forKey: .defaultPort)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.networkEndpointType = try container.decodeIfPresent(
+        NetworkEndpointGroup.NetworkEndpointType.self, forKey: .networkEndpointType)
+      self.pscData = try container.decodeIfPresent(
+        NetworkEndpointGroupPscData.self, forKey: .pscData)
+      self.pscTargetService = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pscTargetService)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.size = try container.decodeIfPresent(Swift.Int32.self, forKey: .size)
+      self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.annotations, forKey: .annotations)
+      try container.encodeIfPresent(self.appEngine, forKey: .appEngine)
+      try container.encodeIfPresent(self.cloudFunction, forKey: .cloudFunction)
+      try container.encodeIfPresent(self.cloudRun, forKey: .cloudRun)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.defaultPort, forKey: .defaultPort)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.networkEndpointType, forKey: .networkEndpointType)
+      try container.encodeIfPresent(self.pscData, forKey: .pscData)
+      try container.encodeIfPresent(self.pscTargetService, forKey: .pscTargetService)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.size, forKey: .size)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [networkEndpointType][google.cloud.compute.v1.NetworkEndpointGroup.networkEndpointType] field.

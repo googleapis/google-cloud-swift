@@ -33,6 +33,8 @@ public struct CreateGlossaryCategoryRequest: Codable, Equatable, GoogleCloudWKT.
   /// Required. The GlossaryCategory to create.
   public var category: GlossaryCategory? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateGlossaryCategoryRequest`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct CreateGlossaryCategoryRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let categoryId = CodingKeys(stringValue: "categoryId")
+    static let category = CodingKeys(stringValue: "category")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "categoryId",
+      "category",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .categoryId) {
+      self.categoryId = value
+    }
+    self.category = try container.decodeIfPresent(GlossaryCategory.self, forKey: .category)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.categoryId, forKey: .categoryId)
+    try container.encodeIfPresent(self.category, forKey: .category)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

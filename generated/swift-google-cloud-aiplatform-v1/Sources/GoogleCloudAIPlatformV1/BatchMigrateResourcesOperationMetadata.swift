@@ -33,6 +33,8 @@
     /// Partial results that reflect the latest migration operation progress.
     public var partialResults: [BatchMigrateResourcesOperationMetadata.PartialResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchMigrateResourcesOperationMetadata`.
     public init() {}
 
@@ -47,6 +49,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let genericMetadata = CodingKeys(stringValue: "genericMetadata")
+      static let partialResults = CodingKeys(stringValue: "partialResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "genericMetadata",
+        "partialResults",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.genericMetadata = try container.decodeIfPresent(
+        GenericOperationMetadata.self, forKey: .genericMetadata)
+      if let value = try container.decodeIfPresent(
+        [BatchMigrateResourcesOperationMetadata.PartialResult].self, forKey: .partialResults)
+      {
+        self.partialResults = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.genericMetadata, forKey: .genericMetadata)
+      try container.encode(self.partialResults, forKey: .partialResults)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents a partial result in batch migration operation for one
@@ -67,6 +108,8 @@
       /// migrated resource name will be filled.
       public var result: OneOf_Result? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PartialResult`.
       public init() {}
 
@@ -83,11 +126,23 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case error = "error"
-        case model = "model"
-        case dataset = "dataset"
-        case request = "request"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let error = CodingKeys(stringValue: "error")
+        static let model = CodingKeys(stringValue: "model")
+        static let dataset = CodingKeys(stringValue: "dataset")
+        static let request = CodingKeys(stringValue: "request")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "error",
+          "model",
+          "dataset",
+          "request",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -114,11 +169,15 @@
           try resultCheckAndSet(.dataset(dataset))
         }
         self.result = result
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.request, forKey: .request)
+        try container.encodeIfPresent(self.request, forKey: .request)
 
         if let choice = self.result {
           switch choice {
@@ -129,6 +188,9 @@
           case .dataset(let value):
             try container.encode(value, forKey: .dataset)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

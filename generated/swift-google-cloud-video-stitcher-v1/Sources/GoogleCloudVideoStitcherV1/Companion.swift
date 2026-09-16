@@ -53,6 +53,8 @@ public struct Companion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Ad resource associated with the companion ad.
   public var adResource: OneOf_AdResource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Companion`.
   public init() {}
 
@@ -69,32 +71,70 @@ public struct Companion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case iframeAdResource = "iframeAdResource"
-    case staticAdResource = "staticAdResource"
-    case htmlAdResource = "htmlAdResource"
-    case apiFramework = "apiFramework"
-    case heightPx = "heightPx"
-    case widthPx = "widthPx"
-    case assetHeightPx = "assetHeightPx"
-    case expandedHeightPx = "expandedHeightPx"
-    case assetWidthPx = "assetWidthPx"
-    case expandedWidthPx = "expandedWidthPx"
-    case adSlotId = "adSlotId"
-    case events = "events"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let iframeAdResource = CodingKeys(stringValue: "iframeAdResource")
+    static let staticAdResource = CodingKeys(stringValue: "staticAdResource")
+    static let htmlAdResource = CodingKeys(stringValue: "htmlAdResource")
+    static let apiFramework = CodingKeys(stringValue: "apiFramework")
+    static let heightPx = CodingKeys(stringValue: "heightPx")
+    static let widthPx = CodingKeys(stringValue: "widthPx")
+    static let assetHeightPx = CodingKeys(stringValue: "assetHeightPx")
+    static let expandedHeightPx = CodingKeys(stringValue: "expandedHeightPx")
+    static let assetWidthPx = CodingKeys(stringValue: "assetWidthPx")
+    static let expandedWidthPx = CodingKeys(stringValue: "expandedWidthPx")
+    static let adSlotId = CodingKeys(stringValue: "adSlotId")
+    static let events = CodingKeys(stringValue: "events")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "iframeAdResource",
+      "staticAdResource",
+      "htmlAdResource",
+      "apiFramework",
+      "heightPx",
+      "widthPx",
+      "assetHeightPx",
+      "expandedHeightPx",
+      "assetWidthPx",
+      "expandedWidthPx",
+      "adSlotId",
+      "events",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.apiFramework = try container.decode(Swift.String.self, forKey: .apiFramework)
-    self.heightPx = try container.decode(Swift.Int32.self, forKey: .heightPx)
-    self.widthPx = try container.decode(Swift.Int32.self, forKey: .widthPx)
-    self.assetHeightPx = try container.decode(Swift.Int32.self, forKey: .assetHeightPx)
-    self.expandedHeightPx = try container.decode(Swift.Int32.self, forKey: .expandedHeightPx)
-    self.assetWidthPx = try container.decode(Swift.Int32.self, forKey: .assetWidthPx)
-    self.expandedWidthPx = try container.decode(Swift.Int32.self, forKey: .expandedWidthPx)
-    self.adSlotId = try container.decode(Swift.String.self, forKey: .adSlotId)
-    self.events = try container.decode([Event].self, forKey: .events)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiFramework) {
+      self.apiFramework = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .heightPx) {
+      self.heightPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .widthPx) {
+      self.widthPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .assetHeightPx) {
+      self.assetHeightPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .expandedHeightPx) {
+      self.expandedHeightPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .assetWidthPx) {
+      self.assetWidthPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .expandedWidthPx) {
+      self.expandedWidthPx = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adSlotId) {
+      self.adSlotId = value
+    }
+    if let value = try container.decodeIfPresent([Event].self, forKey: .events) {
+      self.events = value
+    }
 
     var adResource: OneOf_AdResource? = nil
     let adResourceCheckAndSet = {
@@ -122,6 +162,10 @@ public struct Companion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try adResourceCheckAndSet(.htmlAdResource(htmlAdResource))
     }
     self.adResource = adResource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -145,6 +189,9 @@ public struct Companion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .htmlAdResource(let value):
         try container.encode(value, forKey: .htmlAdResource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -76,6 +76,8 @@ public struct BigQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// is not partitioned.
   public var partition: OneOf_Partition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQuerySource`.
   public init() {}
 
@@ -92,22 +94,46 @@ public struct BigQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case partitionDate = "partitionDate"
-    case projectId = "projectId"
-    case datasetId = "datasetId"
-    case tableId = "tableId"
-    case gcsStagingDir = "gcsStagingDir"
-    case dataSchema = "dataSchema"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let partitionDate = CodingKeys(stringValue: "partitionDate")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let datasetId = CodingKeys(stringValue: "datasetId")
+    static let tableId = CodingKeys(stringValue: "tableId")
+    static let gcsStagingDir = CodingKeys(stringValue: "gcsStagingDir")
+    static let dataSchema = CodingKeys(stringValue: "dataSchema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "partitionDate",
+      "projectId",
+      "datasetId",
+      "tableId",
+      "gcsStagingDir",
+      "dataSchema",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.projectId = try container.decode(Swift.String.self, forKey: .projectId)
-    self.datasetId = try container.decode(Swift.String.self, forKey: .datasetId)
-    self.tableId = try container.decode(Swift.String.self, forKey: .tableId)
-    self.gcsStagingDir = try container.decode(Swift.String.self, forKey: .gcsStagingDir)
-    self.dataSchema = try container.decode(Swift.String.self, forKey: .dataSchema)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
+      self.datasetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableId) {
+      self.tableId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsStagingDir) {
+      self.gcsStagingDir = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSchema) {
+      self.dataSchema = value
+    }
 
     var partition: OneOf_Partition? = nil
     let partitionCheckAndSet = {
@@ -125,6 +151,10 @@ public struct BigQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try partitionCheckAndSet(.partitionDate(partitionDate))
     }
     self.partition = partition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -140,6 +170,9 @@ public struct BigQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .partitionDate(let value):
         try container.encode(value, forKey: .partitionDate)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

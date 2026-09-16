@@ -58,6 +58,8 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleCloudWKT._Any
   /// Preferences concerning Sole Tenant nodes and virtual machines.
   public var soleTenancyPreferences: SoleTenancyPreferences? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VirtualMachinePreferences`.
   public init() {}
 
@@ -72,6 +74,74 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetProduct = CodingKeys(stringValue: "targetProduct")
+    static let regionPreferences = CodingKeys(stringValue: "regionPreferences")
+    static let commitmentPlan = CodingKeys(stringValue: "commitmentPlan")
+    static let sizingOptimizationStrategy = CodingKeys(stringValue: "sizingOptimizationStrategy")
+    static let computeEnginePreferences = CodingKeys(stringValue: "computeEnginePreferences")
+    static let vmwareEnginePreferences = CodingKeys(stringValue: "vmwareEnginePreferences")
+    static let soleTenancyPreferences = CodingKeys(stringValue: "soleTenancyPreferences")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetProduct",
+      "regionPreferences",
+      "commitmentPlan",
+      "sizingOptimizationStrategy",
+      "computeEnginePreferences",
+      "vmwareEnginePreferences",
+      "soleTenancyPreferences",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ComputeMigrationTargetProduct.self, forKey: .targetProduct)
+    {
+      self.targetProduct = value
+    }
+    self.regionPreferences = try container.decodeIfPresent(
+      RegionPreferences.self, forKey: .regionPreferences)
+    if let value = try container.decodeIfPresent(CommitmentPlan.self, forKey: .commitmentPlan) {
+      self.commitmentPlan = value
+    }
+    if let value = try container.decodeIfPresent(
+      SizingOptimizationStrategy.self, forKey: .sizingOptimizationStrategy)
+    {
+      self.sizingOptimizationStrategy = value
+    }
+    self.computeEnginePreferences = try container.decodeIfPresent(
+      ComputeEnginePreferences.self, forKey: .computeEnginePreferences)
+    self.vmwareEnginePreferences = try container.decodeIfPresent(
+      VmwareEnginePreferences.self, forKey: .vmwareEnginePreferences)
+    self.soleTenancyPreferences = try container.decodeIfPresent(
+      SoleTenancyPreferences.self, forKey: .soleTenancyPreferences)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.targetProduct, forKey: .targetProduct)
+    try container.encodeIfPresent(self.regionPreferences, forKey: .regionPreferences)
+    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    try container.encode(self.sizingOptimizationStrategy, forKey: .sizingOptimizationStrategy)
+    try container.encodeIfPresent(self.computeEnginePreferences, forKey: .computeEnginePreferences)
+    try container.encodeIfPresent(self.vmwareEnginePreferences, forKey: .vmwareEnginePreferences)
+    try container.encodeIfPresent(self.soleTenancyPreferences, forKey: .soleTenancyPreferences)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

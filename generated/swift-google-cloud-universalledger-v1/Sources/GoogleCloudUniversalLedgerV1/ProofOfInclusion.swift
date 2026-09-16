@@ -56,6 +56,8 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the leaf was included in the round's Merkle tree.
   public var pathToRoundRoot: [ProofOfInclusion.MerkleTreeNode] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProofOfInclusion`.
   public init() {}
 
@@ -70,6 +72,50 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transactionCertificate = CodingKeys(stringValue: "transactionCertificate")
+    static let roundCertificate = CodingKeys(stringValue: "roundCertificate")
+    static let pathToRoundRoot = CodingKeys(stringValue: "pathToRoundRoot")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transactionCertificate",
+      "roundCertificate",
+      "pathToRoundRoot",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.transactionCertificate = try container.decodeIfPresent(
+      TransactionCertificate.self, forKey: .transactionCertificate)
+    self.roundCertificate = try container.decodeIfPresent(
+      RoundCertificate.self, forKey: .roundCertificate)
+    if let value = try container.decodeIfPresent(
+      [ProofOfInclusion.MerkleTreeNode].self, forKey: .pathToRoundRoot)
+    {
+      self.pathToRoundRoot = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.transactionCertificate, forKey: .transactionCertificate)
+    try container.encodeIfPresent(self.roundCertificate, forKey: .roundCertificate)
+    try container.encode(self.pathToRoundRoot, forKey: .pathToRoundRoot)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a node in a Merkle tree path.
@@ -102,6 +148,8 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// child of a node. Format: A 64-character hexadecimal string.
     public var rightChildDigestHex: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MerkleTreeNode`.
     public init() {}
 
@@ -116,6 +164,57 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let leftChildHashHex = CodingKeys(stringValue: "leftChildHashHex")
+      static let rightChildHashHex = CodingKeys(stringValue: "rightChildHashHex")
+      static let leftChildDigestHex = CodingKeys(stringValue: "leftChildDigestHex")
+      static let rightChildDigestHex = CodingKeys(stringValue: "rightChildDigestHex")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "leftChildHashHex",
+        "rightChildHashHex",
+        "leftChildDigestHex",
+        "rightChildDigestHex",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leftChildHashHex) {
+        self.leftChildHashHex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rightChildHashHex) {
+        self.rightChildHashHex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leftChildDigestHex) {
+        self.leftChildDigestHex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rightChildDigestHex)
+      {
+        self.rightChildDigestHex = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.leftChildHashHex, forKey: .leftChildHashHex)
+      try container.encode(self.rightChildHashHex, forKey: .rightChildHashHex)
+      try container.encode(self.leftChildDigestHex, forKey: .leftChildDigestHex)
+      try container.encode(self.rightChildDigestHex, forKey: .rightChildDigestHex)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

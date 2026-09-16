@@ -35,6 +35,8 @@ public struct Phase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The job composition of this Phase.
   public var jobs: OneOf_Jobs? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Phase`.
   public init() {}
 
@@ -51,19 +53,38 @@ public struct Phase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case state = "state"
-    case skipMessage = "skipMessage"
-    case deploymentJobs = "deploymentJobs"
-    case childRolloutJobs = "childRolloutJobs"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let state = CodingKeys(stringValue: "state")
+    static let skipMessage = CodingKeys(stringValue: "skipMessage")
+    static let deploymentJobs = CodingKeys(stringValue: "deploymentJobs")
+    static let childRolloutJobs = CodingKeys(stringValue: "childRolloutJobs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "state",
+      "skipMessage",
+      "deploymentJobs",
+      "childRolloutJobs",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.state = try container.decode(Phase.State.self, forKey: .state)
-    self.skipMessage = try container.decode(Swift.String.self, forKey: .skipMessage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Phase.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skipMessage) {
+      self.skipMessage = value
+    }
 
     var jobs: OneOf_Jobs? = nil
     let jobsCheckAndSet = {
@@ -86,6 +107,10 @@ public struct Phase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobsCheckAndSet(.childRolloutJobs(childRolloutJobs))
     }
     self.jobs = jobs
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +126,9 @@ public struct Phase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .childRolloutJobs(let value):
         try container.encode(value, forKey: .childRolloutJobs)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

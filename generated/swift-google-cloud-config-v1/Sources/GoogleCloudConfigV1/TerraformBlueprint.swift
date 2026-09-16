@@ -33,6 +33,8 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Required.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TerraformBlueprint`.
   public init() {}
 
@@ -49,19 +51,37 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsSource = "gcsSource"
-    case gitSource = "gitSource"
-    case inputValues = "inputValues"
-    case externalValues = "externalValues"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let gitSource = CodingKeys(stringValue: "gitSource")
+    static let inputValues = CodingKeys(stringValue: "inputValues")
+    static let externalValues = CodingKeys(stringValue: "externalValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSource",
+      "gitSource",
+      "inputValues",
+      "externalValues",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.inputValues = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: TerraformVariable].self, forKey: .inputValues)
-    self.externalValues = try container.decode(
+    {
+      self.inputValues = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: ExternalValueSource].self, forKey: .externalValues)
+    {
+      self.externalValues = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -80,6 +100,10 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try sourceCheckAndSet(.gitSource(gitSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +118,9 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .gitSource(let value):
         try container.encode(value, forKey: .gitSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

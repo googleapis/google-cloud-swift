@@ -24,6 +24,8 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Version release for the experiment.
   public var versionRelease: ExperimentConfig.VersionRelease? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExperimentConfig`.
   public init() {}
 
@@ -40,6 +42,37 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let versionRelease = CodingKeys(stringValue: "versionRelease")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "versionRelease"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.versionRelease = try container.decodeIfPresent(
+      ExperimentConfig.VersionRelease.self, forKey: .versionRelease)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.versionRelease, forKey: .versionRelease)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Version release for the experiment.
   public struct VersionRelease: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -49,6 +82,8 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. Traffic allocations for the version release.
     public var trafficAllocations: [ExperimentConfig.VersionRelease.TrafficAllocation] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `VersionRelease`.
     public init() {}
@@ -64,6 +99,46 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let trafficAllocations = CodingKeys(stringValue: "trafficAllocations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "trafficAllocations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(ExperimentConfig.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ExperimentConfig.VersionRelease.TrafficAllocation].self, forKey: .trafficAllocations)
+      {
+        self.trafficAllocations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.trafficAllocations, forKey: .trafficAllocations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Traffic allocation for the version release.
@@ -83,6 +158,8 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
       public var appVersion: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TrafficAllocation`.
       public init() {}
 
@@ -97,6 +174,50 @@ public struct ExperimentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let trafficPercentage = CodingKeys(stringValue: "trafficPercentage")
+        static let appVersion = CodingKeys(stringValue: "appVersion")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "trafficPercentage",
+          "appVersion",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .trafficPercentage) {
+          self.trafficPercentage = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appVersion) {
+          self.appVersion = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.trafficPercentage, forKey: .trafficPercentage)
+        try container.encode(self.appVersion, forKey: .appVersion)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

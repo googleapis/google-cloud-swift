@@ -124,6 +124,8 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the Restore Config for override-scoped resources.
   public var volumeDataRestorePolicyOverrides: [VolumeDataRestorePolicyOverride] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Restore`.
   public init() {}
 
@@ -138,6 +140,146 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let backup = CodingKeys(stringValue: "backup")
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let restoreConfig = CodingKeys(stringValue: "restoreConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateReason = CodingKeys(stringValue: "stateReason")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let resourcesRestoredCount = CodingKeys(stringValue: "resourcesRestoredCount")
+    static let resourcesExcludedCount = CodingKeys(stringValue: "resourcesExcludedCount")
+    static let resourcesFailedCount = CodingKeys(stringValue: "resourcesFailedCount")
+    static let volumesRestoredCount = CodingKeys(stringValue: "volumesRestoredCount")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let volumeDataRestorePolicyOverrides = CodingKeys(
+      stringValue: "volumeDataRestorePolicyOverrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "description",
+      "backup",
+      "cluster",
+      "restoreConfig",
+      "labels",
+      "state",
+      "stateReason",
+      "completeTime",
+      "resourcesRestoredCount",
+      "resourcesExcludedCount",
+      "resourcesFailedCount",
+      "volumesRestoredCount",
+      "etag",
+      "filter",
+      "volumeDataRestorePolicyOverrides",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backup) {
+      self.backup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+      self.cluster = value
+    }
+    self.restoreConfig = try container.decodeIfPresent(RestoreConfig.self, forKey: .restoreConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Restore.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateReason) {
+      self.stateReason = value
+    }
+    self.completeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesRestoredCount)
+    {
+      self.resourcesRestoredCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesExcludedCount)
+    {
+      self.resourcesExcludedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesFailedCount) {
+      self.resourcesFailedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .volumesRestoredCount) {
+      self.volumesRestoredCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.filter = try container.decodeIfPresent(Restore.Filter.self, forKey: .filter)
+    if let value = try container.decodeIfPresent(
+      [VolumeDataRestorePolicyOverride].self, forKey: .volumeDataRestorePolicyOverrides)
+    {
+      self.volumeDataRestorePolicyOverrides = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.backup, forKey: .backup)
+    try container.encode(self.cluster, forKey: .cluster)
+    try container.encodeIfPresent(self.restoreConfig, forKey: .restoreConfig)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateReason, forKey: .stateReason)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+    try container.encode(self.resourcesRestoredCount, forKey: .resourcesRestoredCount)
+    try container.encode(self.resourcesExcludedCount, forKey: .resourcesExcludedCount)
+    try container.encode(self.resourcesFailedCount, forKey: .resourcesFailedCount)
+    try container.encode(self.volumesRestoredCount, forKey: .volumesRestoredCount)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encode(
+      self.volumeDataRestorePolicyOverrides, forKey: .volumeDataRestorePolicyOverrides)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the filter for `Restore`. This filter can be used to further
@@ -159,6 +301,8 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// any `ResourceSelector` of the `exclusion_filters`.
     public var exclusionFilters: [ResourceSelector] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Filter`.
     public init() {}
 
@@ -173,6 +317,48 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inclusionFilters = CodingKeys(stringValue: "inclusionFilters")
+      static let exclusionFilters = CodingKeys(stringValue: "exclusionFilters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inclusionFilters",
+        "exclusionFilters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ResourceSelector].self, forKey: .inclusionFilters)
+      {
+        self.inclusionFilters = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ResourceSelector].self, forKey: .exclusionFilters)
+      {
+        self.exclusionFilters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inclusionFilters, forKey: .inclusionFilters)
+      try container.encode(self.exclusionFilters, forKey: .exclusionFilters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

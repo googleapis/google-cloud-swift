@@ -43,6 +43,8 @@ public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equata
   /// Number of resources still to scan.
   public var resourcesPending: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateOrgPolicyViolationsPreviewOperationMetadata`.
   public init() {}
 
@@ -57,6 +59,66 @@ public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equata
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let resourcesFound = CodingKeys(stringValue: "resourcesFound")
+    static let resourcesScanned = CodingKeys(stringValue: "resourcesScanned")
+    static let resourcesPending = CodingKeys(stringValue: "resourcesPending")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestTime",
+      "startTime",
+      "state",
+      "resourcesFound",
+      "resourcesScanned",
+      "resourcesPending",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.requestTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .requestTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    if let value = try container.decodeIfPresent(PreviewState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesFound) {
+      self.resourcesFound = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesScanned) {
+      self.resourcesScanned = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourcesPending) {
+      self.resourcesPending = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.resourcesFound, forKey: .resourcesFound)
+    try container.encode(self.resourcesScanned, forKey: .resourcesScanned)
+    try container.encode(self.resourcesPending, forKey: .resourcesPending)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

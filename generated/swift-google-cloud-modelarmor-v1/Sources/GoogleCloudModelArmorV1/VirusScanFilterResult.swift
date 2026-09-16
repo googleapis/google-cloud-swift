@@ -45,6 +45,8 @@ public struct VirusScanFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// This field will be empty if no virus was detected.
   public var virusDetails: [VirusDetail] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VirusScanFilterResult`.
   public init() {}
 
@@ -59,6 +61,69 @@ public struct VirusScanFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let messageItems = CodingKeys(stringValue: "messageItems")
+    static let matchState = CodingKeys(stringValue: "matchState")
+    static let scannedContentType = CodingKeys(stringValue: "scannedContentType")
+    static let scannedSize = CodingKeys(stringValue: "scannedSize")
+    static let virusDetails = CodingKeys(stringValue: "virusDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "executionState",
+      "messageItems",
+      "matchState",
+      "scannedContentType",
+      "scannedSize",
+      "virusDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FilterExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent([MessageItem].self, forKey: .messageItems) {
+      self.messageItems = value
+    }
+    if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .matchState) {
+      self.matchState = value
+    }
+    if let value = try container.decodeIfPresent(
+      VirusScanFilterResult.ScannedContentType.self, forKey: .scannedContentType)
+    {
+      self.scannedContentType = value
+    }
+    self.scannedSize = try container.decodeIfPresent(Swift.Int64.self, forKey: .scannedSize)
+    if let value = try container.decodeIfPresent([VirusDetail].self, forKey: .virusDetails) {
+      self.virusDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.messageItems, forKey: .messageItems)
+    try container.encode(self.matchState, forKey: .matchState)
+    try container.encode(self.scannedContentType, forKey: .scannedContentType)
+    try container.encodeIfPresent(self.scannedSize, forKey: .scannedSize)
+    try container.encode(self.virusDetails, forKey: .virusDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of content scanned.

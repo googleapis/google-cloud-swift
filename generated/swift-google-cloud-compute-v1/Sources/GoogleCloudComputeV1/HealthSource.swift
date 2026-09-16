@@ -87,6 +87,8 @@
     /// mutated.
     public var sources: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HealthSource`.
     public init() {}
 
@@ -103,19 +105,39 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case healthAggregationPolicy = "healthAggregationPolicy"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case region = "region"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case sourceType = "sourceType"
-      case sources = "sources"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let healthAggregationPolicy = CodingKeys(stringValue: "healthAggregationPolicy")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let sourceType = CodingKeys(stringValue: "sourceType")
+      static let sources = CodingKeys(stringValue: "sources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "healthAggregationPolicy",
+        "id",
+        "kind",
+        "name",
+        "region",
+        "selfLink",
+        "selfLinkWithId",
+        "sourceType",
+        "sources",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -143,27 +165,36 @@
         Swift.String.self, forKey: .selfLinkWithId)
       self.sourceType = try container.decodeIfPresent(
         HealthSource.SourceType.self, forKey: .sourceType)
-      self.sources = try container.decode([Swift.String].self, forKey: .sources)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sources) {
+        self.sources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.healthAggregationPolicy, forKey: .healthAggregationPolicy)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
-      try container.encode(self.sourceType, forKey: .sourceType)
+      try container.encodeIfPresent(self.healthAggregationPolicy, forKey: .healthAggregationPolicy)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.sourceType, forKey: .sourceType)
       try container.encode(self.sources, forKey: .sources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [sourceType][google.cloud.compute.v1.HealthSource.sourceType] field.

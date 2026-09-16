@@ -50,6 +50,8 @@ public struct BitbucketDataCenterConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// `host_uri`.
   public var serverVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BitbucketDataCenterConfig`.
   public init() {}
 
@@ -64,6 +66,73 @@ public struct BitbucketDataCenterConfig: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostUri = CodingKeys(stringValue: "hostUri")
+    static let webhookSecretSecretVersion = CodingKeys(stringValue: "webhookSecretSecretVersion")
+    static let readAuthorizerCredential = CodingKeys(stringValue: "readAuthorizerCredential")
+    static let authorizerCredential = CodingKeys(stringValue: "authorizerCredential")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+    static let sslCa = CodingKeys(stringValue: "sslCa")
+    static let serverVersion = CodingKeys(stringValue: "serverVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostUri",
+      "webhookSecretSecretVersion",
+      "readAuthorizerCredential",
+      "authorizerCredential",
+      "serviceDirectoryConfig",
+      "sslCa",
+      "serverVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostUri) {
+      self.hostUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .webhookSecretSecretVersion)
+    {
+      self.webhookSecretSecretVersion = value
+    }
+    self.readAuthorizerCredential = try container.decodeIfPresent(
+      UserCredential.self, forKey: .readAuthorizerCredential)
+    self.authorizerCredential = try container.decodeIfPresent(
+      UserCredential.self, forKey: .authorizerCredential)
+    self.serviceDirectoryConfig = try container.decodeIfPresent(
+      ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCa) {
+      self.sslCa = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverVersion) {
+      self.serverVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.hostUri, forKey: .hostUri)
+    try container.encode(self.webhookSecretSecretVersion, forKey: .webhookSecretSecretVersion)
+    try container.encodeIfPresent(self.readAuthorizerCredential, forKey: .readAuthorizerCredential)
+    try container.encodeIfPresent(self.authorizerCredential, forKey: .authorizerCredential)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    try container.encode(self.sslCa, forKey: .sslCa)
+    try container.encode(self.serverVersion, forKey: .serverVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

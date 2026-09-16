@@ -41,6 +41,8 @@
     /// Content of the UrlMap to be validated.
     public var resource: UrlMap? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UrlMapsValidateRequest`.
     public init() {}
 
@@ -55,6 +57,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let loadBalancingSchemes = CodingKeys(stringValue: "loadBalancingSchemes")
+      static let resource = CodingKeys(stringValue: "resource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "loadBalancingSchemes",
+        "resource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [UrlMapsValidateRequest.LoadBalancingSchemes].self, forKey: .loadBalancingSchemes)
+      {
+        self.loadBalancingSchemes = value
+      }
+      self.resource = try container.decodeIfPresent(UrlMap.self, forKey: .resource)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.loadBalancingSchemes, forKey: .loadBalancingSchemes)
+      try container.encodeIfPresent(self.resource, forKey: .resource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [loadBalancingSchemes][google.cloud.compute.v1.UrlMapsValidateRequest.loadBalancingSchemes] field.

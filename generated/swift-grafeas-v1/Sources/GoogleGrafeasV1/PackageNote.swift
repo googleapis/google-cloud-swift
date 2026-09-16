@@ -60,6 +60,8 @@ public struct PackageNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// identification a specific package.
   public var digest: [Digest] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PackageNote`.
   public init() {}
 
@@ -74,6 +76,94 @@ public struct PackageNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let distribution = CodingKeys(stringValue: "distribution")
+    static let packageType = CodingKeys(stringValue: "packageType")
+    static let cpeUri = CodingKeys(stringValue: "cpeUri")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let version = CodingKeys(stringValue: "version")
+    static let maintainer = CodingKeys(stringValue: "maintainer")
+    static let url = CodingKeys(stringValue: "url")
+    static let description = CodingKeys(stringValue: "description")
+    static let license = CodingKeys(stringValue: "license")
+    static let digest = CodingKeys(stringValue: "digest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "distribution",
+      "packageType",
+      "cpeUri",
+      "architecture",
+      "version",
+      "maintainer",
+      "url",
+      "description",
+      "license",
+      "digest",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Distribution].self, forKey: .distribution) {
+      self.distribution = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageType) {
+      self.packageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpeUri) {
+      self.cpeUri = value
+    }
+    if let value = try container.decodeIfPresent(Architecture.self, forKey: .architecture) {
+      self.architecture = value
+    }
+    self.version = try container.decodeIfPresent(Version.self, forKey: .version)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintainer) {
+      self.maintainer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.license = try container.decodeIfPresent(License.self, forKey: .license)
+    if let value = try container.decodeIfPresent([Digest].self, forKey: .digest) {
+      self.digest = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.distribution, forKey: .distribution)
+    try container.encode(self.packageType, forKey: .packageType)
+    try container.encode(self.cpeUri, forKey: .cpeUri)
+    try container.encode(self.architecture, forKey: .architecture)
+    try container.encodeIfPresent(self.version, forKey: .version)
+    try container.encode(self.maintainer, forKey: .maintainer)
+    try container.encode(self.url, forKey: .url)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.license, forKey: .license)
+    try container.encode(self.digest, forKey: .digest)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

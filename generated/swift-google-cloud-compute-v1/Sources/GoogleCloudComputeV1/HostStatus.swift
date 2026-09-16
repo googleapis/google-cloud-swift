@@ -28,6 +28,8 @@
     /// Output only. The URIs of the instances currently running on this host.
     public var runningInstances: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HostStatus`.
     public init() {}
 
@@ -42,6 +44,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let physicalTopology = CodingKeys(stringValue: "physicalTopology")
+      static let runningInstances = CodingKeys(stringValue: "runningInstances")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "physicalTopology",
+        "runningInstances",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.physicalTopology = try container.decodeIfPresent(
+        HostPhysicalTopology.self, forKey: .physicalTopology)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .runningInstances) {
+        self.runningInstances = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.physicalTopology, forKey: .physicalTopology)
+      try container.encode(self.runningInstances, forKey: .runningInstances)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

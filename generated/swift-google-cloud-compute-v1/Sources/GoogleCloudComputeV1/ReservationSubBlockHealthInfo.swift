@@ -39,6 +39,8 @@
     /// reservation subblock.
     public var healthyInfraCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReservationSubBlockHealthInfo`.
     public init() {}
 
@@ -53,6 +55,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let degradedHostCount = CodingKeys(stringValue: "degradedHostCount")
+      static let degradedInfraCount = CodingKeys(stringValue: "degradedInfraCount")
+      static let healthStatus = CodingKeys(stringValue: "healthStatus")
+      static let healthyHostCount = CodingKeys(stringValue: "healthyHostCount")
+      static let healthyInfraCount = CodingKeys(stringValue: "healthyInfraCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "degradedHostCount",
+        "degradedInfraCount",
+        "healthStatus",
+        "healthyHostCount",
+        "healthyInfraCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.degradedHostCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .degradedHostCount)
+      self.degradedInfraCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .degradedInfraCount)
+      self.healthStatus = try container.decodeIfPresent(
+        ReservationSubBlockHealthInfo.HealthStatus.self, forKey: .healthStatus)
+      self.healthyHostCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .healthyHostCount)
+      self.healthyInfraCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .healthyInfraCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.degradedHostCount, forKey: .degradedHostCount)
+      try container.encodeIfPresent(self.degradedInfraCount, forKey: .degradedInfraCount)
+      try container.encodeIfPresent(self.healthStatus, forKey: .healthStatus)
+      try container.encodeIfPresent(self.healthyHostCount, forKey: .healthyHostCount)
+      try container.encodeIfPresent(self.healthyInfraCount, forKey: .healthyInfraCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [healthStatus][google.cloud.compute.v1.ReservationSubBlockHealthInfo.healthStatus] field.

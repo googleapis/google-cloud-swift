@@ -77,6 +77,8 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// may be changed before final release.
   public var metrics: ClusterMetrics? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Cluster`.
   public init() {}
 
@@ -91,6 +93,80 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let config = CodingKeys(stringValue: "config")
+    static let virtualClusterConfig = CodingKeys(stringValue: "virtualClusterConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusHistory = CodingKeys(stringValue: "statusHistory")
+    static let clusterUuid = CodingKeys(stringValue: "clusterUuid")
+    static let metrics = CodingKeys(stringValue: "metrics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "clusterName",
+      "config",
+      "virtualClusterConfig",
+      "labels",
+      "status",
+      "statusHistory",
+      "clusterUuid",
+      "metrics",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    self.config = try container.decodeIfPresent(ClusterConfig.self, forKey: .config)
+    self.virtualClusterConfig = try container.decodeIfPresent(
+      VirtualClusterConfig.self, forKey: .virtualClusterConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.status = try container.decodeIfPresent(ClusterStatus.self, forKey: .status)
+    if let value = try container.decodeIfPresent([ClusterStatus].self, forKey: .statusHistory) {
+      self.statusHistory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUuid) {
+      self.clusterUuid = value
+    }
+    self.metrics = try container.decodeIfPresent(ClusterMetrics.self, forKey: .metrics)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.virtualClusterConfig, forKey: .virtualClusterConfig)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.statusHistory, forKey: .statusHistory)
+    try container.encode(self.clusterUuid, forKey: .clusterUuid)
+    try container.encodeIfPresent(self.metrics, forKey: .metrics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

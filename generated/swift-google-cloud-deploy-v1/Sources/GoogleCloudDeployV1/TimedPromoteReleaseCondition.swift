@@ -28,6 +28,8 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWKT._
   /// Output only. A list of targets involved in the upcoming timed promotion(s).
   public var targetsList: [TimedPromoteReleaseCondition.Targets] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimedPromoteReleaseCondition`.
   public init() {}
 
@@ -44,6 +46,45 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nextPromotionTime = CodingKeys(stringValue: "nextPromotionTime")
+    static let targetsList = CodingKeys(stringValue: "targetsList")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nextPromotionTime",
+      "targetsList",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.nextPromotionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextPromotionTime)
+    if let value = try container.decodeIfPresent(
+      [TimedPromoteReleaseCondition.Targets].self, forKey: .targetsList)
+    {
+      self.targetsList = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.nextPromotionTime, forKey: .nextPromotionTime)
+    try container.encode(self.targetsList, forKey: .targetsList)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The targets involved in a single timed promotion.
   public struct Targets: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +94,8 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWKT._
 
     /// Optional. The destination target ID.
     public var destinationTargetId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Targets`.
     public init() {}
@@ -68,6 +111,45 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceTargetId = CodingKeys(stringValue: "sourceTargetId")
+      static let destinationTargetId = CodingKeys(stringValue: "destinationTargetId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceTargetId",
+        "destinationTargetId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceTargetId) {
+        self.sourceTargetId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationTargetId)
+      {
+        self.destinationTargetId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceTargetId, forKey: .sourceTargetId)
+      try container.encode(self.destinationTargetId, forKey: .destinationTargetId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

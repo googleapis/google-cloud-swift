@@ -30,6 +30,8 @@ public struct MachineDiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// List of disks.
   public var disks: DiskEntryList? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MachineDiskDetails`.
   public init() {}
 
@@ -44,6 +46,48 @@ public struct MachineDiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalCapacityBytes = CodingKeys(stringValue: "totalCapacityBytes")
+    static let totalFreeBytes = CodingKeys(stringValue: "totalFreeBytes")
+    static let disks = CodingKeys(stringValue: "disks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalCapacityBytes",
+      "totalFreeBytes",
+      "disks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalCapacityBytes) {
+      self.totalCapacityBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalFreeBytes) {
+      self.totalFreeBytes = value
+    }
+    self.disks = try container.decodeIfPresent(DiskEntryList.self, forKey: .disks)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalCapacityBytes, forKey: .totalCapacityBytes)
+    try container.encode(self.totalFreeBytes, forKey: .totalFreeBytes)
+    try container.encodeIfPresent(self.disks, forKey: .disks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@
     /// The value of the field.
     public var val: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams`.
     public init() {}
 
@@ -42,6 +44,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let op = CodingKeys(stringValue: "op")
+      static let val = CodingKeys(stringValue: "val")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "op",
+        "val",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.op = try container.decodeIfPresent(
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams.Op.self, forKey: .op)
+      self.val = try container.decodeIfPresent(Swift.String.self, forKey: .val)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.op, forKey: .op)
+      try container.encodeIfPresent(self.val, forKey: .val)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [op][google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams.op] field.

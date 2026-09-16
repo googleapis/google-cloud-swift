@@ -29,6 +29,8 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// vulnerability. For example, `http://example.com?p=aMmYgI6H`.
   public var fullUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Application`.
   public init() {}
 
@@ -43,6 +45,44 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseUri = CodingKeys(stringValue: "baseUri")
+    static let fullUri = CodingKeys(stringValue: "fullUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseUri",
+      "fullUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseUri) {
+      self.baseUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullUri) {
+      self.fullUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.baseUri, forKey: .baseUri)
+    try container.encode(self.fullUri, forKey: .fullUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

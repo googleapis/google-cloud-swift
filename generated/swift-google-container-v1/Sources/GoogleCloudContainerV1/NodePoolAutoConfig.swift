@@ -40,6 +40,8 @@ public struct NodePoolAutoConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. Configuration options for Linux nodes.
   public var linuxNodeConfig: LinuxNodeConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodePoolAutoConfig`.
   public init() {}
 
@@ -54,6 +56,51 @@ public struct NodePoolAutoConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let networkTags = CodingKeys(stringValue: "networkTags")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+    static let nodeKubeletConfig = CodingKeys(stringValue: "nodeKubeletConfig")
+    static let linuxNodeConfig = CodingKeys(stringValue: "linuxNodeConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "networkTags",
+      "resourceManagerTags",
+      "nodeKubeletConfig",
+      "linuxNodeConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.networkTags = try container.decodeIfPresent(NetworkTags.self, forKey: .networkTags)
+    self.resourceManagerTags = try container.decodeIfPresent(
+      ResourceManagerTags.self, forKey: .resourceManagerTags)
+    self.nodeKubeletConfig = try container.decodeIfPresent(
+      NodeKubeletConfig.self, forKey: .nodeKubeletConfig)
+    self.linuxNodeConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.self, forKey: .linuxNodeConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.networkTags, forKey: .networkTags)
+    try container.encodeIfPresent(self.resourceManagerTags, forKey: .resourceManagerTags)
+    try container.encodeIfPresent(self.nodeKubeletConfig, forKey: .nodeKubeletConfig)
+    try container.encodeIfPresent(self.linuxNodeConfig, forKey: .linuxNodeConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

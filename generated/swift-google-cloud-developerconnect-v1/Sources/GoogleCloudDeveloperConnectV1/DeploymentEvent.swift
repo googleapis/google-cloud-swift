@@ -62,6 +62,8 @@ public struct DeploymentEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// empty.
   public var undeployTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentEvent`.
   public init() {}
 
@@ -76,6 +78,82 @@ public struct DeploymentEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let runtimeConfig = CodingKeys(stringValue: "runtimeConfig")
+    static let runtimeDeploymentUri = CodingKeys(stringValue: "runtimeDeploymentUri")
+    static let state = CodingKeys(stringValue: "state")
+    static let artifactDeployments = CodingKeys(stringValue: "artifactDeployments")
+    static let deployTime = CodingKeys(stringValue: "deployTime")
+    static let undeployTime = CodingKeys(stringValue: "undeployTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "runtimeConfig",
+      "runtimeDeploymentUri",
+      "state",
+      "artifactDeployments",
+      "deployTime",
+      "undeployTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.runtimeConfig = try container.decodeIfPresent(RuntimeConfig.self, forKey: .runtimeConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeDeploymentUri) {
+      self.runtimeDeploymentUri = value
+    }
+    if let value = try container.decodeIfPresent(DeploymentEvent.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ArtifactDeployment].self, forKey: .artifactDeployments)
+    {
+      self.artifactDeployments = value
+    }
+    self.deployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deployTime)
+    self.undeployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .undeployTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
+    try container.encode(self.runtimeDeploymentUri, forKey: .runtimeDeploymentUri)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.artifactDeployments, forKey: .artifactDeployments)
+    try container.encodeIfPresent(self.deployTime, forKey: .deployTime)
+    try container.encodeIfPresent(self.undeployTime, forKey: .undeployTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the DeploymentEvent.

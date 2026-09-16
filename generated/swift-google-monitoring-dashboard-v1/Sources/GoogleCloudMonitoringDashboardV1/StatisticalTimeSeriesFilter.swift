@@ -34,6 +34,8 @@ public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._A
   /// How many time series to output.
   public var numTimeSeries: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StatisticalTimeSeriesFilter`.
   public init() {}
 
@@ -48,6 +50,46 @@ public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rankingMethod = CodingKeys(stringValue: "rankingMethod")
+    static let numTimeSeries = CodingKeys(stringValue: "numTimeSeries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rankingMethod",
+      "numTimeSeries",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      StatisticalTimeSeriesFilter.Method.self, forKey: .rankingMethod)
+    {
+      self.rankingMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numTimeSeries) {
+      self.numTimeSeries = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    try container.encode(self.numTimeSeries, forKey: .numTimeSeries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The filter methods that can be applied to a stream.

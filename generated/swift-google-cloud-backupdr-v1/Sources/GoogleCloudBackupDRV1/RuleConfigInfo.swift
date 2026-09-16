@@ -35,6 +35,8 @@ public struct RuleConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// from the source.
   public var lastSuccessfulBackupConsistencyTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuleConfigInfo`.
   public init() {}
 
@@ -49,6 +51,58 @@ public struct RuleConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ruleId = CodingKeys(stringValue: "ruleId")
+    static let lastBackupState = CodingKeys(stringValue: "lastBackupState")
+    static let lastBackupError = CodingKeys(stringValue: "lastBackupError")
+    static let lastSuccessfulBackupConsistencyTime = CodingKeys(
+      stringValue: "lastSuccessfulBackupConsistencyTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ruleId",
+      "lastBackupState",
+      "lastBackupError",
+      "lastSuccessfulBackupConsistencyTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleId) {
+      self.ruleId = value
+    }
+    if let value = try container.decodeIfPresent(
+      RuleConfigInfo.LastBackupState.self, forKey: .lastBackupState)
+    {
+      self.lastBackupState = value
+    }
+    self.lastBackupError = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .lastBackupError)
+    self.lastSuccessfulBackupConsistencyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastSuccessfulBackupConsistencyTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ruleId, forKey: .ruleId)
+    try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    try container.encodeIfPresent(self.lastBackupError, forKey: .lastBackupError)
+    try container.encodeIfPresent(
+      self.lastSuccessfulBackupConsistencyTime, forKey: .lastSuccessfulBackupConsistencyTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for LastBackupState

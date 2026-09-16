@@ -76,6 +76,8 @@ public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. The display name of the target resource.
   public var targetResourceDisplayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudControlDeployment`.
   public init() {}
 
@@ -90,6 +92,106 @@ public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let targetResourceConfig = CodingKeys(stringValue: "targetResourceConfig")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let cloudControlMetadata = CodingKeys(stringValue: "cloudControlMetadata")
+    static let description = CodingKeys(stringValue: "description")
+    static let deploymentState = CodingKeys(stringValue: "deploymentState")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let parameterSubstitutedCloudControl = CodingKeys(
+      stringValue: "parameterSubstitutedCloudControl")
+    static let frameworkDeploymentReferences = CodingKeys(
+      stringValue: "frameworkDeploymentReferences")
+    static let targetResourceDisplayName = CodingKeys(stringValue: "targetResourceDisplayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "targetResourceConfig",
+      "targetResource",
+      "cloudControlMetadata",
+      "description",
+      "deploymentState",
+      "createTime",
+      "updateTime",
+      "etag",
+      "parameterSubstitutedCloudControl",
+      "frameworkDeploymentReferences",
+      "targetResourceDisplayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.targetResourceConfig = try container.decodeIfPresent(
+      TargetResourceConfig.self, forKey: .targetResourceConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    self.cloudControlMetadata = try container.decodeIfPresent(
+      CloudControlMetadata.self, forKey: .cloudControlMetadata)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(DeploymentState.self, forKey: .deploymentState) {
+      self.deploymentState = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.parameterSubstitutedCloudControl = try container.decodeIfPresent(
+      CloudControl.self, forKey: .parameterSubstitutedCloudControl)
+    if let value = try container.decodeIfPresent(
+      [FrameworkDeploymentReference].self, forKey: .frameworkDeploymentReferences)
+    {
+      self.frameworkDeploymentReferences = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .targetResourceDisplayName)
+    {
+      self.targetResourceDisplayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.targetResourceConfig, forKey: .targetResourceConfig)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    try container.encodeIfPresent(self.cloudControlMetadata, forKey: .cloudControlMetadata)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.deploymentState, forKey: .deploymentState)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(
+      self.parameterSubstitutedCloudControl, forKey: .parameterSubstitutedCloudControl)
+    try container.encode(self.frameworkDeploymentReferences, forKey: .frameworkDeploymentReferences)
+    try container.encode(self.targetResourceDisplayName, forKey: .targetResourceDisplayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

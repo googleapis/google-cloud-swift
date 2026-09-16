@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ListObjectsResponse {
@@ -29,6 +29,7 @@ extension ListObjectsResponse {
     self.objects = try proto.objects.map { try .init(proto: $0) }
     self.prefixes = proto.prefixes
     self.nextPageToken = proto.nextPageToken
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -36,6 +37,9 @@ extension ListObjectsResponse {
     proto.objects = try self.objects.map { try $0.toProto() }
     proto.prefixes = self.prefixes
     proto.nextPageToken = self.nextPageToken
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

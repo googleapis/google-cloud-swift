@@ -27,6 +27,8 @@ public struct IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of Iceberg storage.
   public var storageDetails: OneOf_StorageDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IcebergStorage`.
   public init() {}
 
@@ -43,16 +45,34 @@ public struct IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case amazonS3IcebergStorage = "amazonS3IcebergStorage"
-    case googleCloudStorageIcebergStorage = "googleCloudStorageIcebergStorage"
-    case azureDataLakeStorageIcebergStorage = "azureDataLakeStorageIcebergStorage"
-    case storageType = "storageType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let amazonS3IcebergStorage = CodingKeys(stringValue: "amazonS3IcebergStorage")
+    static let googleCloudStorageIcebergStorage = CodingKeys(
+      stringValue: "googleCloudStorageIcebergStorage")
+    static let azureDataLakeStorageIcebergStorage = CodingKeys(
+      stringValue: "azureDataLakeStorageIcebergStorage")
+    static let storageType = CodingKeys(stringValue: "storageType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "amazonS3IcebergStorage",
+      "googleCloudStorageIcebergStorage",
+      "azureDataLakeStorageIcebergStorage",
+      "storageType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.storageType = try container.decode(IcebergStorage.StorageType.self, forKey: .storageType)
+    if let value = try container.decodeIfPresent(
+      IcebergStorage.StorageType.self, forKey: .storageType)
+    {
+      self.storageType = value
+    }
 
     var storageDetails: OneOf_StorageDetails? = nil
     let storageDetailsCheckAndSet = {
@@ -82,6 +102,10 @@ public struct IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .azureDataLakeStorageIcebergStorage(azureDataLakeStorageIcebergStorage))
     }
     self.storageDetails = storageDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +121,9 @@ public struct IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .azureDataLakeStorageIcebergStorage(let value):
         try container.encode(value, forKey: .azureDataLakeStorageIcebergStorage)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

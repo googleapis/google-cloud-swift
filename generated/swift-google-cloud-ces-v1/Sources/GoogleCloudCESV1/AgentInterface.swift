@@ -41,6 +41,8 @@ public struct AgentInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Examples: "0.3", "1.0"
   public var protocolVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AgentInterface`.
   public init() {}
 
@@ -55,6 +57,56 @@ public struct AgentInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let url = CodingKeys(stringValue: "url")
+    static let protocolBinding = CodingKeys(stringValue: "protocolBinding")
+    static let tenant = CodingKeys(stringValue: "tenant")
+    static let protocolVersion = CodingKeys(stringValue: "protocolVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "url",
+      "protocolBinding",
+      "tenant",
+      "protocolVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .protocolBinding) {
+      self.protocolBinding = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenant) {
+      self.tenant = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .protocolVersion) {
+      self.protocolVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.url, forKey: .url)
+    try container.encode(self.protocolBinding, forKey: .protocolBinding)
+    try container.encode(self.tenant, forKey: .tenant)
+    try container.encode(self.protocolVersion, forKey: .protocolVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

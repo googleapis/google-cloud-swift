@@ -298,6 +298,8 @@
     /// Used for page-level impression data.
     public var panels: [PanelInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UserEvent`.
     public init() {}
 
@@ -312,6 +314,153 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eventType = CodingKeys(stringValue: "eventType")
+      static let conversionType = CodingKeys(stringValue: "conversionType")
+      static let userPseudoId = CodingKeys(stringValue: "userPseudoId")
+      static let engine = CodingKeys(stringValue: "engine")
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+      static let eventTime = CodingKeys(stringValue: "eventTime")
+      static let userInfo = CodingKeys(stringValue: "userInfo")
+      static let directUserRequest = CodingKeys(stringValue: "directUserRequest")
+      static let sessionId = CodingKeys(stringValue: "sessionId")
+      static let pageInfo = CodingKeys(stringValue: "pageInfo")
+      static let attributionToken = CodingKeys(stringValue: "attributionToken")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let documents = CodingKeys(stringValue: "documents")
+      static let panel = CodingKeys(stringValue: "panel")
+      static let searchInfo = CodingKeys(stringValue: "searchInfo")
+      static let completionInfo = CodingKeys(stringValue: "completionInfo")
+      static let transactionInfo = CodingKeys(stringValue: "transactionInfo")
+      static let tagIds = CodingKeys(stringValue: "tagIds")
+      static let promotionIds = CodingKeys(stringValue: "promotionIds")
+      static let attributes = CodingKeys(stringValue: "attributes")
+      static let mediaInfo = CodingKeys(stringValue: "mediaInfo")
+      static let panels = CodingKeys(stringValue: "panels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eventType",
+        "conversionType",
+        "userPseudoId",
+        "engine",
+        "dataStore",
+        "eventTime",
+        "userInfo",
+        "directUserRequest",
+        "sessionId",
+        "pageInfo",
+        "attributionToken",
+        "filter",
+        "documents",
+        "panel",
+        "searchInfo",
+        "completionInfo",
+        "transactionInfo",
+        "tagIds",
+        "promotionIds",
+        "attributes",
+        "mediaInfo",
+        "panels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventType) {
+        self.eventType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversionType) {
+        self.conversionType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userPseudoId) {
+        self.userPseudoId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engine) {
+        self.engine = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
+        self.dataStore = value
+      }
+      self.eventTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+      self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .directUserRequest) {
+        self.directUserRequest = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
+        self.sessionId = value
+      }
+      self.pageInfo = try container.decodeIfPresent(PageInfo.self, forKey: .pageInfo)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attributionToken) {
+        self.attributionToken = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      if let value = try container.decodeIfPresent([DocumentInfo].self, forKey: .documents) {
+        self.documents = value
+      }
+      self.panel = try container.decodeIfPresent(PanelInfo.self, forKey: .panel)
+      self.searchInfo = try container.decodeIfPresent(SearchInfo.self, forKey: .searchInfo)
+      self.completionInfo = try container.decodeIfPresent(
+        CompletionInfo.self, forKey: .completionInfo)
+      self.transactionInfo = try container.decodeIfPresent(
+        TransactionInfo.self, forKey: .transactionInfo)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagIds) {
+        self.tagIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .promotionIds) {
+        self.promotionIds = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: CustomAttribute].self, forKey: .attributes)
+      {
+        self.attributes = value
+      }
+      self.mediaInfo = try container.decodeIfPresent(MediaInfo.self, forKey: .mediaInfo)
+      if let value = try container.decodeIfPresent([PanelInfo].self, forKey: .panels) {
+        self.panels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.eventType, forKey: .eventType)
+      try container.encode(self.conversionType, forKey: .conversionType)
+      try container.encode(self.userPseudoId, forKey: .userPseudoId)
+      try container.encode(self.engine, forKey: .engine)
+      try container.encode(self.dataStore, forKey: .dataStore)
+      try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+      try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
+      try container.encode(self.directUserRequest, forKey: .directUserRequest)
+      try container.encode(self.sessionId, forKey: .sessionId)
+      try container.encodeIfPresent(self.pageInfo, forKey: .pageInfo)
+      try container.encode(self.attributionToken, forKey: .attributionToken)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encode(self.documents, forKey: .documents)
+      try container.encodeIfPresent(self.panel, forKey: .panel)
+      try container.encodeIfPresent(self.searchInfo, forKey: .searchInfo)
+      try container.encodeIfPresent(self.completionInfo, forKey: .completionInfo)
+      try container.encodeIfPresent(self.transactionInfo, forKey: .transactionInfo)
+      try container.encode(self.tagIds, forKey: .tagIds)
+      try container.encode(self.promotionIds, forKey: .promotionIds)
+      try container.encode(self.attributes, forKey: .attributes)
+      try container.encodeIfPresent(self.mediaInfo, forKey: .mediaInfo)
+      try container.encode(self.panels, forKey: .panels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

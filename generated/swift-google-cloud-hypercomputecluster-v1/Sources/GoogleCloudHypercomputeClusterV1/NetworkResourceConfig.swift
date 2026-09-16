@@ -26,6 +26,8 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Particular type of configuration for this network resource.
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkResourceConfig`.
   public init() {}
 
@@ -42,9 +44,19 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case newNetwork = "newNetwork"
-    case existingNetwork = "existingNetwork"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let newNetwork = CodingKeys(stringValue: "newNetwork")
+    static let existingNetwork = CodingKeys(stringValue: "existingNetwork")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "newNetwork",
+      "existingNetwork",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       try configCheckAndSet(.existingNetwork(existingNetwork))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .existingNetwork(let value):
         try container.encode(value, forKey: .existingNetwork)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

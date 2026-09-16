@@ -28,6 +28,8 @@
     /// The list of scopes to be made available for this service account.
     public var scopes: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServiceAccount`.
     public init() {}
 
@@ -42,6 +44,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let email = CodingKeys(stringValue: "email")
+      static let scopes = CodingKeys(stringValue: "scopes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "email",
+        "scopes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.email = try container.decodeIfPresent(Swift.String.self, forKey: .email)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+        self.scopes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.email, forKey: .email)
+      try container.encode(self.scopes, forKey: .scopes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

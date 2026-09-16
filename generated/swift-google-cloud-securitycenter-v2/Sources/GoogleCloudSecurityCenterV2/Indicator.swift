@@ -38,6 +38,8 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The list of URIs associated to the Findings.
   public var uris: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Indicator`.
   public init() {}
 
@@ -54,6 +56,58 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+    static let domains = CodingKeys(stringValue: "domains")
+    static let signatures = CodingKeys(stringValue: "signatures")
+    static let uris = CodingKeys(stringValue: "uris")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipAddresses",
+      "domains",
+      "signatures",
+      "uris",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipAddresses) {
+      self.ipAddresses = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domains) {
+      self.domains = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Indicator.ProcessSignature].self, forKey: .signatures)
+    {
+      self.signatures = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .uris) {
+      self.uris = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ipAddresses, forKey: .ipAddresses)
+    try container.encode(self.domains, forKey: .domains)
+    try container.encode(self.signatures, forKey: .signatures)
+    try container.encode(self.uris, forKey: .uris)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Indicates what signature matched this process.
   public struct ProcessSignature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -64,6 +118,8 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The signature.
     public var signature: OneOf_Signature? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ProcessSignature`.
     public init() {}
@@ -81,16 +137,30 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case memoryHashSignature = "memoryHashSignature"
-      case yaraRuleSignature = "yaraRuleSignature"
-      case signatureType = "signatureType"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let memoryHashSignature = CodingKeys(stringValue: "memoryHashSignature")
+      static let yaraRuleSignature = CodingKeys(stringValue: "yaraRuleSignature")
+      static let signatureType = CodingKeys(stringValue: "signatureType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "memoryHashSignature",
+        "yaraRuleSignature",
+        "signatureType",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.signatureType = try container.decode(
+      if let value = try container.decodeIfPresent(
         Indicator.ProcessSignature.SignatureType.self, forKey: .signatureType)
+      {
+        self.signatureType = value
+      }
 
       var signature: OneOf_Signature? = nil
       let signatureCheckAndSet = {
@@ -113,6 +183,10 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try signatureCheckAndSet(.yaraRuleSignature(yaraRuleSignature))
       }
       self.signature = signature
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,6 +201,9 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .yaraRuleSignature)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A signature corresponding to memory page hashes.
@@ -139,6 +216,8 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The list of memory hash detections contributing to the binary family
       /// match.
       public var detections: [Indicator.ProcessSignature.MemoryHashSignature.Detection] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MemoryHashSignature`.
       public init() {}
@@ -156,6 +235,46 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let binaryFamily = CodingKeys(stringValue: "binaryFamily")
+        static let detections = CodingKeys(stringValue: "detections")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "binaryFamily",
+          "detections",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .binaryFamily) {
+          self.binaryFamily = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Indicator.ProcessSignature.MemoryHashSignature.Detection].self, forKey: .detections)
+        {
+          self.detections = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.binaryFamily, forKey: .binaryFamily)
+        try container.encode(self.detections, forKey: .detections)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Memory hash detection contributing to the binary family match.
       public struct Detection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -167,6 +286,9 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// The percentage of memory page hashes in the signature
         /// that were matched.
         public var percentPagesMatched: Swift.Double = Swift.Double()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Detection`.
         public init() {}
@@ -182,6 +304,46 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let binary = CodingKeys(stringValue: "binary")
+          static let percentPagesMatched = CodingKeys(stringValue: "percentPagesMatched")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "binary",
+            "percentPagesMatched",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .binary) {
+            self.binary = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Double.self, forKey: .percentPagesMatched)
+          {
+            self.percentPagesMatched = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.binary, forKey: .binary)
+          try container.encode(self.percentPagesMatched, forKey: .percentPagesMatched)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -215,6 +377,8 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The name of the YARA rule.
       public var yaraRule: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `YaraRuleSignature`.
       public init() {}
 
@@ -229,6 +393,38 @@ public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let yaraRule = CodingKeys(stringValue: "yaraRule")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "yaraRule"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .yaraRule) {
+          self.yaraRule = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.yaraRule, forKey: .yaraRule)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

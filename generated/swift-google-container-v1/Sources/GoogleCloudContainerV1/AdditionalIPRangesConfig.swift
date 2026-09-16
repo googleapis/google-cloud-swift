@@ -37,6 +37,8 @@ public struct AdditionalIPRangesConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Draining status of the additional subnet.
   public var status: AdditionalIPRangesConfig.Status = AdditionalIPRangesConfig.Status()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdditionalIPRangesConfig`.
   public init() {}
 
@@ -51,6 +53,52 @@ public struct AdditionalIPRangesConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let podIpv4RangeNames = CodingKeys(stringValue: "podIpv4RangeNames")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subnetwork",
+      "podIpv4RangeNames",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .podIpv4RangeNames) {
+      self.podIpv4RangeNames = value
+    }
+    if let value = try container.decodeIfPresent(
+      AdditionalIPRangesConfig.Status.self, forKey: .status)
+    {
+      self.status = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encode(self.podIpv4RangeNames, forKey: .podIpv4RangeNames)
+    try container.encode(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Additional subnet with DRAINING status will not be selected during new node

@@ -38,6 +38,8 @@
     /// connector data ingestion.
     public var superAdminEmailAddress: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkspaceConfig`.
     public init() {}
 
@@ -52,6 +54,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let dasherCustomerId = CodingKeys(stringValue: "dasherCustomerId")
+      static let superAdminServiceAccount = CodingKeys(stringValue: "superAdminServiceAccount")
+      static let superAdminEmailAddress = CodingKeys(stringValue: "superAdminEmailAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "dasherCustomerId",
+        "superAdminServiceAccount",
+        "superAdminEmailAddress",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(WorkspaceConfig.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dasherCustomerId) {
+        self.dasherCustomerId = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .superAdminServiceAccount)
+      {
+        self.superAdminServiceAccount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .superAdminEmailAddress)
+      {
+        self.superAdminEmailAddress = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.dasherCustomerId, forKey: .dasherCustomerId)
+      try container.encode(self.superAdminServiceAccount, forKey: .superAdminServiceAccount)
+      try container.encode(self.superAdminEmailAddress, forKey: .superAdminEmailAddress)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Specifies the type of Workspace App supported by this DataStore

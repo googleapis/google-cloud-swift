@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleIAMV1
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.Binding {
@@ -31,6 +31,7 @@ extension GoogleIAMV1.Binding {
     self.role = proto.role
     self.members = proto.members
     self.condition = proto.hasCondition ? try .init(proto: proto.condition) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -38,6 +39,9 @@ extension GoogleIAMV1.Binding {
     proto.role = self.role
     proto.members = self.members
     if let condition = self.condition { proto.condition = try condition.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

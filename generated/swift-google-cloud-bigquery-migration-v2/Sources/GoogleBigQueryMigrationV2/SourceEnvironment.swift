@@ -37,6 +37,8 @@ public struct SourceEnvironment: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// future translation jobs.
   public var metadataStoreDataset: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceEnvironment`.
   public init() {}
 
@@ -51,6 +53,50 @@ public struct SourceEnvironment: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let defaultDatabase = CodingKeys(stringValue: "defaultDatabase")
+    static let schemaSearchPath = CodingKeys(stringValue: "schemaSearchPath")
+    static let metadataStoreDataset = CodingKeys(stringValue: "metadataStoreDataset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "defaultDatabase",
+      "schemaSearchPath",
+      "metadataStoreDataset",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultDatabase) {
+      self.defaultDatabase = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .schemaSearchPath) {
+      self.schemaSearchPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataStoreDataset) {
+      self.metadataStoreDataset = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.defaultDatabase, forKey: .defaultDatabase)
+    try container.encode(self.schemaSearchPath, forKey: .schemaSearchPath)
+    try container.encode(self.metadataStoreDataset, forKey: .metadataStoreDataset)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

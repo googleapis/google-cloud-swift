@@ -33,6 +33,8 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
   /// Output only. A list of instance selection results in the group.
   public var instanceSelectionResults: [InstanceFlexibilityPolicy.InstanceSelectionResult] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InstanceFlexibilityPolicy`.
   public init() {}
 
@@ -47,6 +49,53 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let provisioningModelMix = CodingKeys(stringValue: "provisioningModelMix")
+    static let instanceSelectionList = CodingKeys(stringValue: "instanceSelectionList")
+    static let instanceSelectionResults = CodingKeys(stringValue: "instanceSelectionResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "provisioningModelMix",
+      "instanceSelectionList",
+      "instanceSelectionResults",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.provisioningModelMix = try container.decodeIfPresent(
+      InstanceFlexibilityPolicy.ProvisioningModelMix.self, forKey: .provisioningModelMix)
+    if let value = try container.decodeIfPresent(
+      [InstanceFlexibilityPolicy.InstanceSelection].self, forKey: .instanceSelectionList)
+    {
+      self.instanceSelectionList = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InstanceFlexibilityPolicy.InstanceSelectionResult].self, forKey: .instanceSelectionResults)
+    {
+      self.instanceSelectionResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.provisioningModelMix, forKey: .provisioningModelMix)
+    try container.encode(self.instanceSelectionList, forKey: .instanceSelectionList)
+    try container.encode(self.instanceSelectionResults, forKey: .instanceSelectionResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines how Dataproc should create VMs with a mixture of provisioning
@@ -72,6 +121,8 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
     /// instances. The mix will be 30% standard and 70% spot.
     public var standardCapacityPercentAboveBase: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProvisioningModelMix`.
     public init() {}
 
@@ -86,6 +137,44 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let standardCapacityBase = CodingKeys(stringValue: "standardCapacityBase")
+      static let standardCapacityPercentAboveBase = CodingKeys(
+        stringValue: "standardCapacityPercentAboveBase")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "standardCapacityBase",
+        "standardCapacityPercentAboveBase",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.standardCapacityBase = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .standardCapacityBase)
+      self.standardCapacityPercentAboveBase = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .standardCapacityPercentAboveBase)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.standardCapacityBase, forKey: .standardCapacityBase)
+      try container.encodeIfPresent(
+        self.standardCapacityPercentAboveBase, forKey: .standardCapacityPercentAboveBase)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -120,6 +209,8 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
     /// instanceGroupConfig must not specify any diskConfig.
     public var diskConfig: DiskConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceSelection`.
     public init() {}
 
@@ -134,6 +225,48 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineTypes = CodingKeys(stringValue: "machineTypes")
+      static let rank = CodingKeys(stringValue: "rank")
+      static let diskConfig = CodingKeys(stringValue: "diskConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineTypes",
+        "rank",
+        "diskConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .machineTypes) {
+        self.machineTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rank) {
+        self.rank = value
+      }
+      self.diskConfig = try container.decodeIfPresent(DiskConfig.self, forKey: .diskConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.machineTypes, forKey: .machineTypes)
+      try container.encode(self.rank, forKey: .rank)
+      try container.encodeIfPresent(self.diskConfig, forKey: .diskConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -159,6 +292,8 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
     /// Output only. Number of VM provisioned with the machine_type.
     public var vmCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceSelectionResult`.
     public init() {}
 
@@ -173,6 +308,40 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let vmCount = CodingKeys(stringValue: "vmCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineType",
+        "vmCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
+      self.vmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.machineType, forKey: .machineType)
+      try container.encodeIfPresent(self.vmCount, forKey: .vmCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -30,6 +30,8 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The criterion to use for evaluating window goodness.
   public var windowCriterion: OneOf_WindowCriterion? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WindowsBasedSli`.
   public init() {}
 
@@ -46,12 +48,25 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case goodBadMetricFilter = "goodBadMetricFilter"
-    case goodTotalRatioThreshold = "goodTotalRatioThreshold"
-    case metricMeanInRange = "metricMeanInRange"
-    case metricSumInRange = "metricSumInRange"
-    case windowPeriod = "windowPeriod"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let goodBadMetricFilter = CodingKeys(stringValue: "goodBadMetricFilter")
+    static let goodTotalRatioThreshold = CodingKeys(stringValue: "goodTotalRatioThreshold")
+    static let metricMeanInRange = CodingKeys(stringValue: "metricMeanInRange")
+    static let metricSumInRange = CodingKeys(stringValue: "metricSumInRange")
+    static let windowPeriod = CodingKeys(stringValue: "windowPeriod")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "goodBadMetricFilter",
+      "goodTotalRatioThreshold",
+      "metricMeanInRange",
+      "metricSumInRange",
+      "windowPeriod",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -90,11 +105,15 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try windowCriterionCheckAndSet(.metricSumInRange(metricSumInRange))
     }
     self.windowCriterion = windowCriterion
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.windowPeriod, forKey: .windowPeriod)
+    try container.encodeIfPresent(self.windowPeriod, forKey: .windowPeriod)
 
     if let choice = self.windowCriterion {
       switch choice {
@@ -107,6 +126,9 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .metricSumInRange(let value):
         try container.encode(value, forKey: .metricSumInRange)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -121,6 +143,8 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
     public var type: OneOf_Type? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PerformanceThreshold`.
     public init() {}
@@ -138,15 +162,28 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case performance = "performance"
-      case basicSliPerformance = "basicSliPerformance"
-      case threshold = "threshold"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let performance = CodingKeys(stringValue: "performance")
+      static let basicSliPerformance = CodingKeys(stringValue: "basicSliPerformance")
+      static let threshold = CodingKeys(stringValue: "threshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "performance",
+        "basicSliPerformance",
+        "threshold",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.threshold = try container.decode(Swift.Double.self, forKey: .threshold)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .threshold) {
+        self.threshold = value
+      }
 
       var type: OneOf_Type? = nil
       let typeCheckAndSet = {
@@ -169,6 +206,10 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try typeCheckAndSet(.basicSliPerformance(basicSliPerformance))
       }
       self.type = type
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -182,6 +223,9 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .basicSliPerformance(let value):
           try container.encode(value, forKey: .basicSliPerformance)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -220,6 +264,8 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// to an infinite value.
     public var range: Range? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetricRange`.
     public init() {}
 
@@ -234,6 +280,42 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeSeries = CodingKeys(stringValue: "timeSeries")
+      static let range = CodingKeys(stringValue: "range")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeSeries",
+        "range",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeSeries) {
+        self.timeSeries = value
+      }
+      self.range = try container.decodeIfPresent(Range.self, forKey: .range)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.timeSeries, forKey: .timeSeries)
+      try container.encodeIfPresent(self.range, forKey: .range)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

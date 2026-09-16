@@ -36,6 +36,8 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     public var matcher: BatchGetDocumentsMetadataRequest.Matcher? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchGetDocumentsMetadataRequest`.
     public init() {}
 
@@ -52,6 +54,43 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let matcher = CodingKeys(stringValue: "matcher")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "matcher",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.matcher = try container.decodeIfPresent(
+        BatchGetDocumentsMetadataRequest.Matcher.self, forKey: .matcher)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.matcher, forKey: .matcher)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s by
     /// exact uris.
     ///
@@ -61,6 +100,8 @@
     {
       /// The exact URIs to match by.
       public var uris: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `UrisMatcher`.
       public init() {}
@@ -76,6 +117,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uris = CodingKeys(stringValue: "uris")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uris"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .uris) {
+          self.uris = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uris, forKey: .uris)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -102,6 +175,8 @@
       /// projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
       public var fhirResources: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `FhirMatcher`.
       public init() {}
 
@@ -116,6 +191,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let fhirResources = CodingKeys(stringValue: "fhirResources")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "fhirResources"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fhirResources) {
+          self.fhirResources = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.fhirResources, forKey: .fhirResources)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -142,6 +249,8 @@
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
       public var matcher: OneOf_Matcher? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Matcher`.
       public init() {}
 
@@ -158,9 +267,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case urisMatcher = "urisMatcher"
-        case fhirMatcher = "fhirMatcher"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let urisMatcher = CodingKeys(stringValue: "urisMatcher")
+        static let fhirMatcher = CodingKeys(stringValue: "fhirMatcher")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "urisMatcher",
+          "fhirMatcher",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -187,6 +306,10 @@
           try matcherCheckAndSet(.fhirMatcher(fhirMatcher))
         }
         self.matcher = matcher
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -199,6 +322,9 @@
           case .fhirMatcher(let value):
             try container.encode(value, forKey: .fhirMatcher)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

@@ -47,6 +47,8 @@ public struct LinkedVpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// connected to the NCC Hub.
   public var producerVpcSpokes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LinkedVpcNetwork`.
   public init() {}
 
@@ -61,6 +63,74 @@ public struct LinkedVpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let excludeExportRanges = CodingKeys(stringValue: "excludeExportRanges")
+    static let includeExportRanges = CodingKeys(stringValue: "includeExportRanges")
+    static let proposedIncludeExportRanges = CodingKeys(stringValue: "proposedIncludeExportRanges")
+    static let proposedExcludeExportRanges = CodingKeys(stringValue: "proposedExcludeExportRanges")
+    static let producerVpcSpokes = CodingKeys(stringValue: "producerVpcSpokes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "excludeExportRanges",
+      "includeExportRanges",
+      "proposedIncludeExportRanges",
+      "proposedExcludeExportRanges",
+      "producerVpcSpokes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeExportRanges)
+    {
+      self.excludeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeExportRanges)
+    {
+      self.includeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .proposedIncludeExportRanges)
+    {
+      self.proposedIncludeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .proposedExcludeExportRanges)
+    {
+      self.proposedExcludeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .producerVpcSpokes) {
+      self.producerVpcSpokes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.excludeExportRanges, forKey: .excludeExportRanges)
+    try container.encode(self.includeExportRanges, forKey: .includeExportRanges)
+    try container.encode(self.proposedIncludeExportRanges, forKey: .proposedIncludeExportRanges)
+    try container.encode(self.proposedExcludeExportRanges, forKey: .proposedExcludeExportRanges)
+    try container.encode(self.producerVpcSpokes, forKey: .producerVpcSpokes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

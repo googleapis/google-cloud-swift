@@ -25,6 +25,8 @@
     /// Specifies if all, running or unused hosts are in scope for this request.
     public var maintenanceScope: ReservationsPerformMaintenanceRequest.MaintenanceScope? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReservationsPerformMaintenanceRequest`.
     public init() {}
 
@@ -39,6 +41,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maintenanceScope = CodingKeys(stringValue: "maintenanceScope")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maintenanceScope"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maintenanceScope = try container.decodeIfPresent(
+        ReservationsPerformMaintenanceRequest.MaintenanceScope.self, forKey: .maintenanceScope)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maintenanceScope, forKey: .maintenanceScope)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [maintenanceScope][google.cloud.compute.v1.ReservationsPerformMaintenanceRequest.maintenanceScope] field.

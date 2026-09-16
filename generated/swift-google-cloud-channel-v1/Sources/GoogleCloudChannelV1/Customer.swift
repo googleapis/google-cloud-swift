@@ -81,6 +81,8 @@ public struct Customer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var customerAttestationState: Customer.CustomerAttestationState =
     Customer.CustomerAttestationState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Customer`.
   public init() {}
 
@@ -95,6 +97,113 @@ public struct Customer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let orgDisplayName = CodingKeys(stringValue: "orgDisplayName")
+    static let orgPostalAddress = CodingKeys(stringValue: "orgPostalAddress")
+    static let primaryContactInfo = CodingKeys(stringValue: "primaryContactInfo")
+    static let alternateEmail = CodingKeys(stringValue: "alternateEmail")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let cloudIdentityId = CodingKeys(stringValue: "cloudIdentityId")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let cloudIdentityInfo = CodingKeys(stringValue: "cloudIdentityInfo")
+    static let channelPartnerId = CodingKeys(stringValue: "channelPartnerId")
+    static let correlationId = CodingKeys(stringValue: "correlationId")
+    static let customerAttestationState = CodingKeys(stringValue: "customerAttestationState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "orgDisplayName",
+      "orgPostalAddress",
+      "primaryContactInfo",
+      "alternateEmail",
+      "domain",
+      "createTime",
+      "updateTime",
+      "cloudIdentityId",
+      "languageCode",
+      "cloudIdentityInfo",
+      "channelPartnerId",
+      "correlationId",
+      "customerAttestationState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orgDisplayName) {
+      self.orgDisplayName = value
+    }
+    self.orgPostalAddress = try container.decodeIfPresent(
+      GoogleType.PostalAddress.self, forKey: .orgPostalAddress)
+    self.primaryContactInfo = try container.decodeIfPresent(
+      ContactInfo.self, forKey: .primaryContactInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alternateEmail) {
+      self.alternateEmail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudIdentityId) {
+      self.cloudIdentityId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    self.cloudIdentityInfo = try container.decodeIfPresent(
+      CloudIdentityInfo.self, forKey: .cloudIdentityInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channelPartnerId) {
+      self.channelPartnerId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .correlationId) {
+      self.correlationId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Customer.CustomerAttestationState.self, forKey: .customerAttestationState)
+    {
+      self.customerAttestationState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.orgDisplayName, forKey: .orgDisplayName)
+    try container.encodeIfPresent(self.orgPostalAddress, forKey: .orgPostalAddress)
+    try container.encodeIfPresent(self.primaryContactInfo, forKey: .primaryContactInfo)
+    try container.encode(self.alternateEmail, forKey: .alternateEmail)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.cloudIdentityId, forKey: .cloudIdentityId)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encodeIfPresent(self.cloudIdentityInfo, forKey: .cloudIdentityInfo)
+    try container.encode(self.channelPartnerId, forKey: .channelPartnerId)
+    try container.encode(self.correlationId, forKey: .correlationId)
+    try container.encode(self.customerAttestationState, forKey: .customerAttestationState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enum represents if a customer belongs to public sector

@@ -42,6 +42,8 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleClo
   /// Rollout update time
   public var rolloutUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OSPolicyAssignmentOperationMetadata`.
   public init() {}
 
@@ -56,6 +58,64 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let osPolicyAssignment = CodingKeys(stringValue: "osPolicyAssignment")
+    static let apiMethod = CodingKeys(stringValue: "apiMethod")
+    static let rolloutState = CodingKeys(stringValue: "rolloutState")
+    static let rolloutStartTime = CodingKeys(stringValue: "rolloutStartTime")
+    static let rolloutUpdateTime = CodingKeys(stringValue: "rolloutUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "osPolicyAssignment",
+      "apiMethod",
+      "rolloutState",
+      "rolloutStartTime",
+      "rolloutUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osPolicyAssignment) {
+      self.osPolicyAssignment = value
+    }
+    if let value = try container.decodeIfPresent(
+      OSPolicyAssignmentOperationMetadata.APIMethod.self, forKey: .apiMethod)
+    {
+      self.apiMethod = value
+    }
+    if let value = try container.decodeIfPresent(
+      OSPolicyAssignmentOperationMetadata.RolloutState.self, forKey: .rolloutState)
+    {
+      self.rolloutState = value
+    }
+    self.rolloutStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .rolloutStartTime)
+    self.rolloutUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .rolloutUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.osPolicyAssignment, forKey: .osPolicyAssignment)
+    try container.encode(self.apiMethod, forKey: .apiMethod)
+    try container.encode(self.rolloutState, forKey: .rolloutState)
+    try container.encodeIfPresent(self.rolloutStartTime, forKey: .rolloutStartTime)
+    try container.encodeIfPresent(self.rolloutUpdateTime, forKey: .rolloutUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The OS policy assignment API method.

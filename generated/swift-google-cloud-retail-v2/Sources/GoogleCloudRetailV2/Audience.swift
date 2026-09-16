@@ -53,6 +53,8 @@ public struct Audience: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [Product.audience.suggestedMaxAge](https://schema.org/suggestedMaxAge).
   public var ageGroups: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Audience`.
   public init() {}
 
@@ -67,6 +69,44 @@ public struct Audience: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let genders = CodingKeys(stringValue: "genders")
+    static let ageGroups = CodingKeys(stringValue: "ageGroups")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "genders",
+      "ageGroups",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .genders) {
+      self.genders = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ageGroups) {
+      self.ageGroups = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.genders, forKey: .genders)
+    try container.encode(self.ageGroups, forKey: .ageGroups)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

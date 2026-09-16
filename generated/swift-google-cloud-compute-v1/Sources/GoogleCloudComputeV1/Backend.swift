@@ -172,6 +172,8 @@
 
     public var trafficDuration: Backend.TrafficDuration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Backend`.
     public init() {}
 
@@ -186,6 +188,128 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let balancingMode = CodingKeys(stringValue: "balancingMode")
+      static let capacityScaler = CodingKeys(stringValue: "capacityScaler")
+      static let customMetrics = CodingKeys(stringValue: "customMetrics")
+      static let description = CodingKeys(stringValue: "description")
+      static let failover = CodingKeys(stringValue: "failover")
+      static let group = CodingKeys(stringValue: "group")
+      static let maxConnections = CodingKeys(stringValue: "maxConnections")
+      static let maxConnectionsPerEndpoint = CodingKeys(stringValue: "maxConnectionsPerEndpoint")
+      static let maxConnectionsPerInstance = CodingKeys(stringValue: "maxConnectionsPerInstance")
+      static let maxInFlightRequests = CodingKeys(stringValue: "maxInFlightRequests")
+      static let maxInFlightRequestsPerEndpoint = CodingKeys(
+        stringValue: "maxInFlightRequestsPerEndpoint")
+      static let maxInFlightRequestsPerInstance = CodingKeys(
+        stringValue: "maxInFlightRequestsPerInstance")
+      static let maxRate = CodingKeys(stringValue: "maxRate")
+      static let maxRatePerEndpoint = CodingKeys(stringValue: "maxRatePerEndpoint")
+      static let maxRatePerInstance = CodingKeys(stringValue: "maxRatePerInstance")
+      static let maxUtilization = CodingKeys(stringValue: "maxUtilization")
+      static let orchestrationInfo = CodingKeys(stringValue: "orchestrationInfo")
+      static let preference = CodingKeys(stringValue: "preference")
+      static let trafficDuration = CodingKeys(stringValue: "trafficDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "balancingMode",
+        "capacityScaler",
+        "customMetrics",
+        "description",
+        "failover",
+        "group",
+        "maxConnections",
+        "maxConnectionsPerEndpoint",
+        "maxConnectionsPerInstance",
+        "maxInFlightRequests",
+        "maxInFlightRequestsPerEndpoint",
+        "maxInFlightRequestsPerInstance",
+        "maxRate",
+        "maxRatePerEndpoint",
+        "maxRatePerInstance",
+        "maxUtilization",
+        "orchestrationInfo",
+        "preference",
+        "trafficDuration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.balancingMode = try container.decodeIfPresent(
+        Backend.BalancingMode.self, forKey: .balancingMode)
+      self.capacityScaler = try container.decodeIfPresent(Swift.Float.self, forKey: .capacityScaler)
+      if let value = try container.decodeIfPresent(
+        [BackendCustomMetric].self, forKey: .customMetrics)
+      {
+        self.customMetrics = value
+      }
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.failover = try container.decodeIfPresent(Swift.Bool.self, forKey: .failover)
+      self.group = try container.decodeIfPresent(Swift.String.self, forKey: .group)
+      self.maxConnections = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConnections)
+      self.maxConnectionsPerEndpoint = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxConnectionsPerEndpoint)
+      self.maxConnectionsPerInstance = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxConnectionsPerInstance)
+      self.maxInFlightRequests = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxInFlightRequests)
+      self.maxInFlightRequestsPerEndpoint = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxInFlightRequestsPerEndpoint)
+      self.maxInFlightRequestsPerInstance = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxInFlightRequestsPerInstance)
+      self.maxRate = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRate)
+      self.maxRatePerEndpoint = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .maxRatePerEndpoint)
+      self.maxRatePerInstance = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .maxRatePerInstance)
+      self.maxUtilization = try container.decodeIfPresent(Swift.Float.self, forKey: .maxUtilization)
+      self.orchestrationInfo = try container.decodeIfPresent(
+        BackendBackendOrchestrationInfo.self, forKey: .orchestrationInfo)
+      self.preference = try container.decodeIfPresent(Backend.Preference.self, forKey: .preference)
+      self.trafficDuration = try container.decodeIfPresent(
+        Backend.TrafficDuration.self, forKey: .trafficDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.balancingMode, forKey: .balancingMode)
+      try container.encodeIfPresent(self.capacityScaler, forKey: .capacityScaler)
+      try container.encode(self.customMetrics, forKey: .customMetrics)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.failover, forKey: .failover)
+      try container.encodeIfPresent(self.group, forKey: .group)
+      try container.encodeIfPresent(self.maxConnections, forKey: .maxConnections)
+      try container.encodeIfPresent(
+        self.maxConnectionsPerEndpoint, forKey: .maxConnectionsPerEndpoint)
+      try container.encodeIfPresent(
+        self.maxConnectionsPerInstance, forKey: .maxConnectionsPerInstance)
+      try container.encodeIfPresent(self.maxInFlightRequests, forKey: .maxInFlightRequests)
+      try container.encodeIfPresent(
+        self.maxInFlightRequestsPerEndpoint, forKey: .maxInFlightRequestsPerEndpoint)
+      try container.encodeIfPresent(
+        self.maxInFlightRequestsPerInstance, forKey: .maxInFlightRequestsPerInstance)
+      try container.encodeIfPresent(self.maxRate, forKey: .maxRate)
+      try container.encodeIfPresent(self.maxRatePerEndpoint, forKey: .maxRatePerEndpoint)
+      try container.encodeIfPresent(self.maxRatePerInstance, forKey: .maxRatePerInstance)
+      try container.encodeIfPresent(self.maxUtilization, forKey: .maxUtilization)
+      try container.encodeIfPresent(self.orchestrationInfo, forKey: .orchestrationInfo)
+      try container.encodeIfPresent(self.preference, forKey: .preference)
+      try container.encodeIfPresent(self.trafficDuration, forKey: .trafficDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [balancingMode][google.cloud.compute.v1.Backend.balancingMode] field.

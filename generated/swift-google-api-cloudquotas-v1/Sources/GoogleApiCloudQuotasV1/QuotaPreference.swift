@@ -87,6 +87,8 @@ public struct QuotaPreference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `QuotaDetails.reset_value`.
   public var contactEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaPreference`.
   public init() {}
 
@@ -101,6 +103,96 @@ public struct QuotaPreference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dimensions = CodingKeys(stringValue: "dimensions")
+    static let quotaConfig = CodingKeys(stringValue: "quotaConfig")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let service = CodingKeys(stringValue: "service")
+    static let quotaId = CodingKeys(stringValue: "quotaId")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let justification = CodingKeys(stringValue: "justification")
+    static let contactEmail = CodingKeys(stringValue: "contactEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dimensions",
+      "quotaConfig",
+      "etag",
+      "createTime",
+      "updateTime",
+      "service",
+      "quotaId",
+      "reconciling",
+      "justification",
+      "contactEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .dimensions)
+    {
+      self.dimensions = value
+    }
+    self.quotaConfig = try container.decodeIfPresent(QuotaConfig.self, forKey: .quotaConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaId) {
+      self.quotaId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .justification) {
+      self.justification = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contactEmail) {
+      self.contactEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.dimensions, forKey: .dimensions)
+    try container.encodeIfPresent(self.quotaConfig, forKey: .quotaConfig)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.quotaId, forKey: .quotaId)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.justification, forKey: .justification)
+    try container.encode(self.contactEmail, forKey: .contactEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

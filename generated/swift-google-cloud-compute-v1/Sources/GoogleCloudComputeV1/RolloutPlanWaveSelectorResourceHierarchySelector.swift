@@ -33,6 +33,8 @@
     /// Optional. Format: "projects/{project_id}"
     public var includedProjects: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutPlanWaveSelectorResourceHierarchySelector`.
     public init() {}
 
@@ -47,6 +49,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let includedFolders = CodingKeys(stringValue: "includedFolders")
+      static let includedOrganizations = CodingKeys(stringValue: "includedOrganizations")
+      static let includedProjects = CodingKeys(stringValue: "includedProjects")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "includedFolders",
+        "includedOrganizations",
+        "includedProjects",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedFolders) {
+        self.includedFolders = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .includedOrganizations)
+      {
+        self.includedOrganizations = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedProjects) {
+        self.includedProjects = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.includedFolders, forKey: .includedFolders)
+      try container.encode(self.includedOrganizations, forKey: .includedOrganizations)
+      try container.encode(self.includedProjects, forKey: .includedProjects)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

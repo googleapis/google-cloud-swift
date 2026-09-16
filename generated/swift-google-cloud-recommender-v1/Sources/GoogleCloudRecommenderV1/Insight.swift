@@ -63,6 +63,8 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Recommendations derived from this insight.
   public var associatedRecommendations: [Insight.RecommendationReference] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Insight`.
   public init() {}
 
@@ -79,6 +81,100 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let targetResources = CodingKeys(stringValue: "targetResources")
+    static let insightSubtype = CodingKeys(stringValue: "insightSubtype")
+    static let content = CodingKeys(stringValue: "content")
+    static let lastRefreshTime = CodingKeys(stringValue: "lastRefreshTime")
+    static let observationPeriod = CodingKeys(stringValue: "observationPeriod")
+    static let stateInfo = CodingKeys(stringValue: "stateInfo")
+    static let category = CodingKeys(stringValue: "category")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let associatedRecommendations = CodingKeys(stringValue: "associatedRecommendations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "targetResources",
+      "insightSubtype",
+      "content",
+      "lastRefreshTime",
+      "observationPeriod",
+      "stateInfo",
+      "category",
+      "severity",
+      "etag",
+      "associatedRecommendations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetResources) {
+      self.targetResources = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .insightSubtype) {
+      self.insightSubtype = value
+    }
+    self.content = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .content)
+    self.lastRefreshTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastRefreshTime)
+    self.observationPeriod = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .observationPeriod)
+    self.stateInfo = try container.decodeIfPresent(InsightStateInfo.self, forKey: .stateInfo)
+    if let value = try container.decodeIfPresent(Insight.Category.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Insight.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Insight.RecommendationReference].self, forKey: .associatedRecommendations)
+    {
+      self.associatedRecommendations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.targetResources, forKey: .targetResources)
+    try container.encode(self.insightSubtype, forKey: .insightSubtype)
+    try container.encodeIfPresent(self.content, forKey: .content)
+    try container.encodeIfPresent(self.lastRefreshTime, forKey: .lastRefreshTime)
+    try container.encodeIfPresent(self.observationPeriod, forKey: .observationPeriod)
+    try container.encodeIfPresent(self.stateInfo, forKey: .stateInfo)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.associatedRecommendations, forKey: .associatedRecommendations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Reference to an associated recommendation.
   public struct RecommendationReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -86,6 +182,8 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Recommendation resource name, e.g.
     /// projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]
     public var recommendation: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RecommendationReference`.
     public init() {}
@@ -101,6 +199,38 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let recommendation = CodingKeys(stringValue: "recommendation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "recommendation"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recommendation) {
+        self.recommendation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.recommendation, forKey: .recommendation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

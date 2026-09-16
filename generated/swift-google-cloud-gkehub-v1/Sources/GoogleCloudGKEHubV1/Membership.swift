@@ -88,6 +88,8 @@ public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of resource represented by this Membership
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Membership`.
   public init() {}
 
@@ -104,27 +106,55 @@ public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case endpoint = "endpoint"
-    case name = "name"
-    case labels = "labels"
-    case description = "description"
-    case state = "state"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case externalId = "externalId"
-    case lastConnectionTime = "lastConnectionTime"
-    case uniqueId = "uniqueId"
-    case authority = "authority"
-    case monitoringConfig = "monitoringConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let name = CodingKeys(stringValue: "name")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let externalId = CodingKeys(stringValue: "externalId")
+    static let lastConnectionTime = CodingKeys(stringValue: "lastConnectionTime")
+    static let uniqueId = CodingKeys(stringValue: "uniqueId")
+    static let authority = CodingKeys(stringValue: "authority")
+    static let monitoringConfig = CodingKeys(stringValue: "monitoringConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "endpoint",
+      "name",
+      "labels",
+      "description",
+      "state",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "externalId",
+      "lastConnectionTime",
+      "uniqueId",
+      "authority",
+      "monitoringConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.state = try container.decodeIfPresent(MembershipState.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
@@ -132,10 +162,14 @@ public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
-    self.externalId = try container.decode(Swift.String.self, forKey: .externalId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalId) {
+      self.externalId = value
+    }
     self.lastConnectionTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastConnectionTime)
-    self.uniqueId = try container.decode(Swift.String.self, forKey: .uniqueId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uniqueId) {
+      self.uniqueId = value
+    }
     self.authority = try container.decodeIfPresent(Authority.self, forKey: .authority)
     self.monitoringConfig = try container.decodeIfPresent(
       MonitoringConfig.self, forKey: .monitoringConfig)
@@ -154,6 +188,10 @@ public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.endpoint(endpoint))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -161,21 +199,24 @@ public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.externalId, forKey: .externalId)
-    try container.encode(self.lastConnectionTime, forKey: .lastConnectionTime)
+    try container.encodeIfPresent(self.lastConnectionTime, forKey: .lastConnectionTime)
     try container.encode(self.uniqueId, forKey: .uniqueId)
-    try container.encode(self.authority, forKey: .authority)
-    try container.encode(self.monitoringConfig, forKey: .monitoringConfig)
+    try container.encodeIfPresent(self.authority, forKey: .authority)
+    try container.encodeIfPresent(self.monitoringConfig, forKey: .monitoringConfig)
 
     if let choice = self.type {
       switch choice {
       case .endpoint(let value):
         try container.encode(value, forKey: .endpoint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

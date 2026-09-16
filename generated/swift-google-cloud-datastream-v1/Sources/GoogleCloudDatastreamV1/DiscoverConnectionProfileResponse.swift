@@ -24,6 +24,8 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloud
   /// The data object that has been enriched by the discover API call.
   public var dataObject: OneOf_DataObject? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoverConnectionProfileResponse`.
   public init() {}
 
@@ -40,13 +42,27 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloud
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oracleRdbms = "oracleRdbms"
-    case mysqlRdbms = "mysqlRdbms"
-    case postgresqlRdbms = "postgresqlRdbms"
-    case sqlServerRdbms = "sqlServerRdbms"
-    case salesforceOrg = "salesforceOrg"
-    case mongodbCluster = "mongodbCluster"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oracleRdbms = CodingKeys(stringValue: "oracleRdbms")
+    static let mysqlRdbms = CodingKeys(stringValue: "mysqlRdbms")
+    static let postgresqlRdbms = CodingKeys(stringValue: "postgresqlRdbms")
+    static let sqlServerRdbms = CodingKeys(stringValue: "sqlServerRdbms")
+    static let salesforceOrg = CodingKeys(stringValue: "salesforceOrg")
+    static let mongodbCluster = CodingKeys(stringValue: "mongodbCluster")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oracleRdbms",
+      "mysqlRdbms",
+      "postgresqlRdbms",
+      "sqlServerRdbms",
+      "salesforceOrg",
+      "mongodbCluster",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -89,6 +105,10 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloud
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
     self.dataObject = dataObject
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +129,9 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloud
       case .mongodbCluster(let value):
         try container.encode(value, forKey: .mongodbCluster)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -37,6 +37,8 @@
     /// interface name.
     public var internalIps: [Swift.String: StatefulPolicyPreservedStateNetworkIp] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StatefulPolicyPreservedState`.
     public init() {}
 
@@ -53,20 +55,44 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case disks = "disks"
-      case externalIps = "externalIPs"
-      case internalIps = "internalIPs"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disks = CodingKeys(stringValue: "disks")
+      static let externalIps = CodingKeys(stringValue: "externalIPs")
+      static let internalIps = CodingKeys(stringValue: "internalIPs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disks",
+        "externalIPs",
+        "internalIPs",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.disks = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String: StatefulPolicyPreservedStateDiskDevice].self, forKey: .disks)
-      self.externalIps = try container.decode(
+      {
+        self.disks = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String: StatefulPolicyPreservedStateNetworkIp].self, forKey: .externalIps)
-      self.internalIps = try container.decode(
+      {
+        self.externalIps = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String: StatefulPolicyPreservedStateNetworkIp].self, forKey: .internalIps)
+      {
+        self.internalIps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,6 +100,9 @@
       try container.encode(self.disks, forKey: .disks)
       try container.encode(self.externalIps, forKey: .externalIps)
       try container.encode(self.internalIps, forKey: .internalIps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

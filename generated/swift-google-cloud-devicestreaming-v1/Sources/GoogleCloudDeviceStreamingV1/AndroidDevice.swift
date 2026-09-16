@@ -37,6 +37,8 @@ public struct AndroidDevice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Use the TestEnvironmentDiscoveryService to get supported options.
   public var orientation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AndroidDevice`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct AndroidDevice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let androidModelId = CodingKeys(stringValue: "androidModelId")
+    static let androidVersionId = CodingKeys(stringValue: "androidVersionId")
+    static let locale = CodingKeys(stringValue: "locale")
+    static let orientation = CodingKeys(stringValue: "orientation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "androidModelId",
+      "androidVersionId",
+      "locale",
+      "orientation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .androidModelId) {
+      self.androidModelId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .androidVersionId) {
+      self.androidVersionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locale) {
+      self.locale = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orientation) {
+      self.orientation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.androidModelId, forKey: .androidModelId)
+    try container.encode(self.androidVersionId, forKey: .androidVersionId)
+    try container.encode(self.locale, forKey: .locale)
+    try container.encode(self.orientation, forKey: .orientation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

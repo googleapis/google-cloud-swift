@@ -44,6 +44,8 @@ public struct ZypperSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field must not be used with any other patch configuration fields.
   public var exclusivePatches: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ZypperSettings`.
   public init() {}
 
@@ -58,6 +60,68 @@ public struct ZypperSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let withOptional = CodingKeys(stringValue: "withOptional")
+    static let withUpdate = CodingKeys(stringValue: "withUpdate")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let severities = CodingKeys(stringValue: "severities")
+    static let excludes = CodingKeys(stringValue: "excludes")
+    static let exclusivePatches = CodingKeys(stringValue: "exclusivePatches")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "withOptional",
+      "withUpdate",
+      "categories",
+      "severities",
+      "excludes",
+      "exclusivePatches",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .withOptional) {
+      self.withOptional = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .withUpdate) {
+      self.withUpdate = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .categories) {
+      self.categories = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .severities) {
+      self.severities = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludes) {
+      self.excludes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exclusivePatches) {
+      self.exclusivePatches = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.withOptional, forKey: .withOptional)
+    try container.encode(self.withUpdate, forKey: .withUpdate)
+    try container.encode(self.categories, forKey: .categories)
+    try container.encode(self.severities, forKey: .severities)
+    try container.encode(self.excludes, forKey: .excludes)
+    try container.encode(self.exclusivePatches, forKey: .exclusivePatches)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

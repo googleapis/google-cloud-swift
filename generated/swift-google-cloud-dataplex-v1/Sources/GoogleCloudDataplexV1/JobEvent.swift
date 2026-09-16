@@ -52,6 +52,8 @@ public struct JobEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Job execution trigger.
   public var executionTrigger: JobEvent.ExecutionTrigger = JobEvent.ExecutionTrigger()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobEvent`.
   public init() {}
 
@@ -66,6 +68,91 @@ public struct JobEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let retries = CodingKeys(stringValue: "retries")
+    static let type = CodingKeys(stringValue: "type")
+    static let service = CodingKeys(stringValue: "service")
+    static let serviceJob = CodingKeys(stringValue: "serviceJob")
+    static let executionTrigger = CodingKeys(stringValue: "executionTrigger")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "jobId",
+      "startTime",
+      "endTime",
+      "state",
+      "retries",
+      "type",
+      "service",
+      "serviceJob",
+      "executionTrigger",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(JobEvent.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retries) {
+      self.retries = value
+    }
+    if let value = try container.decodeIfPresent(JobEvent.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(JobEvent.Service.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceJob) {
+      self.serviceJob = value
+    }
+    if let value = try container.decodeIfPresent(
+      JobEvent.ExecutionTrigger.self, forKey: .executionTrigger)
+    {
+      self.executionTrigger = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.jobId, forKey: .jobId)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.retries, forKey: .retries)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.serviceJob, forKey: .serviceJob)
+    try container.encode(self.executionTrigger, forKey: .executionTrigger)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the job.

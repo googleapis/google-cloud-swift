@@ -27,6 +27,8 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleClo
   /// The summary of the autopilot compatibility response.
   public var summary: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckAutopilotCompatibilityResponse`.
   public init() {}
 
@@ -41,6 +43,46 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let issues = CodingKeys(stringValue: "issues")
+    static let summary = CodingKeys(stringValue: "summary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "issues",
+      "summary",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [AutopilotCompatibilityIssue].self, forKey: .issues)
+    {
+      self.issues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .summary) {
+      self.summary = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.issues, forKey: .issues)
+    try container.encode(self.summary, forKey: .summary)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

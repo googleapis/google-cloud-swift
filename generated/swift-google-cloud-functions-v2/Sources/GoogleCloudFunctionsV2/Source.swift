@@ -25,6 +25,8 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// At least one source needs to be provided for the deployment to succeed.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Source`.
   public init() {}
 
@@ -41,10 +43,21 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case storageSource = "storageSource"
-    case repoSource = "repoSource"
-    case gitUri = "gitUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageSource = CodingKeys(stringValue: "storageSource")
+    static let repoSource = CodingKeys(stringValue: "repoSource")
+    static let gitUri = CodingKeys(stringValue: "gitUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storageSource",
+      "repoSource",
+      "gitUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,6 +85,10 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.gitUri(gitUri))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +103,9 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gitUri(let value):
         try container.encode(value, forKey: .gitUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -28,6 +28,8 @@ public struct OutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OutputConfig`.
   public init() {}
 
@@ -44,14 +46,26 @@ public struct OutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDestination = "gcsDestination"
-    case dataFormat = "dataFormat"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+    static let dataFormat = CodingKeys(stringValue: "dataFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDestination",
+      "dataFormat",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.dataFormat = try container.decode(DataFormat.self, forKey: .dataFormat)
+    if let value = try container.decodeIfPresent(DataFormat.self, forKey: .dataFormat) {
+      self.dataFormat = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -69,6 +83,10 @@ public struct OutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,9 @@ public struct OutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsDestination(let value):
         try container.encode(value, forKey: .gcsDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

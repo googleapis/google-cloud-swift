@@ -117,6 +117,8 @@
     /// where the instance group resides (for autoscalers living in zonal scope).
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Autoscaler`.
     public init() {}
 
@@ -131,6 +133,99 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoscalingPolicy = CodingKeys(stringValue: "autoscalingPolicy")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let recommendedSize = CodingKeys(stringValue: "recommendedSize")
+      static let region = CodingKeys(stringValue: "region")
+      static let scalingScheduleStatus = CodingKeys(stringValue: "scalingScheduleStatus")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusDetails = CodingKeys(stringValue: "statusDetails")
+      static let target = CodingKeys(stringValue: "target")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoscalingPolicy",
+        "creationTimestamp",
+        "description",
+        "id",
+        "kind",
+        "name",
+        "recommendedSize",
+        "region",
+        "scalingScheduleStatus",
+        "selfLink",
+        "status",
+        "statusDetails",
+        "target",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoscalingPolicy = try container.decodeIfPresent(
+        AutoscalingPolicy.self, forKey: .autoscalingPolicy)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.recommendedSize = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .recommendedSize)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ScalingScheduleStatus].self, forKey: .scalingScheduleStatus)
+      {
+        self.scalingScheduleStatus = value
+      }
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.status = try container.decodeIfPresent(Autoscaler.Status.self, forKey: .status)
+      if let value = try container.decodeIfPresent(
+        [AutoscalerStatusDetails].self, forKey: .statusDetails)
+      {
+        self.statusDetails = value
+      }
+      self.target = try container.decodeIfPresent(Swift.String.self, forKey: .target)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoscalingPolicy, forKey: .autoscalingPolicy)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.recommendedSize, forKey: .recommendedSize)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encode(self.scalingScheduleStatus, forKey: .scalingScheduleStatus)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encode(self.statusDetails, forKey: .statusDetails)
+      try container.encodeIfPresent(self.target, forKey: .target)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.Autoscaler.status] field.

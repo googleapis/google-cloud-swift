@@ -47,6 +47,8 @@ public struct AuthenticationRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Requirements for additional authentication providers.
   public var requirements: [AuthRequirement] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthenticationRule`.
   public init() {}
 
@@ -61,6 +63,54 @@ public struct AuthenticationRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let oauth = CodingKeys(stringValue: "oauth")
+    static let allowWithoutCredential = CodingKeys(stringValue: "allowWithoutCredential")
+    static let requirements = CodingKeys(stringValue: "requirements")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "oauth",
+      "allowWithoutCredential",
+      "requirements",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    self.oauth = try container.decodeIfPresent(OAuthRequirements.self, forKey: .oauth)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowWithoutCredential) {
+      self.allowWithoutCredential = value
+    }
+    if let value = try container.decodeIfPresent([AuthRequirement].self, forKey: .requirements) {
+      self.requirements = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.selector, forKey: .selector)
+    try container.encodeIfPresent(self.oauth, forKey: .oauth)
+    try container.encode(self.allowWithoutCredential, forKey: .allowWithoutCredential)
+    try container.encode(self.requirements, forKey: .requirements)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

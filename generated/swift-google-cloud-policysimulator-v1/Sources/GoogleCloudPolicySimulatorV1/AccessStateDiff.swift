@@ -42,6 +42,8 @@ public struct AccessStateDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// between the current (baseline) policies and proposed (simulated) policies.
   public var accessChange: AccessStateDiff.AccessChangeType = AccessStateDiff.AccessChangeType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessStateDiff`.
   public init() {}
 
@@ -56,6 +58,48 @@ public struct AccessStateDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseline = CodingKeys(stringValue: "baseline")
+    static let simulated = CodingKeys(stringValue: "simulated")
+    static let accessChange = CodingKeys(stringValue: "accessChange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseline",
+      "simulated",
+      "accessChange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.baseline = try container.decodeIfPresent(ExplainedAccess.self, forKey: .baseline)
+    self.simulated = try container.decodeIfPresent(ExplainedAccess.self, forKey: .simulated)
+    if let value = try container.decodeIfPresent(
+      AccessStateDiff.AccessChangeType.self, forKey: .accessChange)
+    {
+      self.accessChange = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.baseline, forKey: .baseline)
+    try container.encodeIfPresent(self.simulated, forKey: .simulated)
+    try container.encode(self.accessChange, forKey: .accessChange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// How the principal's access, specified in the AccessState field, changed

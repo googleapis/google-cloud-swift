@@ -40,6 +40,8 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Backend configuration URI.
   public var backendUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoadBalancerInfo`.
   public init() {}
 
@@ -54,6 +56,66 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let loadBalancerType = CodingKeys(stringValue: "loadBalancerType")
+    static let healthCheckUri = CodingKeys(stringValue: "healthCheckUri")
+    static let backends = CodingKeys(stringValue: "backends")
+    static let backendType = CodingKeys(stringValue: "backendType")
+    static let backendUri = CodingKeys(stringValue: "backendUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "loadBalancerType",
+      "healthCheckUri",
+      "backends",
+      "backendType",
+      "backendUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      LoadBalancerInfo.LoadBalancerType.self, forKey: .loadBalancerType)
+    {
+      self.loadBalancerType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .healthCheckUri) {
+      self.healthCheckUri = value
+    }
+    if let value = try container.decodeIfPresent([LoadBalancerBackend].self, forKey: .backends) {
+      self.backends = value
+    }
+    if let value = try container.decodeIfPresent(
+      LoadBalancerInfo.BackendType.self, forKey: .backendType)
+    {
+      self.backendType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backendUri) {
+      self.backendUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    try container.encode(self.healthCheckUri, forKey: .healthCheckUri)
+    try container.encode(self.backends, forKey: .backends)
+    try container.encode(self.backendType, forKey: .backendType)
+    try container.encode(self.backendUri, forKey: .backendUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type definition for a load balancer:

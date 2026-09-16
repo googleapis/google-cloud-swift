@@ -46,6 +46,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options for isolating this app profile's traffic from other use cases.
   public var isolation: OneOf_Isolation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppProfile`.
   public init() {}
 
@@ -62,22 +64,44 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case etag = "etag"
-    case description = "description"
-    case multiClusterRoutingUseAny = "multiClusterRoutingUseAny"
-    case singleClusterRouting = "singleClusterRouting"
-    case priority = "priority"
-    case standardIsolation = "standardIsolation"
-    case dataBoostIsolationReadOnly = "dataBoostIsolationReadOnly"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let description = CodingKeys(stringValue: "description")
+    static let multiClusterRoutingUseAny = CodingKeys(stringValue: "multiClusterRoutingUseAny")
+    static let singleClusterRouting = CodingKeys(stringValue: "singleClusterRouting")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let standardIsolation = CodingKeys(stringValue: "standardIsolation")
+    static let dataBoostIsolationReadOnly = CodingKeys(stringValue: "dataBoostIsolationReadOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "etag",
+      "description",
+      "multiClusterRoutingUseAny",
+      "singleClusterRouting",
+      "priority",
+      "standardIsolation",
+      "dataBoostIsolationReadOnly",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var routingPolicy: OneOf_RoutingPolicy? = nil
     let routingPolicyCheckAndSet = {
@@ -125,6 +149,10 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try isolationCheckAndSet(.dataBoostIsolationReadOnly(dataBoostIsolationReadOnly))
     }
     self.isolation = isolation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -152,6 +180,9 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .dataBoostIsolationReadOnly)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Read/write requests are routed to the nearest cluster in the instance, and
@@ -176,6 +207,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// in the event of errors or latency.
     public var affinity: OneOf_Affinity? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MultiClusterRoutingUseAny`.
     public init() {}
 
@@ -192,14 +225,26 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case clusterIds = "clusterIds"
-      case rowAffinity = "rowAffinity"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clusterIds = CodingKeys(stringValue: "clusterIds")
+      static let rowAffinity = CodingKeys(stringValue: "rowAffinity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clusterIds",
+        "rowAffinity",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.clusterIds = try container.decode([Swift.String].self, forKey: .clusterIds)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .clusterIds) {
+        self.clusterIds = value
+      }
 
       var affinity: OneOf_Affinity? = nil
       let affinityCheckAndSet = {
@@ -217,6 +262,10 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try affinityCheckAndSet(.rowAffinity(rowAffinity))
       }
       self.affinity = affinity
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -228,6 +277,9 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .rowAffinity(let value):
           try container.encode(value, forKey: .rowAffinity)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -243,6 +295,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public struct RowAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RowAffinity`.
       public init() {}
 
@@ -257,6 +311,30 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let _knownKeys: Set<Swift.String> = []
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -310,6 +388,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// the same table/row/column in multiple clusters.
     public var allowTransactionalWrites: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SingleClusterRouting`.
     public init() {}
 
@@ -324,6 +404,46 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clusterId = CodingKeys(stringValue: "clusterId")
+      static let allowTransactionalWrites = CodingKeys(stringValue: "allowTransactionalWrites")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clusterId",
+        "allowTransactionalWrites",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterId) {
+        self.clusterId = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allowTransactionalWrites)
+      {
+        self.allowTransactionalWrites = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clusterId, forKey: .clusterId)
+      try container.encode(self.allowTransactionalWrites, forKey: .allowTransactionalWrites)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -345,6 +465,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The priority of requests sent using this app profile.
     public var priority: AppProfile.Priority = AppProfile.Priority()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StandardIsolation`.
     public init() {}
 
@@ -359,6 +481,38 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let priority = CodingKeys(stringValue: "priority")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "priority"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(AppProfile.Priority.self, forKey: .priority) {
+        self.priority = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.priority, forKey: .priority)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -383,6 +537,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The Compute Billing Owner for this Data Boost App Profile.
     public var computeBillingOwner: AppProfile.DataBoostIsolationReadOnly.ComputeBillingOwner? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataBoostIsolationReadOnly`.
     public init() {}
 
@@ -397,6 +553,38 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let computeBillingOwner = CodingKeys(stringValue: "computeBillingOwner")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "computeBillingOwner"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.computeBillingOwner = try container.decodeIfPresent(
+        AppProfile.DataBoostIsolationReadOnly.ComputeBillingOwner.self, forKey: .computeBillingOwner
+      )
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.computeBillingOwner, forKey: .computeBillingOwner)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Compute Billing Owner specifies how usage should be accounted when using

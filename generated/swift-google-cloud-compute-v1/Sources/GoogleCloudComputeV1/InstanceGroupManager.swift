@@ -192,6 +192,8 @@
     /// where the managed instance group is located (for zonal resources).
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManager`.
     public init() {}
 
@@ -208,48 +210,93 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case allInstancesConfig = "allInstancesConfig"
-      case autoHealingPolicies = "autoHealingPolicies"
-      case baseInstanceName = "baseInstanceName"
-      case creationTimestamp = "creationTimestamp"
-      case currentActions = "currentActions"
-      case description = "description"
-      case distributionPolicy = "distributionPolicy"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case instanceFlexibilityPolicy = "instanceFlexibilityPolicy"
-      case instanceGroup = "instanceGroup"
-      case instanceLifecyclePolicy = "instanceLifecyclePolicy"
-      case instanceTemplate = "instanceTemplate"
-      case kind = "kind"
-      case listManagedInstancesResults = "listManagedInstancesResults"
-      case name = "name"
-      case namedPorts = "namedPorts"
-      case region = "region"
-      case resourcePolicies = "resourcePolicies"
-      case satisfiesPzi = "satisfiesPzi"
-      case satisfiesPzs = "satisfiesPzs"
-      case selfLink = "selfLink"
-      case standbyPolicy = "standbyPolicy"
-      case statefulPolicy = "statefulPolicy"
-      case status = "status"
-      case targetPools = "targetPools"
-      case targetSize = "targetSize"
-      case targetSizePolicy = "targetSizePolicy"
-      case targetStoppedSize = "targetStoppedSize"
-      case targetSuspendedSize = "targetSuspendedSize"
-      case updatePolicy = "updatePolicy"
-      case versions = "versions"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allInstancesConfig = CodingKeys(stringValue: "allInstancesConfig")
+      static let autoHealingPolicies = CodingKeys(stringValue: "autoHealingPolicies")
+      static let baseInstanceName = CodingKeys(stringValue: "baseInstanceName")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let currentActions = CodingKeys(stringValue: "currentActions")
+      static let description = CodingKeys(stringValue: "description")
+      static let distributionPolicy = CodingKeys(stringValue: "distributionPolicy")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let instanceFlexibilityPolicy = CodingKeys(stringValue: "instanceFlexibilityPolicy")
+      static let instanceGroup = CodingKeys(stringValue: "instanceGroup")
+      static let instanceLifecyclePolicy = CodingKeys(stringValue: "instanceLifecyclePolicy")
+      static let instanceTemplate = CodingKeys(stringValue: "instanceTemplate")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let listManagedInstancesResults = CodingKeys(
+        stringValue: "listManagedInstancesResults")
+      static let name = CodingKeys(stringValue: "name")
+      static let namedPorts = CodingKeys(stringValue: "namedPorts")
+      static let region = CodingKeys(stringValue: "region")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let standbyPolicy = CodingKeys(stringValue: "standbyPolicy")
+      static let statefulPolicy = CodingKeys(stringValue: "statefulPolicy")
+      static let status = CodingKeys(stringValue: "status")
+      static let targetPools = CodingKeys(stringValue: "targetPools")
+      static let targetSize = CodingKeys(stringValue: "targetSize")
+      static let targetSizePolicy = CodingKeys(stringValue: "targetSizePolicy")
+      static let targetStoppedSize = CodingKeys(stringValue: "targetStoppedSize")
+      static let targetSuspendedSize = CodingKeys(stringValue: "targetSuspendedSize")
+      static let updatePolicy = CodingKeys(stringValue: "updatePolicy")
+      static let versions = CodingKeys(stringValue: "versions")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allInstancesConfig",
+        "autoHealingPolicies",
+        "baseInstanceName",
+        "creationTimestamp",
+        "currentActions",
+        "description",
+        "distributionPolicy",
+        "fingerprint",
+        "id",
+        "instanceFlexibilityPolicy",
+        "instanceGroup",
+        "instanceLifecyclePolicy",
+        "instanceTemplate",
+        "kind",
+        "listManagedInstancesResults",
+        "name",
+        "namedPorts",
+        "region",
+        "resourcePolicies",
+        "satisfiesPzi",
+        "satisfiesPzs",
+        "selfLink",
+        "standbyPolicy",
+        "statefulPolicy",
+        "status",
+        "targetPools",
+        "targetSize",
+        "targetSizePolicy",
+        "targetStoppedSize",
+        "targetSuspendedSize",
+        "updatePolicy",
+        "versions",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.allInstancesConfig = try container.decodeIfPresent(
         InstanceGroupManagerAllInstancesConfig.self, forKey: .allInstancesConfig)
-      self.autoHealingPolicies = try container.decode(
+      if let value = try container.decodeIfPresent(
         [InstanceGroupManagerAutoHealingPolicy].self, forKey: .autoHealingPolicies)
+      {
+        self.autoHealingPolicies = value
+      }
       self.baseInstanceName = try container.decodeIfPresent(
         Swift.String.self, forKey: .baseInstanceName)
       self.creationTimestamp = try container.decodeIfPresent(
@@ -280,7 +327,9 @@
       self.listManagedInstancesResults = try container.decodeIfPresent(
         InstanceGroupManager.ListManagedInstancesResults.self, forKey: .listManagedInstancesResults)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.namedPorts = try container.decode([NamedPort].self, forKey: .namedPorts)
+      if let value = try container.decodeIfPresent([NamedPort].self, forKey: .namedPorts) {
+        self.namedPorts = value
+      }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.resourcePolicies = try container.decodeIfPresent(
         InstanceGroupManagerResourcePolicies.self, forKey: .resourcePolicies)
@@ -292,7 +341,9 @@
       self.statefulPolicy = try container.decodeIfPresent(
         StatefulPolicy.self, forKey: .statefulPolicy)
       self.status = try container.decodeIfPresent(InstanceGroupManagerStatus.self, forKey: .status)
-      self.targetPools = try container.decode([Swift.String].self, forKey: .targetPools)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetPools) {
+        self.targetPools = value
+      }
       self.targetSize = try container.decodeIfPresent(Swift.Int32.self, forKey: .targetSize)
       self.targetSizePolicy = try container.decodeIfPresent(
         InstanceGroupManagerTargetSizePolicy.self, forKey: .targetSizePolicy)
@@ -302,49 +353,62 @@
         Swift.Int32.self, forKey: .targetSuspendedSize)
       self.updatePolicy = try container.decodeIfPresent(
         InstanceGroupManagerUpdatePolicy.self, forKey: .updatePolicy)
-      self.versions = try container.decode([InstanceGroupManagerVersion].self, forKey: .versions)
+      if let value = try container.decodeIfPresent(
+        [InstanceGroupManagerVersion].self, forKey: .versions)
+      {
+        self.versions = value
+      }
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.allInstancesConfig, forKey: .allInstancesConfig)
+      try container.encodeIfPresent(self.allInstancesConfig, forKey: .allInstancesConfig)
       try container.encode(self.autoHealingPolicies, forKey: .autoHealingPolicies)
-      try container.encode(self.baseInstanceName, forKey: .baseInstanceName)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.currentActions, forKey: .currentActions)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.distributionPolicy, forKey: .distributionPolicy)
+      try container.encodeIfPresent(self.baseInstanceName, forKey: .baseInstanceName)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.currentActions, forKey: .currentActions)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.distributionPolicy, forKey: .distributionPolicy)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.instanceFlexibilityPolicy, forKey: .instanceFlexibilityPolicy)
-      try container.encode(self.instanceGroup, forKey: .instanceGroup)
-      try container.encode(self.instanceLifecyclePolicy, forKey: .instanceLifecyclePolicy)
-      try container.encode(self.instanceTemplate, forKey: .instanceTemplate)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.listManagedInstancesResults, forKey: .listManagedInstancesResults)
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(
+        self.instanceFlexibilityPolicy, forKey: .instanceFlexibilityPolicy)
+      try container.encodeIfPresent(self.instanceGroup, forKey: .instanceGroup)
+      try container.encodeIfPresent(self.instanceLifecyclePolicy, forKey: .instanceLifecyclePolicy)
+      try container.encodeIfPresent(self.instanceTemplate, forKey: .instanceTemplate)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(
+        self.listManagedInstancesResults, forKey: .listManagedInstancesResults)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.namedPorts, forKey: .namedPorts)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.standbyPolicy, forKey: .standbyPolicy)
-      try container.encode(self.statefulPolicy, forKey: .statefulPolicy)
-      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.resourcePolicies, forKey: .resourcePolicies)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.standbyPolicy, forKey: .standbyPolicy)
+      try container.encodeIfPresent(self.statefulPolicy, forKey: .statefulPolicy)
+      try container.encodeIfPresent(self.status, forKey: .status)
       try container.encode(self.targetPools, forKey: .targetPools)
-      try container.encode(self.targetSize, forKey: .targetSize)
-      try container.encode(self.targetSizePolicy, forKey: .targetSizePolicy)
-      try container.encode(self.targetStoppedSize, forKey: .targetStoppedSize)
-      try container.encode(self.targetSuspendedSize, forKey: .targetSuspendedSize)
-      try container.encode(self.updatePolicy, forKey: .updatePolicy)
+      try container.encodeIfPresent(self.targetSize, forKey: .targetSize)
+      try container.encodeIfPresent(self.targetSizePolicy, forKey: .targetSizePolicy)
+      try container.encodeIfPresent(self.targetStoppedSize, forKey: .targetStoppedSize)
+      try container.encodeIfPresent(self.targetSuspendedSize, forKey: .targetSuspendedSize)
+      try container.encodeIfPresent(self.updatePolicy, forKey: .updatePolicy)
       try container.encode(self.versions, forKey: .versions)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [listManagedInstancesResults][google.cloud.compute.v1.InstanceGroupManager.listManagedInstancesResults] field.

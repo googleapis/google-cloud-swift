@@ -68,6 +68,8 @@
     /// Output only. The traffic type for this request.
     public var trafficType: UsageMetadata.TrafficType = UsageMetadata.TrafficType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UsageMetadata`.
     public init() {}
 
@@ -82,6 +84,113 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let promptTokenCount = CodingKeys(stringValue: "promptTokenCount")
+      static let candidatesTokenCount = CodingKeys(stringValue: "candidatesTokenCount")
+      static let totalTokenCount = CodingKeys(stringValue: "totalTokenCount")
+      static let toolUsePromptTokenCount = CodingKeys(stringValue: "toolUsePromptTokenCount")
+      static let thoughtsTokenCount = CodingKeys(stringValue: "thoughtsTokenCount")
+      static let cachedContentTokenCount = CodingKeys(stringValue: "cachedContentTokenCount")
+      static let promptTokensDetails = CodingKeys(stringValue: "promptTokensDetails")
+      static let cacheTokensDetails = CodingKeys(stringValue: "cacheTokensDetails")
+      static let candidatesTokensDetails = CodingKeys(stringValue: "candidatesTokensDetails")
+      static let toolUsePromptTokensDetails = CodingKeys(stringValue: "toolUsePromptTokensDetails")
+      static let trafficType = CodingKeys(stringValue: "trafficType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "promptTokenCount",
+        "candidatesTokenCount",
+        "totalTokenCount",
+        "toolUsePromptTokenCount",
+        "thoughtsTokenCount",
+        "cachedContentTokenCount",
+        "promptTokensDetails",
+        "cacheTokensDetails",
+        "candidatesTokensDetails",
+        "toolUsePromptTokensDetails",
+        "trafficType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .promptTokenCount) {
+        self.promptTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .candidatesTokenCount)
+      {
+        self.candidatesTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokenCount) {
+        self.totalTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .toolUsePromptTokenCount)
+      {
+        self.toolUsePromptTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .thoughtsTokenCount) {
+        self.thoughtsTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .cachedContentTokenCount)
+      {
+        self.cachedContentTokenCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModalityTokenCount].self, forKey: .promptTokensDetails)
+      {
+        self.promptTokensDetails = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModalityTokenCount].self, forKey: .cacheTokensDetails)
+      {
+        self.cacheTokensDetails = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModalityTokenCount].self, forKey: .candidatesTokensDetails)
+      {
+        self.candidatesTokensDetails = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ModalityTokenCount].self, forKey: .toolUsePromptTokensDetails)
+      {
+        self.toolUsePromptTokensDetails = value
+      }
+      if let value = try container.decodeIfPresent(
+        UsageMetadata.TrafficType.self, forKey: .trafficType)
+      {
+        self.trafficType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.promptTokenCount, forKey: .promptTokenCount)
+      try container.encode(self.candidatesTokenCount, forKey: .candidatesTokenCount)
+      try container.encode(self.totalTokenCount, forKey: .totalTokenCount)
+      try container.encode(self.toolUsePromptTokenCount, forKey: .toolUsePromptTokenCount)
+      try container.encode(self.thoughtsTokenCount, forKey: .thoughtsTokenCount)
+      try container.encode(self.cachedContentTokenCount, forKey: .cachedContentTokenCount)
+      try container.encode(self.promptTokensDetails, forKey: .promptTokensDetails)
+      try container.encode(self.cacheTokensDetails, forKey: .cacheTokensDetails)
+      try container.encode(self.candidatesTokensDetails, forKey: .candidatesTokensDetails)
+      try container.encode(self.toolUsePromptTokensDetails, forKey: .toolUsePromptTokensDetails)
+      try container.encode(self.trafficType, forKey: .trafficType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of traffic that this request was processed with, indicating which

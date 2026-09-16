@@ -48,6 +48,8 @@ public struct GoogleSearchTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// should be processed for text and voice.
   public var promptConfig: GoogleSearchTool.PromptConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleSearchTool`.
   public init() {}
 
@@ -62,6 +64,67 @@ public struct GoogleSearchTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let contextUrls = CodingKeys(stringValue: "contextUrls")
+    static let preferredDomains = CodingKeys(stringValue: "preferredDomains")
+    static let excludeDomains = CodingKeys(stringValue: "excludeDomains")
+    static let promptConfig = CodingKeys(stringValue: "promptConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "contextUrls",
+      "preferredDomains",
+      "excludeDomains",
+      "promptConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .contextUrls) {
+      self.contextUrls = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .preferredDomains) {
+      self.preferredDomains = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeDomains) {
+      self.excludeDomains = value
+    }
+    self.promptConfig = try container.decodeIfPresent(
+      GoogleSearchTool.PromptConfig.self, forKey: .promptConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.contextUrls, forKey: .contextUrls)
+    try container.encode(self.preferredDomains, forKey: .preferredDomains)
+    try container.encode(self.excludeDomains, forKey: .excludeDomains)
+    try container.encodeIfPresent(self.promptConfig, forKey: .promptConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Prompt settings used by the model when processing or summarizing the
@@ -79,6 +142,8 @@ public struct GoogleSearchTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// prompt will be used.
     public var voicePrompt: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PromptConfig`.
     public init() {}
 
@@ -93,6 +158,44 @@ public struct GoogleSearchTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let textPrompt = CodingKeys(stringValue: "textPrompt")
+      static let voicePrompt = CodingKeys(stringValue: "voicePrompt")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "textPrompt",
+        "voicePrompt",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .textPrompt) {
+        self.textPrompt = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .voicePrompt) {
+        self.voicePrompt = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.textPrompt, forKey: .textPrompt)
+      try container.encode(self.voicePrompt, forKey: .voicePrompt)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

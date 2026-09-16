@@ -28,6 +28,8 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Capabilities of this location.
   public var capabilities: [LocationMetadata.Capability] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationMetadata`.
   public init() {}
 
@@ -42,6 +44,40 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let capabilities = CodingKeys(stringValue: "capabilities")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "capabilities"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [LocationMetadata.Capability].self, forKey: .capabilities)
+    {
+      self.capabilities = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.capabilities, forKey: .capabilities)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Capability of a location.

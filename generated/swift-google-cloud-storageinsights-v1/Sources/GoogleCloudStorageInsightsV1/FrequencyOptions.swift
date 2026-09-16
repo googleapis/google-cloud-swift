@@ -35,6 +35,8 @@ public struct FrequencyOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// UTC time zone.
   public var endDate: GoogleType.Date? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FrequencyOptions`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct FrequencyOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let frequency = CodingKeys(stringValue: "frequency")
+    static let startDate = CodingKeys(stringValue: "startDate")
+    static let endDate = CodingKeys(stringValue: "endDate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "frequency",
+      "startDate",
+      "endDate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      FrequencyOptions.Frequency.self, forKey: .frequency)
+    {
+      self.frequency = value
+    }
+    self.startDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .startDate)
+    self.endDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .endDate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.frequency, forKey: .frequency)
+    try container.encodeIfPresent(self.startDate, forKey: .startDate)
+    try container.encodeIfPresent(self.endDate, forKey: .endDate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// This ENUM specifies possible frequencies of report generation.

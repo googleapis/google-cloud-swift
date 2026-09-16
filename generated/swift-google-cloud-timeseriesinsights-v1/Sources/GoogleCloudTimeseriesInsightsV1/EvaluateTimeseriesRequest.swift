@@ -53,6 +53,8 @@ public struct EvaluateTimeseriesRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// The forecast parameters.
   public var forecastParams: ForecastParams? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EvaluateTimeseriesRequest`.
   public init() {}
 
@@ -67,6 +69,52 @@ public struct EvaluateTimeseriesRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let timeseries = CodingKeys(stringValue: "timeseries")
+    static let granularity = CodingKeys(stringValue: "granularity")
+    static let forecastParams = CodingKeys(stringValue: "forecastParams")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "timeseries",
+      "granularity",
+      "forecastParams",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.timeseries = try container.decodeIfPresent(Timeseries.self, forKey: .timeseries)
+    self.granularity = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .granularity)
+    self.forecastParams = try container.decodeIfPresent(
+      ForecastParams.self, forKey: .forecastParams)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.timeseries, forKey: .timeseries)
+    try container.encodeIfPresent(self.granularity, forKey: .granularity)
+    try container.encodeIfPresent(self.forecastParams, forKey: .forecastParams)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

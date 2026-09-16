@@ -60,6 +60,8 @@ public struct AzureClusterNetworking: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid456"
   public var serviceLoadBalancerSubnetId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureClusterNetworking`.
   public init() {}
 
@@ -74,6 +76,61 @@ public struct AzureClusterNetworking: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let virtualNetworkId = CodingKeys(stringValue: "virtualNetworkId")
+    static let podAddressCidrBlocks = CodingKeys(stringValue: "podAddressCidrBlocks")
+    static let serviceAddressCidrBlocks = CodingKeys(stringValue: "serviceAddressCidrBlocks")
+    static let serviceLoadBalancerSubnetId = CodingKeys(stringValue: "serviceLoadBalancerSubnetId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "virtualNetworkId",
+      "podAddressCidrBlocks",
+      "serviceAddressCidrBlocks",
+      "serviceLoadBalancerSubnetId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .virtualNetworkId) {
+      self.virtualNetworkId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .podAddressCidrBlocks)
+    {
+      self.podAddressCidrBlocks = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .serviceAddressCidrBlocks)
+    {
+      self.serviceAddressCidrBlocks = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .serviceLoadBalancerSubnetId)
+    {
+      self.serviceLoadBalancerSubnetId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.virtualNetworkId, forKey: .virtualNetworkId)
+    try container.encode(self.podAddressCidrBlocks, forKey: .podAddressCidrBlocks)
+    try container.encode(self.serviceAddressCidrBlocks, forKey: .serviceAddressCidrBlocks)
+    try container.encode(self.serviceLoadBalancerSubnetId, forKey: .serviceLoadBalancerSubnetId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

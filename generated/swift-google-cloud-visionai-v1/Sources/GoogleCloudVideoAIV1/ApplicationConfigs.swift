@@ -27,6 +27,8 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Event-related configuration for this application.
   public var eventDeliveryConfig: ApplicationConfigs.EventDeliveryConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApplicationConfigs`.
   public init() {}
 
@@ -41,6 +43,43 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nodes = CodingKeys(stringValue: "nodes")
+    static let eventDeliveryConfig = CodingKeys(stringValue: "eventDeliveryConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nodes",
+      "eventDeliveryConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Node].self, forKey: .nodes) {
+      self.nodes = value
+    }
+    self.eventDeliveryConfig = try container.decodeIfPresent(
+      ApplicationConfigs.EventDeliveryConfig.self, forKey: .eventDeliveryConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nodes, forKey: .nodes)
+    try container.encodeIfPresent(self.eventDeliveryConfig, forKey: .eventDeliveryConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// message storing the config for event delivery
@@ -59,6 +98,8 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// identified by <event_id, app_platform_metadata>.
     public var minimalDeliveryInterval: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EventDeliveryConfig`.
     public init() {}
 
@@ -73,6 +114,43 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let channel = CodingKeys(stringValue: "channel")
+      static let minimalDeliveryInterval = CodingKeys(stringValue: "minimalDeliveryInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "channel",
+        "minimalDeliveryInterval",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
+        self.channel = value
+      }
+      self.minimalDeliveryInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minimalDeliveryInterval)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.channel, forKey: .channel)
+      try container.encodeIfPresent(self.minimalDeliveryInterval, forKey: .minimalDeliveryInterval)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

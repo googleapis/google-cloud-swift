@@ -140,6 +140,8 @@ public struct AttachedCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// cluster.
   public var systemComponentsConfig: SystemComponentsConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttachedCluster`.
   public init() {}
 
@@ -154,6 +156,168 @@ public struct AttachedCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let oidcConfig = CodingKeys(stringValue: "oidcConfig")
+    static let platformVersion = CodingKeys(stringValue: "platformVersion")
+    static let distribution = CodingKeys(stringValue: "distribution")
+    static let clusterRegion = CodingKeys(stringValue: "clusterRegion")
+    static let fleet = CodingKeys(stringValue: "fleet")
+    static let state = CodingKeys(stringValue: "state")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let kubernetesVersion = CodingKeys(stringValue: "kubernetesVersion")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let authorization = CodingKeys(stringValue: "authorization")
+    static let monitoringConfig = CodingKeys(stringValue: "monitoringConfig")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+    static let binaryAuthorization = CodingKeys(stringValue: "binaryAuthorization")
+    static let securityPostureConfig = CodingKeys(stringValue: "securityPostureConfig")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let systemComponentsConfig = CodingKeys(stringValue: "systemComponentsConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "oidcConfig",
+      "platformVersion",
+      "distribution",
+      "clusterRegion",
+      "fleet",
+      "state",
+      "uid",
+      "reconciling",
+      "createTime",
+      "updateTime",
+      "etag",
+      "kubernetesVersion",
+      "annotations",
+      "workloadIdentityConfig",
+      "loggingConfig",
+      "errors",
+      "authorization",
+      "monitoringConfig",
+      "proxyConfig",
+      "binaryAuthorization",
+      "securityPostureConfig",
+      "tags",
+      "systemComponentsConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.oidcConfig = try container.decodeIfPresent(AttachedOidcConfig.self, forKey: .oidcConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .platformVersion) {
+      self.platformVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .distribution) {
+      self.distribution = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterRegion) {
+      self.clusterRegion = value
+    }
+    self.fleet = try container.decodeIfPresent(Fleet.self, forKey: .fleet)
+    if let value = try container.decodeIfPresent(AttachedCluster.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kubernetesVersion) {
+      self.kubernetesVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
+    self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+    if let value = try container.decodeIfPresent([AttachedClusterError].self, forKey: .errors) {
+      self.errors = value
+    }
+    self.authorization = try container.decodeIfPresent(
+      AttachedClustersAuthorization.self, forKey: .authorization)
+    self.monitoringConfig = try container.decodeIfPresent(
+      MonitoringConfig.self, forKey: .monitoringConfig)
+    self.proxyConfig = try container.decodeIfPresent(AttachedProxyConfig.self, forKey: .proxyConfig)
+    self.binaryAuthorization = try container.decodeIfPresent(
+      BinaryAuthorization.self, forKey: .binaryAuthorization)
+    self.securityPostureConfig = try container.decodeIfPresent(
+      SecurityPostureConfig.self, forKey: .securityPostureConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    self.systemComponentsConfig = try container.decodeIfPresent(
+      SystemComponentsConfig.self, forKey: .systemComponentsConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.oidcConfig, forKey: .oidcConfig)
+    try container.encode(self.platformVersion, forKey: .platformVersion)
+    try container.encode(self.distribution, forKey: .distribution)
+    try container.encode(self.clusterRegion, forKey: .clusterRegion)
+    try container.encodeIfPresent(self.fleet, forKey: .fleet)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.kubernetesVersion, forKey: .kubernetesVersion)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encodeIfPresent(self.authorization, forKey: .authorization)
+    try container.encodeIfPresent(self.monitoringConfig, forKey: .monitoringConfig)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
+    try container.encodeIfPresent(self.securityPostureConfig, forKey: .securityPostureConfig)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encodeIfPresent(self.systemComponentsConfig, forKey: .systemComponentsConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The lifecycle state of the cluster.

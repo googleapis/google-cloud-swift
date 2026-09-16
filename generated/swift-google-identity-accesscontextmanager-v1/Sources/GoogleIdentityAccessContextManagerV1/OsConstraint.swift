@@ -37,6 +37,8 @@ public struct OsConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the API targeted by the request.
   public var requireVerifiedChromeOs: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OsConstraint`.
   public init() {}
 
@@ -51,6 +53,53 @@ public struct OsConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let osType = CodingKeys(stringValue: "osType")
+    static let minimumVersion = CodingKeys(stringValue: "minimumVersion")
+    static let requireVerifiedChromeOs = CodingKeys(stringValue: "requireVerifiedChromeOs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "osType",
+      "minimumVersion",
+      "requireVerifiedChromeOs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      GoogleIdentityAccessContextManagerType.OsType.self, forKey: .osType)
+    {
+      self.osType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .minimumVersion) {
+      self.minimumVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireVerifiedChromeOs)
+    {
+      self.requireVerifiedChromeOs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.osType, forKey: .osType)
+    try container.encode(self.minimumVersion, forKey: .minimumVersion)
+    try container.encode(self.requireVerifiedChromeOs, forKey: .requireVerifiedChromeOs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

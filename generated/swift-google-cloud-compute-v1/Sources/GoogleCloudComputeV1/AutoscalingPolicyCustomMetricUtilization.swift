@@ -101,6 +101,8 @@
     public var utilizationTargetType:
       AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscalingPolicyCustomMetricUtilization`.
     public init() {}
 
@@ -115,6 +117,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filter = CodingKeys(stringValue: "filter")
+      static let metric = CodingKeys(stringValue: "metric")
+      static let singleInstanceAssignment = CodingKeys(stringValue: "singleInstanceAssignment")
+      static let utilizationTarget = CodingKeys(stringValue: "utilizationTarget")
+      static let utilizationTargetType = CodingKeys(stringValue: "utilizationTargetType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filter",
+        "metric",
+        "singleInstanceAssignment",
+        "utilizationTarget",
+        "utilizationTargetType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.filter = try container.decodeIfPresent(Swift.String.self, forKey: .filter)
+      self.metric = try container.decodeIfPresent(Swift.String.self, forKey: .metric)
+      self.singleInstanceAssignment = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .singleInstanceAssignment)
+      self.utilizationTarget = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .utilizationTarget)
+      self.utilizationTargetType = try container.decodeIfPresent(
+        AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType.self,
+        forKey: .utilizationTargetType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.filter, forKey: .filter)
+      try container.encodeIfPresent(self.metric, forKey: .metric)
+      try container.encodeIfPresent(
+        self.singleInstanceAssignment, forKey: .singleInstanceAssignment)
+      try container.encodeIfPresent(self.utilizationTarget, forKey: .utilizationTarget)
+      try container.encodeIfPresent(self.utilizationTargetType, forKey: .utilizationTargetType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [utilizationTargetType][google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.utilizationTargetType] field.

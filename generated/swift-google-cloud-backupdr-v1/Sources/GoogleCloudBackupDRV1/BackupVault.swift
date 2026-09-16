@@ -90,6 +90,8 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The encryption config of the backup vault.
   public var encryptionConfig: BackupVault.EncryptionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupVault`.
   public init() {}
 
@@ -106,6 +108,136 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let backupMinimumEnforcedRetentionDuration = CodingKeys(
+      stringValue: "backupMinimumEnforcedRetentionDuration")
+    static let backupRetentionInheritance = CodingKeys(stringValue: "backupRetentionInheritance")
+    static let deletable = CodingKeys(stringValue: "deletable")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let state = CodingKeys(stringValue: "state")
+    static let effectiveTime = CodingKeys(stringValue: "effectiveTime")
+    static let backupCount = CodingKeys(stringValue: "backupCount")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let totalStoredBytes = CodingKeys(stringValue: "totalStoredBytes")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let accessRestriction = CodingKeys(stringValue: "accessRestriction")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "labels",
+      "createTime",
+      "updateTime",
+      "backupMinimumEnforcedRetentionDuration",
+      "backupRetentionInheritance",
+      "deletable",
+      "etag",
+      "state",
+      "effectiveTime",
+      "backupCount",
+      "serviceAccount",
+      "totalStoredBytes",
+      "uid",
+      "annotations",
+      "accessRestriction",
+      "encryptionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.backupMinimumEnforcedRetentionDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .backupMinimumEnforcedRetentionDuration)
+    self.backupRetentionInheritance = try container.decodeIfPresent(
+      BackupVault.BackupRetentionInheritance.self, forKey: .backupRetentionInheritance)
+    self.deletable = try container.decodeIfPresent(Swift.Bool.self, forKey: .deletable)
+    self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(BackupVault.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.effectiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .effectiveTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .backupCount) {
+      self.backupCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalStoredBytes) {
+      self.totalStoredBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      BackupVault.AccessRestriction.self, forKey: .accessRestriction)
+    {
+      self.accessRestriction = value
+    }
+    self.encryptionConfig = try container.decodeIfPresent(
+      BackupVault.EncryptionConfig.self, forKey: .encryptionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(
+      self.backupMinimumEnforcedRetentionDuration, forKey: .backupMinimumEnforcedRetentionDuration)
+    try container.encodeIfPresent(
+      self.backupRetentionInheritance, forKey: .backupRetentionInheritance)
+    try container.encodeIfPresent(self.deletable, forKey: .deletable)
+    try container.encodeIfPresent(self.etag, forKey: .etag)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
+    try container.encode(self.backupCount, forKey: .backupCount)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.totalStoredBytes, forKey: .totalStoredBytes)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.accessRestriction, forKey: .accessRestriction)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Message describing the EncryptionConfig of backup vault.
   /// This determines how data within the vault is encrypted at rest.
   public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -116,6 +248,8 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// compute disk backups may use their inherited source key instead. Format:
     /// projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}
     public var kmsKeyName: Swift.String? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EncryptionConfig`.
     public init() {}
@@ -131,6 +265,36 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kmsKeyName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.kmsKeyName = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.kmsKeyName, forKey: .kmsKeyName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

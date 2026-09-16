@@ -152,6 +152,8 @@
     /// The resource to start the conversations with for the agent.
     public var sessionEntryResource: OneOf_SessionEntryResource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Agent`.
     public init() {}
 
@@ -168,54 +170,114 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case defaultLanguageCode = "defaultLanguageCode"
-      case supportedLanguageCodes = "supportedLanguageCodes"
-      case timeZone = "timeZone"
-      case description = "description"
-      case avatarUri = "avatarUri"
-      case speechToTextSettings = "speechToTextSettings"
-      case startFlow = "startFlow"
-      case startPlaybook = "startPlaybook"
-      case securitySettings = "securitySettings"
-      case enableStackdriverLogging = "enableStackdriverLogging"
-      case enableSpellCorrection = "enableSpellCorrection"
-      case enableMultiLanguageTraining = "enableMultiLanguageTraining"
-      case locked = "locked"
-      case advancedSettings = "advancedSettings"
-      case gitIntegrationSettings = "gitIntegrationSettings"
-      case textToSpeechSettings = "textToSpeechSettings"
-      case genAppBuilderSettings = "genAppBuilderSettings"
-      case answerFeedbackSettings = "answerFeedbackSettings"
-      case personalizationSettings = "personalizationSettings"
-      case clientCertificateSettings = "clientCertificateSettings"
-      case satisfiesPzs = "satisfiesPzs"
-      case satisfiesPzi = "satisfiesPzi"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let defaultLanguageCode = CodingKeys(stringValue: "defaultLanguageCode")
+      static let supportedLanguageCodes = CodingKeys(stringValue: "supportedLanguageCodes")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let description = CodingKeys(stringValue: "description")
+      static let avatarUri = CodingKeys(stringValue: "avatarUri")
+      static let speechToTextSettings = CodingKeys(stringValue: "speechToTextSettings")
+      static let startFlow = CodingKeys(stringValue: "startFlow")
+      static let startPlaybook = CodingKeys(stringValue: "startPlaybook")
+      static let securitySettings = CodingKeys(stringValue: "securitySettings")
+      static let enableStackdriverLogging = CodingKeys(stringValue: "enableStackdriverLogging")
+      static let enableSpellCorrection = CodingKeys(stringValue: "enableSpellCorrection")
+      static let enableMultiLanguageTraining = CodingKeys(
+        stringValue: "enableMultiLanguageTraining")
+      static let locked = CodingKeys(stringValue: "locked")
+      static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
+      static let gitIntegrationSettings = CodingKeys(stringValue: "gitIntegrationSettings")
+      static let textToSpeechSettings = CodingKeys(stringValue: "textToSpeechSettings")
+      static let genAppBuilderSettings = CodingKeys(stringValue: "genAppBuilderSettings")
+      static let answerFeedbackSettings = CodingKeys(stringValue: "answerFeedbackSettings")
+      static let personalizationSettings = CodingKeys(stringValue: "personalizationSettings")
+      static let clientCertificateSettings = CodingKeys(stringValue: "clientCertificateSettings")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "defaultLanguageCode",
+        "supportedLanguageCodes",
+        "timeZone",
+        "description",
+        "avatarUri",
+        "speechToTextSettings",
+        "startFlow",
+        "startPlaybook",
+        "securitySettings",
+        "enableStackdriverLogging",
+        "enableSpellCorrection",
+        "enableMultiLanguageTraining",
+        "locked",
+        "advancedSettings",
+        "gitIntegrationSettings",
+        "textToSpeechSettings",
+        "genAppBuilderSettings",
+        "answerFeedbackSettings",
+        "personalizationSettings",
+        "clientCertificateSettings",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.defaultLanguageCode = try container.decode(
-        Swift.String.self, forKey: .defaultLanguageCode)
-      self.supportedLanguageCodes = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultLanguageCode)
+      {
+        self.defaultLanguageCode = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .supportedLanguageCodes)
-      self.timeZone = try container.decode(Swift.String.self, forKey: .timeZone)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.avatarUri = try container.decode(Swift.String.self, forKey: .avatarUri)
+      {
+        self.supportedLanguageCodes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .avatarUri) {
+        self.avatarUri = value
+      }
       self.speechToTextSettings = try container.decodeIfPresent(
         SpeechToTextSettings.self, forKey: .speechToTextSettings)
-      self.securitySettings = try container.decode(Swift.String.self, forKey: .securitySettings)
-      self.enableStackdriverLogging = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securitySettings) {
+        self.securitySettings = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableStackdriverLogging)
-      self.enableSpellCorrection = try container.decode(
-        Swift.Bool.self, forKey: .enableSpellCorrection)
-      self.enableMultiLanguageTraining = try container.decode(
+      {
+        self.enableStackdriverLogging = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSpellCorrection)
+      {
+        self.enableSpellCorrection = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableMultiLanguageTraining)
-      self.locked = try container.decode(Swift.Bool.self, forKey: .locked)
+      {
+        self.enableMultiLanguageTraining = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .locked) {
+        self.locked = value
+      }
       self.advancedSettings = try container.decodeIfPresent(
         AdvancedSettings.self, forKey: .advancedSettings)
       self.gitIntegrationSettings = try container.decodeIfPresent(
@@ -252,6 +314,10 @@
         try sessionEntryResourceCheckAndSet(.startPlaybook(startPlaybook))
       }
       self.sessionEntryResource = sessionEntryResource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -263,21 +329,22 @@
       try container.encode(self.timeZone, forKey: .timeZone)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.avatarUri, forKey: .avatarUri)
-      try container.encode(self.speechToTextSettings, forKey: .speechToTextSettings)
+      try container.encodeIfPresent(self.speechToTextSettings, forKey: .speechToTextSettings)
       try container.encode(self.securitySettings, forKey: .securitySettings)
       try container.encode(self.enableStackdriverLogging, forKey: .enableStackdriverLogging)
       try container.encode(self.enableSpellCorrection, forKey: .enableSpellCorrection)
       try container.encode(self.enableMultiLanguageTraining, forKey: .enableMultiLanguageTraining)
       try container.encode(self.locked, forKey: .locked)
-      try container.encode(self.advancedSettings, forKey: .advancedSettings)
-      try container.encode(self.gitIntegrationSettings, forKey: .gitIntegrationSettings)
-      try container.encode(self.textToSpeechSettings, forKey: .textToSpeechSettings)
-      try container.encode(self.genAppBuilderSettings, forKey: .genAppBuilderSettings)
-      try container.encode(self.answerFeedbackSettings, forKey: .answerFeedbackSettings)
-      try container.encode(self.personalizationSettings, forKey: .personalizationSettings)
-      try container.encode(self.clientCertificateSettings, forKey: .clientCertificateSettings)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
+      try container.encodeIfPresent(self.gitIntegrationSettings, forKey: .gitIntegrationSettings)
+      try container.encodeIfPresent(self.textToSpeechSettings, forKey: .textToSpeechSettings)
+      try container.encodeIfPresent(self.genAppBuilderSettings, forKey: .genAppBuilderSettings)
+      try container.encodeIfPresent(self.answerFeedbackSettings, forKey: .answerFeedbackSettings)
+      try container.encodeIfPresent(self.personalizationSettings, forKey: .personalizationSettings)
+      try container.encodeIfPresent(
+        self.clientCertificateSettings, forKey: .clientCertificateSettings)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
       if let choice = self.sessionEntryResource {
         switch choice {
@@ -287,6 +354,9 @@
           try container.encode(value, forKey: .startPlaybook)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Settings for connecting to Git repository for an agent.
@@ -295,6 +365,8 @@
     {
       /// The git settings to specific systems.
       public var gitSettings: OneOf_GitSettings? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GitIntegrationSettings`.
       public init() {}
@@ -312,8 +384,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case githubSettings = "githubSettings"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let githubSettings = CodingKeys(stringValue: "githubSettings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "githubSettings"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -335,6 +416,10 @@
           try gitSettingsCheckAndSet(.githubSettings(githubSettings))
         }
         self.gitSettings = gitSettings
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -345,6 +430,9 @@
           case .githubSettings(let value):
             try container.encode(value, forKey: .githubSettings)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -368,6 +456,9 @@
         /// A list of branches configured to be used from Dialogflow.
         public var branches: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `GithubSettings`.
         public init() {}
 
@@ -382,6 +473,62 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let displayName = CodingKeys(stringValue: "displayName")
+          static let repositoryUri = CodingKeys(stringValue: "repositoryUri")
+          static let trackingBranch = CodingKeys(stringValue: "trackingBranch")
+          static let accessToken = CodingKeys(stringValue: "accessToken")
+          static let branches = CodingKeys(stringValue: "branches")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "displayName",
+            "repositoryUri",
+            "trackingBranch",
+            "accessToken",
+            "branches",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+            self.displayName = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryUri) {
+            self.repositoryUri = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackingBranch) {
+            self.trackingBranch = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessToken) {
+            self.accessToken = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .branches) {
+            self.branches = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.displayName, forKey: .displayName)
+          try container.encode(self.repositoryUri, forKey: .repositoryUri)
+          try container.encode(self.trackingBranch, forKey: .trackingBranch)
+          try container.encode(self.accessToken, forKey: .accessToken)
+          try container.encode(self.branches, forKey: .branches)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -422,6 +569,8 @@
       /// ID}/collections/{Collection ID}/engines/{Engine ID}`
       public var engine: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GenAppBuilderSettings`.
       public init() {}
 
@@ -436,6 +585,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let engine = CodingKeys(stringValue: "engine")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "engine"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engine) {
+          self.engine = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.engine, forKey: .engine)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -461,6 +642,8 @@
       /// [google.cloud.dialogflow.cx.v3.AnswerFeedback]: <doc:AnswerFeedback>
       public var enableAnswerFeedback: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AnswerFeedbackSettings`.
       public init() {}
 
@@ -475,6 +658,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableAnswerFeedback = CodingKeys(stringValue: "enableAnswerFeedback")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableAnswerFeedback"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAnswerFeedback)
+        {
+          self.enableAnswerFeedback = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableAnswerFeedback, forKey: .enableAnswerFeedback)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -505,6 +721,8 @@
       /// [google.cloud.dialogflow.cx.v3.QueryParameters.end_user_metadata]: <doc:QueryParameters/endUserMetadata>
       public var defaultEndUserMetadata: GoogleCloudWKT.Struct? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PersonalizationSettings`.
       public init() {}
 
@@ -519,6 +737,37 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let defaultEndUserMetadata = CodingKeys(stringValue: "defaultEndUserMetadata")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "defaultEndUserMetadata"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.defaultEndUserMetadata = try container.decodeIfPresent(
+          GoogleCloudWKT.Struct.self, forKey: .defaultEndUserMetadata)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.defaultEndUserMetadata, forKey: .defaultEndUserMetadata)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -551,6 +800,8 @@
       /// Format: `projects/{project}/secrets/{secret}/versions/{version}`
       public var passphrase: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ClientCertificateSettings`.
       public init() {}
 
@@ -565,6 +816,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sslCertificate = CodingKeys(stringValue: "sslCertificate")
+        static let privateKey = CodingKeys(stringValue: "privateKey")
+        static let passphrase = CodingKeys(stringValue: "passphrase")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sslCertificate",
+          "privateKey",
+          "passphrase",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCertificate) {
+          self.sslCertificate = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKey) {
+          self.privateKey = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .passphrase) {
+          self.passphrase = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.sslCertificate, forKey: .sslCertificate)
+        try container.encode(self.privateKey, forKey: .privateKey)
+        try container.encode(self.passphrase, forKey: .passphrase)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

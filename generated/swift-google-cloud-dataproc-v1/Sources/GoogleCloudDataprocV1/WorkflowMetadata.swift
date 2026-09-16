@@ -83,6 +83,8 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout]: <doc:WorkflowMetadata/dagTimeout>
   public var dagEndTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkflowMetadata`.
   public init() {}
 
@@ -97,6 +99,108 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let template = CodingKeys(stringValue: "template")
+    static let version = CodingKeys(stringValue: "version")
+    static let createCluster = CodingKeys(stringValue: "createCluster")
+    static let graph = CodingKeys(stringValue: "graph")
+    static let deleteCluster = CodingKeys(stringValue: "deleteCluster")
+    static let state = CodingKeys(stringValue: "state")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let clusterUuid = CodingKeys(stringValue: "clusterUuid")
+    static let dagTimeout = CodingKeys(stringValue: "dagTimeout")
+    static let dagStartTime = CodingKeys(stringValue: "dagStartTime")
+    static let dagEndTime = CodingKeys(stringValue: "dagEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "template",
+      "version",
+      "createCluster",
+      "graph",
+      "deleteCluster",
+      "state",
+      "clusterName",
+      "parameters",
+      "startTime",
+      "endTime",
+      "clusterUuid",
+      "dagTimeout",
+      "dagStartTime",
+      "dagEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .template) {
+      self.template = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .version) {
+      self.version = value
+    }
+    self.createCluster = try container.decodeIfPresent(
+      ClusterOperation.self, forKey: .createCluster)
+    self.graph = try container.decodeIfPresent(WorkflowGraph.self, forKey: .graph)
+    self.deleteCluster = try container.decodeIfPresent(
+      ClusterOperation.self, forKey: .deleteCluster)
+    if let value = try container.decodeIfPresent(WorkflowMetadata.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .parameters)
+    {
+      self.parameters = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUuid) {
+      self.clusterUuid = value
+    }
+    self.dagTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .dagTimeout)
+    self.dagStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .dagStartTime)
+    self.dagEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .dagEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.template, forKey: .template)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.createCluster, forKey: .createCluster)
+    try container.encodeIfPresent(self.graph, forKey: .graph)
+    try container.encodeIfPresent(self.deleteCluster, forKey: .deleteCluster)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.clusterUuid, forKey: .clusterUuid)
+    try container.encodeIfPresent(self.dagTimeout, forKey: .dagTimeout)
+    try container.encodeIfPresent(self.dagStartTime, forKey: .dagStartTime)
+    try container.encodeIfPresent(self.dagEndTime, forKey: .dagEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The operation state.

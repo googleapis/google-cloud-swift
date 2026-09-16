@@ -51,6 +51,8 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Immutable. The storage type of the underlying volume.
   public var storageType: NfsShare.StorageType = NfsShare.StorageType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NfsShare`.
   public init() {}
 
@@ -65,6 +67,89 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let nfsShareId = CodingKeys(stringValue: "nfsShareId")
+    static let id = CodingKeys(stringValue: "id")
+    static let state = CodingKeys(stringValue: "state")
+    static let volume = CodingKeys(stringValue: "volume")
+    static let allowedClients = CodingKeys(stringValue: "allowedClients")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let requestedSizeGib = CodingKeys(stringValue: "requestedSizeGib")
+    static let storageType = CodingKeys(stringValue: "storageType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "nfsShareId",
+      "id",
+      "state",
+      "volume",
+      "allowedClients",
+      "labels",
+      "requestedSizeGib",
+      "storageType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nfsShareId) {
+      self.nfsShareId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(NfsShare.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volume) {
+      self.volume = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NfsShare.AllowedClient].self, forKey: .allowedClients)
+    {
+      self.allowedClients = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .requestedSizeGib) {
+      self.requestedSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(NfsShare.StorageType.self, forKey: .storageType) {
+      self.storageType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.nfsShareId, forKey: .nfsShareId)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.volume, forKey: .volume)
+    try container.encode(self.allowedClients, forKey: .allowedClients)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.requestedSizeGib, forKey: .requestedSizeGib)
+    try container.encode(self.storageType, forKey: .storageType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents an 'access point' for the share.
@@ -100,6 +185,8 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// example like "10.0.0.0:/g123456789-nfs001"
     public var nfsPath: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllowedClient`.
     public init() {}
 
@@ -114,6 +201,82 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let network = CodingKeys(stringValue: "network")
+      static let shareIp = CodingKeys(stringValue: "shareIp")
+      static let allowedClientsCidr = CodingKeys(stringValue: "allowedClientsCidr")
+      static let mountPermissions = CodingKeys(stringValue: "mountPermissions")
+      static let allowDev = CodingKeys(stringValue: "allowDev")
+      static let allowSuid = CodingKeys(stringValue: "allowSuid")
+      static let noRootSquash = CodingKeys(stringValue: "noRootSquash")
+      static let nfsPath = CodingKeys(stringValue: "nfsPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "network",
+        "shareIp",
+        "allowedClientsCidr",
+        "mountPermissions",
+        "allowDev",
+        "allowSuid",
+        "noRootSquash",
+        "nfsPath",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shareIp) {
+        self.shareIp = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allowedClientsCidr) {
+        self.allowedClientsCidr = value
+      }
+      if let value = try container.decodeIfPresent(
+        NfsShare.MountPermissions.self, forKey: .mountPermissions)
+      {
+        self.mountPermissions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowDev) {
+        self.allowDev = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowSuid) {
+        self.allowSuid = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noRootSquash) {
+        self.noRootSquash = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nfsPath) {
+        self.nfsPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.shareIp, forKey: .shareIp)
+      try container.encode(self.allowedClientsCidr, forKey: .allowedClientsCidr)
+      try container.encode(self.mountPermissions, forKey: .mountPermissions)
+      try container.encode(self.allowDev, forKey: .allowDev)
+      try container.encode(self.allowSuid, forKey: .allowSuid)
+      try container.encode(self.noRootSquash, forKey: .noRootSquash)
+      try container.encode(self.nfsPath, forKey: .nfsPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct CharsToIgnore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of characters to skip.
   public var characters: OneOf_Characters? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CharsToIgnore`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct CharsToIgnore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case charactersToSkip = "charactersToSkip"
-    case commonCharactersToIgnore = "commonCharactersToIgnore"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let charactersToSkip = CodingKeys(stringValue: "charactersToSkip")
+    static let commonCharactersToIgnore = CodingKeys(stringValue: "commonCharactersToIgnore")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "charactersToSkip",
+      "commonCharactersToIgnore",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@ public struct CharsToIgnore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try charactersCheckAndSet(.commonCharactersToIgnore(commonCharactersToIgnore))
     }
     self.characters = characters
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@ public struct CharsToIgnore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .commonCharactersToIgnore(let value):
         try container.encode(value, forKey: .commonCharactersToIgnore)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

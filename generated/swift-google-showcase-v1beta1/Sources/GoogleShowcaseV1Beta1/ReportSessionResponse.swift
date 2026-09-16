@@ -27,6 +27,8 @@ public struct ReportSessionResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The test runs of this session.
   public var testRuns: [TestRun] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportSessionResponse`.
   public init() {}
 
@@ -41,6 +43,45 @@ public struct ReportSessionResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let result = CodingKeys(stringValue: "result")
+    static let testRuns = CodingKeys(stringValue: "testRuns")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "result",
+      "testRuns",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ReportSessionResponse.Result.self, forKey: .result)
+    {
+      self.result = value
+    }
+    if let value = try container.decodeIfPresent([TestRun].self, forKey: .testRuns) {
+      self.testRuns = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.result, forKey: .result)
+    try container.encode(self.testRuns, forKey: .testRuns)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The topline state of the report.

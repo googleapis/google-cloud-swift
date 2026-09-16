@@ -62,6 +62,8 @@ public struct NodeType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Capabilities of this node type.
   public var capabilities: [NodeType.Capability] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeType`.
   public init() {}
 
@@ -76,6 +78,101 @@ public struct NodeType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let nodeTypeId = CodingKeys(stringValue: "nodeTypeId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let virtualCpuCount = CodingKeys(stringValue: "virtualCpuCount")
+    static let totalCoreCount = CodingKeys(stringValue: "totalCoreCount")
+    static let memoryGb = CodingKeys(stringValue: "memoryGb")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let availableCustomCoreCounts = CodingKeys(stringValue: "availableCustomCoreCounts")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let families = CodingKeys(stringValue: "families")
+    static let capabilities = CodingKeys(stringValue: "capabilities")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "nodeTypeId",
+      "displayName",
+      "virtualCpuCount",
+      "totalCoreCount",
+      "memoryGb",
+      "diskSizeGb",
+      "availableCustomCoreCounts",
+      "kind",
+      "families",
+      "capabilities",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeTypeId) {
+      self.nodeTypeId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .virtualCpuCount) {
+      self.virtualCpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCoreCount) {
+      self.totalCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryGb) {
+      self.memoryGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.Int32].self, forKey: .availableCustomCoreCounts)
+    {
+      self.availableCustomCoreCounts = value
+    }
+    if let value = try container.decodeIfPresent(NodeType.Kind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .families) {
+      self.families = value
+    }
+    if let value = try container.decodeIfPresent([NodeType.Capability].self, forKey: .capabilities)
+    {
+      self.capabilities = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.nodeTypeId, forKey: .nodeTypeId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.virtualCpuCount, forKey: .virtualCpuCount)
+    try container.encode(self.totalCoreCount, forKey: .totalCoreCount)
+    try container.encode(self.memoryGb, forKey: .memoryGb)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encode(self.availableCustomCoreCounts, forKey: .availableCustomCoreCounts)
+    try container.encode(self.kind, forKey: .kind)
+    try container.encode(self.families, forKey: .families)
+    try container.encode(self.capabilities, forKey: .capabilities)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum Kind defines possible types of a NodeType.

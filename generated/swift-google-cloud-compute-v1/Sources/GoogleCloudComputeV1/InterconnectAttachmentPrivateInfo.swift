@@ -27,6 +27,8 @@
     /// Google and the customer, going to and from this network and region.
     public var tag8021Q: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentPrivateInfo`.
     public init() {}
 
@@ -43,18 +45,34 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case tag8021Q = "tag8021q"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tag8021Q = CodingKeys(stringValue: "tag8021q")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tag8021q"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.tag8021Q = try container.decodeIfPresent(Swift.UInt32.self, forKey: .tag8021Q)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.tag8021Q, forKey: .tag8021Q)
+      try container.encodeIfPresent(self.tag8021Q, forKey: .tag8021Q)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

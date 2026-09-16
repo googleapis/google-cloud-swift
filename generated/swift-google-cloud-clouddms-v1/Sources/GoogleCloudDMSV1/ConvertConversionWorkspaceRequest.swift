@@ -38,6 +38,8 @@ public struct ConvertConversionWorkspaceRequest: Codable, Equatable, GoogleCloud
   /// table schema (and database if there is one) will also be converted.
   public var convertFullPath: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConvertConversionWorkspaceRequest`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct ConvertConversionWorkspaceRequest: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let autoCommit = CodingKeys(stringValue: "autoCommit")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let convertFullPath = CodingKeys(stringValue: "convertFullPath")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "autoCommit",
+      "filter",
+      "convertFullPath",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoCommit) {
+      self.autoCommit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .convertFullPath) {
+      self.convertFullPath = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.autoCommit, forKey: .autoCommit)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.convertFullPath, forKey: .convertFullPath)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -48,6 +48,8 @@ public struct HybridPeeringDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// the destination vserver svm.
   public var peerSvmName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HybridPeeringDetails`.
   public init() {}
 
@@ -62,6 +64,73 @@ public struct HybridPeeringDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subnetIp = CodingKeys(stringValue: "subnetIp")
+    static let command = CodingKeys(stringValue: "command")
+    static let commandExpiryTime = CodingKeys(stringValue: "commandExpiryTime")
+    static let passphrase = CodingKeys(stringValue: "passphrase")
+    static let peerVolumeName = CodingKeys(stringValue: "peerVolumeName")
+    static let peerClusterName = CodingKeys(stringValue: "peerClusterName")
+    static let peerSvmName = CodingKeys(stringValue: "peerSvmName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subnetIp",
+      "command",
+      "commandExpiryTime",
+      "passphrase",
+      "peerVolumeName",
+      "peerClusterName",
+      "peerSvmName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetIp) {
+      self.subnetIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .command) {
+      self.command = value
+    }
+    self.commandExpiryTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .commandExpiryTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .passphrase) {
+      self.passphrase = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerVolumeName) {
+      self.peerVolumeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerClusterName) {
+      self.peerClusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerSvmName) {
+      self.peerSvmName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subnetIp, forKey: .subnetIp)
+    try container.encode(self.command, forKey: .command)
+    try container.encodeIfPresent(self.commandExpiryTime, forKey: .commandExpiryTime)
+    try container.encode(self.passphrase, forKey: .passphrase)
+    try container.encode(self.peerVolumeName, forKey: .peerVolumeName)
+    try container.encode(self.peerClusterName, forKey: .peerClusterName)
+    try container.encode(self.peerSvmName, forKey: .peerSvmName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

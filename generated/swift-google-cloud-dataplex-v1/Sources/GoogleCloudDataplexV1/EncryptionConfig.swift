@@ -51,6 +51,8 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Represent the state of CMEK opt-in for metastore.
   public var enableMetastoreEncryption: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptionConfig`.
   public init() {}
 
@@ -67,6 +69,81 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let key = CodingKeys(stringValue: "key")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let encryptionState = CodingKeys(stringValue: "encryptionState")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let failureDetails = CodingKeys(stringValue: "failureDetails")
+    static let enableMetastoreEncryption = CodingKeys(stringValue: "enableMetastoreEncryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "key",
+      "createTime",
+      "updateTime",
+      "encryptionState",
+      "etag",
+      "failureDetails",
+      "enableMetastoreEncryption",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      EncryptionConfig.EncryptionState.self, forKey: .encryptionState)
+    {
+      self.encryptionState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.failureDetails = try container.decodeIfPresent(
+      EncryptionConfig.FailureDetails.self, forKey: .failureDetails)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableMetastoreEncryption)
+    {
+      self.enableMetastoreEncryption = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.key, forKey: .key)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.encryptionState, forKey: .encryptionState)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.failureDetails, forKey: .failureDetails)
+    try container.encode(self.enableMetastoreEncryption, forKey: .enableMetastoreEncryption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details of the failure if anything related to Cmek db fails.
   public struct FailureDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -78,6 +155,8 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The error message will be shown to the user. Set only if the
     /// error code is REQUIRE_USER_ACTION.
     public var errorMessage: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `FailureDetails`.
     public init() {}
@@ -93,6 +172,46 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let errorCode = CodingKeys(stringValue: "errorCode")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "errorCode",
+        "errorMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        EncryptionConfig.FailureDetails.ErrorCode.self, forKey: .errorCode)
+      {
+        self.errorCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.errorCode, forKey: .errorCode)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Error code for the failure if anything related to Cmek db fails.

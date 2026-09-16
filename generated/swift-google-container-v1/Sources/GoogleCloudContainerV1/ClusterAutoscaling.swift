@@ -52,6 +52,8 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var autopilotGeneralProfile: ClusterAutoscaling.AutopilotGeneralProfile =
     ClusterAutoscaling.AutopilotGeneralProfile()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterAutoscaling`.
   public init() {}
 
@@ -66,6 +68,83 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableNodeAutoprovisioning = CodingKeys(stringValue: "enableNodeAutoprovisioning")
+    static let resourceLimits = CodingKeys(stringValue: "resourceLimits")
+    static let autoscalingProfile = CodingKeys(stringValue: "autoscalingProfile")
+    static let autoprovisioningNodePoolDefaults = CodingKeys(
+      stringValue: "autoprovisioningNodePoolDefaults")
+    static let autoprovisioningLocations = CodingKeys(stringValue: "autoprovisioningLocations")
+    static let defaultComputeClassConfig = CodingKeys(stringValue: "defaultComputeClassConfig")
+    static let autopilotGeneralProfile = CodingKeys(stringValue: "autopilotGeneralProfile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableNodeAutoprovisioning",
+      "resourceLimits",
+      "autoscalingProfile",
+      "autoprovisioningNodePoolDefaults",
+      "autoprovisioningLocations",
+      "defaultComputeClassConfig",
+      "autopilotGeneralProfile",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableNodeAutoprovisioning)
+    {
+      self.enableNodeAutoprovisioning = value
+    }
+    if let value = try container.decodeIfPresent([ResourceLimit].self, forKey: .resourceLimits) {
+      self.resourceLimits = value
+    }
+    if let value = try container.decodeIfPresent(
+      ClusterAutoscaling.AutoscalingProfile.self, forKey: .autoscalingProfile)
+    {
+      self.autoscalingProfile = value
+    }
+    self.autoprovisioningNodePoolDefaults = try container.decodeIfPresent(
+      AutoprovisioningNodePoolDefaults.self, forKey: .autoprovisioningNodePoolDefaults)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .autoprovisioningLocations)
+    {
+      self.autoprovisioningLocations = value
+    }
+    self.defaultComputeClassConfig = try container.decodeIfPresent(
+      DefaultComputeClassConfig.self, forKey: .defaultComputeClassConfig)
+    if let value = try container.decodeIfPresent(
+      ClusterAutoscaling.AutopilotGeneralProfile.self, forKey: .autopilotGeneralProfile)
+    {
+      self.autopilotGeneralProfile = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableNodeAutoprovisioning, forKey: .enableNodeAutoprovisioning)
+    try container.encode(self.resourceLimits, forKey: .resourceLimits)
+    try container.encode(self.autoscalingProfile, forKey: .autoscalingProfile)
+    try container.encodeIfPresent(
+      self.autoprovisioningNodePoolDefaults, forKey: .autoprovisioningNodePoolDefaults)
+    try container.encode(self.autoprovisioningLocations, forKey: .autoprovisioningLocations)
+    try container.encodeIfPresent(
+      self.defaultComputeClassConfig, forKey: .defaultComputeClassConfig)
+    try container.encode(self.autopilotGeneralProfile, forKey: .autopilotGeneralProfile)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines possible options for autoscaling_profile field.

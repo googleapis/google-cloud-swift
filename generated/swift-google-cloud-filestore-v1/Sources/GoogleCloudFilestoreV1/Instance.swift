@@ -105,6 +105,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The reason for enabling deletion protection.
   public var deletionProtectionReason: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -121,63 +123,136 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case state = "state"
-    case statusMessage = "statusMessage"
-    case createTime = "createTime"
-    case tier = "tier"
-    case labels = "labels"
-    case fileShares = "fileShares"
-    case networks = "networks"
-    case etag = "etag"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
-    case kmsKeyName = "kmsKeyName"
-    case suspensionReasons = "suspensionReasons"
-    case replication = "replication"
-    case tags = "tags"
-    case `protocol` = "protocol"
-    case customPerformanceSupported = "customPerformanceSupported"
-    case performanceConfig = "performanceConfig"
-    case performanceLimits = "performanceLimits"
-    case deletionProtectionEnabled = "deletionProtectionEnabled"
-    case deletionProtectionReason = "deletionProtectionReason"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let fileShares = CodingKeys(stringValue: "fileShares")
+    static let networks = CodingKeys(stringValue: "networks")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let suspensionReasons = CodingKeys(stringValue: "suspensionReasons")
+    static let replication = CodingKeys(stringValue: "replication")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let customPerformanceSupported = CodingKeys(stringValue: "customPerformanceSupported")
+    static let performanceConfig = CodingKeys(stringValue: "performanceConfig")
+    static let performanceLimits = CodingKeys(stringValue: "performanceLimits")
+    static let deletionProtectionEnabled = CodingKeys(stringValue: "deletionProtectionEnabled")
+    static let deletionProtectionReason = CodingKeys(stringValue: "deletionProtectionReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "state",
+      "statusMessage",
+      "createTime",
+      "tier",
+      "labels",
+      "fileShares",
+      "networks",
+      "etag",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "kmsKeyName",
+      "suspensionReasons",
+      "replication",
+      "tags",
+      "protocol",
+      "customPerformanceSupported",
+      "performanceConfig",
+      "performanceLimits",
+      "deletionProtectionEnabled",
+      "deletionProtectionReason",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.state = try container.decode(Instance.State.self, forKey: .state)
-    self.statusMessage = try container.decode(Swift.String.self, forKey: .statusMessage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Instance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.tier = try container.decode(Instance.Tier.self, forKey: .tier)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.fileShares = try container.decode([FileShareConfig].self, forKey: .fileShares)
-    self.networks = try container.decode([NetworkConfig].self, forKey: .networks)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Instance.Tier.self, forKey: .tier) {
+      self.tier = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([FileShareConfig].self, forKey: .fileShares) {
+      self.fileShares = value
+    }
+    if let value = try container.decodeIfPresent([NetworkConfig].self, forKey: .networks) {
+      self.networks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
     self.satisfiesPzs = try container.decodeIfPresent(
       GoogleCloudWKT.BoolValue.self, forKey: .satisfiesPzs)
-    self.satisfiesPzi = try container.decode(Swift.Bool.self, forKey: .satisfiesPzi)
-    self.kmsKeyName = try container.decode(Swift.String.self, forKey: .kmsKeyName)
-    self.suspensionReasons = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(
       [Instance.SuspensionReason].self, forKey: .suspensionReasons)
+    {
+      self.suspensionReasons = value
+    }
     self.replication = try container.decodeIfPresent(Replication.self, forKey: .replication)
-    self.tags = try container.decode([Swift.String: Swift.String].self, forKey: .tags)
-    self.`protocol` = try container.decode(Instance.FileProtocol.self, forKey: .`protocol`)
-    self.customPerformanceSupported = try container.decode(
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Instance.FileProtocol.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .customPerformanceSupported)
+    {
+      self.customPerformanceSupported = value
+    }
     self.performanceConfig = try container.decodeIfPresent(
       Instance.PerformanceConfig.self, forKey: .performanceConfig)
     self.performanceLimits = try container.decodeIfPresent(
       Instance.PerformanceLimits.self, forKey: .performanceLimits)
-    self.deletionProtectionEnabled = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .deletionProtectionEnabled)
-    self.deletionProtectionReason = try container.decode(
+    {
+      self.deletionProtectionEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .deletionProtectionReason)
+    {
+      self.deletionProtectionReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -186,24 +261,27 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.statusMessage, forKey: .statusMessage)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.tier, forKey: .tier)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.fileShares, forKey: .fileShares)
     try container.encode(self.networks, forKey: .networks)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
     try container.encode(self.suspensionReasons, forKey: .suspensionReasons)
-    try container.encode(self.replication, forKey: .replication)
+    try container.encodeIfPresent(self.replication, forKey: .replication)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.customPerformanceSupported, forKey: .customPerformanceSupported)
-    try container.encode(self.performanceConfig, forKey: .performanceConfig)
-    try container.encode(self.performanceLimits, forKey: .performanceLimits)
+    try container.encodeIfPresent(self.performanceConfig, forKey: .performanceConfig)
+    try container.encodeIfPresent(self.performanceLimits, forKey: .performanceLimits)
     try container.encode(self.deletionProtectionEnabled, forKey: .deletionProtectionEnabled)
     try container.encode(self.deletionProtectionReason, forKey: .deletionProtectionReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// IOPS per TB.
@@ -213,6 +291,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Required. Maximum IOPS per TiB.
     public var maxIopsPerTb: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `IOPSPerTB`.
     public init() {}
@@ -228,6 +308,38 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxIopsPerTb = CodingKeys(stringValue: "maxIopsPerTb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxIopsPerTb"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxIopsPerTb) {
+        self.maxIopsPerTb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxIopsPerTb, forKey: .maxIopsPerTb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -248,6 +360,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Maximum IOPS.
     public var maxIops: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FixedIOPS`.
     public init() {}
 
@@ -262,6 +376,38 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxIops = CodingKeys(stringValue: "maxIops")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxIops"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxIops) {
+        self.maxIops = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxIops, forKey: .maxIops)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -287,6 +433,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     public var mode: OneOf_Mode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PerformanceConfig`.
     public init() {}
 
@@ -303,9 +451,19 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case iopsPerTb = "iopsPerTb"
-      case fixedIops = "fixedIops"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let iopsPerTb = CodingKeys(stringValue: "iopsPerTb")
+      static let fixedIops = CodingKeys(stringValue: "fixedIops")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "iopsPerTb",
+        "fixedIops",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -330,6 +488,10 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try modeCheckAndSet(.fixedIops(fixedIops))
       }
       self.mode = mode
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -342,6 +504,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .fixedIops(let value):
           try container.encode(value, forKey: .fixedIops)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -401,6 +566,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The max write throughput in bytes per second.
     public var maxWriteThroughputBps: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PerformanceLimits`.
     public init() {}
 
@@ -415,6 +582,64 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxIops = CodingKeys(stringValue: "maxIops")
+      static let maxReadIops = CodingKeys(stringValue: "maxReadIops")
+      static let maxWriteIops = CodingKeys(stringValue: "maxWriteIops")
+      static let maxReadThroughputBps = CodingKeys(stringValue: "maxReadThroughputBps")
+      static let maxWriteThroughputBps = CodingKeys(stringValue: "maxWriteThroughputBps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxIops",
+        "maxReadIops",
+        "maxWriteIops",
+        "maxReadThroughputBps",
+        "maxWriteThroughputBps",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxIops) {
+        self.maxIops = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxReadIops) {
+        self.maxReadIops = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxWriteIops) {
+        self.maxWriteIops = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxReadThroughputBps)
+      {
+        self.maxReadThroughputBps = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxWriteThroughputBps)
+      {
+        self.maxWriteThroughputBps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxIops, forKey: .maxIops)
+      try container.encode(self.maxReadIops, forKey: .maxReadIops)
+      try container.encode(self.maxWriteIops, forKey: .maxWriteIops)
+      try container.encode(self.maxReadThroughputBps, forKey: .maxReadThroughputBps)
+      try container.encode(self.maxWriteThroughputBps, forKey: .maxWriteThroughputBps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

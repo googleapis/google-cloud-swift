@@ -55,6 +55,8 @@ public struct CloudLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// footprint data is not available.
   public var carbonFreeEnergyPercentage: Swift.Float? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudLocation`.
   public init() {}
 
@@ -69,6 +71,80 @@ public struct CloudLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let containingCloudLocation = CodingKeys(stringValue: "containingCloudLocation")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let cloudProvider = CodingKeys(stringValue: "cloudProvider")
+    static let territoryCode = CodingKeys(stringValue: "territoryCode")
+    static let cloudLocationType = CodingKeys(stringValue: "cloudLocationType")
+    static let carbonFreeEnergyPercentage = CodingKeys(stringValue: "carbonFreeEnergyPercentage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "containingCloudLocation",
+      "displayName",
+      "cloudProvider",
+      "territoryCode",
+      "cloudLocationType",
+      "carbonFreeEnergyPercentage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .containingCloudLocation)
+    {
+      self.containingCloudLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudLocation.CloudProvider.self, forKey: .cloudProvider)
+    {
+      self.cloudProvider = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .territoryCode) {
+      self.territoryCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudLocation.CloudLocationType.self, forKey: .cloudLocationType)
+    {
+      self.cloudLocationType = value
+    }
+    self.carbonFreeEnergyPercentage = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .carbonFreeEnergyPercentage)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.containingCloudLocation, forKey: .containingCloudLocation)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    try container.encode(self.territoryCode, forKey: .territoryCode)
+    try container.encode(self.cloudLocationType, forKey: .cloudLocationType)
+    try container.encodeIfPresent(
+      self.carbonFreeEnergyPercentage, forKey: .carbonFreeEnergyPercentage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the cloud provider. This enum lists all possible providers of

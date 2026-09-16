@@ -47,6 +47,8 @@ public struct SqlDatabaseSystemSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Host of the enclousing database instance.
   public var instanceHost: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SqlDatabaseSystemSpec`.
   public init() {}
 
@@ -61,6 +63,50 @@ public struct SqlDatabaseSystemSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sqlEngine = CodingKeys(stringValue: "sqlEngine")
+    static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+    static let instanceHost = CodingKeys(stringValue: "instanceHost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sqlEngine",
+      "databaseVersion",
+      "instanceHost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sqlEngine) {
+      self.sqlEngine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseVersion) {
+      self.databaseVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceHost) {
+      self.instanceHost = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sqlEngine, forKey: .sqlEngine)
+    try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    try container.encode(self.instanceHost, forKey: .instanceHost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

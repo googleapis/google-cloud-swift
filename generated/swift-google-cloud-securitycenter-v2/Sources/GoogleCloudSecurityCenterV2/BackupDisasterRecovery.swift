@@ -79,6 +79,8 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The timestamp at which the Backup and DR backup was created.
   public var backupCreateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupDisasterRecovery`.
   public init() {}
 
@@ -93,6 +95,91 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupTemplate = CodingKeys(stringValue: "backupTemplate")
+    static let policies = CodingKeys(stringValue: "policies")
+    static let host = CodingKeys(stringValue: "host")
+    static let applications = CodingKeys(stringValue: "applications")
+    static let storagePool = CodingKeys(stringValue: "storagePool")
+    static let policyOptions = CodingKeys(stringValue: "policyOptions")
+    static let profile = CodingKeys(stringValue: "profile")
+    static let appliance = CodingKeys(stringValue: "appliance")
+    static let backupType = CodingKeys(stringValue: "backupType")
+    static let backupCreateTime = CodingKeys(stringValue: "backupCreateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupTemplate",
+      "policies",
+      "host",
+      "applications",
+      "storagePool",
+      "policyOptions",
+      "profile",
+      "appliance",
+      "backupType",
+      "backupCreateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupTemplate) {
+      self.backupTemplate = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .policies) {
+      self.policies = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .applications) {
+      self.applications = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool) {
+      self.storagePool = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .policyOptions) {
+      self.policyOptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profile) {
+      self.profile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appliance) {
+      self.appliance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupType) {
+      self.backupType = value
+    }
+    self.backupCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .backupCreateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backupTemplate, forKey: .backupTemplate)
+    try container.encode(self.policies, forKey: .policies)
+    try container.encode(self.host, forKey: .host)
+    try container.encode(self.applications, forKey: .applications)
+    try container.encode(self.storagePool, forKey: .storagePool)
+    try container.encode(self.policyOptions, forKey: .policyOptions)
+    try container.encode(self.profile, forKey: .profile)
+    try container.encode(self.appliance, forKey: .appliance)
+    try container.encode(self.backupType, forKey: .backupType)
+    try container.encodeIfPresent(self.backupCreateTime, forKey: .backupCreateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct SearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// BatchSearchDataObjects.
   public var distance: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchResult`.
   public init() {}
 
@@ -42,6 +44,40 @@ public struct SearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataObject = CodingKeys(stringValue: "dataObject")
+    static let distance = CodingKeys(stringValue: "distance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataObject",
+      "distance",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.dataObject = try container.decodeIfPresent(DataObject.self, forKey: .dataObject)
+    self.distance = try container.decodeIfPresent(Swift.Double.self, forKey: .distance)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.dataObject, forKey: .dataObject)
+    try container.encodeIfPresent(self.distance, forKey: .distance)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -29,6 +29,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Sources of crypto keys.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoKey`.
   public init() {}
 
@@ -45,10 +47,21 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case transient = "transient"
-    case unwrapped = "unwrapped"
-    case kmsWrapped = "kmsWrapped"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transient = CodingKeys(stringValue: "transient")
+    static let unwrapped = CodingKeys(stringValue: "unwrapped")
+    static let kmsWrapped = CodingKeys(stringValue: "kmsWrapped")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transient",
+      "unwrapped",
+      "kmsWrapped",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,6 +89,10 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.kmsWrapped(kmsWrapped))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +107,9 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .kmsWrapped(let value):
         try container.encode(value, forKey: .kmsWrapped)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

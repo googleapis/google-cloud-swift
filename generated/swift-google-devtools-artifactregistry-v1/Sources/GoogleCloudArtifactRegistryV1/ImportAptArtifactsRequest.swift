@@ -27,6 +27,8 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// The source location of the package binaries.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportAptArtifactsRequest`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsSource = "gcsSource"
-    case parent = "parent"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let parent = CodingKeys(stringValue: "parent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSource",
+      "parent",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -68,6 +82,10 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleCloudWKT._Any
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +97,9 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleCloudWKT._Any
       case .gcsSource(let value):
         try container.encode(value, forKey: .gcsSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

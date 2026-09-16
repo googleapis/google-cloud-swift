@@ -46,6 +46,8 @@ public struct TransformationDescription: Codable, Equatable, GoogleCloudWKT._Any
   /// Set if the transformation was limited to a specific `InfoType`.
   public var infoType: InfoType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationDescription`.
   public init() {}
 
@@ -60,6 +62,54 @@ public struct TransformationDescription: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let description = CodingKeys(stringValue: "description")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let infoType = CodingKeys(stringValue: "infoType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "description",
+      "condition",
+      "infoType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(TransformationType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+      self.condition = value
+    }
+    self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.condition, forKey: .condition)
+    try container.encodeIfPresent(self.infoType, forKey: .infoType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

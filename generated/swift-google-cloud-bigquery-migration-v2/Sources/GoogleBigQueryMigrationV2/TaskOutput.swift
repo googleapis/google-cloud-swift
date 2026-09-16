@@ -32,6 +32,8 @@ public struct TaskOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The detailed output of the task.
   public var output: OneOf_Output? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskOutput`.
   public init() {}
 
@@ -48,15 +50,28 @@ public struct TaskOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case lineageOutput = "lineageOutput"
-    case state = "state"
-    case processingError = "processingError"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lineageOutput = CodingKeys(stringValue: "lineageOutput")
+    static let state = CodingKeys(stringValue: "state")
+    static let processingError = CodingKeys(stringValue: "processingError")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lineageOutput",
+      "state",
+      "processingError",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decode(TaskOutput.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(TaskOutput.State.self, forKey: .state) {
+      self.state = value
+    }
     self.processingError = try container.decodeIfPresent(
       GoogleRpc.ErrorInfo.self, forKey: .processingError)
 
@@ -76,18 +91,25 @@ public struct TaskOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try outputCheckAndSet(.lineageOutput(lineageOutput))
     }
     self.output = output
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.processingError, forKey: .processingError)
+    try container.encodeIfPresent(self.processingError, forKey: .processingError)
 
     if let choice = self.output {
       switch choice {
       case .lineageOutput(let value):
         try container.encode(value, forKey: .lineageOutput)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

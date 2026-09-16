@@ -33,6 +33,8 @@ public struct AcquireLeaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The lease type.
   public var leaseType: LeaseType = LeaseType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AcquireLeaseRequest`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct AcquireLeaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let series = CodingKeys(stringValue: "series")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let term = CodingKeys(stringValue: "term")
+    static let leaseType = CodingKeys(stringValue: "leaseType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "series",
+      "owner",
+      "term",
+      "leaseType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .series) {
+      self.series = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .owner) {
+      self.owner = value
+    }
+    self.term = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .term)
+    if let value = try container.decodeIfPresent(LeaseType.self, forKey: .leaseType) {
+      self.leaseType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.series, forKey: .series)
+    try container.encode(self.owner, forKey: .owner)
+    try container.encodeIfPresent(self.term, forKey: .term)
+    try container.encode(self.leaseType, forKey: .leaseType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

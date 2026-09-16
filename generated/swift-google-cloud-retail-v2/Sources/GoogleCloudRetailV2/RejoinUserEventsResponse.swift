@@ -24,6 +24,8 @@ public struct RejoinUserEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Number of user events that were joined with latest product catalog.
   public var rejoinedUserEventsCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RejoinUserEventsResponse`.
   public init() {}
 
@@ -38,6 +40,39 @@ public struct RejoinUserEventsResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rejoinedUserEventsCount = CodingKeys(stringValue: "rejoinedUserEventsCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rejoinedUserEventsCount"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rejoinedUserEventsCount)
+    {
+      self.rejoinedUserEventsCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rejoinedUserEventsCount, forKey: .rejoinedUserEventsCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

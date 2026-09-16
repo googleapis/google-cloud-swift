@@ -24,6 +24,8 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The service definition configuration.
   public var serviceDefinition: OneOf_ServiceDefinition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KubernetesConfig`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gatewayServiceMesh = "gatewayServiceMesh"
-    case serviceNetworking = "serviceNetworking"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gatewayServiceMesh = CodingKeys(stringValue: "gatewayServiceMesh")
+    static let serviceNetworking = CodingKeys(stringValue: "serviceNetworking")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gatewayServiceMesh",
+      "serviceNetworking",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try serviceDefinitionCheckAndSet(.serviceNetworking(serviceNetworking))
     }
     self.serviceDefinition = serviceDefinition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .serviceNetworking(let value):
         try container.encode(value, forKey: .serviceNetworking)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -120,6 +139,8 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// be deployed to the Target cluster.
     public var routeDestinations: KubernetesConfig.GatewayServiceMesh.RouteDestinations? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GatewayServiceMesh`.
     public init() {}
 
@@ -134,6 +155,71 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let httpRoute = CodingKeys(stringValue: "httpRoute")
+      static let service = CodingKeys(stringValue: "service")
+      static let deployment = CodingKeys(stringValue: "deployment")
+      static let routeUpdateWaitTime = CodingKeys(stringValue: "routeUpdateWaitTime")
+      static let stableCutbackDuration = CodingKeys(stringValue: "stableCutbackDuration")
+      static let podSelectorLabel = CodingKeys(stringValue: "podSelectorLabel")
+      static let routeDestinations = CodingKeys(stringValue: "routeDestinations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "httpRoute",
+        "service",
+        "deployment",
+        "routeUpdateWaitTime",
+        "stableCutbackDuration",
+        "podSelectorLabel",
+        "routeDestinations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .httpRoute) {
+        self.httpRoute = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+        self.service = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+        self.deployment = value
+      }
+      self.routeUpdateWaitTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .routeUpdateWaitTime)
+      self.stableCutbackDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .stableCutbackDuration)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podSelectorLabel) {
+        self.podSelectorLabel = value
+      }
+      self.routeDestinations = try container.decodeIfPresent(
+        KubernetesConfig.GatewayServiceMesh.RouteDestinations.self, forKey: .routeDestinations)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.httpRoute, forKey: .httpRoute)
+      try container.encode(self.service, forKey: .service)
+      try container.encode(self.deployment, forKey: .deployment)
+      try container.encodeIfPresent(self.routeUpdateWaitTime, forKey: .routeUpdateWaitTime)
+      try container.encodeIfPresent(self.stableCutbackDuration, forKey: .stableCutbackDuration)
+      try container.encode(self.podSelectorLabel, forKey: .podSelectorLabel)
+      try container.encodeIfPresent(self.routeDestinations, forKey: .routeDestinations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Information about route destinations for the Gateway API service mesh.
@@ -153,6 +239,8 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// only be set to true if destinations are specified.
       public var propagateService: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RouteDestinations`.
       public init() {}
 
@@ -167,6 +255,44 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let destinationIds = CodingKeys(stringValue: "destinationIds")
+        static let propagateService = CodingKeys(stringValue: "propagateService")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "destinationIds",
+          "propagateService",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationIds) {
+          self.destinationIds = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .propagateService) {
+          self.propagateService = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.destinationIds, forKey: .destinationIds)
+        try container.encode(self.propagateService, forKey: .propagateService)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -213,6 +339,8 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// resource. This label must already be present in the Deployment.
     public var podSelectorLabel: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServiceNetworking`.
     public init() {}
 
@@ -227,6 +355,58 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let service = CodingKeys(stringValue: "service")
+      static let deployment = CodingKeys(stringValue: "deployment")
+      static let disablePodOverprovisioning = CodingKeys(stringValue: "disablePodOverprovisioning")
+      static let podSelectorLabel = CodingKeys(stringValue: "podSelectorLabel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "service",
+        "deployment",
+        "disablePodOverprovisioning",
+        "podSelectorLabel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+        self.service = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+        self.deployment = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disablePodOverprovisioning)
+      {
+        self.disablePodOverprovisioning = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podSelectorLabel) {
+        self.podSelectorLabel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.service, forKey: .service)
+      try container.encode(self.deployment, forKey: .deployment)
+      try container.encode(self.disablePodOverprovisioning, forKey: .disablePodOverprovisioning)
+      try container.encode(self.podSelectorLabel, forKey: .podSelectorLabel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

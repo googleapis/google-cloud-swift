@@ -28,6 +28,8 @@
     /// Output only. [Output Only] The name of a region, like "us-central1".
     public var region: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentGroupLogicalStructureRegion`.
     public init() {}
 
@@ -42,6 +44,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metros = CodingKeys(stringValue: "metros")
+      static let region = CodingKeys(stringValue: "region")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metros",
+        "region",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [InterconnectAttachmentGroupLogicalStructureRegionMetro].self, forKey: .metros)
+      {
+        self.metros = value
+      }
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.metros, forKey: .metros)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

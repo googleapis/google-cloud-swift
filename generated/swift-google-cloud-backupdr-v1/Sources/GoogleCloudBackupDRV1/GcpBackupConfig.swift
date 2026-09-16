@@ -42,6 +42,8 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// E.g. v0, v1 etc.
   public var backupPlanRevisionId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcpBackupConfig`.
   public init() {}
 
@@ -56,6 +58,71 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupPlan = CodingKeys(stringValue: "backupPlan")
+    static let backupPlanDescription = CodingKeys(stringValue: "backupPlanDescription")
+    static let backupPlanAssociation = CodingKeys(stringValue: "backupPlanAssociation")
+    static let backupPlanRules = CodingKeys(stringValue: "backupPlanRules")
+    static let backupPlanRevisionName = CodingKeys(stringValue: "backupPlanRevisionName")
+    static let backupPlanRevisionId = CodingKeys(stringValue: "backupPlanRevisionId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupPlan",
+      "backupPlanDescription",
+      "backupPlanAssociation",
+      "backupPlanRules",
+      "backupPlanRevisionName",
+      "backupPlanRevisionId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlan) {
+      self.backupPlan = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanDescription)
+    {
+      self.backupPlanDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanAssociation)
+    {
+      self.backupPlanAssociation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .backupPlanRules) {
+      self.backupPlanRules = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionName)
+    {
+      self.backupPlanRevisionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionId) {
+      self.backupPlanRevisionId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backupPlan, forKey: .backupPlan)
+    try container.encode(self.backupPlanDescription, forKey: .backupPlanDescription)
+    try container.encode(self.backupPlanAssociation, forKey: .backupPlanAssociation)
+    try container.encode(self.backupPlanRules, forKey: .backupPlanRules)
+    try container.encode(self.backupPlanRevisionName, forKey: .backupPlanRevisionName)
+    try container.encode(self.backupPlanRevisionId, forKey: .backupPlanRevisionId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

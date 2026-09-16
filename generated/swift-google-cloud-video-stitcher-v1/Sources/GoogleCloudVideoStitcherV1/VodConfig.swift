@@ -40,6 +40,8 @@ public struct VodConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options for fetching source manifests and segments.
   public var sourceFetchOptions: FetchOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VodConfig`.
   public init() {}
 
@@ -54,6 +56,65 @@ public struct VodConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceUri = CodingKeys(stringValue: "sourceUri")
+    static let adTagUri = CodingKeys(stringValue: "adTagUri")
+    static let gamVodConfig = CodingKeys(stringValue: "gamVodConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let sourceFetchOptions = CodingKeys(stringValue: "sourceFetchOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceUri",
+      "adTagUri",
+      "gamVodConfig",
+      "state",
+      "sourceFetchOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceUri) {
+      self.sourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adTagUri) {
+      self.adTagUri = value
+    }
+    self.gamVodConfig = try container.decodeIfPresent(GamVodConfig.self, forKey: .gamVodConfig)
+    if let value = try container.decodeIfPresent(VodConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.sourceFetchOptions = try container.decodeIfPresent(
+      FetchOptions.self, forKey: .sourceFetchOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.sourceUri, forKey: .sourceUri)
+    try container.encode(self.adTagUri, forKey: .adTagUri)
+    try container.encodeIfPresent(self.gamVodConfig, forKey: .gamVodConfig)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.sourceFetchOptions, forKey: .sourceFetchOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the VOD config.

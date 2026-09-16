@@ -27,6 +27,8 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The curation information for this plugin instance.
   public var curationConfig: OneOf_CurationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CurationConfig`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case customCuration = "customCuration"
-    case curationType = "curationType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customCuration = CodingKeys(stringValue: "customCuration")
+    static let curationType = CodingKeys(stringValue: "curationType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customCuration",
+      "curationType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.curationType = try container.decode(CurationType.self, forKey: .curationType)
+    if let value = try container.decodeIfPresent(CurationType.self, forKey: .curationType) {
+      self.curationType = value
+    }
 
     var curationConfig: OneOf_CurationConfig? = nil
     let curationConfigCheckAndSet = {
@@ -68,6 +82,10 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try curationConfigCheckAndSet(.customCuration(customCuration))
     }
     self.curationConfig = curationConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,9 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .customCuration)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Custom curation information for this plugin instance.
@@ -90,6 +111,8 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// of the curation resource in the format:
     /// `projects/{project}/locations/{location}/curations/{curation}`
     public var curation: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CustomCuration`.
     public init() {}
@@ -105,6 +128,38 @@ public struct CurationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let curation = CodingKeys(stringValue: "curation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "curation"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .curation) {
+        self.curation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.curation, forKey: .curation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

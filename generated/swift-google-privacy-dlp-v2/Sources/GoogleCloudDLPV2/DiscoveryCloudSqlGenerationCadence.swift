@@ -37,6 +37,8 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
   /// If not set, changing the template will not cause a data profile to update.
   public var inspectTemplateModifiedCadence: DiscoveryInspectTemplateModifiedCadence? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryCloudSqlGenerationCadence`.
   public init() {}
 
@@ -53,6 +55,52 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schemaModifiedCadence = CodingKeys(stringValue: "schemaModifiedCadence")
+    static let refreshFrequency = CodingKeys(stringValue: "refreshFrequency")
+    static let inspectTemplateModifiedCadence = CodingKeys(
+      stringValue: "inspectTemplateModifiedCadence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schemaModifiedCadence",
+      "refreshFrequency",
+      "inspectTemplateModifiedCadence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.schemaModifiedCadence = try container.decodeIfPresent(
+      DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.self, forKey: .schemaModifiedCadence)
+    if let value = try container.decodeIfPresent(
+      DataProfileUpdateFrequency.self, forKey: .refreshFrequency)
+    {
+      self.refreshFrequency = value
+    }
+    self.inspectTemplateModifiedCadence = try container.decodeIfPresent(
+      DiscoveryInspectTemplateModifiedCadence.self, forKey: .inspectTemplateModifiedCadence)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.schemaModifiedCadence, forKey: .schemaModifiedCadence)
+    try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    try container.encodeIfPresent(
+      self.inspectTemplateModifiedCadence, forKey: .inspectTemplateModifiedCadence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// How frequently to modify the profile when the table's schema is modified.
   public struct SchemaModifiedCadence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -65,6 +113,8 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
     /// Frequency to regenerate data profiles when the schema is modified.
     /// Defaults to monthly.
     public var frequency: DataProfileUpdateFrequency = DataProfileUpdateFrequency()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SchemaModifiedCadence`.
     public init() {}
@@ -80,6 +130,49 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let types = CodingKeys(stringValue: "types")
+      static let frequency = CodingKeys(stringValue: "frequency")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "types",
+        "frequency",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.CloudSqlSchemaModification].self,
+        forKey: .types)
+      {
+        self.types = value
+      }
+      if let value = try container.decodeIfPresent(
+        DataProfileUpdateFrequency.self, forKey: .frequency)
+      {
+        self.frequency = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.types, forKey: .types)
+      try container.encode(self.frequency, forKey: .frequency)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of modification that causes a profile update.

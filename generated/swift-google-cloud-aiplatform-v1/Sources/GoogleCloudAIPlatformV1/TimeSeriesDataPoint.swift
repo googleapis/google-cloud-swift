@@ -31,6 +31,8 @@
     /// Value of this time series data point.
     public var value: OneOf_Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimeSeriesDataPoint`.
     public init() {}
 
@@ -47,19 +49,34 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case scalar = "scalar"
-      case tensor = "tensor"
-      case blobs = "blobs"
-      case wallTime = "wallTime"
-      case step = "step"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scalar = CodingKeys(stringValue: "scalar")
+      static let tensor = CodingKeys(stringValue: "tensor")
+      static let blobs = CodingKeys(stringValue: "blobs")
+      static let wallTime = CodingKeys(stringValue: "wallTime")
+      static let step = CodingKeys(stringValue: "step")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scalar",
+        "tensor",
+        "blobs",
+        "wallTime",
+        "step",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.wallTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .wallTime)
-      self.step = try container.decode(Swift.Int64.self, forKey: .step)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .step) {
+        self.step = value
+      }
 
       var value: OneOf_Value? = nil
       let valueCheckAndSet = {
@@ -81,11 +98,15 @@
         try valueCheckAndSet(.blobs(blobs))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.wallTime, forKey: .wallTime)
+      try container.encodeIfPresent(self.wallTime, forKey: .wallTime)
       try container.encode(self.step, forKey: .step)
 
       if let choice = self.value {
@@ -97,6 +118,9 @@
         case .blobs(let value):
           try container.encode(value, forKey: .blobs)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

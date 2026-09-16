@@ -46,6 +46,8 @@ public struct MembershipSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Enables automatic Feature management.
   public var management: MembershipSpec.Management = MembershipSpec.Management()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MembershipSpec`.
   public init() {}
 
@@ -60,6 +62,66 @@ public struct MembershipSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let configSync = CodingKeys(stringValue: "configSync")
+    static let policyController = CodingKeys(stringValue: "policyController")
+    static let hierarchyController = CodingKeys(stringValue: "hierarchyController")
+    static let version = CodingKeys(stringValue: "version")
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let management = CodingKeys(stringValue: "management")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "configSync",
+      "policyController",
+      "hierarchyController",
+      "version",
+      "cluster",
+      "management",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.configSync = try container.decodeIfPresent(ConfigSync.self, forKey: .configSync)
+    self.policyController = try container.decodeIfPresent(
+      PolicyController.self, forKey: .policyController)
+    self.hierarchyController = try container.decodeIfPresent(
+      HierarchyControllerConfig.self, forKey: .hierarchyController)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+      self.cluster = value
+    }
+    if let value = try container.decodeIfPresent(
+      MembershipSpec.Management.self, forKey: .management)
+    {
+      self.management = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.configSync, forKey: .configSync)
+    try container.encodeIfPresent(self.policyController, forKey: .policyController)
+    try container.encodeIfPresent(self.hierarchyController, forKey: .hierarchyController)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.cluster, forKey: .cluster)
+    try container.encode(self.management, forKey: .management)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Whether to automatically manage the Feature.

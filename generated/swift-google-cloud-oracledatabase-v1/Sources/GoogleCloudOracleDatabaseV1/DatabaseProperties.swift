@@ -34,6 +34,8 @@ public struct DatabaseProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. The Database Management config.
   public var databaseManagementConfig: DatabaseManagementConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseProperties`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct DatabaseProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let dbVersion = CodingKeys(stringValue: "dbVersion")
+    static let dbBackupConfig = CodingKeys(stringValue: "dbBackupConfig")
+    static let databaseManagementConfig = CodingKeys(stringValue: "databaseManagementConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "dbVersion",
+      "dbBackupConfig",
+      "databaseManagementConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      DatabaseProperties.DatabaseLifecycleState.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbVersion) {
+      self.dbVersion = value
+    }
+    self.dbBackupConfig = try container.decodeIfPresent(
+      DbBackupConfig.self, forKey: .dbBackupConfig)
+    self.databaseManagementConfig = try container.decodeIfPresent(
+      DatabaseManagementConfig.self, forKey: .databaseManagementConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.dbVersion, forKey: .dbVersion)
+    try container.encodeIfPresent(self.dbBackupConfig, forKey: .dbBackupConfig)
+    try container.encodeIfPresent(self.databaseManagementConfig, forKey: .databaseManagementConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the Database.

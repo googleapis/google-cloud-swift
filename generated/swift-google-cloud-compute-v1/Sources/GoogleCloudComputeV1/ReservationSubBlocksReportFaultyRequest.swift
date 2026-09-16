@@ -31,6 +31,8 @@
     /// The reasons for the fault experienced with the subBlock.
     public var faultReasons: [ReservationSubBlocksReportFaultyRequestFaultReason] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReservationSubBlocksReportFaultyRequest`.
     public init() {}
 
@@ -45,6 +47,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disruptionSchedule = CodingKeys(stringValue: "disruptionSchedule")
+      static let failureComponent = CodingKeys(stringValue: "failureComponent")
+      static let faultReasons = CodingKeys(stringValue: "faultReasons")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disruptionSchedule",
+        "failureComponent",
+        "faultReasons",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.disruptionSchedule = try container.decodeIfPresent(
+        ReservationSubBlocksReportFaultyRequest.DisruptionSchedule.self, forKey: .disruptionSchedule
+      )
+      self.failureComponent = try container.decodeIfPresent(
+        ReservationSubBlocksReportFaultyRequest.FailureComponent.self, forKey: .failureComponent)
+      if let value = try container.decodeIfPresent(
+        [ReservationSubBlocksReportFaultyRequestFaultReason].self, forKey: .faultReasons)
+      {
+        self.faultReasons = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.disruptionSchedule, forKey: .disruptionSchedule)
+      try container.encodeIfPresent(self.failureComponent, forKey: .failureComponent)
+      try container.encode(self.faultReasons, forKey: .faultReasons)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [disruptionSchedule][google.cloud.compute.v1.ReservationSubBlocksReportFaultyRequest.disruptionSchedule] field.

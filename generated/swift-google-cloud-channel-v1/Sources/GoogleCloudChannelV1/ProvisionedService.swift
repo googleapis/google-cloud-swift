@@ -34,6 +34,8 @@ public struct ProvisionedService: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// in the Offer.
   public var skuId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProvisionedService`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct ProvisionedService: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let provisioningId = CodingKeys(stringValue: "provisioningId")
+    static let productId = CodingKeys(stringValue: "productId")
+    static let skuId = CodingKeys(stringValue: "skuId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "provisioningId",
+      "productId",
+      "skuId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .provisioningId) {
+      self.provisioningId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .productId) {
+      self.productId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skuId) {
+      self.skuId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.provisioningId, forKey: .provisioningId)
+    try container.encode(self.productId, forKey: .productId)
+    try container.encode(self.skuId, forKey: .skuId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

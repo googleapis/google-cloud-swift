@@ -31,6 +31,8 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleCloudWKT._A
   /// Options on destination for storage systems.
   public var destinationOptions: OneOf_DestinationOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectMetadataReportOptions`.
   public init() {}
 
@@ -47,15 +49,28 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case metadataFields = "metadataFields"
-    case storageFilters = "storageFilters"
-    case storageDestinationOptions = "storageDestinationOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let metadataFields = CodingKeys(stringValue: "metadataFields")
+    static let storageFilters = CodingKeys(stringValue: "storageFilters")
+    static let storageDestinationOptions = CodingKeys(stringValue: "storageDestinationOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "metadataFields",
+      "storageFilters",
+      "storageDestinationOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.metadataFields = try container.decode([Swift.String].self, forKey: .metadataFields)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .metadataFields) {
+      self.metadataFields = value
+    }
 
     var filter: OneOf_Filter? = nil
     let filterCheckAndSet = {
@@ -90,6 +105,10 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleCloudWKT._A
       try destinationOptionsCheckAndSet(.storageDestinationOptions(storageDestinationOptions))
     }
     self.destinationOptions = destinationOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,6 +127,9 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleCloudWKT._A
       case .storageDestinationOptions(let value):
         try container.encode(value, forKey: .storageDestinationOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

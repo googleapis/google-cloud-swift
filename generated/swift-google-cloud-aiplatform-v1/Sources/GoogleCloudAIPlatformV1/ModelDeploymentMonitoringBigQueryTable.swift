@@ -41,6 +41,8 @@
     /// table. Default to v1 if unset.
     public var requestResponseLoggingSchemaVersion: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelDeploymentMonitoringBigQueryTable`.
     public init() {}
 
@@ -55,6 +57,64 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let logSource = CodingKeys(stringValue: "logSource")
+      static let logType = CodingKeys(stringValue: "logType")
+      static let bigqueryTablePath = CodingKeys(stringValue: "bigqueryTablePath")
+      static let requestResponseLoggingSchemaVersion = CodingKeys(
+        stringValue: "requestResponseLoggingSchemaVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "logSource",
+        "logType",
+        "bigqueryTablePath",
+        "requestResponseLoggingSchemaVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ModelDeploymentMonitoringBigQueryTable.LogSource.self, forKey: .logSource)
+      {
+        self.logSource = value
+      }
+      if let value = try container.decodeIfPresent(
+        ModelDeploymentMonitoringBigQueryTable.LogType.self, forKey: .logType)
+      {
+        self.logType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bigqueryTablePath) {
+        self.bigqueryTablePath = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .requestResponseLoggingSchemaVersion)
+      {
+        self.requestResponseLoggingSchemaVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.logSource, forKey: .logSource)
+      try container.encode(self.logType, forKey: .logType)
+      try container.encode(self.bigqueryTablePath, forKey: .bigqueryTablePath)
+      try container.encode(
+        self.requestResponseLoggingSchemaVersion, forKey: .requestResponseLoggingSchemaVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Indicates where does the log come from.

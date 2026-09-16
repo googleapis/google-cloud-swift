@@ -93,6 +93,8 @@
     /// peering connection configuration.
     public var updateStrategy: NetworkPeering.UpdateStrategy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkPeering`.
     public init() {}
 
@@ -107,6 +109,101 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoCreateRoutes = CodingKeys(stringValue: "autoCreateRoutes")
+      static let connectionStatus = CodingKeys(stringValue: "connectionStatus")
+      static let exchangeSubnetRoutes = CodingKeys(stringValue: "exchangeSubnetRoutes")
+      static let exportCustomRoutes = CodingKeys(stringValue: "exportCustomRoutes")
+      static let exportSubnetRoutesWithPublicIp = CodingKeys(
+        stringValue: "exportSubnetRoutesWithPublicIp")
+      static let importCustomRoutes = CodingKeys(stringValue: "importCustomRoutes")
+      static let importSubnetRoutesWithPublicIp = CodingKeys(
+        stringValue: "importSubnetRoutesWithPublicIp")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let peerMtu = CodingKeys(stringValue: "peerMtu")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let state = CodingKeys(stringValue: "state")
+      static let stateDetails = CodingKeys(stringValue: "stateDetails")
+      static let updateStrategy = CodingKeys(stringValue: "updateStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoCreateRoutes",
+        "connectionStatus",
+        "exchangeSubnetRoutes",
+        "exportCustomRoutes",
+        "exportSubnetRoutesWithPublicIp",
+        "importCustomRoutes",
+        "importSubnetRoutesWithPublicIp",
+        "name",
+        "network",
+        "peerMtu",
+        "stackType",
+        "state",
+        "stateDetails",
+        "updateStrategy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoCreateRoutes = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .autoCreateRoutes)
+      self.connectionStatus = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatus.self, forKey: .connectionStatus)
+      self.exchangeSubnetRoutes = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exchangeSubnetRoutes)
+      self.exportCustomRoutes = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exportCustomRoutes)
+      self.exportSubnetRoutesWithPublicIp = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exportSubnetRoutesWithPublicIp)
+      self.importCustomRoutes = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .importCustomRoutes)
+      self.importSubnetRoutesWithPublicIp = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .importSubnetRoutesWithPublicIp)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.peerMtu = try container.decodeIfPresent(Swift.Int32.self, forKey: .peerMtu)
+      self.stackType = try container.decodeIfPresent(
+        NetworkPeering.StackType.self, forKey: .stackType)
+      self.state = try container.decodeIfPresent(NetworkPeering.State.self, forKey: .state)
+      self.stateDetails = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails)
+      self.updateStrategy = try container.decodeIfPresent(
+        NetworkPeering.UpdateStrategy.self, forKey: .updateStrategy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoCreateRoutes, forKey: .autoCreateRoutes)
+      try container.encodeIfPresent(self.connectionStatus, forKey: .connectionStatus)
+      try container.encodeIfPresent(self.exchangeSubnetRoutes, forKey: .exchangeSubnetRoutes)
+      try container.encodeIfPresent(self.exportCustomRoutes, forKey: .exportCustomRoutes)
+      try container.encodeIfPresent(
+        self.exportSubnetRoutesWithPublicIp, forKey: .exportSubnetRoutesWithPublicIp)
+      try container.encodeIfPresent(self.importCustomRoutes, forKey: .importCustomRoutes)
+      try container.encodeIfPresent(
+        self.importSubnetRoutesWithPublicIp, forKey: .importSubnetRoutesWithPublicIp)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.peerMtu, forKey: .peerMtu)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.stateDetails, forKey: .stateDetails)
+      try container.encodeIfPresent(self.updateStrategy, forKey: .updateStrategy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [stackType][google.cloud.compute.v1.NetworkPeering.stackType] field.

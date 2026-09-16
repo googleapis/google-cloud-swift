@@ -42,6 +42,8 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// available.
   public var destinations: [EnrollResourceRequest.EligibleDestination] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EnrollResourceRequest`.
   public init() {}
 
@@ -58,12 +60,54 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let destinations = CodingKeys(stringValue: "destinations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "destinations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(
+      [EnrollResourceRequest.EligibleDestination].self, forKey: .destinations)
+    {
+      self.destinations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.destinations, forKey: .destinations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details about the bucket where you want to upload the audit report.
   public struct EligibleDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Available Cloud Storage buckets.
     public var eligibleDestinations: OneOf_EligibleDestinations? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EligibleDestination`.
     public init() {}
@@ -81,8 +125,17 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case eligibleGcsBucket = "eligibleGcsBucket"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eligibleGcsBucket = CodingKeys(stringValue: "eligibleGcsBucket")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eligibleGcsBucket"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -104,6 +157,10 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
         try eligibleDestinationsCheckAndSet(.eligibleGcsBucket(eligibleGcsBucket))
       }
       self.eligibleDestinations = eligibleDestinations
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,6 +171,9 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
         case .eligibleGcsBucket(let value):
           try container.encode(value, forKey: .eligibleGcsBucket)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

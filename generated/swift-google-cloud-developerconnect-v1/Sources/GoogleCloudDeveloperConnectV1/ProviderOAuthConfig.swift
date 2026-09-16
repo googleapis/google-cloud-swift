@@ -30,6 +30,8 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// provided.
   public var oauthProviderId: OneOf_OauthProviderId? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProviderOAuthConfig`.
   public init() {}
 
@@ -46,14 +48,26 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case systemProviderId = "systemProviderId"
-    case scopes = "scopes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let systemProviderId = CodingKeys(stringValue: "systemProviderId")
+    static let scopes = CodingKeys(stringValue: "scopes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "systemProviderId",
+      "scopes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.scopes = try container.decode([Swift.String].self, forKey: .scopes)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+      self.scopes = value
+    }
 
     var oauthProviderId: OneOf_OauthProviderId? = nil
     let oauthProviderIdCheckAndSet = {
@@ -71,6 +85,10 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try oauthProviderIdCheckAndSet(.systemProviderId(systemProviderId))
     }
     self.oauthProviderId = oauthProviderId
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +100,9 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .systemProviderId(let value):
         try container.encode(value, forKey: .systemProviderId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

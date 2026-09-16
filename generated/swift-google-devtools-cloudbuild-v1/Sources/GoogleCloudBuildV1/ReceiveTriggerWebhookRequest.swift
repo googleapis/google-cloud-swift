@@ -39,6 +39,8 @@ public struct ReceiveTriggerWebhookRequest: Codable, Equatable, GoogleCloudWKT._
   /// Secret token used for authorization if an OAuth token isn't provided.
   public var secret: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReceiveTriggerWebhookRequest`.
   public init() {}
 
@@ -53,6 +55,60 @@ public struct ReceiveTriggerWebhookRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let body = CodingKeys(stringValue: "body")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let trigger = CodingKeys(stringValue: "trigger")
+    static let secret = CodingKeys(stringValue: "secret")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "body",
+      "projectId",
+      "trigger",
+      "secret",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.body = try container.decodeIfPresent(GoogleApi.HttpBody.self, forKey: .body)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trigger) {
+      self.trigger = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secret) {
+      self.secret = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.body, forKey: .body)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.trigger, forKey: .trigger)
+    try container.encode(self.secret, forKey: .secret)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

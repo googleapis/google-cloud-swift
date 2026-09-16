@@ -41,6 +41,8 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
   /// Output only. Assessment of this transaction for behavioral trust.
   public var behavioralTrustVerdict: FraudPreventionAssessment.BehavioralTrustVerdict? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FraudPreventionAssessment`.
   public init() {}
 
@@ -57,6 +59,61 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transactionRisk = CodingKeys(stringValue: "transactionRisk")
+    static let riskReasons = CodingKeys(stringValue: "riskReasons")
+    static let stolenInstrumentVerdict = CodingKeys(stringValue: "stolenInstrumentVerdict")
+    static let cardTestingVerdict = CodingKeys(stringValue: "cardTestingVerdict")
+    static let behavioralTrustVerdict = CodingKeys(stringValue: "behavioralTrustVerdict")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transactionRisk",
+      "riskReasons",
+      "stolenInstrumentVerdict",
+      "cardTestingVerdict",
+      "behavioralTrustVerdict",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .transactionRisk) {
+      self.transactionRisk = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FraudPreventionAssessment.RiskReason].self, forKey: .riskReasons)
+    {
+      self.riskReasons = value
+    }
+    self.stolenInstrumentVerdict = try container.decodeIfPresent(
+      FraudPreventionAssessment.StolenInstrumentVerdict.self, forKey: .stolenInstrumentVerdict)
+    self.cardTestingVerdict = try container.decodeIfPresent(
+      FraudPreventionAssessment.CardTestingVerdict.self, forKey: .cardTestingVerdict)
+    self.behavioralTrustVerdict = try container.decodeIfPresent(
+      FraudPreventionAssessment.BehavioralTrustVerdict.self, forKey: .behavioralTrustVerdict)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transactionRisk, forKey: .transactionRisk)
+    try container.encode(self.riskReasons, forKey: .riskReasons)
+    try container.encodeIfPresent(self.stolenInstrumentVerdict, forKey: .stolenInstrumentVerdict)
+    try container.encodeIfPresent(self.cardTestingVerdict, forKey: .cardTestingVerdict)
+    try container.encodeIfPresent(self.behavioralTrustVerdict, forKey: .behavioralTrustVerdict)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Risk reasons applicable to the Fraud Prevention assessment.
   public struct RiskReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -64,6 +121,8 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
     /// Output only. Risk reasons applicable to the Fraud Prevention assessment.
     public var reason: FraudPreventionAssessment.RiskReason.Reason = FraudPreventionAssessment
       .RiskReason.Reason()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RiskReason`.
     public init() {}
@@ -79,6 +138,40 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reason = CodingKeys(stringValue: "reason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reason"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        FraudPreventionAssessment.RiskReason.Reason.self, forKey: .reason)
+      {
+        self.reason = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.reason, forKey: .reason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Risk reasons applicable to the Fraud Prevention assessment. New risk
@@ -236,6 +329,8 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
     /// instrument. Values are from 0.0 (lowest) to 1.0 (highest).
     public var risk: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StolenInstrumentVerdict`.
     public init() {}
 
@@ -250,6 +345,38 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let risk = CodingKeys(stringValue: "risk")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "risk"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .risk) {
+        self.risk = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.risk, forKey: .risk)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -273,6 +400,8 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
     /// testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
     public var risk: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CardTestingVerdict`.
     public init() {}
 
@@ -287,6 +416,38 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let risk = CodingKeys(stringValue: "risk")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "risk"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .risk) {
+        self.risk = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.risk, forKey: .risk)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -310,6 +471,8 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
     /// (highest).
     public var trust: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BehavioralTrustVerdict`.
     public init() {}
 
@@ -324,6 +487,38 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trust = CodingKeys(stringValue: "trust")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trust"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .trust) {
+        self.trust = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trust, forKey: .trust)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -42,6 +42,8 @@ public struct TransactionEffect: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// value.
   public var deltaVal: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransactionEffect`.
   public init() {}
 
@@ -56,6 +58,56 @@ public struct TransactionEffect: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let oldVal = CodingKeys(stringValue: "oldVal")
+    static let newVal = CodingKeys(stringValue: "newVal")
+    static let deltaVal = CodingKeys(stringValue: "deltaVal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "oldVal",
+      "newVal",
+      "deltaVal",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .oldVal) {
+      self.oldVal = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .newVal) {
+      self.newVal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .deltaVal) {
+      self.deltaVal = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.oldVal, forKey: .oldVal)
+    try container.encode(self.newVal, forKey: .newVal)
+    try container.encode(self.deltaVal, forKey: .deltaVal)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

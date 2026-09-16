@@ -31,6 +31,8 @@ public struct AdaptiveMtTranslateResponse: Codable, Equatable, GoogleCloudWKT._A
   /// could be the same as 'translation' above if no terms apply.
   public var glossaryTranslations: [AdaptiveMtTranslation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdaptiveMtTranslateResponse`.
   public init() {}
 
@@ -45,6 +47,54 @@ public struct AdaptiveMtTranslateResponse: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let translations = CodingKeys(stringValue: "translations")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let glossaryTranslations = CodingKeys(stringValue: "glossaryTranslations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "translations",
+      "languageCode",
+      "glossaryTranslations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [AdaptiveMtTranslation].self, forKey: .translations)
+    {
+      self.translations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AdaptiveMtTranslation].self, forKey: .glossaryTranslations)
+    {
+      self.glossaryTranslations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.translations, forKey: .translations)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.glossaryTranslations, forKey: .glossaryTranslations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

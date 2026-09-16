@@ -32,6 +32,8 @@
     /// The Event edges between Artifacts and Executions in the subgraph.
     public var events: [Event] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LineageSubgraph`.
     public init() {}
 
@@ -46,6 +48,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let artifacts = CodingKeys(stringValue: "artifacts")
+      static let executions = CodingKeys(stringValue: "executions")
+      static let events = CodingKeys(stringValue: "events")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "artifacts",
+        "executions",
+        "events",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Artifact].self, forKey: .artifacts) {
+        self.artifacts = value
+      }
+      if let value = try container.decodeIfPresent([Execution].self, forKey: .executions) {
+        self.executions = value
+      }
+      if let value = try container.decodeIfPresent([Event].self, forKey: .events) {
+        self.events = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.artifacts, forKey: .artifacts)
+      try container.encode(self.executions, forKey: .executions)
+      try container.encode(self.events, forKey: .events)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

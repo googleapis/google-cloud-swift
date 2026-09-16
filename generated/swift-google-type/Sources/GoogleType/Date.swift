@@ -53,6 +53,8 @@ public struct Date: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// significant.
   public var day: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Date`.
   public init() {}
 
@@ -67,6 +69,50 @@ public struct Date: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let year = CodingKeys(stringValue: "year")
+    static let month = CodingKeys(stringValue: "month")
+    static let day = CodingKeys(stringValue: "day")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "year",
+      "month",
+      "day",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .year) {
+      self.year = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .month) {
+      self.month = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .day) {
+      self.day = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.year, forKey: .year)
+    try container.encode(self.month, forKey: .month)
+    try container.encode(self.day, forKey: .day)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

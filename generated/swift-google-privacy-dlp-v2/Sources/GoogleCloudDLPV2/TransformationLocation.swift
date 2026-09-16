@@ -28,6 +28,8 @@ public struct TransformationLocation: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Location type.
   public var locationType: OneOf_LocationType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationLocation`.
   public init() {}
 
@@ -44,16 +46,30 @@ public struct TransformationLocation: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case findingId = "findingId"
-    case recordTransformation = "recordTransformation"
-    case containerType = "containerType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let findingId = CodingKeys(stringValue: "findingId")
+    static let recordTransformation = CodingKeys(stringValue: "recordTransformation")
+    static let containerType = CodingKeys(stringValue: "containerType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "findingId",
+      "recordTransformation",
+      "containerType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.containerType = try container.decode(
+    if let value = try container.decodeIfPresent(
       TransformationContainerType.self, forKey: .containerType)
+    {
+      self.containerType = value
+    }
 
     var locationType: OneOf_LocationType? = nil
     let locationTypeCheckAndSet = {
@@ -74,6 +90,10 @@ public struct TransformationLocation: Codable, Equatable, GoogleCloudWKT._AnyPac
       try locationTypeCheckAndSet(.recordTransformation(recordTransformation))
     }
     self.locationType = locationType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +107,9 @@ public struct TransformationLocation: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .recordTransformation(let value):
         try container.encode(value, forKey: .recordTransformation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

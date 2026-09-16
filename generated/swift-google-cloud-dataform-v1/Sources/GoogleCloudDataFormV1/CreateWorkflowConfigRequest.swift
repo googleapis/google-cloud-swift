@@ -32,6 +32,8 @@ public struct CreateWorkflowConfigRequest: Codable, Equatable, GoogleCloudWKT._A
   /// final component of the workflow config's resource name.
   public var workflowConfigId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateWorkflowConfigRequest`.
   public init() {}
 
@@ -46,6 +48,49 @@ public struct CreateWorkflowConfigRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let workflowConfig = CodingKeys(stringValue: "workflowConfig")
+    static let workflowConfigId = CodingKeys(stringValue: "workflowConfigId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "workflowConfig",
+      "workflowConfigId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.workflowConfig = try container.decodeIfPresent(
+      WorkflowConfig.self, forKey: .workflowConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workflowConfigId) {
+      self.workflowConfigId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.workflowConfig, forKey: .workflowConfig)
+    try container.encode(self.workflowConfigId, forKey: .workflowConfigId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

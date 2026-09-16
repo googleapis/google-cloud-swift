@@ -62,6 +62,8 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
     public var target: OneOf_Target? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EventHandler`.
     public init() {}
 
@@ -78,19 +80,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case event = "event"
-      case triggerFulfillment = "triggerFulfillment"
-      case targetPage = "targetPage"
-      case targetFlow = "targetFlow"
-      case targetPlaybook = "targetPlaybook"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let event = CodingKeys(stringValue: "event")
+      static let triggerFulfillment = CodingKeys(stringValue: "triggerFulfillment")
+      static let targetPage = CodingKeys(stringValue: "targetPage")
+      static let targetFlow = CodingKeys(stringValue: "targetFlow")
+      static let targetPlaybook = CodingKeys(stringValue: "targetPlaybook")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "event",
+        "triggerFulfillment",
+        "targetPage",
+        "targetFlow",
+        "targetPlaybook",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.event = try container.decode(Swift.String.self, forKey: .event)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
+        self.event = value
+      }
       self.triggerFulfillment = try container.decodeIfPresent(
         Fulfillment.self, forKey: .triggerFulfillment)
 
@@ -116,13 +136,17 @@
         try targetCheckAndSet(.targetPlaybook(targetPlaybook))
       }
       self.target = target
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.event, forKey: .event)
-      try container.encode(self.triggerFulfillment, forKey: .triggerFulfillment)
+      try container.encodeIfPresent(self.triggerFulfillment, forKey: .triggerFulfillment)
 
       if let choice = self.target {
         switch choice {
@@ -133,6 +157,9 @@
         case .targetPlaybook(let value):
           try container.encode(value, forKey: .targetPlaybook)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

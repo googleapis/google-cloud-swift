@@ -129,6 +129,8 @@
     /// a few days without allowing direct readings.
     public var dataRetention: OneOf_DataRetention? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecuritySettings`.
     public init() {}
 
@@ -145,32 +147,68 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case redactionStrategy = "redactionStrategy"
-      case redactionScope = "redactionScope"
-      case inspectTemplate = "inspectTemplate"
-      case deidentifyTemplate = "deidentifyTemplate"
-      case retentionWindowDays = "retentionWindowDays"
-      case retentionStrategy = "retentionStrategy"
-      case purgeDataTypes = "purgeDataTypes"
-      case audioExportSettings = "audioExportSettings"
-      case insightsExportSettings = "insightsExportSettings"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let redactionStrategy = CodingKeys(stringValue: "redactionStrategy")
+      static let redactionScope = CodingKeys(stringValue: "redactionScope")
+      static let inspectTemplate = CodingKeys(stringValue: "inspectTemplate")
+      static let deidentifyTemplate = CodingKeys(stringValue: "deidentifyTemplate")
+      static let retentionWindowDays = CodingKeys(stringValue: "retentionWindowDays")
+      static let retentionStrategy = CodingKeys(stringValue: "retentionStrategy")
+      static let purgeDataTypes = CodingKeys(stringValue: "purgeDataTypes")
+      static let audioExportSettings = CodingKeys(stringValue: "audioExportSettings")
+      static let insightsExportSettings = CodingKeys(stringValue: "insightsExportSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "redactionStrategy",
+        "redactionScope",
+        "inspectTemplate",
+        "deidentifyTemplate",
+        "retentionWindowDays",
+        "retentionStrategy",
+        "purgeDataTypes",
+        "audioExportSettings",
+        "insightsExportSettings",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.redactionStrategy = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(
         SecuritySettings.RedactionStrategy.self, forKey: .redactionStrategy)
-      self.redactionScope = try container.decode(
+      {
+        self.redactionStrategy = value
+      }
+      if let value = try container.decodeIfPresent(
         SecuritySettings.RedactionScope.self, forKey: .redactionScope)
-      self.inspectTemplate = try container.decode(Swift.String.self, forKey: .inspectTemplate)
-      self.deidentifyTemplate = try container.decode(Swift.String.self, forKey: .deidentifyTemplate)
-      self.purgeDataTypes = try container.decode(
+      {
+        self.redactionScope = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inspectTemplate) {
+        self.inspectTemplate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deidentifyTemplate) {
+        self.deidentifyTemplate = value
+      }
+      if let value = try container.decodeIfPresent(
         [SecuritySettings.PurgeDataType].self, forKey: .purgeDataTypes)
+      {
+        self.purgeDataTypes = value
+      }
       self.audioExportSettings = try container.decodeIfPresent(
         SecuritySettings.AudioExportSettings.self, forKey: .audioExportSettings)
       self.insightsExportSettings = try container.decodeIfPresent(
@@ -197,6 +235,10 @@
         try dataRetentionCheckAndSet(.retentionStrategy(retentionStrategy))
       }
       self.dataRetention = dataRetention
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -208,8 +250,8 @@
       try container.encode(self.inspectTemplate, forKey: .inspectTemplate)
       try container.encode(self.deidentifyTemplate, forKey: .deidentifyTemplate)
       try container.encode(self.purgeDataTypes, forKey: .purgeDataTypes)
-      try container.encode(self.audioExportSettings, forKey: .audioExportSettings)
-      try container.encode(self.insightsExportSettings, forKey: .insightsExportSettings)
+      try container.encodeIfPresent(self.audioExportSettings, forKey: .audioExportSettings)
+      try container.encodeIfPresent(self.insightsExportSettings, forKey: .insightsExportSettings)
 
       if let choice = self.dataRetention {
         switch choice {
@@ -218,6 +260,9 @@
         case .retentionStrategy(let value):
           try container.encode(value, forKey: .retentionStrategy)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -252,6 +297,8 @@
       /// is not exported.
       public var storeTtsAudio: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AudioExportSettings`.
       public init() {}
 
@@ -266,6 +313,66 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let gcsBucket = CodingKeys(stringValue: "gcsBucket")
+        static let audioExportPattern = CodingKeys(stringValue: "audioExportPattern")
+        static let enableAudioRedaction = CodingKeys(stringValue: "enableAudioRedaction")
+        static let audioFormat = CodingKeys(stringValue: "audioFormat")
+        static let storeTtsAudio = CodingKeys(stringValue: "storeTtsAudio")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "gcsBucket",
+          "audioExportPattern",
+          "enableAudioRedaction",
+          "audioFormat",
+          "storeTtsAudio",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsBucket) {
+          self.gcsBucket = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audioExportPattern)
+        {
+          self.audioExportPattern = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAudioRedaction)
+        {
+          self.enableAudioRedaction = value
+        }
+        if let value = try container.decodeIfPresent(
+          SecuritySettings.AudioExportSettings.AudioFormat.self, forKey: .audioFormat)
+        {
+          self.audioFormat = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .storeTtsAudio) {
+          self.storeTtsAudio = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.gcsBucket, forKey: .gcsBucket)
+        try container.encode(self.audioExportPattern, forKey: .audioExportPattern)
+        try container.encode(self.enableAudioRedaction, forKey: .enableAudioRedaction)
+        try container.encode(self.audioFormat, forKey: .audioFormat)
+        try container.encode(self.storeTtsAudio, forKey: .storeTtsAudio)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// File format for exported audio file. Currently only in telephony
@@ -402,6 +509,8 @@
       /// conversations to Insights and Insights runs its analyzers.
       public var enableInsightsExport: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InsightsExportSettings`.
       public init() {}
 
@@ -416,6 +525,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableInsightsExport = CodingKeys(stringValue: "enableInsightsExport")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableInsightsExport"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableInsightsExport)
+        {
+          self.enableInsightsExport = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableInsightsExport, forKey: .enableInsightsExport)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -80,6 +80,8 @@ public struct PatchJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Rollout strategy being applied.
   public var rollout: PatchRollout? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchJob`.
   public init() {}
 
@@ -94,6 +96,112 @@ public struct PatchJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let instanceFilter = CodingKeys(stringValue: "instanceFilter")
+    static let patchConfig = CodingKeys(stringValue: "patchConfig")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let instanceDetailsSummary = CodingKeys(stringValue: "instanceDetailsSummary")
+    static let dryRun = CodingKeys(stringValue: "dryRun")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let percentComplete = CodingKeys(stringValue: "percentComplete")
+    static let patchDeployment = CodingKeys(stringValue: "patchDeployment")
+    static let rollout = CodingKeys(stringValue: "rollout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "createTime",
+      "updateTime",
+      "state",
+      "instanceFilter",
+      "patchConfig",
+      "duration",
+      "instanceDetailsSummary",
+      "dryRun",
+      "errorMessage",
+      "percentComplete",
+      "patchDeployment",
+      "rollout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(PatchJob.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.instanceFilter = try container.decodeIfPresent(
+      PatchInstanceFilter.self, forKey: .instanceFilter)
+    self.patchConfig = try container.decodeIfPresent(PatchConfig.self, forKey: .patchConfig)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    self.instanceDetailsSummary = try container.decodeIfPresent(
+      PatchJob.InstanceDetailsSummary.self, forKey: .instanceDetailsSummary)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
+      self.dryRun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentComplete) {
+      self.percentComplete = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .patchDeployment) {
+      self.patchDeployment = value
+    }
+    self.rollout = try container.decodeIfPresent(PatchRollout.self, forKey: .rollout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.instanceFilter, forKey: .instanceFilter)
+    try container.encodeIfPresent(self.patchConfig, forKey: .patchConfig)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.instanceDetailsSummary, forKey: .instanceDetailsSummary)
+    try container.encode(self.dryRun, forKey: .dryRun)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.percentComplete, forKey: .percentComplete)
+    try container.encode(self.patchDeployment, forKey: .patchDeployment)
+    try container.encodeIfPresent(self.rollout, forKey: .rollout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A summary of the current patch state across all instances that this patch
@@ -150,6 +258,8 @@ public struct PatchJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// the service.
     public var noAgentDetectedInstanceCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceDetailsSummary`.
     public init() {}
 
@@ -164,6 +274,149 @@ public struct PatchJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pendingInstanceCount = CodingKeys(stringValue: "pendingInstanceCount")
+      static let inactiveInstanceCount = CodingKeys(stringValue: "inactiveInstanceCount")
+      static let notifiedInstanceCount = CodingKeys(stringValue: "notifiedInstanceCount")
+      static let startedInstanceCount = CodingKeys(stringValue: "startedInstanceCount")
+      static let downloadingPatchesInstanceCount = CodingKeys(
+        stringValue: "downloadingPatchesInstanceCount")
+      static let applyingPatchesInstanceCount = CodingKeys(
+        stringValue: "applyingPatchesInstanceCount")
+      static let rebootingInstanceCount = CodingKeys(stringValue: "rebootingInstanceCount")
+      static let succeededInstanceCount = CodingKeys(stringValue: "succeededInstanceCount")
+      static let succeededRebootRequiredInstanceCount = CodingKeys(
+        stringValue: "succeededRebootRequiredInstanceCount")
+      static let failedInstanceCount = CodingKeys(stringValue: "failedInstanceCount")
+      static let ackedInstanceCount = CodingKeys(stringValue: "ackedInstanceCount")
+      static let timedOutInstanceCount = CodingKeys(stringValue: "timedOutInstanceCount")
+      static let prePatchStepInstanceCount = CodingKeys(stringValue: "prePatchStepInstanceCount")
+      static let postPatchStepInstanceCount = CodingKeys(stringValue: "postPatchStepInstanceCount")
+      static let noAgentDetectedInstanceCount = CodingKeys(
+        stringValue: "noAgentDetectedInstanceCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pendingInstanceCount",
+        "inactiveInstanceCount",
+        "notifiedInstanceCount",
+        "startedInstanceCount",
+        "downloadingPatchesInstanceCount",
+        "applyingPatchesInstanceCount",
+        "rebootingInstanceCount",
+        "succeededInstanceCount",
+        "succeededRebootRequiredInstanceCount",
+        "failedInstanceCount",
+        "ackedInstanceCount",
+        "timedOutInstanceCount",
+        "prePatchStepInstanceCount",
+        "postPatchStepInstanceCount",
+        "noAgentDetectedInstanceCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .pendingInstanceCount)
+      {
+        self.pendingInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .inactiveInstanceCount)
+      {
+        self.inactiveInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .notifiedInstanceCount)
+      {
+        self.notifiedInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .startedInstanceCount)
+      {
+        self.startedInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .downloadingPatchesInstanceCount)
+      {
+        self.downloadingPatchesInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .applyingPatchesInstanceCount)
+      {
+        self.applyingPatchesInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .rebootingInstanceCount)
+      {
+        self.rebootingInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .succeededInstanceCount)
+      {
+        self.succeededInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .succeededRebootRequiredInstanceCount)
+      {
+        self.succeededRebootRequiredInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedInstanceCount) {
+        self.failedInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .ackedInstanceCount) {
+        self.ackedInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .timedOutInstanceCount)
+      {
+        self.timedOutInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .prePatchStepInstanceCount)
+      {
+        self.prePatchStepInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .postPatchStepInstanceCount)
+      {
+        self.postPatchStepInstanceCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .noAgentDetectedInstanceCount)
+      {
+        self.noAgentDetectedInstanceCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pendingInstanceCount, forKey: .pendingInstanceCount)
+      try container.encode(self.inactiveInstanceCount, forKey: .inactiveInstanceCount)
+      try container.encode(self.notifiedInstanceCount, forKey: .notifiedInstanceCount)
+      try container.encode(self.startedInstanceCount, forKey: .startedInstanceCount)
+      try container.encode(
+        self.downloadingPatchesInstanceCount, forKey: .downloadingPatchesInstanceCount)
+      try container.encode(self.applyingPatchesInstanceCount, forKey: .applyingPatchesInstanceCount)
+      try container.encode(self.rebootingInstanceCount, forKey: .rebootingInstanceCount)
+      try container.encode(self.succeededInstanceCount, forKey: .succeededInstanceCount)
+      try container.encode(
+        self.succeededRebootRequiredInstanceCount, forKey: .succeededRebootRequiredInstanceCount)
+      try container.encode(self.failedInstanceCount, forKey: .failedInstanceCount)
+      try container.encode(self.ackedInstanceCount, forKey: .ackedInstanceCount)
+      try container.encode(self.timedOutInstanceCount, forKey: .timedOutInstanceCount)
+      try container.encode(self.prePatchStepInstanceCount, forKey: .prePatchStepInstanceCount)
+      try container.encode(self.postPatchStepInstanceCount, forKey: .postPatchStepInstanceCount)
+      try container.encode(self.noAgentDetectedInstanceCount, forKey: .noAgentDetectedInstanceCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

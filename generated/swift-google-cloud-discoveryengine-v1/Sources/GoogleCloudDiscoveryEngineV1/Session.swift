@@ -55,6 +55,8 @@
     /// on the top of the session list.
     public var isPinned: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Session`.
     public init() {}
 
@@ -69,6 +71,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let state = CodingKeys(stringValue: "state")
+      static let userPseudoId = CodingKeys(stringValue: "userPseudoId")
+      static let turns = CodingKeys(stringValue: "turns")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let isPinned = CodingKeys(stringValue: "isPinned")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "state",
+        "userPseudoId",
+        "turns",
+        "labels",
+        "startTime",
+        "endTime",
+        "isPinned",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Session.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userPseudoId) {
+        self.userPseudoId = value
+      }
+      if let value = try container.decodeIfPresent([Session.Turn].self, forKey: .turns) {
+        self.turns = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .labels) {
+        self.labels = value
+      }
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPinned) {
+        self.isPinned = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.userPseudoId, forKey: .userPseudoId)
+      try container.encode(self.turns, forKey: .turns)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encode(self.isPinned, forKey: .isPinned)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents a turn, including a query from the user and a
@@ -114,6 +193,8 @@
       /// functionality.
       public var queryConfig: [Swift.String: Swift.String] = [:]
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Turn`.
       public init() {}
 
@@ -128,6 +209,59 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let query = CodingKeys(stringValue: "query")
+        static let answer = CodingKeys(stringValue: "answer")
+        static let detailedAnswer = CodingKeys(stringValue: "detailedAnswer")
+        static let detailedAssistAnswer = CodingKeys(stringValue: "detailedAssistAnswer")
+        static let queryConfig = CodingKeys(stringValue: "queryConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "query",
+          "answer",
+          "detailedAnswer",
+          "detailedAssistAnswer",
+          "queryConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.query = try container.decodeIfPresent(Query.self, forKey: .query)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answer) {
+          self.answer = value
+        }
+        self.detailedAnswer = try container.decodeIfPresent(Answer.self, forKey: .detailedAnswer)
+        self.detailedAssistAnswer = try container.decodeIfPresent(
+          AssistAnswer.self, forKey: .detailedAssistAnswer)
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .queryConfig)
+        {
+          self.queryConfig = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.query, forKey: .query)
+        try container.encode(self.answer, forKey: .answer)
+        try container.encodeIfPresent(self.detailedAnswer, forKey: .detailedAnswer)
+        try container.encodeIfPresent(self.detailedAssistAnswer, forKey: .detailedAssistAnswer)
+        try container.encode(self.queryConfig, forKey: .queryConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

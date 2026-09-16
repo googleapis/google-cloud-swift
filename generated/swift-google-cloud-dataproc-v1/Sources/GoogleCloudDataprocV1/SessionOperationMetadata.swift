@@ -46,6 +46,8 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Warnings encountered during operation execution.
   public var warnings: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionOperationMetadata`.
   public init() {}
 
@@ -60,6 +62,80 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let session = CodingKeys(stringValue: "session")
+    static let sessionUuid = CodingKeys(stringValue: "sessionUuid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let doneTime = CodingKeys(stringValue: "doneTime")
+    static let operationType = CodingKeys(stringValue: "operationType")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let warnings = CodingKeys(stringValue: "warnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "session",
+      "sessionUuid",
+      "createTime",
+      "doneTime",
+      "operationType",
+      "description",
+      "labels",
+      "warnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+      self.session = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionUuid) {
+      self.sessionUuid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.doneTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .doneTime)
+    if let value = try container.decodeIfPresent(
+      SessionOperationMetadata.SessionOperationType.self, forKey: .operationType)
+    {
+      self.operationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.session, forKey: .session)
+    try container.encode(self.sessionUuid, forKey: .sessionUuid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
+    try container.encode(self.operationType, forKey: .operationType)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.warnings, forKey: .warnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Operation type for Session resources

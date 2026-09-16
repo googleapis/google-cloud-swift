@@ -97,6 +97,8 @@ public struct Quota: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// DNSSEC algorithm and key length types that can be used for DnsKeys.
   public var whitelistedKeySpecs: [DnsKeySpec] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Quota`.
   public init() {}
 
@@ -111,6 +113,174 @@ public struct Quota: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dnsKeysPerManagedZone = CodingKeys(stringValue: "dnsKeysPerManagedZone")
+    static let gkeClustersPerManagedZone = CodingKeys(stringValue: "gkeClustersPerManagedZone")
+    static let gkeClustersPerPolicy = CodingKeys(stringValue: "gkeClustersPerPolicy")
+    static let gkeClustersPerResponsePolicy = CodingKeys(
+      stringValue: "gkeClustersPerResponsePolicy")
+    static let internetHealthChecksPerManagedZone = CodingKeys(
+      stringValue: "internetHealthChecksPerManagedZone")
+    static let itemsPerRoutingPolicy = CodingKeys(stringValue: "itemsPerRoutingPolicy")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let managedZones = CodingKeys(stringValue: "managedZones")
+    static let managedZonesPerGkeCluster = CodingKeys(stringValue: "managedZonesPerGkeCluster")
+    static let managedZonesPerNetwork = CodingKeys(stringValue: "managedZonesPerNetwork")
+    static let nameserversPerDelegation = CodingKeys(stringValue: "nameserversPerDelegation")
+    static let networksPerManagedZone = CodingKeys(stringValue: "networksPerManagedZone")
+    static let networksPerPolicy = CodingKeys(stringValue: "networksPerPolicy")
+    static let networksPerResponsePolicy = CodingKeys(stringValue: "networksPerResponsePolicy")
+    static let peeringZonesPerTargetNetwork = CodingKeys(
+      stringValue: "peeringZonesPerTargetNetwork")
+    static let policies = CodingKeys(stringValue: "policies")
+    static let resourceRecordsPerRrset = CodingKeys(stringValue: "resourceRecordsPerRrset")
+    static let responsePolicies = CodingKeys(stringValue: "responsePolicies")
+    static let responsePolicyRulesPerResponsePolicy = CodingKeys(
+      stringValue: "responsePolicyRulesPerResponsePolicy")
+    static let rrsetAdditionsPerChange = CodingKeys(stringValue: "rrsetAdditionsPerChange")
+    static let rrsetDeletionsPerChange = CodingKeys(stringValue: "rrsetDeletionsPerChange")
+    static let rrsetsPerManagedZone = CodingKeys(stringValue: "rrsetsPerManagedZone")
+    static let targetNameServersPerManagedZone = CodingKeys(
+      stringValue: "targetNameServersPerManagedZone")
+    static let targetNameServersPerPolicy = CodingKeys(stringValue: "targetNameServersPerPolicy")
+    static let totalRrdataSizePerChange = CodingKeys(stringValue: "totalRrdataSizePerChange")
+    static let whitelistedKeySpecs = CodingKeys(stringValue: "whitelistedKeySpecs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dnsKeysPerManagedZone",
+      "gkeClustersPerManagedZone",
+      "gkeClustersPerPolicy",
+      "gkeClustersPerResponsePolicy",
+      "internetHealthChecksPerManagedZone",
+      "itemsPerRoutingPolicy",
+      "kind",
+      "managedZones",
+      "managedZonesPerGkeCluster",
+      "managedZonesPerNetwork",
+      "nameserversPerDelegation",
+      "networksPerManagedZone",
+      "networksPerPolicy",
+      "networksPerResponsePolicy",
+      "peeringZonesPerTargetNetwork",
+      "policies",
+      "resourceRecordsPerRrset",
+      "responsePolicies",
+      "responsePolicyRulesPerResponsePolicy",
+      "rrsetAdditionsPerChange",
+      "rrsetDeletionsPerChange",
+      "rrsetsPerManagedZone",
+      "targetNameServersPerManagedZone",
+      "targetNameServersPerPolicy",
+      "totalRrdataSizePerChange",
+      "whitelistedKeySpecs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.dnsKeysPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .dnsKeysPerManagedZone)
+    self.gkeClustersPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .gkeClustersPerManagedZone)
+    self.gkeClustersPerPolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .gkeClustersPerPolicy)
+    self.gkeClustersPerResponsePolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .gkeClustersPerResponsePolicy)
+    self.internetHealthChecksPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .internetHealthChecksPerManagedZone)
+    self.itemsPerRoutingPolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .itemsPerRoutingPolicy)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.managedZones = try container.decodeIfPresent(Swift.Int32.self, forKey: .managedZones)
+    self.managedZonesPerGkeCluster = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .managedZonesPerGkeCluster)
+    self.managedZonesPerNetwork = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .managedZonesPerNetwork)
+    self.nameserversPerDelegation = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .nameserversPerDelegation)
+    self.networksPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .networksPerManagedZone)
+    self.networksPerPolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .networksPerPolicy)
+    self.networksPerResponsePolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .networksPerResponsePolicy)
+    self.peeringZonesPerTargetNetwork = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .peeringZonesPerTargetNetwork)
+    self.policies = try container.decodeIfPresent(Swift.Int32.self, forKey: .policies)
+    self.resourceRecordsPerRrset = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .resourceRecordsPerRrset)
+    self.responsePolicies = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .responsePolicies)
+    self.responsePolicyRulesPerResponsePolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .responsePolicyRulesPerResponsePolicy)
+    self.rrsetAdditionsPerChange = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .rrsetAdditionsPerChange)
+    self.rrsetDeletionsPerChange = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .rrsetDeletionsPerChange)
+    self.rrsetsPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .rrsetsPerManagedZone)
+    self.targetNameServersPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .targetNameServersPerManagedZone)
+    self.targetNameServersPerPolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .targetNameServersPerPolicy)
+    self.totalRrdataSizePerChange = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .totalRrdataSizePerChange)
+    if let value = try container.decodeIfPresent([DnsKeySpec].self, forKey: .whitelistedKeySpecs) {
+      self.whitelistedKeySpecs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.dnsKeysPerManagedZone, forKey: .dnsKeysPerManagedZone)
+    try container.encodeIfPresent(
+      self.gkeClustersPerManagedZone, forKey: .gkeClustersPerManagedZone)
+    try container.encodeIfPresent(self.gkeClustersPerPolicy, forKey: .gkeClustersPerPolicy)
+    try container.encodeIfPresent(
+      self.gkeClustersPerResponsePolicy, forKey: .gkeClustersPerResponsePolicy)
+    try container.encodeIfPresent(
+      self.internetHealthChecksPerManagedZone, forKey: .internetHealthChecksPerManagedZone)
+    try container.encodeIfPresent(self.itemsPerRoutingPolicy, forKey: .itemsPerRoutingPolicy)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.managedZones, forKey: .managedZones)
+    try container.encodeIfPresent(
+      self.managedZonesPerGkeCluster, forKey: .managedZonesPerGkeCluster)
+    try container.encodeIfPresent(self.managedZonesPerNetwork, forKey: .managedZonesPerNetwork)
+    try container.encodeIfPresent(self.nameserversPerDelegation, forKey: .nameserversPerDelegation)
+    try container.encodeIfPresent(self.networksPerManagedZone, forKey: .networksPerManagedZone)
+    try container.encodeIfPresent(self.networksPerPolicy, forKey: .networksPerPolicy)
+    try container.encodeIfPresent(
+      self.networksPerResponsePolicy, forKey: .networksPerResponsePolicy)
+    try container.encodeIfPresent(
+      self.peeringZonesPerTargetNetwork, forKey: .peeringZonesPerTargetNetwork)
+    try container.encodeIfPresent(self.policies, forKey: .policies)
+    try container.encodeIfPresent(self.resourceRecordsPerRrset, forKey: .resourceRecordsPerRrset)
+    try container.encodeIfPresent(self.responsePolicies, forKey: .responsePolicies)
+    try container.encodeIfPresent(
+      self.responsePolicyRulesPerResponsePolicy, forKey: .responsePolicyRulesPerResponsePolicy)
+    try container.encodeIfPresent(self.rrsetAdditionsPerChange, forKey: .rrsetAdditionsPerChange)
+    try container.encodeIfPresent(self.rrsetDeletionsPerChange, forKey: .rrsetDeletionsPerChange)
+    try container.encodeIfPresent(self.rrsetsPerManagedZone, forKey: .rrsetsPerManagedZone)
+    try container.encodeIfPresent(
+      self.targetNameServersPerManagedZone, forKey: .targetNameServersPerManagedZone)
+    try container.encodeIfPresent(
+      self.targetNameServersPerPolicy, forKey: .targetNameServersPerPolicy)
+    try container.encodeIfPresent(self.totalRrdataSizePerChange, forKey: .totalRrdataSizePerChange)
+    try container.encode(self.whitelistedKeySpecs, forKey: .whitelistedKeySpecs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

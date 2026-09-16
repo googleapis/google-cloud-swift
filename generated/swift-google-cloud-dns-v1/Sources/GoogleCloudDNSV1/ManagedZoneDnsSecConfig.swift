@@ -31,6 +31,8 @@ public struct ManagedZoneDnsSecConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Specifies whether DNSSEC is enabled, and what mode it is in.
   public var state: ManagedZoneDnsSecConfig.State? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZoneDnsSecConfig`.
   public init() {}
 
@@ -45,6 +47,51 @@ public struct ManagedZoneDnsSecConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let defaultKeySpecs = CodingKeys(stringValue: "defaultKeySpecs")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let nonExistence = CodingKeys(stringValue: "nonExistence")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "defaultKeySpecs",
+      "kind",
+      "nonExistence",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([DnsKeySpec].self, forKey: .defaultKeySpecs) {
+      self.defaultKeySpecs = value
+    }
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.nonExistence = try container.decodeIfPresent(
+      ManagedZoneDnsSecConfig.NonExistence.self, forKey: .nonExistence)
+    self.state = try container.decodeIfPresent(ManagedZoneDnsSecConfig.State.self, forKey: .state)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.defaultKeySpecs, forKey: .defaultKeySpecs)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.nonExistence, forKey: .nonExistence)
+    try container.encodeIfPresent(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [nonExistence][.ManagedZoneDnsSecConfig.nonExistence] field.

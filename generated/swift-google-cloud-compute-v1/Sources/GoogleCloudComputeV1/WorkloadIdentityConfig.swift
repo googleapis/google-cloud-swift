@@ -25,6 +25,8 @@
 
     public var identityCertificateEnabled: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkloadIdentityConfig`.
     public init() {}
 
@@ -39,6 +41,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let identity = CodingKeys(stringValue: "identity")
+      static let identityCertificateEnabled = CodingKeys(stringValue: "identityCertificateEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "identity",
+        "identityCertificateEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.identity = try container.decodeIfPresent(Swift.String.self, forKey: .identity)
+      self.identityCertificateEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .identityCertificateEnabled)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.identity, forKey: .identity)
+      try container.encodeIfPresent(
+        self.identityCertificateEnabled, forKey: .identityCertificateEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

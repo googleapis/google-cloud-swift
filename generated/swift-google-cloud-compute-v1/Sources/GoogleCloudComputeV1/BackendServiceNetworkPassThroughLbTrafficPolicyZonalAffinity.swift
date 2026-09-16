@@ -52,6 +52,8 @@
     /// connections to all healthy endpoints across all zones.
     public var spilloverRatio: Swift.Float? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity`.
     public init() {}
 
@@ -66,6 +68,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let spillover = CodingKeys(stringValue: "spillover")
+      static let spilloverRatio = CodingKeys(stringValue: "spilloverRatio")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "spillover",
+        "spilloverRatio",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.spillover = try container.decodeIfPresent(
+        BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity.Spillover.self,
+        forKey: .spillover)
+      self.spilloverRatio = try container.decodeIfPresent(Swift.Float.self, forKey: .spilloverRatio)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.spillover, forKey: .spillover)
+      try container.encodeIfPresent(self.spilloverRatio, forKey: .spilloverRatio)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [spillover][google.cloud.compute.v1.BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity.spillover] field.

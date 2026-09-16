@@ -61,6 +61,8 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
   public var serviceAccount: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildConfig`.
   public init() {}
 
@@ -75,6 +77,88 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceLocation = CodingKeys(stringValue: "sourceLocation")
+    static let functionTarget = CodingKeys(stringValue: "functionTarget")
+    static let imageUri = CodingKeys(stringValue: "imageUri")
+    static let baseImage = CodingKeys(stringValue: "baseImage")
+    static let enableAutomaticUpdates = CodingKeys(stringValue: "enableAutomaticUpdates")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let environmentVariables = CodingKeys(stringValue: "environmentVariables")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceLocation",
+      "functionTarget",
+      "imageUri",
+      "baseImage",
+      "enableAutomaticUpdates",
+      "workerPool",
+      "environmentVariables",
+      "serviceAccount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLocation) {
+      self.sourceLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .functionTarget) {
+      self.functionTarget = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+      self.imageUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseImage) {
+      self.baseImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAutomaticUpdates) {
+      self.enableAutomaticUpdates = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .environmentVariables)
+    {
+      self.environmentVariables = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.sourceLocation, forKey: .sourceLocation)
+    try container.encode(self.functionTarget, forKey: .functionTarget)
+    try container.encode(self.imageUri, forKey: .imageUri)
+    try container.encode(self.baseImage, forKey: .baseImage)
+    try container.encode(self.enableAutomaticUpdates, forKey: .enableAutomaticUpdates)
+    try container.encode(self.workerPool, forKey: .workerPool)
+    try container.encode(self.environmentVariables, forKey: .environmentVariables)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

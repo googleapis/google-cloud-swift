@@ -24,6 +24,8 @@ public struct UserEventInlineSource: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Required. A list of user events to import. Recommended max of 10k items.
   public var userEvents: [UserEvent] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserEventInlineSource`.
   public init() {}
 
@@ -38,6 +40,38 @@ public struct UserEventInlineSource: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userEvents = CodingKeys(stringValue: "userEvents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userEvents"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([UserEvent].self, forKey: .userEvents) {
+      self.userEvents = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.userEvents, forKey: .userEvents)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -92,6 +92,8 @@
     /// specified here.
     public var subnetwork: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterInterface`.
     public init() {}
 
@@ -106,6 +108,76 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipRange = CodingKeys(stringValue: "ipRange")
+      static let ipVersion = CodingKeys(stringValue: "ipVersion")
+      static let linkedInterconnectAttachment = CodingKeys(
+        stringValue: "linkedInterconnectAttachment")
+      static let linkedVpnTunnel = CodingKeys(stringValue: "linkedVpnTunnel")
+      static let managementType = CodingKeys(stringValue: "managementType")
+      static let name = CodingKeys(stringValue: "name")
+      static let privateIpAddress = CodingKeys(stringValue: "privateIpAddress")
+      static let redundantInterface = CodingKeys(stringValue: "redundantInterface")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipRange",
+        "ipVersion",
+        "linkedInterconnectAttachment",
+        "linkedVpnTunnel",
+        "managementType",
+        "name",
+        "privateIpAddress",
+        "redundantInterface",
+        "subnetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipRange)
+      self.ipVersion = try container.decodeIfPresent(
+        RouterInterface.IpVersion.self, forKey: .ipVersion)
+      self.linkedInterconnectAttachment = try container.decodeIfPresent(
+        Swift.String.self, forKey: .linkedInterconnectAttachment)
+      self.linkedVpnTunnel = try container.decodeIfPresent(
+        Swift.String.self, forKey: .linkedVpnTunnel)
+      self.managementType = try container.decodeIfPresent(
+        RouterInterface.ManagementType.self, forKey: .managementType)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.privateIpAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .privateIpAddress)
+      self.redundantInterface = try container.decodeIfPresent(
+        Swift.String.self, forKey: .redundantInterface)
+      self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipRange, forKey: .ipRange)
+      try container.encodeIfPresent(self.ipVersion, forKey: .ipVersion)
+      try container.encodeIfPresent(
+        self.linkedInterconnectAttachment, forKey: .linkedInterconnectAttachment)
+      try container.encodeIfPresent(self.linkedVpnTunnel, forKey: .linkedVpnTunnel)
+      try container.encodeIfPresent(self.managementType, forKey: .managementType)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.privateIpAddress, forKey: .privateIpAddress)
+      try container.encodeIfPresent(self.redundantInterface, forKey: .redundantInterface)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [ipVersion][google.cloud.compute.v1.RouterInterface.ipVersion] field.

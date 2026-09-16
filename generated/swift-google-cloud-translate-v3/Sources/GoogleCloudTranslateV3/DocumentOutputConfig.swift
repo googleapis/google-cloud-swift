@@ -40,6 +40,8 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// TranslateDocumentResponse.glossary_document_translation.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentOutputConfig`.
   public init() {}
 
@@ -56,14 +58,26 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDestination = "gcsDestination"
-    case mimeType = "mimeType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDestination",
+      "mimeType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.mimeType = try container.decode(Swift.String.self, forKey: .mimeType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -81,6 +95,10 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -92,6 +110,9 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .gcsDestination(let value):
         try container.encode(value, forKey: .gcsDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

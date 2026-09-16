@@ -25,6 +25,8 @@
 
     public var scope: NetworkProfileLocation.Scope? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkProfileLocation`.
     public init() {}
 
@@ -39,6 +41,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let scope = CodingKeys(stringValue: "scope")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "scope",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.scope = try container.decodeIfPresent(NetworkProfileLocation.Scope.self, forKey: .scope)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.scope, forKey: .scope)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [scope][google.cloud.compute.v1.NetworkProfileLocation.scope] field.

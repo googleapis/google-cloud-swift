@@ -41,6 +41,8 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The configuration for the export data.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportDataObjectsRequest`.
   public init() {}
 
@@ -57,15 +59,28 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDestination = "gcsDestination"
-    case name = "name"
-    case fieldFilter = "fieldFilter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+    static let name = CodingKeys(stringValue: "name")
+    static let fieldFilter = CodingKeys(stringValue: "fieldFilter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDestination",
+      "name",
+      "fieldFilter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.fieldFilter = try container.decodeIfPresent(
       ExportDataObjectsRequest.FieldFilter.self, forKey: .fieldFilter)
 
@@ -85,18 +100,25 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.fieldFilter, forKey: .fieldFilter)
+    try container.encodeIfPresent(self.fieldFilter, forKey: .fieldFilter)
 
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
         try container.encode(value, forKey: .gcsDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -112,6 +134,8 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     public var format: ExportDataObjectsRequest.GcsExportDestination.Format =
       ExportDataObjectsRequest.GcsExportDestination.Format()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsExportDestination`.
     public init() {}
 
@@ -126,6 +150,46 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exportUri = CodingKeys(stringValue: "exportUri")
+      static let format = CodingKeys(stringValue: "format")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exportUri",
+        "format",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exportUri) {
+        self.exportUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        ExportDataObjectsRequest.GcsExportDestination.Format.self, forKey: .format)
+      {
+        self.format = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.exportUri, forKey: .exportUri)
+      try container.encode(self.format, forKey: .format)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Options for the format of the exported Data Objects.
@@ -245,6 +309,8 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     /// Exactly one of `included_fields` or `excluded_fields` must be set.
     public var selector: OneOf_Selector? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FieldFilter`.
     public init() {}
 
@@ -261,9 +327,19 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case includedFields = "includedFields"
-      case excludedFields = "excludedFields"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let includedFields = CodingKeys(stringValue: "includedFields")
+      static let excludedFields = CodingKeys(stringValue: "excludedFields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "includedFields",
+        "excludedFields",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -290,6 +366,10 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
         try selectorCheckAndSet(.excludedFields(excludedFields))
       }
       self.selector = selector
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -303,6 +383,9 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
           try container.encode(value, forKey: .excludedFields)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Wrapper for a repeated string. Wrapping in a message lets the
@@ -314,6 +397,8 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       /// Required. The list of top-level Data Object JSON field names. Allowed
       /// values are `id`, `data`, `vectors`, `etag`.
       public var fields: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FieldList`.
       public init() {}
@@ -329,6 +414,38 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let fields = CodingKeys(stringValue: "fields")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "fields"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fields) {
+          self.fields = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.fields, forKey: .fields)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -29,6 +29,8 @@
 
     public var vpcSubtype: NetworkProfileProfileType.VpcSubtype? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkProfileProfileType`.
     public init() {}
 
@@ -43,6 +45,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let networkType = CodingKeys(stringValue: "networkType")
+      static let rdmaSubtype = CodingKeys(stringValue: "rdmaSubtype")
+      static let ullSubtype = CodingKeys(stringValue: "ullSubtype")
+      static let vpcSubtype = CodingKeys(stringValue: "vpcSubtype")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "networkType",
+        "rdmaSubtype",
+        "ullSubtype",
+        "vpcSubtype",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.networkType = try container.decodeIfPresent(
+        NetworkProfileProfileType.NetworkType.self, forKey: .networkType)
+      self.rdmaSubtype = try container.decodeIfPresent(
+        NetworkProfileProfileType.RdmaSubtype.self, forKey: .rdmaSubtype)
+      self.ullSubtype = try container.decodeIfPresent(
+        NetworkProfileProfileType.UllSubtype.self, forKey: .ullSubtype)
+      self.vpcSubtype = try container.decodeIfPresent(
+        NetworkProfileProfileType.VpcSubtype.self, forKey: .vpcSubtype)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.networkType, forKey: .networkType)
+      try container.encodeIfPresent(self.rdmaSubtype, forKey: .rdmaSubtype)
+      try container.encodeIfPresent(self.ullSubtype, forKey: .ullSubtype)
+      try container.encodeIfPresent(self.vpcSubtype, forKey: .vpcSubtype)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [networkType][google.cloud.compute.v1.NetworkProfileProfileType.networkType] field.

@@ -88,6 +88,8 @@ public struct LocationFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var telecommutePreference: LocationFilter.TelecommutePreference =
     LocationFilter.TelecommutePreference()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationFilter`.
   public init() {}
 
@@ -102,6 +104,62 @@ public struct LocationFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let address = CodingKeys(stringValue: "address")
+    static let regionCode = CodingKeys(stringValue: "regionCode")
+    static let latLng = CodingKeys(stringValue: "latLng")
+    static let distanceInMiles = CodingKeys(stringValue: "distanceInMiles")
+    static let telecommutePreference = CodingKeys(stringValue: "telecommutePreference")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "address",
+      "regionCode",
+      "latLng",
+      "distanceInMiles",
+      "telecommutePreference",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+      self.address = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
+      self.regionCode = value
+    }
+    self.latLng = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .latLng)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .distanceInMiles) {
+      self.distanceInMiles = value
+    }
+    if let value = try container.decodeIfPresent(
+      LocationFilter.TelecommutePreference.self, forKey: .telecommutePreference)
+    {
+      self.telecommutePreference = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.address, forKey: .address)
+    try container.encode(self.regionCode, forKey: .regionCode)
+    try container.encodeIfPresent(self.latLng, forKey: .latLng)
+    try container.encode(self.distanceInMiles, forKey: .distanceInMiles)
+    try container.encode(self.telecommutePreference, forKey: .telecommutePreference)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specify whether to include telecommute jobs.

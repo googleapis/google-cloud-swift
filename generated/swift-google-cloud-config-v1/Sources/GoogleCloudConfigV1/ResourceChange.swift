@@ -35,6 +35,8 @@ public struct ResourceChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The property changes of the resource change.
   public var propertyChanges: [PropertyChange] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceChange`.
   public init() {}
 
@@ -49,6 +51,55 @@ public struct ResourceChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let terraformInfo = CodingKeys(stringValue: "terraformInfo")
+    static let intent = CodingKeys(stringValue: "intent")
+    static let propertyChanges = CodingKeys(stringValue: "propertyChanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "terraformInfo",
+      "intent",
+      "propertyChanges",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.terraformInfo = try container.decodeIfPresent(
+      ResourceChangeTerraformInfo.self, forKey: .terraformInfo)
+    if let value = try container.decodeIfPresent(ResourceChange.Intent.self, forKey: .intent) {
+      self.intent = value
+    }
+    if let value = try container.decodeIfPresent([PropertyChange].self, forKey: .propertyChanges) {
+      self.propertyChanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.terraformInfo, forKey: .terraformInfo)
+    try container.encode(self.intent, forKey: .intent)
+    try container.encode(self.propertyChanges, forKey: .propertyChanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible intent of the resource change.

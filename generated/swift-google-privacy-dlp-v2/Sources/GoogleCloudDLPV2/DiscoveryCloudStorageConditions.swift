@@ -36,6 +36,8 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWK
   public var includedBucketAttributes:
     [DiscoveryCloudStorageConditions.CloudStorageBucketAttribute] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryCloudStorageConditions`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includedObjectAttributes = CodingKeys(stringValue: "includedObjectAttributes")
+    static let includedBucketAttributes = CodingKeys(stringValue: "includedBucketAttributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includedObjectAttributes",
+      "includedBucketAttributes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [DiscoveryCloudStorageConditions.CloudStorageObjectAttribute].self,
+      forKey: .includedObjectAttributes)
+    {
+      self.includedObjectAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DiscoveryCloudStorageConditions.CloudStorageBucketAttribute].self,
+      forKey: .includedBucketAttributes)
+    {
+      self.includedBucketAttributes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.includedObjectAttributes, forKey: .includedObjectAttributes)
+    try container.encode(self.includedBucketAttributes, forKey: .includedBucketAttributes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The attribute of an object. See

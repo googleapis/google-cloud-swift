@@ -49,6 +49,8 @@
     /// media direction.
     public var ignoreReinviteMediaDirection: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SipConfig`.
     public init() {}
 
@@ -63,6 +65,86 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let createConversationOnTheFly = CodingKeys(stringValue: "createConversationOnTheFly")
+      static let inactiveStart = CodingKeys(stringValue: "inactiveStart")
+      static let maxAudioRecordingDuration = CodingKeys(stringValue: "maxAudioRecordingDuration")
+      static let allowVirtualAgentInteraction = CodingKeys(
+        stringValue: "allowVirtualAgentInteraction")
+      static let keepConversationRunning = CodingKeys(stringValue: "keepConversationRunning")
+      static let copyInboundCallLegHeaders = CodingKeys(stringValue: "copyInboundCallLegHeaders")
+      static let ignoreReinviteMediaDirection = CodingKeys(
+        stringValue: "ignoreReinviteMediaDirection")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "createConversationOnTheFly",
+        "inactiveStart",
+        "maxAudioRecordingDuration",
+        "allowVirtualAgentInteraction",
+        "keepConversationRunning",
+        "copyInboundCallLegHeaders",
+        "ignoreReinviteMediaDirection",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .createConversationOnTheFly)
+      {
+        self.createConversationOnTheFly = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inactiveStart) {
+        self.inactiveStart = value
+      }
+      self.maxAudioRecordingDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxAudioRecordingDuration)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allowVirtualAgentInteraction)
+      {
+        self.allowVirtualAgentInteraction = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .keepConversationRunning)
+      {
+        self.keepConversationRunning = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .copyInboundCallLegHeaders)
+      {
+        self.copyInboundCallLegHeaders = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .ignoreReinviteMediaDirection)
+      {
+        self.ignoreReinviteMediaDirection = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.createConversationOnTheFly, forKey: .createConversationOnTheFly)
+      try container.encode(self.inactiveStart, forKey: .inactiveStart)
+      try container.encodeIfPresent(
+        self.maxAudioRecordingDuration, forKey: .maxAudioRecordingDuration)
+      try container.encode(self.allowVirtualAgentInteraction, forKey: .allowVirtualAgentInteraction)
+      try container.encode(self.keepConversationRunning, forKey: .keepConversationRunning)
+      try container.encode(self.copyInboundCallLegHeaders, forKey: .copyInboundCallLegHeaders)
+      try container.encode(self.ignoreReinviteMediaDirection, forKey: .ignoreReinviteMediaDirection)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

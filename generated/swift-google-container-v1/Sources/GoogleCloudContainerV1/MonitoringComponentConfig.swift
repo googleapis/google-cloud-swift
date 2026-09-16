@@ -25,6 +25,8 @@ public struct MonitoringComponentConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// monitoring.
   public var enableComponents: [MonitoringComponentConfig.Component] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MonitoringComponentConfig`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct MonitoringComponentConfig: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableComponents = CodingKeys(stringValue: "enableComponents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableComponents"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [MonitoringComponentConfig.Component].self, forKey: .enableComponents)
+    {
+      self.enableComponents = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableComponents, forKey: .enableComponents)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// GKE components exposing metrics

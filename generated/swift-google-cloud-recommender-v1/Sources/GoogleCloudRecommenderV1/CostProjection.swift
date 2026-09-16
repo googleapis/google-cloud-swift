@@ -36,6 +36,8 @@ public struct CostProjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The approximate cost savings in the billing account's local currency.
   public var costInLocalCurrency: GoogleType.Money? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CostProjection`.
   public init() {}
 
@@ -50,6 +52,45 @@ public struct CostProjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cost = CodingKeys(stringValue: "cost")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let costInLocalCurrency = CodingKeys(stringValue: "costInLocalCurrency")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cost",
+      "duration",
+      "costInLocalCurrency",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.cost = try container.decodeIfPresent(GoogleType.Money.self, forKey: .cost)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    self.costInLocalCurrency = try container.decodeIfPresent(
+      GoogleType.Money.self, forKey: .costInLocalCurrency)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.cost, forKey: .cost)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.costInLocalCurrency, forKey: .costInLocalCurrency)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

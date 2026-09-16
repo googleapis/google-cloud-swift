@@ -29,6 +29,8 @@ public struct VmImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The reference to an external Compute Engine VM image.
   public var image: OneOf_Image? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmImage`.
   public init() {}
 
@@ -45,15 +47,28 @@ public struct VmImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case project = "project"
-    case name = "name"
-    case family = "family"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let project = CodingKeys(stringValue: "project")
+    static let name = CodingKeys(stringValue: "name")
+    static let family = CodingKeys(stringValue: "family")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "project",
+      "name",
+      "family",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.project = try container.decode(Swift.String.self, forKey: .project)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
 
     var image: OneOf_Image? = nil
     let imageCheckAndSet = {
@@ -72,6 +87,10 @@ public struct VmImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try imageCheckAndSet(.family(family))
     }
     self.image = image
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +104,9 @@ public struct VmImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .family(let value):
         try container.encode(value, forKey: .family)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

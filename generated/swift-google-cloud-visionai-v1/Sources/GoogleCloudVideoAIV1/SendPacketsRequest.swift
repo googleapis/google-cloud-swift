@@ -23,6 +23,8 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 {
   public var request: OneOf_Request? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SendPacketsRequest`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case packet = "packet"
-    case metadata = "metadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let packet = CodingKeys(stringValue: "packet")
+    static let metadata = CodingKeys(stringValue: "metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "packet",
+      "metadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +76,10 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try requestCheckAndSet(.metadata(metadata))
     }
     self.request = request
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,6 +92,9 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .metadata(let value):
         try container.encode(value, forKey: .metadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

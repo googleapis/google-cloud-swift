@@ -37,6 +37,8 @@ public struct PerformanceSample: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Disk usage sample.
   public var disk: DiskUsageSample? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PerformanceSample`.
   public init() {}
 
@@ -51,6 +53,53 @@ public struct PerformanceSample: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sampleTime = CodingKeys(stringValue: "sampleTime")
+    static let memory = CodingKeys(stringValue: "memory")
+    static let cpu = CodingKeys(stringValue: "cpu")
+    static let network = CodingKeys(stringValue: "network")
+    static let disk = CodingKeys(stringValue: "disk")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sampleTime",
+      "memory",
+      "cpu",
+      "network",
+      "disk",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.sampleTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .sampleTime)
+    self.memory = try container.decodeIfPresent(MemoryUsageSample.self, forKey: .memory)
+    self.cpu = try container.decodeIfPresent(CpuUsageSample.self, forKey: .cpu)
+    self.network = try container.decodeIfPresent(NetworkUsageSample.self, forKey: .network)
+    self.disk = try container.decodeIfPresent(DiskUsageSample.self, forKey: .disk)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.sampleTime, forKey: .sampleTime)
+    try container.encodeIfPresent(self.memory, forKey: .memory)
+    try container.encodeIfPresent(self.cpu, forKey: .cpu)
+    try container.encodeIfPresent(self.network, forKey: .network)
+    try container.encodeIfPresent(self.disk, forKey: .disk)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

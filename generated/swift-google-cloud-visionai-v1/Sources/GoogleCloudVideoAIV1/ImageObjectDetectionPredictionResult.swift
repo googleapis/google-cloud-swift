@@ -42,6 +42,8 @@ public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCl
   /// of the image.
   public var bboxes: [GoogleCloudWKT.ListValue] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageObjectDetectionPredictionResult`.
   public init() {}
 
@@ -56,6 +58,56 @@ public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ids = CodingKeys(stringValue: "ids")
+    static let displayNames = CodingKeys(stringValue: "displayNames")
+    static let confidences = CodingKeys(stringValue: "confidences")
+    static let bboxes = CodingKeys(stringValue: "bboxes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ids",
+      "displayNames",
+      "confidences",
+      "bboxes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .ids) {
+      self.ids = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .displayNames) {
+      self.displayNames = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .confidences) {
+      self.confidences = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.ListValue].self, forKey: .bboxes) {
+      self.bboxes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ids, forKey: .ids)
+    try container.encode(self.displayNames, forKey: .displayNames)
+    try container.encode(self.confidences, forKey: .confidences)
+    try container.encode(self.bboxes, forKey: .bboxes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

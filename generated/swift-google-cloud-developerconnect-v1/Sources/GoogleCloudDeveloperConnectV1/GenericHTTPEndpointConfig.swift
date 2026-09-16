@@ -39,6 +39,8 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// provider.
   public var authentication: OneOf_Authentication? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenericHTTPEndpointConfig`.
   public init() {}
 
@@ -55,20 +57,37 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case basicAuthentication = "basicAuthentication"
-    case bearerTokenAuthentication = "bearerTokenAuthentication"
-    case hostUri = "hostUri"
-    case serviceDirectoryConfig = "serviceDirectoryConfig"
-    case sslCaCertificate = "sslCaCertificate"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let basicAuthentication = CodingKeys(stringValue: "basicAuthentication")
+    static let bearerTokenAuthentication = CodingKeys(stringValue: "bearerTokenAuthentication")
+    static let hostUri = CodingKeys(stringValue: "hostUri")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+    static let sslCaCertificate = CodingKeys(stringValue: "sslCaCertificate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "basicAuthentication",
+      "bearerTokenAuthentication",
+      "hostUri",
+      "serviceDirectoryConfig",
+      "sslCaCertificate",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.hostUri = try container.decode(Swift.String.self, forKey: .hostUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostUri) {
+      self.hostUri = value
+    }
     self.serviceDirectoryConfig = try container.decodeIfPresent(
       ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
-    self.sslCaCertificate = try container.decode(Swift.String.self, forKey: .sslCaCertificate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCaCertificate) {
+      self.sslCaCertificate = value
+    }
 
     var authentication: OneOf_Authentication? = nil
     let authenticationCheckAndSet = {
@@ -91,12 +110,16 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
       try authenticationCheckAndSet(.bearerTokenAuthentication(bearerTokenAuthentication))
     }
     self.authentication = authentication
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.hostUri, forKey: .hostUri)
-    try container.encode(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
     try container.encode(self.sslCaCertificate, forKey: .sslCaCertificate)
 
     if let choice = self.authentication {
@@ -106,6 +129,9 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
       case .bearerTokenAuthentication(let value):
         try container.encode(value, forKey: .bearerTokenAuthentication)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -118,6 +144,8 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
 
     /// The password to authenticate as.
     public var password: OneOf_Password? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BasicAuthentication`.
     public init() {}
@@ -135,14 +163,26 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case passwordSecretVersion = "passwordSecretVersion"
-      case username = "username"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+      static let username = CodingKeys(stringValue: "username")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "passwordSecretVersion",
+        "username",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.username = try container.decode(Swift.String.self, forKey: .username)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
 
       var password: OneOf_Password? = nil
       let passwordCheckAndSet = {
@@ -160,6 +200,10 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
         try passwordCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
       }
       self.password = password
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,6 +215,9 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
         case .passwordSecretVersion(let value):
           try container.encode(value, forKey: .passwordSecretVersion)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -199,6 +246,8 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
     /// The token to authenticate as.
     public var token: OneOf_Token? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BearerTokenAuthentication`.
     public init() {}
 
@@ -215,8 +264,17 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case tokenSecretVersion = "tokenSecretVersion"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tokenSecretVersion = CodingKeys(stringValue: "tokenSecretVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tokenSecretVersion"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -238,6 +296,10 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
         try tokenCheckAndSet(.tokenSecretVersion(tokenSecretVersion))
       }
       self.token = token
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -248,6 +310,9 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWKT._Any
         case .tokenSecretVersion(let value):
           try container.encode(value, forKey: .tokenSecretVersion)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -103,6 +103,8 @@
     /// customer.
     public var requestedLinkCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectGroupsCreateMembersInterconnectInput`.
     public init() {}
 
@@ -117,6 +119,87 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let customerName = CodingKeys(stringValue: "customerName")
+      static let description = CodingKeys(stringValue: "description")
+      static let facility = CodingKeys(stringValue: "facility")
+      static let interconnectType = CodingKeys(stringValue: "interconnectType")
+      static let linkType = CodingKeys(stringValue: "linkType")
+      static let name = CodingKeys(stringValue: "name")
+      static let nocContactEmail = CodingKeys(stringValue: "nocContactEmail")
+      static let remoteLocation = CodingKeys(stringValue: "remoteLocation")
+      static let requestedFeatures = CodingKeys(stringValue: "requestedFeatures")
+      static let requestedLinkCount = CodingKeys(stringValue: "requestedLinkCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adminEnabled",
+        "customerName",
+        "description",
+        "facility",
+        "interconnectType",
+        "linkType",
+        "name",
+        "nocContactEmail",
+        "remoteLocation",
+        "requestedFeatures",
+        "requestedLinkCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
+      self.customerName = try container.decodeIfPresent(Swift.String.self, forKey: .customerName)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.facility = try container.decodeIfPresent(Swift.String.self, forKey: .facility)
+      self.interconnectType = try container.decodeIfPresent(
+        InterconnectGroupsCreateMembersInterconnectInput.InterconnectType.self,
+        forKey: .interconnectType)
+      self.linkType = try container.decodeIfPresent(
+        InterconnectGroupsCreateMembersInterconnectInput.LinkType.self, forKey: .linkType)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.nocContactEmail = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nocContactEmail)
+      self.remoteLocation = try container.decodeIfPresent(
+        Swift.String.self, forKey: .remoteLocation)
+      if let value = try container.decodeIfPresent(
+        [InterconnectGroupsCreateMembersInterconnectInput.RequestedFeatures].self,
+        forKey: .requestedFeatures)
+      {
+        self.requestedFeatures = value
+      }
+      self.requestedLinkCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .requestedLinkCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(self.customerName, forKey: .customerName)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.facility, forKey: .facility)
+      try container.encodeIfPresent(self.interconnectType, forKey: .interconnectType)
+      try container.encodeIfPresent(self.linkType, forKey: .linkType)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.nocContactEmail, forKey: .nocContactEmail)
+      try container.encodeIfPresent(self.remoteLocation, forKey: .remoteLocation)
+      try container.encode(self.requestedFeatures, forKey: .requestedFeatures)
+      try container.encodeIfPresent(self.requestedLinkCount, forKey: .requestedLinkCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [interconnectType][google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput.interconnectType] field.

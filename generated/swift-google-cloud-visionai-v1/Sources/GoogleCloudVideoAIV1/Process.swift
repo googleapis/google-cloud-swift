@@ -57,6 +57,8 @@ public struct Process: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// be performed.
   public var retryCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Process`.
   public init() {}
 
@@ -71,6 +73,88 @@ public struct Process: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let analysis = CodingKeys(stringValue: "analysis")
+    static let attributeOverrides = CodingKeys(stringValue: "attributeOverrides")
+    static let runStatus = CodingKeys(stringValue: "runStatus")
+    static let runMode = CodingKeys(stringValue: "runMode")
+    static let eventId = CodingKeys(stringValue: "eventId")
+    static let batchId = CodingKeys(stringValue: "batchId")
+    static let retryCount = CodingKeys(stringValue: "retryCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "analysis",
+      "attributeOverrides",
+      "runStatus",
+      "runMode",
+      "eventId",
+      "batchId",
+      "retryCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .analysis) {
+      self.analysis = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .attributeOverrides) {
+      self.attributeOverrides = value
+    }
+    self.runStatus = try container.decodeIfPresent(RunStatus.self, forKey: .runStatus)
+    if let value = try container.decodeIfPresent(RunMode.self, forKey: .runMode) {
+      self.runMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventId) {
+      self.eventId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .batchId) {
+      self.batchId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retryCount) {
+      self.retryCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.analysis, forKey: .analysis)
+    try container.encode(self.attributeOverrides, forKey: .attributeOverrides)
+    try container.encodeIfPresent(self.runStatus, forKey: .runStatus)
+    try container.encode(self.runMode, forKey: .runMode)
+    try container.encode(self.eventId, forKey: .eventId)
+    try container.encode(self.batchId, forKey: .batchId)
+    try container.encode(self.retryCount, forKey: .retryCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

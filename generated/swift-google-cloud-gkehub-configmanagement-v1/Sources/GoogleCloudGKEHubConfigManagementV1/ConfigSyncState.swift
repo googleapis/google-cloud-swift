@@ -44,6 +44,8 @@ public struct ConfigSyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field summarizes the other fields in this message.
   public var state: ConfigSyncState.State = ConfigSyncState.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigSyncState`.
   public init() {}
 
@@ -58,6 +60,73 @@ public struct ConfigSyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let deploymentState = CodingKeys(stringValue: "deploymentState")
+    static let syncState = CodingKeys(stringValue: "syncState")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let rootsyncCrd = CodingKeys(stringValue: "rootsyncCrd")
+    static let reposyncCrd = CodingKeys(stringValue: "reposyncCrd")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "deploymentState",
+      "syncState",
+      "errors",
+      "rootsyncCrd",
+      "reposyncCrd",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.version = try container.decodeIfPresent(ConfigSyncVersion.self, forKey: .version)
+    self.deploymentState = try container.decodeIfPresent(
+      ConfigSyncDeploymentState.self, forKey: .deploymentState)
+    self.syncState = try container.decodeIfPresent(SyncState.self, forKey: .syncState)
+    if let value = try container.decodeIfPresent([ConfigSyncError].self, forKey: .errors) {
+      self.errors = value
+    }
+    if let value = try container.decodeIfPresent(
+      ConfigSyncState.CRDState.self, forKey: .rootsyncCrd)
+    {
+      self.rootsyncCrd = value
+    }
+    if let value = try container.decodeIfPresent(
+      ConfigSyncState.CRDState.self, forKey: .reposyncCrd)
+    {
+      self.reposyncCrd = value
+    }
+    if let value = try container.decodeIfPresent(ConfigSyncState.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.version, forKey: .version)
+    try container.encodeIfPresent(self.deploymentState, forKey: .deploymentState)
+    try container.encodeIfPresent(self.syncState, forKey: .syncState)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encode(self.rootsyncCrd, forKey: .rootsyncCrd)
+    try container.encode(self.reposyncCrd, forKey: .reposyncCrd)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// CRDState representing the state of a CRD

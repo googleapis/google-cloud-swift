@@ -49,6 +49,8 @@ public struct ListEkmConnectionsResponse: Codable, Equatable, GoogleCloudWKT._An
   /// [google.cloud.kms.v1.ListEkmConnectionsRequest.filter]: <doc:ListEkmConnectionsRequest/filter>
   public var totalSize: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListEkmConnectionsResponse`.
   public init() {}
 
@@ -63,6 +65,50 @@ public struct ListEkmConnectionsResponse: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ekmConnections = CodingKeys(stringValue: "ekmConnections")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let totalSize = CodingKeys(stringValue: "totalSize")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ekmConnections",
+      "nextPageToken",
+      "totalSize",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([EkmConnection].self, forKey: .ekmConnections) {
+      self.ekmConnections = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalSize) {
+      self.totalSize = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ekmConnections, forKey: .ekmConnections)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.totalSize, forKey: .totalSize)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

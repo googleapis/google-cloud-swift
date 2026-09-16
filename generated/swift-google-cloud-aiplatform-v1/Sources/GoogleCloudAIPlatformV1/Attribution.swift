@@ -156,6 +156,8 @@
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.outputs]: <doc:ExplanationMetadata/outputs>
     public var outputName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Attribution`.
     public init() {}
 
@@ -170,6 +172,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let baselineOutputValue = CodingKeys(stringValue: "baselineOutputValue")
+      static let instanceOutputValue = CodingKeys(stringValue: "instanceOutputValue")
+      static let featureAttributions = CodingKeys(stringValue: "featureAttributions")
+      static let outputIndex = CodingKeys(stringValue: "outputIndex")
+      static let outputDisplayName = CodingKeys(stringValue: "outputDisplayName")
+      static let approximationError = CodingKeys(stringValue: "approximationError")
+      static let outputName = CodingKeys(stringValue: "outputName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "baselineOutputValue",
+        "instanceOutputValue",
+        "featureAttributions",
+        "outputIndex",
+        "outputDisplayName",
+        "approximationError",
+        "outputName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .baselineOutputValue)
+      {
+        self.baselineOutputValue = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .instanceOutputValue)
+      {
+        self.instanceOutputValue = value
+      }
+      self.featureAttributions = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .featureAttributions)
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .outputIndex) {
+        self.outputIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputDisplayName) {
+        self.outputDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .approximationError) {
+        self.approximationError = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputName) {
+        self.outputName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.baselineOutputValue, forKey: .baselineOutputValue)
+      try container.encode(self.instanceOutputValue, forKey: .instanceOutputValue)
+      try container.encodeIfPresent(self.featureAttributions, forKey: .featureAttributions)
+      try container.encode(self.outputIndex, forKey: .outputIndex)
+      try container.encode(self.outputDisplayName, forKey: .outputDisplayName)
+      try container.encode(self.approximationError, forKey: .approximationError)
+      try container.encode(self.outputName, forKey: .outputName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

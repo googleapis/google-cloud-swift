@@ -47,6 +47,8 @@ public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The minor revision ID of the framework for the target resource.
   public var minorRevisionId: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TargetResourceDetails`.
   public init() {}
 
@@ -61,6 +63,74 @@ public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let frameworkDeployment = CodingKeys(stringValue: "frameworkDeployment")
+    static let targetResourceDisplayName = CodingKeys(stringValue: "targetResourceDisplayName")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let majorRevisionId = CodingKeys(stringValue: "majorRevisionId")
+    static let minorRevisionId = CodingKeys(stringValue: "minorRevisionId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "frameworkDeployment",
+      "targetResourceDisplayName",
+      "targetResource",
+      "createTime",
+      "updateTime",
+      "majorRevisionId",
+      "minorRevisionId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .frameworkDeployment) {
+      self.frameworkDeployment = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .targetResourceDisplayName)
+    {
+      self.targetResourceDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .majorRevisionId) {
+      self.majorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minorRevisionId) {
+      self.minorRevisionId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.frameworkDeployment, forKey: .frameworkDeployment)
+    try container.encode(self.targetResourceDisplayName, forKey: .targetResourceDisplayName)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
+    try container.encode(self.minorRevisionId, forKey: .minorRevisionId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -57,6 +57,8 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var content: OneOf_Content? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Report`.
   public init() {}
 
@@ -73,34 +75,71 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case priority = "priority"
-    case type = "type"
-    case status = "status"
-    case firstReportTime = "firstReportTime"
-    case causeCode = "causeCode"
-    case resourceName = "resourceName"
-    case location = "location"
-    case reportDocumentationUri = "reportDocumentationUri"
-    case reportGroups = "reportGroups"
-    case ipUtilizationInfo = "ipUtilizationInfo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let type = CodingKeys(stringValue: "type")
+    static let status = CodingKeys(stringValue: "status")
+    static let firstReportTime = CodingKeys(stringValue: "firstReportTime")
+    static let causeCode = CodingKeys(stringValue: "causeCode")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let location = CodingKeys(stringValue: "location")
+    static let reportDocumentationUri = CodingKeys(stringValue: "reportDocumentationUri")
+    static let reportGroups = CodingKeys(stringValue: "reportGroups")
+    static let ipUtilizationInfo = CodingKeys(stringValue: "ipUtilizationInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "priority",
+      "type",
+      "status",
+      "firstReportTime",
+      "causeCode",
+      "resourceName",
+      "location",
+      "reportDocumentationUri",
+      "reportGroups",
+      "ipUtilizationInfo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.priority = try container.decode(Report.Priority.self, forKey: .priority)
-    self.type = try container.decode(Report.Type_.self, forKey: .type)
-    self.status = try container.decode(Report.ReportStatus.self, forKey: .status)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Report.Priority.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent(Report.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Report.ReportStatus.self, forKey: .status) {
+      self.status = value
+    }
     self.firstReportTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .firstReportTime)
-    self.causeCode = try container.decode(ReportCauseCode.self, forKey: .causeCode)
-    self.resourceName = try container.decode(Swift.String.self, forKey: .resourceName)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
-    self.reportDocumentationUri = try container.decode(
-      Swift.String.self, forKey: .reportDocumentationUri)
-    self.reportGroups = try container.decode([Report.ReportGroup].self, forKey: .reportGroups)
+    if let value = try container.decodeIfPresent(ReportCauseCode.self, forKey: .causeCode) {
+      self.causeCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reportDocumentationUri)
+    {
+      self.reportDocumentationUri = value
+    }
+    if let value = try container.decodeIfPresent([Report.ReportGroup].self, forKey: .reportGroups) {
+      self.reportGroups = value
+    }
 
     var content: OneOf_Content? = nil
     let contentCheckAndSet = {
@@ -118,6 +157,10 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try contentCheckAndSet(.ipUtilizationInfo(ipUtilizationInfo))
     }
     self.content = content
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,7 +169,7 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.priority, forKey: .priority)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.status, forKey: .status)
-    try container.encode(self.firstReportTime, forKey: .firstReportTime)
+    try container.encodeIfPresent(self.firstReportTime, forKey: .firstReportTime)
     try container.encode(self.causeCode, forKey: .causeCode)
     try container.encode(self.resourceName, forKey: .resourceName)
     try container.encode(self.location, forKey: .location)
@@ -138,6 +181,9 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .ipUtilizationInfo(let value):
         try container.encode(value, forKey: .ipUtilizationInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

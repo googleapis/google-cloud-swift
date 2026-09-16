@@ -39,6 +39,8 @@ public struct SchemaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// for subject config.
   public var alias: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchemaConfig`.
   public init() {}
 
@@ -53,6 +55,47 @@ public struct SchemaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let compatibility = CodingKeys(stringValue: "compatibility")
+    static let normalize = CodingKeys(stringValue: "normalize")
+    static let alias = CodingKeys(stringValue: "alias")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "compatibility",
+      "normalize",
+      "alias",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.compatibility = try container.decodeIfPresent(
+      SchemaConfig.CompatibilityType.self, forKey: .compatibility)
+    self.normalize = try container.decodeIfPresent(Swift.Bool.self, forKey: .normalize)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alias) {
+      self.alias = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.compatibility, forKey: .compatibility)
+    try container.encodeIfPresent(self.normalize, forKey: .normalize)
+    try container.encode(self.alias, forKey: .alias)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Compatibility type of the schemas.

@@ -90,6 +90,8 @@
     /// Output only. Details about each wave of the rollout.
     public var waveDetails: [RolloutWaveDetails] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Rollout`.
     public init() {}
 
@@ -104,6 +106,109 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cancellationTime = CodingKeys(stringValue: "cancellationTime")
+      static let completionTime = CodingKeys(stringValue: "completionTime")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let currentWaveNumber = CodingKeys(stringValue: "currentWaveNumber")
+      static let description = CodingKeys(stringValue: "description")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let pauseTime = CodingKeys(stringValue: "pauseTime")
+      static let resumeTime = CodingKeys(stringValue: "resumeTime")
+      static let rolloutEntity = CodingKeys(stringValue: "rolloutEntity")
+      static let rolloutPlan = CodingKeys(stringValue: "rolloutPlan")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let state = CodingKeys(stringValue: "state")
+      static let waveDetails = CodingKeys(stringValue: "waveDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cancellationTime",
+        "completionTime",
+        "creationTimestamp",
+        "currentWaveNumber",
+        "description",
+        "etag",
+        "id",
+        "kind",
+        "name",
+        "pauseTime",
+        "resumeTime",
+        "rolloutEntity",
+        "rolloutPlan",
+        "selfLink",
+        "selfLinkWithId",
+        "state",
+        "waveDetails",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cancellationTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .cancellationTime)
+      self.completionTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .completionTime)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.currentWaveNumber = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .currentWaveNumber)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.pauseTime = try container.decodeIfPresent(Swift.String.self, forKey: .pauseTime)
+      self.resumeTime = try container.decodeIfPresent(Swift.String.self, forKey: .resumeTime)
+      self.rolloutEntity = try container.decodeIfPresent(
+        RolloutRolloutEntity.self, forKey: .rolloutEntity)
+      self.rolloutPlan = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutPlan)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      self.state = try container.decodeIfPresent(Rollout.State.self, forKey: .state)
+      if let value = try container.decodeIfPresent([RolloutWaveDetails].self, forKey: .waveDetails)
+      {
+        self.waveDetails = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cancellationTime, forKey: .cancellationTime)
+      try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.currentWaveNumber, forKey: .currentWaveNumber)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.etag, forKey: .etag)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.pauseTime, forKey: .pauseTime)
+      try container.encodeIfPresent(self.resumeTime, forKey: .resumeTime)
+      try container.encodeIfPresent(self.rolloutEntity, forKey: .rolloutEntity)
+      try container.encodeIfPresent(self.rolloutPlan, forKey: .rolloutPlan)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encode(self.waveDetails, forKey: .waveDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [state][google.cloud.compute.v1.Rollout.state] field.

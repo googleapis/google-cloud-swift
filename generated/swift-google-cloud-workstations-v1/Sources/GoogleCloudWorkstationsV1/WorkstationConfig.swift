@@ -224,6 +224,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// entire workstation, or individual ports. Defaults to false.
   public var grantWorkstationAdminRoleOnCreate: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkstationConfig`.
   public init() {}
 
@@ -240,12 +242,202 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let idleTimeout = CodingKeys(stringValue: "idleTimeout")
+    static let runningTimeout = CodingKeys(stringValue: "runningTimeout")
+    static let maxUsableWorkstations = CodingKeys(stringValue: "maxUsableWorkstations")
+    static let host = CodingKeys(stringValue: "host")
+    static let persistentDirectories = CodingKeys(stringValue: "persistentDirectories")
+    static let ephemeralDirectories = CodingKeys(stringValue: "ephemeralDirectories")
+    static let container = CodingKeys(stringValue: "container")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let readinessChecks = CodingKeys(stringValue: "readinessChecks")
+    static let replicaZones = CodingKeys(stringValue: "replicaZones")
+    static let degraded = CodingKeys(stringValue: "degraded")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let enableAuditAgent = CodingKeys(stringValue: "enableAuditAgent")
+    static let disableTcpConnections = CodingKeys(stringValue: "disableTcpConnections")
+    static let allowedPorts = CodingKeys(stringValue: "allowedPorts")
+    static let grantWorkstationAdminRoleOnCreate = CodingKeys(
+      stringValue: "grantWorkstationAdminRoleOnCreate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "uid",
+      "reconciling",
+      "annotations",
+      "labels",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "etag",
+      "idleTimeout",
+      "runningTimeout",
+      "maxUsableWorkstations",
+      "host",
+      "persistentDirectories",
+      "ephemeralDirectories",
+      "container",
+      "encryptionKey",
+      "readinessChecks",
+      "replicaZones",
+      "degraded",
+      "conditions",
+      "enableAuditAgent",
+      "disableTcpConnections",
+      "allowedPorts",
+      "grantWorkstationAdminRoleOnCreate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.idleTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .idleTimeout)
+    self.runningTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .runningTimeout)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxUsableWorkstations) {
+      self.maxUsableWorkstations = value
+    }
+    self.host = try container.decodeIfPresent(WorkstationConfig.Host.self, forKey: .host)
+    if let value = try container.decodeIfPresent(
+      [WorkstationConfig.PersistentDirectory].self, forKey: .persistentDirectories)
+    {
+      self.persistentDirectories = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WorkstationConfig.EphemeralDirectory].self, forKey: .ephemeralDirectories)
+    {
+      self.ephemeralDirectories = value
+    }
+    self.container = try container.decodeIfPresent(
+      WorkstationConfig.Container.self, forKey: .container)
+    self.encryptionKey = try container.decodeIfPresent(
+      WorkstationConfig.CustomerEncryptionKey.self, forKey: .encryptionKey)
+    if let value = try container.decodeIfPresent(
+      [WorkstationConfig.ReadinessCheck].self, forKey: .readinessChecks)
+    {
+      self.readinessChecks = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+      self.replicaZones = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .degraded) {
+      self.degraded = value
+    }
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAuditAgent) {
+      self.enableAuditAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableTcpConnections) {
+      self.disableTcpConnections = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WorkstationConfig.PortRange].self, forKey: .allowedPorts)
+    {
+      self.allowedPorts = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .grantWorkstationAdminRoleOnCreate)
+    {
+      self.grantWorkstationAdminRoleOnCreate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.idleTimeout, forKey: .idleTimeout)
+    try container.encodeIfPresent(self.runningTimeout, forKey: .runningTimeout)
+    try container.encode(self.maxUsableWorkstations, forKey: .maxUsableWorkstations)
+    try container.encodeIfPresent(self.host, forKey: .host)
+    try container.encode(self.persistentDirectories, forKey: .persistentDirectories)
+    try container.encode(self.ephemeralDirectories, forKey: .ephemeralDirectories)
+    try container.encodeIfPresent(self.container, forKey: .container)
+    try container.encodeIfPresent(self.encryptionKey, forKey: .encryptionKey)
+    try container.encode(self.readinessChecks, forKey: .readinessChecks)
+    try container.encode(self.replicaZones, forKey: .replicaZones)
+    try container.encode(self.degraded, forKey: .degraded)
+    try container.encode(self.conditions, forKey: .conditions)
+    try container.encode(self.enableAuditAgent, forKey: .enableAuditAgent)
+    try container.encode(self.disableTcpConnections, forKey: .disableTcpConnections)
+    try container.encode(self.allowedPorts, forKey: .allowedPorts)
+    try container.encode(
+      self.grantWorkstationAdminRoleOnCreate, forKey: .grantWorkstationAdminRoleOnCreate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Runtime host for a workstation.
   public struct Host: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of host to be used for the workstation's runtime.
     public var config: OneOf_Config? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Host`.
     public init() {}
@@ -263,8 +455,17 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gceInstance = "gceInstance"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gceInstance = CodingKeys(stringValue: "gceInstance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gceInstance"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -286,6 +487,10 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try configCheckAndSet(.gceInstance(gceInstance))
       }
       self.config = config
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -296,6 +501,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .gceInstance(let value):
           try container.encode(value, forKey: .gceInstance)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -443,6 +651,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       /// Optional. Custom metadata to apply to Compute Engine instances.
       public var instanceMetadata: [Swift.String: Swift.String] = [:]
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GceInstance`.
       public init() {}
 
@@ -459,6 +669,151 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let machineType = CodingKeys(stringValue: "machineType")
+        static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+        static let serviceAccountScopes = CodingKeys(stringValue: "serviceAccountScopes")
+        static let tags = CodingKeys(stringValue: "tags")
+        static let poolSize = CodingKeys(stringValue: "poolSize")
+        static let pooledInstances = CodingKeys(stringValue: "pooledInstances")
+        static let disablePublicIpAddresses = CodingKeys(stringValue: "disablePublicIpAddresses")
+        static let enableNestedVirtualization = CodingKeys(
+          stringValue: "enableNestedVirtualization")
+        static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+        static let confidentialInstanceConfig = CodingKeys(
+          stringValue: "confidentialInstanceConfig")
+        static let bootDiskSizeGb = CodingKeys(stringValue: "bootDiskSizeGb")
+        static let accelerators = CodingKeys(stringValue: "accelerators")
+        static let boostConfigs = CodingKeys(stringValue: "boostConfigs")
+        static let disableSsh = CodingKeys(stringValue: "disableSsh")
+        static let vmTags = CodingKeys(stringValue: "vmTags")
+        static let startupScriptUri = CodingKeys(stringValue: "startupScriptUri")
+        static let instanceMetadata = CodingKeys(stringValue: "instanceMetadata")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "machineType",
+          "serviceAccount",
+          "serviceAccountScopes",
+          "tags",
+          "poolSize",
+          "pooledInstances",
+          "disablePublicIpAddresses",
+          "enableNestedVirtualization",
+          "shieldedInstanceConfig",
+          "confidentialInstanceConfig",
+          "bootDiskSizeGb",
+          "accelerators",
+          "boostConfigs",
+          "disableSsh",
+          "vmTags",
+          "startupScriptUri",
+          "instanceMetadata",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+          self.machineType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+          self.serviceAccount = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .serviceAccountScopes)
+        {
+          self.serviceAccountScopes = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+          self.tags = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .poolSize) {
+          self.poolSize = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pooledInstances) {
+          self.pooledInstances = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disablePublicIpAddresses)
+        {
+          self.disablePublicIpAddresses = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableNestedVirtualization)
+        {
+          self.enableNestedVirtualization = value
+        }
+        self.shieldedInstanceConfig = try container.decodeIfPresent(
+          WorkstationConfig.Host.GceInstance.GceShieldedInstanceConfig.self,
+          forKey: .shieldedInstanceConfig)
+        self.confidentialInstanceConfig = try container.decodeIfPresent(
+          WorkstationConfig.Host.GceInstance.GceConfidentialInstanceConfig.self,
+          forKey: .confidentialInstanceConfig)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bootDiskSizeGb) {
+          self.bootDiskSizeGb = value
+        }
+        if let value = try container.decodeIfPresent(
+          [WorkstationConfig.Host.GceInstance.Accelerator].self, forKey: .accelerators)
+        {
+          self.accelerators = value
+        }
+        if let value = try container.decodeIfPresent(
+          [WorkstationConfig.Host.GceInstance.BoostConfig].self, forKey: .boostConfigs)
+        {
+          self.boostConfigs = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableSsh) {
+          self.disableSsh = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .vmTags)
+        {
+          self.vmTags = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startupScriptUri) {
+          self.startupScriptUri = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .instanceMetadata)
+        {
+          self.instanceMetadata = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.machineType, forKey: .machineType)
+        try container.encode(self.serviceAccount, forKey: .serviceAccount)
+        try container.encode(self.serviceAccountScopes, forKey: .serviceAccountScopes)
+        try container.encode(self.tags, forKey: .tags)
+        try container.encode(self.poolSize, forKey: .poolSize)
+        try container.encode(self.pooledInstances, forKey: .pooledInstances)
+        try container.encode(self.disablePublicIpAddresses, forKey: .disablePublicIpAddresses)
+        try container.encode(self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+        try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+        try container.encodeIfPresent(
+          self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
+        try container.encode(self.bootDiskSizeGb, forKey: .bootDiskSizeGb)
+        try container.encode(self.accelerators, forKey: .accelerators)
+        try container.encode(self.boostConfigs, forKey: .boostConfigs)
+        try container.encode(self.disableSsh, forKey: .disableSsh)
+        try container.encode(self.vmTags, forKey: .vmTags)
+        try container.encode(self.startupScriptUri, forKey: .startupScriptUri)
+        try container.encode(self.instanceMetadata, forKey: .instanceMetadata)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// A set of Compute Engine Shielded instance options.
       public struct GceShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -471,6 +826,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
         /// Optional. Whether the instance has integrity monitoring enabled.
         public var enableIntegrityMonitoring: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `GceShieldedInstanceConfig`.
         public init() {}
@@ -486,6 +844,53 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enableSecureBoot = CodingKeys(stringValue: "enableSecureBoot")
+          static let enableVtpm = CodingKeys(stringValue: "enableVtpm")
+          static let enableIntegrityMonitoring = CodingKeys(
+            stringValue: "enableIntegrityMonitoring")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enableSecureBoot",
+            "enableVtpm",
+            "enableIntegrityMonitoring",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSecureBoot) {
+            self.enableSecureBoot = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableVtpm) {
+            self.enableVtpm = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableIntegrityMonitoring)
+          {
+            self.enableIntegrityMonitoring = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enableSecureBoot, forKey: .enableSecureBoot)
+          try container.encode(self.enableVtpm, forKey: .enableVtpm)
+          try container.encode(self.enableIntegrityMonitoring, forKey: .enableIntegrityMonitoring)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -507,6 +912,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         /// Optional. Whether the instance has confidential compute enabled.
         public var enableConfidentialCompute: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `GceConfidentialInstanceConfig`.
         public init() {}
 
@@ -521,6 +929,41 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enableConfidentialCompute = CodingKeys(
+            stringValue: "enableConfidentialCompute")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enableConfidentialCompute"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableConfidentialCompute)
+          {
+            self.enableConfidentialCompute = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -547,6 +990,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         /// Optional. Number of accelerator cards exposed to the instance.
         public var count: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Accelerator`.
         public init() {}
 
@@ -561,6 +1007,44 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let type = CodingKeys(stringValue: "type")
+          static let count = CodingKeys(stringValue: "count")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "type",
+            "count",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+            self.type = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+            self.count = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.type, forKey: .type)
+          try container.encode(self.count, forKey: .count)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -637,6 +1121,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         /// that workstations can be boosted quickly. Defaults to `0`.
         public var poolSize: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `BoostConfig`.
         public init() {}
 
@@ -651,6 +1138,73 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let id = CodingKeys(stringValue: "id")
+          static let machineType = CodingKeys(stringValue: "machineType")
+          static let accelerators = CodingKeys(stringValue: "accelerators")
+          static let bootDiskSizeGb = CodingKeys(stringValue: "bootDiskSizeGb")
+          static let enableNestedVirtualization = CodingKeys(
+            stringValue: "enableNestedVirtualization")
+          static let poolSize = CodingKeys(stringValue: "poolSize")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "id",
+            "machineType",
+            "accelerators",
+            "bootDiskSizeGb",
+            "enableNestedVirtualization",
+            "poolSize",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+            self.id = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+            self.machineType = value
+          }
+          if let value = try container.decodeIfPresent(
+            [WorkstationConfig.Host.GceInstance.Accelerator].self, forKey: .accelerators)
+          {
+            self.accelerators = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bootDiskSizeGb) {
+            self.bootDiskSizeGb = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableNestedVirtualization)
+          {
+            self.enableNestedVirtualization = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .poolSize) {
+            self.poolSize = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.id, forKey: .id)
+          try container.encode(self.machineType, forKey: .machineType)
+          try container.encode(self.accelerators, forKey: .accelerators)
+          try container.encode(self.bootDiskSizeGb, forKey: .bootDiskSizeGb)
+          try container.encode(self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+          try container.encode(self.poolSize, forKey: .poolSize)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -705,6 +1259,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// How a persistent directory should be implemented.
     public var directoryType: OneOf_DirectoryType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PersistentDirectory`.
     public init() {}
 
@@ -721,15 +1277,28 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcePd = "gcePd"
-      case gceHd = "gceHd"
-      case mountPath = "mountPath"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcePd = CodingKeys(stringValue: "gcePd")
+      static let gceHd = CodingKeys(stringValue: "gceHd")
+      static let mountPath = CodingKeys(stringValue: "mountPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcePd",
+        "gceHd",
+        "mountPath",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.mountPath = try container.decode(Swift.String.self, forKey: .mountPath)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountPath) {
+        self.mountPath = value
+      }
 
       var directoryType: OneOf_DirectoryType? = nil
       let directoryTypeCheckAndSet = {
@@ -753,6 +1322,10 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try directoryTypeCheckAndSet(.gceHd(gceHd))
       }
       self.directoryType = directoryType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -766,6 +1339,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .gceHd(let value):
           try container.encode(value, forKey: .gceHd)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -845,6 +1421,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       /// A value of `"0s"` indicates that the disk will never be archived.
       public var archiveTimeout: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GceRegionalPersistentDisk`.
       public init() {}
 
@@ -859,6 +1437,76 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sizeGb = CodingKeys(stringValue: "sizeGb")
+        static let maxSizeGb = CodingKeys(stringValue: "maxSizeGb")
+        static let fsType = CodingKeys(stringValue: "fsType")
+        static let diskType = CodingKeys(stringValue: "diskType")
+        static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+        static let reclaimPolicy = CodingKeys(stringValue: "reclaimPolicy")
+        static let archiveTimeout = CodingKeys(stringValue: "archiveTimeout")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sizeGb",
+          "maxSizeGb",
+          "fsType",
+          "diskType",
+          "sourceSnapshot",
+          "reclaimPolicy",
+          "archiveTimeout",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+          self.sizeGb = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSizeGb) {
+          self.maxSizeGb = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fsType) {
+          self.fsType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+          self.diskType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot) {
+          self.sourceSnapshot = value
+        }
+        if let value = try container.decodeIfPresent(
+          WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.ReclaimPolicy.self,
+          forKey: .reclaimPolicy)
+        {
+          self.reclaimPolicy = value
+        }
+        self.archiveTimeout = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .archiveTimeout)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.sizeGb, forKey: .sizeGb)
+        try container.encode(self.maxSizeGb, forKey: .maxSizeGb)
+        try container.encode(self.fsType, forKey: .fsType)
+        try container.encode(self.diskType, forKey: .diskType)
+        try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
+        try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        try container.encodeIfPresent(self.archiveTimeout, forKey: .archiveTimeout)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Value representing what should happen to the disk after the workstation
@@ -1029,6 +1677,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       /// A value of `"0s"` indicates that the disk will never be archived.
       public var archiveTimeout: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GceHyperdiskBalancedHighAvailability`.
       public init() {}
 
@@ -1043,6 +1693,64 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sizeGb = CodingKeys(stringValue: "sizeGb")
+        static let maxSizeGb = CodingKeys(stringValue: "maxSizeGb")
+        static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+        static let reclaimPolicy = CodingKeys(stringValue: "reclaimPolicy")
+        static let archiveTimeout = CodingKeys(stringValue: "archiveTimeout")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sizeGb",
+          "maxSizeGb",
+          "sourceSnapshot",
+          "reclaimPolicy",
+          "archiveTimeout",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+          self.sizeGb = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSizeGb) {
+          self.maxSizeGb = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot) {
+          self.sourceSnapshot = value
+        }
+        if let value = try container.decodeIfPresent(
+          WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability.ReclaimPolicy
+            .self, forKey: .reclaimPolicy)
+        {
+          self.reclaimPolicy = value
+        }
+        self.archiveTimeout = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .archiveTimeout)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.sizeGb, forKey: .sizeGb)
+        try container.encode(self.maxSizeGb, forKey: .maxSizeGb)
+        try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
+        try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        try container.encodeIfPresent(self.archiveTimeout, forKey: .archiveTimeout)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Value representing what should happen to the disk after the workstation
@@ -1197,6 +1905,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// How an ephemeral directory should be implemented.
     public var directoryType: OneOf_DirectoryType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EphemeralDirectory`.
     public init() {}
 
@@ -1213,14 +1923,26 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcePd = "gcePd"
-      case mountPath = "mountPath"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcePd = CodingKeys(stringValue: "gcePd")
+      static let mountPath = CodingKeys(stringValue: "mountPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcePd",
+        "mountPath",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.mountPath = try container.decode(Swift.String.self, forKey: .mountPath)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountPath) {
+        self.mountPath = value
+      }
 
       var directoryType: OneOf_DirectoryType? = nil
       let directoryTypeCheckAndSet = {
@@ -1238,6 +1960,10 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try directoryTypeCheckAndSet(.gcePd(gcePd))
       }
       self.directoryType = directoryType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -1249,6 +1975,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .gcePd(let value):
           try container.encode(value, forKey: .gcePd)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -1308,6 +2037,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       /// [google.cloud.workstations.v1.WorkstationConfig.EphemeralDirectory.GcePersistentDisk.source_snapshot]: <doc:WorkstationConfig/EphemeralDirectory/GcePersistentDisk/sourceSnapshot>
       public var readOnly: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GcePersistentDisk`.
       public init() {}
 
@@ -1322,6 +2053,56 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let diskType = CodingKeys(stringValue: "diskType")
+        static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+        static let sourceImage = CodingKeys(stringValue: "sourceImage")
+        static let readOnly = CodingKeys(stringValue: "readOnly")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "diskType",
+          "sourceSnapshot",
+          "sourceImage",
+          "readOnly",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+          self.diskType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot) {
+          self.sourceSnapshot = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImage) {
+          self.sourceImage = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .readOnly) {
+          self.readOnly = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.diskType, forKey: .diskType)
+        try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
+        try container.encode(self.sourceImage, forKey: .sourceImage)
+        try container.encode(self.readOnly, forKey: .readOnly)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1391,6 +2172,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// given uid.
     public var runAsUser: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Container`.
     public init() {}
 
@@ -1405,6 +2188,69 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let image = CodingKeys(stringValue: "image")
+      static let command = CodingKeys(stringValue: "command")
+      static let args = CodingKeys(stringValue: "args")
+      static let env = CodingKeys(stringValue: "env")
+      static let workingDir = CodingKeys(stringValue: "workingDir")
+      static let runAsUser = CodingKeys(stringValue: "runAsUser")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "image",
+        "command",
+        "args",
+        "env",
+        "workingDir",
+        "runAsUser",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .image) {
+        self.image = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .command) {
+        self.command = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+        self.args = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .env)
+      {
+        self.env = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workingDir) {
+        self.workingDir = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .runAsUser) {
+        self.runAsUser = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.image, forKey: .image)
+      try container.encode(self.command, forKey: .command)
+      try container.encode(self.args, forKey: .args)
+      try container.encode(self.env, forKey: .env)
+      try container.encode(self.workingDir, forKey: .workingDir)
+      try container.encode(self.runAsUser, forKey: .runAsUser)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1441,6 +2287,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// [`--member`](https://cloud.google.com/sdk/gcloud/reference/kms/keys/add-iam-policy-binding#--member).
     public var kmsKeyServiceAccount: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomerEncryptionKey`.
     public init() {}
 
@@ -1455,6 +2303,45 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kmsKey = CodingKeys(stringValue: "kmsKey")
+      static let kmsKeyServiceAccount = CodingKeys(stringValue: "kmsKeyServiceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kmsKey",
+        "kmsKeyServiceAccount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+        self.kmsKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyServiceAccount)
+      {
+        self.kmsKeyServiceAccount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kmsKey, forKey: .kmsKey)
+      try container.encode(self.kmsKeyServiceAccount, forKey: .kmsKeyServiceAccount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1479,6 +2366,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Optional. Port to which the request should be sent.
     public var port: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReadinessCheck`.
     public init() {}
 
@@ -1493,6 +2382,44 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let path = CodingKeys(stringValue: "path")
+      static let port = CodingKeys(stringValue: "port")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "path",
+        "port",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+        self.port = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.port, forKey: .port)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1528,6 +2455,8 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Valid ports are 22, 80, and ports within the range 1024-65535.
     public var last: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PortRange`.
     public init() {}
 
@@ -1542,6 +2471,44 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let first = CodingKeys(stringValue: "first")
+      static let last = CodingKeys(stringValue: "last")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "first",
+        "last",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .first) {
+        self.first = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .last) {
+        self.last = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.first, forKey: .first)
+      try container.encode(self.last, forKey: .last)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

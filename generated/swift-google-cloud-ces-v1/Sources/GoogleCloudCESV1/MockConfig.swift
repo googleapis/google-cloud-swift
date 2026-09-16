@@ -29,6 +29,8 @@ public struct MockConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var unmatchedToolCallBehavior: MockConfig.UnmatchedToolCallBehavior =
     MockConfig.UnmatchedToolCallBehavior()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MockConfig`.
   public init() {}
 
@@ -43,6 +45,46 @@ public struct MockConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mockedToolCalls = CodingKeys(stringValue: "mockedToolCalls")
+    static let unmatchedToolCallBehavior = CodingKeys(stringValue: "unmatchedToolCallBehavior")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mockedToolCalls",
+      "unmatchedToolCallBehavior",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MockedToolCall].self, forKey: .mockedToolCalls) {
+      self.mockedToolCalls = value
+    }
+    if let value = try container.decodeIfPresent(
+      MockConfig.UnmatchedToolCallBehavior.self, forKey: .unmatchedToolCallBehavior)
+    {
+      self.unmatchedToolCallBehavior = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mockedToolCalls, forKey: .mockedToolCalls)
+    try container.encode(self.unmatchedToolCallBehavior, forKey: .unmatchedToolCallBehavior)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// What to do when a tool call doesn't match any mocked tool calls.

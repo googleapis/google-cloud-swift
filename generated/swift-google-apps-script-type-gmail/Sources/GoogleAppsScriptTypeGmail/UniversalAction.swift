@@ -30,6 +30,8 @@ public struct UniversalAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// invokes the action.
   public var actionType: OneOf_ActionType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UniversalAction`.
   public init() {}
 
@@ -46,15 +48,28 @@ public struct UniversalAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case openLink = "openLink"
-    case runFunction = "runFunction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let openLink = CodingKeys(stringValue: "openLink")
+    static let runFunction = CodingKeys(stringValue: "runFunction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "openLink",
+      "runFunction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.text = try container.decode(Swift.String.self, forKey: .text)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+      self.text = value
+    }
 
     var actionType: OneOf_ActionType? = nil
     let actionTypeCheckAndSet = {
@@ -73,6 +88,10 @@ public struct UniversalAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try actionTypeCheckAndSet(.runFunction(runFunction))
     }
     self.actionType = actionType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +105,9 @@ public struct UniversalAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .runFunction(let value):
         try container.encode(value, forKey: .runFunction)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

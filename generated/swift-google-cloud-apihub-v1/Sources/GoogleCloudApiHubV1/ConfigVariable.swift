@@ -32,6 +32,8 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The values associated with the config variable.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigVariable`.
   public init() {}
 
@@ -48,21 +50,40 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValue = "stringValue"
-    case intValue = "intValue"
-    case boolValue = "boolValue"
-    case secretValue = "secretValue"
-    case enumValue = "enumValue"
-    case multiSelectValues = "multiSelectValues"
-    case multiStringValues = "multiStringValues"
-    case multiIntValues = "multiIntValues"
-    case key = "key"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let intValue = CodingKeys(stringValue: "intValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let secretValue = CodingKeys(stringValue: "secretValue")
+    static let enumValue = CodingKeys(stringValue: "enumValue")
+    static let multiSelectValues = CodingKeys(stringValue: "multiSelectValues")
+    static let multiStringValues = CodingKeys(stringValue: "multiStringValues")
+    static let multiIntValues = CodingKeys(stringValue: "multiIntValues")
+    static let key = CodingKeys(stringValue: "key")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValue",
+      "intValue",
+      "boolValue",
+      "secretValue",
+      "enumValue",
+      "multiSelectValues",
+      "multiStringValues",
+      "multiIntValues",
+      "key",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -105,6 +126,10 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.multiIntValues(multiIntValues))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -131,6 +156,9 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .multiIntValues)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The config variable value of data type multi select.
@@ -139,6 +167,8 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Optional. The config variable value of data type multi select.
     public var values: [ConfigValueOption] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `MultiSelectValues`.
     public init() {}
@@ -154,6 +184,38 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let values = CodingKeys(stringValue: "values")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "values"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([ConfigValueOption].self, forKey: .values) {
+        self.values = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.values, forKey: .values)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -174,6 +236,8 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The config variable value of data type multi string.
     public var values: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MultiStringValues`.
     public init() {}
 
@@ -188,6 +252,38 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let values = CodingKeys(stringValue: "values")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "values"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+        self.values = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.values, forKey: .values)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -208,6 +304,8 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The config variable value of data type multi int.
     public var values: [Swift.Int32] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MultiIntValues`.
     public init() {}
 
@@ -222,6 +320,38 @@ public struct ConfigVariable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let values = CodingKeys(stringValue: "values")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "values"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .values) {
+        self.values = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.values, forKey: .values)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -88,6 +88,8 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// by default.
   public var processingLocation: ProcessingLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryConfig`.
   public init() {}
 
@@ -104,6 +106,105 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let orgConfig = CodingKeys(stringValue: "orgConfig")
+    static let otherCloudStartingLocation = CodingKeys(stringValue: "otherCloudStartingLocation")
+    static let inspectTemplates = CodingKeys(stringValue: "inspectTemplates")
+    static let actions = CodingKeys(stringValue: "actions")
+    static let targets = CodingKeys(stringValue: "targets")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastRunTime = CodingKeys(stringValue: "lastRunTime")
+    static let status = CodingKeys(stringValue: "status")
+    static let processingLocation = CodingKeys(stringValue: "processingLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "orgConfig",
+      "otherCloudStartingLocation",
+      "inspectTemplates",
+      "actions",
+      "targets",
+      "errors",
+      "createTime",
+      "updateTime",
+      "lastRunTime",
+      "status",
+      "processingLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.orgConfig = try container.decodeIfPresent(
+      DiscoveryConfig.OrgConfig.self, forKey: .orgConfig)
+    self.otherCloudStartingLocation = try container.decodeIfPresent(
+      OtherCloudDiscoveryStartingLocation.self, forKey: .otherCloudStartingLocation)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inspectTemplates) {
+      self.inspectTemplates = value
+    }
+    if let value = try container.decodeIfPresent([DataProfileAction].self, forKey: .actions) {
+      self.actions = value
+    }
+    if let value = try container.decodeIfPresent([DiscoveryTarget].self, forKey: .targets) {
+      self.targets = value
+    }
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.lastRunTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastRunTime)
+    if let value = try container.decodeIfPresent(DiscoveryConfig.Status.self, forKey: .status) {
+      self.status = value
+    }
+    self.processingLocation = try container.decodeIfPresent(
+      ProcessingLocation.self, forKey: .processingLocation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.orgConfig, forKey: .orgConfig)
+    try container.encodeIfPresent(
+      self.otherCloudStartingLocation, forKey: .otherCloudStartingLocation)
+    try container.encode(self.inspectTemplates, forKey: .inspectTemplates)
+    try container.encode(self.actions, forKey: .actions)
+    try container.encode(self.targets, forKey: .targets)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lastRunTime, forKey: .lastRunTime)
+    try container.encode(self.status, forKey: .status)
+    try container.encodeIfPresent(self.processingLocation, forKey: .processingLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Project and scan location information. Only set when the parent is an org.
   public struct OrgConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -115,6 +216,8 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// account that exists within this project must have access to all resources
     /// that are profiled, and the DLP API must be enabled.
     public var projectId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `OrgConfig`.
     public init() {}
@@ -130,6 +233,43 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let location = CodingKeys(stringValue: "location")
+      static let projectId = CodingKeys(stringValue: "projectId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "location",
+        "projectId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.location = try container.decodeIfPresent(
+        DiscoveryStartingLocation.self, forKey: .location)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+        self.projectId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.location, forKey: .location)
+      try container.encode(self.projectId, forKey: .projectId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

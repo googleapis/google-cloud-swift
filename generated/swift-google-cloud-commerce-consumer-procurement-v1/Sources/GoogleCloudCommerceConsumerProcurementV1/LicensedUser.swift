@@ -33,6 +33,8 @@ public struct LicensedUser: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// hours).
   public var recentUsageTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LicensedUser`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct LicensedUser: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let username = CodingKeys(stringValue: "username")
+    static let assignTime = CodingKeys(stringValue: "assignTime")
+    static let recentUsageTime = CodingKeys(stringValue: "recentUsageTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "username",
+      "assignTime",
+      "recentUsageTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    self.assignTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .assignTime)
+    self.recentUsageTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .recentUsageTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.username, forKey: .username)
+    try container.encodeIfPresent(self.assignTime, forKey: .assignTime)
+    try container.encodeIfPresent(self.recentUsageTime, forKey: .recentUsageTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

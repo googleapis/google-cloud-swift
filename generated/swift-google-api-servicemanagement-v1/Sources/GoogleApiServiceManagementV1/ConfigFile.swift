@@ -30,6 +30,8 @@ public struct ConfigFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of configuration file this represents.
   public var fileType: ConfigFile.FileType = ConfigFile.FileType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigFile`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct ConfigFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filePath = CodingKeys(stringValue: "filePath")
+    static let fileContents = CodingKeys(stringValue: "fileContents")
+    static let fileType = CodingKeys(stringValue: "fileType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filePath",
+      "fileContents",
+      "fileType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filePath) {
+      self.filePath = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .fileContents) {
+      self.fileContents = value
+    }
+    if let value = try container.decodeIfPresent(ConfigFile.FileType.self, forKey: .fileType) {
+      self.fileType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.filePath, forKey: .filePath)
+    try container.encode(self.fileContents, forKey: .fileContents)
+    try container.encode(self.fileType, forKey: .fileType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public enum FileType: Codable, Equatable, Sendable {

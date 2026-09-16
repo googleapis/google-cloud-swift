@@ -55,6 +55,8 @@ public struct EvictionMinimumReclaim: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
   public var pidAvailable: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EvictionMinimumReclaim`.
   public init() {}
 
@@ -69,6 +71,68 @@ public struct EvictionMinimumReclaim: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let memoryAvailable = CodingKeys(stringValue: "memoryAvailable")
+    static let nodefsAvailable = CodingKeys(stringValue: "nodefsAvailable")
+    static let nodefsInodesFree = CodingKeys(stringValue: "nodefsInodesFree")
+    static let imagefsAvailable = CodingKeys(stringValue: "imagefsAvailable")
+    static let imagefsInodesFree = CodingKeys(stringValue: "imagefsInodesFree")
+    static let pidAvailable = CodingKeys(stringValue: "pidAvailable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "memoryAvailable",
+      "nodefsAvailable",
+      "nodefsInodesFree",
+      "imagefsAvailable",
+      "imagefsInodesFree",
+      "pidAvailable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .memoryAvailable) {
+      self.memoryAvailable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodefsAvailable) {
+      self.nodefsAvailable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodefsInodesFree) {
+      self.nodefsInodesFree = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imagefsAvailable) {
+      self.imagefsAvailable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imagefsInodesFree) {
+      self.imagefsInodesFree = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pidAvailable) {
+      self.pidAvailable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.memoryAvailable, forKey: .memoryAvailable)
+    try container.encode(self.nodefsAvailable, forKey: .nodefsAvailable)
+    try container.encode(self.nodefsInodesFree, forKey: .nodefsInodesFree)
+    try container.encode(self.imagefsAvailable, forKey: .imagefsAvailable)
+    try container.encode(self.imagefsInodesFree, forKey: .imagefsInodesFree)
+    try container.encode(self.pidAvailable, forKey: .pidAvailable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

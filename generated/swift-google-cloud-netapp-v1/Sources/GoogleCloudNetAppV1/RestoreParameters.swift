@@ -24,6 +24,8 @@ public struct RestoreParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The source that the volume is created from.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreParameters`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct RestoreParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceSnapshot = "sourceSnapshot"
-    case sourceBackup = "sourceBackup"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+    static let sourceBackup = CodingKeys(stringValue: "sourceBackup")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceSnapshot",
+      "sourceBackup",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct RestoreParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try sourceCheckAndSet(.sourceBackup(sourceBackup))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct RestoreParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .sourceBackup(let value):
         try container.encode(value, forKey: .sourceBackup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

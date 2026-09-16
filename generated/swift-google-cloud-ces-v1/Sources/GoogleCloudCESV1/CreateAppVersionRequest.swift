@@ -35,6 +35,8 @@ public struct CreateAppVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Required. The app version to create.
   public var appVersion: AppVersion? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateAppVersionRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateAppVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let appVersionId = CodingKeys(stringValue: "appVersionId")
+    static let appVersion = CodingKeys(stringValue: "appVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "appVersionId",
+      "appVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appVersionId) {
+      self.appVersionId = value
+    }
+    self.appVersion = try container.decodeIfPresent(AppVersion.self, forKey: .appVersion)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.appVersionId, forKey: .appVersionId)
+    try container.encodeIfPresent(self.appVersion, forKey: .appVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

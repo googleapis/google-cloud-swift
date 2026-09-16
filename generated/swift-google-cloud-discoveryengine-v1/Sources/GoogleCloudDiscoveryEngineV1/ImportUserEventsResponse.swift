@@ -39,6 +39,8 @@
     /// in the existing Branch.
     public var unjoinedEventsCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportUserEventsResponse`.
     public init() {}
 
@@ -53,6 +55,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let errorSamples = CodingKeys(stringValue: "errorSamples")
+      static let errorConfig = CodingKeys(stringValue: "errorConfig")
+      static let joinedEventsCount = CodingKeys(stringValue: "joinedEventsCount")
+      static let unjoinedEventsCount = CodingKeys(stringValue: "unjoinedEventsCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "errorSamples",
+        "errorConfig",
+        "joinedEventsCount",
+        "unjoinedEventsCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errorSamples) {
+        self.errorSamples = value
+      }
+      self.errorConfig = try container.decodeIfPresent(ImportErrorConfig.self, forKey: .errorConfig)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .joinedEventsCount) {
+        self.joinedEventsCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .unjoinedEventsCount) {
+        self.unjoinedEventsCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.errorSamples, forKey: .errorSamples)
+      try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
+      try container.encode(self.joinedEventsCount, forKey: .joinedEventsCount)
+      try container.encode(self.unjoinedEventsCount, forKey: .unjoinedEventsCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

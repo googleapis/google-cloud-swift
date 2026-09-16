@@ -94,6 +94,8 @@
     /// Output only. [Output Only] An optional, human-readable explanation of the status.
     public var statusMessage: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeTemplate`.
     public init() {}
 
@@ -108,6 +110,108 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accelerators = CodingKeys(stringValue: "accelerators")
+      static let cpuOvercommitType = CodingKeys(stringValue: "cpuOvercommitType")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let disks = CodingKeys(stringValue: "disks")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let nodeAffinityLabels = CodingKeys(stringValue: "nodeAffinityLabels")
+      static let nodeType = CodingKeys(stringValue: "nodeType")
+      static let nodeTypeFlexibility = CodingKeys(stringValue: "nodeTypeFlexibility")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let serverBinding = CodingKeys(stringValue: "serverBinding")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusMessage = CodingKeys(stringValue: "statusMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accelerators",
+        "cpuOvercommitType",
+        "creationTimestamp",
+        "description",
+        "disks",
+        "id",
+        "kind",
+        "name",
+        "nodeAffinityLabels",
+        "nodeType",
+        "nodeTypeFlexibility",
+        "region",
+        "selfLink",
+        "serverBinding",
+        "status",
+        "statusMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AcceleratorConfig].self, forKey: .accelerators)
+      {
+        self.accelerators = value
+      }
+      self.cpuOvercommitType = try container.decodeIfPresent(
+        NodeTemplate.CpuOvercommitType.self, forKey: .cpuOvercommitType)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent([LocalDisk].self, forKey: .disks) {
+        self.disks = value
+      }
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .nodeAffinityLabels)
+      {
+        self.nodeAffinityLabels = value
+      }
+      self.nodeType = try container.decodeIfPresent(Swift.String.self, forKey: .nodeType)
+      self.nodeTypeFlexibility = try container.decodeIfPresent(
+        NodeTemplateNodeTypeFlexibility.self, forKey: .nodeTypeFlexibility)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.serverBinding = try container.decodeIfPresent(ServerBinding.self, forKey: .serverBinding)
+      self.status = try container.decodeIfPresent(NodeTemplate.Status.self, forKey: .status)
+      self.statusMessage = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.accelerators, forKey: .accelerators)
+      try container.encodeIfPresent(self.cpuOvercommitType, forKey: .cpuOvercommitType)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.disks, forKey: .disks)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encode(self.nodeAffinityLabels, forKey: .nodeAffinityLabels)
+      try container.encodeIfPresent(self.nodeType, forKey: .nodeType)
+      try container.encodeIfPresent(self.nodeTypeFlexibility, forKey: .nodeTypeFlexibility)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.serverBinding, forKey: .serverBinding)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.statusMessage, forKey: .statusMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [cpuOvercommitType][google.cloud.compute.v1.NodeTemplate.cpuOvercommitType] field.

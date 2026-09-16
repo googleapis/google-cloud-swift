@@ -52,6 +52,8 @@ public struct DbBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var autoIncrementalBackupWindow: DbBackupConfig.BackupWindow =
     DbBackupConfig.BackupWindow()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbBackupConfig`.
   public init() {}
 
@@ -68,12 +70,92 @@ public struct DbBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let autoBackupEnabled = CodingKeys(stringValue: "autoBackupEnabled")
+    static let backupDestinationDetails = CodingKeys(stringValue: "backupDestinationDetails")
+    static let retentionPeriodDays = CodingKeys(stringValue: "retentionPeriodDays")
+    static let backupDeletionPolicy = CodingKeys(stringValue: "backupDeletionPolicy")
+    static let autoFullBackupDay = CodingKeys(stringValue: "autoFullBackupDay")
+    static let autoFullBackupWindow = CodingKeys(stringValue: "autoFullBackupWindow")
+    static let autoIncrementalBackupWindow = CodingKeys(stringValue: "autoIncrementalBackupWindow")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "autoBackupEnabled",
+      "backupDestinationDetails",
+      "retentionPeriodDays",
+      "backupDeletionPolicy",
+      "autoFullBackupDay",
+      "autoFullBackupWindow",
+      "autoIncrementalBackupWindow",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoBackupEnabled) {
+      self.autoBackupEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DbBackupConfig.BackupDestinationDetails].self, forKey: .backupDestinationDetails)
+    {
+      self.backupDestinationDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retentionPeriodDays) {
+      self.retentionPeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbBackupConfig.BackupDeletionPolicy.self, forKey: .backupDeletionPolicy)
+    {
+      self.backupDeletionPolicy = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoogleType.DayOfWeek.self, forKey: .autoFullBackupDay)
+    {
+      self.autoFullBackupDay = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbBackupConfig.BackupWindow.self, forKey: .autoFullBackupWindow)
+    {
+      self.autoFullBackupWindow = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbBackupConfig.BackupWindow.self, forKey: .autoIncrementalBackupWindow)
+    {
+      self.autoIncrementalBackupWindow = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.autoBackupEnabled, forKey: .autoBackupEnabled)
+    try container.encode(self.backupDestinationDetails, forKey: .backupDestinationDetails)
+    try container.encode(self.retentionPeriodDays, forKey: .retentionPeriodDays)
+    try container.encode(self.backupDeletionPolicy, forKey: .backupDeletionPolicy)
+    try container.encode(self.autoFullBackupDay, forKey: .autoFullBackupDay)
+    try container.encode(self.autoFullBackupWindow, forKey: .autoFullBackupWindow)
+    try container.encode(self.autoIncrementalBackupWindow, forKey: .autoIncrementalBackupWindow)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The details of the database backup destination.
   public struct BackupDestinationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The type of the database backup destination.
     public var type: DbBackupConfig.BackupDestinationType = DbBackupConfig.BackupDestinationType()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BackupDestinationDetails`.
     public init() {}
@@ -89,6 +171,40 @@ public struct DbBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DbBackupConfig.BackupDestinationType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -76,6 +76,8 @@
     /// A single request can contain up to 1 minute of speech audio data.
     public var inputAudio: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DetectIntentRequest`.
     public init() {}
 
@@ -90,6 +92,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let session = CodingKeys(stringValue: "session")
+      static let queryParams = CodingKeys(stringValue: "queryParams")
+      static let queryInput = CodingKeys(stringValue: "queryInput")
+      static let outputAudioConfig = CodingKeys(stringValue: "outputAudioConfig")
+      static let outputAudioConfigMask = CodingKeys(stringValue: "outputAudioConfigMask")
+      static let inputAudio = CodingKeys(stringValue: "inputAudio")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "session",
+        "queryParams",
+        "queryInput",
+        "outputAudioConfig",
+        "outputAudioConfigMask",
+        "inputAudio",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+        self.session = value
+      }
+      self.queryParams = try container.decodeIfPresent(QueryParameters.self, forKey: .queryParams)
+      self.queryInput = try container.decodeIfPresent(QueryInput.self, forKey: .queryInput)
+      self.outputAudioConfig = try container.decodeIfPresent(
+        OutputAudioConfig.self, forKey: .outputAudioConfig)
+      self.outputAudioConfigMask = try container.decodeIfPresent(
+        GoogleCloudWKT.FieldMask.self, forKey: .outputAudioConfigMask)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .inputAudio) {
+        self.inputAudio = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.session, forKey: .session)
+      try container.encodeIfPresent(self.queryParams, forKey: .queryParams)
+      try container.encodeIfPresent(self.queryInput, forKey: .queryInput)
+      try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
+      try container.encodeIfPresent(self.outputAudioConfigMask, forKey: .outputAudioConfigMask)
+      try container.encode(self.inputAudio, forKey: .inputAudio)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

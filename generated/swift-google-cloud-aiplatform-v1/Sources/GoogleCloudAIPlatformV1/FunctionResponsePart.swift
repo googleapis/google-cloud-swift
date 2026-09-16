@@ -33,6 +33,8 @@
     /// The data of the function response part.
     public var data: OneOf_Data? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FunctionResponsePart`.
     public init() {}
 
@@ -49,9 +51,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineData = "inlineData"
-      case fileData = "fileData"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineData = CodingKeys(stringValue: "inlineData")
+      static let fileData = CodingKeys(stringValue: "fileData")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineData",
+        "fileData",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -78,6 +90,10 @@
         try dataCheckAndSet(.fileData(fileData))
       }
       self.data = data
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -90,6 +106,9 @@
         case .fileData(let value):
           try container.encode(value, forKey: .fileData)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

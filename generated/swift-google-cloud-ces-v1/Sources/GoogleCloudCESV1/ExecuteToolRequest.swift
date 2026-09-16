@@ -44,6 +44,8 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Additional context to be provided for the tool execution
   public var toolExecutionContext: OneOf_ToolExecutionContext? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecuteToolRequest`.
   public init() {}
 
@@ -60,19 +62,36 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tool = "tool"
-    case toolsetTool = "toolsetTool"
-    case variables = "variables"
-    case context = "context"
-    case parent = "parent"
-    case args = "args"
-    case mockConfig = "mockConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tool = CodingKeys(stringValue: "tool")
+    static let toolsetTool = CodingKeys(stringValue: "toolsetTool")
+    static let variables = CodingKeys(stringValue: "variables")
+    static let context = CodingKeys(stringValue: "context")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let args = CodingKeys(stringValue: "args")
+    static let mockConfig = CodingKeys(stringValue: "mockConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tool",
+      "toolsetTool",
+      "variables",
+      "context",
+      "parent",
+      "args",
+      "mockConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
     self.args = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .args)
     self.mockConfig = try container.decodeIfPresent(MockConfig.self, forKey: .mockConfig)
 
@@ -113,13 +132,17 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try toolExecutionContextCheckAndSet(.context(context))
     }
     self.toolExecutionContext = toolExecutionContext
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.args, forKey: .args)
-    try container.encode(self.mockConfig, forKey: .mockConfig)
+    try container.encodeIfPresent(self.args, forKey: .args)
+    try container.encodeIfPresent(self.mockConfig, forKey: .mockConfig)
 
     if let choice = self.toolIdentifier {
       switch choice {
@@ -137,6 +160,9 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .context(let value):
         try container.encode(value, forKey: .context)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

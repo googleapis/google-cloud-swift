@@ -71,6 +71,8 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   public var processingStrategy: BatchRecognizeRequest.ProcessingStrategy =
     BatchRecognizeRequest.ProcessingStrategy()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRecognizeRequest`.
   public init() {}
 
@@ -85,6 +87,67 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let recognizer = CodingKeys(stringValue: "recognizer")
+    static let config = CodingKeys(stringValue: "config")
+    static let configMask = CodingKeys(stringValue: "configMask")
+    static let files = CodingKeys(stringValue: "files")
+    static let recognitionOutputConfig = CodingKeys(stringValue: "recognitionOutputConfig")
+    static let processingStrategy = CodingKeys(stringValue: "processingStrategy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "recognizer",
+      "config",
+      "configMask",
+      "files",
+      "recognitionOutputConfig",
+      "processingStrategy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recognizer) {
+      self.recognizer = value
+    }
+    self.config = try container.decodeIfPresent(RecognitionConfig.self, forKey: .config)
+    self.configMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .configMask)
+    if let value = try container.decodeIfPresent([BatchRecognizeFileMetadata].self, forKey: .files)
+    {
+      self.files = value
+    }
+    self.recognitionOutputConfig = try container.decodeIfPresent(
+      RecognitionOutputConfig.self, forKey: .recognitionOutputConfig)
+    if let value = try container.decodeIfPresent(
+      BatchRecognizeRequest.ProcessingStrategy.self, forKey: .processingStrategy)
+    {
+      self.processingStrategy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.recognizer, forKey: .recognizer)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.configMask, forKey: .configMask)
+    try container.encode(self.files, forKey: .files)
+    try container.encodeIfPresent(self.recognitionOutputConfig, forKey: .recognitionOutputConfig)
+    try container.encode(self.processingStrategy, forKey: .processingStrategy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible processing strategies for batch requests.

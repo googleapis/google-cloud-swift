@@ -118,6 +118,8 @@
     /// Threshold at which to begin ratelimiting.
     public var rateLimitThreshold: SecurityPolicyRuleRateLimitOptionsThreshold? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRuleRateLimitOptions`.
     public init() {}
 
@@ -132,6 +134,77 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let banDurationSec = CodingKeys(stringValue: "banDurationSec")
+      static let banThreshold = CodingKeys(stringValue: "banThreshold")
+      static let conformAction = CodingKeys(stringValue: "conformAction")
+      static let enforceOnKey = CodingKeys(stringValue: "enforceOnKey")
+      static let enforceOnKeyConfigs = CodingKeys(stringValue: "enforceOnKeyConfigs")
+      static let enforceOnKeyName = CodingKeys(stringValue: "enforceOnKeyName")
+      static let exceedAction = CodingKeys(stringValue: "exceedAction")
+      static let exceedRedirectOptions = CodingKeys(stringValue: "exceedRedirectOptions")
+      static let rateLimitThreshold = CodingKeys(stringValue: "rateLimitThreshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "banDurationSec",
+        "banThreshold",
+        "conformAction",
+        "enforceOnKey",
+        "enforceOnKeyConfigs",
+        "enforceOnKeyName",
+        "exceedAction",
+        "exceedRedirectOptions",
+        "rateLimitThreshold",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.banDurationSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .banDurationSec)
+      self.banThreshold = try container.decodeIfPresent(
+        SecurityPolicyRuleRateLimitOptionsThreshold.self, forKey: .banThreshold)
+      self.conformAction = try container.decodeIfPresent(Swift.String.self, forKey: .conformAction)
+      self.enforceOnKey = try container.decodeIfPresent(
+        SecurityPolicyRuleRateLimitOptions.EnforceOnKey.self, forKey: .enforceOnKey)
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig].self, forKey: .enforceOnKeyConfigs)
+      {
+        self.enforceOnKeyConfigs = value
+      }
+      self.enforceOnKeyName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .enforceOnKeyName)
+      self.exceedAction = try container.decodeIfPresent(Swift.String.self, forKey: .exceedAction)
+      self.exceedRedirectOptions = try container.decodeIfPresent(
+        SecurityPolicyRuleRedirectOptions.self, forKey: .exceedRedirectOptions)
+      self.rateLimitThreshold = try container.decodeIfPresent(
+        SecurityPolicyRuleRateLimitOptionsThreshold.self, forKey: .rateLimitThreshold)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.banDurationSec, forKey: .banDurationSec)
+      try container.encodeIfPresent(self.banThreshold, forKey: .banThreshold)
+      try container.encodeIfPresent(self.conformAction, forKey: .conformAction)
+      try container.encodeIfPresent(self.enforceOnKey, forKey: .enforceOnKey)
+      try container.encode(self.enforceOnKeyConfigs, forKey: .enforceOnKeyConfigs)
+      try container.encodeIfPresent(self.enforceOnKeyName, forKey: .enforceOnKeyName)
+      try container.encodeIfPresent(self.exceedAction, forKey: .exceedAction)
+      try container.encodeIfPresent(self.exceedRedirectOptions, forKey: .exceedRedirectOptions)
+      try container.encodeIfPresent(self.rateLimitThreshold, forKey: .rateLimitThreshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [enforceOnKey][google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions.enforceOnKey] field.

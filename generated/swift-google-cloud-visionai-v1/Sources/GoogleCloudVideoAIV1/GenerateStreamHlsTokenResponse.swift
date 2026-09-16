@@ -32,6 +32,8 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWKT
   /// The expiration time of the token.
   public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateStreamHlsTokenResponse`.
   public init() {}
 
@@ -46,6 +48,43 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let token = CodingKeys(stringValue: "token")
+    static let expirationTime = CodingKeys(stringValue: "expirationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "token",
+      "expirationTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .token) {
+      self.token = value
+    }
+    self.expirationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.token, forKey: .token)
+    try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

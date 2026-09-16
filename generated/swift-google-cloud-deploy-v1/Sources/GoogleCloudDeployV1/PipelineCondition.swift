@@ -31,6 +31,8 @@ public struct PipelineCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// same type.
   public var targetsTypeCondition: TargetsTypeCondition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PipelineCondition`.
   public init() {}
 
@@ -45,6 +47,47 @@ public struct PipelineCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pipelineReadyCondition = CodingKeys(stringValue: "pipelineReadyCondition")
+    static let targetsPresentCondition = CodingKeys(stringValue: "targetsPresentCondition")
+    static let targetsTypeCondition = CodingKeys(stringValue: "targetsTypeCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pipelineReadyCondition",
+      "targetsPresentCondition",
+      "targetsTypeCondition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.pipelineReadyCondition = try container.decodeIfPresent(
+      PipelineReadyCondition.self, forKey: .pipelineReadyCondition)
+    self.targetsPresentCondition = try container.decodeIfPresent(
+      TargetsPresentCondition.self, forKey: .targetsPresentCondition)
+    self.targetsTypeCondition = try container.decodeIfPresent(
+      TargetsTypeCondition.self, forKey: .targetsTypeCondition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.pipelineReadyCondition, forKey: .pipelineReadyCondition)
+    try container.encodeIfPresent(self.targetsPresentCondition, forKey: .targetsPresentCondition)
+    try container.encodeIfPresent(self.targetsTypeCondition, forKey: .targetsTypeCondition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

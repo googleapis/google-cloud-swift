@@ -30,6 +30,8 @@ public struct DeviceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// distinguishes the device from other devices.
   public var id: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeviceInfo`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct DeviceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deviceType = CodingKeys(stringValue: "deviceType")
+    static let id = CodingKeys(stringValue: "id")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deviceType",
+      "id",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DeviceInfo.DeviceType.self, forKey: .deviceType) {
+      self.deviceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.deviceType, forKey: .deviceType)
+    try container.encode(self.id, forKey: .id)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enumeration describing an API access portal and exposure mechanism.

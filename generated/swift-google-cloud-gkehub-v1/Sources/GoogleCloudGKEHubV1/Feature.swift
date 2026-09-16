@@ -112,6 +112,8 @@ public struct Feature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// this feature.
   public var unreachable: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Feature`.
   public init() {}
 
@@ -126,6 +128,111 @@ public struct Feature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let resourceState = CodingKeys(stringValue: "resourceState")
+    static let spec = CodingKeys(stringValue: "spec")
+    static let membershipSpecs = CodingKeys(stringValue: "membershipSpecs")
+    static let state = CodingKeys(stringValue: "state")
+    static let membershipStates = CodingKeys(stringValue: "membershipStates")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let scopeSpecs = CodingKeys(stringValue: "scopeSpecs")
+    static let scopeStates = CodingKeys(stringValue: "scopeStates")
+    static let unreachable = CodingKeys(stringValue: "unreachable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "labels",
+      "resourceState",
+      "spec",
+      "membershipSpecs",
+      "state",
+      "membershipStates",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "scopeSpecs",
+      "scopeStates",
+      "unreachable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.resourceState = try container.decodeIfPresent(
+      FeatureResourceState.self, forKey: .resourceState)
+    self.spec = try container.decodeIfPresent(CommonFeatureSpec.self, forKey: .spec)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: MembershipFeatureSpec].self, forKey: .membershipSpecs)
+    {
+      self.membershipSpecs = value
+    }
+    self.state = try container.decodeIfPresent(CommonFeatureState.self, forKey: .state)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: MembershipFeatureState].self, forKey: .membershipStates)
+    {
+      self.membershipStates = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ScopeFeatureSpec].self, forKey: .scopeSpecs)
+    {
+      self.scopeSpecs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ScopeFeatureState].self, forKey: .scopeStates)
+    {
+      self.scopeStates = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachable) {
+      self.unreachable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.resourceState, forKey: .resourceState)
+    try container.encodeIfPresent(self.spec, forKey: .spec)
+    try container.encode(self.membershipSpecs, forKey: .membershipSpecs)
+    try container.encodeIfPresent(self.state, forKey: .state)
+    try container.encode(self.membershipStates, forKey: .membershipStates)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.scopeSpecs, forKey: .scopeSpecs)
+    try container.encode(self.scopeStates, forKey: .scopeStates)
+    try container.encode(self.unreachable, forKey: .unreachable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

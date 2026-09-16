@@ -24,6 +24,8 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Files containing the sentence pairs to be imported to the dataset.
   public var inputFiles: [DatasetInputConfig.InputFile] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatasetInputConfig`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputFiles = CodingKeys(stringValue: "inputFiles")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputFiles"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [DatasetInputConfig.InputFile].self, forKey: .inputFiles)
+    {
+      self.inputFiles = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputFiles, forKey: .inputFiles)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// An input file.
   public struct InputFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +88,8 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Supported formats are tab-separated values (.tsv) and Translation Memory
     /// eXchange (.tmx) .
     public var source: OneOf_Source? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InputFile`.
     public init() {}
@@ -69,14 +107,26 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case usage = "usage"
-      case gcsSource = "gcsSource"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let usage = CodingKeys(stringValue: "usage")
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "usage",
+        "gcsSource",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.usage = try container.decode(Swift.String.self, forKey: .usage)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .usage) {
+        self.usage = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -92,6 +142,10 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -103,6 +157,9 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         case .gcsSource(let value):
           try container.encode(value, forKey: .gcsSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -42,6 +42,8 @@
     /// Claim texts and citation info across all claims in the answer candidate.
     public var claims: [CheckGroundingResponse.Claim] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CheckGroundingResponse`.
     public init() {}
 
@@ -58,12 +60,66 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let supportScore = CodingKeys(stringValue: "supportScore")
+      static let citedChunks = CodingKeys(stringValue: "citedChunks")
+      static let citedFacts = CodingKeys(stringValue: "citedFacts")
+      static let claims = CodingKeys(stringValue: "claims")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "supportScore",
+        "citedChunks",
+        "citedFacts",
+        "claims",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.supportScore = try container.decodeIfPresent(Swift.Float.self, forKey: .supportScore)
+      if let value = try container.decodeIfPresent([FactChunk].self, forKey: .citedChunks) {
+        self.citedChunks = value
+      }
+      if let value = try container.decodeIfPresent(
+        [CheckGroundingResponse.CheckGroundingFactChunk].self, forKey: .citedFacts)
+      {
+        self.citedFacts = value
+      }
+      if let value = try container.decodeIfPresent(
+        [CheckGroundingResponse.Claim].self, forKey: .claims)
+      {
+        self.claims = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.supportScore, forKey: .supportScore)
+      try container.encode(self.citedChunks, forKey: .citedChunks)
+      try container.encode(self.citedFacts, forKey: .citedFacts)
+      try container.encode(self.claims, forKey: .claims)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Fact chunk for grounding check.
     public struct CheckGroundingFactChunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Text content of the fact chunk. Can be at most 10K characters long.
       public var chunkText: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CheckGroundingFactChunk`.
       public init() {}
@@ -79,6 +135,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let chunkText = CodingKeys(stringValue: "chunkText")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "chunkText"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .chunkText) {
+          self.chunkText = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.chunkText, forKey: .chunkText)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -141,6 +229,8 @@
       /// `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
       public var score: Swift.Double? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Claim`.
       public init() {}
 
@@ -155,6 +245,61 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startPos = CodingKeys(stringValue: "startPos")
+        static let endPos = CodingKeys(stringValue: "endPos")
+        static let claimText = CodingKeys(stringValue: "claimText")
+        static let citationIndices = CodingKeys(stringValue: "citationIndices")
+        static let groundingCheckRequired = CodingKeys(stringValue: "groundingCheckRequired")
+        static let score = CodingKeys(stringValue: "score")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "startPos",
+          "endPos",
+          "claimText",
+          "citationIndices",
+          "groundingCheckRequired",
+          "score",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startPos = try container.decodeIfPresent(Swift.Int32.self, forKey: .startPos)
+        self.endPos = try container.decodeIfPresent(Swift.Int32.self, forKey: .endPos)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .claimText) {
+          self.claimText = value
+        }
+        if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .citationIndices) {
+          self.citationIndices = value
+        }
+        self.groundingCheckRequired = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .groundingCheckRequired)
+        self.score = try container.decodeIfPresent(Swift.Double.self, forKey: .score)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.startPos, forKey: .startPos)
+        try container.encodeIfPresent(self.endPos, forKey: .endPos)
+        try container.encode(self.claimText, forKey: .claimText)
+        try container.encode(self.citationIndices, forKey: .citationIndices)
+        try container.encodeIfPresent(self.groundingCheckRequired, forKey: .groundingCheckRequired)
+        try container.encodeIfPresent(self.score, forKey: .score)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

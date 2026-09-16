@@ -214,6 +214,8 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Defaults to `AutomaticScaling`.
   public var scaling: OneOf_Scaling? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Version`.
   public init() {}
 
@@ -230,92 +232,196 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case id = "id"
-    case automaticScaling = "automaticScaling"
-    case basicScaling = "basicScaling"
-    case manualScaling = "manualScaling"
-    case inboundServices = "inboundServices"
-    case instanceClass = "instanceClass"
-    case network = "network"
-    case zones = "zones"
-    case resources = "resources"
-    case runtime = "runtime"
-    case runtimeChannel = "runtimeChannel"
-    case threadsafe = "threadsafe"
-    case vm = "vm"
-    case appEngineApis = "appEngineApis"
-    case betaSettings = "betaSettings"
-    case env = "env"
-    case servingStatus = "servingStatus"
-    case createdBy = "createdBy"
-    case createTime = "createTime"
-    case diskUsageBytes = "diskUsageBytes"
-    case runtimeApiVersion = "runtimeApiVersion"
-    case runtimeMainExecutablePath = "runtimeMainExecutablePath"
-    case serviceAccount = "serviceAccount"
-    case handlers = "handlers"
-    case errorHandlers = "errorHandlers"
-    case libraries = "libraries"
-    case apiConfig = "apiConfig"
-    case envVariables = "envVariables"
-    case buildEnvVariables = "buildEnvVariables"
-    case defaultExpiration = "defaultExpiration"
-    case healthCheck = "healthCheck"
-    case readinessCheck = "readinessCheck"
-    case livenessCheck = "livenessCheck"
-    case nobuildFilesRegex = "nobuildFilesRegex"
-    case deployment = "deployment"
-    case versionUrl = "versionUrl"
-    case endpointsApiService = "endpointsApiService"
-    case entrypoint = "entrypoint"
-    case vpcAccessConnector = "vpcAccessConnector"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let automaticScaling = CodingKeys(stringValue: "automaticScaling")
+    static let basicScaling = CodingKeys(stringValue: "basicScaling")
+    static let manualScaling = CodingKeys(stringValue: "manualScaling")
+    static let inboundServices = CodingKeys(stringValue: "inboundServices")
+    static let instanceClass = CodingKeys(stringValue: "instanceClass")
+    static let network = CodingKeys(stringValue: "network")
+    static let zones = CodingKeys(stringValue: "zones")
+    static let resources = CodingKeys(stringValue: "resources")
+    static let runtime = CodingKeys(stringValue: "runtime")
+    static let runtimeChannel = CodingKeys(stringValue: "runtimeChannel")
+    static let threadsafe = CodingKeys(stringValue: "threadsafe")
+    static let vm = CodingKeys(stringValue: "vm")
+    static let appEngineApis = CodingKeys(stringValue: "appEngineApis")
+    static let betaSettings = CodingKeys(stringValue: "betaSettings")
+    static let env = CodingKeys(stringValue: "env")
+    static let servingStatus = CodingKeys(stringValue: "servingStatus")
+    static let createdBy = CodingKeys(stringValue: "createdBy")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let diskUsageBytes = CodingKeys(stringValue: "diskUsageBytes")
+    static let runtimeApiVersion = CodingKeys(stringValue: "runtimeApiVersion")
+    static let runtimeMainExecutablePath = CodingKeys(stringValue: "runtimeMainExecutablePath")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let handlers = CodingKeys(stringValue: "handlers")
+    static let errorHandlers = CodingKeys(stringValue: "errorHandlers")
+    static let libraries = CodingKeys(stringValue: "libraries")
+    static let apiConfig = CodingKeys(stringValue: "apiConfig")
+    static let envVariables = CodingKeys(stringValue: "envVariables")
+    static let buildEnvVariables = CodingKeys(stringValue: "buildEnvVariables")
+    static let defaultExpiration = CodingKeys(stringValue: "defaultExpiration")
+    static let healthCheck = CodingKeys(stringValue: "healthCheck")
+    static let readinessCheck = CodingKeys(stringValue: "readinessCheck")
+    static let livenessCheck = CodingKeys(stringValue: "livenessCheck")
+    static let nobuildFilesRegex = CodingKeys(stringValue: "nobuildFilesRegex")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let versionUrl = CodingKeys(stringValue: "versionUrl")
+    static let endpointsApiService = CodingKeys(stringValue: "endpointsApiService")
+    static let entrypoint = CodingKeys(stringValue: "entrypoint")
+    static let vpcAccessConnector = CodingKeys(stringValue: "vpcAccessConnector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "automaticScaling",
+      "basicScaling",
+      "manualScaling",
+      "inboundServices",
+      "instanceClass",
+      "network",
+      "zones",
+      "resources",
+      "runtime",
+      "runtimeChannel",
+      "threadsafe",
+      "vm",
+      "appEngineApis",
+      "betaSettings",
+      "env",
+      "servingStatus",
+      "createdBy",
+      "createTime",
+      "diskUsageBytes",
+      "runtimeApiVersion",
+      "runtimeMainExecutablePath",
+      "serviceAccount",
+      "handlers",
+      "errorHandlers",
+      "libraries",
+      "apiConfig",
+      "envVariables",
+      "buildEnvVariables",
+      "defaultExpiration",
+      "healthCheck",
+      "readinessCheck",
+      "livenessCheck",
+      "nobuildFilesRegex",
+      "deployment",
+      "versionUrl",
+      "endpointsApiService",
+      "entrypoint",
+      "vpcAccessConnector",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.inboundServices = try container.decode([InboundServiceType].self, forKey: .inboundServices)
-    self.instanceClass = try container.decode(Swift.String.self, forKey: .instanceClass)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InboundServiceType].self, forKey: .inboundServices)
+    {
+      self.inboundServices = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceClass) {
+      self.instanceClass = value
+    }
     self.network = try container.decodeIfPresent(Network.self, forKey: .network)
-    self.zones = try container.decode([Swift.String].self, forKey: .zones)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+      self.zones = value
+    }
     self.resources = try container.decodeIfPresent(Resources.self, forKey: .resources)
-    self.runtime = try container.decode(Swift.String.self, forKey: .runtime)
-    self.runtimeChannel = try container.decode(Swift.String.self, forKey: .runtimeChannel)
-    self.threadsafe = try container.decode(Swift.Bool.self, forKey: .threadsafe)
-    self.vm = try container.decode(Swift.Bool.self, forKey: .vm)
-    self.appEngineApis = try container.decode(Swift.Bool.self, forKey: .appEngineApis)
-    self.betaSettings = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtime) {
+      self.runtime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeChannel) {
+      self.runtimeChannel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .threadsafe) {
+      self.threadsafe = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .vm) {
+      self.vm = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .appEngineApis) {
+      self.appEngineApis = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .betaSettings)
-    self.env = try container.decode(Swift.String.self, forKey: .env)
-    self.servingStatus = try container.decode(ServingStatus.self, forKey: .servingStatus)
-    self.createdBy = try container.decode(Swift.String.self, forKey: .createdBy)
+    {
+      self.betaSettings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .env) {
+      self.env = value
+    }
+    if let value = try container.decodeIfPresent(ServingStatus.self, forKey: .servingStatus) {
+      self.servingStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .createdBy) {
+      self.createdBy = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.diskUsageBytes = try container.decode(Swift.Int64.self, forKey: .diskUsageBytes)
-    self.runtimeApiVersion = try container.decode(Swift.String.self, forKey: .runtimeApiVersion)
-    self.runtimeMainExecutablePath = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskUsageBytes) {
+      self.diskUsageBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeApiVersion) {
+      self.runtimeApiVersion = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .runtimeMainExecutablePath)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.handlers = try container.decode([UrlMap].self, forKey: .handlers)
-    self.errorHandlers = try container.decode([ErrorHandler].self, forKey: .errorHandlers)
-    self.libraries = try container.decode([Library].self, forKey: .libraries)
+    {
+      self.runtimeMainExecutablePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent([UrlMap].self, forKey: .handlers) {
+      self.handlers = value
+    }
+    if let value = try container.decodeIfPresent([ErrorHandler].self, forKey: .errorHandlers) {
+      self.errorHandlers = value
+    }
+    if let value = try container.decodeIfPresent([Library].self, forKey: .libraries) {
+      self.libraries = value
+    }
     self.apiConfig = try container.decodeIfPresent(ApiConfigHandler.self, forKey: .apiConfig)
-    self.envVariables = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .envVariables)
-    self.buildEnvVariables = try container.decode(
+    {
+      self.envVariables = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .buildEnvVariables)
+    {
+      self.buildEnvVariables = value
+    }
     self.defaultExpiration = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .defaultExpiration)
     self.healthCheck = try container.decodeIfPresent(HealthCheck.self, forKey: .healthCheck)
     self.readinessCheck = try container.decodeIfPresent(
       ReadinessCheck.self, forKey: .readinessCheck)
     self.livenessCheck = try container.decodeIfPresent(LivenessCheck.self, forKey: .livenessCheck)
-    self.nobuildFilesRegex = try container.decode(Swift.String.self, forKey: .nobuildFilesRegex)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nobuildFilesRegex) {
+      self.nobuildFilesRegex = value
+    }
     self.deployment = try container.decodeIfPresent(Deployment.self, forKey: .deployment)
-    self.versionUrl = try container.decode(Swift.String.self, forKey: .versionUrl)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionUrl) {
+      self.versionUrl = value
+    }
     self.endpointsApiService = try container.decodeIfPresent(
       EndpointsApiService.self, forKey: .endpointsApiService)
     self.entrypoint = try container.decodeIfPresent(Entrypoint.self, forKey: .entrypoint)
@@ -346,6 +452,10 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try scalingCheckAndSet(.manualScaling(manualScaling))
     }
     self.scaling = scaling
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -354,9 +464,9 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.inboundServices, forKey: .inboundServices)
     try container.encode(self.instanceClass, forKey: .instanceClass)
-    try container.encode(self.network, forKey: .network)
+    try container.encodeIfPresent(self.network, forKey: .network)
     try container.encode(self.zones, forKey: .zones)
-    try container.encode(self.resources, forKey: .resources)
+    try container.encodeIfPresent(self.resources, forKey: .resources)
     try container.encode(self.runtime, forKey: .runtime)
     try container.encode(self.runtimeChannel, forKey: .runtimeChannel)
     try container.encode(self.threadsafe, forKey: .threadsafe)
@@ -366,7 +476,7 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.env, forKey: .env)
     try container.encode(self.servingStatus, forKey: .servingStatus)
     try container.encode(self.createdBy, forKey: .createdBy)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.diskUsageBytes, forKey: .diskUsageBytes)
     try container.encode(self.runtimeApiVersion, forKey: .runtimeApiVersion)
     try container.encode(self.runtimeMainExecutablePath, forKey: .runtimeMainExecutablePath)
@@ -374,19 +484,19 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.handlers, forKey: .handlers)
     try container.encode(self.errorHandlers, forKey: .errorHandlers)
     try container.encode(self.libraries, forKey: .libraries)
-    try container.encode(self.apiConfig, forKey: .apiConfig)
+    try container.encodeIfPresent(self.apiConfig, forKey: .apiConfig)
     try container.encode(self.envVariables, forKey: .envVariables)
     try container.encode(self.buildEnvVariables, forKey: .buildEnvVariables)
-    try container.encode(self.defaultExpiration, forKey: .defaultExpiration)
-    try container.encode(self.healthCheck, forKey: .healthCheck)
-    try container.encode(self.readinessCheck, forKey: .readinessCheck)
-    try container.encode(self.livenessCheck, forKey: .livenessCheck)
+    try container.encodeIfPresent(self.defaultExpiration, forKey: .defaultExpiration)
+    try container.encodeIfPresent(self.healthCheck, forKey: .healthCheck)
+    try container.encodeIfPresent(self.readinessCheck, forKey: .readinessCheck)
+    try container.encodeIfPresent(self.livenessCheck, forKey: .livenessCheck)
     try container.encode(self.nobuildFilesRegex, forKey: .nobuildFilesRegex)
-    try container.encode(self.deployment, forKey: .deployment)
+    try container.encodeIfPresent(self.deployment, forKey: .deployment)
     try container.encode(self.versionUrl, forKey: .versionUrl)
-    try container.encode(self.endpointsApiService, forKey: .endpointsApiService)
-    try container.encode(self.entrypoint, forKey: .entrypoint)
-    try container.encode(self.vpcAccessConnector, forKey: .vpcAccessConnector)
+    try container.encodeIfPresent(self.endpointsApiService, forKey: .endpointsApiService)
+    try container.encodeIfPresent(self.entrypoint, forKey: .entrypoint)
+    try container.encodeIfPresent(self.vpcAccessConnector, forKey: .vpcAccessConnector)
 
     if let choice = self.scaling {
       switch choice {
@@ -397,6 +507,9 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .manualScaling(let value):
         try container.encode(value, forKey: .manualScaling)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -30,6 +30,8 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The tiles to display.
   public var tiles: [MosaicLayout.Tile] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MosaicLayout`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let columns = CodingKeys(stringValue: "columns")
+    static let tiles = CodingKeys(stringValue: "tiles")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "columns",
+      "tiles",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .columns) {
+      self.columns = value
+    }
+    if let value = try container.decodeIfPresent([MosaicLayout.Tile].self, forKey: .tiles) {
+      self.tiles = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.columns, forKey: .columns)
+    try container.encode(self.tiles, forKey: .tiles)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A single tile in the mosaic. The placement and size of the tile are
@@ -71,6 +111,8 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The informational widget contained in the tile. For example an `XyChart`.
     public var widget: Widget? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Tile`.
     public init() {}
 
@@ -85,6 +127,60 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let xPos = CodingKeys(stringValue: "xPos")
+      static let yPos = CodingKeys(stringValue: "yPos")
+      static let width = CodingKeys(stringValue: "width")
+      static let height = CodingKeys(stringValue: "height")
+      static let widget = CodingKeys(stringValue: "widget")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "xPos",
+        "yPos",
+        "width",
+        "height",
+        "widget",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .xPos) {
+        self.xPos = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .yPos) {
+        self.yPos = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .width) {
+        self.width = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .height) {
+        self.height = value
+      }
+      self.widget = try container.decodeIfPresent(Widget.self, forKey: .widget)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.xPos, forKey: .xPos)
+      try container.encode(self.yPos, forKey: .yPos)
+      try container.encode(self.width, forKey: .width)
+      try container.encode(self.height, forKey: .height)
+      try container.encodeIfPresent(self.widget, forKey: .widget)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

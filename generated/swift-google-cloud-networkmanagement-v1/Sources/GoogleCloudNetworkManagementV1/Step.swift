@@ -41,6 +41,8 @@ public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// final state the configuration is cleared.
   public var stepInfo: OneOf_StepInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Step`.
   public init() {}
 
@@ -57,57 +59,116 @@ public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case description = "description"
-    case state = "state"
-    case causesDrop = "causesDrop"
-    case projectId = "projectId"
-    case instance = "instance"
-    case firewall = "firewall"
-    case route = "route"
-    case endpoint = "endpoint"
-    case googleService = "googleService"
-    case forwardingRule = "forwardingRule"
-    case hybridSubnet = "hybridSubnet"
-    case vpnGateway = "vpnGateway"
-    case vpnTunnel = "vpnTunnel"
-    case interconnectAttachment = "interconnectAttachment"
-    case vpcConnector = "vpcConnector"
-    case directVpcEgressConnection = "directVpcEgressConnection"
-    case serverlessExternalConnection = "serverlessExternalConnection"
-    case deliver = "deliver"
-    case forward = "forward"
-    case abort = "abort"
-    case drop = "drop"
-    case loadBalancer = "loadBalancer"
-    case network = "network"
-    case gkeMaster = "gkeMaster"
-    case gkePod = "gkePod"
-    case ipMasqueradingSkipped = "ipMasqueradingSkipped"
-    case gkeNetworkPolicy = "gkeNetworkPolicy"
-    case gkeNetworkPolicySkipped = "gkeNetworkPolicySkipped"
-    case cloudSqlInstance = "cloudSqlInstance"
-    case redisInstance = "redisInstance"
-    case redisCluster = "redisCluster"
-    case cloudFunction = "cloudFunction"
-    case appEngineVersion = "appEngineVersion"
-    case cloudRunRevision = "cloudRunRevision"
-    case cloudRunJob = "cloudRunJob"
-    case nat = "nat"
-    case proxyConnection = "proxyConnection"
-    case loadBalancerBackendInfo = "loadBalancerBackendInfo"
-    case storageBucket = "storageBucket"
-    case serverlessNeg = "serverlessNeg"
-    case ngfwPacketInspection = "ngfwPacketInspection"
-    case dmsPrivateConnection = "dmsPrivateConnection"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let causesDrop = CodingKeys(stringValue: "causesDrop")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let firewall = CodingKeys(stringValue: "firewall")
+    static let route = CodingKeys(stringValue: "route")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let googleService = CodingKeys(stringValue: "googleService")
+    static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+    static let hybridSubnet = CodingKeys(stringValue: "hybridSubnet")
+    static let vpnGateway = CodingKeys(stringValue: "vpnGateway")
+    static let vpnTunnel = CodingKeys(stringValue: "vpnTunnel")
+    static let interconnectAttachment = CodingKeys(stringValue: "interconnectAttachment")
+    static let vpcConnector = CodingKeys(stringValue: "vpcConnector")
+    static let directVpcEgressConnection = CodingKeys(stringValue: "directVpcEgressConnection")
+    static let serverlessExternalConnection = CodingKeys(
+      stringValue: "serverlessExternalConnection")
+    static let deliver = CodingKeys(stringValue: "deliver")
+    static let forward = CodingKeys(stringValue: "forward")
+    static let abort = CodingKeys(stringValue: "abort")
+    static let drop = CodingKeys(stringValue: "drop")
+    static let loadBalancer = CodingKeys(stringValue: "loadBalancer")
+    static let network = CodingKeys(stringValue: "network")
+    static let gkeMaster = CodingKeys(stringValue: "gkeMaster")
+    static let gkePod = CodingKeys(stringValue: "gkePod")
+    static let ipMasqueradingSkipped = CodingKeys(stringValue: "ipMasqueradingSkipped")
+    static let gkeNetworkPolicy = CodingKeys(stringValue: "gkeNetworkPolicy")
+    static let gkeNetworkPolicySkipped = CodingKeys(stringValue: "gkeNetworkPolicySkipped")
+    static let cloudSqlInstance = CodingKeys(stringValue: "cloudSqlInstance")
+    static let redisInstance = CodingKeys(stringValue: "redisInstance")
+    static let redisCluster = CodingKeys(stringValue: "redisCluster")
+    static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
+    static let appEngineVersion = CodingKeys(stringValue: "appEngineVersion")
+    static let cloudRunRevision = CodingKeys(stringValue: "cloudRunRevision")
+    static let cloudRunJob = CodingKeys(stringValue: "cloudRunJob")
+    static let nat = CodingKeys(stringValue: "nat")
+    static let proxyConnection = CodingKeys(stringValue: "proxyConnection")
+    static let loadBalancerBackendInfo = CodingKeys(stringValue: "loadBalancerBackendInfo")
+    static let storageBucket = CodingKeys(stringValue: "storageBucket")
+    static let serverlessNeg = CodingKeys(stringValue: "serverlessNeg")
+    static let ngfwPacketInspection = CodingKeys(stringValue: "ngfwPacketInspection")
+    static let dmsPrivateConnection = CodingKeys(stringValue: "dmsPrivateConnection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "state",
+      "causesDrop",
+      "projectId",
+      "instance",
+      "firewall",
+      "route",
+      "endpoint",
+      "googleService",
+      "forwardingRule",
+      "hybridSubnet",
+      "vpnGateway",
+      "vpnTunnel",
+      "interconnectAttachment",
+      "vpcConnector",
+      "directVpcEgressConnection",
+      "serverlessExternalConnection",
+      "deliver",
+      "forward",
+      "abort",
+      "drop",
+      "loadBalancer",
+      "network",
+      "gkeMaster",
+      "gkePod",
+      "ipMasqueradingSkipped",
+      "gkeNetworkPolicy",
+      "gkeNetworkPolicySkipped",
+      "cloudSqlInstance",
+      "redisInstance",
+      "redisCluster",
+      "cloudFunction",
+      "appEngineVersion",
+      "cloudRunRevision",
+      "cloudRunJob",
+      "nat",
+      "proxyConnection",
+      "loadBalancerBackendInfo",
+      "storageBucket",
+      "serverlessNeg",
+      "ngfwPacketInspection",
+      "dmsPrivateConnection",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.state = try container.decode(Step.State.self, forKey: .state)
-    self.causesDrop = try container.decode(Swift.Bool.self, forKey: .causesDrop)
-    self.projectId = try container.decode(Swift.String.self, forKey: .projectId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Step.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .causesDrop) {
+      self.causesDrop = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
 
     var stepInfo: OneOf_StepInfo? = nil
     let stepInfoCheckAndSet = {
@@ -281,6 +342,10 @@ public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try stepInfoCheckAndSet(.dmsPrivateConnection(dmsPrivateConnection))
     }
     self.stepInfo = stepInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -369,6 +434,9 @@ public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dmsPrivateConnection(let value):
         try container.encode(value, forKey: .dmsPrivateConnection)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

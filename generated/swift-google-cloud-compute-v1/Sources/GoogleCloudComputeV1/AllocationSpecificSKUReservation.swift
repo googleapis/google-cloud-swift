@@ -47,6 +47,8 @@
     ///       - global/instanceTemplates/instanceTemplate
     public var sourceInstanceTemplate: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllocationSpecificSKUReservation`.
     public init() {}
 
@@ -61,6 +63,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let assuredCount = CodingKeys(stringValue: "assuredCount")
+      static let count = CodingKeys(stringValue: "count")
+      static let inUseCount = CodingKeys(stringValue: "inUseCount")
+      static let instanceProperties = CodingKeys(stringValue: "instanceProperties")
+      static let sourceInstanceTemplate = CodingKeys(stringValue: "sourceInstanceTemplate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "assuredCount",
+        "count",
+        "inUseCount",
+        "instanceProperties",
+        "sourceInstanceTemplate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.assuredCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .assuredCount)
+      self.count = try container.decodeIfPresent(Swift.Int64.self, forKey: .count)
+      self.inUseCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .inUseCount)
+      self.instanceProperties = try container.decodeIfPresent(
+        AllocationSpecificSKUAllocationReservedInstanceProperties.self, forKey: .instanceProperties)
+      self.sourceInstanceTemplate = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceInstanceTemplate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.assuredCount, forKey: .assuredCount)
+      try container.encodeIfPresent(self.count, forKey: .count)
+      try container.encodeIfPresent(self.inUseCount, forKey: .inUseCount)
+      try container.encodeIfPresent(self.instanceProperties, forKey: .instanceProperties)
+      try container.encodeIfPresent(self.sourceInstanceTemplate, forKey: .sourceInstanceTemplate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

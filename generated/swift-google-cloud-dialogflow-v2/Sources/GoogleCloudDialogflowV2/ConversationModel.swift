@@ -59,6 +59,8 @@
     /// Must match the metadata type of the dataset used to train the model.
     public var modelMetadata: OneOf_ModelMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationModel`.
     public init() {}
 
@@ -75,28 +77,57 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case createTime = "createTime"
-      case datasets = "datasets"
-      case state = "state"
-      case languageCode = "languageCode"
-      case articleSuggestionModelMetadata = "articleSuggestionModelMetadata"
-      case smartReplyModelMetadata = "smartReplyModelMetadata"
-      case satisfiesPzs = "satisfiesPzs"
-      case satisfiesPzi = "satisfiesPzi"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let datasets = CodingKeys(stringValue: "datasets")
+      static let state = CodingKeys(stringValue: "state")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let articleSuggestionModelMetadata = CodingKeys(
+        stringValue: "articleSuggestionModelMetadata")
+      static let smartReplyModelMetadata = CodingKeys(stringValue: "smartReplyModelMetadata")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "createTime",
+        "datasets",
+        "state",
+        "languageCode",
+        "articleSuggestionModelMetadata",
+        "smartReplyModelMetadata",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-      self.datasets = try container.decode([InputDataset].self, forKey: .datasets)
-      self.state = try container.decode(ConversationModel.State.self, forKey: .state)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+      if let value = try container.decodeIfPresent([InputDataset].self, forKey: .datasets) {
+        self.datasets = value
+      }
+      if let value = try container.decodeIfPresent(ConversationModel.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
@@ -122,18 +153,22 @@
         try modelMetadataCheckAndSet(.smartReplyModelMetadata(smartReplyModelMetadata))
       }
       self.modelMetadata = modelMetadata
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encode(self.datasets, forKey: .datasets)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
       if let choice = self.modelMetadata {
         switch choice {
@@ -142,6 +177,9 @@
         case .smartReplyModelMetadata(let value):
           try container.encode(value, forKey: .smartReplyModelMetadata)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

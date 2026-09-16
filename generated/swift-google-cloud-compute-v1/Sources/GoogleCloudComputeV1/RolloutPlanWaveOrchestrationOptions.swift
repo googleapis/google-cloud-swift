@@ -38,6 +38,8 @@
     /// parallel.
     public var maxConcurrentResourcesPerLocation: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutPlanWaveOrchestrationOptions`.
     public init() {}
 
@@ -52,6 +54,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let delays = CodingKeys(stringValue: "delays")
+      static let maxConcurrentLocations = CodingKeys(stringValue: "maxConcurrentLocations")
+      static let maxConcurrentResourcesPerLocation = CodingKeys(
+        stringValue: "maxConcurrentResourcesPerLocation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "delays",
+        "maxConcurrentLocations",
+        "maxConcurrentResourcesPerLocation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RolloutPlanWaveOrchestrationOptionsDelay].self, forKey: .delays)
+      {
+        self.delays = value
+      }
+      self.maxConcurrentLocations = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxConcurrentLocations)
+      self.maxConcurrentResourcesPerLocation = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxConcurrentResourcesPerLocation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.delays, forKey: .delays)
+      try container.encodeIfPresent(self.maxConcurrentLocations, forKey: .maxConcurrentLocations)
+      try container.encodeIfPresent(
+        self.maxConcurrentResourcesPerLocation, forKey: .maxConcurrentResourcesPerLocation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

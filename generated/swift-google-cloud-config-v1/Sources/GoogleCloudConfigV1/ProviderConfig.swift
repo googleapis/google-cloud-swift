@@ -24,6 +24,8 @@ public struct ProviderConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. ProviderSource specifies the source type of the provider.
   public var sourceType: ProviderConfig.ProviderSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProviderConfig`.
   public init() {}
 
@@ -38,6 +40,37 @@ public struct ProviderConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceType"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.sourceType = try container.decodeIfPresent(
+      ProviderConfig.ProviderSource.self, forKey: .sourceType)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.sourceType, forKey: .sourceType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// ProviderSource represents the source type of the provider.

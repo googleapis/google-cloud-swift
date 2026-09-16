@@ -110,6 +110,8 @@ public struct TranslateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Optional. If true, enable auto rotation correction in DVS.
   public var enableRotationCorrection: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslateDocumentRequest`.
   public init() {}
 
@@ -124,6 +126,108 @@ public struct TranslateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let sourceLanguageCode = CodingKeys(stringValue: "sourceLanguageCode")
+    static let targetLanguageCode = CodingKeys(stringValue: "targetLanguageCode")
+    static let documentInputConfig = CodingKeys(stringValue: "documentInputConfig")
+    static let documentOutputConfig = CodingKeys(stringValue: "documentOutputConfig")
+    static let model = CodingKeys(stringValue: "model")
+    static let glossaryConfig = CodingKeys(stringValue: "glossaryConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let customizedAttribution = CodingKeys(stringValue: "customizedAttribution")
+    static let isTranslateNativePdfOnly = CodingKeys(stringValue: "isTranslateNativePdfOnly")
+    static let enableShadowRemovalNativePdf = CodingKeys(
+      stringValue: "enableShadowRemovalNativePdf")
+    static let enableRotationCorrection = CodingKeys(stringValue: "enableRotationCorrection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "sourceLanguageCode",
+      "targetLanguageCode",
+      "documentInputConfig",
+      "documentOutputConfig",
+      "model",
+      "glossaryConfig",
+      "labels",
+      "customizedAttribution",
+      "isTranslateNativePdfOnly",
+      "enableShadowRemovalNativePdf",
+      "enableRotationCorrection",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguageCode) {
+      self.sourceLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLanguageCode) {
+      self.targetLanguageCode = value
+    }
+    self.documentInputConfig = try container.decodeIfPresent(
+      DocumentInputConfig.self, forKey: .documentInputConfig)
+    self.documentOutputConfig = try container.decodeIfPresent(
+      DocumentOutputConfig.self, forKey: .documentOutputConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    self.glossaryConfig = try container.decodeIfPresent(
+      TranslateTextGlossaryConfig.self, forKey: .glossaryConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customizedAttribution)
+    {
+      self.customizedAttribution = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isTranslateNativePdfOnly)
+    {
+      self.isTranslateNativePdfOnly = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableShadowRemovalNativePdf)
+    {
+      self.enableShadowRemovalNativePdf = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRotationCorrection)
+    {
+      self.enableRotationCorrection = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.sourceLanguageCode, forKey: .sourceLanguageCode)
+    try container.encode(self.targetLanguageCode, forKey: .targetLanguageCode)
+    try container.encodeIfPresent(self.documentInputConfig, forKey: .documentInputConfig)
+    try container.encodeIfPresent(self.documentOutputConfig, forKey: .documentOutputConfig)
+    try container.encode(self.model, forKey: .model)
+    try container.encodeIfPresent(self.glossaryConfig, forKey: .glossaryConfig)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.customizedAttribution, forKey: .customizedAttribution)
+    try container.encode(self.isTranslateNativePdfOnly, forKey: .isTranslateNativePdfOnly)
+    try container.encode(self.enableShadowRemovalNativePdf, forKey: .enableShadowRemovalNativePdf)
+    try container.encode(self.enableRotationCorrection, forKey: .enableRotationCorrection)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

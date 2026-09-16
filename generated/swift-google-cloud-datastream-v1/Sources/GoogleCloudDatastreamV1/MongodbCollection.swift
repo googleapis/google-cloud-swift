@@ -27,6 +27,8 @@ public struct MongodbCollection: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Fields in the collection.
   public var fields: [MongodbField] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MongodbCollection`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct MongodbCollection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let collection = CodingKeys(stringValue: "collection")
+    static let fields = CodingKeys(stringValue: "fields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "collection",
+      "fields",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collection) {
+      self.collection = value
+    }
+    if let value = try container.decodeIfPresent([MongodbField].self, forKey: .fields) {
+      self.fields = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.collection, forKey: .collection)
+    try container.encode(self.fields, forKey: .fields)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

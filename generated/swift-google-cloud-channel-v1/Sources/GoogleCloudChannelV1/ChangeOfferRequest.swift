@@ -70,6 +70,8 @@ public struct ChangeOfferRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// consistent between quoting the offer and placing the order.
   public var priceReferenceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChangeOfferRequest`.
   public init() {}
 
@@ -84,6 +86,74 @@ public struct ChangeOfferRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let offer = CodingKeys(stringValue: "offer")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let purchaseOrderId = CodingKeys(stringValue: "purchaseOrderId")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let billingAccount = CodingKeys(stringValue: "billingAccount")
+    static let priceReferenceId = CodingKeys(stringValue: "priceReferenceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "offer",
+      "parameters",
+      "purchaseOrderId",
+      "requestId",
+      "billingAccount",
+      "priceReferenceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offer) {
+      self.offer = value
+    }
+    if let value = try container.decodeIfPresent([Parameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .purchaseOrderId) {
+      self.purchaseOrderId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .billingAccount) {
+      self.billingAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .priceReferenceId) {
+      self.priceReferenceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.offer, forKey: .offer)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encode(self.purchaseOrderId, forKey: .purchaseOrderId)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.billingAccount, forKey: .billingAccount)
+    try container.encode(self.priceReferenceId, forKey: .priceReferenceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

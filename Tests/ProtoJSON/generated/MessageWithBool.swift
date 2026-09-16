@@ -39,6 +39,8 @@ public struct MessageWithBool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Test bool as map key and value.
   public var mapKeyValue: [Swift.Bool: Swift.Bool] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageWithBool`.
   public init() {}
 
@@ -55,23 +57,45 @@ public struct MessageWithBool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case singular = "singular"
-    case option = "option"
-    case repeated = "repeated"
-    case mapValue = "mapValue"
-    case mapKey = "mapKey"
-    case mapKeyValue = "mapKeyValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singular = CodingKeys(stringValue: "singular")
+    static let option = CodingKeys(stringValue: "option")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let mapValue = CodingKeys(stringValue: "mapValue")
+    static let mapKey = CodingKeys(stringValue: "mapKey")
+    static let mapKeyValue = CodingKeys(stringValue: "mapKeyValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singular",
+      "option",
+      "repeated",
+      "mapValue",
+      "mapKey",
+      "mapKeyValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decode(Swift.Bool.self, forKey: .singular)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .singular) {
+      self.singular = value
+    }
     self.option = try container.decodeIfPresent(Swift.Bool.self, forKey: .option)
-    self.repeated = try container.decode([Swift.Bool].self, forKey: .repeated)
-    self.mapValue = try container.decode([Swift.String: Swift.Bool].self, forKey: .mapValue)
-    self.mapKey = try { () throws in
-      let stringKeyed = try container.decode([Swift.String: Swift.String].self, forKey: .mapKey)
+    if let value = try container.decodeIfPresent([Swift.Bool].self, forKey: .repeated) {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.Bool].self, forKey: .mapValue)
+    {
+      self.mapValue = value
+    }
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .mapKey)
+    {
       let tuples = try stringKeyed.lazy.map { (key, value) throws -> (Swift.Bool, Swift.String) in
         guard let newKey = Swift.Bool(key) else {
           throw DecodingError.typeMismatch(
@@ -82,10 +106,11 @@ public struct MessageWithBool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
-    self.mapKeyValue = try { () throws in
-      let stringKeyed = try container.decode([Swift.String: Swift.Bool].self, forKey: .mapKeyValue)
+      self.mapKey = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: Swift.Bool].self, forKey: .mapKeyValue)
+    {
       let tuples = try stringKeyed.lazy.map { (key, value) throws -> (Swift.Bool, Swift.Bool) in
         guard let newKey = Swift.Bool(key) else {
           throw DecodingError.typeMismatch(
@@ -96,14 +121,18 @@ public struct MessageWithBool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
+      self.mapKeyValue = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.singular, forKey: .singular)
-    try container.encode(self.option, forKey: .option)
+    try container.encodeIfPresent(self.option, forKey: .option)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.mapValue, forKey: .mapValue)
     do {
@@ -117,6 +146,9 @@ public struct MessageWithBool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         uniqueKeysWithValues: self.mapKeyValue.lazy.map { (Swift.String($0), $1) }
       )
       try container.encode(stringKeyed, forKey: .mapKeyValue)
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

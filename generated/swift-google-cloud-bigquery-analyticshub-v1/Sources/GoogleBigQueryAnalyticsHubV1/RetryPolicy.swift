@@ -40,6 +40,8 @@ public struct RetryPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// seconds.
   public var maximumBackoff: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RetryPolicy`.
   public init() {}
 
@@ -54,6 +56,42 @@ public struct RetryPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let minimumBackoff = CodingKeys(stringValue: "minimumBackoff")
+    static let maximumBackoff = CodingKeys(stringValue: "maximumBackoff")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "minimumBackoff",
+      "maximumBackoff",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.minimumBackoff = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .minimumBackoff)
+    self.maximumBackoff = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maximumBackoff)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.minimumBackoff, forKey: .minimumBackoff)
+    try container.encodeIfPresent(self.maximumBackoff, forKey: .maximumBackoff)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

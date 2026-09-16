@@ -57,6 +57,8 @@ public struct Cve: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Date of the earliest known exploitation.
   public var firstExploitationDate: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Cve`.
   public init() {}
 
@@ -71,6 +73,90 @@ public struct Cve: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let references = CodingKeys(stringValue: "references")
+    static let cvssv3 = CodingKeys(stringValue: "cvssv3")
+    static let upstreamFixAvailable = CodingKeys(stringValue: "upstreamFixAvailable")
+    static let impact = CodingKeys(stringValue: "impact")
+    static let exploitationActivity = CodingKeys(stringValue: "exploitationActivity")
+    static let observedInTheWild = CodingKeys(stringValue: "observedInTheWild")
+    static let zeroDay = CodingKeys(stringValue: "zeroDay")
+    static let exploitReleaseDate = CodingKeys(stringValue: "exploitReleaseDate")
+    static let firstExploitationDate = CodingKeys(stringValue: "firstExploitationDate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "references",
+      "cvssv3",
+      "upstreamFixAvailable",
+      "impact",
+      "exploitationActivity",
+      "observedInTheWild",
+      "zeroDay",
+      "exploitReleaseDate",
+      "firstExploitationDate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([Reference].self, forKey: .references) {
+      self.references = value
+    }
+    self.cvssv3 = try container.decodeIfPresent(Cvssv3.self, forKey: .cvssv3)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .upstreamFixAvailable) {
+      self.upstreamFixAvailable = value
+    }
+    if let value = try container.decodeIfPresent(Cve.RiskRating.self, forKey: .impact) {
+      self.impact = value
+    }
+    if let value = try container.decodeIfPresent(
+      Cve.ExploitationActivity.self, forKey: .exploitationActivity)
+    {
+      self.exploitationActivity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .observedInTheWild) {
+      self.observedInTheWild = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .zeroDay) {
+      self.zeroDay = value
+    }
+    self.exploitReleaseDate = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .exploitReleaseDate)
+    self.firstExploitationDate = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .firstExploitationDate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.references, forKey: .references)
+    try container.encodeIfPresent(self.cvssv3, forKey: .cvssv3)
+    try container.encode(self.upstreamFixAvailable, forKey: .upstreamFixAvailable)
+    try container.encode(self.impact, forKey: .impact)
+    try container.encode(self.exploitationActivity, forKey: .exploitationActivity)
+    try container.encode(self.observedInTheWild, forKey: .observedInTheWild)
+    try container.encode(self.zeroDay, forKey: .zeroDay)
+    try container.encodeIfPresent(self.exploitReleaseDate, forKey: .exploitReleaseDate)
+    try container.encodeIfPresent(self.firstExploitationDate, forKey: .firstExploitationDate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible values of impact of the vulnerability if it was to be

@@ -49,6 +49,8 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// unreachable.
   public var returnPartialSuccess: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListBucketsRequest`.
   public init() {}
 
@@ -65,23 +67,51 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case `prefix` = "prefix"
-    case readMask = "readMask"
-    case returnPartialSuccess = "returnPartialSuccess"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let `prefix` = CodingKeys(stringValue: "prefix")
+    static let readMask = CodingKeys(stringValue: "readMask")
+    static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "pageSize",
+      "pageToken",
+      "prefix",
+      "readMask",
+      "returnPartialSuccess",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
-    self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+      self.`prefix` = value
+    }
     self.readMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .readMask)
-    self.returnPartialSuccess = try container.decode(Swift.Bool.self, forKey: .returnPartialSuccess)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnPartialSuccess) {
+      self.returnPartialSuccess = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,8 +120,11 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.`prefix`, forKey: .`prefix`)
-    try container.encode(self.readMask, forKey: .readMask)
+    try container.encodeIfPresent(self.readMask, forKey: .readMask)
     try container.encode(self.returnPartialSuccess, forKey: .returnPartialSuccess)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

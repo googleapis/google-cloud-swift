@@ -37,6 +37,8 @@ public struct PiAndJailbreakFilterResult: Codable, Equatable, GoogleCloudWKT._An
   /// Confidence level identified for Prompt injection and Jailbreak.
   public var confidenceLevel: DetectionConfidenceLevel = DetectionConfidenceLevel()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PiAndJailbreakFilterResult`.
   public init() {}
 
@@ -51,6 +53,59 @@ public struct PiAndJailbreakFilterResult: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let messageItems = CodingKeys(stringValue: "messageItems")
+    static let matchState = CodingKeys(stringValue: "matchState")
+    static let confidenceLevel = CodingKeys(stringValue: "confidenceLevel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "executionState",
+      "messageItems",
+      "matchState",
+      "confidenceLevel",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FilterExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent([MessageItem].self, forKey: .messageItems) {
+      self.messageItems = value
+    }
+    if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .matchState) {
+      self.matchState = value
+    }
+    if let value = try container.decodeIfPresent(
+      DetectionConfidenceLevel.self, forKey: .confidenceLevel)
+    {
+      self.confidenceLevel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.messageItems, forKey: .messageItems)
+    try container.encode(self.matchState, forKey: .matchState)
+    try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -55,6 +55,8 @@
 
     public var syncConfig: OneOf_SyncConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlInstancesVerifyExternalSyncSettingsRequest`.
     public init() {}
 
@@ -71,34 +73,70 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case instance = "instance"
-      case project = "project"
-      case verifyConnectionOnly = "verifyConnectionOnly"
-      case syncMode = "syncMode"
-      case verifyReplicationOnly = "verifyReplicationOnly"
-      case mysqlSyncConfig = "mysqlSyncConfig"
-      case migrationType = "migrationType"
-      case syncParallelLevel = "syncParallelLevel"
-      case selectedObjects = "selectedObjects"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let verifyConnectionOnly = CodingKeys(stringValue: "verifyConnectionOnly")
+      static let syncMode = CodingKeys(stringValue: "syncMode")
+      static let verifyReplicationOnly = CodingKeys(stringValue: "verifyReplicationOnly")
+      static let mysqlSyncConfig = CodingKeys(stringValue: "mysqlSyncConfig")
+      static let migrationType = CodingKeys(stringValue: "migrationType")
+      static let syncParallelLevel = CodingKeys(stringValue: "syncParallelLevel")
+      static let selectedObjects = CodingKeys(stringValue: "selectedObjects")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "project",
+        "verifyConnectionOnly",
+        "syncMode",
+        "verifyReplicationOnly",
+        "mysqlSyncConfig",
+        "migrationType",
+        "syncParallelLevel",
+        "selectedObjects",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
-      self.verifyConnectionOnly = try container.decode(
-        Swift.Bool.self, forKey: .verifyConnectionOnly)
-      self.syncMode = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifyConnectionOnly) {
+        self.verifyConnectionOnly = value
+      }
+      if let value = try container.decodeIfPresent(
         SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode.self, forKey: .syncMode)
-      self.verifyReplicationOnly = try container.decode(
-        Swift.Bool.self, forKey: .verifyReplicationOnly)
-      self.migrationType = try container.decode(
+      {
+        self.syncMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifyReplicationOnly)
+      {
+        self.verifyReplicationOnly = value
+      }
+      if let value = try container.decodeIfPresent(
         SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType.self, forKey: .migrationType)
-      self.syncParallelLevel = try container.decode(
+      {
+        self.migrationType = value
+      }
+      if let value = try container.decodeIfPresent(
         ExternalSyncParallelLevel.self, forKey: .syncParallelLevel)
-      self.selectedObjects = try container.decode(
+      {
+        self.syncParallelLevel = value
+      }
+      if let value = try container.decodeIfPresent(
         [ExternalSyncSelectedObject].self, forKey: .selectedObjects)
+      {
+        self.selectedObjects = value
+      }
 
       var syncConfig: OneOf_SyncConfig? = nil
       let syncConfigCheckAndSet = {
@@ -116,6 +154,10 @@
         try syncConfigCheckAndSet(.mysqlSyncConfig(mysqlSyncConfig))
       }
       self.syncConfig = syncConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,6 +176,9 @@
         case .mysqlSyncConfig(let value):
           try container.encode(value, forKey: .mysqlSyncConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

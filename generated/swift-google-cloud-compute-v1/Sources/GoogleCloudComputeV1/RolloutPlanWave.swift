@@ -39,6 +39,8 @@
     /// Required. The validation to be performed at the end of this wave.
     public var validation: RolloutPlanWaveValidation? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutPlanWave`.
     public init() {}
 
@@ -53,6 +55,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let number = CodingKeys(stringValue: "number")
+      static let orchestrationOptions = CodingKeys(stringValue: "orchestrationOptions")
+      static let selectors = CodingKeys(stringValue: "selectors")
+      static let validation = CodingKeys(stringValue: "validation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "number",
+        "orchestrationOptions",
+        "selectors",
+        "validation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.displayName = try container.decodeIfPresent(Swift.String.self, forKey: .displayName)
+      self.number = try container.decodeIfPresent(Swift.Int64.self, forKey: .number)
+      self.orchestrationOptions = try container.decodeIfPresent(
+        RolloutPlanWaveOrchestrationOptions.self, forKey: .orchestrationOptions)
+      if let value = try container.decodeIfPresent(
+        [RolloutPlanWaveSelector].self, forKey: .selectors)
+      {
+        self.selectors = value
+      }
+      self.validation = try container.decodeIfPresent(
+        RolloutPlanWaveValidation.self, forKey: .validation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.number, forKey: .number)
+      try container.encodeIfPresent(self.orchestrationOptions, forKey: .orchestrationOptions)
+      try container.encode(self.selectors, forKey: .selectors)
+      try container.encodeIfPresent(self.validation, forKey: .validation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

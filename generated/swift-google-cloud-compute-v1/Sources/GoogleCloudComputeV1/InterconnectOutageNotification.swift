@@ -77,6 +77,8 @@
     /// deprecated in favor of the unprefixed values.
     public var state: InterconnectOutageNotification.State? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectOutageNotification`.
     public init() {}
 
@@ -91,6 +93,69 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let affectedCircuits = CodingKeys(stringValue: "affectedCircuits")
+      static let description = CodingKeys(stringValue: "description")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let issueType = CodingKeys(stringValue: "issueType")
+      static let name = CodingKeys(stringValue: "name")
+      static let source = CodingKeys(stringValue: "source")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "affectedCircuits",
+        "description",
+        "endTime",
+        "issueType",
+        "name",
+        "source",
+        "startTime",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .affectedCircuits) {
+        self.affectedCircuits = value
+      }
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.endTime = try container.decodeIfPresent(Swift.Int64.self, forKey: .endTime)
+      self.issueType = try container.decodeIfPresent(
+        InterconnectOutageNotification.IssueType.self, forKey: .issueType)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.source = try container.decodeIfPresent(
+        InterconnectOutageNotification.Source.self, forKey: .source)
+      self.startTime = try container.decodeIfPresent(Swift.Int64.self, forKey: .startTime)
+      self.state = try container.decodeIfPresent(
+        InterconnectOutageNotification.State.self, forKey: .state)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.affectedCircuits, forKey: .affectedCircuits)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.issueType, forKey: .issueType)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.source, forKey: .source)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [issueType][google.cloud.compute.v1.InterconnectOutageNotification.issueType] field.

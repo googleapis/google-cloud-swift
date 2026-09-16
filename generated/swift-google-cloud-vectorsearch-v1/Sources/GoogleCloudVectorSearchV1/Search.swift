@@ -24,6 +24,8 @@ public struct Search: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of search to perform.
   public var searchType: OneOf_SearchType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Search`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct Search: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vectorSearch = "vectorSearch"
-    case semanticSearch = "semanticSearch"
-    case textSearch = "textSearch"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vectorSearch = CodingKeys(stringValue: "vectorSearch")
+    static let semanticSearch = CodingKeys(stringValue: "semanticSearch")
+    static let textSearch = CodingKeys(stringValue: "textSearch")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vectorSearch",
+      "semanticSearch",
+      "textSearch",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +84,10 @@ public struct Search: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try searchTypeCheckAndSet(.textSearch(textSearch))
     }
     self.searchType = searchType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +102,9 @@ public struct Search: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .textSearch(let value):
         try container.encode(value, forKey: .textSearch)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

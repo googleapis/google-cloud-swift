@@ -57,6 +57,8 @@ public struct BigQueryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
   public var serviceAccountEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryConfig`.
   public init() {}
 
@@ -71,6 +73,68 @@ public struct BigQueryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let table = CodingKeys(stringValue: "table")
+    static let useTopicSchema = CodingKeys(stringValue: "useTopicSchema")
+    static let writeMetadata = CodingKeys(stringValue: "writeMetadata")
+    static let dropUnknownFields = CodingKeys(stringValue: "dropUnknownFields")
+    static let useTableSchema = CodingKeys(stringValue: "useTableSchema")
+    static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "table",
+      "useTopicSchema",
+      "writeMetadata",
+      "dropUnknownFields",
+      "useTableSchema",
+      "serviceAccountEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+      self.table = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useTopicSchema) {
+      self.useTopicSchema = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .writeMetadata) {
+      self.writeMetadata = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dropUnknownFields) {
+      self.dropUnknownFields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useTableSchema) {
+      self.useTableSchema = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail) {
+      self.serviceAccountEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.table, forKey: .table)
+    try container.encode(self.useTopicSchema, forKey: .useTopicSchema)
+    try container.encode(self.writeMetadata, forKey: .writeMetadata)
+    try container.encode(self.dropUnknownFields, forKey: .dropUnknownFields)
+    try container.encode(self.useTableSchema, forKey: .useTableSchema)
+    try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

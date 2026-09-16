@@ -61,6 +61,8 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The time at which the subscription will be purged.
   public var purgeTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SupportEventSubscription`.
   public init() {}
 
@@ -75,6 +77,80 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let pubSubTopic = CodingKeys(stringValue: "pubSubTopic")
+    static let state = CodingKeys(stringValue: "state")
+    static let failureReason = CodingKeys(stringValue: "failureReason")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let purgeTime = CodingKeys(stringValue: "purgeTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "pubSubTopic",
+      "state",
+      "failureReason",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "purgeTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pubSubTopic) {
+      self.pubSubTopic = value
+    }
+    if let value = try container.decodeIfPresent(
+      SupportEventSubscription.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      SupportEventSubscription.FailureReason.self, forKey: .failureReason)
+    {
+      self.failureReason = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.purgeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .purgeTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.pubSubTopic, forKey: .pubSubTopic)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.failureReason, forKey: .failureReason)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.purgeTime, forKey: .purgeTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the subscription.

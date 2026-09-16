@@ -75,6 +75,8 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Scheduler settings for standard environment.
   public var standardSchedulerSettings: StandardSchedulerSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomaticScaling`.
   public init() {}
 
@@ -89,6 +91,103 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let coolDownPeriod = CodingKeys(stringValue: "coolDownPeriod")
+    static let cpuUtilization = CodingKeys(stringValue: "cpuUtilization")
+    static let maxConcurrentRequests = CodingKeys(stringValue: "maxConcurrentRequests")
+    static let maxIdleInstances = CodingKeys(stringValue: "maxIdleInstances")
+    static let maxTotalInstances = CodingKeys(stringValue: "maxTotalInstances")
+    static let maxPendingLatency = CodingKeys(stringValue: "maxPendingLatency")
+    static let minIdleInstances = CodingKeys(stringValue: "minIdleInstances")
+    static let minTotalInstances = CodingKeys(stringValue: "minTotalInstances")
+    static let minPendingLatency = CodingKeys(stringValue: "minPendingLatency")
+    static let requestUtilization = CodingKeys(stringValue: "requestUtilization")
+    static let diskUtilization = CodingKeys(stringValue: "diskUtilization")
+    static let networkUtilization = CodingKeys(stringValue: "networkUtilization")
+    static let standardSchedulerSettings = CodingKeys(stringValue: "standardSchedulerSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "coolDownPeriod",
+      "cpuUtilization",
+      "maxConcurrentRequests",
+      "maxIdleInstances",
+      "maxTotalInstances",
+      "maxPendingLatency",
+      "minIdleInstances",
+      "minTotalInstances",
+      "minPendingLatency",
+      "requestUtilization",
+      "diskUtilization",
+      "networkUtilization",
+      "standardSchedulerSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.coolDownPeriod = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .coolDownPeriod)
+    self.cpuUtilization = try container.decodeIfPresent(
+      CpuUtilization.self, forKey: .cpuUtilization)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConcurrentRequests) {
+      self.maxConcurrentRequests = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxIdleInstances) {
+      self.maxIdleInstances = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxTotalInstances) {
+      self.maxTotalInstances = value
+    }
+    self.maxPendingLatency = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxPendingLatency)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minIdleInstances) {
+      self.minIdleInstances = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minTotalInstances) {
+      self.minTotalInstances = value
+    }
+    self.minPendingLatency = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .minPendingLatency)
+    self.requestUtilization = try container.decodeIfPresent(
+      RequestUtilization.self, forKey: .requestUtilization)
+    self.diskUtilization = try container.decodeIfPresent(
+      DiskUtilization.self, forKey: .diskUtilization)
+    self.networkUtilization = try container.decodeIfPresent(
+      NetworkUtilization.self, forKey: .networkUtilization)
+    self.standardSchedulerSettings = try container.decodeIfPresent(
+      StandardSchedulerSettings.self, forKey: .standardSchedulerSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.coolDownPeriod, forKey: .coolDownPeriod)
+    try container.encodeIfPresent(self.cpuUtilization, forKey: .cpuUtilization)
+    try container.encode(self.maxConcurrentRequests, forKey: .maxConcurrentRequests)
+    try container.encode(self.maxIdleInstances, forKey: .maxIdleInstances)
+    try container.encode(self.maxTotalInstances, forKey: .maxTotalInstances)
+    try container.encodeIfPresent(self.maxPendingLatency, forKey: .maxPendingLatency)
+    try container.encode(self.minIdleInstances, forKey: .minIdleInstances)
+    try container.encode(self.minTotalInstances, forKey: .minTotalInstances)
+    try container.encodeIfPresent(self.minPendingLatency, forKey: .minPendingLatency)
+    try container.encodeIfPresent(self.requestUtilization, forKey: .requestUtilization)
+    try container.encodeIfPresent(self.diskUtilization, forKey: .diskUtilization)
+    try container.encodeIfPresent(self.networkUtilization, forKey: .networkUtilization)
+    try container.encodeIfPresent(
+      self.standardSchedulerSettings, forKey: .standardSchedulerSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

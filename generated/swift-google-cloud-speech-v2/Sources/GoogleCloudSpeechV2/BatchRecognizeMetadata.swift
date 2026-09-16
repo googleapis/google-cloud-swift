@@ -27,6 +27,8 @@ public struct BatchRecognizeMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Map from provided filename to the transcription metadata for that file.
   public var transcriptionMetadata: [Swift.String: BatchRecognizeTranscriptionMetadata] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRecognizeMetadata`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct BatchRecognizeMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transcriptionMetadata = CodingKeys(stringValue: "transcriptionMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transcriptionMetadata"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: BatchRecognizeTranscriptionMetadata].self, forKey: .transcriptionMetadata)
+    {
+      self.transcriptionMetadata = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transcriptionMetadata, forKey: .transcriptionMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

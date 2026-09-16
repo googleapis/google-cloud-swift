@@ -44,6 +44,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only populated if the operation targeted a ManagedZone (output only).
   public var zoneContext: OperationManagedZoneContext? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Operation`.
   public init() {}
 
@@ -58,6 +60,66 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dnsKeyContext = CodingKeys(stringValue: "dnsKeyContext")
+    static let id = CodingKeys(stringValue: "id")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let status = CodingKeys(stringValue: "status")
+    static let type = CodingKeys(stringValue: "type")
+    static let user = CodingKeys(stringValue: "user")
+    static let zoneContext = CodingKeys(stringValue: "zoneContext")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dnsKeyContext",
+      "id",
+      "kind",
+      "startTime",
+      "status",
+      "type",
+      "user",
+      "zoneContext",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.dnsKeyContext = try container.decodeIfPresent(
+      OperationDnsKeyContext.self, forKey: .dnsKeyContext)
+    self.id = try container.decodeIfPresent(Swift.String.self, forKey: .id)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
+    self.status = try container.decodeIfPresent(Operation.Status.self, forKey: .status)
+    self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
+    self.user = try container.decodeIfPresent(Swift.String.self, forKey: .user)
+    self.zoneContext = try container.decodeIfPresent(
+      OperationManagedZoneContext.self, forKey: .zoneContext)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.dnsKeyContext, forKey: .dnsKeyContext)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encodeIfPresent(self.user, forKey: .user)
+    try container.encodeIfPresent(self.zoneContext, forKey: .zoneContext)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [status][.Operation.status] field.

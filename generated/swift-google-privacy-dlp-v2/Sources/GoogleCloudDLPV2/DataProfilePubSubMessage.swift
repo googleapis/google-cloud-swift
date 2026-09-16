@@ -36,6 +36,8 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The event that caused the Pub/Sub message to be sent.
   public var event: DataProfileAction.EventType = DataProfileAction.EventType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProfilePubSubMessage`.
   public init() {}
 
@@ -50,6 +52,47 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let profile = CodingKeys(stringValue: "profile")
+    static let fileStoreProfile = CodingKeys(stringValue: "fileStoreProfile")
+    static let event = CodingKeys(stringValue: "event")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "profile",
+      "fileStoreProfile",
+      "event",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.profile = try container.decodeIfPresent(TableDataProfile.self, forKey: .profile)
+    self.fileStoreProfile = try container.decodeIfPresent(
+      FileStoreDataProfile.self, forKey: .fileStoreProfile)
+    if let value = try container.decodeIfPresent(DataProfileAction.EventType.self, forKey: .event) {
+      self.event = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.profile, forKey: .profile)
+    try container.encodeIfPresent(self.fileStoreProfile, forKey: .fileStoreProfile)
+    try container.encode(self.event, forKey: .event)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

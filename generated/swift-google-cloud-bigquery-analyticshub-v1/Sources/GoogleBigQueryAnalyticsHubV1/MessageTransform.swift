@@ -33,6 +33,8 @@ public struct MessageTransform: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of transform to apply to messages.
   public var transform: OneOf_Transform? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageTransform`.
   public init() {}
 
@@ -49,16 +51,31 @@ public struct MessageTransform: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case javascriptUdf = "javascriptUdf"
-    case enabled = "enabled"
-    case disabled = "disabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let javascriptUdf = CodingKeys(stringValue: "javascriptUdf")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let disabled = CodingKeys(stringValue: "disabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "javascriptUdf",
+      "enabled",
+      "disabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
 
     var transform: OneOf_Transform? = nil
     let transformCheckAndSet = {
@@ -76,6 +93,10 @@ public struct MessageTransform: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try transformCheckAndSet(.javascriptUdf(javascriptUdf))
     }
     self.transform = transform
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +109,9 @@ public struct MessageTransform: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .javascriptUdf(let value):
         try container.encode(value, forKey: .javascriptUdf)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

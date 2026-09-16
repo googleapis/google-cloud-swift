@@ -31,6 +31,8 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The connection error that occurred if any
   public var connectionError: EkmConnection.ConnectionError? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EkmConnection`.
   public init() {}
 
@@ -47,6 +49,51 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectionName = CodingKeys(stringValue: "connectionName")
+    static let connectionState = CodingKeys(stringValue: "connectionState")
+    static let connectionError = CodingKeys(stringValue: "connectionError")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectionName",
+      "connectionState",
+      "connectionError",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionName) {
+      self.connectionName = value
+    }
+    if let value = try container.decodeIfPresent(
+      EkmConnection.ConnectionState.self, forKey: .connectionState)
+    {
+      self.connectionState = value
+    }
+    self.connectionError = try container.decodeIfPresent(
+      EkmConnection.ConnectionError.self, forKey: .connectionError)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.connectionName, forKey: .connectionName)
+    try container.encode(self.connectionState, forKey: .connectionState)
+    try container.encodeIfPresent(self.connectionError, forKey: .connectionError)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Information around the error that occurred if the connection state is
   /// anything other than available or unspecified
   public struct ConnectionError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -57,6 +104,8 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The error message for the error
     public var errorMessage: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ConnectionError`.
     public init() {}
@@ -72,6 +121,44 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let errorDomain = CodingKeys(stringValue: "errorDomain")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "errorDomain",
+        "errorMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorDomain) {
+        self.errorDomain = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.errorDomain, forKey: .errorDomain)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

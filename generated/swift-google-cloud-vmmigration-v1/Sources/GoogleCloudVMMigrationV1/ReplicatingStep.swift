@@ -35,6 +35,8 @@ public struct ReplicatingStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// second.
   public var lastThirtyMinutesAverageBytesPerSecond: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplicatingStep`.
   public init() {}
 
@@ -49,6 +51,64 @@ public struct ReplicatingStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalBytes = CodingKeys(stringValue: "totalBytes")
+    static let replicatedBytes = CodingKeys(stringValue: "replicatedBytes")
+    static let lastTwoMinutesAverageBytesPerSecond = CodingKeys(
+      stringValue: "lastTwoMinutesAverageBytesPerSecond")
+    static let lastThirtyMinutesAverageBytesPerSecond = CodingKeys(
+      stringValue: "lastThirtyMinutesAverageBytesPerSecond")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalBytes",
+      "replicatedBytes",
+      "lastTwoMinutesAverageBytesPerSecond",
+      "lastThirtyMinutesAverageBytesPerSecond",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBytes) {
+      self.totalBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .replicatedBytes) {
+      self.replicatedBytes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .lastTwoMinutesAverageBytesPerSecond)
+    {
+      self.lastTwoMinutesAverageBytesPerSecond = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .lastThirtyMinutesAverageBytesPerSecond)
+    {
+      self.lastThirtyMinutesAverageBytesPerSecond = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalBytes, forKey: .totalBytes)
+    try container.encode(self.replicatedBytes, forKey: .replicatedBytes)
+    try container.encode(
+      self.lastTwoMinutesAverageBytesPerSecond, forKey: .lastTwoMinutesAverageBytesPerSecond)
+    try container.encode(
+      self.lastThirtyMinutesAverageBytesPerSecond, forKey: .lastThirtyMinutesAverageBytesPerSecond)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of transformation
   public var transformation: OneOf_Transformation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeidentifyConfig`.
   public init() {}
 
@@ -44,11 +46,23 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case infoTypeTransformations = "infoTypeTransformations"
-    case recordTransformations = "recordTransformations"
-    case imageTransformations = "imageTransformations"
-    case transformationErrorHandling = "transformationErrorHandling"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoTypeTransformations = CodingKeys(stringValue: "infoTypeTransformations")
+    static let recordTransformations = CodingKeys(stringValue: "recordTransformations")
+    static let imageTransformations = CodingKeys(stringValue: "imageTransformations")
+    static let transformationErrorHandling = CodingKeys(stringValue: "transformationErrorHandling")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoTypeTransformations",
+      "recordTransformations",
+      "imageTransformations",
+      "transformationErrorHandling",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -82,11 +96,16 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try transformationCheckAndSet(.imageTransformations(imageTransformations))
     }
     self.transformation = transformation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.transformationErrorHandling, forKey: .transformationErrorHandling)
+    try container.encodeIfPresent(
+      self.transformationErrorHandling, forKey: .transformationErrorHandling)
 
     if let choice = self.transformation {
       switch choice {
@@ -97,6 +116,9 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .imageTransformations(let value):
         try container.encode(value, forKey: .imageTransformations)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

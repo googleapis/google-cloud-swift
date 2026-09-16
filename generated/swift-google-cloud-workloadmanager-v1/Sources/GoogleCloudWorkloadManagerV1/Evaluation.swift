@@ -77,6 +77,8 @@ public struct Evaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The key will be used for CMEK encryption of the evaluation resource.
   public var kmsKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Evaluation`.
   public init() {}
 
@@ -91,6 +93,106 @@ public struct Evaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let resourceFilter = CodingKeys(stringValue: "resourceFilter")
+    static let ruleNames = CodingKeys(stringValue: "ruleNames")
+    static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let schedule = CodingKeys(stringValue: "schedule")
+    static let customRulesBucket = CodingKeys(stringValue: "customRulesBucket")
+    static let evaluationType = CodingKeys(stringValue: "evaluationType")
+    static let bigQueryDestination = CodingKeys(stringValue: "bigQueryDestination")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "resourceFilter",
+      "ruleNames",
+      "resourceStatus",
+      "createTime",
+      "updateTime",
+      "labels",
+      "schedule",
+      "customRulesBucket",
+      "evaluationType",
+      "bigQueryDestination",
+      "kmsKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.resourceFilter = try container.decodeIfPresent(
+      ResourceFilter.self, forKey: .resourceFilter)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ruleNames) {
+      self.ruleNames = value
+    }
+    self.resourceStatus = try container.decodeIfPresent(
+      ResourceStatus.self, forKey: .resourceStatus)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.schedule = try container.decodeIfPresent(Swift.String.self, forKey: .schedule)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customRulesBucket) {
+      self.customRulesBucket = value
+    }
+    if let value = try container.decodeIfPresent(
+      Evaluation.EvaluationType.self, forKey: .evaluationType)
+    {
+      self.evaluationType = value
+    }
+    self.bigQueryDestination = try container.decodeIfPresent(
+      BigQueryDestination.self, forKey: .bigQueryDestination)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.resourceFilter, forKey: .resourceFilter)
+    try container.encode(self.ruleNames, forKey: .ruleNames)
+    try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.schedule, forKey: .schedule)
+    try container.encode(self.customRulesBucket, forKey: .customRulesBucket)
+    try container.encode(self.evaluationType, forKey: .evaluationType)
+    try container.encodeIfPresent(self.bigQueryDestination, forKey: .bigQueryDestination)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible types of workload evaluations like SAP, SQL Server, etc.

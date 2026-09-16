@@ -35,6 +35,8 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// is available in the given location.
   public var searchApiAvailable: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationMetadata`.
   public init() {}
 
@@ -49,6 +51,56 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let standardEnvironmentAvailable = CodingKeys(
+      stringValue: "standardEnvironmentAvailable")
+    static let flexibleEnvironmentAvailable = CodingKeys(
+      stringValue: "flexibleEnvironmentAvailable")
+    static let searchApiAvailable = CodingKeys(stringValue: "searchApiAvailable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "standardEnvironmentAvailable",
+      "flexibleEnvironmentAvailable",
+      "searchApiAvailable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .standardEnvironmentAvailable)
+    {
+      self.standardEnvironmentAvailable = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .flexibleEnvironmentAvailable)
+    {
+      self.flexibleEnvironmentAvailable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .searchApiAvailable) {
+      self.searchApiAvailable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.standardEnvironmentAvailable, forKey: .standardEnvironmentAvailable)
+    try container.encode(self.flexibleEnvironmentAvailable, forKey: .flexibleEnvironmentAvailable)
+    try container.encode(self.searchApiAvailable, forKey: .searchApiAvailable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

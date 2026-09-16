@@ -147,6 +147,8 @@ public struct Api: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// not a directory.
   public var apiTechnicalRequirements: AttributeValues? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Api`.
   public init() {}
 
@@ -161,6 +163,136 @@ public struct Api: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let versions = CodingKeys(stringValue: "versions")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let targetUser = CodingKeys(stringValue: "targetUser")
+    static let team = CodingKeys(stringValue: "team")
+    static let businessUnit = CodingKeys(stringValue: "businessUnit")
+    static let maturityLevel = CodingKeys(stringValue: "maturityLevel")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let apiStyle = CodingKeys(stringValue: "apiStyle")
+    static let selectedVersion = CodingKeys(stringValue: "selectedVersion")
+    static let apiRequirements = CodingKeys(stringValue: "apiRequirements")
+    static let fingerprint = CodingKeys(stringValue: "fingerprint")
+    static let sourceMetadata = CodingKeys(stringValue: "sourceMetadata")
+    static let apiFunctionalRequirements = CodingKeys(stringValue: "apiFunctionalRequirements")
+    static let apiTechnicalRequirements = CodingKeys(stringValue: "apiTechnicalRequirements")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "documentation",
+      "owner",
+      "versions",
+      "createTime",
+      "updateTime",
+      "targetUser",
+      "team",
+      "businessUnit",
+      "maturityLevel",
+      "attributes",
+      "apiStyle",
+      "selectedVersion",
+      "apiRequirements",
+      "fingerprint",
+      "sourceMetadata",
+      "apiFunctionalRequirements",
+      "apiTechnicalRequirements",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.documentation = try container.decodeIfPresent(Documentation.self, forKey: .documentation)
+    self.owner = try container.decodeIfPresent(Owner.self, forKey: .owner)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .versions) {
+      self.versions = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.targetUser = try container.decodeIfPresent(AttributeValues.self, forKey: .targetUser)
+    self.team = try container.decodeIfPresent(AttributeValues.self, forKey: .team)
+    self.businessUnit = try container.decodeIfPresent(AttributeValues.self, forKey: .businessUnit)
+    self.maturityLevel = try container.decodeIfPresent(AttributeValues.self, forKey: .maturityLevel)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AttributeValues].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    self.apiStyle = try container.decodeIfPresent(AttributeValues.self, forKey: .apiStyle)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectedVersion) {
+      self.selectedVersion = value
+    }
+    self.apiRequirements = try container.decodeIfPresent(
+      AttributeValues.self, forKey: .apiRequirements)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
+      self.fingerprint = value
+    }
+    if let value = try container.decodeIfPresent([SourceMetadata].self, forKey: .sourceMetadata) {
+      self.sourceMetadata = value
+    }
+    self.apiFunctionalRequirements = try container.decodeIfPresent(
+      AttributeValues.self, forKey: .apiFunctionalRequirements)
+    self.apiTechnicalRequirements = try container.decodeIfPresent(
+      AttributeValues.self, forKey: .apiTechnicalRequirements)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
+    try container.encodeIfPresent(self.owner, forKey: .owner)
+    try container.encode(self.versions, forKey: .versions)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.targetUser, forKey: .targetUser)
+    try container.encodeIfPresent(self.team, forKey: .team)
+    try container.encodeIfPresent(self.businessUnit, forKey: .businessUnit)
+    try container.encodeIfPresent(self.maturityLevel, forKey: .maturityLevel)
+    try container.encode(self.attributes, forKey: .attributes)
+    try container.encodeIfPresent(self.apiStyle, forKey: .apiStyle)
+    try container.encode(self.selectedVersion, forKey: .selectedVersion)
+    try container.encodeIfPresent(self.apiRequirements, forKey: .apiRequirements)
+    try container.encode(self.fingerprint, forKey: .fingerprint)
+    try container.encode(self.sourceMetadata, forKey: .sourceMetadata)
+    try container.encodeIfPresent(
+      self.apiFunctionalRequirements, forKey: .apiFunctionalRequirements)
+    try container.encodeIfPresent(self.apiTechnicalRequirements, forKey: .apiTechnicalRequirements)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

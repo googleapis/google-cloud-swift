@@ -216,6 +216,8 @@
     ///    - global/urlMaps/url-map
     public var urlMap: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetHttpsProxy`.
     public init() {}
 
@@ -232,25 +234,51 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case authorizationPolicy = "authorizationPolicy"
-      case certificateMap = "certificateMap"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case httpKeepAliveTimeoutSec = "httpKeepAliveTimeoutSec"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case proxyBind = "proxyBind"
-      case quicOverride = "quicOverride"
-      case region = "region"
-      case selfLink = "selfLink"
-      case serverTlsPolicy = "serverTlsPolicy"
-      case sslCertificates = "sslCertificates"
-      case sslPolicy = "sslPolicy"
-      case tlsEarlyData = "tlsEarlyData"
-      case urlMap = "urlMap"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let authorizationPolicy = CodingKeys(stringValue: "authorizationPolicy")
+      static let certificateMap = CodingKeys(stringValue: "certificateMap")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let httpKeepAliveTimeoutSec = CodingKeys(stringValue: "httpKeepAliveTimeoutSec")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let proxyBind = CodingKeys(stringValue: "proxyBind")
+      static let quicOverride = CodingKeys(stringValue: "quicOverride")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let serverTlsPolicy = CodingKeys(stringValue: "serverTlsPolicy")
+      static let sslCertificates = CodingKeys(stringValue: "sslCertificates")
+      static let sslPolicy = CodingKeys(stringValue: "sslPolicy")
+      static let tlsEarlyData = CodingKeys(stringValue: "tlsEarlyData")
+      static let urlMap = CodingKeys(stringValue: "urlMap")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "authorizationPolicy",
+        "certificateMap",
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "httpKeepAliveTimeoutSec",
+        "id",
+        "kind",
+        "name",
+        "proxyBind",
+        "quicOverride",
+        "region",
+        "selfLink",
+        "serverTlsPolicy",
+        "sslCertificates",
+        "sslPolicy",
+        "tlsEarlyData",
+        "urlMap",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -283,37 +311,46 @@
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.serverTlsPolicy = try container.decodeIfPresent(
         Swift.String.self, forKey: .serverTlsPolicy)
-      self.sslCertificates = try container.decode([Swift.String].self, forKey: .sslCertificates)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sslCertificates) {
+        self.sslCertificates = value
+      }
       self.sslPolicy = try container.decodeIfPresent(Swift.String.self, forKey: .sslPolicy)
       self.tlsEarlyData = try container.decodeIfPresent(
         TargetHttpsProxy.TlsEarlyData.self, forKey: .tlsEarlyData)
       self.urlMap = try container.decodeIfPresent(Swift.String.self, forKey: .urlMap)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.authorizationPolicy, forKey: .authorizationPolicy)
-      try container.encode(self.certificateMap, forKey: .certificateMap)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.authorizationPolicy, forKey: .authorizationPolicy)
+      try container.encodeIfPresent(self.certificateMap, forKey: .certificateMap)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.httpKeepAliveTimeoutSec, forKey: .httpKeepAliveTimeoutSec)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.proxyBind, forKey: .proxyBind)
-      try container.encode(self.quicOverride, forKey: .quicOverride)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.serverTlsPolicy, forKey: .serverTlsPolicy)
+      try container.encodeIfPresent(self.httpKeepAliveTimeoutSec, forKey: .httpKeepAliveTimeoutSec)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.proxyBind, forKey: .proxyBind)
+      try container.encodeIfPresent(self.quicOverride, forKey: .quicOverride)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.serverTlsPolicy, forKey: .serverTlsPolicy)
       try container.encode(self.sslCertificates, forKey: .sslCertificates)
-      try container.encode(self.sslPolicy, forKey: .sslPolicy)
-      try container.encode(self.tlsEarlyData, forKey: .tlsEarlyData)
-      try container.encode(self.urlMap, forKey: .urlMap)
+      try container.encodeIfPresent(self.sslPolicy, forKey: .sslPolicy)
+      try container.encodeIfPresent(self.tlsEarlyData, forKey: .tlsEarlyData)
+      try container.encodeIfPresent(self.urlMap, forKey: .urlMap)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [quicOverride][google.cloud.compute.v1.TargetHttpsProxy.quicOverride] field.

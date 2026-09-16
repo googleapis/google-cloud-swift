@@ -43,6 +43,8 @@ public struct PerformanceStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The cost of running the model deployment.
   public var cost: [Cost] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PerformanceStats`.
   public init() {}
 
@@ -57,6 +59,62 @@ public struct PerformanceStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queriesPerSecond = CodingKeys(stringValue: "queriesPerSecond")
+    static let outputTokensPerSecond = CodingKeys(stringValue: "outputTokensPerSecond")
+    static let ntpotMilliseconds = CodingKeys(stringValue: "ntpotMilliseconds")
+    static let ttftMilliseconds = CodingKeys(stringValue: "ttftMilliseconds")
+    static let cost = CodingKeys(stringValue: "cost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queriesPerSecond",
+      "outputTokensPerSecond",
+      "ntpotMilliseconds",
+      "ttftMilliseconds",
+      "cost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .queriesPerSecond) {
+      self.queriesPerSecond = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .outputTokensPerSecond) {
+      self.outputTokensPerSecond = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ntpotMilliseconds) {
+      self.ntpotMilliseconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ttftMilliseconds) {
+      self.ttftMilliseconds = value
+    }
+    if let value = try container.decodeIfPresent([Cost].self, forKey: .cost) {
+      self.cost = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.queriesPerSecond, forKey: .queriesPerSecond)
+    try container.encode(self.outputTokensPerSecond, forKey: .outputTokensPerSecond)
+    try container.encode(self.ntpotMilliseconds, forKey: .ntpotMilliseconds)
+    try container.encode(self.ttftMilliseconds, forKey: .ttftMilliseconds)
+    try container.encode(self.cost, forKey: .cost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

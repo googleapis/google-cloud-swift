@@ -23,6 +23,8 @@ public struct AnnotationValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotationValue`.
   public init() {}
 
@@ -39,17 +41,35 @@ public struct AnnotationValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case intValue = "intValue"
-    case floatValue = "floatValue"
-    case strValue = "strValue"
-    case datetimeValue = "datetimeValue"
-    case geoCoordinate = "geoCoordinate"
-    case protoAnyValue = "protoAnyValue"
-    case boolValue = "boolValue"
-    case customizedStructDataValue = "customizedStructDataValue"
-    case listValue = "listValue"
-    case customizedStructValue = "customizedStructValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let intValue = CodingKeys(stringValue: "intValue")
+    static let floatValue = CodingKeys(stringValue: "floatValue")
+    static let strValue = CodingKeys(stringValue: "strValue")
+    static let datetimeValue = CodingKeys(stringValue: "datetimeValue")
+    static let geoCoordinate = CodingKeys(stringValue: "geoCoordinate")
+    static let protoAnyValue = CodingKeys(stringValue: "protoAnyValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let customizedStructDataValue = CodingKeys(stringValue: "customizedStructDataValue")
+    static let listValue = CodingKeys(stringValue: "listValue")
+    static let customizedStructValue = CodingKeys(stringValue: "customizedStructValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "intValue",
+      "floatValue",
+      "strValue",
+      "datetimeValue",
+      "geoCoordinate",
+      "protoAnyValue",
+      "boolValue",
+      "customizedStructDataValue",
+      "listValue",
+      "customizedStructValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -105,6 +125,10 @@ public struct AnnotationValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.customizedStructValue(customizedStructValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -133,6 +157,9 @@ public struct AnnotationValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .customizedStructValue(let value):
         try container.encode(value, forKey: .customizedStructValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

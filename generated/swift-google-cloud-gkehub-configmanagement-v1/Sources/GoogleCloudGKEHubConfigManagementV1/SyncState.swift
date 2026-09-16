@@ -47,6 +47,8 @@ public struct SyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// unlikely for that many errors to simultaneously exist.
   public var errors: [SyncError] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SyncState`.
   public init() {}
 
@@ -61,6 +63,73 @@ public struct SyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceToken = CodingKeys(stringValue: "sourceToken")
+    static let importToken = CodingKeys(stringValue: "importToken")
+    static let syncToken = CodingKeys(stringValue: "syncToken")
+    static let lastSync = CodingKeys(stringValue: "lastSync")
+    static let lastSyncTime = CodingKeys(stringValue: "lastSyncTime")
+    static let code = CodingKeys(stringValue: "code")
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceToken",
+      "importToken",
+      "syncToken",
+      "lastSync",
+      "lastSyncTime",
+      "code",
+      "errors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceToken) {
+      self.sourceToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importToken) {
+      self.importToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .syncToken) {
+      self.syncToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastSync) {
+      self.lastSync = value
+    }
+    self.lastSyncTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastSyncTime)
+    if let value = try container.decodeIfPresent(SyncState.SyncCode.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent([SyncError].self, forKey: .errors) {
+      self.errors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceToken, forKey: .sourceToken)
+    try container.encode(self.importToken, forKey: .importToken)
+    try container.encode(self.syncToken, forKey: .syncToken)
+    try container.encode(self.lastSync, forKey: .lastSync)
+    try container.encodeIfPresent(self.lastSyncTime, forKey: .lastSyncTime)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.errors, forKey: .errors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum representing Config Sync's status of syncing configs to a cluster.

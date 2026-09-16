@@ -33,6 +33,8 @@
     public var ingestedParametersDebugInfo:
       [IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngestedContextReferenceDebugInfo`.
     public init() {}
 
@@ -49,6 +51,57 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let projectNotAllowlisted = CodingKeys(stringValue: "projectNotAllowlisted")
+      static let contextReferenceRetrieved = CodingKeys(stringValue: "contextReferenceRetrieved")
+      static let ingestedParametersDebugInfo = CodingKeys(
+        stringValue: "ingestedParametersDebugInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "projectNotAllowlisted",
+        "contextReferenceRetrieved",
+        "ingestedParametersDebugInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .projectNotAllowlisted)
+      {
+        self.projectNotAllowlisted = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .contextReferenceRetrieved)
+      {
+        self.contextReferenceRetrieved = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo].self,
+        forKey: .ingestedParametersDebugInfo)
+      {
+        self.ingestedParametersDebugInfo = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.projectNotAllowlisted, forKey: .projectNotAllowlisted)
+      try container.encode(self.contextReferenceRetrieved, forKey: .contextReferenceRetrieved)
+      try container.encode(self.ingestedParametersDebugInfo, forKey: .ingestedParametersDebugInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Debug information related to ingested parameters from context reference.
     public struct IngestedParameterDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -60,6 +113,8 @@
       public var ingestionStatus:
         IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo.IngestionStatus =
           IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo.IngestionStatus()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `IngestedParameterDebugInfo`.
       public init() {}
@@ -75,6 +130,47 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let parameter = CodingKeys(stringValue: "parameter")
+        static let ingestionStatus = CodingKeys(stringValue: "ingestionStatus")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "parameter",
+          "ingestionStatus",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameter) {
+          self.parameter = value
+        }
+        if let value = try container.decodeIfPresent(
+          IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo.IngestionStatus.self,
+          forKey: .ingestionStatus)
+        {
+          self.ingestionStatus = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.parameter, forKey: .parameter)
+        try container.encode(self.ingestionStatus, forKey: .ingestionStatus)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Enum representing the various states of parameter ingestion.

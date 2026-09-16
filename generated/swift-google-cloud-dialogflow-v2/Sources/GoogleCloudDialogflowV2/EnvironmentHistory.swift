@@ -45,6 +45,8 @@
     /// are no more results in the list.
     public var nextPageToken: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EnvironmentHistory`.
     public init() {}
 
@@ -61,6 +63,52 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let entries = CodingKeys(stringValue: "entries")
+      static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "entries",
+        "nextPageToken",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
+        [EnvironmentHistory.Entry].self, forKey: .entries)
+      {
+        self.entries = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+        self.nextPageToken = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encode(self.entries, forKey: .entries)
+      try container.encode(self.nextPageToken, forKey: .nextPageToken)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Represents an environment history entry.
     public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -73,6 +121,8 @@
 
       /// The creation time of this environment history entry.
       public var createTime: GoogleCloudWKT.Timestamp? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Entry`.
       public init() {}
@@ -88,6 +138,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let agentVersion = CodingKeys(stringValue: "agentVersion")
+        static let description = CodingKeys(stringValue: "description")
+        static let createTime = CodingKeys(stringValue: "createTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "agentVersion",
+          "description",
+          "createTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentVersion) {
+          self.agentVersion = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+          self.description = value
+        }
+        self.createTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.agentVersion, forKey: .agentVersion)
+        try container.encode(self.description, forKey: .description)
+        try container.encodeIfPresent(self.createTime, forKey: .createTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

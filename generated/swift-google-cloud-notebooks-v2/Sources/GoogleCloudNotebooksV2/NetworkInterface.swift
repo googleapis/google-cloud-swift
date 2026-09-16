@@ -35,6 +35,8 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// or VirtioNet.
   public var nicType: NetworkInterface.NicType = NetworkInterface.NicType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkInterface`.
   public init() {}
 
@@ -49,6 +51,50 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let subnet = CodingKeys(stringValue: "subnet")
+    static let nicType = CodingKeys(stringValue: "nicType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "subnet",
+      "nicType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnet) {
+      self.subnet = value
+    }
+    if let value = try container.decodeIfPresent(NetworkInterface.NicType.self, forKey: .nicType) {
+      self.nicType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.subnet, forKey: .subnet)
+    try container.encode(self.nicType, forKey: .nicType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of vNIC driver.

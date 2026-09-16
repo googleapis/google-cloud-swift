@@ -54,6 +54,8 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
   public var bucketSize: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FixedSizeBucketingConfig`.
   public init() {}
 
@@ -68,6 +70,46 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lowerBound = CodingKeys(stringValue: "lowerBound")
+    static let upperBound = CodingKeys(stringValue: "upperBound")
+    static let bucketSize = CodingKeys(stringValue: "bucketSize")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lowerBound",
+      "upperBound",
+      "bucketSize",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.lowerBound = try container.decodeIfPresent(Value.self, forKey: .lowerBound)
+    self.upperBound = try container.decodeIfPresent(Value.self, forKey: .upperBound)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .bucketSize) {
+      self.bucketSize = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.lowerBound, forKey: .lowerBound)
+    try container.encodeIfPresent(self.upperBound, forKey: .upperBound)
+    try container.encode(self.bucketSize, forKey: .bucketSize)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

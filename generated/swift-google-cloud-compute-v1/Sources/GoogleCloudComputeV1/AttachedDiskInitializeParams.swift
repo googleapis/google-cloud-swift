@@ -213,6 +213,8 @@
     ///    - zones/zone/storagePools/storagePool
     public var storagePool: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AttachedDiskInitializeParams`.
     public init() {}
 
@@ -227,6 +229,134 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let description = CodingKeys(stringValue: "description")
+      static let diskName = CodingKeys(stringValue: "diskName")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+      static let diskType = CodingKeys(stringValue: "diskType")
+      static let enableConfidentialCompute = CodingKeys(stringValue: "enableConfidentialCompute")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let licenses = CodingKeys(stringValue: "licenses")
+      static let onUpdateAction = CodingKeys(stringValue: "onUpdateAction")
+      static let provisionedIops = CodingKeys(stringValue: "provisionedIops")
+      static let provisionedThroughput = CodingKeys(stringValue: "provisionedThroughput")
+      static let replicaZones = CodingKeys(stringValue: "replicaZones")
+      static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let sourceImage = CodingKeys(stringValue: "sourceImage")
+      static let sourceImageEncryptionKey = CodingKeys(stringValue: "sourceImageEncryptionKey")
+      static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+      static let sourceSnapshotEncryptionKey = CodingKeys(
+        stringValue: "sourceSnapshotEncryptionKey")
+      static let storagePool = CodingKeys(stringValue: "storagePool")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "architecture",
+        "description",
+        "diskName",
+        "diskSizeGb",
+        "diskType",
+        "enableConfidentialCompute",
+        "labels",
+        "licenses",
+        "onUpdateAction",
+        "provisionedIops",
+        "provisionedThroughput",
+        "replicaZones",
+        "resourceManagerTags",
+        "resourcePolicies",
+        "sourceImage",
+        "sourceImageEncryptionKey",
+        "sourceSnapshot",
+        "sourceSnapshotEncryptionKey",
+        "storagePool",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.architecture = try container.decodeIfPresent(
+        AttachedDiskInitializeParams.Architecture.self, forKey: .architecture)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.diskName = try container.decodeIfPresent(Swift.String.self, forKey: .diskName)
+      self.diskSizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb)
+      self.diskType = try container.decodeIfPresent(Swift.String.self, forKey: .diskType)
+      self.enableConfidentialCompute = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableConfidentialCompute)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .licenses) {
+        self.licenses = value
+      }
+      self.onUpdateAction = try container.decodeIfPresent(
+        AttachedDiskInitializeParams.OnUpdateAction.self, forKey: .onUpdateAction)
+      self.provisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .provisionedIops)
+      self.provisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .provisionedThroughput)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+        self.replicaZones = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
+      {
+        self.resourceManagerTags = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+        self.resourcePolicies = value
+      }
+      self.sourceImage = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImage)
+      self.sourceImageEncryptionKey = try container.decodeIfPresent(
+        CustomerEncryptionKey.self, forKey: .sourceImageEncryptionKey)
+      self.sourceSnapshot = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceSnapshot)
+      self.sourceSnapshotEncryptionKey = try container.decodeIfPresent(
+        CustomerEncryptionKey.self, forKey: .sourceSnapshotEncryptionKey)
+      self.storagePool = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.architecture, forKey: .architecture)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.diskName, forKey: .diskName)
+      try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+      try container.encodeIfPresent(self.diskType, forKey: .diskType)
+      try container.encodeIfPresent(
+        self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.licenses, forKey: .licenses)
+      try container.encodeIfPresent(self.onUpdateAction, forKey: .onUpdateAction)
+      try container.encodeIfPresent(self.provisionedIops, forKey: .provisionedIops)
+      try container.encodeIfPresent(self.provisionedThroughput, forKey: .provisionedThroughput)
+      try container.encode(self.replicaZones, forKey: .replicaZones)
+      try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
+      try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
+      try container.encodeIfPresent(self.sourceImage, forKey: .sourceImage)
+      try container.encodeIfPresent(
+        self.sourceImageEncryptionKey, forKey: .sourceImageEncryptionKey)
+      try container.encodeIfPresent(self.sourceSnapshot, forKey: .sourceSnapshot)
+      try container.encodeIfPresent(
+        self.sourceSnapshotEncryptionKey, forKey: .sourceSnapshotEncryptionKey)
+      try container.encodeIfPresent(self.storagePool, forKey: .storagePool)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [architecture][google.cloud.compute.v1.AttachedDiskInitializeParams.architecture] field.

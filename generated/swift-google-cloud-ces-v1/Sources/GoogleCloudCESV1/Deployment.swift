@@ -62,6 +62,8 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// configuring a Instagram channel profile.
   public var instagramCredentials: InstagramCredentials? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Deployment`.
   public init() {}
 
@@ -76,6 +78,86 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let appVersion = CodingKeys(stringValue: "appVersion")
+    static let channelProfile = CodingKeys(stringValue: "channelProfile")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let experimentConfig = CodingKeys(stringValue: "experimentConfig")
+    static let whatsappCredentials = CodingKeys(stringValue: "whatsappCredentials")
+    static let instagramCredentials = CodingKeys(stringValue: "instagramCredentials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "appVersion",
+      "channelProfile",
+      "createTime",
+      "updateTime",
+      "etag",
+      "experimentConfig",
+      "whatsappCredentials",
+      "instagramCredentials",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appVersion) {
+      self.appVersion = value
+    }
+    self.channelProfile = try container.decodeIfPresent(
+      ChannelProfile.self, forKey: .channelProfile)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.experimentConfig = try container.decodeIfPresent(
+      ExperimentConfig.self, forKey: .experimentConfig)
+    self.whatsappCredentials = try container.decodeIfPresent(
+      WhatsAppCredentials.self, forKey: .whatsappCredentials)
+    self.instagramCredentials = try container.decodeIfPresent(
+      InstagramCredentials.self, forKey: .instagramCredentials)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.appVersion, forKey: .appVersion)
+    try container.encodeIfPresent(self.channelProfile, forKey: .channelProfile)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.experimentConfig, forKey: .experimentConfig)
+    try container.encodeIfPresent(self.whatsappCredentials, forKey: .whatsappCredentials)
+    try container.encodeIfPresent(self.instagramCredentials, forKey: .instagramCredentials)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

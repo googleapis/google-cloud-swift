@@ -29,6 +29,8 @@ public struct ObjectRetention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The retention mode of the object.
   public var retentionMode: ObjectRetention.RetentionMode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectRetention`.
   public init() {}
 
@@ -43,6 +45,42 @@ public struct ObjectRetention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let retainUntilTime = CodingKeys(stringValue: "retainUntilTime")
+    static let retentionMode = CodingKeys(stringValue: "retentionMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "retainUntilTime",
+      "retentionMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.retainUntilTime = try container.decodeIfPresent(
+      Swift.String.self, forKey: .retainUntilTime)
+    self.retentionMode = try container.decodeIfPresent(
+      ObjectRetention.RetentionMode.self, forKey: .retentionMode)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.retainUntilTime, forKey: .retainUntilTime)
+    try container.encodeIfPresent(self.retentionMode, forKey: .retentionMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes the retention mode.

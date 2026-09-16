@@ -257,6 +257,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Instance`.
     public init() {}
 
@@ -273,55 +275,113 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case advancedMachineFeatures = "advancedMachineFeatures"
-      case canIpForward = "canIpForward"
-      case confidentialInstanceConfig = "confidentialInstanceConfig"
-      case cpuPlatform = "cpuPlatform"
-      case creationTimestamp = "creationTimestamp"
-      case deletionProtection = "deletionProtection"
-      case description = "description"
-      case disks = "disks"
-      case displayDevice = "displayDevice"
-      case fingerprint = "fingerprint"
-      case guestAccelerators = "guestAccelerators"
-      case hostname = "hostname"
-      case id = "id"
-      case instanceEncryptionKey = "instanceEncryptionKey"
-      case keyRevocationActionType = "keyRevocationActionType"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case lastStartTimestamp = "lastStartTimestamp"
-      case lastStopTimestamp = "lastStopTimestamp"
-      case lastSuspendedTimestamp = "lastSuspendedTimestamp"
-      case localSsdEncryptionMode = "localSsdEncryptionMode"
-      case machineType = "machineType"
-      case metadata = "metadata"
-      case minCpuPlatform = "minCpuPlatform"
-      case name = "name"
-      case networkInterfaces = "networkInterfaces"
-      case networkPerformanceConfig = "networkPerformanceConfig"
-      case params = "params"
-      case privateIpv6GoogleAccess = "privateIpv6GoogleAccess"
-      case reservationAffinity = "reservationAffinity"
-      case resourcePolicies = "resourcePolicies"
-      case resourceStatus = "resourceStatus"
-      case satisfiesPzi = "satisfiesPzi"
-      case satisfiesPzs = "satisfiesPzs"
-      case scheduling = "scheduling"
-      case selfLink = "selfLink"
-      case serviceAccounts = "serviceAccounts"
-      case shieldedInstanceConfig = "shieldedInstanceConfig"
-      case shieldedInstanceIntegrityPolicy = "shieldedInstanceIntegrityPolicy"
-      case sourceMachineImage = "sourceMachineImage"
-      case sourceMachineImageEncryptionKey = "sourceMachineImageEncryptionKey"
-      case startRestricted = "startRestricted"
-      case status = "status"
-      case statusMessage = "statusMessage"
-      case tags = "tags"
-      case workloadIdentityConfig = "workloadIdentityConfig"
-      case zone = "zone"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advancedMachineFeatures = CodingKeys(stringValue: "advancedMachineFeatures")
+      static let canIpForward = CodingKeys(stringValue: "canIpForward")
+      static let confidentialInstanceConfig = CodingKeys(stringValue: "confidentialInstanceConfig")
+      static let cpuPlatform = CodingKeys(stringValue: "cpuPlatform")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deletionProtection = CodingKeys(stringValue: "deletionProtection")
+      static let description = CodingKeys(stringValue: "description")
+      static let disks = CodingKeys(stringValue: "disks")
+      static let displayDevice = CodingKeys(stringValue: "displayDevice")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let guestAccelerators = CodingKeys(stringValue: "guestAccelerators")
+      static let hostname = CodingKeys(stringValue: "hostname")
+      static let id = CodingKeys(stringValue: "id")
+      static let instanceEncryptionKey = CodingKeys(stringValue: "instanceEncryptionKey")
+      static let keyRevocationActionType = CodingKeys(stringValue: "keyRevocationActionType")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let lastStartTimestamp = CodingKeys(stringValue: "lastStartTimestamp")
+      static let lastStopTimestamp = CodingKeys(stringValue: "lastStopTimestamp")
+      static let lastSuspendedTimestamp = CodingKeys(stringValue: "lastSuspendedTimestamp")
+      static let localSsdEncryptionMode = CodingKeys(stringValue: "localSsdEncryptionMode")
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+      static let name = CodingKeys(stringValue: "name")
+      static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+      static let networkPerformanceConfig = CodingKeys(stringValue: "networkPerformanceConfig")
+      static let params = CodingKeys(stringValue: "params")
+      static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+      static let reservationAffinity = CodingKeys(stringValue: "reservationAffinity")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let scheduling = CodingKeys(stringValue: "scheduling")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let serviceAccounts = CodingKeys(stringValue: "serviceAccounts")
+      static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+      static let shieldedInstanceIntegrityPolicy = CodingKeys(
+        stringValue: "shieldedInstanceIntegrityPolicy")
+      static let sourceMachineImage = CodingKeys(stringValue: "sourceMachineImage")
+      static let sourceMachineImageEncryptionKey = CodingKeys(
+        stringValue: "sourceMachineImageEncryptionKey")
+      static let startRestricted = CodingKeys(stringValue: "startRestricted")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusMessage = CodingKeys(stringValue: "statusMessage")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advancedMachineFeatures",
+        "canIpForward",
+        "confidentialInstanceConfig",
+        "cpuPlatform",
+        "creationTimestamp",
+        "deletionProtection",
+        "description",
+        "disks",
+        "displayDevice",
+        "fingerprint",
+        "guestAccelerators",
+        "hostname",
+        "id",
+        "instanceEncryptionKey",
+        "keyRevocationActionType",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "lastStartTimestamp",
+        "lastStopTimestamp",
+        "lastSuspendedTimestamp",
+        "localSsdEncryptionMode",
+        "machineType",
+        "metadata",
+        "minCpuPlatform",
+        "name",
+        "networkInterfaces",
+        "networkPerformanceConfig",
+        "params",
+        "privateIpv6GoogleAccess",
+        "reservationAffinity",
+        "resourcePolicies",
+        "resourceStatus",
+        "satisfiesPzi",
+        "satisfiesPzs",
+        "scheduling",
+        "selfLink",
+        "serviceAccounts",
+        "shieldedInstanceConfig",
+        "shieldedInstanceIntegrityPolicy",
+        "sourceMachineImage",
+        "sourceMachineImageEncryptionKey",
+        "startRestricted",
+        "status",
+        "statusMessage",
+        "tags",
+        "workloadIdentityConfig",
+        "zone",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -337,7 +397,9 @@
       self.deletionProtection = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .deletionProtection)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-      self.disks = try container.decode([AttachedDisk].self, forKey: .disks)
+      if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disks) {
+        self.disks = value
+      }
       self.displayDevice = try container.decodeIfPresent(DisplayDevice.self, forKey: .displayDevice)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
@@ -348,8 +410,11 @@
         }
         self.fingerprint = v
       }
-      self.guestAccelerators = try container.decode(
+      if let value = try container.decodeIfPresent(
         [AcceleratorConfig].self, forKey: .guestAccelerators)
+      {
+        self.guestAccelerators = value
+      }
       self.hostname = try container.decodeIfPresent(Swift.String.self, forKey: .hostname)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.instanceEncryptionKey = try container.decodeIfPresent(
@@ -366,7 +431,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.lastStartTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .lastStartTimestamp)
       self.lastStopTimestamp = try container.decodeIfPresent(
@@ -380,8 +449,11 @@
       self.minCpuPlatform = try container.decodeIfPresent(
         Swift.String.self, forKey: .minCpuPlatform)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.networkInterfaces = try container.decode(
+      if let value = try container.decodeIfPresent(
         [NetworkInterface].self, forKey: .networkInterfaces)
+      {
+        self.networkInterfaces = value
+      }
       self.networkPerformanceConfig = try container.decodeIfPresent(
         NetworkPerformanceConfig.self, forKey: .networkPerformanceConfig)
       self.params = try container.decodeIfPresent(InstanceParams.self, forKey: .params)
@@ -389,14 +461,19 @@
         Instance.PrivateIpv6GoogleAccess.self, forKey: .privateIpv6GoogleAccess)
       self.reservationAffinity = try container.decodeIfPresent(
         ReservationAffinity.self, forKey: .reservationAffinity)
-      self.resourcePolicies = try container.decode([Swift.String].self, forKey: .resourcePolicies)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+        self.resourcePolicies = value
+      }
       self.resourceStatus = try container.decodeIfPresent(
         ResourceStatus.self, forKey: .resourceStatus)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.scheduling = try container.decodeIfPresent(Scheduling.self, forKey: .scheduling)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.serviceAccounts = try container.decode([ServiceAccount].self, forKey: .serviceAccounts)
+      if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .serviceAccounts)
+      {
+        self.serviceAccounts = value
+      }
       self.shieldedInstanceConfig = try container.decodeIfPresent(
         ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
       self.shieldedInstanceIntegrityPolicy = try container.decodeIfPresent(
@@ -413,68 +490,77 @@
       self.workloadIdentityConfig = try container.decodeIfPresent(
         WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
       self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
-      try container.encode(self.canIpForward, forKey: .canIpForward)
-      try container.encode(self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
-      try container.encode(self.cpuPlatform, forKey: .cpuPlatform)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.deletionProtection, forKey: .deletionProtection)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
+      try container.encodeIfPresent(self.canIpForward, forKey: .canIpForward)
+      try container.encodeIfPresent(
+        self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
+      try container.encodeIfPresent(self.cpuPlatform, forKey: .cpuPlatform)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deletionProtection, forKey: .deletionProtection)
+      try container.encodeIfPresent(self.description, forKey: .description)
       try container.encode(self.disks, forKey: .disks)
-      try container.encode(self.displayDevice, forKey: .displayDevice)
+      try container.encodeIfPresent(self.displayDevice, forKey: .displayDevice)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.guestAccelerators, forKey: .guestAccelerators)
-      try container.encode(self.hostname, forKey: .hostname)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.instanceEncryptionKey, forKey: .instanceEncryptionKey)
-      try container.encode(self.keyRevocationActionType, forKey: .keyRevocationActionType)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.hostname, forKey: .hostname)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.instanceEncryptionKey, forKey: .instanceEncryptionKey)
+      try container.encodeIfPresent(self.keyRevocationActionType, forKey: .keyRevocationActionType)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.lastStartTimestamp, forKey: .lastStartTimestamp)
-      try container.encode(self.lastStopTimestamp, forKey: .lastStopTimestamp)
-      try container.encode(self.lastSuspendedTimestamp, forKey: .lastSuspendedTimestamp)
-      try container.encode(self.localSsdEncryptionMode, forKey: .localSsdEncryptionMode)
-      try container.encode(self.machineType, forKey: .machineType)
-      try container.encode(self.metadata, forKey: .metadata)
-      try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.lastStartTimestamp, forKey: .lastStartTimestamp)
+      try container.encodeIfPresent(self.lastStopTimestamp, forKey: .lastStopTimestamp)
+      try container.encodeIfPresent(self.lastSuspendedTimestamp, forKey: .lastSuspendedTimestamp)
+      try container.encodeIfPresent(self.localSsdEncryptionMode, forKey: .localSsdEncryptionMode)
+      try container.encodeIfPresent(self.machineType, forKey: .machineType)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
-      try container.encode(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
-      try container.encode(self.reservationAffinity, forKey: .reservationAffinity)
+      try container.encodeIfPresent(
+        self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+      try container.encodeIfPresent(self.reservationAffinity, forKey: .reservationAffinity)
       try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
-      try container.encode(self.resourceStatus, forKey: .resourceStatus)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.scheduling, forKey: .scheduling)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encode(self.serviceAccounts, forKey: .serviceAccounts)
-      try container.encode(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
-      try container.encode(
+      try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+      try container.encodeIfPresent(
         self.shieldedInstanceIntegrityPolicy, forKey: .shieldedInstanceIntegrityPolicy)
-      try container.encode(self.sourceMachineImage, forKey: .sourceMachineImage)
-      try container.encode(
+      try container.encodeIfPresent(self.sourceMachineImage, forKey: .sourceMachineImage)
+      try container.encodeIfPresent(
         self.sourceMachineImageEncryptionKey, forKey: .sourceMachineImageEncryptionKey)
-      try container.encode(self.startRestricted, forKey: .startRestricted)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.statusMessage, forKey: .statusMessage)
-      try container.encode(self.tags, forKey: .tags)
-      try container.encode(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
-      try container.encode(self.zone, forKey: .zone)
+      try container.encodeIfPresent(self.startRestricted, forKey: .startRestricted)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.statusMessage, forKey: .statusMessage)
+      try container.encodeIfPresent(self.tags, forKey: .tags)
+      try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [keyRevocationActionType][google.cloud.compute.v1.Instance.keyRevocationActionType] field.

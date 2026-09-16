@@ -58,6 +58,8 @@ public struct CommonAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// links.
   public var openLinkUrlPrefixes: GoogleCloudWKT.ListValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommonAddOnManifest`.
   public init() {}
 
@@ -72,6 +74,78 @@ public struct CommonAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let logoUrl = CodingKeys(stringValue: "logoUrl")
+    static let layoutProperties = CodingKeys(stringValue: "layoutProperties")
+    static let addOnWidgetSet = CodingKeys(stringValue: "addOnWidgetSet")
+    static let useLocaleFromApp = CodingKeys(stringValue: "useLocaleFromApp")
+    static let homepageTrigger = CodingKeys(stringValue: "homepageTrigger")
+    static let universalActions = CodingKeys(stringValue: "universalActions")
+    static let openLinkUrlPrefixes = CodingKeys(stringValue: "openLinkUrlPrefixes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "logoUrl",
+      "layoutProperties",
+      "addOnWidgetSet",
+      "useLocaleFromApp",
+      "homepageTrigger",
+      "universalActions",
+      "openLinkUrlPrefixes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logoUrl) {
+      self.logoUrl = value
+    }
+    self.layoutProperties = try container.decodeIfPresent(
+      LayoutProperties.self, forKey: .layoutProperties)
+    self.addOnWidgetSet = try container.decodeIfPresent(
+      AddOnWidgetSet.self, forKey: .addOnWidgetSet)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useLocaleFromApp) {
+      self.useLocaleFromApp = value
+    }
+    self.homepageTrigger = try container.decodeIfPresent(
+      HomepageExtensionPoint.self, forKey: .homepageTrigger)
+    if let value = try container.decodeIfPresent(
+      [UniversalActionExtensionPoint].self, forKey: .universalActions)
+    {
+      self.universalActions = value
+    }
+    self.openLinkUrlPrefixes = try container.decodeIfPresent(
+      GoogleCloudWKT.ListValue.self, forKey: .openLinkUrlPrefixes)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.logoUrl, forKey: .logoUrl)
+    try container.encodeIfPresent(self.layoutProperties, forKey: .layoutProperties)
+    try container.encodeIfPresent(self.addOnWidgetSet, forKey: .addOnWidgetSet)
+    try container.encode(self.useLocaleFromApp, forKey: .useLocaleFromApp)
+    try container.encodeIfPresent(self.homepageTrigger, forKey: .homepageTrigger)
+    try container.encode(self.universalActions, forKey: .universalActions)
+    try container.encodeIfPresent(self.openLinkUrlPrefixes, forKey: .openLinkUrlPrefixes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

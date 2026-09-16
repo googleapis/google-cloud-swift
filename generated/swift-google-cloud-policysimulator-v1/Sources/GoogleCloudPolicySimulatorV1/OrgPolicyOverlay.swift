@@ -41,6 +41,8 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// evaluates a single constraint.
   public var customConstraints: [OrgPolicyOverlay.CustomConstraintOverlay] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OrgPolicyOverlay`.
   public init() {}
 
@@ -57,6 +59,48 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policies = CodingKeys(stringValue: "policies")
+    static let customConstraints = CodingKeys(stringValue: "customConstraints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policies",
+      "customConstraints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [OrgPolicyOverlay.PolicyOverlay].self, forKey: .policies)
+    {
+      self.policies = value
+    }
+    if let value = try container.decodeIfPresent(
+      [OrgPolicyOverlay.CustomConstraintOverlay].self, forKey: .customConstraints)
+    {
+      self.customConstraints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.policies, forKey: .policies)
+    try container.encode(self.customConstraints, forKey: .customConstraints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A change to an OrgPolicy.
   public struct PolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -67,6 +111,8 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. The new or updated OrgPolicy.
     public var policy: GoogleCloudOrgPolicyV2.Policy? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PolicyOverlay`.
     public init() {}
@@ -82,6 +128,43 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let policyParent = CodingKeys(stringValue: "policyParent")
+      static let policy = CodingKeys(stringValue: "policy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "policyParent",
+        "policy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policyParent) {
+        self.policyParent = value
+      }
+      self.policy = try container.decodeIfPresent(
+        GoogleCloudOrgPolicyV2.Policy.self, forKey: .policy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.policyParent, forKey: .policyParent)
+      try container.encodeIfPresent(self.policy, forKey: .policy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -106,6 +189,8 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The new or updated custom constraint.
     public var customConstraint: GoogleCloudOrgPolicyV2.CustomConstraint? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomConstraintOverlay`.
     public init() {}
 
@@ -120,6 +205,45 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customConstraintParent = CodingKeys(stringValue: "customConstraintParent")
+      static let customConstraint = CodingKeys(stringValue: "customConstraint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customConstraintParent",
+        "customConstraint",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .customConstraintParent)
+      {
+        self.customConstraintParent = value
+      }
+      self.customConstraint = try container.decodeIfPresent(
+        GoogleCloudOrgPolicyV2.CustomConstraint.self, forKey: .customConstraint)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.customConstraintParent, forKey: .customConstraintParent)
+      try container.encodeIfPresent(self.customConstraint, forKey: .customConstraint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

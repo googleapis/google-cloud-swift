@@ -36,6 +36,8 @@ public struct GenerateUploadUrlResponse: Codable, Equatable, GoogleCloudWKT._Any
   /// upon uploading a new object or version of an object.
   public var storageSource: StorageSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateUploadUrlResponse`.
   public init() {}
 
@@ -50,6 +52,42 @@ public struct GenerateUploadUrlResponse: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uploadUrl = CodingKeys(stringValue: "uploadUrl")
+    static let storageSource = CodingKeys(stringValue: "storageSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uploadUrl",
+      "storageSource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uploadUrl) {
+      self.uploadUrl = value
+    }
+    self.storageSource = try container.decodeIfPresent(StorageSource.self, forKey: .storageSource)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uploadUrl, forKey: .uploadUrl)
+    try container.encodeIfPresent(self.storageSource, forKey: .storageSource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

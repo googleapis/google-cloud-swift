@@ -65,6 +65,8 @@ public struct BigQueryOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// will not be used.
   public var includedFields: [FieldId] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryOptions`.
   public init() {}
 
@@ -79,6 +81,74 @@ public struct BigQueryOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tableReference = CodingKeys(stringValue: "tableReference")
+    static let identifyingFields = CodingKeys(stringValue: "identifyingFields")
+    static let rowsLimit = CodingKeys(stringValue: "rowsLimit")
+    static let rowsLimitPercent = CodingKeys(stringValue: "rowsLimitPercent")
+    static let sampleMethod = CodingKeys(stringValue: "sampleMethod")
+    static let excludedFields = CodingKeys(stringValue: "excludedFields")
+    static let includedFields = CodingKeys(stringValue: "includedFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tableReference",
+      "identifyingFields",
+      "rowsLimit",
+      "rowsLimitPercent",
+      "sampleMethod",
+      "excludedFields",
+      "includedFields",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tableReference = try container.decodeIfPresent(BigQueryTable.self, forKey: .tableReference)
+    if let value = try container.decodeIfPresent([FieldId].self, forKey: .identifyingFields) {
+      self.identifyingFields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowsLimit) {
+      self.rowsLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rowsLimitPercent) {
+      self.rowsLimitPercent = value
+    }
+    if let value = try container.decodeIfPresent(
+      BigQueryOptions.SampleMethod.self, forKey: .sampleMethod)
+    {
+      self.sampleMethod = value
+    }
+    if let value = try container.decodeIfPresent([FieldId].self, forKey: .excludedFields) {
+      self.excludedFields = value
+    }
+    if let value = try container.decodeIfPresent([FieldId].self, forKey: .includedFields) {
+      self.includedFields = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tableReference, forKey: .tableReference)
+    try container.encode(self.identifyingFields, forKey: .identifyingFields)
+    try container.encode(self.rowsLimit, forKey: .rowsLimit)
+    try container.encode(self.rowsLimitPercent, forKey: .rowsLimitPercent)
+    try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    try container.encode(self.excludedFields, forKey: .excludedFields)
+    try container.encode(self.includedFields, forKey: .includedFields)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// How to sample rows if not all rows are scanned. Meaningful only when used

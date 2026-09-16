@@ -24,6 +24,8 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// BigQuery destination where the query results will be saved.
   public var bigqueryDestination: QueryAssetsOutputConfig.BigQueryDestination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryAssetsOutputConfig`.
   public init() {}
 
@@ -38,6 +40,37 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigqueryDestination"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.bigqueryDestination = try container.decodeIfPresent(
+      QueryAssetsOutputConfig.BigQueryDestination.self, forKey: .bigqueryDestination)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.bigqueryDestination, forKey: .bigqueryDestination)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// BigQuery destination.
@@ -66,6 +99,8 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// The default value is WRITE_EMPTY.
     public var writeDisposition: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BigQueryDestination`.
     public init() {}
 
@@ -80,6 +115,50 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataset = CodingKeys(stringValue: "dataset")
+      static let table = CodingKeys(stringValue: "table")
+      static let writeDisposition = CodingKeys(stringValue: "writeDisposition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataset",
+        "table",
+        "writeDisposition",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+        self.dataset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .writeDisposition) {
+        self.writeDisposition = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataset, forKey: .dataset)
+      try container.encode(self.table, forKey: .table)
+      try container.encode(self.writeDisposition, forKey: .writeDisposition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -51,6 +51,8 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// minutes (for example, 30, 31, 50, 180 minutes).
   public var coolDownPeriod: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoscalingSettings`.
   public init() {}
 
@@ -67,6 +69,57 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let autoscalingPolicies = CodingKeys(stringValue: "autoscalingPolicies")
+    static let minClusterNodeCount = CodingKeys(stringValue: "minClusterNodeCount")
+    static let maxClusterNodeCount = CodingKeys(stringValue: "maxClusterNodeCount")
+    static let coolDownPeriod = CodingKeys(stringValue: "coolDownPeriod")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "autoscalingPolicies",
+      "minClusterNodeCount",
+      "maxClusterNodeCount",
+      "coolDownPeriod",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AutoscalingSettings.AutoscalingPolicy].self, forKey: .autoscalingPolicies)
+    {
+      self.autoscalingPolicies = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minClusterNodeCount) {
+      self.minClusterNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxClusterNodeCount) {
+      self.maxClusterNodeCount = value
+    }
+    self.coolDownPeriod = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .coolDownPeriod)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.autoscalingPolicies, forKey: .autoscalingPolicies)
+    try container.encode(self.minClusterNodeCount, forKey: .minClusterNodeCount)
+    try container.encode(self.maxClusterNodeCount, forKey: .maxClusterNodeCount)
+    try container.encodeIfPresent(self.coolDownPeriod, forKey: .coolDownPeriod)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Thresholds define the utilization of resources triggering
   /// scale-out and scale-in operations.
   public struct Thresholds: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -77,6 +130,8 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
     /// Required. The utilization triggering the scale-in operation in percent.
     public var scaleIn: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Thresholds`.
     public init() {}
@@ -92,6 +147,44 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scaleOut = CodingKeys(stringValue: "scaleOut")
+      static let scaleIn = CodingKeys(stringValue: "scaleIn")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scaleOut",
+        "scaleIn",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scaleOut) {
+        self.scaleOut = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scaleIn) {
+        self.scaleIn = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.scaleOut, forKey: .scaleOut)
+      try container.encode(self.scaleIn, forKey: .scaleIn)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -137,6 +230,8 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// storage.
     public var storageThresholds: AutoscalingSettings.Thresholds? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscalingPolicy`.
     public init() {}
 
@@ -151,6 +246,65 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nodeTypeId = CodingKeys(stringValue: "nodeTypeId")
+      static let scaleOutSize = CodingKeys(stringValue: "scaleOutSize")
+      static let cpuThresholds = CodingKeys(stringValue: "cpuThresholds")
+      static let grantedMemoryThresholds = CodingKeys(stringValue: "grantedMemoryThresholds")
+      static let consumedMemoryThresholds = CodingKeys(stringValue: "consumedMemoryThresholds")
+      static let storageThresholds = CodingKeys(stringValue: "storageThresholds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nodeTypeId",
+        "scaleOutSize",
+        "cpuThresholds",
+        "grantedMemoryThresholds",
+        "consumedMemoryThresholds",
+        "storageThresholds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeTypeId) {
+        self.nodeTypeId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scaleOutSize) {
+        self.scaleOutSize = value
+      }
+      self.cpuThresholds = try container.decodeIfPresent(
+        AutoscalingSettings.Thresholds.self, forKey: .cpuThresholds)
+      self.grantedMemoryThresholds = try container.decodeIfPresent(
+        AutoscalingSettings.Thresholds.self, forKey: .grantedMemoryThresholds)
+      self.consumedMemoryThresholds = try container.decodeIfPresent(
+        AutoscalingSettings.Thresholds.self, forKey: .consumedMemoryThresholds)
+      self.storageThresholds = try container.decodeIfPresent(
+        AutoscalingSettings.Thresholds.self, forKey: .storageThresholds)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nodeTypeId, forKey: .nodeTypeId)
+      try container.encode(self.scaleOutSize, forKey: .scaleOutSize)
+      try container.encodeIfPresent(self.cpuThresholds, forKey: .cpuThresholds)
+      try container.encodeIfPresent(self.grantedMemoryThresholds, forKey: .grantedMemoryThresholds)
+      try container.encodeIfPresent(
+        self.consumedMemoryThresholds, forKey: .consumedMemoryThresholds)
+      try container.encodeIfPresent(self.storageThresholds, forKey: .storageThresholds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

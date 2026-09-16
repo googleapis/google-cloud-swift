@@ -33,6 +33,8 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Not set for "real" tables.
   public var databaseViewSpec: DatabaseTableSpec.DatabaseViewSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseTableSpec`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let dataplexTable = CodingKeys(stringValue: "dataplexTable")
+    static let databaseViewSpec = CodingKeys(stringValue: "databaseViewSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "dataplexTable",
+      "databaseViewSpec",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DatabaseTableSpec.TableType.self, forKey: .type) {
+      self.type = value
+    }
+    self.dataplexTable = try container.decodeIfPresent(
+      DataplexTableSpec.self, forKey: .dataplexTable)
+    self.databaseViewSpec = try container.decodeIfPresent(
+      DatabaseTableSpec.DatabaseViewSpec.self, forKey: .databaseViewSpec)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.dataplexTable, forKey: .dataplexTable)
+    try container.encodeIfPresent(self.databaseViewSpec, forKey: .databaseViewSpec)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Specification that applies to database view.
   public struct DatabaseViewSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +103,8 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Definition of the view.
     public var sourceDefinition: OneOf_SourceDefinition? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DatabaseViewSpec`.
     public init() {}
@@ -76,16 +122,30 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case viewType = "viewType"
-      case baseTable = "baseTable"
-      case sqlQuery = "sqlQuery"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let viewType = CodingKeys(stringValue: "viewType")
+      static let baseTable = CodingKeys(stringValue: "baseTable")
+      static let sqlQuery = CodingKeys(stringValue: "sqlQuery")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "viewType",
+        "baseTable",
+        "sqlQuery",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.viewType = try container.decode(
+      if let value = try container.decodeIfPresent(
         DatabaseTableSpec.DatabaseViewSpec.ViewType.self, forKey: .viewType)
+      {
+        self.viewType = value
+      }
 
       var sourceDefinition: OneOf_SourceDefinition? = nil
       let sourceDefinitionCheckAndSet = {
@@ -104,6 +164,10 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try sourceDefinitionCheckAndSet(.sqlQuery(sqlQuery))
       }
       self.sourceDefinition = sourceDefinition
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,6 +181,9 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .sqlQuery(let value):
           try container.encode(value, forKey: .sqlQuery)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

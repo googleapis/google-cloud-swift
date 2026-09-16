@@ -37,6 +37,8 @@ public struct SanitizeModelResponseRequest: Codable, Equatable, GoogleCloudWKT._
   /// Optional. Streaming Mode for StreamSanitize* API.
   public var streamingMode: StreamingMode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SanitizeModelResponseRequest`.
   public init() {}
 
@@ -51,6 +53,60 @@ public struct SanitizeModelResponseRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let modelResponseData = CodingKeys(stringValue: "modelResponseData")
+    static let userPrompt = CodingKeys(stringValue: "userPrompt")
+    static let multiLanguageDetectionMetadata = CodingKeys(
+      stringValue: "multiLanguageDetectionMetadata")
+    static let streamingMode = CodingKeys(stringValue: "streamingMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "modelResponseData",
+      "userPrompt",
+      "multiLanguageDetectionMetadata",
+      "streamingMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.modelResponseData = try container.decodeIfPresent(
+      DataItem.self, forKey: .modelResponseData)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userPrompt) {
+      self.userPrompt = value
+    }
+    self.multiLanguageDetectionMetadata = try container.decodeIfPresent(
+      MultiLanguageDetectionMetadata.self, forKey: .multiLanguageDetectionMetadata)
+    self.streamingMode = try container.decodeIfPresent(StreamingMode.self, forKey: .streamingMode)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.modelResponseData, forKey: .modelResponseData)
+    try container.encode(self.userPrompt, forKey: .userPrompt)
+    try container.encodeIfPresent(
+      self.multiLanguageDetectionMetadata, forKey: .multiLanguageDetectionMetadata)
+    try container.encodeIfPresent(self.streamingMode, forKey: .streamingMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

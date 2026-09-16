@@ -29,6 +29,8 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleCloudWKT._Any
 
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BasicAutoscalingAlgorithm`.
   public init() {}
 
@@ -45,9 +47,19 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case yarnConfig = "yarnConfig"
-    case cooldownPeriod = "cooldownPeriod"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let yarnConfig = CodingKeys(stringValue: "yarnConfig")
+    static let cooldownPeriod = CodingKeys(stringValue: "cooldownPeriod")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "yarnConfig",
+      "cooldownPeriod",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,17 +83,24 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleCloudWKT._Any
       try configCheckAndSet(.yarnConfig(yarnConfig))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.cooldownPeriod, forKey: .cooldownPeriod)
+    try container.encodeIfPresent(self.cooldownPeriod, forKey: .cooldownPeriod)
 
     if let choice = self.config {
       switch choice {
       case .yarnConfig(let value):
         try container.encode(value, forKey: .yarnConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

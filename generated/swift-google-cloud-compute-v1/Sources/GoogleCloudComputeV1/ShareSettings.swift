@@ -29,6 +29,8 @@
     /// Type of sharing for this shared-reservation
     public var shareType: ShareSettings.ShareType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ShareSettings`.
     public init() {}
 
@@ -43,6 +45,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let projectMap = CodingKeys(stringValue: "projectMap")
+      static let shareType = CodingKeys(stringValue: "shareType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "projectMap",
+        "shareType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ShareSettingsProjectConfig].self, forKey: .projectMap)
+      {
+        self.projectMap = value
+      }
+      self.shareType = try container.decodeIfPresent(
+        ShareSettings.ShareType.self, forKey: .shareType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.projectMap, forKey: .projectMap)
+      try container.encodeIfPresent(self.shareType, forKey: .shareType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [shareType][google.cloud.compute.v1.ShareSettings.shareType] field.

@@ -27,6 +27,8 @@ public struct CloudAIDocumentOption: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// If set, only selected entities will be converted to properties.
   public var customizedEntitiesPropertiesConversions: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudAIDocumentOption`.
   public init() {}
 
@@ -41,6 +43,51 @@ public struct CloudAIDocumentOption: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableEntitiesConversions = CodingKeys(stringValue: "enableEntitiesConversions")
+    static let customizedEntitiesPropertiesConversions = CodingKeys(
+      stringValue: "customizedEntitiesPropertiesConversions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableEntitiesConversions",
+      "customizedEntitiesPropertiesConversions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableEntitiesConversions)
+    {
+      self.enableEntitiesConversions = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .customizedEntitiesPropertiesConversions)
+    {
+      self.customizedEntitiesPropertiesConversions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableEntitiesConversions, forKey: .enableEntitiesConversions)
+    try container.encode(
+      self.customizedEntitiesPropertiesConversions, forKey: .customizedEntitiesPropertiesConversions
+    )
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

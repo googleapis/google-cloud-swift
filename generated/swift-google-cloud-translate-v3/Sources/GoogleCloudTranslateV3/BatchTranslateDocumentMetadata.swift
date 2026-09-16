@@ -58,6 +58,8 @@ public struct BatchTranslateDocumentMetadata: Codable, Equatable, GoogleCloudWKT
   /// Time when the operation was submitted.
   public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchTranslateDocumentMetadata`.
   public init() {}
 
@@ -72,6 +74,94 @@ public struct BatchTranslateDocumentMetadata: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let totalPages = CodingKeys(stringValue: "totalPages")
+    static let translatedPages = CodingKeys(stringValue: "translatedPages")
+    static let failedPages = CodingKeys(stringValue: "failedPages")
+    static let totalBillablePages = CodingKeys(stringValue: "totalBillablePages")
+    static let totalCharacters = CodingKeys(stringValue: "totalCharacters")
+    static let translatedCharacters = CodingKeys(stringValue: "translatedCharacters")
+    static let failedCharacters = CodingKeys(stringValue: "failedCharacters")
+    static let totalBillableCharacters = CodingKeys(stringValue: "totalBillableCharacters")
+    static let submitTime = CodingKeys(stringValue: "submitTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "totalPages",
+      "translatedPages",
+      "failedPages",
+      "totalBillablePages",
+      "totalCharacters",
+      "translatedCharacters",
+      "failedCharacters",
+      "totalBillableCharacters",
+      "submitTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      BatchTranslateDocumentMetadata.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalPages) {
+      self.totalPages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .translatedPages) {
+      self.translatedPages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedPages) {
+      self.failedPages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBillablePages) {
+      self.totalBillablePages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalCharacters) {
+      self.totalCharacters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .translatedCharacters) {
+      self.translatedCharacters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedCharacters) {
+      self.failedCharacters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBillableCharacters)
+    {
+      self.totalBillableCharacters = value
+    }
+    self.submitTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .submitTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.totalPages, forKey: .totalPages)
+    try container.encode(self.translatedPages, forKey: .translatedPages)
+    try container.encode(self.failedPages, forKey: .failedPages)
+    try container.encode(self.totalBillablePages, forKey: .totalBillablePages)
+    try container.encode(self.totalCharacters, forKey: .totalCharacters)
+    try container.encode(self.translatedCharacters, forKey: .translatedCharacters)
+    try container.encode(self.failedCharacters, forKey: .failedCharacters)
+    try container.encode(self.totalBillableCharacters, forKey: .totalBillableCharacters)
+    try container.encodeIfPresent(self.submitTime, forKey: .submitTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the job.
