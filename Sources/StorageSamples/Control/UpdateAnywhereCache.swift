@@ -19,9 +19,8 @@ import GoogleWKT
 public func updateAnywhereCache(
   client: StorageControlClient, bucketId: String, cacheId: String
 ) async throws {
-  // TODO(https://github.com/googleapis/google-cloud-swift/issues/588) - use the LRO helper
-  var operation = try await client.updateAnywhereCache(
-    request: .init().with {
+  let poller = try await client.updateAnywhereCache(
+    withPolling: .init().with {
       $0.anywhereCache = .init().with { cache in
         cache.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
         cache.admissionPolicy = "admit-on-second-miss"
@@ -29,14 +28,7 @@ public func updateAnywhereCache(
       $0.updateMask = .init(paths: ["admission_policy"])
     }
   )
-  while !operation.done {
-    try await Task.sleep(for: .seconds(1))
-    operation = try await client.getOperation(
-      request: .init().with {
-        $0.name = operation.name
-      }
-    )
-  }
-  print("Updated anywhere cache: \(operation)")
+  let cache = try await poller.wait()
+  print("Updated anywhere cache: \(cache)")
 }
 // [END storage_control_update_anywhere_cache]

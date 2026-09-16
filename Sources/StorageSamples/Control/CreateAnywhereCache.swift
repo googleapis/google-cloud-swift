@@ -18,9 +18,8 @@ import GoogleCloudStorage
 public func createAnywhereCache(
   client: StorageControlClient, bucketId: String, zone: String
 ) async throws {
-  // TODO(https://github.com/googleapis/google-cloud-swift/issues/588) - use the LRO helper
-  var operation = try await client.createAnywhereCache(
-    request: .init().with {
+  let poller = try await client.createAnywhereCache(
+    withPolling: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.anywhereCache = .init().with { cache in
         cache.zone = zone
@@ -28,14 +27,7 @@ public func createAnywhereCache(
       }
     }
   )
-  while !operation.done {
-    try await Task.sleep(for: .seconds(1))
-    operation = try await client.getOperation(
-      request: .init().with {
-        $0.name = operation.name
-      }
-    )
-  }
-  print("Created anywhere cache: \(operation)")
+  let cache = try await poller.wait()
+  print("Created anywhere cache: \(cache)")
 }
 // [END storage_control_create_anywhere_cache]
