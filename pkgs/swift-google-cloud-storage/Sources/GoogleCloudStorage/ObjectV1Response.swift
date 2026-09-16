@@ -50,6 +50,20 @@ package struct RetentionV1: Decodable, Sendable {
   package var retainUntilTime: GoogleCloudWKT.Timestamp?
 }
 
+/// The JSON API reports the key hash as a base64-encoded string named `keySha256`, while
+/// `google.storage.v2` uses raw bytes named `key_sha256_bytes`.
+package struct CustomerEncryptionV1: Decodable, Sendable {
+  package var encryptionAlgorithm: String?
+  package var keySha256: String?
+
+  package func toCustomerEncryption() -> CustomerEncryption {
+    var value = CustomerEncryption()
+    value.encryptionAlgorithm = encryptionAlgorithm ?? ""
+    value.keySha256Bytes = keySha256.flatMap { Data(base64Encoded: $0) } ?? Data()
+    return value
+  }
+}
+
 package struct ObjectV1Response: Decodable, Sendable {
   package var name: String?
   package var bucket: String?
@@ -77,7 +91,7 @@ package struct ObjectV1Response: Decodable, Sendable {
   package var contexts: ObjectContexts?
   package var eventBasedHold: Bool?
   package var owner: Owner?
-  package var customerEncryption: CustomerEncryption?
+  package var customerEncryption: CustomerEncryptionV1?
   package var customTime: GoogleCloudWKT.Timestamp?
   package var retention: RetentionV1?
 
@@ -132,7 +146,7 @@ package struct ObjectV1Response: Decodable, Sendable {
     obj.contexts = contexts
     obj.eventBasedHold = eventBasedHold
     obj.owner = owner
-    obj.customerEncryption = customerEncryption
+    obj.customerEncryption = customerEncryption?.toCustomerEncryption()
     obj.customTime = customTime
 
     if let retention = retention {

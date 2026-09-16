@@ -616,36 +616,6 @@ extension CustomerEncryption {
       keySha256Bytes = newValue.flatMap { Data(base64Encoded: $0) } ?? Data()
     }
   }
-
-  private enum ExtensionCodingKeys: String, CodingKey {
-    case encryptionAlgorithm
-    case keySha256Bytes
-    case keySha256
-  }
-
-  public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: ExtensionCodingKeys.self)
-    self.encryptionAlgorithm =
-      try container.decodeIfPresent(String.self, forKey: .encryptionAlgorithm) ?? ""
-    if let data = try container.decodeIfPresent(Data.self, forKey: .keySha256Bytes) {
-      self.keySha256Bytes = data
-    } else if let b64 = try container.decodeIfPresent(String.self, forKey: .keySha256),
-      let data = Data(base64Encoded: b64)
-    {
-      self.keySha256Bytes = data
-    } else {
-      self.keySha256Bytes = Data()
-    }
-  }
-
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: ExtensionCodingKeys.self)
-    try container.encode(encryptionAlgorithm, forKey: .encryptionAlgorithm)
-    try container.encode(keySha256Bytes, forKey: .keySha256Bytes)
-    if !keySha256Bytes.isEmpty {
-      try container.encode(keySha256Bytes.base64EncodedString(), forKey: .keySha256)
-    }
-  }
 }
 
 /// Represents a parsed HTTP `Range` header (e.g. `bytes=0-1999`).
