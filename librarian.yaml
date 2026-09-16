@@ -1112,6 +1112,7 @@ libraries:
           module_path: StorageControlProtos
       name_overrides:
         .google.storage.v2.Storage: StorageControl
+      lro_any_converter: StorageControlLROAnyConverter
   - name: google-cloud-storagebatchoperations-v1
     version: 0.0.0-preview
     copyright_year: "2026"

@@ -69,6 +69,8 @@ let package = Package(
         "GoogleCloudStorage",
         "StorageControlProtos",
         "StorageProtos",
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOHTTP1", package: "swift-nio"),

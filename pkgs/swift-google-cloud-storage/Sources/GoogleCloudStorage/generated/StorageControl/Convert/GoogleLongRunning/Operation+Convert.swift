@@ -29,14 +29,15 @@ extension GoogleLongRunning.Operation {
   internal init(proto: ProtoType) throws {
     self.init()
     self.name = proto.name
-    self.metadata = proto.hasMetadata ? try .init(proto: proto.metadata) : nil
+    self.metadata =
+      proto.hasMetadata ? try StorageControlLROAnyConverter.fromProto(proto.metadata) : nil
     self.done = proto.done
     if let oneof = proto.result {
       switch oneof {
       case .error(let value):
         self.result = .error(try .init(proto: value))
       case .response(let value):
-        self.result = .response(try .init(proto: value))
+        self.result = .response(try StorageControlLROAnyConverter.fromProto(value))
       }
     }
     self._unknownFields.proto = proto.unknownFields.data
@@ -45,7 +46,9 @@ extension GoogleLongRunning.Operation {
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
-    if let metadata = self.metadata { proto.metadata = try metadata.toProto() }
+    if let metadata = self.metadata {
+      proto.metadata = try StorageControlLROAnyConverter.toProto(metadata)
+    }
     proto.done = self.done
     if let oneof = self.result {
       switch oneof {
@@ -55,7 +58,7 @@ extension GoogleLongRunning.Operation {
         }
       case .response(let value):
         if let value = value {
-          proto.result = .response(try value.toProto())
+          proto.result = .response(try StorageControlLROAnyConverter.toProto(value))
         }
       }
     }
