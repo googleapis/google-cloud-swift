@@ -8,14 +8,15 @@
 
 <!-- reference links at the top for Swift DocC -->
 
-The Swift client libraries support Swift 6.2 and higher. This document provides
-additional information and best practices to keep your toolchain and libraries
-up-to-date.
+The Swift client libraries support the last 3 minor releases of Swift
+(currently Swift 6.2, 6.3, and 6.4). This document provides additional
+information and best practices to keep your toolchain and libraries up-to-date.
 
 ## Minimum supported Swift version
 
-The Swift client libraries support Swift 6.2 and higher. For more information on
-Cloud client libraries, see [Client libraries explained].
+The Swift client libraries support and test against the last 3 minor releases of
+Swift (currently 6.2, 6.3, and 6.4). For more information on Cloud client
+libraries, see [Client libraries explained].
 
 Our Swift client libraries increment the major version when dropping
 compatibility with a Swift major version. For more information about the use
@@ -36,4 +37,4 @@ receives critical security patches.
 Ensure that you receive critical security and bug fixes by keeping your
 production systems on supported Swift toolchains. Use [swiftly update]
 to automatically update your version of Swift and [swift package update] to
-automatically update the Rust dependencies in your project.
+automatically update the Swift dependencies in your project.

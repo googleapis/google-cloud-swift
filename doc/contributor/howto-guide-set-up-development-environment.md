@@ -9,7 +9,9 @@ compile the code, run the unit tests, and formatting miscellaneous files.
 We recommend that you follow the [Getting Started][getting-started-swift] guide.
 Once you have `swiftly` and `swift` installed the rest is relatively easy.
 
-You will need Swift >= 6.2. Check the version you have installed with:
+We support and test against the last 3 minor releases of Swift (currently 6.2,
+6.3, and 6.4). You will need Swift >= 6.2. Check the version you have installed
+with:
 
 ```shell
 swift --version

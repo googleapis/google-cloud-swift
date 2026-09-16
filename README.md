@@ -9,9 +9,9 @@ The project is just starting, we are experimenting with its structure and design
 
 ## Minimum Supported Swift Version
 
-We require Swift >= 6.2. We plan to update this periodically. However, the
-development branch will always compile with the Swift versions released within
-the previous year.
+We support and test the last 3 minor releases of Swift (currently Swift 6.2, 6.3,
+and 6.4). We periodically update the minimum supported version as new Swift
+versions become available.
 
 ## Semantic versioning
 
