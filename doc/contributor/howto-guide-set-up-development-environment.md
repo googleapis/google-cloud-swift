@@ -280,7 +280,7 @@ To preview the user guide use:
 swift package --disable-sandbox preview-documentation --target UserGuide
 ```
 
-To preview one of the hand-crated packages use:
+To preview one of the handcrafted packages use:
 
 ```bash
 swift package --disable-sandbox preview-documentation --target GoogleAuth
@@ -293,6 +293,26 @@ You can also preview the GAPICs used by the top-level tests, for example:
 ```bash
 swift package --disable-sandbox preview-documentation --target GoogleCloudSecretManagerV1
 swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
+```
+
+### Preview Other Generated Packages
+
+In standard local development workflows, only a minimal set of packages is
+built to keep dependency resolution and build times short-ish.
+
+To preview documentation for an extra package, set `GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES`
+in your shell to load that package into the workspace:
+
+```bash
+env GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES="swift-google-cloud-vision-v1" \
+  swift package --disable-sandbox preview-documentation --target GoogleCloudVisionV1
+```
+
+If you need to resolve all generated packages, set `GOOGLE_CLOUD_SWIFT_FULL_BUILD=true`:
+
+```bash
+env GOOGLE_CLOUD_SWIFT_FULL_BUILD=true \
+  swift package --disable-sandbox preview-documentation --target GoogleCloudVisionV1
 ```
 
 ## Miscellaneous Tools

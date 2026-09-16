@@ -26,9 +26,9 @@ import PackageDescription
 // different value in CI builds, so we can compile all the packages using SPM. In the development
 // environment this is too slow.
 
-let generated: [Generated] = selectGeneratedPackages()
+let selected: SelectedPackages = selectGeneratedPackages()
 
-let generatedDependencies: [Package.Dependency] = generated.map {
+let generatedDependencies: [Package.Dependency] = selected.forDependencies.map {
   let path = "./generated/\($0.name)"
   if $0.traits.isEmpty {
     return .package(path: path)
@@ -36,41 +36,48 @@ let generatedDependencies: [Package.Dependency] = generated.map {
   return .package(path: path, traits: $0.traits)
 }
 
-let generatedModules: [Target.Dependency] = generated.map {
+let generatedModules: [Target.Dependency] = selected.forTarget.map {
   .product(name: $0.module, package: $0.name)
 }
+
+let baseModules: [Target.Dependency] =
+  selected.includeBaseModules
+  ? [
+    .product(name: "GoogleAuth", package: "swift-google-auth"),
+    .product(name: "GoogleGax", package: "swift-google-gax"),
+    .product(name: "GoogleWKT", package: "swift-google-wkt"),
+  ] : []
+
+// The "mixin" packages, e.g. `swift-google-iam-v1`, are in `generated/`, and
+// `generatedPackagesStatic()` always includes them as path dependencies.
+// Declaring both a remote URL and a path dependency for the same package makes
+// SwiftPM dependency resolution fail, so this list must not reference them.
+let baseDependencies: [Package.Dependency] = [
+  .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
+  .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
+  .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
+  // Reference local packages via paths
+  .package(path: "./pkgs/swift-google-cloud-storage"),
+  .package(path: "./guide"),
+  .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+  .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
+  .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
+  // Only used for development.
+  .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+]
 
 let package = Package(
   name: "GoogleCloudSwift",
   platforms: [
     .macOS(.v15)
   ],
-  dependencies: [
-    // Reference local packages via paths
-    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-type", from: "0.1.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-iam-v1", from: "0.1.0-preview"),
-    .package(
-      url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
-    .package(path: "./pkgs/swift-google-cloud-storage"),
-    .package(path: "./guide"),
-    .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
-    .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
-    .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
-    // Only used for development.
-    .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-  ] + generatedDependencies,
+  dependencies: baseDependencies + generatedDependencies,
   targets: [
     .testTarget(
       name: "AllModules",
       dependencies: [
-        .product(name: "UserGuide", package: "guide"),
-        .product(name: "GoogleAuth", package: "swift-google-auth"),
-        .product(name: "GoogleGax", package: "swift-google-gax"),
-        .product(name: "GoogleWKT", package: "swift-google-wkt"),
-      ] + generatedModules,
+        .product(name: "UserGuide", package: "guide")
+      ] + baseModules + generatedModules,
     ),
     .testTarget(
       name: "Discovery",
@@ -238,27 +245,110 @@ struct Generated {
   }
 }
 
-/// Finds the generated packages used for the build.
-func selectGeneratedPackages() -> [Generated] {
-  let fullBuild = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_FULL_BUILD"] == "true"
-  if fullBuild {
-    return generatedPackagesFull()
-  }
-  return generatedPackagesStatic()
+struct SelectedPackages {
+  let forDependencies: [Generated]
+  let forTarget: [Generated]
+  let includeBaseModules: Bool
 }
 
-/// The packages required to build `Tests/`.
+/// Finds the generated packages to use in this build.
+///
+/// In standard local development workflows, only a minimal set of packages
+/// is built (see `generatedPackagesStatic()`). That keeps the dependency
+/// resolution and build times short-ish.
+///
+/// To preview documentation for an extra package, set
+/// `GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES="<package-name>"`, e.g.:
+/// `GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES="swift-google-cloud-vision-v1"`
+///
+/// To build all packages, set `GOOGLE_CLOUD_SWIFT_FULL_BUILD=true`.
+///
+/// In post-merge CI docs builds, `GOOGLE_CLOUD_SWIFT_BUILD_SHARD_COUNT` and
+/// `GOOGLE_CLOUD_SWIFT_BUILD_SHARD_INDEX` are set by `ci/gcb/scripts/docs.sh`
+/// to shard documentation generation across multiple builders.
+func selectGeneratedPackages() -> SelectedPackages {
+  let env = ProcessInfo.processInfo.environment
+  if let extra = env["GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES"] {
+    let extraSet = Set(extra.split(separator: " ").map(String.init))
+    let staticPkgs = generatedPackagesStatic()
+    if extraSet.isEmpty {
+      return SelectedPackages(
+        forDependencies: staticPkgs,
+        forTarget: staticPkgs,
+        includeBaseModules: true
+      )
+    }
+    let all = generatedPackagesFull()
+    let staticSet = Set(staticPkgs.map { $0.name })
+    let pkgs =
+      staticPkgs + all.filter { extraSet.contains($0.name) && !staticSet.contains($0.name) }
+    return SelectedPackages(
+      forDependencies: pkgs,
+      forTarget: pkgs,
+      includeBaseModules: true
+    )
+  }
+  if let countStr = env["GOOGLE_CLOUD_SWIFT_BUILD_SHARD_COUNT"], let count = Int(countStr),
+    count >= 1
+  {
+    let index = Int(env["GOOGLE_CLOUD_SWIFT_BUILD_SHARD_INDEX"] ?? "0") ?? 0
+    let all = generatedPackagesFull()
+    if count == 1 && index == 0 {
+      return SelectedPackages(
+        forDependencies: all,
+        forTarget: all,
+        includeBaseModules: true
+      )
+    }
+    let staticPkgs = generatedPackagesStatic()
+    let staticSet = Set(staticPkgs.map { $0.name })
+    let sharded = all.enumerated().compactMap { (i, pkg) -> Generated? in
+      (i % count == index) ? pkg : nil
+    }
+    let shardedExtra = sharded.filter { !staticSet.contains($0.name) }
+    return SelectedPackages(
+      forDependencies: staticPkgs + shardedExtra,
+      forTarget: sharded,
+      includeBaseModules: false
+    )
+  }
+  let fullBuild = env["GOOGLE_CLOUD_SWIFT_FULL_BUILD"] == "true"
+  if fullBuild {
+    let all = generatedPackagesFull()
+    return SelectedPackages(
+      forDependencies: all,
+      forTarget: all,
+      includeBaseModules: true
+    )
+  }
+  let staticPkgs = generatedPackagesStatic()
+  return SelectedPackages(
+    forDependencies: staticPkgs,
+    forTarget: staticPkgs,
+    includeBaseModules: true
+  )
+}
+
+/// The packages always included in the build.
 ///
 /// The tests, particularly the integration tests, use a relatively small set of packages. To find
 /// out how we picked which APIs and packages to use in the integration tests, see the README files
 /// for each test.
+///
+/// The list also includes the "mixin" packages. Most generated packages depend on them, and
+/// declaring both a remote URL and a path dependency for the same package makes SwiftPM dependency
+/// resolution fail. Including them here guarantees they always appear as path dependencies.
 func generatedPackagesStatic() -> [Generated] {
   return [
+    .init(name: "swift-google-cloud-location", module: "GoogleCloudLocation"),
     .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
     .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
     .init(name: "swift-google-devtools-cloudbuild-v1", module: "GoogleCloudBuildV1"),
     .init(name: "swift-google-iam-credentials-v1", module: "GoogleIAMCredentialsV1"),
+    .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
+    .init(name: "swift-google-longrunning", module: "GoogleLongRunning"),
+    .init(name: "swift-google-type", module: "GoogleType"),
     .init(
       name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",
       traits: ["Instances", "Images", "ZoneOperations"]),
@@ -267,7 +357,7 @@ func generatedPackagesStatic() -> [Generated] {
 
 /// Finds all the packages available in the generated/ subdirectory.
 ///
-/// These roughly corresponds to GAPICs, but also include type-only packages.
+/// These roughly correspond to GAPICs, but also include type-only packages.
 func generatedPackagesFull() -> [Generated] {
   let prefix = "  name: \""
   let suffix = "\","
