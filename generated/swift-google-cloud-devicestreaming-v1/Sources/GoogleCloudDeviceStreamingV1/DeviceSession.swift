@@ -45,8 +45,11 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The timestamp that the session first became ACTIVE.
   public var activeStartTime: GoogleWKT.Timestamp? = nil
 
-  /// Required. The requested device
+  /// Required. The requested device.
   public var androidDevice: AndroidDevice? = nil
+
+  /// Optional. Information about the client which invoked the device session.
+  public var clientInfo: ClientInfo? = nil
 
   /// The amount of time that a device will be initially allocated for.
   public var expiration: OneOf_Expiration? = nil
@@ -85,6 +88,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     static let createTime = CodingKeys(stringValue: "createTime")
     static let activeStartTime = CodingKeys(stringValue: "activeStartTime")
     static let androidDevice = CodingKeys(stringValue: "androidDevice")
+    static let clientInfo = CodingKeys(stringValue: "clientInfo")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -97,6 +101,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
       "createTime",
       "activeStartTime",
       "androidDevice",
+      "clientInfo",
     ]
   }
 
@@ -122,6 +127,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     self.activeStartTime = try container.decodeIfPresent(
       GoogleWKT.Timestamp.self, forKey: .activeStartTime)
     self.androidDevice = try container.decodeIfPresent(AndroidDevice.self, forKey: .androidDevice)
+    self.clientInfo = try container.decodeIfPresent(ClientInfo.self, forKey: .clientInfo)
 
     var expiration: OneOf_Expiration? = nil
     let expirationCheckAndSet = {
@@ -158,6 +164,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.activeStartTime, forKey: .activeStartTime)
     try container.encodeIfPresent(self.androidDevice, forKey: .androidDevice)
+    try container.encodeIfPresent(self.clientInfo, forKey: .clientInfo)
 
     if let choice = self.expiration {
       switch choice {

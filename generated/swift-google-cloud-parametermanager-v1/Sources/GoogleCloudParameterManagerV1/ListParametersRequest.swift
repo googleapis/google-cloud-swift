@@ -29,7 +29,11 @@ public struct ListParametersRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// requested. If unspecified, server will pick an appropriate default.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Optional. A token identifying a page of results the server should return.
+  /// Optional. A page token, received from a previous `ListParameters` call.
+  /// Provide this to retrieve the subsequent page.
+  ///
+  /// When paginating, all other parameters provided to `ListParameters` must
+  /// match the call that provided the page token.
   public var pageToken: Swift.String = Swift.String()
 
   /// Optional. Filtering results

@@ -85,6 +85,9 @@
     /// [google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]: <doc:SearchRequest/ContentSearchSpec/summarySpec>
     public var summary: SearchResponse.Summary? = nil
 
+    /// Optional. Controls applied as part of the Control service.
+    public var appliedControls: [Swift.String] = []
+
     /// Query expansion information for the returned results.
     public var queryExpansionInfo: SearchResponse.QueryExpansionInfo? = nil
 
@@ -140,6 +143,7 @@
       static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
       static let correctedQuery = CodingKeys(stringValue: "correctedQuery")
       static let summary = CodingKeys(stringValue: "summary")
+      static let appliedControls = CodingKeys(stringValue: "appliedControls")
       static let queryExpansionInfo = CodingKeys(stringValue: "queryExpansionInfo")
       static let naturalLanguageQueryUnderstandingInfo = CodingKeys(
         stringValue: "naturalLanguageQueryUnderstandingInfo")
@@ -156,6 +160,7 @@
         "nextPageToken",
         "correctedQuery",
         "summary",
+        "appliedControls",
         "queryExpansionInfo",
         "naturalLanguageQueryUnderstandingInfo",
         "sessionInfo",
@@ -190,6 +195,9 @@
         self.correctedQuery = value
       }
       self.summary = try container.decodeIfPresent(SearchResponse.Summary.self, forKey: .summary)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .appliedControls) {
+        self.appliedControls = value
+      }
       self.queryExpansionInfo = try container.decodeIfPresent(
         SearchResponse.QueryExpansionInfo.self, forKey: .queryExpansionInfo)
       self.naturalLanguageQueryUnderstandingInfo = try container.decodeIfPresent(
@@ -223,6 +231,7 @@
       try container.encode(self.nextPageToken, forKey: .nextPageToken)
       try container.encode(self.correctedQuery, forKey: .correctedQuery)
       try container.encodeIfPresent(self.summary, forKey: .summary)
+      try container.encode(self.appliedControls, forKey: .appliedControls)
       try container.encodeIfPresent(self.queryExpansionInfo, forKey: .queryExpansionInfo)
       try container.encodeIfPresent(
         self.naturalLanguageQueryUnderstandingInfo, forKey: .naturalLanguageQueryUnderstandingInfo)
@@ -264,6 +273,10 @@
       /// Optional. A set of ranking signals associated with the result.
       public var rankSignals: SearchResponse.SearchResult.RankSignals? = nil
 
+      /// Optional. A set of signals used by the relevance filter meant for use to
+      /// fine-tune the relevance filter thresholds.
+      public var retrievalSignals: SearchResponse.SearchResult.RetrievalSignals? = nil
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SearchResult`.
@@ -293,6 +306,7 @@
         static let chunk = CodingKeys(stringValue: "chunk")
         static let modelScores = CodingKeys(stringValue: "modelScores")
         static let rankSignals = CodingKeys(stringValue: "rankSignals")
+        static let retrievalSignals = CodingKeys(stringValue: "retrievalSignals")
 
         static let _knownKeys: Set<Swift.String> = [
           "id",
@@ -300,6 +314,7 @@
           "chunk",
           "modelScores",
           "rankSignals",
+          "retrievalSignals",
         ]
       }
 
@@ -317,6 +332,8 @@
         }
         self.rankSignals = try container.decodeIfPresent(
           SearchResponse.SearchResult.RankSignals.self, forKey: .rankSignals)
+        self.retrievalSignals = try container.decodeIfPresent(
+          SearchResponse.SearchResult.RetrievalSignals.self, forKey: .retrievalSignals)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.Value.self, forKey: key)
@@ -330,6 +347,7 @@
         try container.encodeIfPresent(self.chunk, forKey: .chunk)
         try container.encode(self.modelScores, forKey: .modelScores)
         try container.encodeIfPresent(self.rankSignals, forKey: .rankSignals)
+        try container.encodeIfPresent(self.retrievalSignals, forKey: .retrievalSignals)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -366,6 +384,11 @@
         /// Optional. A list of custom clearbox signals.
         public var customSignals: [SearchResponse.SearchResult.RankSignals.CustomSignal] = []
 
+        /// Optional. A list of precomputed expression results for a given
+        /// document, in the same order as requested in
+        /// `SearchRequest.custom_ranking_params.expressions_to_precompute`.
+        public var precomputedExpressionValues: [Swift.Float] = []
+
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
         /// Initialize a new instance of `RankSignals`.
@@ -399,6 +422,8 @@
           static let boostingFactor = CodingKeys(stringValue: "boostingFactor")
           static let defaultRank = CodingKeys(stringValue: "defaultRank")
           static let customSignals = CodingKeys(stringValue: "customSignals")
+          static let precomputedExpressionValues = CodingKeys(
+            stringValue: "precomputedExpressionValues")
 
           static let _knownKeys: Set<Swift.String> = [
             "keywordSimilarityScore",
@@ -410,6 +435,7 @@
             "boostingFactor",
             "defaultRank",
             "customSignals",
+            "precomputedExpressionValues",
           ]
         }
 
@@ -435,6 +461,11 @@
           {
             self.customSignals = value
           }
+          if let value = try container.decodeIfPresent(
+            [Swift.Float].self, forKey: .precomputedExpressionValues)
+          {
+            self.precomputedExpressionValues = value
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.Value.self, forKey: key)
@@ -454,6 +485,8 @@
           try container.encodeIfPresent(self.boostingFactor, forKey: .boostingFactor)
           try container.encode(self.defaultRank, forKey: .defaultRank)
           try container.encode(self.customSignals, forKey: .customSignals)
+          try container.encode(
+            self.precomputedExpressionValues, forKey: .precomputedExpressionValues)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -541,6 +574,196 @@
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals"
+        }
+        public init(fromAny any: GoogleWKT.`Any`) throws {
+          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        }
+        public func _pack() throws -> GoogleWKT.Struct {
+          return try GoogleWKT._slowAnySerialize(message: self)
+        }
+      }
+
+      /// Contains a set of signals used by the relevance filter.
+      public struct RetrievalSignals: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Optional. Indicates how the result was retrieved.
+        public var retrievalSources:
+          [SearchResponse.SearchResult.RetrievalSignals.RetrievalSource] = []
+
+        /// Optional. Relevance score used by the filter when
+        /// semantic_relevance_threshold is set.
+        public var semanticRelevanceScore: Swift.Float = Swift.Float()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `RetrievalSignals`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = RetrievalSignals().with { $0.retrievalSources = ... }
+        /// ```
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let retrievalSources = CodingKeys(stringValue: "retrievalSources")
+          static let semanticRelevanceScore = CodingKeys(stringValue: "semanticRelevanceScore")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "retrievalSources",
+            "semanticRelevanceScore",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [SearchResponse.SearchResult.RetrievalSignals.RetrievalSource].self,
+            forKey: .retrievalSources)
+          {
+            self.retrievalSources = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Float.self, forKey: .semanticRelevanceScore)
+          {
+            self.semanticRelevanceScore = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.retrievalSources, forKey: .retrievalSources)
+          try container.encode(self.semanticRelevanceScore, forKey: .semanticRelevanceScore)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// Indicates the source of the retrieval.
+        public enum RetrievalSource: Codable, Equatable, Sendable {
+          /// Unspecified retrieval source.
+          case unspecified
+          /// Indicates the result was retrieved by keyword search.
+          case keywordSearch
+          /// Indicates the result was retrieved by semantic search.
+          case semanticSearch
+          /// Encodes an unknown integer value.
+          ///
+          /// The most common cause for an unknown values is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          case unknownIntValue(Int)
+          /// Encodes an unknown string value.
+          ///
+          /// The most common cause for an unknown values is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          case unknownStringValue(String)
+
+          public init() {
+            self = .unspecified
+          }
+
+          /// Returns the integer value associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+          public var intValue: Int? {
+            switch self {
+            case .unspecified: return 0
+            case .keywordSearch: return 1
+            case .semanticSearch: return 2
+            case .unknownIntValue(let v): return v
+            case .unknownStringValue: return nil
+            }
+          }
+
+          /// Returns the string value (or name) associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+          public var stringValue: Swift.String? {
+            switch self {
+            case .unspecified: return "RETRIEVAL_SOURCE_UNSPECIFIED"
+            case .keywordSearch: return "KEYWORD_SEARCH"
+            case .semanticSearch: return "SEMANTIC_SEARCH"
+            case .unknownIntValue: return nil
+            case .unknownStringValue(let v): return v
+            }
+          }
+
+          /// Initialize from a string value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RetrievalSource/unknownStringValue(_:)).
+          public init(stringValue: Swift.String) {
+            switch stringValue {
+            case "RETRIEVAL_SOURCE_UNSPECIFIED": self = .unspecified
+            case "KEYWORD_SEARCH": self = .keywordSearch
+            case "SEMANTIC_SEARCH": self = .semanticSearch
+            default: self = .unknownStringValue(stringValue)
+            }
+          }
+
+          /// Initialize from an integer value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RetrievalSource/unknownIntValue(_:)).
+          public init(intValue: Int) {
+            switch intValue {
+            case 0: self = .unspecified
+            case 1: self = .keywordSearch
+            case 2: self = .semanticSearch
+            default: self = .unknownIntValue(intValue)
+            }
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let v = try? container.decode(Int.self) {
+              self.init(intValue: v)
+              return
+            }
+            if let s = try? container.decode(String.self) {
+              if let v = Int(s) {
+                self.init(intValue: v)
+              } else {
+                self.init(stringValue: s)
+              }
+              return
+            }
+            throw DecodingError.dataCorruptedError(
+              in: container, debugDescription: "Expected enum value, must be integer or string.")
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .unspecified: return try container.encode("RETRIEVAL_SOURCE_UNSPECIFIED")
+            case .keywordSearch: return try container.encode("KEYWORD_SEARCH")
+            case .semanticSearch: return try container.encode("SEMANTIC_SEARCH")
+            case .unknownIntValue(let v): return try container.encode(v)
+            case .unknownStringValue(let v): return try container.encode(v)
+            }
+          }
+        }
+
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RetrievalSignals"
         }
         public init(fromAny any: GoogleWKT.`Any`) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

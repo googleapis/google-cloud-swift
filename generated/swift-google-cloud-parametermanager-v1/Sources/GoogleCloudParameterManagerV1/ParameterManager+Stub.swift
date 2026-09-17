@@ -65,6 +65,50 @@ extension Clients {
       request: DeleteParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    func listTemplates(
+      request: ListTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse
+
+    func getTemplate(
+      request: GetTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    func createTemplate(
+      request: CreateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    func updateTemplate(
+      request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    func deleteTemplate(
+      request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    func listTemplateVersions(
+      request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
+
+    func getTemplateVersion(
+      request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    func createTemplateVersion(
+      request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    func updateTemplateVersion(
+      request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    func deleteTemplateVersion(
+      request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    func renderTemplateVersion(
+      request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
+
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

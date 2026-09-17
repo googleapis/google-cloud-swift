@@ -168,7 +168,154 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
     try await self.inner.deleteParameterVersion(request: request, options: options)
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplates")
+  public func listTemplates(
+    request: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
+    try await self.inner.listTemplates(request: request, options: options)
+  }
+
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplates")
+  public func listTemplates(
+    byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<Template, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTemplates(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  /// Gets details of a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplate")
+  public func getTemplate(
+    request: GetTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    try await self.inner.getTemplate(request: request, options: options)
+  }
+
+  /// Creates a new Template in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplate")
+  public func createTemplate(
+    request: CreateTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    try await self.inner.createTemplate(request: request, options: options)
+  }
+
+  /// Updates a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplate")
+  public func updateTemplate(
+    request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    try await self.inner.updateTemplate(request: request, options: options)
+  }
+
+  /// Deletes a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplate")
+  public func deleteTemplate(
+    request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    try await self.inner.deleteTemplate(request: request, options: options)
+  }
+
+  /// Lists TemplateVersions in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  public func listTemplateVersions(
+    request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
+    try await self.inner.listTemplateVersions(request: request, options: options)
+  }
+
+  /// Lists TemplateVersions in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  public func listTemplateVersions(
+    byItem: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<TemplateVersion, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws
+        -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTemplateVersions(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  /// Gets details of a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplateVersion")
+  public func getTemplateVersion(
+    request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    try await self.inner.getTemplateVersion(request: request, options: options)
+  }
+
+  /// Creates a new TemplateVersion in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplateVersion")
+  public func createTemplateVersion(
+    request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    try await self.inner.createTemplateVersion(request: request, options: options)
+  }
+
+  /// Updates a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplateVersion")
+  public func updateTemplateVersion(
+    request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    try await self.inner.updateTemplateVersion(request: request, options: options)
+  }
+
+  /// Deletes a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplateVersion")
+  public func deleteTemplateVersion(
+    request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    try await self.inner.deleteTemplateVersion(request: request, options: options)
+  }
+
+  /// Gets rendered version of a TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_RenderTemplateVersion")
+  public func renderTemplateVersion(
+    request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
+    try await self.inner.renderTemplateVersion(request: request, options: options)
+  }
+
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ParameterManager_ListLocations")
   public func listLocations(
@@ -178,6 +325,23 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ParameterManager_ListLocations")
   public func listLocations(
@@ -322,6 +486,119 @@ extension Clients {
       name: Swift.String,
     ) async throws
 
+    /// See `ParameterManagerClient.listTemplates`.
+    func listTemplates(request: ListTemplatesRequest) async throws
+      -> GoogleCloudParameterManagerV1.ListTemplatesResponse
+
+    /// See `ParameterManagerClient.listTemplates`.
+    func listTemplates(
+      byItem: ListTemplatesRequest
+    ) throws -> any AsyncSequence<Template, Swift.Error>
+
+    /// See `ParameterManagerClient.listTemplates`.
+    func listTemplates(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<Template, Swift.Error>
+
+    /// See `ParameterManagerClient.getTemplate`.
+    func getTemplate(request: GetTemplateRequest) async throws
+      -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.getTemplate`.
+    func getTemplate(
+      name: Swift.String,
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.createTemplate`.
+    func createTemplate(request: CreateTemplateRequest) async throws
+      -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.createTemplate`.
+    func createTemplate(
+      parent: Swift.String,
+      template: Template?,
+      templateId: Swift.String,
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.updateTemplate`.
+    func updateTemplate(request: UpdateTemplateRequest) async throws
+      -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.updateTemplate`.
+    func updateTemplate(
+      template: Template?,
+      updateMask: GoogleWKT.FieldMask?,
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.deleteTemplate`.
+    func deleteTemplate(request: DeleteTemplateRequest) async throws
+
+    /// See `ParameterManagerClient.deleteTemplate`.
+    func deleteTemplate(
+      name: Swift.String,
+    ) async throws
+
+    /// See `ParameterManagerClient.listTemplateVersions`.
+    func listTemplateVersions(request: ListTemplateVersionsRequest) async throws
+      -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
+
+    /// See `ParameterManagerClient.listTemplateVersions`.
+    func listTemplateVersions(
+      byItem: ListTemplateVersionsRequest
+    ) throws -> any AsyncSequence<TemplateVersion, Swift.Error>
+
+    /// See `ParameterManagerClient.listTemplateVersions`.
+    func listTemplateVersions(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<TemplateVersion, Swift.Error>
+
+    /// See `ParameterManagerClient.getTemplateVersion`.
+    func getTemplateVersion(request: GetTemplateVersionRequest) async throws
+      -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.getTemplateVersion`.
+    func getTemplateVersion(
+      name: Swift.String,
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.createTemplateVersion`.
+    func createTemplateVersion(request: CreateTemplateVersionRequest) async throws
+      -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.createTemplateVersion`.
+    func createTemplateVersion(
+      parent: Swift.String,
+      templateVersion: TemplateVersion?,
+      templateVersionId: Swift.String,
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.updateTemplateVersion`.
+    func updateTemplateVersion(request: UpdateTemplateVersionRequest) async throws
+      -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.updateTemplateVersion`.
+    func updateTemplateVersion(
+      templateVersion: TemplateVersion?,
+      updateMask: GoogleWKT.FieldMask?,
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.deleteTemplateVersion`.
+    func deleteTemplateVersion(request: DeleteTemplateVersionRequest) async throws
+
+    /// See `ParameterManagerClient.deleteTemplateVersion`.
+    func deleteTemplateVersion(
+      name: Swift.String,
+    ) async throws
+
+    /// See `ParameterManagerClient.renderTemplateVersion`.
+    func renderTemplateVersion(request: RenderTemplateVersionRequest) async throws
+      -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
+
+    /// See `ParameterManagerClient.renderTemplateVersion`.
+    func renderTemplateVersion(
+      name: Swift.String,
+    ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
+
     /// See `ParameterManagerClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
@@ -399,6 +676,71 @@ extension Clients {
     func deleteParameterVersion(
       request: DeleteParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws
+
+    /// See `ParameterManagerClient.listTemplates`.
+    func listTemplates(
+      request: ListTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse
+
+    /// See `ParameterManagerClient.listTemplates`.
+    func listTemplates(
+      byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
+    ) throws -> any AsyncSequence<Template, Swift.Error>
+
+    /// See `ParameterManagerClient.getTemplate`.
+    func getTemplate(
+      request: GetTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.createTemplate`.
+    func createTemplate(
+      request: CreateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.updateTemplate`.
+    func updateTemplate(
+      request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template
+
+    /// See `ParameterManagerClient.deleteTemplate`.
+    func deleteTemplate(
+      request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `ParameterManagerClient.listTemplateVersions`.
+    func listTemplateVersions(
+      request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
+
+    /// See `ParameterManagerClient.listTemplateVersions`.
+    func listTemplateVersions(
+      byItem: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+    ) throws -> any AsyncSequence<TemplateVersion, Swift.Error>
+
+    /// See `ParameterManagerClient.getTemplateVersion`.
+    func getTemplateVersion(
+      request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.createTemplateVersion`.
+    func createTemplateVersion(
+      request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.updateTemplateVersion`.
+    func updateTemplateVersion(
+      request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion
+
+    /// See `ParameterManagerClient.deleteTemplateVersion`.
+    func deleteTemplateVersion(
+      request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `ParameterManagerClient.renderTemplateVersion`.
+    func renderTemplateVersion(
+      request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
 
     /// See `ParameterManagerClient.listLocations`.
     func listLocations(
@@ -689,6 +1031,278 @@ extension Clients.ParameterManagerProtocol {
       $0.name = name
     }
     try await self.deleteParameterVersion(request: request)
+  }
+
+  public func listTemplates(request: ListTemplatesRequest) async throws
+    -> GoogleCloudParameterManagerV1.ListTemplatesResponse
+  {
+    try await self.listTemplates(request: request, options: .init())
+  }
+
+  public func listTemplates(
+    request: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listTemplates(
+    byItem: ListTemplatesRequest
+  ) throws -> any AsyncSequence<Template, Swift.Error> {
+    try self.listTemplates(byItem: byItem, options: .init())
+  }
+
+  public func listTemplates(
+    byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<Template, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listTemplates(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<Template, Swift.Error> {
+    let request = ListTemplatesRequest().with {
+      $0.parent = parent
+    }
+    return try self.listTemplates(byItem: request)
+  }
+
+  public func getTemplate(request: GetTemplateRequest) async throws
+    -> GoogleCloudParameterManagerV1.Template
+  {
+    try await self.getTemplate(request: request, options: .init())
+  }
+
+  public func getTemplate(
+    request: GetTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getTemplate(
+    name: Swift.String,
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    let request = GetTemplateRequest().with {
+      $0.name = name
+    }
+    return try await self.getTemplate(request: request)
+  }
+
+  public func createTemplate(request: CreateTemplateRequest) async throws
+    -> GoogleCloudParameterManagerV1.Template
+  {
+    try await self.createTemplate(request: request, options: .init())
+  }
+
+  public func createTemplate(
+    request: CreateTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createTemplate(
+    parent: Swift.String,
+    template: Template?,
+    templateId: Swift.String,
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    let request = CreateTemplateRequest().with {
+      $0.parent = parent
+      $0.template = template
+      $0.templateId = templateId
+    }
+    return try await self.createTemplate(request: request)
+  }
+
+  public func updateTemplate(request: UpdateTemplateRequest) async throws
+    -> GoogleCloudParameterManagerV1.Template
+  {
+    try await self.updateTemplate(request: request, options: .init())
+  }
+
+  public func updateTemplate(
+    request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateTemplate(
+    template: Template?,
+    updateMask: GoogleWKT.FieldMask?,
+  ) async throws -> GoogleCloudParameterManagerV1.Template {
+    let request = UpdateTemplateRequest().with {
+      $0.template = template
+      $0.updateMask = updateMask
+    }
+    return try await self.updateTemplate(request: request)
+  }
+
+  public func deleteTemplate(request: DeleteTemplateRequest) async throws {
+    try await self.deleteTemplate(request: request, options: .init())
+  }
+
+  public func deleteTemplate(
+    request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteTemplate(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteTemplateRequest().with {
+      $0.name = name
+    }
+    try await self.deleteTemplate(request: request)
+  }
+
+  public func listTemplateVersions(request: ListTemplateVersionsRequest) async throws
+    -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
+  {
+    try await self.listTemplateVersions(request: request, options: .init())
+  }
+
+  public func listTemplateVersions(
+    request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listTemplateVersions(
+    byItem: ListTemplateVersionsRequest
+  ) throws -> any AsyncSequence<TemplateVersion, Swift.Error> {
+    try self.listTemplateVersions(byItem: byItem, options: .init())
+  }
+
+  public func listTemplateVersions(
+    byItem: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<TemplateVersion, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws
+        -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listTemplateVersions(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<TemplateVersion, Swift.Error> {
+    let request = ListTemplateVersionsRequest().with {
+      $0.parent = parent
+    }
+    return try self.listTemplateVersions(byItem: request)
+  }
+
+  public func getTemplateVersion(request: GetTemplateVersionRequest) async throws
+    -> GoogleCloudParameterManagerV1.TemplateVersion
+  {
+    try await self.getTemplateVersion(request: request, options: .init())
+  }
+
+  public func getTemplateVersion(
+    request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getTemplateVersion(
+    name: Swift.String,
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    let request = GetTemplateVersionRequest().with {
+      $0.name = name
+    }
+    return try await self.getTemplateVersion(request: request)
+  }
+
+  public func createTemplateVersion(request: CreateTemplateVersionRequest) async throws
+    -> GoogleCloudParameterManagerV1.TemplateVersion
+  {
+    try await self.createTemplateVersion(request: request, options: .init())
+  }
+
+  public func createTemplateVersion(
+    request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createTemplateVersion(
+    parent: Swift.String,
+    templateVersion: TemplateVersion?,
+    templateVersionId: Swift.String,
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    let request = CreateTemplateVersionRequest().with {
+      $0.parent = parent
+      $0.templateVersion = templateVersion
+      $0.templateVersionId = templateVersionId
+    }
+    return try await self.createTemplateVersion(request: request)
+  }
+
+  public func updateTemplateVersion(request: UpdateTemplateVersionRequest) async throws
+    -> GoogleCloudParameterManagerV1.TemplateVersion
+  {
+    try await self.updateTemplateVersion(request: request, options: .init())
+  }
+
+  public func updateTemplateVersion(
+    request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateTemplateVersion(
+    templateVersion: TemplateVersion?,
+    updateMask: GoogleWKT.FieldMask?,
+  ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+    let request = UpdateTemplateVersionRequest().with {
+      $0.templateVersion = templateVersion
+      $0.updateMask = updateMask
+    }
+    return try await self.updateTemplateVersion(request: request)
+  }
+
+  public func deleteTemplateVersion(request: DeleteTemplateVersionRequest) async throws {
+    try await self.deleteTemplateVersion(request: request, options: .init())
+  }
+
+  public func deleteTemplateVersion(
+    request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteTemplateVersion(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteTemplateVersionRequest().with {
+      $0.name = name
+    }
+    try await self.deleteTemplateVersion(request: request)
+  }
+
+  public func renderTemplateVersion(request: RenderTemplateVersionRequest) async throws
+    -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
+  {
+    try await self.renderTemplateVersion(request: request, options: .init())
+  }
+
+  public func renderTemplateVersion(
+    request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func renderTemplateVersion(
+    name: Swift.String,
+  ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
+    let request = RenderTemplateVersionRequest().with {
+      $0.name = name
+    }
+    return try await self.renderTemplateVersion(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

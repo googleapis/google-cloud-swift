@@ -30,19 +30,31 @@ import Foundation
 public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// The URI for an external resource that this
+  /// Optional. The URI for an external resource that this
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
   public var externalKeyUri: Swift.String = Swift.String()
 
-  /// The path to the external key material on the EKM when using
+  /// Optional. The path to the external key material on the EKM when using
   /// [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
   /// this field instead of external_key_uri when using an
   /// [EkmConnection][google.cloud.kms.v1.EkmConnection].
   ///
   /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
   public var ekmConnectionKeyPath: Swift.String = Swift.String()
+
+  /// Optional. The resource name of the backend environment where the key
+  /// material of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is
+  /// associated with. Setting this field overrides the [CryptoKeyBackend][].
+  /// This field may be set when
+  /// [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is set to
+  /// [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]. Format:
+  /// `projects/*/locations/*/ekmConnections/*`.
+  ///
+  /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
+  /// [google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]: <doc:ProtectionLevel/externalVpc>
+  public var ekmConnectionBackendOverride: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,10 +82,13 @@ public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleWKT._Any
 
     static let externalKeyUri = CodingKeys(stringValue: "externalKeyUri")
     static let ekmConnectionKeyPath = CodingKeys(stringValue: "ekmConnectionKeyPath")
+    static let ekmConnectionBackendOverride = CodingKeys(
+      stringValue: "ekmConnectionBackendOverride")
 
     static let _knownKeys: Set<Swift.String> = [
       "externalKeyUri",
       "ekmConnectionKeyPath",
+      "ekmConnectionBackendOverride",
     ]
   }
 
@@ -85,6 +100,11 @@ public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleWKT._Any
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ekmConnectionKeyPath) {
       self.ekmConnectionKeyPath = value
     }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .ekmConnectionBackendOverride)
+    {
+      self.ekmConnectionBackendOverride = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -95,6 +115,7 @@ public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleWKT._Any
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.externalKeyUri, forKey: .externalKeyUri)
     try container.encode(self.ekmConnectionKeyPath, forKey: .ekmConnectionKeyPath)
+    try container.encode(self.ekmConnectionBackendOverride, forKey: .ekmConnectionBackendOverride)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

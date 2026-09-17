@@ -23,12 +23,12 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
-func sample(projectId: String, instanceId: String, ) async throws {
+func sample(projectId: String, instanceId: String, clusterId: String, ) async throws {
   let client = try GoogleCloudBigtableAdminV2.BigtableInstanceAdminClient()
-  let items = try client.listAppProfiles(
-    byItem: ListAppProfilesRequest()
+  let items = try client.listMemoryLayers(
+    byItem: ListMemoryLayersRequest()
       .with {
-        $0.parent = "projects/\(projectId)/instances/\(instanceId)"
+        $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
       }
   )
   for try await item in items {
@@ -41,7 +41,8 @@ func sample(projectId: String, instanceId: String, ) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      try await sample(projectId: "[placeholder]", instanceId: "[placeholder]", )
+      try await sample(
+        projectId: "[placeholder]", instanceId: "[placeholder]", clusterId: "[placeholder]", )
     } catch {
       print("Error: \(error)")
     }

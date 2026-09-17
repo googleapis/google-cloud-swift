@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
-  let items = try client.listAuditReports(
-    byItem: ListAuditReportsRequest()
+  let items = try client.listAuditSchedules(
+    byItem: ListAuditSchedulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

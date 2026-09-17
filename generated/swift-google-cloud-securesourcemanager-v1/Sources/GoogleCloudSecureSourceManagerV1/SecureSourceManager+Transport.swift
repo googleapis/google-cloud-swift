@@ -1749,6 +1749,60 @@ extension Clients {
       ).get()
     }
 
+    public func fetchRefs(
+      request: FetchRefsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.repository as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/repositories/"), .singleWildcard,
+              ],
+              fieldName: "repository")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchRefs"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.type, prefix: "type"))
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.repository as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/repositories/"), .singleWildcard,
+            ],
+            fieldName: "repository",
+            expecting: "projects/*/locations/*/repositories/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudSecureSourceManagerV1.FetchRefsResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
     public func createIssue(
       request: CreateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

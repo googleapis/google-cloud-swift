@@ -40,8 +40,8 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Display name.
   public var displayName: Swift.String = Swift.String()
 
-  /// Immutable. The Google Cloud IAM Service Account that Gateways serving this config
-  /// should use to authenticate to other services. This may either be the
+  /// Immutable. The Google Cloud IAM Service Account that Gateways serving this
+  /// config should use to authenticate to other services. This may either be the
   /// Service Account's email
   /// (`{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`) or its full resource
   /// name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used
@@ -60,12 +60,12 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// managed_service_configs must not be included.
   public var openapiDocuments: [ApiConfig.OpenApiDocument] = []
 
-  /// Optional. gRPC service definition files. If specified, openapi_documents must
-  /// not be included.
+  /// Optional. gRPC service definition files. If specified, openapi_documents
+  /// must not be included.
   public var grpcServices: [ApiConfig.GrpcServiceDefinition] = []
 
-  /// Optional. Service Configuration files. At least one must be included when using gRPC
-  /// service definitions. See
+  /// Optional. Service Configuration files. At least one must be included when
+  /// using gRPC service definitions. See
   /// https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview
   /// for the expected file contents.
   ///
@@ -349,8 +349,8 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// $ protoc --include_imports --include_source_info test.proto -o out.pb
     public var fileDescriptorSet: ApiConfig.File? = nil
 
-    /// Optional. Uncompiled proto files associated with the descriptor set, used for
-    /// display purposes (server-side compilation is not supported). These
+    /// Optional. Uncompiled proto files associated with the descriptor set, used
+    /// for display purposes (server-side compilation is not supported). These
     /// should match the inputs to 'protoc' command used to generate
     /// file_descriptor_set.
     public var source: [ApiConfig.File] = []

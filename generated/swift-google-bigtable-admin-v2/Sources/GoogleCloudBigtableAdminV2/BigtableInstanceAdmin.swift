@@ -340,6 +340,80 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     try await self.inner.deleteCluster(request: request, options: options)
   }
 
+  /// Updates the memory layer of a cluster.
+  ///
+  /// To enable the memory layer, set the memory_config.
+  /// To disable the memory layer, unset the memory_config.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_UpdateMemoryLayer")
+  public func updateMemoryLayer(
+    request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateMemoryLayer(request: request, options: options)
+  }
+
+  /// Updates the memory layer of a cluster.
+  ///
+  /// To enable the memory layer, set the memory_config.
+  /// To disable the memory layer, unset the memory_config.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_UpdateMemoryLayer")
+  public func updateMemoryLayer(
+    withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
+      return try op._extractStatus(MemoryLayer.self)
+    }
+    let rawOp = try await self.updateMemoryLayer(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
+  /// Lists information about memory layers.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListMemoryLayers")
+  public func listMemoryLayers(
+    request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
+    try await self.inner.listMemoryLayers(request: request, options: options)
+  }
+
+  /// Lists information about memory layers.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListMemoryLayers")
+  public func listMemoryLayers(
+    byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<MemoryLayer, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMemoryLayers(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  /// Gets information about the memory layer of a cluster.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_GetMemoryLayer")
+  public func getMemoryLayer(
+    request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
+    try await self.inner.getMemoryLayer(request: request, options: options)
+  }
+
   /// Creates an app profile within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateAppProfile")
@@ -894,6 +968,43 @@ extension Clients {
       name: Swift.String,
     ) async throws
 
+    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
+    func updateMemoryLayer(request: UpdateMemoryLayerRequest) async throws
+      -> GoogleLongRunning.Operation
+
+    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
+    func updateMemoryLayer(withPolling: UpdateMemoryLayerRequest) async throws -> any GoogleGax
+      .PollableOperation<MemoryLayer>
+
+    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
+    func updateMemoryLayer(
+      memoryLayer: MemoryLayer?,
+      updateMask: GoogleWKT.FieldMask?,
+    ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
+
+    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
+    func listMemoryLayers(request: ListMemoryLayersRequest) async throws
+      -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
+
+    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
+    func listMemoryLayers(
+      byItem: ListMemoryLayersRequest
+    ) throws -> any AsyncSequence<MemoryLayer, Swift.Error>
+
+    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
+    func listMemoryLayers(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<MemoryLayer, Swift.Error>
+
+    /// See `BigtableInstanceAdminClient.getMemoryLayer`.
+    func getMemoryLayer(request: GetMemoryLayerRequest) async throws
+      -> GoogleCloudBigtableAdminV2.MemoryLayer
+
+    /// See `BigtableInstanceAdminClient.getMemoryLayer`.
+    func getMemoryLayer(
+      name: Swift.String,
+    ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer
+
     /// See `BigtableInstanceAdminClient.createAppProfile`.
     func createAppProfile(request: CreateAppProfileRequest) async throws
       -> GoogleCloudBigtableAdminV2.AppProfile
@@ -1232,6 +1343,31 @@ extension Clients {
     func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws
+
+    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
+    func updateMemoryLayer(
+      request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
+    func updateMemoryLayer(
+      withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
+
+    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
+    func listMemoryLayers(
+      request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
+
+    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
+    func listMemoryLayers(
+      byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+    ) throws -> any AsyncSequence<MemoryLayer, Swift.Error>
+
+    /// See `BigtableInstanceAdminClient.getMemoryLayer`.
+    func getMemoryLayer(
+      request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer
 
     /// See `BigtableInstanceAdminClient.createAppProfile`.
     func createAppProfile(
@@ -1716,6 +1852,103 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.name = name
     }
     try await self.deleteCluster(request: request)
+  }
+
+  public func updateMemoryLayer(request: UpdateMemoryLayerRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateMemoryLayer(request: request, options: .init())
+  }
+
+  public func updateMemoryLayer(
+    request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateMemoryLayer(withPolling: UpdateMemoryLayerRequest) async throws -> any GoogleGax
+    .PollableOperation<MemoryLayer>
+  {
+    try await self.updateMemoryLayer(withPolling: withPolling, options: .init())
+  }
+
+  public func updateMemoryLayer(
+    withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
+    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax._PollableOperationImpl(
+      initialState: .init(done: false, result: nil), poll: poll)
+  }
+
+  public func updateMemoryLayer(
+    memoryLayer: MemoryLayer?,
+    updateMask: GoogleWKT.FieldMask?,
+  ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
+    let request = UpdateMemoryLayerRequest().with {
+      $0.memoryLayer = memoryLayer
+      $0.updateMask = updateMask
+    }
+    return try await self.updateMemoryLayer(withPolling: request)
+  }
+
+  public func listMemoryLayers(request: ListMemoryLayersRequest) async throws
+    -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
+  {
+    try await self.listMemoryLayers(request: request, options: .init())
+  }
+
+  public func listMemoryLayers(
+    request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listMemoryLayers(
+    byItem: ListMemoryLayersRequest
+  ) throws -> any AsyncSequence<MemoryLayer, Swift.Error> {
+    try self.listMemoryLayers(byItem: byItem, options: .init())
+  }
+
+  public func listMemoryLayers(
+    byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<MemoryLayer, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listMemoryLayers(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<MemoryLayer, Swift.Error> {
+    let request = ListMemoryLayersRequest().with {
+      $0.parent = parent
+    }
+    return try self.listMemoryLayers(byItem: request)
+  }
+
+  public func getMemoryLayer(request: GetMemoryLayerRequest) async throws
+    -> GoogleCloudBigtableAdminV2.MemoryLayer
+  {
+    try await self.getMemoryLayer(request: request, options: .init())
+  }
+
+  public func getMemoryLayer(
+    request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getMemoryLayer(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
+    let request = GetMemoryLayerRequest().with {
+      $0.name = name
+    }
+    return try await self.getMemoryLayer(request: request)
   }
 
   public func createAppProfile(request: CreateAppProfileRequest) async throws

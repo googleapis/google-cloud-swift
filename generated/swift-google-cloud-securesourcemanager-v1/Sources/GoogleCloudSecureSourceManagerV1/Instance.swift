@@ -69,6 +69,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// third party identity provider. If unset, defaults to the Google OIDC IdP.
   public var workforceIdentityFederationConfig: Instance.WorkforceIdentityFederationConfig? = nil
 
+  /// Output only. Reserved for future use.
+  public var satisfiesPzi: Swift.Bool = Swift.Bool()
+
+  /// Output only. Reserved for future use.
+  public var satisfiesPzs: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `Instance`.
@@ -104,6 +110,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let hostConfig = CodingKeys(stringValue: "hostConfig")
     static let workforceIdentityFederationConfig = CodingKeys(
       stringValue: "workforceIdentityFederationConfig")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -116,6 +124,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "kmsKey",
       "hostConfig",
       "workforceIdentityFederationConfig",
+      "satisfiesPzi",
+      "satisfiesPzs",
     ]
   }
 
@@ -144,6 +154,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     self.hostConfig = try container.decodeIfPresent(Instance.HostConfig.self, forKey: .hostConfig)
     self.workforceIdentityFederationConfig = try container.decodeIfPresent(
       Instance.WorkforceIdentityFederationConfig.self, forKey: .workforceIdentityFederationConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -163,6 +179,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.hostConfig, forKey: .hostConfig)
     try container.encodeIfPresent(
       self.workforceIdentityFederationConfig, forKey: .workforceIdentityFederationConfig)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

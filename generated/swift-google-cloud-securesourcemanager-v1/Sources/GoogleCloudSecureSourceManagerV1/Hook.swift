@@ -221,6 +221,9 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Pull request events are triggered when a pull request is opened, closed,
     /// reopened, or edited.
     case pullRequest
+    /// Triggers when a general comment is added, edited, or deleted on a pull
+    /// request.
+    case pullRequestComment
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -246,6 +249,7 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
       case .unspecified: return 0
       case .push: return 1
       case .pullRequest: return 2
+      case .pullRequestComment: return 3
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -259,6 +263,7 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
       case .unspecified: return "UNSPECIFIED"
       case .push: return "PUSH"
       case .pullRequest: return "PULL_REQUEST"
+      case .pullRequestComment: return "PULL_REQUEST_COMMENT"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -272,6 +277,7 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
       case "UNSPECIFIED": self = .unspecified
       case "PUSH": self = .push
       case "PULL_REQUEST": self = .pullRequest
+      case "PULL_REQUEST_COMMENT": self = .pullRequestComment
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -284,6 +290,7 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
       case 0: self = .unspecified
       case 1: self = .push
       case 2: self = .pullRequest
+      case 3: self = .pullRequestComment
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -312,6 +319,7 @@ public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,
       case .unspecified: return try container.encode("UNSPECIFIED")
       case .push: return try container.encode("PUSH")
       case .pullRequest: return try container.encode("PULL_REQUEST")
+      case .pullRequestComment: return try container.encode("PULL_REQUEST_COMMENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

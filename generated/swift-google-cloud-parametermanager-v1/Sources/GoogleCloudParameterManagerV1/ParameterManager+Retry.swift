@@ -209,6 +209,166 @@ extension Clients {
         })
     }
 
+    public func listTemplates(
+      request: ListTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListTemplatesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.ListTemplatesResponse
+          in
+          return try await self.inner.listTemplates(request: r, options: o)
+        })
+    }
+
+    public func getTemplate(
+      request: GetTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.Template
+          in
+          return try await self.inner.getTemplate(request: r, options: o)
+        })
+    }
+
+    public func createTemplate(
+      request: CreateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.Template
+          in
+          return try await self.inner.createTemplate(request: r, options: o)
+        })
+    }
+
+    public func updateTemplate(
+      request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.Template {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.Template
+          in
+          return try await self.inner.updateTemplate(request: r, options: o)
+        })
+    }
+
+    public func deleteTemplate(
+      request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: { (r: DeleteTemplateRequest, o: GoogleGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteTemplate(request: r, options: o)
+        })
+    }
+
+    public func listTemplateVersions(
+      request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListTemplateVersionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
+          in
+          return try await self.inner.listTemplateVersions(request: r, options: o)
+        })
+    }
+
+    public func getTemplateVersion(
+      request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetTemplateVersionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.TemplateVersion
+          in
+          return try await self.inner.getTemplateVersion(request: r, options: o)
+        })
+    }
+
+    public func createTemplateVersion(
+      request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateTemplateVersionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.TemplateVersion
+          in
+          return try await self.inner.createTemplateVersion(request: r, options: o)
+        })
+    }
+
+    public func updateTemplateVersion(
+      request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateTemplateVersionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.TemplateVersion
+          in
+          return try await self.inner.updateTemplateVersion(request: r, options: o)
+        })
+    }
+
+    public func deleteTemplateVersion(
+      request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteTemplateVersionRequest, o: GoogleGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteTemplateVersion(request: r, options: o)
+        })
+    }
+
+    public func renderTemplateVersion(
+      request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: RenderTemplateVersionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
+          in
+          return try await self.inner.renderTemplateVersion(request: r, options: o)
+        })
+    }
+
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

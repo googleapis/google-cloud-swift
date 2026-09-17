@@ -17,10 +17,10 @@
 import Foundation
 
 /// Option for requesting only metadata, or user provided payload
-/// of a ParameterVersion resource.
+/// of a ParameterVersion or TemplateVersion resource.
 public enum View: Codable, Equatable, Sendable {
   /// The default / unset value.
-  /// The API will default to the FULL view..
+  /// The API will default to the FULL view.
   case unspecified
   /// Include only the metadata for the resource.
   case basic

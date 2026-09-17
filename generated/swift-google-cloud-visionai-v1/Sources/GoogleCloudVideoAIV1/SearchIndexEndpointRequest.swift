@@ -23,7 +23,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
 {
   /// Required. The index endpoint to search.
   /// Format:
-  /// `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+  /// `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
   public var indexEndpoint: Swift.String = Swift.String()
 
   /// Criteria applied to search results.

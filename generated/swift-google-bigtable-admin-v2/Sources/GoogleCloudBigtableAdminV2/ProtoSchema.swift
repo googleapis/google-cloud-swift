@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Represents a protobuf schema.
+/// Represents a collection of protobuf schemas.
 public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

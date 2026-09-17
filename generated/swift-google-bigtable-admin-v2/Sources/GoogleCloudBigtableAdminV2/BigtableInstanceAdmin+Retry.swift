@@ -224,6 +224,51 @@ extension Clients {
         })
     }
 
+    public func updateMemoryLayer(
+      request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateMemoryLayerRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateMemoryLayer(request: r, options: o)
+        })
+    }
+
+    public func listMemoryLayers(
+      request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListMemoryLayersRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
+          in
+          return try await self.inner.listMemoryLayers(request: r, options: o)
+        })
+    }
+
+    public func getMemoryLayer(
+      request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetMemoryLayerRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBigtableAdminV2.MemoryLayer
+          in
+          return try await self.inner.getMemoryLayer(request: r, options: o)
+        })
+    }
+
     public func createAppProfile(
       request: CreateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {

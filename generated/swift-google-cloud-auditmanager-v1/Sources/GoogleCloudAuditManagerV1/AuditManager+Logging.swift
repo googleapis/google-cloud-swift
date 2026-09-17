@@ -59,6 +59,66 @@ extension Clients {
       }
     }
 
+    public func createAuditSchedule(
+      request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "createAuditSchedule",
+        action: {
+          (r: CreateAuditScheduleRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAuditManagerV1.AuditSchedule
+          in
+          return try await self.inner.createAuditSchedule(request: r, options: o)
+        })
+    }
+
+    public func updateAuditSchedule(
+      request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "updateAuditSchedule",
+        action: {
+          (r: UpdateAuditScheduleRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAuditManagerV1.AuditSchedule
+          in
+          return try await self.inner.updateAuditSchedule(request: r, options: o)
+        })
+    }
+
+    public func getAuditSchedule(
+      request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getAuditSchedule",
+        action: {
+          (r: GetAuditScheduleRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAuditManagerV1.AuditSchedule
+          in
+          return try await self.inner.getAuditSchedule(request: r, options: o)
+        })
+    }
+
+    public func listAuditSchedules(
+      request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listAuditSchedules",
+        action: {
+          (r: ListAuditSchedulesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
+          in
+          return try await self.inner.listAuditSchedules(request: r, options: o)
+        })
+    }
+
     public func enrollResource(
       request: EnrollResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.Enrollment {

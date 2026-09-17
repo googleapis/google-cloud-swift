@@ -31,6 +31,11 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// Optional. A collection of fields that modify the token output.
   public var options: VerifyConfidentialGkeRequest.ConfidentialGkeOptions? = nil
 
+  /// Optional. Optional platform security architecture hint for the verifier
+  /// engine. Defaults to `VIRTUALIZED_CVM` behavior if unspecified.
+  public var platformType: VerifyConfidentialGkeRequest.PlatformType =
+    VerifyConfidentialGkeRequest.PlatformType()
+
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
   public var teeAttestation: OneOf_TeeAttestation? = nil
@@ -62,11 +67,13 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     static let tpmAttestation = CodingKeys(stringValue: "tpmAttestation")
     static let challenge = CodingKeys(stringValue: "challenge")
     static let options = CodingKeys(stringValue: "options")
+    static let platformType = CodingKeys(stringValue: "platformType")
 
     static let _knownKeys: Set<Swift.String> = [
       "tpmAttestation",
       "challenge",
       "options",
+      "platformType",
     ]
   }
 
@@ -77,6 +84,11 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
     self.options = try container.decodeIfPresent(
       VerifyConfidentialGkeRequest.ConfidentialGkeOptions.self, forKey: .options)
+    if let value = try container.decodeIfPresent(
+      VerifyConfidentialGkeRequest.PlatformType.self, forKey: .platformType)
+    {
+      self.platformType = value
+    }
 
     var teeAttestation: OneOf_TeeAttestation? = nil
     let teeAttestationCheckAndSet = {
@@ -104,6 +116,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
     try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encode(self.platformType, forKey: .platformType)
 
     if let choice = self.teeAttestation {
       switch choice {
@@ -204,6 +217,112 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Platform types supported by Confidential GKE.
+  /// This enum is not frozen, and new values may be added in the future.
+  public enum PlatformType: Codable, Equatable, Sendable {
+    /// Unspecified platform type, defaults to `VIRTUALIZED_CVM`.
+    case unspecified
+    /// Standard virtualized Confidential GKE VM.
+    case virtualizedCvm
+    /// Bare Metal host using a vTPM.
+    case bareMetalVtpm
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .virtualizedCvm: return 1
+      case .bareMetalVtpm: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "PLATFORM_TYPE_UNSPECIFIED"
+      case .virtualizedCvm: return "VIRTUALIZED_CVM"
+      case .bareMetalVtpm: return "BARE_METAL_VTPM"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PlatformType/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "PLATFORM_TYPE_UNSPECIFIED": self = .unspecified
+      case "VIRTUALIZED_CVM": self = .virtualizedCvm
+      case "BARE_METAL_VTPM": self = .bareMetalVtpm
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PlatformType/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .virtualizedCvm
+      case 2: self = .bareMetalVtpm
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("PLATFORM_TYPE_UNSPECIFIED")
+      case .virtualizedCvm: return try container.encode("VIRTUALIZED_CVM")
+      case .bareMetalVtpm: return try container.encode("BARE_METAL_VTPM")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
     }
   }
 

@@ -24,6 +24,11 @@ public struct ParameterVersionPayload: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Required. bytes data for storing payload.
   public var data: Foundation.Data = Foundation.Data()
 
+  /// Optional. [Optional] The integrity checksum of the payload.
+  /// If provided, the server will verify that the checksum matches the payload.
+  /// If not provided, the server will generate the checksum.
+  public var dataCrc32C: Swift.Int64? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ParameterVersionPayload`.
@@ -49,9 +54,11 @@ public struct ParameterVersionPayload: Codable, Equatable, GoogleWKT._AnyPackabl
     init?(intValue: Swift.Int) { nil }
 
     static let data = CodingKeys(stringValue: "data")
+    static let dataCrc32C = CodingKeys(stringValue: "dataCrc32c")
 
     static let _knownKeys: Set<Swift.String> = [
-      "data"
+      "data",
+      "dataCrc32c",
     ]
   }
 
@@ -60,6 +67,7 @@ public struct ParameterVersionPayload: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
       self.data = value
     }
+    self.dataCrc32C = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataCrc32C)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -69,6 +77,7 @@ public struct ParameterVersionPayload: Codable, Equatable, GoogleWKT._AnyPackabl
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.data, forKey: .data)
+    try container.encodeIfPresent(self.dataCrc32C, forKey: .dataCrc32C)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

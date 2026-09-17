@@ -23,6 +23,22 @@ import GoogleGax
 
 extension Clients {
   protocol AuditManagerStub: Sendable {
+    func createAuditSchedule(
+      request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    func updateAuditSchedule(
+      request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    func getAuditSchedule(
+      request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    func listAuditSchedules(
+      request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
+
     func enrollResource(
       request: EnrollResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.Enrollment

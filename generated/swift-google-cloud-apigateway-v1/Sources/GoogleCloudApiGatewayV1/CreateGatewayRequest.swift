@@ -25,8 +25,8 @@ public struct CreateGatewayRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `projects/*/locations/*`
   public var parent: Swift.String = Swift.String()
 
-  /// Required. Identifier to assign to the Gateway. Must be unique within scope of
-  /// the parent resource.
+  /// Required. Identifier to assign to the Gateway. Must be unique within scope
+  /// of the parent resource.
   public var gatewayId: Swift.String = Swift.String()
 
   /// Required. Gateway resource.

@@ -44,6 +44,57 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
     self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
+  /// Creates a new audit schedule in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_CreateAuditSchedule")
+  public func createAuditSchedule(
+    request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    try await self.inner.createAuditSchedule(request: request, options: options)
+  }
+
+  /// Updates an existing audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_UpdateAuditSchedule")
+  public func updateAuditSchedule(
+    request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    try await self.inner.updateAuditSchedule(request: request, options: options)
+  }
+
+  /// Gets details of a single audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_GetAuditSchedule")
+  public func getAuditSchedule(
+    request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    try await self.inner.getAuditSchedule(request: request, options: options)
+  }
+
+  /// Lists audit schedules in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  public func listAuditSchedules(
+    request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
+    try await self.inner.listAuditSchedules(request: request, options: options)
+  }
+
+  /// Lists audit schedules in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  public func listAuditSchedules(
+    byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAuditSchedules(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
   /// Adds your project, folder, or organization to Audit
   /// Manager. This method creates the Audit Manager service agent in your
   /// workload and grants required permissions to the service agent.
@@ -345,6 +396,50 @@ extension Clients {
   /// `some AuditManagerProtocol` or `any AuditManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AuditManagerProtocol {
+    /// See `AuditManagerClient.createAuditSchedule`.
+    func createAuditSchedule(request: CreateAuditScheduleRequest) async throws
+      -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.createAuditSchedule`.
+    func createAuditSchedule(
+      parent: Swift.String,
+      auditSchedule: AuditSchedule?,
+      auditScheduleId: Swift.String,
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.updateAuditSchedule`.
+    func updateAuditSchedule(request: UpdateAuditScheduleRequest) async throws
+      -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.updateAuditSchedule`.
+    func updateAuditSchedule(
+      auditSchedule: AuditSchedule?,
+      updateMask: GoogleWKT.FieldMask?,
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.getAuditSchedule`.
+    func getAuditSchedule(request: GetAuditScheduleRequest) async throws
+      -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.getAuditSchedule`.
+    func getAuditSchedule(
+      name: Swift.String,
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.listAuditSchedules`.
+    func listAuditSchedules(request: ListAuditSchedulesRequest) async throws
+      -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
+
+    /// See `AuditManagerClient.listAuditSchedules`.
+    func listAuditSchedules(
+      byItem: ListAuditSchedulesRequest
+    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+
+    /// See `AuditManagerClient.listAuditSchedules`.
+    func listAuditSchedules(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(request: EnrollResourceRequest) async throws
       -> GoogleCloudAuditManagerV1.Enrollment
@@ -486,6 +581,31 @@ extension Clients {
       name: Swift.String,
     ) async throws
 
+    /// See `AuditManagerClient.createAuditSchedule`.
+    func createAuditSchedule(
+      request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.updateAuditSchedule`.
+    func updateAuditSchedule(
+      request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.getAuditSchedule`.
+    func getAuditSchedule(
+      request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule
+
+    /// See `AuditManagerClient.listAuditSchedules`.
+    func listAuditSchedules(
+      request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
+
+    /// See `AuditManagerClient.listAuditSchedules`.
+    func listAuditSchedules(
+      byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(
       request: EnrollResourceRequest, options: GoogleGax.RequestOptions
@@ -585,6 +705,112 @@ extension Clients {
 
 // Default implementations
 extension Clients.AuditManagerProtocol {
+  public func createAuditSchedule(request: CreateAuditScheduleRequest) async throws
+    -> GoogleCloudAuditManagerV1.AuditSchedule
+  {
+    try await self.createAuditSchedule(request: request, options: .init())
+  }
+
+  public func createAuditSchedule(
+    request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAuditSchedule(
+    parent: Swift.String,
+    auditSchedule: AuditSchedule?,
+    auditScheduleId: Swift.String,
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    let request = CreateAuditScheduleRequest().with {
+      $0.parent = parent
+      $0.auditSchedule = auditSchedule
+      $0.auditScheduleId = auditScheduleId
+    }
+    return try await self.createAuditSchedule(request: request)
+  }
+
+  public func updateAuditSchedule(request: UpdateAuditScheduleRequest) async throws
+    -> GoogleCloudAuditManagerV1.AuditSchedule
+  {
+    try await self.updateAuditSchedule(request: request, options: .init())
+  }
+
+  public func updateAuditSchedule(
+    request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAuditSchedule(
+    auditSchedule: AuditSchedule?,
+    updateMask: GoogleWKT.FieldMask?,
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    let request = UpdateAuditScheduleRequest().with {
+      $0.auditSchedule = auditSchedule
+      $0.updateMask = updateMask
+    }
+    return try await self.updateAuditSchedule(request: request)
+  }
+
+  public func getAuditSchedule(request: GetAuditScheduleRequest) async throws
+    -> GoogleCloudAuditManagerV1.AuditSchedule
+  {
+    try await self.getAuditSchedule(request: request, options: .init())
+  }
+
+  public func getAuditSchedule(
+    request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAuditSchedule(
+    name: Swift.String,
+  ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
+    let request = GetAuditScheduleRequest().with {
+      $0.name = name
+    }
+    return try await self.getAuditSchedule(request: request)
+  }
+
+  public func listAuditSchedules(request: ListAuditSchedulesRequest) async throws
+    -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
+  {
+    try await self.listAuditSchedules(request: request, options: .init())
+  }
+
+  public func listAuditSchedules(
+    request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAuditSchedules(
+    byItem: ListAuditSchedulesRequest
+  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+    try self.listAuditSchedules(byItem: byItem, options: .init())
+  }
+
+  public func listAuditSchedules(
+    byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listAuditSchedules(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+    let request = ListAuditSchedulesRequest().with {
+      $0.parent = parent
+    }
+    return try self.listAuditSchedules(byItem: request)
+  }
+
   public func enrollResource(request: EnrollResourceRequest) async throws
     -> GoogleCloudAuditManagerV1.Enrollment
   {

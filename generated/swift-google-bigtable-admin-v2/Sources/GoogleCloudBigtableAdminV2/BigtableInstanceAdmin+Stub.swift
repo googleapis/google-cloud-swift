@@ -71,6 +71,18 @@ extension Clients {
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    func updateMemoryLayer(
+      request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func listMemoryLayers(
+      request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
+
+    func getMemoryLayer(
+      request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer
+
     func createAppProfile(
       request: CreateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile

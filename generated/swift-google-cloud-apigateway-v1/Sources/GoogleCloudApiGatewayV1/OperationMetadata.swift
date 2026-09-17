@@ -38,14 +38,20 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Identifies whether the user has requested cancellation
   /// of the operation. Operations that have successfully been cancelled
-  /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+  /// have
+  /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
+  /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
   /// corresponding to `Code.CANCELLED`.
+  ///
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/error(_:)
+  /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
   /// Output only. API version used to start the operation.
   public var apiVersion: Swift.String = Swift.String()
 
-  /// Output only. Diagnostics generated during processing of configuration source files.
+  /// Output only. Diagnostics generated during processing of configuration
+  /// source files.
   public var diagnostics: [OperationMetadata.Diagnostic] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

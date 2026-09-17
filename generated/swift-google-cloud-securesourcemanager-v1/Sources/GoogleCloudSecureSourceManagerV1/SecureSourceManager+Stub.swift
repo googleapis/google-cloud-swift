@@ -152,6 +152,10 @@ extension Clients {
       request: FetchBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse
 
+    func fetchRefs(
+      request: FetchRefsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
+
     func createIssue(
       request: CreateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

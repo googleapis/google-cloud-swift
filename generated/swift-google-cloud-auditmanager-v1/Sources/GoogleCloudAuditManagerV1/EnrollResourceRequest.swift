@@ -42,6 +42,20 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// available.
   public var destinations: [EnrollResourceRequest.EligibleDestination] = []
 
+  /// Optional. If `true`, only validates the request and does not enroll the
+  /// resource. This executes standard request validation (such as schema, IAM,
+  /// and destination checks) and skips the apply phase.
+  ///
+  /// Use this field for the following purposes:
+  /// * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+  ///   dry-run mutations (e.g., `terraform plan`) without creating real
+  ///   resources or incurring costs.
+  /// * **User Interface Validation**: Enable real-time form and permission
+  ///   validation in custom UIs before submitting requests.
+  /// * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+  ///   safely without consuming resource quotas.
+  public var validateOnly: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `EnrollResourceRequest`.
@@ -68,10 +82,12 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let scope = CodingKeys(stringValue: "scope")
     static let destinations = CodingKeys(stringValue: "destinations")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
 
     static let _knownKeys: Set<Swift.String> = [
       "scope",
       "destinations",
+      "validateOnly",
     ]
   }
 
@@ -85,6 +101,9 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.destinations = value
     }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -95,6 +114,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encode(self.destinations, forKey: .destinations)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

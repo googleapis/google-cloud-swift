@@ -25,8 +25,8 @@ public struct CreateApiConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// `projects/*/locations/global/apis/*`
   public var parent: Swift.String = Swift.String()
 
-  /// Required. Identifier to assign to the API Config. Must be unique within scope of
-  /// the parent resource.
+  /// Required. Identifier to assign to the API Config. Must be unique within
+  /// scope of the parent resource.
   public var apiConfigId: Swift.String = Swift.String()
 
   /// Required. API resource.

@@ -540,6 +540,21 @@ extension Clients {
         })
     }
 
+    public func fetchRefs(
+      request: FetchRefsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "fetchRefs",
+        action: {
+          (r: FetchRefsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
+          in
+          return try await self.inner.fetchRefs(request: r, options: o)
+        })
+    }
+
     public func createIssue(
       request: CreateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

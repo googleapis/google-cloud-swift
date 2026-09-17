@@ -62,11 +62,13 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let name = CodingKeys(stringValue: "name")
     static let protoSchema = CodingKeys(stringValue: "protoSchema")
+    static let avroSchema = CodingKeys(stringValue: "avroSchema")
     static let etag = CodingKeys(stringValue: "etag")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
       "protoSchema",
+      "avroSchema",
       "etag",
     ]
   }
@@ -93,6 +95,9 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
     if let protoSchema = try container.decodeIfPresent(ProtoSchema?.self, forKey: .protoSchema) {
       try typeCheckAndSet(.protoSchema(protoSchema))
     }
+    if let avroSchema = try container.decodeIfPresent(AvroSchema?.self, forKey: .avroSchema) {
+      try typeCheckAndSet(.avroSchema(avroSchema))
+    }
     self.type = type
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -109,6 +114,8 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
       switch choice {
       case .protoSchema(let value):
         try container.encode(value, forKey: .protoSchema)
+      case .avroSchema(let value):
+        try container.encode(value, forKey: .avroSchema)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -121,6 +128,8 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Schema for Protobufs.
     indirect case protoSchema(ProtoSchema?)
+    /// Optional. Schema for Avros.
+    indirect case avroSchema(AvroSchema?)
   }
 
   public static var _anyTypeUrl: Swift.String {

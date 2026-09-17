@@ -20,6 +20,7 @@ different aspects of the API, consult the reference documentation for details.
 - `DataTableServiceClient`
 - `EntityServiceClient`
 - `FeaturedContentNativeDashboardServiceClient`
+- `FeedsServiceClient`
 - `FindingsRefinementServiceClient`
 - `InstanceServiceClient`
 - `NativeDashboardServiceClient`

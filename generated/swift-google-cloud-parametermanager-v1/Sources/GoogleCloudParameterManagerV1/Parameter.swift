@@ -49,6 +49,20 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `projects/*/locations/*/keyRings/*/cryptoKeys/*`.
   public var kmsKey: Swift.String? = nil
 
+  /// Optional. Input only. Immutable. Tag keys and tag values that are bound to
+  /// this Parameter. You must represent each item in the map as:
+  /// `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+  ///
+  /// For example, a single resource can have the following tags:
+  /// ```
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing",
+  /// ```
+  /// Tags are used to organize and group resources.
+  ///
+  /// Tags can be used to control policy evaluation for the resource.
+  public var tags: [Swift.String: Swift.String] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `Parameter`.
@@ -80,6 +94,7 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
     static let format = CodingKeys(stringValue: "format")
     static let policyMember = CodingKeys(stringValue: "policyMember")
     static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -89,6 +104,7 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
       "format",
       "policyMember",
       "kmsKey",
+      "tags",
     ]
   }
 
@@ -109,6 +125,9 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
     self.policyMember = try container.decodeIfPresent(
       GoogleIAMV1.ResourcePolicyMember.self, forKey: .policyMember)
     self.kmsKey = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -124,6 +143,7 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.format, forKey: .format)
     try container.encodeIfPresent(self.policyMember, forKey: .policyMember)
     try container.encodeIfPresent(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

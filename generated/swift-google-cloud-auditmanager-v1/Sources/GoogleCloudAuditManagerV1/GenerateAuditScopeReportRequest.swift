@@ -47,6 +47,21 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
   /// generated against. For example, `NIST_800_53`.
   public var complianceFramework: Swift.String = Swift.String()
 
+  /// Optional. If `true`, only validates the request and does not generate the
+  /// audit scope report. This executes standard request validation (such as
+  /// schema, framework existence, scope, and IAM checks) and skips the apply
+  /// phase.
+  ///
+  /// Use this field for the following purposes:
+  /// * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+  ///   dry-run mutations (e.g., `terraform plan`) without creating real
+  ///   resources or incurring costs.
+  /// * **User Interface Validation**: Enable real-time form and permission
+  ///   validation in custom UIs before submitting requests.
+  /// * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+  ///   safely without consuming resource quotas.
+  public var validateOnly: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `GenerateAuditScopeReportRequest`.
@@ -75,12 +90,14 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
     static let reportFormat = CodingKeys(stringValue: "reportFormat")
     static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
 
     static let _knownKeys: Set<Swift.String> = [
       "scope",
       "complianceStandard",
       "reportFormat",
       "complianceFramework",
+      "validateOnly",
     ]
   }
 
@@ -100,6 +117,9 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
       self.complianceFramework = value
     }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -112,6 +132,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     try container.encode(self.complianceStandard, forKey: .complianceStandard)
     try container.encode(self.reportFormat, forKey: .reportFormat)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

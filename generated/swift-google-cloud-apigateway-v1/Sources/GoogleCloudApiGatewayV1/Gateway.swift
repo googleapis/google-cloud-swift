@@ -48,9 +48,22 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The current state of the Gateway.
   public var state: Gateway.State = Gateway.State()
 
-  /// Output only. The default API Gateway host name of the form
-  /// `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+  /// Output only. The default hostname that serves traffic for this Gateway.
   public var defaultHostname: Swift.String = Swift.String()
+
+  /// Optional. Immutable. Requests streaming for a new gateway. An attempt to
+  /// change it on update is rejected. If unset, the service selects the mode.
+  /// This field records only what was requested and is never modified by the
+  /// service; read `effective_streaming_mode` for the mode the gateway is served
+  /// with.
+  public var streamingMode: Gateway.StreamingMode = Gateway.StreamingMode()
+
+  /// Output only. The streaming mode this gateway is actually served with, which
+  /// the service resolves at creation from `streaming_mode`, the referenced API
+  /// Config, and the platform default at the time. Read this rather than
+  /// `streaming_mode` to determine whether a gateway supports streaming.
+  public var effectiveStreamingMode: Gateway.EffectiveStreamingMode =
+    Gateway.EffectiveStreamingMode()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,6 +97,8 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     static let apiConfig = CodingKeys(stringValue: "apiConfig")
     static let state = CodingKeys(stringValue: "state")
     static let defaultHostname = CodingKeys(stringValue: "defaultHostname")
+    static let streamingMode = CodingKeys(stringValue: "streamingMode")
+    static let effectiveStreamingMode = CodingKeys(stringValue: "effectiveStreamingMode")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -94,6 +109,8 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
       "apiConfig",
       "state",
       "defaultHostname",
+      "streamingMode",
+      "effectiveStreamingMode",
     ]
   }
 
@@ -120,6 +137,15 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultHostname) {
       self.defaultHostname = value
     }
+    if let value = try container.decodeIfPresent(Gateway.StreamingMode.self, forKey: .streamingMode)
+    {
+      self.streamingMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Gateway.EffectiveStreamingMode.self, forKey: .effectiveStreamingMode)
+    {
+      self.effectiveStreamingMode = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -136,6 +162,8 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.apiConfig, forKey: .apiConfig)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.defaultHostname, forKey: .defaultHostname)
+    try container.encode(self.streamingMode, forKey: .streamingMode)
+    try container.encode(self.effectiveStreamingMode, forKey: .effectiveStreamingMode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -261,6 +289,215 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
       case .failed: return try container.encode("FAILED")
       case .deleting: return try container.encode("DELETING")
       case .updating: return try container.encode("UPDATING")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Streaming mode for a Gateway.
+  /// This enum is frozen. No values are expected to be added in the future.
+  public enum StreamingMode: Codable, Equatable, Sendable {
+    /// Lets the service select the streaming mode.
+    case unspecified
+    /// Enables streaming. The gateway supports Server-Sent Events (SSE), HTTP/2
+    /// streaming, HTTP chunked transfer, WebSockets, and gRPC bidirectional
+    /// streaming.
+    case enabled
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .enabled: return 1
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "STREAMING_MODE_UNSPECIFIED"
+      case .enabled: return "STREAMING_MODE_ENABLED"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StreamingMode/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "STREAMING_MODE_UNSPECIFIED": self = .unspecified
+      case "STREAMING_MODE_ENABLED": self = .enabled
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StreamingMode/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .enabled
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("STREAMING_MODE_UNSPECIFIED")
+      case .enabled: return try container.encode("STREAMING_MODE_ENABLED")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// The streaming mode a Gateway is served with.
+  /// This enum is frozen. No values are expected to be added in the future.
+  public enum EffectiveStreamingMode: Codable, Equatable, Sendable {
+    /// Indicates that the service has not resolved a mode. Every gateway
+    /// returned by `GetGateway` and `ListGateways` carries a resolved mode, so
+    /// this value should not be returned under normal circumstances.
+    case unspecified
+    /// Indicates that the gateway does not support streaming.
+    case disabled
+    /// Indicates that the gateway supports streaming.
+    case enabled
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .disabled: return 1
+      case .enabled: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "EFFECTIVE_STREAMING_MODE_UNSPECIFIED"
+      case .disabled: return "EFFECTIVE_STREAMING_MODE_DISABLED"
+      case .enabled: return "EFFECTIVE_STREAMING_MODE_ENABLED"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EffectiveStreamingMode/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "EFFECTIVE_STREAMING_MODE_UNSPECIFIED": self = .unspecified
+      case "EFFECTIVE_STREAMING_MODE_DISABLED": self = .disabled
+      case "EFFECTIVE_STREAMING_MODE_ENABLED": self = .enabled
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EffectiveStreamingMode/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .disabled
+      case 2: self = .enabled
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("EFFECTIVE_STREAMING_MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("EFFECTIVE_STREAMING_MODE_DISABLED")
+      case .enabled: return try container.encode("EFFECTIVE_STREAMING_MODE_ENABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

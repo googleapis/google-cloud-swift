@@ -24,6 +24,7 @@ let package = Package(
     .library(name: "GoogleCloudChronicleV1", targets: ["GoogleCloudChronicleV1"])
   ],
   dependencies: [
+    .package(url: "https://github.com/googleapis/swift-google-api", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-longrunning", from: "0.1.0-preview"),
@@ -36,6 +37,7 @@ let package = Package(
     .target(
       name: "GoogleCloudChronicleV1",
       dependencies: [
+        .product(name: "GoogleApi", package: "swift-google-api"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),

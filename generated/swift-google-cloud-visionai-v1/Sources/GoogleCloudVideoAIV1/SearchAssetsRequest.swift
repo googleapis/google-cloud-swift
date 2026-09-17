@@ -22,7 +22,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent corpus to search.
-  /// Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+  /// Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
   public var corpus: Swift.String = Swift.String()
 
   /// The number of results to be returned in this page. If it's 0, the server

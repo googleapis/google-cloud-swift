@@ -126,6 +126,14 @@
     /// [google.cloud.discoveryengine.v1.SearchRequest]: <doc:SearchRequest>
     public var dataStoreSpecs: [SearchRequest.DataStoreSpec] = []
 
+    /// Optional. The maximum number of results to retrieve from each data store.
+    /// If not specified, it will use the
+    /// [SearchRequest.DataStoreSpec.num_results][google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]
+    /// if provided, otherwise there is no limit.
+    ///
+    /// [google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]: <doc:SearchRequest/DataStoreSpec/numResults>
+    public var numResultsPerDataStore: Swift.Int32 = Swift.Int32()
+
     /// The filter syntax consists of an expression language for constructing a
     /// predicate from one or more fields of the documents being filtered. Filter
     /// expression is case-sensitive.
@@ -338,6 +346,15 @@
     ///   Google model to determine the keyword-based overlap between the query and
     ///   the document.
     ///   * `base_rank`: the default rank of the result
+    ///   * `media_actor_match`: whether the media actor matches the query
+    ///   * `media_director_match`: whether the media director matches the query
+    ///   * `media_genre_match`: whether the media genre matches the query
+    ///   * `media_language_match`: whether the media language matches the query
+    ///   * `media_title_match`: whether the media title matches the query
+    ///   * `media_prefix_similarity_rank`: prefix similarity rank for media
+    ///   results
+    ///   * `media_semantic_similarity_rank`: semantic similarity rank for media
+    ///   results
     ///
     /// [google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]: <doc:SearchRequest/rankingExpressionBackend>
     /// [google.cloud.discoveryengine.v1.ServingConfig.ranking_expression]: <doc:ServingConfig/rankingExpression>
@@ -417,10 +434,6 @@
     ///   Call /answer API with the session ID generated in the first call.
     ///   Here, the answer generation happens in the context of the search
     ///   results from the first search call.
-    ///
-    /// Multi-turn Search feature is currently at private GA stage. Please use
-    /// v1alpha or v1beta version instead before we launch this feature to public
-    /// GA. Or ask for allowlisting through Google Support team.
     public var session: Swift.String = Swift.String()
 
     /// Session specification.
@@ -452,6 +465,22 @@
 
     /// Optional. The specification for returning the relevance score.
     public var relevanceScoreSpec: SearchRequest.RelevanceScoreSpec? = nil
+
+    /// Optional. SearchAddonSpec is used to disable add-ons for search as per new
+    /// repricing model.
+    /// This field is only supported for search requests.
+    public var searchAddonSpec: SearchRequest.SearchAddonSpec? = nil
+
+    /// Optional. Optional configuration for the Custom Ranking feature.
+    public var customRankingParams: SearchRequest.CustomRankingParams? = nil
+
+    /// Optional. The entity for customers that may run multiple different
+    /// entities, domains, sites or regions, for example, "Google US", "Google
+    /// Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should
+    /// be exactly matched with
+    /// [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
+    /// search results boosted by entity.
+    public var entity: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -487,6 +516,7 @@
       static let offset = CodingKeys(stringValue: "offset")
       static let oneBoxPageSize = CodingKeys(stringValue: "oneBoxPageSize")
       static let dataStoreSpecs = CodingKeys(stringValue: "dataStoreSpecs")
+      static let numResultsPerDataStore = CodingKeys(stringValue: "numResultsPerDataStore")
       static let filter = CodingKeys(stringValue: "filter")
       static let canonicalFilter = CodingKeys(stringValue: "canonicalFilter")
       static let orderBy = CodingKeys(stringValue: "orderBy")
@@ -513,6 +543,9 @@
       static let relevanceThreshold = CodingKeys(stringValue: "relevanceThreshold")
       static let relevanceFilterSpec = CodingKeys(stringValue: "relevanceFilterSpec")
       static let relevanceScoreSpec = CodingKeys(stringValue: "relevanceScoreSpec")
+      static let searchAddonSpec = CodingKeys(stringValue: "searchAddonSpec")
+      static let customRankingParams = CodingKeys(stringValue: "customRankingParams")
+      static let entity = CodingKeys(stringValue: "entity")
 
       static let _knownKeys: Set<Swift.String> = [
         "servingConfig",
@@ -525,6 +558,7 @@
         "offset",
         "oneBoxPageSize",
         "dataStoreSpecs",
+        "numResultsPerDataStore",
         "filter",
         "canonicalFilter",
         "orderBy",
@@ -550,6 +584,9 @@
         "relevanceThreshold",
         "relevanceFilterSpec",
         "relevanceScoreSpec",
+        "searchAddonSpec",
+        "customRankingParams",
+        "entity",
       ]
     }
 
@@ -585,6 +622,11 @@
         [SearchRequest.DataStoreSpec].self, forKey: .dataStoreSpecs)
       {
         self.dataStoreSpecs = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .numResultsPerDataStore)
+      {
+        self.numResultsPerDataStore = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -662,6 +704,13 @@
         SearchRequest.RelevanceFilterSpec.self, forKey: .relevanceFilterSpec)
       self.relevanceScoreSpec = try container.decodeIfPresent(
         SearchRequest.RelevanceScoreSpec.self, forKey: .relevanceScoreSpec)
+      self.searchAddonSpec = try container.decodeIfPresent(
+        SearchRequest.SearchAddonSpec.self, forKey: .searchAddonSpec)
+      self.customRankingParams = try container.decodeIfPresent(
+        SearchRequest.CustomRankingParams.self, forKey: .customRankingParams)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+        self.entity = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.Value.self, forKey: key)
@@ -680,6 +729,7 @@
       try container.encode(self.offset, forKey: .offset)
       try container.encode(self.oneBoxPageSize, forKey: .oneBoxPageSize)
       try container.encode(self.dataStoreSpecs, forKey: .dataStoreSpecs)
+      try container.encode(self.numResultsPerDataStore, forKey: .numResultsPerDataStore)
       try container.encode(self.filter, forKey: .filter)
       try container.encode(self.canonicalFilter, forKey: .canonicalFilter)
       try container.encode(self.orderBy, forKey: .orderBy)
@@ -706,6 +756,9 @@
       try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
       try container.encodeIfPresent(self.relevanceFilterSpec, forKey: .relevanceFilterSpec)
       try container.encodeIfPresent(self.relevanceScoreSpec, forKey: .relevanceScoreSpec)
+      try container.encodeIfPresent(self.searchAddonSpec, forKey: .searchAddonSpec)
+      try container.encodeIfPresent(self.customRankingParams, forKey: .customRankingParams)
+      try container.encode(self.entity, forKey: .entity)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -715,6 +768,7 @@
     public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
+      /// Specifies the image bytes.
       public var image: OneOf_Image? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -785,6 +839,7 @@
         }
       }
 
+      /// Specifies the image bytes.
       public enum OneOf_Image: Codable, Equatable, Sendable {
         /// Base64 encoded image bytes. Supported image formats: JPEG, PNG, and
         /// BMP.
@@ -833,6 +888,16 @@
       /// [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
       public var customSearchOperators: Swift.String = Swift.String()
 
+      /// Optional. The maximum number of results to retrieve from this data store.
+      /// If not specified, it will use the
+      /// [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+      /// if provided, otherwise there is no limit. If both this field and
+      /// [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+      /// are specified, this field will be used.
+      ///
+      /// [google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]: <doc:SearchRequest/numResultsPerDataStore>
+      public var numResults: Swift.Int32 = Swift.Int32()
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `DataStoreSpec`.
@@ -861,12 +926,14 @@
         static let filter = CodingKeys(stringValue: "filter")
         static let boostSpec = CodingKeys(stringValue: "boostSpec")
         static let customSearchOperators = CodingKeys(stringValue: "customSearchOperators")
+        static let numResults = CodingKeys(stringValue: "numResults")
 
         static let _knownKeys: Set<Swift.String> = [
           "dataStore",
           "filter",
           "boostSpec",
           "customSearchOperators",
+          "numResults",
         ]
       }
 
@@ -885,6 +952,9 @@
         {
           self.customSearchOperators = value
         }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numResults) {
+          self.numResults = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.Value.self, forKey: key)
@@ -897,6 +967,7 @@
         try container.encode(self.filter, forKey: .filter)
         try container.encodeIfPresent(self.boostSpec, forKey: .boostSpec)
         try container.encode(self.customSearchOperators, forKey: .customSearchOperators)
+        try container.encode(self.numResults, forKey: .numResults)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -3209,9 +3280,6 @@
       /// Field names used for location-based filtering, where geolocation filters
       /// are detected in natural language search queries.
       /// Only valid when the FilterExtractionCondition is set to `ENABLED`.
-      ///
-      /// If this field is set, it overrides the field names set in
-      /// [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
       public var geoSearchQueryDetectionFieldNames: [Swift.String] = []
 
       /// Optional. Controls behavior of how extracted filters are applied to the
@@ -3561,6 +3629,13 @@
       public var condition: SearchRequest.SearchAsYouTypeSpec.Condition = SearchRequest
         .SearchAsYouTypeSpec.Condition()
 
+      /// Optional. The list of fields to be used for Search As You Type scoring.
+      public var fields: [SearchRequest.SearchAsYouTypeSpec.Field] = []
+
+      /// Optional. Search As You Type score threshold for filtering purpose.
+      /// We keep the result if `score` >= `score_threshold`.
+      public var scoreThreshold: Swift.Double? = nil
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SearchAsYouTypeSpec`.
@@ -3586,9 +3661,13 @@
         init?(intValue: Swift.Int) { nil }
 
         static let condition = CodingKeys(stringValue: "condition")
+        static let fields = CodingKeys(stringValue: "fields")
+        static let scoreThreshold = CodingKeys(stringValue: "scoreThreshold")
 
         static let _knownKeys: Set<Swift.String> = [
-          "condition"
+          "condition",
+          "fields",
+          "scoreThreshold",
         ]
       }
 
@@ -3599,6 +3678,13 @@
         {
           self.condition = value
         }
+        if let value = try container.decodeIfPresent(
+          [SearchRequest.SearchAsYouTypeSpec.Field].self, forKey: .fields)
+        {
+          self.fields = value
+        }
+        self.scoreThreshold = try container.decodeIfPresent(
+          Swift.Double.self, forKey: .scoreThreshold)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.Value.self, forKey: key)
@@ -3608,8 +3694,89 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.condition, forKey: .condition)
+        try container.encode(self.fields, forKey: .fields)
+        try container.encodeIfPresent(self.scoreThreshold, forKey: .scoreThreshold)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// A schema field to be used for Search As You Type scoring on this
+      /// request. Overrides any data-store-level Search As You Type field
+      /// configuration for the duration of the request.
+      public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. A field key that has been indexed for Search As You Type.
+        public var key: Swift.String = Swift.String()
+
+        /// Optional. Weight for scores from this field. Defaults to 1.0 if not
+        /// specified.
+        public var weight: Swift.Double? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `Field`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = Field().with { $0.key = ... }
+        /// ```
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let weight = CodingKeys(stringValue: "weight")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "weight",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+            self.key = value
+          }
+          self.weight = try container.decodeIfPresent(Swift.Double.self, forKey: .weight)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.key, forKey: .key)
+          try container.encodeIfPresent(self.weight, forKey: .weight)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Field"
+        }
+        public init(fromAny any: GoogleWKT.`Any`) throws {
+          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        }
+        public func _pack() throws -> GoogleWKT.Struct {
+          return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -4131,10 +4298,6 @@
     }
 
     /// Session specification.
-    ///
-    /// Multi-turn Search feature is currently at private GA stage. Please use
-    /// v1alpha or v1beta version instead before we launch this feature to public
-    /// GA. Or ask for allowlisting through Google Support team.
     public struct SessionSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
@@ -4235,77 +4398,6 @@
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SessionSpec"
-      }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
-      }
-      public func _pack() throws -> GoogleWKT.Struct {
-        return try GoogleWKT._slowAnySerialize(message: self)
-      }
-    }
-
-    /// The specification for returning the document relevance score.
-    public struct RelevanceScoreSpec: Codable, Equatable, GoogleWKT._AnyPackable,
-      Sendable
-    {
-      /// Optional. Whether to return the relevance score for search results.
-      /// The higher the score, the more relevant the document is to the query.
-      public var returnRelevanceScore: Swift.Bool = Swift.Bool()
-
-      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
-
-      /// Initialize a new instance of `RelevanceScoreSpec`.
-      public init() {}
-
-      /// Use `config` to return a new instance of this object, with some fields updated.
-      ///
-      /// Commonly used to initialize the value, for example:
-      ///
-      /// ```
-      /// let value = RelevanceScoreSpec().with { $0.returnRelevanceScore = ... }
-      /// ```
-      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
-        var copy = self
-        try config(&copy)
-        return copy
-      }
-
-      private struct CodingKeys: CodingKey {
-        var stringValue: Swift.String
-        var intValue: Swift.Int? { nil }
-        init(stringValue: Swift.String) { self.stringValue = stringValue }
-        init?(intValue: Swift.Int) { nil }
-
-        static let returnRelevanceScore = CodingKeys(stringValue: "returnRelevanceScore")
-
-        static let _knownKeys: Set<Swift.String> = [
-          "returnRelevanceScore"
-        ]
-      }
-
-      public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnRelevanceScore)
-        {
-          self.returnRelevanceScore = value
-        }
-        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
-          self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
-        }
-      }
-
-      public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.returnRelevanceScore, forKey: .returnRelevanceScore)
-        for (key, value) in self._unknownFields.json {
-          try container.encode(value, forKey: CodingKeys(stringValue: key))
-        }
-      }
-
-      public static var _anyTypeUrl: Swift.String {
-        return
-          "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec"
       }
       public init(fromAny any: GoogleWKT.`Any`) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
@@ -4497,6 +4589,252 @@
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec"
+      }
+      public init(fromAny any: GoogleWKT.`Any`) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.Struct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// The specification for returning the document relevance score.
+    public struct RelevanceScoreSpec: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. Whether to return the relevance score for search results.
+      /// The higher the score, the more relevant the document is to the query.
+      public var returnRelevanceScore: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `RelevanceScoreSpec`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = RelevanceScoreSpec().with { $0.returnRelevanceScore = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let returnRelevanceScore = CodingKeys(stringValue: "returnRelevanceScore")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "returnRelevanceScore"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnRelevanceScore)
+        {
+          self.returnRelevanceScore = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.returnRelevanceScore, forKey: .returnRelevanceScore)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec"
+      }
+      public init(fromAny any: GoogleWKT.`Any`) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.Struct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// SearchAddonSpec is used to disable add-ons for search as per new
+    /// repricing model. By default if the SearchAddonSpec is not specified, we
+    /// consider that the customer wants to enable them wherever applicable.
+    public struct SearchAddonSpec: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. If true, semantic add-on is disabled. Semantic add-on includes
+      /// embeddings and jetstream.
+      public var disableSemanticAddOn: Swift.Bool = Swift.Bool()
+
+      /// Optional. If true, disables event re-ranking and personalization to
+      /// optimize KPIs & personalize results.
+      public var disableKpiPersonalizationAddOn: Swift.Bool = Swift.Bool()
+
+      /// Optional. If true, generative answer add-on is disabled. Generative
+      /// answer add-on includes natural language to filters and simple answers.
+      public var disableGenerativeAnswerAddOn: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `SearchAddonSpec`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = SearchAddonSpec().with { $0.disableSemanticAddOn = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let disableSemanticAddOn = CodingKeys(stringValue: "disableSemanticAddOn")
+        static let disableKpiPersonalizationAddOn = CodingKeys(
+          stringValue: "disableKpiPersonalizationAddOn")
+        static let disableGenerativeAnswerAddOn = CodingKeys(
+          stringValue: "disableGenerativeAnswerAddOn")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "disableSemanticAddOn",
+          "disableKpiPersonalizationAddOn",
+          "disableGenerativeAnswerAddOn",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableSemanticAddOn)
+        {
+          self.disableSemanticAddOn = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableKpiPersonalizationAddOn)
+        {
+          self.disableKpiPersonalizationAddOn = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableGenerativeAnswerAddOn)
+        {
+          self.disableGenerativeAnswerAddOn = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.disableSemanticAddOn, forKey: .disableSemanticAddOn)
+        try container.encode(
+          self.disableKpiPersonalizationAddOn, forKey: .disableKpiPersonalizationAddOn)
+        try container.encode(
+          self.disableGenerativeAnswerAddOn, forKey: .disableGenerativeAnswerAddOn)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SearchAddonSpec"
+      }
+      public init(fromAny any: GoogleWKT.`Any`) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.Struct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Configuration parameters for the Custom Ranking feature.
+    public struct CustomRankingParams: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. A list of ranking expressions (see `ranking_expression` for the
+      /// syntax documentation) to evaluate. The evaluation results will be
+      /// returned in
+      /// `SearchResponse.SearchResult.rank_signals.precomputed_expression_values`
+      /// field.
+      public var expressionsToPrecompute: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CustomRankingParams`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CustomRankingParams().with { $0.expressionsToPrecompute = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let expressionsToPrecompute = CodingKeys(stringValue: "expressionsToPrecompute")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "expressionsToPrecompute"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .expressionsToPrecompute)
+        {
+          self.expressionsToPrecompute = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.expressionsToPrecompute, forKey: .expressionsToPrecompute)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.CustomRankingParams"
       }
       public init(fromAny any: GoogleWKT.`Any`) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

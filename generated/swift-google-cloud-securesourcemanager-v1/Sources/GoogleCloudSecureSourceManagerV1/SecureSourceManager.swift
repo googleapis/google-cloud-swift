@@ -873,6 +873,30 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
     try await self.inner.fetchBlob(request: request, options: options)
   }
 
+  /// Fetches git references from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  public func fetchRefs(
+    request: FetchRefsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
+    try await self.inner.fetchRefs(request: request, options: options)
+  }
+
+  /// Fetches git references from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  public func fetchRefs(
+    byItem: FetchRefsRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<Ref, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.fetchRefs(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
   /// Creates an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssue")
@@ -2056,6 +2080,15 @@ extension Clients {
     func fetchBlob(request: FetchBlobRequest) async throws
       -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse
 
+    /// See `SecureSourceManagerClient.fetchRefs`.
+    func fetchRefs(request: FetchRefsRequest) async throws
+      -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
+
+    /// See `SecureSourceManagerClient.fetchRefs`.
+    func fetchRefs(
+      byItem: FetchRefsRequest
+    ) throws -> any AsyncSequence<Ref, Swift.Error>
+
     /// See `SecureSourceManagerClient.createIssue`.
     func createIssue(request: CreateIssueRequest) async throws -> GoogleLongRunning.Operation
 
@@ -2640,6 +2673,16 @@ extension Clients {
     func fetchBlob(
       request: FetchBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse
+
+    /// See `SecureSourceManagerClient.fetchRefs`.
+    func fetchRefs(
+      request: FetchRefsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
+
+    /// See `SecureSourceManagerClient.fetchRefs`.
+    func fetchRefs(
+      byItem: FetchRefsRequest, options: GoogleGax.RequestOptions
+    ) throws -> any AsyncSequence<Ref, Swift.Error>
 
     /// See `SecureSourceManagerClient.createIssue`.
     func createIssue(
@@ -3924,6 +3967,34 @@ extension Clients.SecureSourceManagerProtocol {
     request: FetchBlobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchRefs(request: FetchRefsRequest) async throws
+    -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
+  {
+    try await self.fetchRefs(request: request, options: .init())
+  }
+
+  public func fetchRefs(
+    request: FetchRefsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchRefs(
+    byItem: FetchRefsRequest
+  ) throws -> any AsyncSequence<Ref, Swift.Error> {
+    try self.fetchRefs(byItem: byItem, options: .init())
+  }
+
+  public func fetchRefs(
+    byItem: FetchRefsRequest, options: GoogleGax.RequestOptions
+  ) throws -> any AsyncSequence<Ref, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse in
+      throw GoogleGax.RequestError.unimplemented
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   public func createIssue(request: CreateIssueRequest) async throws -> GoogleLongRunning.Operation {

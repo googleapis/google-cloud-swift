@@ -465,6 +465,10 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The priority of requests sent using this app profile.
     public var priority: AppProfile.Priority = AppProfile.Priority()
 
+    /// Optional. The memory config to use for requests sent using this app
+    /// profile.
+    public var memoryConfig: AppProfile.StandardIsolation.MemoryConfig? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StandardIsolation`.
@@ -490,9 +494,11 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       init?(intValue: Swift.Int) { nil }
 
       static let priority = CodingKeys(stringValue: "priority")
+      static let memoryConfig = CodingKeys(stringValue: "memoryConfig")
 
       static let _knownKeys: Set<Swift.String> = [
-        "priority"
+        "priority",
+        "memoryConfig",
       ]
     }
 
@@ -501,6 +507,8 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(AppProfile.Priority.self, forKey: .priority) {
         self.priority = value
       }
+      self.memoryConfig = try container.decodeIfPresent(
+        AppProfile.StandardIsolation.MemoryConfig.self, forKey: .memoryConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.Value.self, forKey: key)
@@ -510,8 +518,71 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.memoryConfig, forKey: .memoryConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// If set, eligible single-row requests (currently limited to ReadRows)
+    /// using this app profile will be routed to the memory layer. All eligible
+    /// writes populate the memory layer. MemoryConfig can only be set if the
+    /// AppProfile uses single cluster routing and the configured cluster has a
+    /// memory layer enabled.
+    public struct MemoryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `MemoryConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = MemoryConfig().with { $0.<placeholder> = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let _knownKeys: Set<Swift.String> = []
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig"
+      }
+      public init(fromAny any: GoogleWKT.`Any`) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.Struct {
+        return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
