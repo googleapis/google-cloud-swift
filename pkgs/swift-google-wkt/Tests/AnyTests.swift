@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct AnyTests {
@@ -27,7 +27,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Any")
@@ -44,7 +44,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.mismatchedTypeUrl) {
@@ -60,7 +60,7 @@ import Testing
     let innerAny = try `Any`(fromMessage: input)
     let any = try `Any`(fromMessage: innerAny)
     let wrapped = WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!

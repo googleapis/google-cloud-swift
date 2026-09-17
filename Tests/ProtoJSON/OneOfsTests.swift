@@ -52,7 +52,7 @@ import Testing
     ]
   )
   func oneOfSerialization(expectedJSON: String, input: MessageWithOneOf) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let jsonString = String(data: data, encoding: .utf8)!
@@ -78,7 +78,7 @@ import Testing
       (#"{"floatValue":1.5}"#, MessageWithComplexOneOf().with { $0.complex = .floatValue(1.5) }),
       (#"{"doubleValue":2.5}"#, MessageWithComplexOneOf().with { $0.complex = .doubleValue(2.5) }),
       (#"{"int32":42}"#, MessageWithComplexOneOf().with { $0.complex = .int32(42) }),
-      (#"{"int64":42}"#, MessageWithComplexOneOf().with { $0.complex = .int64(42) }),
+      (#"{"int64":"42"}"#, MessageWithComplexOneOf().with { $0.complex = .int64(42) }),
       (#"{"enum":"BLACK"}"#, MessageWithComplexOneOf().with { $0.complex = .enum(.black) }),
       (
         #"{"inner":{"strings":["a","b"]}}"#,
@@ -103,7 +103,7 @@ import Testing
     ]
   )
   func complexOneOfSerialization(expectedJSON: String, input: MessageWithComplexOneOf) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let jsonString = String(data: data, encoding: .utf8)!
@@ -117,7 +117,7 @@ import Testing
   // TODO(https://github.com/googleapis/librarian/issues/5260) - review if this is right.
   @Test func complexOneOfSerialization_null() throws {
     let input = MessageWithComplexOneOf().with { $0.complex = .null(NullValue()) }
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let jsonString = String(data: data, encoding: .utf8)!

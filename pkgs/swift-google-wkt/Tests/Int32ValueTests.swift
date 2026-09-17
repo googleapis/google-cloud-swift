@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct Int32ValueTests {
@@ -29,7 +29,7 @@ import Testing
     ])
   func encodeJSON(_ args: (Int32, String)) throws {
     let wrapped = WrappedInt32ValueEncode(value: args.0)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.1)
@@ -38,7 +38,7 @@ import Testing
   @Test("Int32Value JSON Encoding unset")
   func encodeJSONUnset() throws {
     let wrapped = WrappedInt32ValueEncode(value: nil)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{}")
@@ -56,7 +56,7 @@ import Testing
     ])
   func decodeJSON(_ args: (String, Int32)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedInt32ValueDecode.self, from: data)
     #expect(wrapped.value == args.1)
   }
@@ -64,7 +64,7 @@ import Testing
   @Test("Int32Value JSON Decoding unset")
   func decodeJSONUnset() throws {
     let data = Data("{}".utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedInt32ValueDecode.self, from: data)
     #expect(wrapped.value == nil)
   }
@@ -78,7 +78,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":123}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int32Value")
@@ -93,7 +93,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":"123"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int32Value")
@@ -107,7 +107,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":123}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) { let _ = try Int32Value(fromAny: any) }
@@ -119,7 +119,7 @@ import Testing
     let input = Int32Value(123)
     let any = try `Any`(fromMessage: input)
     let wrapped = Int32ValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -139,7 +139,7 @@ import Testing
   func int32ValueBoundaries(_ value: Int32) throws {
     let any = try `Any`(fromMessage: value)
     let wrapped = Int32ValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let gotJson = String(data: data, encoding: .utf8)!
@@ -147,7 +147,7 @@ import Testing
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":\#(value)}}"#
     #expect(gotJson == wantJson)
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decodedWrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
     let unpacked = try Int32(fromAny: decodedWrapped.content)
     #expect(unpacked == value)
@@ -166,7 +166,7 @@ import Testing
     ])
   func int32ValueInvalidValue(_ json: String) throws {
     let data = Data(json.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
     #expect(throws: AnyError.invalidValueField) {
       let _ = try Int32(fromAny: wrapped.content)

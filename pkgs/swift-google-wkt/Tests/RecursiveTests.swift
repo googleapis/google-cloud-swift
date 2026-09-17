@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct RecursiveTests {
@@ -41,8 +41,8 @@ import Testing
   @Test("Json Encoding")
   func testJsonEncoding() throws {
     let recursive = Recursive(value: DummyNode(name: "A"))
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.sortedKeys]
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
 
     let data = try encoder.encode(recursive)
     #expect(String(data: data, encoding: .utf8) == "{\"name\":\"A\"}")
@@ -53,8 +53,8 @@ import Testing
     let node = DummyNode(name: "A")
     let recursive = Recursive(value: node)
 
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.sortedKeys]
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
 
     let nodeData = try encoder.encode(node)
     let recursiveData = try encoder.encode(recursive)
@@ -68,7 +68,7 @@ import Testing
     let jsonString = #"{"name":"A"}"#
     let data = Data(jsonString.utf8)
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(Recursive<DummyNode>.self, from: data)
 
     #expect(decoded.value.name == "A")
@@ -83,14 +83,14 @@ import Testing
 
     let recursive = Recursive(value: nodeA)
 
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.sortedKeys]
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(recursive)
 
     let jsonString = String(data: data, encoding: .utf8)
     #expect(jsonString == #"{"name":"A","next":{"name":"B","next":{"name":"C"}}}"#)
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(Recursive<DummyNode>.self, from: data)
 
     #expect(decoded == recursive)

@@ -63,7 +63,7 @@ import Testing
       (#"{"map":{"a":"Pz8_"},"repeated":[]}"#, T().with { $0.map = ["a": Data("???".utf8)] }),
     ])
   func roundtrip(want: String, input: T) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let got = String(data: data, encoding: .utf8)!

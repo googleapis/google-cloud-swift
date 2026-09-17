@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct DoubleValueTests {
@@ -29,7 +29,7 @@ import Testing
     ])
   func encodeJSON(_ args: (Double, String)) throws {
     let wrapped = WrappedDoubleValueEncode(value: args.0)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.1)
@@ -38,7 +38,7 @@ import Testing
   @Test("DoubleValue JSON Encoding unset")
   func encodeJSONUnset() throws {
     let wrapped = WrappedDoubleValueEncode(value: nil)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{}")
@@ -56,7 +56,7 @@ import Testing
     ])
   func decodeJSON(_ args: (String, Double)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedDoubleValueDecode.self, from: data)
     #expect(wrapped.value == args.1)
   }
@@ -65,7 +65,7 @@ import Testing
     "DoubleValue JSON Decoding unset")
   func decodeJSONUnset() throws {
     let data = Data("{}".utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedDoubleValueDecode.self, from: data)
     #expect(wrapped.value == nil)
   }
@@ -79,7 +79,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.DoubleValue","value":123.45}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(DoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.DoubleValue")
@@ -93,7 +93,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":123.45}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(DoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) { let _ = try DoubleValue(fromAny: any) }
@@ -105,7 +105,7 @@ import Testing
     let input = DoubleValue(123.45)
     let any = try `Any`(fromMessage: input)
     let wrapped = DoubleValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!

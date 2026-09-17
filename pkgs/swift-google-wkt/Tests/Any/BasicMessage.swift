@@ -26,7 +26,7 @@ extension AnyTests {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/test.BasicMessage","field0":"0","field1":"1"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/test.BasicMessage")
@@ -39,7 +39,7 @@ extension AnyTests {
     let jsonString =
       #"{"content":{"@type":"bad","field0":"0","field1":"1"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -52,7 +52,7 @@ extension AnyTests {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/test.BasicMessage","field0":"0"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/test.BasicMessage")

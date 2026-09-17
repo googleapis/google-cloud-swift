@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct Int64ValueTests {
@@ -24,12 +24,12 @@ import Testing
   @Test(
     "Int64Value JSON Encoding",
     arguments: [
-      (123, "{\"value\":123}"),
-      (0, "{\"value\":0}"),
+      (123, "{\"value\":\"123\"}"),
+      (0, "{\"value\":\"0\"}"),
     ])
   func encodeJSON(_ args: (Int64, String)) throws {
     let wrapped = WrappedInt64ValueEncode(value: args.0)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.1)
@@ -38,7 +38,7 @@ import Testing
   @Test("Int64Value JSON Encoding unset")
   func encodeJSONUnset() throws {
     let wrapped = WrappedInt64ValueEncode(value: nil)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{}")
@@ -51,12 +51,14 @@ import Testing
   @Test(
     "Int64Value JSON Decoding",
     arguments: [
+      ("{\"value\":\"123\"}", 123),
+      ("{\"value\":\"0\"}", 0),
       ("{\"value\":123}", 123),
       ("{\"value\":0}", 0),
     ])
   func decodeJSON(_ args: (String, Int64)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedInt64ValueDecode.self, from: data)
     #expect(wrapped.value == args.1)
   }
@@ -64,7 +66,7 @@ import Testing
   @Test("Int64Value JSON Decoding unset")
   func decodeJSONUnset() throws {
     let data = Data("{}".utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedInt64ValueDecode.self, from: data)
     #expect(wrapped.value == nil)
   }
@@ -78,7 +80,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"123"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int64Value")
@@ -93,7 +95,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":123}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int64Value")
@@ -107,7 +109,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":"123"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) { let _ = try Int64Value(fromAny: any) }
@@ -119,7 +121,7 @@ import Testing
     let input = Int64Value(123)
     let any = try `Any`(fromMessage: input)
     let wrapped = Int64ValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -139,7 +141,7 @@ import Testing
   func int64ValueBoundaries(_ value: Int64) throws {
     let any = try `Any`(fromMessage: value)
     let wrapped = Int64ValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let gotJson = String(data: data, encoding: .utf8)!
@@ -147,7 +149,7 @@ import Testing
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"\#(value)"}}"#
     #expect(gotJson == wantJson)
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decodedWrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
     let unpacked = try Int64(fromAny: decodedWrapped.content)
     #expect(unpacked == value)
@@ -165,7 +167,7 @@ import Testing
     ])
   func int64ValueInvalidValue(_ json: String) throws {
     let data = Data(json.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
     #expect(throws: AnyError.invalidValueField) {
       let _ = try Int64(fromAny: wrapped.content)

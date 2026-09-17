@@ -60,7 +60,7 @@ import Testing
       $0.owner = owner
     }
 
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(uploadMetadata)
     let jsonString = String(data: data, encoding: .utf8) ?? ""
 
@@ -71,7 +71,7 @@ import Testing
     #expect(jsonString.contains("NEARLINE"))
     #expect(jsonString.contains("user-test@example.com"))
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(UploadMetadata.self, from: data)
 
     #expect(decoded == uploadMetadata)
@@ -307,7 +307,7 @@ import Testing
     #expect(uploadMetadata.contexts?.custom["customer_id"]?.value == "cust-78901")
     #expect(uploadMetadata.contexts?.custom["payment_status"]?.value == "unpaid")
 
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(uploadMetadata)
     let jsonString = String(data: data, encoding: .utf8) ?? ""
 
@@ -318,7 +318,7 @@ import Testing
     #expect(jsonString.contains("\"payment_status\":"))
     #expect(jsonString.contains("\"unpaid\""))
 
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(UploadMetadata.self, from: data)
 
     #expect(decoded == uploadMetadata)

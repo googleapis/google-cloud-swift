@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct FieldMaskTests {
@@ -33,7 +33,7 @@ import Testing
   func encodeJSON(_ paths: [String], _ expected: String) throws {
     let fieldMask = GoogleWKT.FieldMask(paths: paths)
     let wrapped = WrappedFieldMask(value: fieldMask)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == expected)
@@ -54,7 +54,7 @@ import Testing
     ])
   func decodeJSON(_ json: String, _ expected: [String]) throws {
     let data = Data(json.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedFieldMaskDecode.self, from: data)
     #expect(wrapped.value.paths == expected)
   }
@@ -64,7 +64,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.FieldMask","value":"a,b,cD"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.FieldMask")
@@ -78,7 +78,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":"a,b,cD"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -92,7 +92,7 @@ import Testing
     let input = FieldMask(paths: ["a", "b", "c_d"])
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!

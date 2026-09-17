@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct FloatValueTests {
@@ -29,7 +29,7 @@ import Testing
     ])
   func encodeJSON(_ args: (Float, String)) throws {
     let wrapped = WrappedFloatValueEncode(value: args.0)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.1)
@@ -38,7 +38,7 @@ import Testing
   @Test("FloatValue JSON Encoding unset")
   func encodeJSONUnset() throws {
     let wrapped = WrappedFloatValueEncode(value: nil)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{}")
@@ -56,7 +56,7 @@ import Testing
     ])
   func decodeJSON(_ args: (String, Float)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedFloatValueDecode.self, from: data)
     #expect(wrapped.value == args.1)
   }
@@ -64,7 +64,7 @@ import Testing
   @Test("FloatValue JSON Decoding unset")
   func decodeJSONUnset() throws {
     let data = Data("{}".utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedFloatValueDecode.self, from: data)
     #expect(wrapped.value == nil)
   }
@@ -78,7 +78,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.FloatValue","value":123.45}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(FloatValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.FloatValue")
@@ -92,7 +92,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":123.45}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(FloatValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) { let _ = try FloatValue(fromAny: any) }
@@ -104,7 +104,7 @@ import Testing
     let input = FloatValue(123.45)
     let any = try `Any`(fromMessage: input)
     let wrapped = FloatValueTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!

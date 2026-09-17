@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCProtobuf
 import GoogleGax
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import GoogleWKTConvert
 import GoogleRpc
 import SwiftProtobuf
@@ -138,7 +138,7 @@ extension StatusDetail {
 
 private func fallbackAny(typeUrl: String = "") -> GoogleWKT.`Any` {
   let json = "{\"@type\":\"\(typeUrl)\"}".data(using: .utf8) ?? Data()
-  if let any = try? JSONDecoder().decode(GoogleWKT.`Any`.self, from: json) {
+  if let any = try? _ProtoJSONDecoder().decode(GoogleWKT.`Any`.self, from: json) {
     return any
   }
   do {

@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleWKT
+@_spi(GoogleCloudInternal) @testable import GoogleWKT
 
 @Suite struct TimestampTests {
   @Test(
@@ -147,7 +147,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Timestamp","value":"2026-04-21T12:34:56.789123456Z"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Timestamp")
@@ -161,7 +161,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":"2026-04-21T12:34:56.789123456Z"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -175,7 +175,7 @@ import Testing
     let input = try Timestamp(fromString: "2026-04-21T12:34:56.789123456Z")
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -198,7 +198,7 @@ import Testing
   func encodeJSON(_ args: (Int64, Int64, String)) throws {
     let ts = try Timestamp(seconds: args.0, nanos: args.1)
     let wrapped = WrappedTimestamp(value: ts)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.2)
@@ -217,7 +217,7 @@ import Testing
   )
   func decodeJSON(_ args: (String, Int64, Int64)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedTimestampDecode.self, from: data)
     #expect(wrapped.value.seconds == args.1)
     #expect(wrapped.value.nanos == args.2)

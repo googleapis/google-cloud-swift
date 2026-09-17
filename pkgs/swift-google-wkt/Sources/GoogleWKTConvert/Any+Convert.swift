@@ -13,17 +13,17 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import SwiftProtobuf
 
 extension GoogleWKT.`Any` {
   public init(proto: SwiftProtobuf.Google_Protobuf_Any) throws {
     let json = try proto.jsonUTF8Data()
-    self = try JSONDecoder().decode(GoogleWKT.`Any`.self, from: json)
+    self = try _ProtoJSONDecoder().decode(GoogleWKT.`Any`.self, from: json)
   }
 
   public func toProto() throws -> SwiftProtobuf.Google_Protobuf_Any {
-    let json = try JSONEncoder().encode(self)
+    let json = try _ProtoJSONEncoder().encode(self)
     return try SwiftProtobuf.Google_Protobuf_Any(jsonUTF8Data: json)
   }
 }

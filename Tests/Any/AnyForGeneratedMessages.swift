@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import GoogleCloudSecretManagerV1
 import Testing
 
@@ -31,7 +31,7 @@ func testDecodingGetSecretRequestMessage() throws {
   let jsonString =
     #"{"value":{"@type":"type.googleapis.com/google.cloud.secretmanager.v1.GetSecretRequest","name":"projects/test-project/secrets/my-secret"}}"#
   let data = Data(jsonString.utf8)
-  let decoder = JSONDecoder()
+  let decoder = _ProtoJSONDecoder()
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value
   #expect(any.typeUrl == "type.googleapis.com/google.cloud.secretmanager.v1.GetSecretRequest")
@@ -45,7 +45,7 @@ func testEncodingGetSecretRequestMessage() throws {
   let input = GetSecretRequest().with { $0.name = "projects/test-project/secrets/my-secret" }
   let any = try `Any`(fromMessage: input)
   let wrapped = WrappedAny(value: any)
-  let encoder = JSONEncoder()
+  let encoder = _ProtoJSONEncoder()
   encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
   let data = try encoder.encode(wrapped)
   let got = String(data: data, encoding: .utf8)!
@@ -60,7 +60,7 @@ func testDecodingListSecretVersionsRequestMessage() throws {
   let jsonString =
     #"{"value":{"@type":"type.googleapis.com/google.cloud.secretmanager.v1.ListSecretVersionsRequest","filter":"state:ENABLED","pageSize":10,"pageToken":"token123","parent":"projects/test-project/secrets/my-secret"}}"#
   let data = Data(jsonString.utf8)
-  let decoder = JSONDecoder()
+  let decoder = _ProtoJSONDecoder()
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value
   #expect(
@@ -85,7 +85,7 @@ func testEncodingListSecretVersionsRequestMessage() throws {
   }
   let any = try `Any`(fromMessage: input)
   let wrapped = WrappedAny(value: any)
-  let encoder = JSONEncoder()
+  let encoder = _ProtoJSONEncoder()
   encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
   let data = try encoder.encode(wrapped)
   let got = String(data: data, encoding: .utf8)!

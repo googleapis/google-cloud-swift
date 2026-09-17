@@ -170,7 +170,7 @@ extension StorageClient {
 
     let bucketId = BucketName.extractBucketName(bucket)
     let boundary = "Boundary-\(UUID().uuidString)"
-    let metadataJson = try JSONEncoder().encode(metadata ?? UploadMetadata())
+    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? UploadMetadata())
     let dataPartContentType = metadata?.contentType ?? "application/octet-stream"
     let prepared =
       try await MultipartUploadStream.prepare(
@@ -904,7 +904,7 @@ extension StorageClient {
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
-    let metadataJson = try JSONEncoder().encode(metadata ?? UploadMetadata())
+    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? UploadMetadata())
     var buffer = ByteBufferAllocator().buffer(capacity: metadataJson.count)
     _ = metadataJson.withUnsafeBytes { buffer.writeBytes($0) }
     request.setBody(buffer: buffer)

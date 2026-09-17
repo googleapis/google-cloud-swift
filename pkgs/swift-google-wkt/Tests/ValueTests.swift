@@ -97,7 +97,7 @@ import Testing
     ])
   func encodeValue(value: Value, expected: String) throws {
     let wrapped = WrappedValue(value: value)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == expected)
@@ -109,37 +109,21 @@ import Testing
       ("{\"value\":null}", Value()),
       ("{\"value\":123.45}", Value.number(123.45)),
       ("{\"value\":\"foo\"}", Value.string("foo")),
-      ("{\"value\":true}", Value.bool(true)),
-      ("{\"value\":false}", Value.bool(false)),
-      ("{\"value\":{\"a\":\"b\"}}", Value.object(["a": .string("b")])),
-      ("{\"value\":[1,2]}", Value.array([.number(1), .number(2)])),
-    ])
-  func decodeValue(json: String, expected: Value) throws {
-    let data = Data(json.utf8)
-    let decoder = JSONDecoder()
-    let got = try decoder.decode(WrappedValue.self, from: data)
-    #expect(got.value == expected)
-  }
-
-  @Test(
-    "Value ProtoJSON decoding",
-    arguments: [
-      ("{\"value\":null}", Value()),
-      ("{\"value\":123.45}", Value.number(123.45)),
-      ("{\"value\":\"foo\"}", Value.string("foo")),
       ("{\"value\":\"true\"}", Value.string("true")),
       ("{\"value\":\"false\"}", Value.string("false")),
       ("{\"value\":\"42\"}", Value.string("42")),
       ("{\"value\":\"\"}", Value.string("")),
       ("{\"value\":true}", Value.bool(true)),
       ("{\"value\":false}", Value.bool(false)),
+      ("{\"value\":{\"a\":\"b\"}}", Value.object(["a": .string("b")])),
       ("{\"value\":{\"a\":\"true\"}}", Value.object(["a": .string("true")])),
+      ("{\"value\":[1,2]}", Value.array([.number(1), .number(2)])),
       (
         "{\"value\":[\"true\",\"false\",true,false,42]}",
         Value.array([.string("true"), .string("false"), .bool(true), .bool(false), .number(42)])
       ),
     ])
-  func decodeProtoJSONValue(json: String, expected: Value) throws {
+  func decodeValue(json: String, expected: Value) throws {
     let data = Data(json.utf8)
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(WrappedValue.self, from: data)
@@ -238,7 +222,7 @@ import Testing
     let expectedUrl = "type.googleapis.com/google.protobuf.Value"
     let jsonString = "{\"content\":{\"@type\":\"\(expectedUrl)\",\(fragment)}}"
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == expectedUrl)
@@ -250,7 +234,7 @@ import Testing
   @Test func valueAnyUnpackMismatchedUrl() throws {
     let jsonString = #"{"content":{"@type":"bad","value":"unused"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -273,7 +257,7 @@ import Testing
   func valueAnyPack(input: Value, fragment: String) throws {
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -296,7 +280,7 @@ import Testing
     let expectedUrl = "type.googleapis.com/google.protobuf.Struct"
     let jsonString = "{\"content\":{\"@type\":\"\(expectedUrl)\",\(fragment)}}"
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == expectedUrl)
@@ -308,7 +292,7 @@ import Testing
   @Test func structAnyUnpackMismatchedUrl() throws {
     let jsonString = #"{"content":{"@type":"bad","value":"unused"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -329,7 +313,7 @@ import Testing
   func structAnyPack(fragment: String, input: Struct) throws {
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -352,7 +336,7 @@ import Testing
     let expectedUrl = "type.googleapis.com/google.protobuf.ListValue"
     let jsonString = "{\"content\":{\"@type\":\"\(expectedUrl)\",\(fragment)}}"
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == expectedUrl)
@@ -364,7 +348,7 @@ import Testing
   @Test func listValueAnyUnpackMismatchedUrl() throws {
     let jsonString = #"{"content":{"@type":"bad","value":"unused"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -385,7 +369,7 @@ import Testing
   func listValueAnyPack(fragment: String, input: ListValue) throws {
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -403,7 +387,7 @@ import Testing
   func decodeNullValue() throws {
     let json = "{\"value\": null}"
     let data = Data(json.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(WrappedNull.self, from: data)
     #expect(got.value == NullValue())
   }
@@ -411,7 +395,7 @@ import Testing
   @Test("NullValue decoding failure", arguments: ["{\"value\": 123}", "{\"value\": \"foo\"}"])
   func decodeNullValueFailure(json: String) throws {
     let data = Data(json.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     #expect(throws: (any Error).self) {
       _ = try decoder.decode(WrappedNull.self, from: data)
     }
@@ -420,7 +404,7 @@ import Testing
   @Test("NullValue encoding")
   func encodeNullValue() throws {
     let wrapped = WrappedNull(value: NullValue())
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{\"value\":null}")

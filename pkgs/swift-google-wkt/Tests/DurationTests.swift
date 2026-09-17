@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 import Testing
 
 @Suite struct DurationTests {
@@ -83,7 +83,7 @@ import Testing
   func encodeJSON(_ args: (Int64, Int64, String)) throws {
     let duration = try GoogleWKT.Duration(seconds: args.0, nanos: args.1)
     let wrapped = WrappedDuration(value: duration)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == args.2)
@@ -122,7 +122,7 @@ import Testing
     ])
   func decodeJSON(_ args: (String, Int64, Int64)) throws {
     let data = Data(args.0.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedDurationDecode.self, from: data)
     #expect(wrapped.value.seconds == args.1)
     #expect(wrapped.value.nanos == args.2)
@@ -133,7 +133,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.45s"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Duration")
@@ -147,7 +147,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":"123.45s"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) { let _ = try Duration(fromAny: any) }
@@ -159,7 +159,7 @@ import Testing
     let input = try Duration(seconds: 123, nanos: 450_000_000)
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
