@@ -2,8 +2,8 @@
     "api_description": "Creates, reads, and updates metadata for Google Cloud Platform resource\ncontainers.",
     "api_id": "cloudresourcemanager.googleapis.com",
     "api_shortname": "cloudresourcemanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-resourcemanager-v3/documentation",
-    "distribution_name": "google-cloud-resourcemanager-v3",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-resourcemanager-v3/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-resourcemanager-v3",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559757",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
@@ -11,5 +11,5 @@
     "name_pretty": "Cloud Resource Manager",
     "product_documentation": "https://cloud.google.com/resource-manager",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-resourcemanager-v3"
 }

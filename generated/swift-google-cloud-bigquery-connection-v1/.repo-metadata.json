@@ -2,13 +2,13 @@
     "api_description": "Allows users to manage BigQuery connections to external data sources.",
     "api_id": "bigqueryconnection.googleapis.com",
     "api_shortname": "bigqueryconnection",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-bigquery-connection-v1/documentation",
-    "distribution_name": "google-cloud-bigquery-connection-v1",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-connection-v1/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-bigquery-connection-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
     "name": "bigqueryconnection",
     "name_pretty": "BigQuery Connection",
     "product_documentation": "https://cloud.google.com/bigquery/",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-bigquery-connection-v1"
 }

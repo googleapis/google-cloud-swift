@@ -2,13 +2,13 @@
     "api_description": "Build event-driven applications on Google Cloud Platform.",
     "api_id": "eventarc.googleapis.com",
     "api_shortname": "eventarc",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-eventarc-v1/documentation",
-    "distribution_name": "google-cloud-eventarc-v1",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-eventarc-v1/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-eventarc-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
     "name": "eventarc",
     "name_pretty": "Eventarc",
     "product_documentation": "https://cloud.google.com/eventarc/",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-eventarc-v1"
 }

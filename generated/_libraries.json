@@ -1,0 +1,1865 @@
+{
+  "swift-google-api": [
+    {
+      "PkgName": "swift-google-api",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api/0.1.0-preview/documentation",
+      "APIShortname": "serviceconfig",
+      "Product": "Service Config API"
+    }
+  ],
+  "swift-google-api-apikeys-v2": [
+    {
+      "PkgName": "swift-google-api-apikeys-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-apikeys-v2/0.1.0-preview/documentation",
+      "APIShortname": "apikeys",
+      "Product": "API Keys API"
+    }
+  ],
+  "swift-google-api-cloudquotas-v1": [
+    {
+      "PkgName": "swift-google-api-cloudquotas-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-cloudquotas-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudquotas",
+      "Product": "Cloud Quotas API"
+    }
+  ],
+  "swift-google-api-servicecontrol-v1": [
+    {
+      "PkgName": "swift-google-api-servicecontrol-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-servicecontrol-v1/0.1.0-preview/documentation",
+      "APIShortname": "servicecontrol",
+      "Product": "Service Control API"
+    }
+  ],
+  "swift-google-api-servicecontrol-v2": [
+    {
+      "PkgName": "swift-google-api-servicecontrol-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-servicecontrol-v2/0.1.0-preview/documentation",
+      "APIShortname": "servicecontrol",
+      "Product": "Service Control API"
+    }
+  ],
+  "swift-google-api-servicemanagement-v1": [
+    {
+      "PkgName": "swift-google-api-servicemanagement-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-servicemanagement-v1/0.1.0-preview/documentation",
+      "APIShortname": "servicemanagement",
+      "Product": "Service Management API"
+    }
+  ],
+  "swift-google-api-serviceusage-v1": [
+    {
+      "PkgName": "swift-google-api-serviceusage-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-api-serviceusage-v1/0.1.0-preview/documentation",
+      "APIShortname": "serviceusage",
+      "Product": "Service Usage API"
+    }
+  ],
+  "swift-google-appengine-v1": [
+    {
+      "PkgName": "swift-google-appengine-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-appengine-v1/0.1.0-preview/documentation",
+      "APIShortname": "appengine",
+      "Product": "App Engine Admin API"
+    }
+  ],
+  "swift-google-bigtable-admin-v2": [
+    {
+      "PkgName": "swift-google-bigtable-admin-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-bigtable-admin-v2/0.1.0-preview/documentation",
+      "APIShortname": "bigtableadmin",
+      "Product": "Cloud Bigtable Admin API"
+    }
+  ],
+  "swift-google-cloud-accessapproval-v1": [
+    {
+      "PkgName": "swift-google-cloud-accessapproval-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-accessapproval-v1/0.1.0-preview/documentation",
+      "APIShortname": "accessapproval",
+      "Product": "Access Approval API"
+    }
+  ],
+  "swift-google-cloud-advisorynotifications-v1": [
+    {
+      "PkgName": "swift-google-cloud-advisorynotifications-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-advisorynotifications-v1/0.1.0-preview/documentation",
+      "APIShortname": "advisorynotifications",
+      "Product": "Advisory Notifications API"
+    }
+  ],
+  "swift-google-cloud-aiplatform-v1": [
+    {
+      "PkgName": "swift-google-cloud-aiplatform-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1/0.1.0-preview/documentation",
+      "APIShortname": "aiplatform",
+      "Product": "Vertex AI API"
+    }
+  ],
+  "swift-google-cloud-aiplatform-v1-schema-predict-instance": [
+    {
+      "PkgName": "swift-google-cloud-aiplatform-v1-schema-predict-instance",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-instance/0.0.0-preview/documentation",
+      "APIShortname": "aiplatform",
+      "Product": "Vertex AI API"
+    }
+  ],
+  "swift-google-cloud-aiplatform-v1-schema-predict-params": [
+    {
+      "PkgName": "swift-google-cloud-aiplatform-v1-schema-predict-params",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-params/0.0.0-preview/documentation",
+      "APIShortname": "aiplatform",
+      "Product": "Vertex AI API"
+    }
+  ],
+  "swift-google-cloud-aiplatform-v1-schema-predict-prediction": [
+    {
+      "PkgName": "swift-google-cloud-aiplatform-v1-schema-predict-prediction",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-prediction/0.0.0-preview/documentation",
+      "APIShortname": "aiplatform",
+      "Product": "Vertex AI API"
+    }
+  ],
+  "swift-google-cloud-aiplatform-v1-schema-trainingjob-definition": [
+    {
+      "PkgName": "swift-google-cloud-aiplatform-v1-schema-trainingjob-definition",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1-schema-trainingjob-definition/0.0.0-preview/documentation",
+      "APIShortname": "aiplatform",
+      "Product": "Vertex AI API"
+    }
+  ],
+  "swift-google-cloud-alloydb-connectors-v1": [
+    {
+      "PkgName": "swift-google-cloud-alloydb-connectors-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-alloydb-connectors-v1/0.1.0-preview/documentation",
+      "APIShortname": "alloydb",
+      "Product": "AlloyDB connectors"
+    }
+  ],
+  "swift-google-cloud-alloydb-v1": [
+    {
+      "PkgName": "swift-google-cloud-alloydb-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-alloydb-v1/0.1.0-preview/documentation",
+      "APIShortname": "alloydb",
+      "Product": "AlloyDB API"
+    }
+  ],
+  "swift-google-cloud-apigateway-v1": [
+    {
+      "PkgName": "swift-google-cloud-apigateway-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apigateway-v1/0.1.0-preview/documentation",
+      "APIShortname": "apigateway",
+      "Product": "API Gateway API"
+    }
+  ],
+  "swift-google-cloud-apigeeconnect-v1": [
+    {
+      "PkgName": "swift-google-cloud-apigeeconnect-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apigeeconnect-v1/0.0.0-preview/documentation",
+      "APIShortname": "apigeeconnect",
+      "Product": "Apigee Connect API"
+    }
+  ],
+  "swift-google-cloud-apihub-v1": [
+    {
+      "PkgName": "swift-google-cloud-apihub-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apihub-v1/0.1.0-preview/documentation",
+      "APIShortname": "apihub",
+      "Product": "API hub API"
+    }
+  ],
+  "swift-google-cloud-apiregistry-v1": [
+    {
+      "PkgName": "swift-google-cloud-apiregistry-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apiregistry-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudapiregistry",
+      "Product": "Cloud API Registry API"
+    }
+  ],
+  "swift-google-cloud-apphub-v1": [
+    {
+      "PkgName": "swift-google-cloud-apphub-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apphub-v1/0.1.0-preview/documentation",
+      "APIShortname": "apphub",
+      "Product": "App Hub API"
+    }
+  ],
+  "swift-google-cloud-apptopology-v1": [
+    {
+      "PkgName": "swift-google-cloud-apptopology-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apptopology-v1/0.0.0-preview/documentation",
+      "APIShortname": "apptopology",
+      "Product": "App Topology API"
+    }
+  ],
+  "swift-google-cloud-asset-v1": [
+    {
+      "PkgName": "swift-google-cloud-asset-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-asset-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudasset",
+      "Product": "Cloud Asset API"
+    }
+  ],
+  "swift-google-cloud-assuredworkloads-v1": [
+    {
+      "PkgName": "swift-google-cloud-assuredworkloads-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-assuredworkloads-v1/0.1.0-preview/documentation",
+      "APIShortname": "assuredworkloads",
+      "Product": "Assured Workloads API"
+    }
+  ],
+  "swift-google-cloud-auditmanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-auditmanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-auditmanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "auditmanager",
+      "Product": "Audit Manager API"
+    }
+  ],
+  "swift-google-cloud-backupdr-v1": [
+    {
+      "PkgName": "swift-google-cloud-backupdr-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-backupdr-v1/0.0.0-preview/documentation",
+      "APIShortname": "backupdr",
+      "Product": "Backup and DR Service API"
+    }
+  ],
+  "swift-google-cloud-baremetalsolution-v2": [
+    {
+      "PkgName": "swift-google-cloud-baremetalsolution-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-baremetalsolution-v2/0.1.0-preview/documentation",
+      "APIShortname": "baremetalsolution",
+      "Product": "Bare Metal Solution API"
+    }
+  ],
+  "swift-google-cloud-batch-v1": [
+    {
+      "PkgName": "swift-google-cloud-batch-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-batch-v1/0.1.0-preview/documentation",
+      "APIShortname": "batch",
+      "Product": "Batch API"
+    }
+  ],
+  "swift-google-cloud-beyondcorp-appconnections-v1": [
+    {
+      "PkgName": "swift-google-cloud-beyondcorp-appconnections-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-appconnections-v1/0.1.0-preview/documentation",
+      "APIShortname": "beyondcorp",
+      "Product": "BeyondCorp AppConnections API"
+    }
+  ],
+  "swift-google-cloud-beyondcorp-appconnectors-v1": [
+    {
+      "PkgName": "swift-google-cloud-beyondcorp-appconnectors-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-appconnectors-v1/0.1.0-preview/documentation",
+      "APIShortname": "beyondcorp",
+      "Product": "BeyondCorp AppConnectors API"
+    }
+  ],
+  "swift-google-cloud-beyondcorp-appgateways-v1": [
+    {
+      "PkgName": "swift-google-cloud-beyondcorp-appgateways-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-appgateways-v1/0.1.0-preview/documentation",
+      "APIShortname": "beyondcorp",
+      "Product": "BeyondCorp AppGateways API"
+    }
+  ],
+  "swift-google-cloud-beyondcorp-clientconnectorservices-v1": [
+    {
+      "PkgName": "swift-google-cloud-beyondcorp-clientconnectorservices-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-clientconnectorservices-v1/0.1.0-preview/documentation",
+      "APIShortname": "beyondcorp",
+      "Product": "BeyondCorp ClientConnectorServices API"
+    }
+  ],
+  "swift-google-cloud-beyondcorp-clientgateways-v1": [
+    {
+      "PkgName": "swift-google-cloud-beyondcorp-clientgateways-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-clientgateways-v1/0.1.0-preview/documentation",
+      "APIShortname": "beyondcorp",
+      "Product": "BeyondCorp ClientGateways API"
+    }
+  ],
+  "swift-google-cloud-biglake-v1": [
+    {
+      "PkgName": "swift-google-cloud-biglake-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-biglake-v1/0.1.0-preview/documentation",
+      "APIShortname": "biglake",
+      "Product": "Lakehouse API"
+    }
+  ],
+  "swift-google-cloud-bigquery-analyticshub-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-analyticshub-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-analyticshub-v1/0.1.0-preview/documentation",
+      "APIShortname": "analyticshub",
+      "Product": "Analytics Hub API"
+    }
+  ],
+  "swift-google-cloud-bigquery-biglake-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-biglake-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-biglake-v1/0.0.0-preview/documentation",
+      "APIShortname": "biglake",
+      "Product": "BigLake API"
+    }
+  ],
+  "swift-google-cloud-bigquery-connection-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-connection-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-connection-v1/0.1.0-preview/documentation",
+      "APIShortname": "bigqueryconnection",
+      "Product": "BigQuery Connection API"
+    }
+  ],
+  "swift-google-cloud-bigquery-datapolicies-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-datapolicies-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datapolicies-v1/0.1.0-preview/documentation",
+      "APIShortname": "bigquerydatapolicy",
+      "Product": "BigQuery Data Policy API"
+    }
+  ],
+  "swift-google-cloud-bigquery-datapolicies-v2": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-datapolicies-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datapolicies-v2/0.1.0-preview/documentation",
+      "APIShortname": "bigquerydatapolicy",
+      "Product": "BigQuery Data Policy API"
+    }
+  ],
+  "swift-google-cloud-bigquery-datatransfer-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-datatransfer-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datatransfer-v1/0.1.0-preview/documentation",
+      "APIShortname": "bigquerydatatransfer",
+      "Product": "BigQuery Data Transfer API"
+    }
+  ],
+  "swift-google-cloud-bigquery-migration-v2": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-migration-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-migration-v2/0.0.0-preview/documentation",
+      "APIShortname": "bigquerymigration",
+      "Product": "BigQuery Migration API"
+    }
+  ],
+  "swift-google-cloud-bigquery-reservation-v1": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-reservation-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-reservation-v1/0.0.0-preview/documentation",
+      "APIShortname": "bigqueryreservation",
+      "Product": "BigQuery Reservation API"
+    }
+  ],
+  "swift-google-cloud-billing-budgets-v1": [
+    {
+      "PkgName": "swift-google-cloud-billing-budgets-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-budgets-v1/0.1.0-preview/documentation",
+      "APIShortname": "billingbudgets",
+      "Product": "Cloud Billing Budget API"
+    }
+  ],
+  "swift-google-cloud-billing-v1": [
+    {
+      "PkgName": "swift-google-cloud-billing-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudbilling",
+      "Product": "Cloud Billing API"
+    }
+  ],
+  "swift-google-cloud-binaryauthorization-v1": [
+    {
+      "PkgName": "swift-google-cloud-binaryauthorization-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-binaryauthorization-v1/0.1.0-preview/documentation",
+      "APIShortname": "binaryauthorization",
+      "Product": "Binary Authorization API"
+    }
+  ],
+  "swift-google-cloud-blockchainnodeengine-v1": [
+    {
+      "PkgName": "swift-google-cloud-blockchainnodeengine-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-blockchainnodeengine-v1/0.1.0-preview/documentation",
+      "APIShortname": "blockchainnodeengine",
+      "Product": "Blockchain Node Engine API"
+    }
+  ],
+  "swift-google-cloud-certificatemanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-certificatemanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-certificatemanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "certificatemanager",
+      "Product": "Certificate Manager API"
+    }
+  ],
+  "swift-google-cloud-ces-v1": [
+    {
+      "PkgName": "swift-google-cloud-ces-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-ces-v1/0.1.0-preview/documentation",
+      "APIShortname": "ces",
+      "Product": "Gemini Enterprise for Customer Experience API"
+    }
+  ],
+  "swift-google-cloud-channel-v1": [
+    {
+      "PkgName": "swift-google-cloud-channel-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-channel-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudchannel",
+      "Product": "Cloud Channel API"
+    }
+  ],
+  "swift-google-cloud-chronicle-v1": [
+    {
+      "PkgName": "swift-google-cloud-chronicle-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-chronicle-v1/0.0.0-preview/documentation",
+      "APIShortname": "chronicle",
+      "Product": "Chronicle API"
+    }
+  ],
+  "swift-google-cloud-cloudcontrolspartner-v1": [
+    {
+      "PkgName": "swift-google-cloud-cloudcontrolspartner-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-cloudcontrolspartner-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudcontrolspartner",
+      "Product": "Cloud Controls Partner API"
+    }
+  ],
+  "swift-google-cloud-clouddms-v1": [
+    {
+      "PkgName": "swift-google-cloud-clouddms-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-clouddms-v1/0.0.0-preview/documentation",
+      "APIShortname": "datamigration",
+      "Product": "Database Migration API"
+    }
+  ],
+  "swift-google-cloud-cloudsecuritycompliance-v1": [
+    {
+      "PkgName": "swift-google-cloud-cloudsecuritycompliance-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-cloudsecuritycompliance-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudsecuritycompliance",
+      "Product": "Cloud Security Compliance API"
+    }
+  ],
+  "swift-google-cloud-commerce-consumer-procurement-v1": [
+    {
+      "PkgName": "swift-google-cloud-commerce-consumer-procurement-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-commerce-consumer-procurement-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudcommerceconsumerprocurement",
+      "Product": "Cloud Commerce Consumer Procurement API"
+    }
+  ],
+  "swift-google-cloud-common": [
+    {
+      "PkgName": "swift-google-cloud-common",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-common/0.0.0-preview/documentation",
+      "APIShortname": "common",
+      "Product": "Common Operation Metadata type"
+    }
+  ],
+  "swift-google-cloud-compute-v1": [
+    {
+      "PkgName": "swift-google-cloud-compute-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-compute-v1/0.1.0-preview/documentation",
+      "APIShortname": "compute",
+      "Product": "Compute Engine API"
+    }
+  ],
+  "swift-google-cloud-confidentialcomputing-v1": [
+    {
+      "PkgName": "swift-google-cloud-confidentialcomputing-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-confidentialcomputing-v1/0.1.0-preview/documentation",
+      "APIShortname": "confidentialcomputing",
+      "Product": "Confidential Computing API"
+    }
+  ],
+  "swift-google-cloud-config-v1": [
+    {
+      "PkgName": "swift-google-cloud-config-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-config-v1/0.1.0-preview/documentation",
+      "APIShortname": "infra-manager",
+      "Product": "Infrastructure Manager API"
+    }
+  ],
+  "swift-google-cloud-configdelivery-v1": [
+    {
+      "PkgName": "swift-google-cloud-configdelivery-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-configdelivery-v1/0.1.0-preview/documentation",
+      "APIShortname": "configdelivery",
+      "Product": "Config Delivery API"
+    }
+  ],
+  "swift-google-cloud-connectors-v1": [
+    {
+      "PkgName": "swift-google-cloud-connectors-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-connectors-v1/0.1.0-preview/documentation",
+      "APIShortname": "connectors",
+      "Product": "Connectors API"
+    }
+  ],
+  "swift-google-cloud-contactcenterinsights-v1": [
+    {
+      "PkgName": "swift-google-cloud-contactcenterinsights-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-contactcenterinsights-v1/0.0.0-preview/documentation",
+      "APIShortname": "contactcenterinsights",
+      "Product": "Contact Center AI Insights API"
+    }
+  ],
+  "swift-google-cloud-contentwarehouse-v1": [
+    {
+      "PkgName": "swift-google-cloud-contentwarehouse-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-contentwarehouse-v1/0.0.0-preview/documentation",
+      "APIShortname": "contentwarehouse",
+      "Product": "Document AI Warehouse API"
+    }
+  ],
+  "swift-google-cloud-datacatalog-lineage-v1": [
+    {
+      "PkgName": "swift-google-cloud-datacatalog-lineage-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-lineage-v1/0.0.0-preview/documentation",
+      "APIShortname": "datalineage",
+      "Product": "Data Lineage API"
+    }
+  ],
+  "swift-google-cloud-datacatalog-v1": [
+    {
+      "PkgName": "swift-google-cloud-datacatalog-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-v1/0.1.0-preview/documentation",
+      "APIShortname": "datacatalog",
+      "Product": "Google Cloud Data Catalog API"
+    }
+  ],
+  "swift-google-cloud-dataform-v1": [
+    {
+      "PkgName": "swift-google-cloud-dataform-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataform-v1/0.1.0-preview/documentation",
+      "APIShortname": "dataform",
+      "Product": "Dataform API"
+    }
+  ],
+  "swift-google-cloud-datafusion-v1": [
+    {
+      "PkgName": "swift-google-cloud-datafusion-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datafusion-v1/0.1.0-preview/documentation",
+      "APIShortname": "datafusion",
+      "Product": "Cloud Data Fusion API"
+    }
+  ],
+  "swift-google-cloud-dataplex-v1": [
+    {
+      "PkgName": "swift-google-cloud-dataplex-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataplex-v1/0.1.0-preview/documentation",
+      "APIShortname": "dataplex",
+      "Product": "Cloud Dataplex API"
+    }
+  ],
+  "swift-google-cloud-dataproc-v1": [
+    {
+      "PkgName": "swift-google-cloud-dataproc-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataproc-v1/0.0.0-preview/documentation",
+      "APIShortname": "dataproc",
+      "Product": "Cloud Dataproc API"
+    }
+  ],
+  "swift-google-cloud-datastream-v1": [
+    {
+      "PkgName": "swift-google-cloud-datastream-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datastream-v1/0.0.0-preview/documentation",
+      "APIShortname": "datastream",
+      "Product": "Datastream API"
+    }
+  ],
+  "swift-google-cloud-deploy-v1": [
+    {
+      "PkgName": "swift-google-cloud-deploy-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-deploy-v1/0.1.0-preview/documentation",
+      "APIShortname": "clouddeploy",
+      "Product": "Cloud Deploy API"
+    }
+  ],
+  "swift-google-cloud-developerconnect-v1": [
+    {
+      "PkgName": "swift-google-cloud-developerconnect-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-developerconnect-v1/0.0.0-preview/documentation",
+      "APIShortname": "developerconnect",
+      "Product": "Developer Connect API"
+    }
+  ],
+  "swift-google-cloud-devicestreaming-v1": [
+    {
+      "PkgName": "swift-google-cloud-devicestreaming-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-devicestreaming-v1/0.0.0-preview/documentation",
+      "APIShortname": "devicestreaming",
+      "Product": "Device Streaming API"
+    }
+  ],
+  "swift-google-cloud-dialogflow-cx-v3": [
+    {
+      "PkgName": "swift-google-cloud-dialogflow-cx-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dialogflow-cx-v3/0.1.0-preview/documentation",
+      "APIShortname": "dialogflow",
+      "Product": "Dialogflow API"
+    }
+  ],
+  "swift-google-cloud-dialogflow-v2": [
+    {
+      "PkgName": "swift-google-cloud-dialogflow-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dialogflow-v2/0.1.0-preview/documentation",
+      "APIShortname": "dialogflow",
+      "Product": "Dialogflow API"
+    }
+  ],
+  "swift-google-cloud-discoveryengine-v1": [
+    {
+      "PkgName": "swift-google-cloud-discoveryengine-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-discoveryengine-v1/0.1.0-preview/documentation",
+      "APIShortname": "discoveryengine",
+      "Product": "Discovery Engine API"
+    }
+  ],
+  "swift-google-cloud-dns-v1": [
+    {
+      "PkgName": "swift-google-cloud-dns-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dns-v1/0.0.0-preview/documentation",
+      "APIShortname": "dns",
+      "Product": "Cloud DNS"
+    }
+  ],
+  "swift-google-cloud-documentai-v1": [
+    {
+      "PkgName": "swift-google-cloud-documentai-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-documentai-v1/0.0.0-preview/documentation",
+      "APIShortname": "documentai",
+      "Product": "Cloud Document AI API"
+    }
+  ],
+  "swift-google-cloud-domains-v1": [
+    {
+      "PkgName": "swift-google-cloud-domains-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-domains-v1/0.1.0-preview/documentation",
+      "APIShortname": "domains",
+      "Product": "Cloud Domains API"
+    }
+  ],
+  "swift-google-cloud-edgecontainer-v1": [
+    {
+      "PkgName": "swift-google-cloud-edgecontainer-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-edgecontainer-v1/0.1.0-preview/documentation",
+      "APIShortname": "edgecontainer",
+      "Product": "Distributed Cloud Edge Container API"
+    }
+  ],
+  "swift-google-cloud-edgenetwork-v1": [
+    {
+      "PkgName": "swift-google-cloud-edgenetwork-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-edgenetwork-v1/0.1.0-preview/documentation",
+      "APIShortname": "edgenetwork",
+      "Product": "Distributed Cloud Edge Network API"
+    }
+  ],
+  "swift-google-cloud-enterpriseknowledgegraph-v1": [
+    {
+      "PkgName": "swift-google-cloud-enterpriseknowledgegraph-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-enterpriseknowledgegraph-v1/0.0.0-preview/documentation",
+      "APIShortname": "enterpriseknowledgegraph",
+      "Product": "Enterprise Knowledge Graph API"
+    }
+  ],
+  "swift-google-cloud-essentialcontacts-v1": [
+    {
+      "PkgName": "swift-google-cloud-essentialcontacts-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-essentialcontacts-v1/0.0.0-preview/documentation",
+      "APIShortname": "essentialcontacts",
+      "Product": "Essential Contacts API"
+    }
+  ],
+  "swift-google-cloud-eventarc-publishing-v1": [
+    {
+      "PkgName": "swift-google-cloud-eventarc-publishing-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-eventarc-publishing-v1/0.0.0-preview/documentation",
+      "APIShortname": "eventarcpublishing",
+      "Product": "Eventarc Publishing API"
+    }
+  ],
+  "swift-google-cloud-eventarc-v1": [
+    {
+      "PkgName": "swift-google-cloud-eventarc-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-eventarc-v1/0.1.0-preview/documentation",
+      "APIShortname": "eventarc",
+      "Product": "Eventarc API"
+    }
+  ],
+  "swift-google-cloud-filestore-v1": [
+    {
+      "PkgName": "swift-google-cloud-filestore-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-filestore-v1/0.1.0-preview/documentation",
+      "APIShortname": "file",
+      "Product": "Cloud Filestore API"
+    }
+  ],
+  "swift-google-cloud-financialservices-v1": [
+    {
+      "PkgName": "swift-google-cloud-financialservices-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-financialservices-v1/0.0.0-preview/documentation",
+      "APIShortname": "financialservices",
+      "Product": "Financial Services API"
+    }
+  ],
+  "swift-google-cloud-ftp-v1": [
+    {
+      "PkgName": "swift-google-cloud-ftp-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-ftp-v1/0.0.0-preview/documentation",
+      "APIShortname": "ftp",
+      "Product": "Cloud FTP API"
+    }
+  ],
+  "swift-google-cloud-functions-v2": [
+    {
+      "PkgName": "swift-google-cloud-functions-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-functions-v2/0.1.0-preview/documentation",
+      "APIShortname": "cloudfunctions",
+      "Product": "Cloud Functions API"
+    }
+  ],
+  "swift-google-cloud-gkebackup-v1": [
+    {
+      "PkgName": "swift-google-cloud-gkebackup-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkebackup-v1/0.0.0-preview/documentation",
+      "APIShortname": "gkebackup",
+      "Product": "Backup for GKE API"
+    }
+  ],
+  "swift-google-cloud-gkeconnect-gateway-v1": [
+    {
+      "PkgName": "swift-google-cloud-gkeconnect-gateway-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkeconnect-gateway-v1/0.0.0-preview/documentation",
+      "APIShortname": "connectgateway",
+      "Product": "Connect Gateway API"
+    }
+  ],
+  "swift-google-cloud-gkehub-v1": [
+    {
+      "PkgName": "swift-google-cloud-gkehub-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkehub-v1/0.1.0-preview/documentation",
+      "APIShortname": "gkehub",
+      "Product": "GKE Hub"
+    }
+  ],
+  "swift-google-cloud-gkemulticloud-v1": [
+    {
+      "PkgName": "swift-google-cloud-gkemulticloud-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkemulticloud-v1/0.1.0-preview/documentation",
+      "APIShortname": "gkemulticloud",
+      "Product": "GKE Multi-Cloud API"
+    }
+  ],
+  "swift-google-cloud-gkerecommender-v1": [
+    {
+      "PkgName": "swift-google-cloud-gkerecommender-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkerecommender-v1/0.0.0-preview/documentation",
+      "APIShortname": "gkerecommender",
+      "Product": "GKE Recommender API"
+    }
+  ],
+  "swift-google-cloud-gsuiteaddons-v1": [
+    {
+      "PkgName": "swift-google-cloud-gsuiteaddons-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gsuiteaddons-v1/0.0.0-preview/documentation",
+      "APIShortname": "gsuiteaddons",
+      "Product": "Google Workspace add-ons API"
+    }
+  ],
+  "swift-google-cloud-hypercomputecluster-v1": [
+    {
+      "PkgName": "swift-google-cloud-hypercomputecluster-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-hypercomputecluster-v1/0.0.0-preview/documentation",
+      "APIShortname": "hypercomputecluster",
+      "Product": "Cluster Director API"
+    }
+  ],
+  "swift-google-cloud-iap-v1": [
+    {
+      "PkgName": "swift-google-cloud-iap-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-iap-v1/0.0.0-preview/documentation",
+      "APIShortname": "iap",
+      "Product": "Cloud Identity-Aware Proxy API"
+    }
+  ],
+  "swift-google-cloud-ids-v1": [
+    {
+      "PkgName": "swift-google-cloud-ids-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-ids-v1/0.0.0-preview/documentation",
+      "APIShortname": "ids",
+      "Product": "Cloud IDS API"
+    }
+  ],
+  "swift-google-cloud-kms-inventory-v1": [
+    {
+      "PkgName": "swift-google-cloud-kms-inventory-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-kms-inventory-v1/0.1.0-preview/documentation",
+      "APIShortname": "kmsinventory",
+      "Product": "KMS Inventory API"
+    }
+  ],
+  "swift-google-cloud-kms-v1": [
+    {
+      "PkgName": "swift-google-cloud-kms-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-kms-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudkms",
+      "Product": "Cloud Key Management Service (KMS) API"
+    }
+  ],
+  "swift-google-cloud-language-v2": [
+    {
+      "PkgName": "swift-google-cloud-language-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-language-v2/0.1.0-preview/documentation",
+      "APIShortname": "language",
+      "Product": "Cloud Natural Language API"
+    }
+  ],
+  "swift-google-cloud-licensemanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-licensemanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-licensemanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "licensemanager",
+      "Product": "License Manager API"
+    }
+  ],
+  "swift-google-cloud-location": [
+    {
+      "PkgName": "swift-google-cloud-location",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-location/0.1.0-preview/documentation",
+      "APIShortname": "cloud",
+      "Product": "Cloud Metadata API"
+    }
+  ],
+  "swift-google-cloud-locationfinder-v1": [
+    {
+      "PkgName": "swift-google-cloud-locationfinder-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-locationfinder-v1/0.1.0-preview/documentation",
+      "APIShortname": "locationfinder",
+      "Product": "Cloud Location Finder API"
+    }
+  ],
+  "swift-google-cloud-lustre-v1": [
+    {
+      "PkgName": "swift-google-cloud-lustre-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-lustre-v1/0.0.0-preview/documentation",
+      "APIShortname": "lustre",
+      "Product": "Google Cloud Managed Lustre API"
+    }
+  ],
+  "swift-google-cloud-maintenance-api-v1": [
+    {
+      "PkgName": "swift-google-cloud-maintenance-api-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-maintenance-api-v1/0.0.0-preview/documentation",
+      "APIShortname": "maintenance",
+      "Product": "Maintenance API"
+    }
+  ],
+  "swift-google-cloud-managedidentities-v1": [
+    {
+      "PkgName": "swift-google-cloud-managedidentities-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-managedidentities-v1/0.0.0-preview/documentation",
+      "APIShortname": "managedidentities",
+      "Product": "Managed Service for Microsoft Active Directory API"
+    }
+  ],
+  "swift-google-cloud-managedkafka-schemaregistry-v1": [
+    {
+      "PkgName": "swift-google-cloud-managedkafka-schemaregistry-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-managedkafka-schemaregistry-v1/0.0.0-preview/documentation",
+      "APIShortname": "managedkafka",
+      "Product": "Managed Service for Apache Kafka API"
+    }
+  ],
+  "swift-google-cloud-managedkafka-v1": [
+    {
+      "PkgName": "swift-google-cloud-managedkafka-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-managedkafka-v1/0.0.0-preview/documentation",
+      "APIShortname": "managedkafka",
+      "Product": "Managed Service for Apache Kafka API"
+    }
+  ],
+  "swift-google-cloud-memcache-v1": [
+    {
+      "PkgName": "swift-google-cloud-memcache-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-memcache-v1/0.0.0-preview/documentation",
+      "APIShortname": "memcache",
+      "Product": "Cloud Memorystore for Memcached API"
+    }
+  ],
+  "swift-google-cloud-memorystore-v1": [
+    {
+      "PkgName": "swift-google-cloud-memorystore-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-memorystore-v1/0.1.0-preview/documentation",
+      "APIShortname": "memorystore",
+      "Product": "Memorystore API"
+    }
+  ],
+  "swift-google-cloud-metastore-v1": [
+    {
+      "PkgName": "swift-google-cloud-metastore-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-metastore-v1/0.0.0-preview/documentation",
+      "APIShortname": "metastore",
+      "Product": "Dataproc Metastore API"
+    }
+  ],
+  "swift-google-cloud-migrationcenter-v1": [
+    {
+      "PkgName": "swift-google-cloud-migrationcenter-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-migrationcenter-v1/0.0.0-preview/documentation",
+      "APIShortname": "migrationcenter",
+      "Product": "Migration Center API"
+    }
+  ],
+  "swift-google-cloud-modelarmor-v1": [
+    {
+      "PkgName": "swift-google-cloud-modelarmor-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-modelarmor-v1/0.0.0-preview/documentation",
+      "APIShortname": "modelarmor",
+      "Product": "Model Armor API"
+    }
+  ],
+  "swift-google-cloud-netapp-v1": [
+    {
+      "PkgName": "swift-google-cloud-netapp-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-netapp-v1/0.0.0-preview/documentation",
+      "APIShortname": "netapp",
+      "Product": "NetApp API"
+    }
+  ],
+  "swift-google-cloud-networkconnectivity-v1": [
+    {
+      "PkgName": "swift-google-cloud-networkconnectivity-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkconnectivity-v1/0.1.0-preview/documentation",
+      "APIShortname": "networkconnectivity",
+      "Product": "Network Connectivity API"
+    }
+  ],
+  "swift-google-cloud-networkmanagement-v1": [
+    {
+      "PkgName": "swift-google-cloud-networkmanagement-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkmanagement-v1/0.0.0-preview/documentation",
+      "APIShortname": "networkmanagement",
+      "Product": "Network Management API"
+    }
+  ],
+  "swift-google-cloud-networksecurity-v1": [
+    {
+      "PkgName": "swift-google-cloud-networksecurity-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networksecurity-v1/0.0.0-preview/documentation",
+      "APIShortname": "networksecurity",
+      "Product": "Network Security API"
+    }
+  ],
+  "swift-google-cloud-networkservices-v1": [
+    {
+      "PkgName": "swift-google-cloud-networkservices-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkservices-v1/0.0.0-preview/documentation",
+      "APIShortname": "networkservices",
+      "Product": "Network Services API"
+    }
+  ],
+  "swift-google-cloud-notebooks-v2": [
+    {
+      "PkgName": "swift-google-cloud-notebooks-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-notebooks-v2/0.1.0-preview/documentation",
+      "APIShortname": "notebooks",
+      "Product": "Notebooks API"
+    }
+  ],
+  "swift-google-cloud-optimization-v1": [
+    {
+      "PkgName": "swift-google-cloud-optimization-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-optimization-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudoptimization",
+      "Product": "Cloud Optimization API"
+    }
+  ],
+  "swift-google-cloud-oracledatabase-v1": [
+    {
+      "PkgName": "swift-google-cloud-oracledatabase-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-oracledatabase-v1/0.0.0-preview/documentation",
+      "APIShortname": "oracledatabase",
+      "Product": "Oracle Database@Google Cloud API"
+    }
+  ],
+  "swift-google-cloud-orchestration-airflow-service-v1": [
+    {
+      "PkgName": "swift-google-cloud-orchestration-airflow-service-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-orchestration-airflow-service-v1/0.0.0-preview/documentation",
+      "APIShortname": "composer",
+      "Product": "Cloud Composer API"
+    }
+  ],
+  "swift-google-cloud-orgpolicy-v2": [
+    {
+      "PkgName": "swift-google-cloud-orgpolicy-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-orgpolicy-v2/0.0.0-preview/documentation",
+      "APIShortname": "orgpolicy",
+      "Product": "Organization Policy API"
+    }
+  ],
+  "swift-google-cloud-osconfig-v1": [
+    {
+      "PkgName": "swift-google-cloud-osconfig-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-osconfig-v1/0.1.0-preview/documentation",
+      "APIShortname": "osconfig",
+      "Product": "OS Config API"
+    }
+  ],
+  "swift-google-cloud-oslogin-v1": [
+    {
+      "PkgName": "swift-google-cloud-oslogin-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-oslogin-v1/0.0.0-preview/documentation",
+      "APIShortname": "oslogin",
+      "Product": "Cloud OS Login API"
+    }
+  ],
+  "swift-google-cloud-parametermanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-parametermanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-parametermanager-v1/0.0.0-preview/documentation",
+      "APIShortname": "parametermanager",
+      "Product": "Parameter Manager API"
+    }
+  ],
+  "swift-google-cloud-policysimulator-v1": [
+    {
+      "PkgName": "swift-google-cloud-policysimulator-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-policysimulator-v1/0.0.0-preview/documentation",
+      "APIShortname": "policysimulator",
+      "Product": "Policy Simulator API"
+    }
+  ],
+  "swift-google-cloud-policytroubleshooter-iam-v3": [
+    {
+      "PkgName": "swift-google-cloud-policytroubleshooter-iam-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-policytroubleshooter-iam-v3/0.0.0-preview/documentation",
+      "APIShortname": "policytroubleshooter",
+      "Product": "Policy Troubleshooter API"
+    }
+  ],
+  "swift-google-cloud-policytroubleshooter-v1": [
+    {
+      "PkgName": "swift-google-cloud-policytroubleshooter-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-policytroubleshooter-v1/0.0.0-preview/documentation",
+      "APIShortname": "policytroubleshooter",
+      "Product": "Policy Troubleshooter API"
+    }
+  ],
+  "swift-google-cloud-privilegedaccessmanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-privilegedaccessmanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-privilegedaccessmanager-v1/0.0.0-preview/documentation",
+      "APIShortname": "privilegedaccessmanager",
+      "Product": "Privileged Access Manager API"
+    }
+  ],
+  "swift-google-cloud-rapidmigrationassessment-v1": [
+    {
+      "PkgName": "swift-google-cloud-rapidmigrationassessment-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-rapidmigrationassessment-v1/0.0.0-preview/documentation",
+      "APIShortname": "rapidmigrationassessment",
+      "Product": "Rapid Migration Assessment API"
+    }
+  ],
+  "swift-google-cloud-recaptchaenterprise-v1": [
+    {
+      "PkgName": "swift-google-cloud-recaptchaenterprise-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-recaptchaenterprise-v1/0.0.0-preview/documentation",
+      "APIShortname": "recaptchaenterprise",
+      "Product": "reCAPTCHA Enterprise API"
+    }
+  ],
+  "swift-google-cloud-recommender-logging-v1": [
+    {
+      "PkgName": "swift-google-cloud-recommender-logging-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-recommender-logging-v1/0.0.0-preview/documentation",
+      "APIShortname": "recommender",
+      "Product": "Recommender API Logging"
+    }
+  ],
+  "swift-google-cloud-recommender-v1": [
+    {
+      "PkgName": "swift-google-cloud-recommender-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-recommender-v1/0.0.0-preview/documentation",
+      "APIShortname": "recommender",
+      "Product": "Recommender API"
+    }
+  ],
+  "swift-google-cloud-redis-cluster-v1": [
+    {
+      "PkgName": "swift-google-cloud-redis-cluster-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-redis-cluster-v1/0.0.0-preview/documentation",
+      "APIShortname": "redis",
+      "Product": "Google Cloud Memorystore for Redis API"
+    }
+  ],
+  "swift-google-cloud-redis-v1": [
+    {
+      "PkgName": "swift-google-cloud-redis-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-redis-v1/0.0.0-preview/documentation",
+      "APIShortname": "redis",
+      "Product": "Google Cloud Memorystore for Redis API"
+    }
+  ],
+  "swift-google-cloud-resourcemanager-v3": [
+    {
+      "PkgName": "swift-google-cloud-resourcemanager-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-resourcemanager-v3/0.1.0-preview/documentation",
+      "APIShortname": "cloudresourcemanager",
+      "Product": "Cloud Resource Manager API"
+    }
+  ],
+  "swift-google-cloud-retail-v2": [
+    {
+      "PkgName": "swift-google-cloud-retail-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-retail-v2/0.1.0-preview/documentation",
+      "APIShortname": "retail",
+      "Product": "Vertex AI Search for commerce API"
+    }
+  ],
+  "swift-google-cloud-run-v2": [
+    {
+      "PkgName": "swift-google-cloud-run-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-run-v2/0.1.0-preview/documentation",
+      "APIShortname": "run",
+      "Product": "Cloud Run Admin API"
+    }
+  ],
+  "swift-google-cloud-scheduler-v1": [
+    {
+      "PkgName": "swift-google-cloud-scheduler-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-scheduler-v1/0.1.0-preview/documentation",
+      "APIShortname": "cloudscheduler",
+      "Product": "Cloud Scheduler API"
+    }
+  ],
+  "swift-google-cloud-secretmanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-secretmanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-secretmanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "secretmanager",
+      "Product": "Secret Manager API"
+    }
+  ],
+  "swift-google-cloud-securesourcemanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-securesourcemanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securesourcemanager-v1/0.0.0-preview/documentation",
+      "APIShortname": "securesourcemanager",
+      "Product": "Secure Source Manager API"
+    }
+  ],
+  "swift-google-cloud-security-privateca-v1": [
+    {
+      "PkgName": "swift-google-cloud-security-privateca-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-security-privateca-v1/0.1.0-preview/documentation",
+      "APIShortname": "privateca",
+      "Product": "Certificate Authority API"
+    }
+  ],
+  "swift-google-cloud-security-publicca-v1": [
+    {
+      "PkgName": "swift-google-cloud-security-publicca-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-security-publicca-v1/0.1.0-preview/documentation",
+      "APIShortname": "publicca",
+      "Product": "Public Certificate Authority API"
+    }
+  ],
+  "swift-google-cloud-securitycenter-v2": [
+    {
+      "PkgName": "swift-google-cloud-securitycenter-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycenter-v2/0.0.0-preview/documentation",
+      "APIShortname": "securitycenter",
+      "Product": "Security Command Center API"
+    }
+  ],
+  "swift-google-cloud-securitycentermanagement-v1": [
+    {
+      "PkgName": "swift-google-cloud-securitycentermanagement-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycentermanagement-v1/0.0.0-preview/documentation",
+      "APIShortname": "securitycentermanagement",
+      "Product": "Security Command Center Management API"
+    }
+  ],
+  "swift-google-cloud-securityposture-v1": [
+    {
+      "PkgName": "swift-google-cloud-securityposture-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securityposture-v1/0.0.0-preview/documentation",
+      "APIShortname": "securityposture",
+      "Product": "Security Posture API"
+    }
+  ],
+  "swift-google-cloud-servicedirectory-v1": [
+    {
+      "PkgName": "swift-google-cloud-servicedirectory-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-servicedirectory-v1/0.0.0-preview/documentation",
+      "APIShortname": "servicedirectory",
+      "Product": "Service Directory API"
+    }
+  ],
+  "swift-google-cloud-servicehealth-v1": [
+    {
+      "PkgName": "swift-google-cloud-servicehealth-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-servicehealth-v1/0.0.0-preview/documentation",
+      "APIShortname": "servicehealth",
+      "Product": "Service Health API"
+    }
+  ],
+  "swift-google-cloud-shell-v1": [
+    {
+      "PkgName": "swift-google-cloud-shell-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-shell-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudshell",
+      "Product": "Cloud Shell API"
+    }
+  ],
+  "swift-google-cloud-speech-v2": [
+    {
+      "PkgName": "swift-google-cloud-speech-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-speech-v2/0.1.0-preview/documentation",
+      "APIShortname": "speech",
+      "Product": "Cloud Speech-to-Text API"
+    }
+  ],
+  "swift-google-cloud-sql-v1": [
+    {
+      "PkgName": "swift-google-cloud-sql-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-sql-v1/0.1.0-preview/documentation",
+      "APIShortname": "sqladmin",
+      "Product": "Cloud SQL Admin API"
+    }
+  ],
+  "swift-google-cloud-storage": [
+    {
+      "PkgName": "swift-google-cloud-storage",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storage/0.0.0-preview/documentation",
+      "APIShortname": "storage",
+      "Product": "Cloud Storage API"
+    }
+  ],
+  "swift-google-cloud-storagebatchoperations-v1": [
+    {
+      "PkgName": "swift-google-cloud-storagebatchoperations-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storagebatchoperations-v1/0.0.0-preview/documentation",
+      "APIShortname": "storagebatchoperations",
+      "Product": "Storage Batch Operations API"
+    }
+  ],
+  "swift-google-cloud-storageinsights-v1": [
+    {
+      "PkgName": "swift-google-cloud-storageinsights-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storageinsights-v1/0.1.0-preview/documentation",
+      "APIShortname": "storageinsights",
+      "Product": "Storage Insights API"
+    }
+  ],
+  "swift-google-cloud-support-v2": [
+    {
+      "PkgName": "swift-google-cloud-support-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-support-v2/0.0.0-preview/documentation",
+      "APIShortname": "cloudsupport",
+      "Product": "Google Cloud Support API"
+    }
+  ],
+  "swift-google-cloud-talent-v4": [
+    {
+      "PkgName": "swift-google-cloud-talent-v4",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-talent-v4/0.1.0-preview/documentation",
+      "APIShortname": "jobs",
+      "Product": "Cloud Talent Solution API"
+    }
+  ],
+  "swift-google-cloud-tasks-v2": [
+    {
+      "PkgName": "swift-google-cloud-tasks-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tasks-v2/0.0.0-preview/documentation",
+      "APIShortname": "cloudtasks",
+      "Product": "Cloud Tasks API"
+    }
+  ],
+  "swift-google-cloud-telcoautomation-v1": [
+    {
+      "PkgName": "swift-google-cloud-telcoautomation-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-telcoautomation-v1/0.1.0-preview/documentation",
+      "APIShortname": "telcoautomation",
+      "Product": "Telco Automation API"
+    }
+  ],
+  "swift-google-cloud-texttospeech-v1": [
+    {
+      "PkgName": "swift-google-cloud-texttospeech-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-texttospeech-v1/0.1.0-preview/documentation",
+      "APIShortname": "texttospeech",
+      "Product": "Cloud Text-to-Speech API"
+    }
+  ],
+  "swift-google-cloud-timeseriesinsights-v1": [
+    {
+      "PkgName": "swift-google-cloud-timeseriesinsights-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1/0.0.0-preview/documentation",
+      "APIShortname": "timeseriesinsights",
+      "Product": "Timeseries Insights API"
+    }
+  ],
+  "swift-google-cloud-tpu-v2": [
+    {
+      "PkgName": "swift-google-cloud-tpu-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tpu-v2/0.1.0-preview/documentation",
+      "APIShortname": "tpu",
+      "Product": "Cloud TPU API"
+    }
+  ],
+  "swift-google-cloud-translate-v3": [
+    {
+      "PkgName": "swift-google-cloud-translate-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-translate-v3/0.1.0-preview/documentation",
+      "APIShortname": "translate",
+      "Product": "Cloud Translation API"
+    }
+  ],
+  "swift-google-cloud-universalledger-v1": [
+    {
+      "PkgName": "swift-google-cloud-universalledger-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-universalledger-v1/0.0.0-preview/documentation",
+      "APIShortname": "universalledger",
+      "Product": "Universal Ledger API"
+    }
+  ],
+  "swift-google-cloud-vectorsearch-v1": [
+    {
+      "PkgName": "swift-google-cloud-vectorsearch-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vectorsearch-v1/0.0.0-preview/documentation",
+      "APIShortname": "vectorsearch",
+      "Product": "Vector Search API"
+    }
+  ],
+  "swift-google-cloud-video-livestream-v1": [
+    {
+      "PkgName": "swift-google-cloud-video-livestream-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-video-livestream-v1/0.0.0-preview/documentation",
+      "APIShortname": "livestream",
+      "Product": "Live Stream API"
+    }
+  ],
+  "swift-google-cloud-video-stitcher-v1": [
+    {
+      "PkgName": "swift-google-cloud-video-stitcher-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-video-stitcher-v1/0.0.0-preview/documentation",
+      "APIShortname": "videostitcher",
+      "Product": "Video Stitcher API"
+    }
+  ],
+  "swift-google-cloud-video-transcoder-v1": [
+    {
+      "PkgName": "swift-google-cloud-video-transcoder-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-video-transcoder-v1/0.0.0-preview/documentation",
+      "APIShortname": "transcoder",
+      "Product": "Transcoder API"
+    }
+  ],
+  "swift-google-cloud-videointelligence-v1": [
+    {
+      "PkgName": "swift-google-cloud-videointelligence-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-videointelligence-v1/0.0.0-preview/documentation",
+      "APIShortname": "videointelligence",
+      "Product": "Cloud Video Intelligence API"
+    }
+  ],
+  "swift-google-cloud-vision-v1": [
+    {
+      "PkgName": "swift-google-cloud-vision-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vision-v1/0.1.0-preview/documentation",
+      "APIShortname": "vision",
+      "Product": "Cloud Vision API"
+    }
+  ],
+  "swift-google-cloud-visionai-v1": [
+    {
+      "PkgName": "swift-google-cloud-visionai-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-visionai-v1/0.0.0-preview/documentation",
+      "APIShortname": "visionai",
+      "Product": "Vision AI API"
+    }
+  ],
+  "swift-google-cloud-vmmigration-v1": [
+    {
+      "PkgName": "swift-google-cloud-vmmigration-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vmmigration-v1/0.0.0-preview/documentation",
+      "APIShortname": "vmmigration",
+      "Product": "VM Migration API"
+    }
+  ],
+  "swift-google-cloud-vmwareengine-v1": [
+    {
+      "PkgName": "swift-google-cloud-vmwareengine-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vmwareengine-v1/0.0.0-preview/documentation",
+      "APIShortname": "vmwareengine",
+      "Product": "VMware Engine API"
+    }
+  ],
+  "swift-google-cloud-vpcaccess-v1": [
+    {
+      "PkgName": "swift-google-cloud-vpcaccess-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vpcaccess-v1/0.0.0-preview/documentation",
+      "APIShortname": "vpcaccess",
+      "Product": "Serverless VPC Access API"
+    }
+  ],
+  "swift-google-cloud-webrisk-v1": [
+    {
+      "PkgName": "swift-google-cloud-webrisk-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-webrisk-v1/0.0.0-preview/documentation",
+      "APIShortname": "webrisk",
+      "Product": "Web Risk API"
+    }
+  ],
+  "swift-google-cloud-websecurityscanner-v1": [
+    {
+      "PkgName": "swift-google-cloud-websecurityscanner-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-websecurityscanner-v1/0.0.0-preview/documentation",
+      "APIShortname": "websecurityscanner",
+      "Product": "Web Security Scanner API"
+    }
+  ],
+  "swift-google-cloud-workflows-executions-v1": [
+    {
+      "PkgName": "swift-google-cloud-workflows-executions-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workflows-executions-v1/0.1.0-preview/documentation",
+      "APIShortname": "workflowexecutions",
+      "Product": "Workflow Executions API"
+    }
+  ],
+  "swift-google-cloud-workflows-v1": [
+    {
+      "PkgName": "swift-google-cloud-workflows-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workflows-v1/0.1.0-preview/documentation",
+      "APIShortname": "workflows",
+      "Product": "Workflows API"
+    }
+  ],
+  "swift-google-cloud-workloadidentity-v1": [
+    {
+      "PkgName": "swift-google-cloud-workloadidentity-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadidentity-v1/0.0.0-preview/documentation",
+      "APIShortname": "workloadidentity",
+      "Product": "Workload Identity API"
+    }
+  ],
+  "swift-google-cloud-workloadmanager-v1": [
+    {
+      "PkgName": "swift-google-cloud-workloadmanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadmanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "workloadmanager",
+      "Product": "Workload Manager API"
+    }
+  ],
+  "swift-google-cloud-workstations-v1": [
+    {
+      "PkgName": "swift-google-cloud-workstations-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workstations-v1/0.0.0-preview/documentation",
+      "APIShortname": "workstations",
+      "Product": "Cloud Workstations API"
+    }
+  ],
+  "swift-google-container-v1": [
+    {
+      "PkgName": "swift-google-container-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-container-v1/0.1.0/documentation",
+      "APIShortname": "container",
+      "Product": "Kubernetes Engine API"
+    }
+  ],
+  "swift-google-datastore-admin-v1": [
+    {
+      "PkgName": "swift-google-datastore-admin-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-datastore-admin-v1/0.1.0-preview/documentation",
+      "APIShortname": "datastore",
+      "Product": "Cloud Datastore API"
+    }
+  ],
+  "swift-google-devtools-artifactregistry-v1": [
+    {
+      "PkgName": "swift-google-devtools-artifactregistry-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-artifactregistry-v1/0.1.0-preview/documentation",
+      "APIShortname": "artifactregistry",
+      "Product": "Artifact Registry API"
+    }
+  ],
+  "swift-google-devtools-cloudbuild-v1": [
+    {
+      "PkgName": "swift-google-devtools-cloudbuild-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudbuild-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudbuild",
+      "Product": "Cloud Build API"
+    }
+  ],
+  "swift-google-devtools-cloudbuild-v2": [
+    {
+      "PkgName": "swift-google-devtools-cloudbuild-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudbuild-v2/0.0.0-preview/documentation",
+      "APIShortname": "cloudbuild",
+      "Product": "Cloud Build API"
+    }
+  ],
+  "swift-google-devtools-cloudtrace-v1": [
+    {
+      "PkgName": "swift-google-devtools-cloudtrace-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudtrace-v1/0.0.0-preview/documentation",
+      "APIShortname": "cloudtrace",
+      "Product": "Cloud Trace API"
+    }
+  ],
+  "swift-google-devtools-cloudtrace-v2": [
+    {
+      "PkgName": "swift-google-devtools-cloudtrace-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudtrace-v2/0.1.0-preview/documentation",
+      "APIShortname": "cloudtrace",
+      "Product": "Cloud Trace API"
+    }
+  ],
+  "swift-google-devtools-containeranalysis-v1": [
+    {
+      "PkgName": "swift-google-devtools-containeranalysis-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-devtools-containeranalysis-v1/0.0.0-preview/documentation",
+      "APIShortname": "containeranalysis",
+      "Product": "Container Analysis API"
+    }
+  ],
+  "swift-google-iam-admin-v1": [
+    {
+      "PkgName": "swift-google-iam-admin-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-iam-admin-v1/0.1.0-preview/documentation",
+      "APIShortname": "iam",
+      "Product": "Identity and Access Management (IAM) API"
+    }
+  ],
+  "swift-google-iam-credentials-v1": [
+    {
+      "PkgName": "swift-google-iam-credentials-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-iam-credentials-v1/0.1.0-preview/documentation",
+      "APIShortname": "iamcredentials",
+      "Product": "IAM Service Account Credentials API"
+    }
+  ],
+  "swift-google-iam-v1": [
+    {
+      "PkgName": "swift-google-iam-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-iam-v1/0.1.0-preview/documentation",
+      "APIShortname": "iam-meta-api",
+      "Product": "IAM Meta API"
+    }
+  ],
+  "swift-google-iam-v2": [
+    {
+      "PkgName": "swift-google-iam-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-iam-v2/0.1.0-preview/documentation",
+      "APIShortname": "iam",
+      "Product": "Identity and Access Management (IAM) API"
+    }
+  ],
+  "swift-google-iam-v3": [
+    {
+      "PkgName": "swift-google-iam-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-iam-v3/0.1.0-preview/documentation",
+      "APIShortname": "iam",
+      "Product": "Identity and Access Management (IAM) API"
+    }
+  ],
+  "swift-google-identity-accesscontextmanager-v1": [
+    {
+      "PkgName": "swift-google-identity-accesscontextmanager-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-identity-accesscontextmanager-v1/0.1.0-preview/documentation",
+      "APIShortname": "accesscontextmanager",
+      "Product": "Access Context Manager API"
+    }
+  ],
+  "swift-google-logging-v2": [
+    {
+      "PkgName": "swift-google-logging-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-logging-v2/0.1.0-preview/documentation",
+      "APIShortname": "logging",
+      "Product": "Cloud Logging API"
+    }
+  ],
+  "swift-google-longrunning": [
+    {
+      "PkgName": "swift-google-longrunning",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-longrunning/0.1.0-preview/documentation",
+      "APIShortname": "longrunning",
+      "Product": "Long Running Operations API"
+    }
+  ],
+  "swift-google-monitoring-dashboard-v1": [
+    {
+      "PkgName": "swift-google-monitoring-dashboard-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-monitoring-dashboard-v1/0.1.0-preview/documentation",
+      "APIShortname": "monitoring",
+      "Product": "Cloud Monitoring API"
+    }
+  ],
+  "swift-google-monitoring-metricsscope-v1": [
+    {
+      "PkgName": "swift-google-monitoring-metricsscope-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-monitoring-metricsscope-v1/0.0.0-preview/documentation",
+      "APIShortname": "monitoring",
+      "Product": "Cloud Monitoring API"
+    }
+  ],
+  "swift-google-monitoring-v3": [
+    {
+      "PkgName": "swift-google-monitoring-v3",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-monitoring-v3/0.1.0-preview/documentation",
+      "APIShortname": "monitoring",
+      "Product": "Cloud Monitoring API"
+    }
+  ],
+  "swift-google-privacy-dlp-v2": [
+    {
+      "PkgName": "swift-google-privacy-dlp-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-privacy-dlp-v2/0.1.0-preview/documentation",
+      "APIShortname": "dlp",
+      "Product": "Sensitive Data Protection (DLP)"
+    }
+  ],
+  "swift-google-rpc": [
+    {
+      "PkgName": "swift-google-rpc",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-rpc/0.1.0-preview/documentation",
+      "APIShortname": "rpc",
+      "Product": "Google RPC Types"
+    }
+  ],
+  "swift-google-storagetransfer-v1": [
+    {
+      "PkgName": "swift-google-storagetransfer-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-storagetransfer-v1/0.1.0-preview/documentation",
+      "APIShortname": "storagetransfer",
+      "Product": "Storage Transfer API"
+    }
+  ],
+  "swift-google-type": [
+    {
+      "PkgName": "swift-google-type",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-type/0.1.0-preview/documentation",
+      "APIShortname": "type",
+      "Product": "Common Types"
+    }
+  ],
+  "swift-grafeas-v1": [
+    {
+      "PkgName": "swift-grafeas-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-grafeas-v1/0.1.0-preview/documentation",
+      "APIShortname": "containeranalysis",
+      "Product": "Container Analysis API"
+    }
+  ]
+}

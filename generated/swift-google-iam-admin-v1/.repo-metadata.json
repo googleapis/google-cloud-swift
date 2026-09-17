@@ -2,8 +2,8 @@
     "api_description": "Manages identity and access control for Google Cloud Platform resources,\nincluding the creation of service accounts, which you can use to\nauthenticate to Google and make API calls.",
     "api_id": "iam.googleapis.com",
     "api_shortname": "iam",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-iam-admin-v1/documentation",
-    "distribution_name": "google-iam-admin-v1",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-iam-admin-v1/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-iam-admin-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1077618",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
@@ -11,5 +11,5 @@
     "name_pretty": "Identity and Access Management (IAM)",
     "product_documentation": "https://cloud.google.com/iam/",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-iam-admin-v1"
 }

@@ -2,13 +2,13 @@
     "api_description": "Assured Workloads lets you secure your workloads and accelerate your path to running compliant workloads on Google Cloud.",
     "api_id": "assuredworkloads.googleapis.com",
     "api_shortname": "assuredworkloads",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-assuredworkloads-v1/documentation",
-    "distribution_name": "google-cloud-assuredworkloads-v1",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-assuredworkloads-v1/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-assuredworkloads-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
     "name": "assuredworkloads",
     "name_pretty": "Assured Workloads",
     "product_documentation": "https://cloud.google.com/assured-workloads/",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-assuredworkloads-v1"
 }

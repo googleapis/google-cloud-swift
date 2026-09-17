@@ -2,13 +2,13 @@
     "api_description": "AI Commerce Search API is made up of Search, Browse and\nRecommendations. These discovery AI solutions help you implement\npersonalized search, browse and recommendations, based on machine learning\nmodels, across your websites and mobile applications.",
     "api_id": "retail.googleapis.com",
     "api_shortname": "retail",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-retail-v2/documentation",
-    "distribution_name": "google-cloud-retail-v2",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-retail-v2/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-retail-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
     "name": "retail",
     "name_pretty": "Vertex AI Search for commerce",
     "product_documentation": "https://cloud.google.com/retail/",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-retail-v2"
 }

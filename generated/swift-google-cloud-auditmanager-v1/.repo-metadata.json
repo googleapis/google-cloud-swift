@@ -2,8 +2,8 @@
     "api_description": "The Audit Manager API allows customers to manage compliance audits.",
     "api_id": "auditmanager.googleapis.com",
     "api_shortname": "auditmanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-auditmanager-v1/documentation",
-    "distribution_name": "google-cloud-auditmanager-v1",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-auditmanager-v1/0.1.0-preview/documentation",
+    "distribution_name": "swift-google-cloud-auditmanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1335397\u0026template=0",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
@@ -11,5 +11,5 @@
     "name_pretty": "Audit Manager",
     "product_documentation": "https://cloud.google.com/audit-manager/docs",
     "release_level": "preview",
-    "repo": "googleapis/google-cloud-swift"
+    "repo": "googleapis/swift-google-cloud-auditmanager-v1"
 }
