@@ -257,7 +257,7 @@ token providers while keeping `GoogleAuth` completely isolated from
 This internal client encapsulates the following networking policies:
 
 - **Portability**: use `AsyncHTTPClient.HTTPClient` because it is more portable
-    across different platforms (macOS, Windows, Linux).
+    across different platforms (macOS, Linux).
 - **PQC Support**: use `AsyncHTTPClient.HTTPClient` because it supports
     post-quantum cryptography across platforms.
 - **Easier Mocking**: implement our own HTTPClientProtocol to mock `HTTPClient`.
