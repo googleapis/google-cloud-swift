@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleCloudGax
 import GoogleLongRunning
 import StorageControlProtos
+import SwiftProtobuf
 import Testing
 
 @testable import GoogleCloudStorage
@@ -101,14 +103,54 @@ import Testing
     #expect(folder.name == "projects/_/buckets/test-bucket/folders/renamed-folder-id/")
   }
 
-  // The converter only knows the payload types the service declares. Anything
-  // else is reported rather than silently dropped.
+  // A payload the converter cannot decode is reported, and the error names the
+  // type URL. Asserting the converter's own error matters: the generic
+  // fallback fails with SwiftProtobuf's `anyTranscodeFailure`, which names
+  // nothing useful.
   @Test func operationRejectsUnknownTypeUrl() throws {
+    // A payload under a type URL this client does not know, which is what
+    // version skew looks like on the wire. It has to be non-empty: with
+    // nothing to decode the conversion succeeds instead, as the test below
+    // shows. The contents are never read — resolving the type URL fails first.
+    var payload = StorageControlProtos.Google_Storage_Control_V2_Folder()
+    payload.name = "projects/_/buckets/test-bucket/folders/renamed-folder-id/"
+
     var sent = StorageControlProtos.Google_Longrunning_Operation()
     sent.name = "projects/_/buckets/test-bucket/operations/test-operation"
     sent.metadata.typeURL = "type.googleapis.com/google.storage.control.v2.NotAThing"
+    sent.metadata.value = try payload.serializedBytes()
 
-    #expect(throws: (any Error).self) {
+    #expect(
+      throws: ProtobufConversionError.unknownTypeUrl(
+        typeUrl: "type.googleapis.com/google.storage.control.v2.NotAThing")
+    ) {
+      try GoogleLongRunning.Operation(proto: sent)
+    }
+  }
+
+  // An unknown type URL with an empty payload has nothing to decode, so the
+  // generic fallback keeps it as an opaque `Any` rather than failing the whole
+  // response over a field the caller may not even read.
+  @Test func operationConvertsWhenUnknownTypeUrlHasEmptyPayload() throws {
+    let typeUrl = "type.googleapis.com/google.storage.control.v2.NotAThing"
+    var sent = StorageControlProtos.Google_Longrunning_Operation()
+    sent.name = "projects/_/buckets/test-bucket/operations/test-operation"
+    sent.metadata.typeURL = typeUrl
+
+    let native = try GoogleLongRunning.Operation(proto: sent)
+
+    #expect(try #require(native.metadata).typeUrl == typeUrl)
+  }
+
+  // An `Any` with no type URL has nothing to resolve, and `GoogleCloudWKT.Any`
+  // has no empty representation to map it to, so it is reported too. The Rust
+  // codec maps this case to a default `Any`; Swift deliberately does not.
+  @Test func operationRejectsAnyWithNoTypeUrl() throws {
+    var sent = StorageControlProtos.Google_Longrunning_Operation()
+    sent.name = "projects/_/buckets/test-bucket/operations/test-operation"
+    sent.metadata = SwiftProtobuf.Google_Protobuf_Any()
+
+    #expect(throws: ProtobufConversionError.unknownTypeUrl(typeUrl: "")) {
       try GoogleLongRunning.Operation(proto: sent)
     }
   }

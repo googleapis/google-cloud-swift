@@ -20,19 +20,25 @@ import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
+import GoogleType
 internal import StorageControlProtos
 internal import GoogleCloudWKTConvert
 internal import SwiftProtobuf
 
-/// Converts the `Any` values carried by ``StorageControl`` long-running
-/// operations.
+/// Converts the `Any` values carried by the long-running operations of this
+/// package.
 ///
 /// Expanding an `Any` that arrived from the wire requires decoding its payload,
 /// and the payload type is only known from the type URL. SwiftProtobuf can do
 /// that lookup through a process-global type registry, but nothing populates
-/// that registry for generated types. A long-running operation carries a closed
-/// set of payload types, so this converter dispatches on the type URL directly
-/// and never consults the registry.
+/// that registry for generated types. The long-running operations of this
+/// package carry a closed set of payload types, so this converter dispatches on
+/// the type URL directly and never consults the registry.
+///
+/// The table is a fast path, not a gate. A type URL it does not list — an empty
+/// one included — falls back to the generic conversion, which can still resolve
+/// the payload if SwiftProtobuf knows the type. Only when that fails too is the
+/// type URL reported as unknown, so a payload is never silently dropped.
 internal enum StorageControlLROAnyConverter {
   /// Converts an operation's metadata or response to its native form.
   internal static func fromProto(
@@ -94,7 +100,11 @@ internal enum StorageControlLROAnyConverter {
           proto: StorageControlProtos.Google_Storage_Control_V2_UpdateRapidCacheMetadata(
             serializedBytes: proto.value)))
     default:
-      throw ProtobufConversionError.unknownTypeUrl(typeUrl: proto.typeURL)
+      do {
+        return try .init(proto: proto)
+      } catch {
+        throw ProtobufConversionError.unknownTypeUrl(typeUrl: proto.typeURL)
+      }
     }
   }
 
@@ -126,7 +136,11 @@ internal enum StorageControlLROAnyConverter {
     case "type.googleapis.com/google.storage.control.v2.UpdateRapidCacheMetadata":
       return try .init(message: UpdateRapidCacheMetadata(fromAny: any).toProto())
     default:
-      throw ProtobufConversionError.unknownTypeUrl(typeUrl: any.typeUrl)
+      do {
+        return try any.toProto()
+      } catch {
+        throw ProtobufConversionError.unknownTypeUrl(typeUrl: any.typeUrl)
+      }
     }
   }
 }
