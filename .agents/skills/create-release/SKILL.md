@@ -73,7 +73,9 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 ```
 
 > [!NOTE]
-> **Data-Only / Protobuf Packages**: `librarian bump` checks `Clients.swift` or `PackageVersion.swift` to detect if a library was already bumped. Data-only or protobuf packages (such as `google-api`, `google-rpc`, `google-type`, `google-iam-v1`, or `google-longrunning`) do not have these files. If they require a version bump, update their `version:` field in [`librarian.yaml`](../../../librarian.yaml) directly.
+> **Idempotency (`librarian bump` may change nothing)**: `librarian bump` is idempotent between releases—it only bumps a library **once** until the next release is tagged. It checks `git diff` against the last release tag to see if `Clients.swift` or `PackageVersion.swift` was already updated since that tag. In principle, `librarian bump` could be run on every PR and it would only affect the generated code once per release cycle. If a library was already bumped since the last release tag, `librarian bump` will make no changes to it.
+>
+> **Data-Only / Protobuf Packages**: Because `librarian bump` checks `Clients.swift` or `PackageVersion.swift` to detect if a library was already bumped, data-only or protobuf packages (such as `google-api`, `google-rpc`, `google-type`, `google-iam-v1`, or `google-longrunning`) that lack these files are skipped. If they require a version bump, update their `version:` field in [`librarian.yaml`](../../../librarian.yaml) directly.
 
 ### Step 3: Update Handwritten `Package.swift` Dependencies (If Needed)
 

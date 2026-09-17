@@ -59,9 +59,18 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 # go run github.com/googleapis/librarian/cmd/librarian@${V} bump <library-name> --version <x.y.z>
 ```
 
-> **Note on Data-Only / Protobuf Packages**: `librarian bump` detects existing
+> **Idempotency (`librarian bump` may change nothing)**: `librarian bump` is
+> idempotent between releases—it only bumps a library **once** until the next
+> release is tagged. It checks `git diff` against the last release tag to see if
+> the library's version manifest (`Clients.swift` or `PackageVersion.swift`) was
+> already updated since that tag. In principle, you could run `librarian bump` on
+> every PR and it would only affect the version and generated code once per
+> release cycle. If a library's version was already bumped in an earlier PR since
+> the last release tag, `librarian bump` will leave it unchanged.
+>
+> **Note on Data-Only / Protobuf Packages**: Because `librarian bump` inspects
 > version manifests (`Clients.swift` or `PackageVersion.swift`) to determine if a
-> package has already been bumped. Packages that contain only protobuf or data
+> package has already been bumped, packages that contain only protobuf or data
 > types (such as `google-api`, `google-rpc`, `google-type`, `google-iam-v1`, or
 > `google-longrunning`) do not have a `Clients.swift` or `PackageVersion.swift`
 > file. If you need to bump those packages, update their `version:` field in
