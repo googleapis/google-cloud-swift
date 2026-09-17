@@ -122,6 +122,108 @@ import Testing
   }
 
   @Test(
+    "Value ProtoJSON decoding",
+    arguments: [
+      ("{\"value\":null}", Value()),
+      ("{\"value\":123.45}", Value.number(123.45)),
+      ("{\"value\":\"foo\"}", Value.string("foo")),
+      ("{\"value\":\"true\"}", Value.string("true")),
+      ("{\"value\":\"false\"}", Value.string("false")),
+      ("{\"value\":\"42\"}", Value.string("42")),
+      ("{\"value\":\"\"}", Value.string("")),
+      ("{\"value\":true}", Value.bool(true)),
+      ("{\"value\":false}", Value.bool(false)),
+      ("{\"value\":{\"a\":\"true\"}}", Value.object(["a": .string("true")])),
+      (
+        "{\"value\":[\"true\",\"false\",true,false,42]}",
+        Value.array([.string("true"), .string("false"), .bool(true), .bool(false), .number(42)])
+      ),
+    ])
+  func decodeProtoJSONValue(json: String, expected: Value) throws {
+    let data = Data(json.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(WrappedValue.self, from: data)
+    #expect(got.value == expected)
+  }
+
+  struct WrappedStruct: Codable, Equatable {
+    let object: Struct
+  }
+
+  struct WrappedList: Codable, Equatable {
+    let list: ListValue
+  }
+
+  @Test func decodeProtoJSONStruct() throws {
+    let json = #"{"object":{"a":"true","b":true}}"#
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(WrappedStruct.self, from: Data(json.utf8))
+    let want = WrappedStruct(object: ["a": .string("true"), "b": .bool(true)])
+    #expect(got == want)
+  }
+
+  @Test func decodeProtoJSONList() throws {
+    let json = #"{"list":["true","false",true,false]}"#
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(WrappedList.self, from: Data(json.utf8))
+    let want = WrappedList(list: [.string("true"), .string("false"), .bool(true), .bool(false)])
+    #expect(got == want)
+  }
+
+  @Test(
+    "Value ProtoJSON roundtrip",
+    arguments: [
+      Value(),
+      Value.null(NullValue()),
+      Value.number(123.45),
+      Value.number(0),
+      Value.number(-42),
+      Value.string("foo"),
+      Value.string("true"),
+      Value.string("false"),
+      Value.string("42"),
+      Value.string(""),
+      Value.bool(true),
+      Value.bool(false),
+      Value.object(["a": .string("true"), "b": .bool(false), "c": .number(42)]),
+      Value.array([.string("true"), .bool(true), .null(NullValue()), .number(0)]),
+    ])
+  func roundtripProtoJSONValue(value: Value) throws {
+    let encoder = _ProtoJSONEncoder()
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = WrappedValue(value: value)
+    let data = try encoder.encode(wrapped)
+    let decoded = try decoder.decode(WrappedValue.self, from: data)
+    #expect(decoded.value == value)
+  }
+
+  @Test(
+    "Value ProtoJSON top-level roundtrip",
+    arguments: [
+      Value(),
+      Value.null(NullValue()),
+      Value.number(123.45),
+      Value.number(0),
+      Value.number(-42),
+      Value.string("foo"),
+      Value.string("true"),
+      Value.string("false"),
+      Value.string("42"),
+      Value.string(""),
+      Value.bool(true),
+      Value.bool(false),
+      Value.object(["a": .string("true"), "b": .bool(false), "c": .number(42)]),
+      Value.array([.string("true"), .bool(true), .null(NullValue()), .number(0)]),
+    ])
+  func roundtripTopLevelProtoJSONValue(value: Value) throws {
+    let encoder = _ProtoJSONEncoder()
+    let decoder = _ProtoJSONDecoder()
+    let data = try encoder.encode(value)
+    let decoded = try decoder.decode(Value.self, from: data)
+    #expect(decoded == value)
+  }
+
+  @Test(
     "Unpack Value from Any",
     arguments: [
       (#""value":null"#, Value()),

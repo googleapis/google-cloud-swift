@@ -88,11 +88,11 @@ public enum Value: Codable, Equatable, Sendable {
     let container = try decoder.singleValueContainer()
     if container.decodeNil() {
       self = .null(NullValue())
+    } else if let v = try? container.decode(String.self) {
+      // Try as a string first, because the decoder may treat some strings as numbers or booleans.
+      self = .string(v)
     } else if let v = try? container.decode(Bool.self) {
       self = .bool(v)
-    } else if let v = try? container.decode(String.self) {
-      // Try as a string first, because the decoder may treat some strings as numbers.
-      self = .string(v)
     } else if let v = try? container.decode(Double.self), v.isFinite {
       self = .number(v)
     } else if let v = try? container.decode(Struct.self) {
