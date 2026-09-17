@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWKT
+import GoogleGax
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleType
+import GoogleWKT
 internal import StorageControlProtos
-internal import GoogleCloudWKTConvert
+internal import GoogleWKTConvert
 internal import SwiftProtobuf
 
 /// Converts the `Any` values carried by the long-running operations of this
@@ -43,11 +43,11 @@ internal enum StorageControlLROAnyConverter {
   /// Converts an operation's metadata or response to its native form.
   internal static func fromProto(
     _ proto: SwiftProtobuf.Google_Protobuf_Any
-  ) throws -> GoogleCloudWKT.`Any` {
+  ) throws -> GoogleWKT.`Any` {
     switch proto.typeURL {
     case "type.googleapis.com/google.protobuf.Empty":
       return try .init(
-        fromMessage: GoogleCloudWKT.Empty(
+        fromMessage: GoogleWKT.Empty(
           proto: SwiftProtobuf.Google_Protobuf_Empty(serializedBytes: proto.value)))
     case "type.googleapis.com/google.storage.control.v2.AnywhereCache":
       return try .init(
@@ -110,11 +110,11 @@ internal enum StorageControlLROAnyConverter {
 
   /// Converts an operation's metadata or response back to its Protobuf form.
   internal static func toProto(
-    _ any: GoogleCloudWKT.`Any`
+    _ any: GoogleWKT.`Any`
   ) throws -> SwiftProtobuf.Google_Protobuf_Any {
     switch any.typeUrl {
     case "type.googleapis.com/google.protobuf.Empty":
-      return try .init(message: GoogleCloudWKT.Empty(fromAny: any).toProto())
+      return try .init(message: GoogleWKT.Empty(fromAny: any).toProto())
     case "type.googleapis.com/google.storage.control.v2.AnywhereCache":
       return try .init(message: AnywhereCache(fromAny: any).toProto())
     case "type.googleapis.com/google.storage.control.v2.CreateAnywhereCacheMetadata":

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleCloudGax
+import GoogleGax
 import GoogleLongRunning
 import StorageControlProtos
 import SwiftProtobuf
@@ -142,7 +142,7 @@ import Testing
     #expect(try #require(native.metadata).typeUrl == typeUrl)
   }
 
-  // An `Any` with no type URL has nothing to resolve, and `GoogleCloudWKT.Any`
+  // An `Any` with no type URL has nothing to resolve, and `GoogleWKT.Any`
   // has no empty representation to map it to, so it is reported too. The Rust
   // codec maps this case to a default `Any`; Swift deliberately does not.
   @Test func operationRejectsAnyWithNoTypeUrl() throws {
