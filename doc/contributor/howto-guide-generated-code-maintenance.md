@@ -3,7 +3,8 @@
 This guide is intended for contributors to the `google-cloud-swift` SDK. It will
 walk you through the steps necessary to generate a new library, update libraries
 with new changes in the proto specifications, and refresh the generated code
-when the generator changes.
+when the generator changes. For instructions on bumping versions and publishing
+releases, see [Creating Releases](howto-guide-releases.md).
 
 ## Prerequisites
 
