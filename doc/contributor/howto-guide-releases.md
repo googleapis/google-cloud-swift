@@ -68,13 +68,11 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 > release cycle. If a library's version was already bumped in an earlier PR since
 > the last release tag, `librarian bump` will leave it unchanged.
 >
-> **Note on Data-Only / Protobuf Packages**: Because `librarian bump` inspects
-> version manifests (`Clients.swift` or `PackageVersion.swift`) to determine if a
-> package has already been bumped, packages that contain only protobuf or data
-> types (such as `google-api`, `google-rpc`, `google-type`, `google-iam-v1`, or
-> `google-longrunning`) do not have a `Clients.swift` or `PackageVersion.swift`
-> file. If you need to bump those packages, update their `version:` field in
-> [`librarian.yaml`](../../librarian.yaml) directly.
+> **Version Manifests**: All Swift packages have a version manifest in their
+> `Sources/` directory: GAPIC service packages maintain `Clients.swift`, while
+> type-only, protobuf, and core packages maintain `PackageVersion.swift`. Both
+> files record the package's version and are used by `librarian bump` to detect
+> changes and enforce idempotency.
 
 ### Step 3: Update Handwritten `Package.swift` Manifests (If Needed)
 
@@ -131,7 +129,6 @@ version (such as `0.2.0`), `librarian bump --all` cannot be used directly becaus
 
 1. `librarian bump --all` derives the next version using semantic version rules that preserve pre-release suffixes (e.g., `0.1.0-preview` $\rightarrow$ `0.2.0-preview`) and only updates libraries modified since the last git tag.
 2. `librarian bump --all` does not accept the `--version` flag.
-3. Data-only/protobuf packages without `Clients.swift` or `PackageVersion.swift` are skipped by `librarian bump`.
 
 To synchronize all library versions across the repository:
 
