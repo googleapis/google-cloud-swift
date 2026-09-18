@@ -22,21 +22,16 @@ For complete setup instructions for the Swift client libraries, see
 
 ## Add the Vertex AI client library as a dependency
 
-Add the `GoogleCloudAIPlatformV1` library to your `Package.swift`:
-
-```swift
-dependencies: [
-  .package(url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git", from: "0.2.0"),
-],
-targets: [
-  .executableTarget(
-    name: "MyProgram",
-    dependencies: [
-      .product(name: "GoogleCloudAIPlatformV1", package: "swift-google-cloud-aiplatform-v1"),
-    ]
-  )
-]
-```
+1. Add the Vertex AI package as a dependency:
+   ```bash
+   swift package add-dependency \
+     https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git --from 0.2.0
+   ```
+1. And add the specific module as a dependency of your executable:
+   ```bash
+   swift package add-target-dependency \
+     GoogleCloudAIPlatformV1 MyProgram --package swift-google-cloud-aiplatform-v1
+   ```
 
 ## Send a prompt to the Vertex AI Gemini API
 
