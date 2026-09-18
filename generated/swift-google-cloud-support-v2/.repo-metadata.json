@@ -2,7 +2,7 @@
     "api_description": "Manages Google Cloud technical support cases for Customer Care support\nofferings.",
     "api_id": "cloudsupport.googleapis.com",
     "api_shortname": "cloudsupport",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-support-v2/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-support-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-support-v2",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1051180",
     "language": "swift",

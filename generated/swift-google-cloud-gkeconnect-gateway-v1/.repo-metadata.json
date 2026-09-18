@@ -2,7 +2,7 @@
     "api_description": "The Connect Gateway service allows connectivity from external parties to\nconnected Kubernetes clusters.",
     "api_id": "connectgateway.googleapis.com",
     "api_shortname": "connectgateway",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkeconnect-gateway-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkeconnect-gateway-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-gkeconnect-gateway-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1618911",
     "language": "swift",

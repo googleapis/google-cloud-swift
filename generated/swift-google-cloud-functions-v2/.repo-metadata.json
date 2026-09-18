@@ -2,7 +2,7 @@
     "api_description": "Manages lightweight user-provided functions executed in response to events.",
     "api_id": "cloudfunctions.googleapis.com",
     "api_shortname": "cloudfunctions",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-functions-v2/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-functions-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-functions-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559729",
     "language": "swift",

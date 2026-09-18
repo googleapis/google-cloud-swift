@@ -2,7 +2,7 @@
     "api_description": "Data lineage is a visual map that tracks the entire lifecycle of your data. It shows you where your data comes from (the origin), where it travels (the destinations), and all the changes or transformations that happen along the way.",
     "api_id": "datalineage.googleapis.com",
     "api_shortname": "datalineage",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-lineage-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-lineage-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-datacatalog-lineage-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1530027",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "An API for controlling access to data by Google personnel.",
     "api_id": "accessapproval.googleapis.com",
     "api_shortname": "accessapproval",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-accessapproval-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-accessapproval-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-accessapproval-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

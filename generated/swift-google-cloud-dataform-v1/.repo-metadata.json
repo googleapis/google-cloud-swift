@@ -2,7 +2,7 @@
     "api_description": "Service to develop, version control, and operationalize SQL pipelines in\nBigQuery.",
     "api_id": "dataform.googleapis.com",
     "api_shortname": "dataform",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataform-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataform-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-dataform-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=994183",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Allows users to manage BigQuery data policies.",
     "api_id": "bigquerydatapolicy.googleapis.com",
     "api_shortname": "bigquerydatapolicy",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datapolicies-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datapolicies-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-bigquery-datapolicies-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

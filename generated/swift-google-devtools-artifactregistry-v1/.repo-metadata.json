@@ -2,7 +2,7 @@
     "api_description": "Store and manage build artifacts in a scalable and integrated service built\non Google infrastructure.",
     "api_id": "artifactregistry.googleapis.com",
     "api_shortname": "artifactregistry",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-artifactregistry-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-artifactregistry-v1/0.2.0/documentation",
     "distribution_name": "swift-google-devtools-artifactregistry-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

@@ -2,7 +2,7 @@
     "api_description": "A unified AI platform for financial services, leveraging Google's global framework for security and compliance.",
     "api_id": "financialservices.googleapis.com",
     "api_shortname": "financialservices",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-financialservices-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-financialservices-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-financialservices-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=933093",
     "language": "swift",

@@ -22,7 +22,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-workloadidentity-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-workloadidentity-v1.git --from 0.0.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-workloadidentity-v1.git --from 0.2.0
 ```
 
 Then add `GoogleCloudWorkloadIdentityV1` to your target's dependencies:

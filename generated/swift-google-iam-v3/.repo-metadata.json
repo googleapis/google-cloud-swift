@@ -2,7 +2,7 @@
     "api_description": "Manages identity and access control for Google Cloud resources, including\nthe creation of service accounts, which you can use to authenticate to\nGoogle and make API calls. Enabling this API also enables the IAM Service\nAccount Credentials API (iamcredentials.googleapis.com). However,\ndisabling this API doesn't disable the IAM Service Account Credentials\nAPI.",
     "api_id": "iam.googleapis.com",
     "api_shortname": "iam",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-iam-v3/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-iam-v3/0.2.0/documentation",
     "distribution_name": "swift-google-iam-v3",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1077618",
     "language": "swift",

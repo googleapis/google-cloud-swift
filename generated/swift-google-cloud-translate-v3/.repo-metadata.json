@@ -2,7 +2,7 @@
     "api_description": "Integrates text translation into your website or application.",
     "api_id": "translate.googleapis.com",
     "api_shortname": "translate",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-translate-v3/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-translate-v3/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-translate-v3",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559749",
     "language": "swift",

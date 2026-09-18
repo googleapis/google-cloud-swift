@@ -2,7 +2,7 @@
     "api_description": "Allows users to start, configure, and connect to interactive shell sessions\nrunning in the cloud.",
     "api_id": "cloudshell.googleapis.com",
     "api_shortname": "cloudshell",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-shell-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-shell-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-shell-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

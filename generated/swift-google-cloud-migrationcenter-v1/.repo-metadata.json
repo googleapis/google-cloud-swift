@@ -2,7 +2,7 @@
     "api_description": "A unified platform that helps you accelerate your end-to-end cloud journey\nfrom your current on-premises or cloud environments to Google Cloud.",
     "api_id": "migrationcenter.googleapis.com",
     "api_shortname": "migrationcenter",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-migrationcenter-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-migrationcenter-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-migrationcenter-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1360713",
     "language": "swift",

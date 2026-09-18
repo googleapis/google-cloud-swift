@@ -2,7 +2,7 @@
     "api_description": "Creates and manages builds on Google Cloud Platform.",
     "api_id": "cloudbuild.googleapis.com",
     "api_shortname": "cloudbuild",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudbuild-v2/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-cloudbuild-v2/0.2.0/documentation",
     "distribution_name": "swift-google-devtools-cloudbuild-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/5226584",
     "language": "swift",

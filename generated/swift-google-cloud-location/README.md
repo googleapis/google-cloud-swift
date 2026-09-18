@@ -26,7 +26,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-location` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-location.git --from 0.1.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-location.git --from 0.2.0
 ```
 
 Then add `GoogleCloudLocation` to your target's dependencies:

@@ -25,7 +25,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-eventarc-publishing-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-eventarc-publishing-v1.git --from 0.0.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-eventarc-publishing-v1.git --from 0.2.0
 ```
 
 Then add `GoogleCloudEventarcPublishingV1` to your target's dependencies:

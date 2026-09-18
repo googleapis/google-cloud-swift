@@ -2,7 +2,7 @@
     "api_description": "Provides a Timeseries Insights service which operates over time series\ndata. Users can perform time series spike, trend, and anomaly detection.\nWith a straightforward API and easy to understand results, the service\nmakes it simple to gather insights from large amounts of time series data\n(e.g. monitoring datasets) and integrate these insights in their\napplications.",
     "api_id": "timeseriesinsights.googleapis.com",
     "api_shortname": "timeseriesinsights",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-timeseriesinsights-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

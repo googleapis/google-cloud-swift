@@ -2,7 +2,7 @@
     "api_description": "Execute workflows created with Workflows API.",
     "api_id": "workflowexecutions.googleapis.com",
     "api_shortname": "workflowexecutions",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workflows-executions-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workflows-executions-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-workflows-executions-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559729",
     "language": "swift",

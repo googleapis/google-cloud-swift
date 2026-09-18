@@ -2,7 +2,7 @@
     "api_description": "An implementation of the Grafeas API, which stores, and enables querying and\nretrieval of critical metadata about all of your software artifacts.",
     "api_id": "containeranalysis.googleapis.com",
     "api_shortname": "containeranalysis",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-grafeas-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-grafeas-v1/0.2.0/documentation",
     "distribution_name": "swift-grafeas-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

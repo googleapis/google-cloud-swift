@@ -2,7 +2,7 @@
     "api_description": "The Rapid Migration Assessment service is our first-party migration\nassessment and planning tool.",
     "api_id": "rapidmigrationassessment.googleapis.com",
     "api_shortname": "rapidmigrationassessment",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-rapidmigrationassessment-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-rapidmigrationassessment-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-rapidmigrationassessment-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1360914",
     "language": "swift",

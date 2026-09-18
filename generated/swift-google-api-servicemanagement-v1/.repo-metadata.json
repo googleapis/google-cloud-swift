@@ -2,7 +2,7 @@
     "api_description": "Google Service Management allows service producers to publish their\nservices on Google Cloud Platform so that they can be discovered and used\nby service consumers.",
     "api_id": "servicemanagement.googleapis.com",
     "api_shortname": "servicemanagement",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-api-servicemanagement-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-api-servicemanagement-v1/0.2.0/documentation",
     "distribution_name": "swift-google-api-servicemanagement-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

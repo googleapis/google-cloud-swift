@@ -2,7 +2,7 @@
     "api_description": "Network management API for Distributed Cloud Edge.",
     "api_id": "edgenetwork.googleapis.com",
     "api_shortname": "edgenetwork",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-edgenetwork-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-edgenetwork-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-edgenetwork-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=187192\u0026template=1162689",
     "language": "swift",

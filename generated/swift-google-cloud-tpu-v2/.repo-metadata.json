@@ -2,7 +2,7 @@
     "api_description": "TPU API provides customers with access to Google TPU technology.",
     "api_id": "tpu.googleapis.com",
     "api_shortname": "tpu",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tpu-v2/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tpu-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-tpu-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

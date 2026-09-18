@@ -21,7 +21,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-aiplatform-v1-schema-predict-params` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-params.git --from 0.0.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-params.git --from 0.2.0
 ```
 
 Then add `GoogleCloudAIPlatformV1SchemaPredictParams` to your target's dependencies:

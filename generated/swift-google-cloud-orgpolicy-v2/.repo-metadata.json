@@ -2,7 +2,7 @@
     "api_description": "The Organization Policy API allows users to configure governance rules on\ntheir Google Cloud resources across the resource hierarchy.",
     "api_id": "orgpolicy.googleapis.com",
     "api_shortname": "orgpolicy",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-orgpolicy-v2/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-orgpolicy-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-orgpolicy-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

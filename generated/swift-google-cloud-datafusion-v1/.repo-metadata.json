@@ -2,7 +2,7 @@
     "api_description": "Cloud Data Fusion is a fully-managed, cloud native, enterprise data\nintegration service for     quickly building and managing data pipelines.\nIt provides a graphical interface to increase     time efficiency and\nreduce complexity, and allows business users, developers, and data\nscientists to easily and reliably build scalable data integration\nsolutions to cleanse,     prepare, blend, transfer and transform data\nwithout having to wrestle with infrastructure.",
     "api_id": "datafusion.googleapis.com",
     "api_shortname": "datafusion",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datafusion-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datafusion-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-datafusion-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

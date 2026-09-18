@@ -2,7 +2,7 @@
     "api_description": "Parameter Manager is a single source of truth to store, access and manage\nthe lifecycle of your workload parameters. Parameter Manager aims to make\nmanagement of sensitive application parameters effortless for customers\nwithout diminishing focus on security.",
     "api_id": "parametermanager.googleapis.com",
     "api_shortname": "parametermanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-parametermanager-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-parametermanager-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-parametermanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1706749\u0026template=0",
     "language": "swift",

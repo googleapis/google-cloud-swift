@@ -2,7 +2,7 @@
     "api_description": "The Cloud API for device streaming usage.",
     "api_id": "devicestreaming.googleapis.com",
     "api_shortname": "devicestreaming",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-devicestreaming-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-devicestreaming-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-devicestreaming-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1767292\u0026template=2112325",
     "language": "swift",

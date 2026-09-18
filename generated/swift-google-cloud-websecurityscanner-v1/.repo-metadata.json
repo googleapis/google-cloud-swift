@@ -2,7 +2,7 @@
     "api_description": "Scans your Compute and App Engine apps for common web vulnerabilities.",
     "api_id": "websecurityscanner.googleapis.com",
     "api_shortname": "websecurityscanner",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-websecurityscanner-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-websecurityscanner-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-websecurityscanner-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559748",
     "language": "swift",

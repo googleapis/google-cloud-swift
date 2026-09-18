@@ -2,7 +2,7 @@
     "api_description": "ConfigDelivery service manages the deployment of kubernetes configuration\nto a fleet of kubernetes clusters.",
     "api_id": "configdelivery.googleapis.com",
     "api_shortname": "configdelivery",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-configdelivery-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-configdelivery-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-configdelivery-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1400250",
     "language": "swift",

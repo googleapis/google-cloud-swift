@@ -20,7 +20,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-api` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-api.git --from 0.1.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-api.git --from 0.2.0
 ```
 
 Then add `GoogleApi` to your target's dependencies:

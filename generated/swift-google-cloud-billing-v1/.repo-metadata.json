@@ -2,7 +2,7 @@
     "api_description": "Allows developers to manage billing for their Google Cloud Platform\nprojects     programmatically.",
     "api_id": "cloudbilling.googleapis.com",
     "api_shortname": "cloudbilling",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-billing-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

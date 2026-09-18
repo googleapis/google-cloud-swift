@@ -2,7 +2,7 @@
     "api_description": "Notebooks API is used to manage notebook resources in Google Cloud.",
     "api_id": "notebooks.googleapis.com",
     "api_shortname": "notebooks",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-notebooks-v2/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-notebooks-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-notebooks-v2",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1392625",
     "language": "swift",

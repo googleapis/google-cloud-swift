@@ -2,7 +2,7 @@
     "api_description": "Manages the API keys associated with developer projects.",
     "api_id": "apikeys.googleapis.com",
     "api_shortname": "apikeys",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-api-apikeys-v2/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-api-apikeys-v2/0.2.0/documentation",
     "distribution_name": "swift-google-api-apikeys-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

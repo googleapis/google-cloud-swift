@@ -18,7 +18,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-apps-script-type-calendar` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-calendar.git --from 0.0.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-calendar.git --from 0.2.0
 ```
 
 Then add `GoogleAppsScriptTypeCalendar` to your target's dependencies:

@@ -2,7 +2,7 @@
     "api_description": "Datastream is a serverless and easy-to-use change data capture (CDC) and replication service that lets you synchronize data reliably, and with minimal latency.",
     "api_id": "datastream.googleapis.com",
     "api_shortname": "datastream",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datastream-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datastream-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-datastream-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

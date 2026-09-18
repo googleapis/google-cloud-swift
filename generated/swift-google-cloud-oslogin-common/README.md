@@ -18,7 +18,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-oslogin-common` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-oslogin-common.git --from 0.0.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-oslogin-common.git --from 0.2.0
 ```
 
 Then add `GoogleCloudOSLoginCommon` to your target's dependencies:

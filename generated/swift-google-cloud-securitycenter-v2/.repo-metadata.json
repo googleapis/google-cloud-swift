@@ -2,7 +2,7 @@
     "api_description": "Security Command Center API provides access to temporal views of assets and\nfindings within an organization.",
     "api_id": "securitycenter.googleapis.com",
     "api_shortname": "securitycenter",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycenter-v2/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycenter-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-securitycenter-v2",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=709980\u0026template=1322867",
     "language": "swift",

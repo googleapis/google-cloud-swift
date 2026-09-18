@@ -2,7 +2,7 @@
     "api_description": "Regionally deployed, single-tenant managed source code repository hosted on\nGoogle Cloud.",
     "api_id": "securesourcemanager.googleapis.com",
     "api_shortname": "securesourcemanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securesourcemanager-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securesourcemanager-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-securesourcemanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1434461",
     "language": "swift",

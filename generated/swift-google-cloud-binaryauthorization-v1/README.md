@@ -29,7 +29,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-binaryauthorization-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-binaryauthorization-v1.git --from 0.1.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-binaryauthorization-v1.git --from 0.2.0
 ```
 
 Then add `GoogleCloudBinaryAuthorizationV1` to your target's dependencies:

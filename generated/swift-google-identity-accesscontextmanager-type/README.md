@@ -18,7 +18,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-identity-accesscontextmanager-type` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-identity-accesscontextmanager-type.git --from 0.1.0-preview
+swift package add-dependency https://github.com/googleapis/swift-google-identity-accesscontextmanager-type.git --from 0.2.0
 ```
 
 Then add `GoogleIdentityAccessContextManagerType` to your target's dependencies:

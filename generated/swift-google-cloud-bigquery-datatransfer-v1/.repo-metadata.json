@@ -2,7 +2,7 @@
     "api_description": "Schedule queries or transfer external data from SaaS applications to Google\nBigQuery on a regular basis.",
     "api_id": "bigquerydatatransfer.googleapis.com",
     "api_shortname": "bigquerydatatransfer",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datatransfer-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-datatransfer-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-bigquery-datatransfer-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559654",
     "language": "swift",

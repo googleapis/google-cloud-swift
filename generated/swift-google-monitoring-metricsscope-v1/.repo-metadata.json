@@ -2,7 +2,7 @@
     "api_description": "Manages your Cloud Monitoring data and configurations. Most projects must\nbe associated with a Workspace, with a few exceptions as noted on the\nindividual method pages. The table entries below are presented in\nalphabetical order, not in order of common use. For explanations of the\nconcepts found in the table entries, read the [Cloud Monitoring\ndocumentation](https://cloud.google.com/monitoring/docs).",
     "api_id": "monitoring.googleapis.com",
     "api_shortname": "monitoring",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-monitoring-metricsscope-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-monitoring-metricsscope-v1/0.2.0/documentation",
     "distribution_name": "swift-google-monitoring-metricsscope-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559785",
     "language": "swift",

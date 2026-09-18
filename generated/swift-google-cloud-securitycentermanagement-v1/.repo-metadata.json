@@ -2,7 +2,7 @@
     "api_description": "Management API for Security Command Center, a built-in security and risk\nmanagement solution for Google Cloud. Use this API to programmatically\nupdate the settings and configuration of Security Command Center.",
     "api_id": "securitycentermanagement.googleapis.com",
     "api_shortname": "securitycentermanagement",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycentermanagement-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securitycentermanagement-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-securitycentermanagement-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=709980",
     "language": "swift",

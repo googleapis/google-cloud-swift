@@ -2,7 +2,7 @@
     "api_description": "Train high-quality custom machine learning models with minimal machine\nlearning expertise and effort.",
     "api_id": "aiplatform.googleapis.com",
     "api_shortname": "aiplatform",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-aiplatform-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-aiplatform-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1130925\u0026template=1637248",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Cloud Storage Batch Operations is a Cloud Storage capability that lets you perform operations on billions of objects in a serverless manner.",
     "api_id": "storagebatchoperations.googleapis.com",
     "api_shortname": "storagebatchoperations",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storagebatchoperations-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storagebatchoperations-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-storagebatchoperations-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=815827\u0026template=1395449",
     "language": "swift",

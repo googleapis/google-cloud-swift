@@ -2,7 +2,7 @@
     "api_description": "GKE Recommender API",
     "api_id": "gkerecommender.googleapis.com",
     "api_shortname": "gkerecommender",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkerecommender-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkerecommender-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-gkerecommender-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1790908",
     "language": "swift",

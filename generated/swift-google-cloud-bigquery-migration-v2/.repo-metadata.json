@@ -2,7 +2,7 @@
     "api_description": "The migration service, exposing apis for migration jobs operations, and\nagent management.",
     "api_id": "bigquerymigration.googleapis.com",
     "api_shortname": "bigquerymigration",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-migration-v2/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-migration-v2/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-bigquery-migration-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559654",
     "language": "swift",

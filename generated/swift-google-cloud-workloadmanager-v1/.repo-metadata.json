@@ -2,7 +2,7 @@
     "api_description": "Workload Manager is a service that provides tooling for enterprise\nworkloads to automate the deployment and validation of your workloads\nagainst best practices and recommendations.",
     "api_id": "workloadmanager.googleapis.com",
     "api_shortname": "workloadmanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadmanager-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadmanager-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-workloadmanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1631482\u0026template=0",
     "language": "swift",

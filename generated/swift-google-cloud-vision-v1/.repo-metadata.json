@@ -2,7 +2,7 @@
     "api_description": "Integrates Google Vision features, including image labeling, face, logo,\nand landmark detection, optical character recognition (OCR), and detection\nof explicit content, into applications.",
     "api_id": "vision.googleapis.com",
     "api_shortname": "vision",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vision-v1/0.1.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vision-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-vision-v1",
     "issue_tracker": "https://issuetracker.google.com/issues?q=status:open%20componentid:187174",
     "language": "swift",

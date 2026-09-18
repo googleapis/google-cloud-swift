@@ -1,7 +1,7 @@
 {
     "api_id": "apptopology.googleapis.com",
     "api_shortname": "apptopology",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apptopology-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apptopology-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-apptopology-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=2121875",
     "language": "swift",

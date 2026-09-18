@@ -2,7 +2,7 @@
     "api_description": "The Google Cloud Security Operations API (Chronicle API) provides endpoints\nthat help analysts investigate and mitigate security threats throughout\ntheir lifecycle.",
     "api_id": "chronicle.googleapis.com",
     "api_shortname": "chronicle",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-chronicle-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-chronicle-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-chronicle-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1387895",
     "language": "swift",

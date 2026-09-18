@@ -2,7 +2,7 @@
     "api_description": "Google Cloud Memorystore for Memcached API is used for creating and\nmanaging Memcached instances in GCP.",
     "api_id": "memcache.googleapis.com",
     "api_shortname": "memcache",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-memcache-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-memcache-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-memcache-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

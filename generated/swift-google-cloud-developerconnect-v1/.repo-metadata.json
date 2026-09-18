@@ -2,7 +2,7 @@
     "api_description": "Connect third-party source code management to Google",
     "api_id": "developerconnect.googleapis.com",
     "api_shortname": "developerconnect",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-developerconnect-v1/0.0.0-preview/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-developerconnect-v1/0.2.0/documentation",
     "distribution_name": "swift-google-cloud-developerconnect-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1446966\u0026template=1822025",
     "language": "swift",
