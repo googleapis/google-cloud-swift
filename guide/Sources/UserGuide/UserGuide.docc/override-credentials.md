@@ -54,5 +54,6 @@ services that support them.
   the default endpoint used by the Swift client libraries.
 * [Long-running operations](long-running-operations.md) describes how to make
   API requests that use long-running operations.
-<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - lint the retry policy override guide -->
+* [Override the default retry policies](override-retry-policy.md) describes how
+  to change how the Swift client libraries retry failed requests.
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - lint the polling policy override guide -->

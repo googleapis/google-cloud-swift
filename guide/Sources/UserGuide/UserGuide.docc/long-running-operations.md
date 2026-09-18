@@ -55,5 +55,6 @@ operation completes, returning the created `Workflow` object.
   describes how to configure custom credentials such as API keys.
 * [Override the default endpoint](override-endpoint.md) describes how to change
   the default endpoint used by the Swift client libraries.
-<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - link the retry policy override guide -->
+* [Override the default retry policies](override-retry-policy.md) describes how
+  to change how the Swift client libraries retry failed requests.
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - link the polling policy override guide -->
