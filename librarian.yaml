@@ -1161,7 +1161,7 @@ libraries:
     swift:
       library_name_override: GoogleCloudUniversalLedgerV1
   - name: google-cloud-vectorsearch-v1
-    version: 0.2.0
+    version: 0.3.0
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudVectorSearchV1

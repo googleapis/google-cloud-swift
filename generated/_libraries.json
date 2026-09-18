@@ -1497,7 +1497,7 @@
     {
       "PkgName": "swift-google-cloud-vectorsearch-v1",
       "Language": "Swift",
-      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vectorsearch-v1/0.2.0/documentation",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-vectorsearch-v1/0.3.0/documentation",
       "APIShortname": "vectorsearch",
       "Product": "Vector Search API"
     }
