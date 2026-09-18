@@ -38,6 +38,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          source ci/package-dependencies.sh
+          edit_package_dependencies "."
           cache_flags=(--scratch-path "$PWD/.build-cache")
           flags=(
             "${cache_flags[@]}"
@@ -48,8 +50,6 @@ jobs:
             (sleep 5 ; swift package "${cache_flags[@]}" resolve --disable-sandbox) || \
             (sleep 10 ; swift package "${cache_flags[@]}" resolve --disable-sandbox)
 
-          # swift-google-wkt and -auth do not have local dependencies so no
-          # swift-package-edit needed.
           echo ==== wkt ====
           swift test "${flags[@]}" --package-path pkgs/swift-google-wkt
           if [[ "${RUNNER_OS}" = "Windows" ]]; then
@@ -63,7 +63,4 @@ jobs:
           swift test "${flags[@]}" --package-path pkgs/swift-google-auth
 
           echo ==== gax ====
-          swift package "${cache_flags[@]}" --package-path pkgs/swift-google-gax edit --path "$PWD/pkgs/swift-google-wkt" swift-google-wkt || true
-          swift package "${cache_flags[@]}" --package-path pkgs/swift-google-gax edit --path "$PWD/pkgs/swift-google-auth" swift-google-auth || true
-          swift package "${cache_flags[@]}" --package-path pkgs/swift-google-gax edit --path "$PWD/generated/swift-google-rpc" swift-google-rpc || true
           swift test "${flags[@]}" --package-path pkgs/swift-google-gax

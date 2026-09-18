@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_FETCH_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${_FETCH_SCRIPT_DIR}/../../.." && pwd)"
+source "${REPO_ROOT}/ci/package-dependencies.sh"
+edit_package_dependencies "."
+
 echo "--- SWIFT VERSION ---"
 swift --version
 echo "--- FETCH DEPENDENCIES ---"

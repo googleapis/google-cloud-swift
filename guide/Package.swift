@@ -25,8 +25,16 @@ let package = Package(
     .library(name: "UserGuide", targets: ["UserGuide"])
   ],
   dependencies: [
-    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-auth",
+      path: "pkgs/swift-google-auth",
+      from: "0.2.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-gax",
+      path: "pkgs/swift-google-gax",
+      from: "0.2.0"
+    ),
     .package(path: "../generated/swift-google-cloud-secretmanager-v1"),
     .package(path: "../generated/swift-google-cloud-language-v2"),
     .package(path: "../generated/swift-google-cloud-workflows-v1"),
@@ -49,3 +57,11 @@ let package = Package(
     )
   ]
 )
+
+func localOrRemotePackage(url: String, path: String, from version: Version) -> Package.Dependency {
+  if let env = Context.environment["GOOGLE_CLOUD_SWIFT_LOCAL_DEPS"], !env.isEmpty {
+    let root = (env == "1" || env == "true") ? "\(Context.packageDirectory)/.." : env
+    return .package(path: "\(root)/\(path)")
+  }
+  return .package(url: url, from: version)
+}

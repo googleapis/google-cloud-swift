@@ -26,9 +26,21 @@ let package = Package(
     .library(name: "GoogleGaxGRPC", targets: ["GoogleGaxGRPC"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-auth",
+      path: "pkgs/swift-google-auth",
+      from: "0.2.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-wkt",
+      path: "pkgs/swift-google-wkt",
+      from: "0.2.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-rpc",
+      path: "generated/swift-google-rpc",
+      from: "0.2.0"
+    ),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
@@ -88,3 +100,11 @@ let package = Package(
     ),
   ]
 )
+
+func localOrRemotePackage(url: String, path: String, from version: Version) -> Package.Dependency {
+  if let env = Context.environment["GOOGLE_CLOUD_SWIFT_LOCAL_DEPS"], !env.isEmpty {
+    let root = (env == "1" || env == "true") ? "\(Context.packageDirectory)/../.." : env
+    return .package(path: "\(root)/\(path)")
+  }
+  return .package(url: url, from: version)
+}
