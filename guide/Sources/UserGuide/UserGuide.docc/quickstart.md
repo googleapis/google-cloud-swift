@@ -65,26 +65,21 @@ index 949f55e..3a15eda 100644
      name: "Quickstart",
 +    platforms: [ .macOS(.v15), ],
      dependencies: [
-         .package(path: "google-cloud-swift/generated/swift-google-cloud-secretmanager-v1"),
+         .package(url: "https://github.com/googleapis/swift-google-cloud-secretmanager-v1.git", from: "0.2.0"),
      ],
 ```
 
 ## Add the client library as a dependency
 
-1. While the Google Cloud Client Libraries for Swift are under development you
-   need to manually download the source to a local directory:
-   ```bash
-   git clone --depth 1 https://github.com/googleapis/google-cloud-swift
-   ```
-1. Then add the secret manager package within this download as a dependency:
+1. Add the Secret Manager package as a dependency:
    ```bash
    swift package add-dependency \
-     google-cloud-swift/generated/swift-google-cloud-secretmanager-v1 --type path
+     https://github.com/googleapis/swift-google-cloud-secretmanager-v1.git --from 0.2.0
    ```
 1. And add the specific module as a dependency of your executable:
    ```bash
    swift package add-target-dependency \
-     GoogleCloudSecretManagerV1 Quickstart --package google-cloud-secretmanager-v1
+     GoogleCloudSecretManagerV1 Quickstart --package swift-google-cloud-secretmanager-v1
    ```
 
 ## Edit the program to use Google Cloud

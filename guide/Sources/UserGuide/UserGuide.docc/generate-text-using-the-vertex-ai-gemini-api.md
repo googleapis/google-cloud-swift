@@ -26,7 +26,7 @@ Add the `GoogleCloudAIPlatformV1` library to your `Package.swift`:
 
 ```swift
 dependencies: [
-  .package(path: "google-cloud-swift/generated/swift-google-cloud-aiplatform-v1"),
+  .package(url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git", from: "0.2.0"),
 ],
 targets: [
   .executableTarget(
