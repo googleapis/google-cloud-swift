@@ -18,14 +18,14 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 /// Defines a ranker using the Vertex AI ranking service.
-/// See https://cloud.google.com/generative-ai-app-builder/docs/ranking for
+/// See <https://cloud.google.com/generative-ai-app-builder/docs/ranking> for
 /// details.
 public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The model used for ranking documents. The list of available
   /// models is described in
-  /// https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+  /// <https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models>.
   /// Currently, only `semantic-ranker-fast@latest` is supported.
   public var model: Swift.String = Swift.String()
 

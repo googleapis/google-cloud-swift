@@ -110,6 +110,9 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `projects/{project}/locations/{location}/collections/{collection}/indexes/{index}`
     public var name: Swift.String = Swift.String()
 
+    /// The parameters for the index.
+    public var params: OneOf_Params? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `IndexHint`.
@@ -120,7 +123,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = IndexHint().with { $0.name = ... }
+    /// let value = IndexHint().with { $0.denseScannParams = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -134,10 +137,12 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
+      static let denseScannParams = CodingKeys(stringValue: "denseScannParams")
       static let name = CodingKeys(stringValue: "name")
 
       static let _knownKeys: Set<Swift.String> = [
-        "name"
+        "denseScannParams",
+        "name",
       ]
     }
 
@@ -146,6 +151,23 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
+
+      var params: OneOf_Params? = nil
+      let paramsCheckAndSet = {
+        if params != nil {
+          throw DecodingError.dataCorrupted(
+            DecodingError.Context(
+              codingPath: decoder.codingPath,
+              debugDescription: "Multiple values set for oneof 'params'"))
+        }
+        params = $0
+      }
+      if let denseScannParams = try container.decodeIfPresent(
+        SearchHint.IndexHint.DenseScannParams?.self, forKey: .denseScannParams)
+      {
+        try paramsCheckAndSet(.denseScannParams(denseScannParams))
+      }
+      self.params = params
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.Value.self, forKey: key)
@@ -155,9 +177,91 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
+
+      if let choice = self.params {
+        switch choice {
+        case .denseScannParams(let value):
+          try container.encode(value, forKey: .denseScannParams)
+        }
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
+    }
+
+    /// Parameters for dense ScaNN.
+    public struct DenseScannParams: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. The target recall for the search. Must be a double in the
+      /// range [0, 1]. While the search aims to achieve this level of recall, it
+      /// is not guaranteed.
+      public var targetRecall: Swift.Double? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `DenseScannParams`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = DenseScannParams().with { $0.targetRecall = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let targetRecall = CodingKeys(stringValue: "targetRecall")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "targetRecall"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.targetRecall = try container.decodeIfPresent(Swift.Double.self, forKey: .targetRecall)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.targetRecall, forKey: .targetRecall)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams"
+      }
+      public init(fromAny any: GoogleWKT.`Any`) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.Struct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// The parameters for the index.
+    public enum OneOf_Params: Codable, Equatable, Sendable {
+      /// Optional. Dense ScaNN parameters.
+      indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams?)
     }
 
     public static var _anyTypeUrl: Swift.String {

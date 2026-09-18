@@ -21,14 +21,20 @@ import Foundation
 public struct SemanticSearch: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. The query text, which is used to generate an embedding according
+  /// Optional. The query text, which is used to generate an embedding according
   /// to the embedding model specified in the collection config.
+  ///
+  /// Required when using the text search mode.
   public var searchText: Swift.String = Swift.String()
 
   /// Required. The vector field to search.
   public var searchField: Swift.String = Swift.String()
 
-  /// Required. The task type of the query embedding.
+  /// Optional. The task type of the query embedding. Must be specified for
+  /// text-only embedding models, see
+  /// <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types>
+  /// Not needed for multi modal embedding models, see
+  /// <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions>
   public var taskType: EmbeddingTaskType = EmbeddingTaskType()
 
   /// Optional. The fields to return in the search results.
