@@ -29,14 +29,14 @@ For complete setup instructions for the Swift client libraries, see
 
 Each client is configured with three policies that together control retries:
 
-* The **retry policy** decides whether an error is worth retrying, and when to
+* The *retry policy* decides whether an error is worth retrying, and when to
   give up. By default it retries [AIP-194] transient errors and I/O errors for
   [idempotent] requests only, stopping after 60 seconds or 10 attempts,
   whichever comes first.
-* The **backoff policy** decides how long to wait between attempts. By default
+* The *backoff policy* decides how long to wait between attempts. By default
   it uses [exponential backoff], starting at one second and doubling up to a
   maximum of one minute.
-* The **retry throttler** stops the client from adding load to a service that
+* The *retry throttler* stops the client from adding load to a service that
   is already failing. By default it is an adaptive throttler.
 
 A request is only retried when it is safe to do so: either the request failed
