@@ -36,8 +36,7 @@ steps:
 substitutions:
   _POOL_REGION: us-central1
   _POOL_ID: swift-sdk-pool
-  # TODO(https://github.com/googleapis/google-cloud-swift/issues/881) - increase to 6.4
-  _SWIFT_VERSION: '6.3'
+  _SWIFT_VERSION: '6.4'
   _TRIGGER_NAME: ''
   _SHARD_INDEX: '0'
   _SHARD_COUNT: '1'
