@@ -37,9 +37,9 @@ public struct ExponentialBackoffConfig: Sendable {
   public init() {}
 
   /// Override specific values using the `Then` idiom.
-  public func with(_ config: (inout Self) -> Void) -> Self {
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
-    config(&copy)
+    try config(&copy)
     return copy
   }
 }

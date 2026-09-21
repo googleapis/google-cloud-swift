@@ -52,9 +52,9 @@ public struct ResumeState<Details: Sendable>: Sendable {
   }
 
   /// Mutates `self` using a builder closure and returns the modified state.
-  public func with(_ mutate: (inout Self) -> Void) -> Self {
+  public func with(_ mutate: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
-    mutate(&copy)
+    try mutate(&copy)
     return copy
   }
 }

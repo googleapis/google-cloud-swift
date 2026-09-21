@@ -21,6 +21,8 @@ import Testing
 import GoogleGax
 
 @Suite struct RequestOptionsTests {
+  struct TestError: Error, Equatable {}
+
   @Test func then() {
     let got = RequestOptions().with {
       $0.attemptTimeout = .seconds(3)
@@ -28,6 +30,25 @@ import GoogleGax
     }
     #expect(got.attemptTimeout == .seconds(3))
     #expect(got.quotaProject == "my-quota-project")
+  }
+
+  @Test func thenThrowing() throws {
+    let got = try RequestOptions().with {
+      $0.retryPolicy = NeverRetry()
+      $0.backoffPolicy = try ExponentialBackoff(
+        config: ExponentialBackoffConfig().with {
+          $0.initialDelay = .milliseconds(100)
+        }
+      )
+    }
+    #expect(got.retryPolicy != nil)
+    #expect(got.backoffPolicy != nil)
+
+    #expect(throws: TestError()) {
+      try RequestOptions().with { _ in
+        throw TestError()
+      }
+    }
   }
 
   @Test func defaults() {

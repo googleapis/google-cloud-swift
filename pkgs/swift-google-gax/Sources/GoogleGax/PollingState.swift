@@ -41,9 +41,9 @@ public struct PollingState: Sendable {
   /// ```
   /// let state = PollingState().with { $0.attemptCount = 1 }
   /// ```
-  public func with(_ config: (inout Self) -> Void) -> Self {
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
-    config(&copy)
+    try config(&copy)
     return copy
   }
 }

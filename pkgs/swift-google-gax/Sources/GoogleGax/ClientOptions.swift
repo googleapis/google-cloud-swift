@@ -29,9 +29,9 @@ public struct ClientOptions: Sendable {
   /// ```
   /// let options = ClientOptions().with { $0.endpoint = "https://private.googleapis.com" }
   /// ```
-  public func with(_ config: (inout Self) -> Void) -> Self {
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
-    config(&copy)
+    try config(&copy)
     return copy
   }
 
