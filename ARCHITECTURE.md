@@ -514,6 +514,21 @@ The libraries do not maintain ambient global configuration, default client
 singletons, or global thread pools. Every client instance is explicitly created
 and configured with its own options and credentials.
 
+### General-purpose CRC32C implementation
+
+While `GoogleGax` contains an internal CRC32C implementation (`_CRC32C`, gated
+behind `@_spi(GoogleCloudInternal)`) for streaming checksum validation in
+`swift-google-cloud-storage`, the libraries do not provide or support a
+general-purpose CRC32C implementation for external callers:
+
+- **Internal checksumming only:** `_CRC32C` exists solely for internal SDK
+  checksumming and is not part of the supported public API.
+- **No automatic checksumming in generated RPCs:** Generated clients for
+  standard request-response RPCs that include optional checksum fields (such as
+  Cloud KMS) do not add custom helpers to compute or verify those checksums.
+  Callers that supply optional checksum fields in generated requests should
+  compute them using a dedicated third-party checksum library.
+
 ## How is this code created?
 
 Most client libraries are automatically generated from Protobuf service
