@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The CCAI Insights project wide settings.
 /// Use these settings to configure the behavior of Insights.

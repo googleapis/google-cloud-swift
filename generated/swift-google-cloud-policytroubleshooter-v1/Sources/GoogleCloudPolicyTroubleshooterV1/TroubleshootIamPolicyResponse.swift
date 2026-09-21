@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response for
 /// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].

@@ -16,7 +16,7 @@
 
 #if TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A TransitionRouteGroup represents a group of
   /// [`TransitionRoutes`][google.cloud.dialogflow.cx.v3.TransitionRoute] to be

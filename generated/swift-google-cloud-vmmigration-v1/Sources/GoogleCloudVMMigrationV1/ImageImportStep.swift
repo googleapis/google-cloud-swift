@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ImageImportStep holds information about the image import step progress.
 public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,

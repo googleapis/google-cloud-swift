@@ -16,7 +16,7 @@
 
 #if SpecialistPoolService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [SpecialistPoolService.ListSpecialistPools][google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools].

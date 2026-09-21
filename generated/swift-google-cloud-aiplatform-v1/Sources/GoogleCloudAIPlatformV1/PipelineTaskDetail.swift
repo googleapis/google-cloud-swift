@@ -16,8 +16,8 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The runtime detail of a task execution.
   public struct PipelineTaskDetail: Codable, Equatable, GoogleWKT._AnyPackable,

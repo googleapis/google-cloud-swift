@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines a Cloud Organization `Policy` which is used to specify `Constraints`
 /// for configurations of Cloud Platform resources.

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleIAMAdminV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(client: IAMClient, projectId: String, serviceAccountId: String) async throws {
   try await client.deleteServiceAccount(

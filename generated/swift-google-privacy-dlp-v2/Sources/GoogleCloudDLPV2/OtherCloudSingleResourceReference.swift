@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Identifies a single resource, like a single Amazon S3 bucket.
 public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Information about recommendation status for locations
   /// that were allowed but not used by the response.

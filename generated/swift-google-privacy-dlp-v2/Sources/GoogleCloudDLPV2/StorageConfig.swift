@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Shared message indicating Cloud storage type.
 public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,

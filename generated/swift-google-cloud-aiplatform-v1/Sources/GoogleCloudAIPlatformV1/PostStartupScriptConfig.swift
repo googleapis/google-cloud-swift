@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Post startup script config.
   public struct PostStartupScriptConfig: Codable, Equatable, GoogleWKT._AnyPackable,

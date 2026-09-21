@@ -16,8 +16,8 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct NetworkEndpointGroupsListNetworkEndpoints: Codable, Equatable, GoogleWKT
       ._AnyPackable,

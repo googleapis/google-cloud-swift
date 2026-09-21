@@ -16,7 +16,6 @@
 
 #if InstanceTemplates
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

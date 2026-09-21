@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, serviceId: String, ) async throws {
   let client = try GoogleCloudRunV2.RevisionsClient()

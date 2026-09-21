@@ -18,7 +18,6 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
 import GoogleGax
 import struct Logging.Logger
 

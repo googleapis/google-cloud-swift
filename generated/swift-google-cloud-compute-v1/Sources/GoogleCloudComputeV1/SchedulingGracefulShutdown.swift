@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The configuration for gracefully shutting down the instance.
   public struct SchedulingGracefulShutdown: Codable, Equatable, GoogleWKT._AnyPackable,

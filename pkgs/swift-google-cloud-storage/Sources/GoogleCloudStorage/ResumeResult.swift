@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 
 /// The result of evaluating an error with a ``ResumePolicy``.
 ///

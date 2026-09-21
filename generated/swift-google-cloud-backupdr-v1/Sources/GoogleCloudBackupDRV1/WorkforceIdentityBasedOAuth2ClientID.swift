@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// OAuth Client ID depending on the Workforce Identity i.e. either 1p or 3p,
 public struct WorkforceIdentityBasedOAuth2ClientID: Codable, Equatable, GoogleWKT._AnyPackable,

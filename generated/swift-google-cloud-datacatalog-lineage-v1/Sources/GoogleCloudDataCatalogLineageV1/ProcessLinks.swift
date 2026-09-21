@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Links associated with a specific process.
 public struct ProcessLinks: Codable, Equatable, GoogleWKT._AnyPackable,

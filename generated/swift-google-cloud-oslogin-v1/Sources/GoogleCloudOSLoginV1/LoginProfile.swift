@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOSLoginCommon
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudOSLoginCommon
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The user profile information used for logging in to a virtual machine on
 /// Google Compute Engine.

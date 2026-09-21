@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specification of machine type to use. Every position inside this message
   /// is an alternative.

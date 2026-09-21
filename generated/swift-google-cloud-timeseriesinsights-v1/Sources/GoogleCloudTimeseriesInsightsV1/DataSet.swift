@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A collection of data sources sent for processing.
 public struct DataSet: Codable, Equatable, GoogleWKT._AnyPackable,

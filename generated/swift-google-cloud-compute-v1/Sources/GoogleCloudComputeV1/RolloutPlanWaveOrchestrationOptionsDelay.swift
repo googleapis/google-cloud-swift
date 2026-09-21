@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Options to control the delay, if any, between batches of projects.
   public struct RolloutPlanWaveOrchestrationOptionsDelay: Codable, Equatable, GoogleWKT

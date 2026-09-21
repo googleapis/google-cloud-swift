@@ -16,8 +16,8 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An instance of a machine learning PipelineJob.
   public struct PipelineJob: Codable, Equatable, GoogleWKT._AnyPackable,

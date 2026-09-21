@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response details for data quality rule recommendations.
 public struct GenerateDataQualityRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

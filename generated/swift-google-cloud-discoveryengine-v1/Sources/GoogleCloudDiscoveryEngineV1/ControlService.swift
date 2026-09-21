@@ -19,9 +19,9 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleLongRunning
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleLongRunning
+  @_spi(GoogleCloudInternal) public import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for performing CRUD operations on Controls.
   /// Controls allow for custom logic to be implemented in the serving path.
@@ -513,7 +513,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable,

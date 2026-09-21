@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The long-running operation metadata for
 /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].

@@ -16,8 +16,8 @@
 
 #if NodeGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains a list of nodeGroups.
   public struct NodeGroupList: Codable, Equatable, GoogleWKT._AnyPackable,

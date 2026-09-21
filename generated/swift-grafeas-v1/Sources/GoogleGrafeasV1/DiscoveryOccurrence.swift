@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Provides information about the analysis status of a discovered resource.
 public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,

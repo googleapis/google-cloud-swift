@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The definition of a notebook instance.
 public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOrgPolicyV2
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudOrgPolicyV2
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// OrgPolicyViolation is a resource representing a single resource violating a
 /// single OrgPolicy constraint.

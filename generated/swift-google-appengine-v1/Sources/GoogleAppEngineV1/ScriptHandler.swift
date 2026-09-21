@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Executes a script to handle the request that matches the URL pattern.
 public struct ScriptHandler: Codable, Equatable, GoogleWKT._AnyPackable,

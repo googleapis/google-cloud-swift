@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudVisionV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudVisionV1.ImageAnnotatorClient()

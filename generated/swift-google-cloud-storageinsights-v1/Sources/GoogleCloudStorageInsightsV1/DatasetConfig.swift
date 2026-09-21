@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing the dataset configuration properties. For more
 /// information, see [Dataset configuration

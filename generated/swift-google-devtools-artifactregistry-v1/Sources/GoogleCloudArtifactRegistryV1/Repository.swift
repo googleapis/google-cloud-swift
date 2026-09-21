@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Repository for storing artifacts with a specific format.
 public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,

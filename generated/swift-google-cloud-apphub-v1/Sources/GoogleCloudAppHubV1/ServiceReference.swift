@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Reference to an underlying networking resource that can comprise a Service.
 public struct ServiceReference: Codable, Equatable, GoogleWKT._AnyPackable,

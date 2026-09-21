@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Get asset feed request.
 public struct GetFeedRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of the wave for products using the Orchestrated integration
   /// model.

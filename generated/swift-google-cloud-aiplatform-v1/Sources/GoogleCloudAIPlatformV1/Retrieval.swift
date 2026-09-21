@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines a retrieval tool that model can call to access external knowledge.
   public struct Retrieval: Codable, Equatable, GoogleWKT._AnyPackable,

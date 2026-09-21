@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Model settings contains various configurations for the LLM model.
 public struct ModelSettings: Codable, Equatable, GoogleWKT._AnyPackable,

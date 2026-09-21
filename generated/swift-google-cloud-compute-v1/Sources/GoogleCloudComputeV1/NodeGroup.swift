@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if NodeGroups
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a sole-tenant Node Group resource.
   ///

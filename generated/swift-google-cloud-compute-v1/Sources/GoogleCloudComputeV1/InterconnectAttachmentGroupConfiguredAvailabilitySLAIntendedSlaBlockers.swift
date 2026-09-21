@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] Reasons why configuration.availabilitySLA.sla differs from
   /// intent.availabilitySLA. This list is empty if and only if those are the

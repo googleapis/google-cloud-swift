@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the observed state of a single `InstanceSplit` entry.
 public struct InstanceSplitStatus: Codable, Equatable, GoogleWKT._AnyPackable,

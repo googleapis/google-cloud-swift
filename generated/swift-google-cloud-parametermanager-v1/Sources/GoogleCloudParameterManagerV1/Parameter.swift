@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing Parameter resource
 public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents answer from "frequently asked questions".
   public struct FaqAnswer: Codable, Equatable, GoogleWKT._AnyPackable,

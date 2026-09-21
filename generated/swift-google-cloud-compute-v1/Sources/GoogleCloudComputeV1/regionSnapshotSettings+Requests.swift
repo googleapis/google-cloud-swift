@@ -16,7 +16,7 @@
 
 #if RegionSnapshotSettings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionSnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSnapshotSettings.get] method.

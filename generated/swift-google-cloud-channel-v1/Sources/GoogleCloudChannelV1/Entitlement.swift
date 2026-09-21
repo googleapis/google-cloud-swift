@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An entitlement is a representation of a customer's ability to use a service.
 public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,

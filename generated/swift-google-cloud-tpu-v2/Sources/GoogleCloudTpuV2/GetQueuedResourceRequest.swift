@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for [GetQueuedResource][google.cloud.tpu.v2.Tpu.GetQueuedResource]
 ///

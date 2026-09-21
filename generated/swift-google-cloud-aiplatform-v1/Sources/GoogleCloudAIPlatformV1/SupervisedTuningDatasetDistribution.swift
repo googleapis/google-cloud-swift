@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Dataset distribution for Supervised Tuning.
   public struct SupervisedTuningDatasetDistribution: Codable, Equatable, GoogleWKT._AnyPackable,

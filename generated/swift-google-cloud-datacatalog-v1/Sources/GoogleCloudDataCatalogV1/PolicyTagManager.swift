@@ -18,10 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleLongRunning
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Policy Tag Manager API service allows you to manage your policy tags and
 /// taxonomies.

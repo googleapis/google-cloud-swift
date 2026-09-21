@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: PolicyTagManagerClient) async throws {
   let items = try client.listOperations(

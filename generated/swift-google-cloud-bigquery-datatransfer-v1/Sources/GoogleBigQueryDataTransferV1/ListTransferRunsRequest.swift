@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to list data transfer runs.
 public struct ListTransferRunsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

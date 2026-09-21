@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Assigns input data to training, validation, and test sets based on the given
   /// filters, data pieces not matched by any filter are ignored. Currently only

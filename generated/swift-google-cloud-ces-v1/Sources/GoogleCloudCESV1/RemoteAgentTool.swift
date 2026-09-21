@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a tool that allows the agent to call another remote agent.
 public struct RemoteAgentTool: Codable, Equatable, GoogleWKT._AnyPackable,

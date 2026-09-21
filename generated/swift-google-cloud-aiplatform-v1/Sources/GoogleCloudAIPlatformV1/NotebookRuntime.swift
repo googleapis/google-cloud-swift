@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A runtime is a virtual machine allocated to a particular user for a
   /// particular Notebook file on temporary basis with lifetime. Default runtimes

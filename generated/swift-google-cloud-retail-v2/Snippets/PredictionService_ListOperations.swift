@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: PredictionServiceClient) async throws {
   let items = try client.listOperations(

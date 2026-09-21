@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 private import ExtrasBase64
 
 /// Helper functions to encode and decode using the base64url.

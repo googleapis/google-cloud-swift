@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Config for OBJECT_TRACKING.
 public struct ObjectTrackingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

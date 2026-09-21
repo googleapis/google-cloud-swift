@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Example represents a sample execution of the playbook in the conversation.
   ///

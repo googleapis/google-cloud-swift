@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Record key for a finding in Cloud Datastore.
 public struct DatastoreKey: Codable, Equatable, GoogleWKT._AnyPackable,

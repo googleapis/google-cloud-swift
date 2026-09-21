@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The operation metadata for importing artifacts.
 public struct ImportAptArtifactsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

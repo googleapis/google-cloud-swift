@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Vertex AI Feature Online Store provides a centralized repository for serving
   /// ML features and embedding indexes at low latency. The Feature Online Store is

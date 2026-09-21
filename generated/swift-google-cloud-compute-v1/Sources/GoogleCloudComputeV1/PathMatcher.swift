@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A matcher for the path portion of the URL. The BackendService
   /// from the longest-matched rule will serve the URL. If no rule was matched, the

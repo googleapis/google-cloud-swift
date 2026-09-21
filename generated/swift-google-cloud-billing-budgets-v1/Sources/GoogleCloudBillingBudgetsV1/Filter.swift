@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A filter for a budget, limiting the scope of the cost to calculate.
 public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,

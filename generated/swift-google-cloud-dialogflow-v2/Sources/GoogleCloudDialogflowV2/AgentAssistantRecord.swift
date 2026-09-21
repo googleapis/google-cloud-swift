@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a record of a human agent assist answer.
   public struct AgentAssistantRecord: Codable, Equatable, GoogleWKT._AnyPackable,

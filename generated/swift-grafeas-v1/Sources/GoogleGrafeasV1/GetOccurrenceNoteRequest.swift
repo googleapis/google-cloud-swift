@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to get the note to which the specified occurrence is attached.
 public struct GetOccurrenceNoteRequest: Codable, Equatable, GoogleWKT._AnyPackable,

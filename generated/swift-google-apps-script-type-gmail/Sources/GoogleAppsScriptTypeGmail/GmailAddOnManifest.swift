@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAppsScriptType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleAppsScriptType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Properties customizing the appearance and execution of a Gmail add-on.
 public struct GmailAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,

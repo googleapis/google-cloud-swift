@@ -16,8 +16,8 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The response message for
   /// [Environments.LookupEnvironmentHistory][google.cloud.dialogflow.cx.v3.Environments.LookupEnvironmentHistory].

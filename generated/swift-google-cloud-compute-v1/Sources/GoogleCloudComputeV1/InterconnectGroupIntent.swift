@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The user's intent for this group. This is the only required field besides
   /// the name that must be specified on group creation.

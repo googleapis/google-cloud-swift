@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [Documents.CreateDocument][google.cloud.dialogflow.v2.Documents.CreateDocument].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Evaluation details for a control.
 public struct ControlDetails: Codable, Equatable, GoogleWKT._AnyPackable,

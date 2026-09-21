@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Input of the playbook.
   public struct PlaybookInput: Codable, Equatable, GoogleWKT._AnyPackable,

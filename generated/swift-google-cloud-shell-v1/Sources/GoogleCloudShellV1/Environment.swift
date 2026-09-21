@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Cloud Shell environment, which is defined as the combination of a Docker
 /// image specifying what is installed on the environment and a home directory

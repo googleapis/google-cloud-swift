@@ -16,7 +16,7 @@
 
 #if RegionZones || Zones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents civil time (or occasionally physical time).
   ///

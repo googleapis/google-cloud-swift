@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: ZoneOperationsClient) async throws {
     try await client.delete(

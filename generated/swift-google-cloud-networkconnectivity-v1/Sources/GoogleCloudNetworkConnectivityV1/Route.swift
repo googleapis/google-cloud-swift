@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A route defines a path from VM instances within a spoke to a specific
 /// destination resource. Only VPC spokes have routes.

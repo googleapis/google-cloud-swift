@@ -16,7 +16,6 @@
 
 #if SqlAvailableDatabaseVersionsService
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

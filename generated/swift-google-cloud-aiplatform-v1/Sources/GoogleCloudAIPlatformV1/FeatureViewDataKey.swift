@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Lookup key for a feature view.
   public struct FeatureViewDataKey: Codable, Equatable, GoogleWKT._AnyPackable,

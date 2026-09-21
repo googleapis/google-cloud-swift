@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a single web search query and its associated search uri.
 public struct WebSearchQuery: Codable, Equatable, GoogleWKT._AnyPackable,

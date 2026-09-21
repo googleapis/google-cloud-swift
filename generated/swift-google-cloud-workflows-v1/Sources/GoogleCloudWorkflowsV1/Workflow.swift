@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Workflow program to be executed by Workflows.
 public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,

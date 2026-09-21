@@ -16,8 +16,8 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A job that uses a
   /// [Model][google.cloud.aiplatform.v1.BatchPredictionJob.model] to produce

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if MachineImages
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a machine image resource.
   ///

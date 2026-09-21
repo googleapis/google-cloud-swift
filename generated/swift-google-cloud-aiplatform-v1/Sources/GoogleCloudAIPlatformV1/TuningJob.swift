@@ -16,8 +16,8 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a TuningJob that runs with Google owned models.
   public struct TuningJob: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Encapsulates the geographic taxonomy data for a sku.
 public struct GeoTaxonomy: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionInstancesClient {
     /// Synthetic request message for the [bulkInsert()][google.cloud.compute.v1.regionInstances.bulkInsert] method.

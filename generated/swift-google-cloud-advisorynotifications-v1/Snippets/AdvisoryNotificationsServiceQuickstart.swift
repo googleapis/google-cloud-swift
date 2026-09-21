@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudAdvisoryNotificationsV1
-import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleCloudAdvisoryNotificationsV1.AdvisoryNotificationsServiceClient()

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The placeholder that's substituted in the rendered string.
 public struct PlaceholderSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to list data transfers configured for a BigQuery project.
 public struct ListTransferConfigsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

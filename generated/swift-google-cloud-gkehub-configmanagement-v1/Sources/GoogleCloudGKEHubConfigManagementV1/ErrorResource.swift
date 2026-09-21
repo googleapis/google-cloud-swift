@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Model for a config file in the git repo with an associated Sync error
 public struct ErrorResource: Codable, Equatable, GoogleWKT._AnyPackable,

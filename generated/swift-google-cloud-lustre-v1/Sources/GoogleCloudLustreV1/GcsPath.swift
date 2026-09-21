@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies a Cloud Storage bucket and, optionally, a path inside the bucket.
 public struct GcsPath: Codable, Equatable, GoogleWKT._AnyPackable,

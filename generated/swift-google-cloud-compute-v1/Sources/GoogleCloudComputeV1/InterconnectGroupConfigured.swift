@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] The status of the group as configured. This has the same
   /// structure as the operational field reported by the OperationalStatus

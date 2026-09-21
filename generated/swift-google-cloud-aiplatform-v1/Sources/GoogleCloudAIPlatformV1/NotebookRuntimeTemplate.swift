@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A template that specifies runtime configurations such as machine type,
   /// runtime version, network configurations, etc.

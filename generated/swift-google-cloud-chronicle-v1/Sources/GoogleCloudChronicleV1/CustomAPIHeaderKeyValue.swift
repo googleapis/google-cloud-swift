@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CustomAPIHeaderKeyValue defines dynamic headers key-values for Custom API.
 public struct CustomAPIHeaderKeyValue: Codable, Equatable, GoogleWKT._AnyPackable,

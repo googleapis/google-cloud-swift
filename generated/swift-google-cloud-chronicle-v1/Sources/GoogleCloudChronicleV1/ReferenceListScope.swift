@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ReferenceListScope specifies the list of scope names of the reference list.
 public struct ReferenceListScope: Codable, Equatable, GoogleWKT._AnyPackable,

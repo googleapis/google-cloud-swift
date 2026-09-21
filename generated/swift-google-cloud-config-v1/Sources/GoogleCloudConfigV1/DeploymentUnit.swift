@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A DeploymentUnit is a container for a deployment and its dependencies.
 /// An existing deployment can be provided directly in the unit, or the unit

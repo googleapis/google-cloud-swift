@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The conversation source, which is a combination of transcript and audio.
 public struct ConversationDataSource: Codable, Equatable, GoogleWKT._AnyPackable,

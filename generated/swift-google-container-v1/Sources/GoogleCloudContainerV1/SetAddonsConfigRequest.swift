@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// SetAddonsConfigRequest sets the addons associated with the cluster.
 public struct SetAddonsConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

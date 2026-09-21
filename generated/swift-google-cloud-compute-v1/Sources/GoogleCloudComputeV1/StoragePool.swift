@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if StoragePools
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a zonal storage pool resource.
   public struct StoragePool: Codable, Equatable, GoogleWKT._AnyPackable,

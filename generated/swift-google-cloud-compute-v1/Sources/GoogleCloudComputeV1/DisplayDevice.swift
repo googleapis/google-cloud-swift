@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A set of Display Device options
   public struct DisplayDevice: Codable, Equatable, GoogleWKT._AnyPackable,

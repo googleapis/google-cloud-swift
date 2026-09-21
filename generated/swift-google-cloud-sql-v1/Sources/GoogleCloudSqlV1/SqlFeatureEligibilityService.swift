@@ -19,8 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service to verify the eligibility of an instance for a given operation.
   ///
@@ -56,7 +55,7 @@
   extension Clients.SqlFeatureEligibilityServiceProtocol {
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable,

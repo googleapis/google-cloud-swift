@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AgentCard conveys key information about a remote agent.
 /// It is a trimmed version of the AgentCard defined in the A2A protocol

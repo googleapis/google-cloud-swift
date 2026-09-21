@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An [admission rule][google.cloud.binaryauthorization.v1.AdmissionRule]
 /// specifies either that all container images used in a pod creation request

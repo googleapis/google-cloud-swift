@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `BasicLevel` is an `AccessLevel` using a set of recommended features.
 public struct BasicLevel: Codable, Equatable, GoogleWKT._AnyPackable,

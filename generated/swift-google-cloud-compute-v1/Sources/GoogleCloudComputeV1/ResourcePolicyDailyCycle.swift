@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Time window specified for daily operations.
   public struct ResourcePolicyDailyCycle: Codable, Equatable, GoogleWKT._AnyPackable,

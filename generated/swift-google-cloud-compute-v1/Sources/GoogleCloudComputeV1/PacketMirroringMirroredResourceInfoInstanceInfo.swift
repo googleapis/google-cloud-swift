@@ -16,7 +16,7 @@
 
 #if PacketMirrorings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct PacketMirroringMirroredResourceInfoInstanceInfo: Codable, Equatable, GoogleWKT
       ._AnyPackable,

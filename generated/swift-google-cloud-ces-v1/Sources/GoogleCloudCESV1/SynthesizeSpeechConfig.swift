@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for how the agent response should be synthesized.
 public struct SynthesizeSpeechConfig: Codable, Equatable, GoogleWKT._AnyPackable,

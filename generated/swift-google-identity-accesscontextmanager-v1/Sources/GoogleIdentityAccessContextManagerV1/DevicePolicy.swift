@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIdentityAccessContextManagerType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIdentityAccessContextManagerType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `DevicePolicy` specifies device specific restrictions necessary to acquire a
 /// given access level. A `DevicePolicy` specifies requirements for requests from

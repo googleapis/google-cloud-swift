@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstantSnapshots || RegionInstantSnapshots
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a InstantSnapshot resource.
   ///

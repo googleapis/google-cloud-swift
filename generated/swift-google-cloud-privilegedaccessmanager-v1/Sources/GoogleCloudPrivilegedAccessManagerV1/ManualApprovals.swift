@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A manual approval workflow where users who are designated as approvers
 /// need to call the `ApproveGrant`/`DenyGrant` APIs for a grant. The workflow

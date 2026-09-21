@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import Foundation
-import Logging
-import GoogleAuth
+public import GoogleAuth
+public import Logging
 
 /// The configuration for a new client.
 ///

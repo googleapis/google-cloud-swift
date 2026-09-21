@@ -19,8 +19,6 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.ServicesClient()

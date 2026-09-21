@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudServiceHealthV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: ServiceHealthClient, projectId: String, locationId: String, eventId: String)
   async throws

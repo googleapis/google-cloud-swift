@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The configuration setting for Task Logs.
 public struct TaskLogsRetentionConfig: Codable, Equatable, GoogleWKT._AnyPackable,

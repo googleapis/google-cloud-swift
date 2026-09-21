@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Active learning data sampling config. For every active learning labeling
   /// iteration, it will select a batch of data based on the sampling strategy.

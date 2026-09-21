@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings for blue-green upgrade.
 public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,

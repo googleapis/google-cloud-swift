@@ -16,7 +16,6 @@
 
 import Foundation
 import GoogleLongRunning
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

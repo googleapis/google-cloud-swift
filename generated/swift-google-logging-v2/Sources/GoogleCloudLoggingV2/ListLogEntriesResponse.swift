@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Result returned from `ListLogEntries`.
 public struct ListLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

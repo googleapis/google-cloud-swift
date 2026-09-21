@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// For any cloud function based customer processing logic, customer's cloud
 /// function is expected to receive AppPlatformCloudFunctionRequest as request

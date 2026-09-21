@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The parameter specification for the cloud control.
 public struct ParameterSpec: Codable, Equatable, GoogleWKT._AnyPackable,

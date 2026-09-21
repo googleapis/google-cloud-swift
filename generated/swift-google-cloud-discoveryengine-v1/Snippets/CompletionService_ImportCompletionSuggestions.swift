@@ -20,8 +20,6 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: CompletionServiceClient) async throws {
     let poller = try await client.importCompletionSuggestions(

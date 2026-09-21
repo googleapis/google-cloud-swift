@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Report represents a point-in-time rendering of the ReportConfig results.
 public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,

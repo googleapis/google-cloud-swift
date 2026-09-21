@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MembershipBinding is a subresource of a Membership, representing
 /// what Fleet Scopes (or other, future Fleet resources) a Membership is bound

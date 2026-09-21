@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import struct AsyncHTTPClient.HTTPClientResponse
-import struct NIOCore.ByteBuffer
+@_spi(GoogleCloudInternal) public import AsyncHTTPClient
+@_spi(GoogleCloudInternal) public import NIOCore
 
 /// An asynchronous sequence of response body chunks.
 @_spi(GoogleCloudInternal) public struct _HTTPResponseBody: AsyncSequence, Sendable {

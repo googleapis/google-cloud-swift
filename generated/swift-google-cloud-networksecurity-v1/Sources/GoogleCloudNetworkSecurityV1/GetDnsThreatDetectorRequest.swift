@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The message sent to get a DnsThreatDetector.
 public struct GetDnsThreatDetectorRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a billing account that can be used to make a purchase.
 public struct BillingAccountPurchaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,

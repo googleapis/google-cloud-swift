@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes how a network resource should be initialized. Each network resource
 /// can either be imported from an existing Google Cloud resource or initialized

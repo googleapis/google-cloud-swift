@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Settings for an automatically-setup Private Service Connect consumer endpoint
   /// that is used to connect to a Cloud SQL instance.

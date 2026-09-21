@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about how the threat was discovered.
 public struct ThreatDiscovery: Codable, Equatable, GoogleWKT._AnyPackable,

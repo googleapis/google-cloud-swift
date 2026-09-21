@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// [RelativeDistinguishedName][google.cloud.security.privateca.v1.RelativeDistinguishedName]
 /// specifies a relative distinguished name which will be used to build a

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudContentWarehouseV1.RuleSetServiceClient()

@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Spec for pairwise summarization quality instance.
   public struct PairwiseSummarizationQualityInstance: Codable, Equatable, GoogleWKT._AnyPackable,

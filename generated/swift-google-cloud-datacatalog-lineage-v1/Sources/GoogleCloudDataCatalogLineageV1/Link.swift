@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Links represent the data flow between **source** (upstream)
 /// and **target** (downstream) assets in transformation pipelines.

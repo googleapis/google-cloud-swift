@@ -21,7 +21,6 @@ import GoogleCloudManagedKafkaSchemaRegistryV1
 import GoogleApi
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, schemaRegistryId: String, ) async throws {
   let client = try GoogleCloudManagedKafkaSchemaRegistryV1.ManagedSchemaRegistryClient()

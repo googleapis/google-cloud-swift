@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudResourceManagerV3.TagBindingsClient()

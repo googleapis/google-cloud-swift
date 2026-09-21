@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// NodeType defines the schema of a node type in the graph.
 public struct NodeType: Codable, Equatable, GoogleWKT._AnyPackable,

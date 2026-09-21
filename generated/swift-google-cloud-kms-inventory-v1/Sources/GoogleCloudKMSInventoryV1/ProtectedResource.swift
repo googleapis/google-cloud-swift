@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata about a resource protected by a Cloud KMS key.
 public struct ProtectedResource: Codable, Equatable, GoogleWKT._AnyPackable,

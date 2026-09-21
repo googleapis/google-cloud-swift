@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The RuleExecutionError resource represents an error generated from
 /// running/deploying a rule.

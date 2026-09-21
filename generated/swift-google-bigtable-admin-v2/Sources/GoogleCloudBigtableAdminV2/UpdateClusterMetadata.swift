@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metadata for the Operation returned by UpdateCluster.
 public struct UpdateClusterMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

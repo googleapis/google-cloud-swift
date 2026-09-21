@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if FirewallPolicies || NetworkFirewallPolicies || RegionNetworkFirewallPolicies
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Firewall Policy resource.
   public struct FirewallPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if ConversationalSearchService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message for
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]

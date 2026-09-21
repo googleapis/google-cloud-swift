@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A target site for the SiteSearchEngine.
   public struct TargetSite: Codable, Equatable, GoogleWKT._AnyPackable,

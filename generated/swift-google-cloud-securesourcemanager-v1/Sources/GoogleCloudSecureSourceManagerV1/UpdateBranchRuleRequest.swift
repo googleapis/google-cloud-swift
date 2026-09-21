@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateBranchRuleRequest is the request to update a branchRule.
 public struct UpdateBranchRuleRequest: Codable, Equatable, GoogleWKT._AnyPackable,

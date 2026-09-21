@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleGax
 import NIOCore
 
 /// Specifies a byte range for ranged reads.
-///
-/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
-///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
-///   clause in `switch` statements.
 public enum ReadObjectRange: Sendable, Hashable, Equatable {
   /// Read the entire object (default).
   case entire
@@ -274,9 +270,9 @@ public struct ReadObjectOptions: Sendable {
   public init() {}
 
   /// Builder pattern helper to modify configuration in place.
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
+  public func with(_ config: (inout Self) -> Void) -> Self {
     var copy = self
-    try config(&copy)
+    config(&copy)
     return copy
   }
 }
@@ -380,9 +376,9 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public init() {}
 
   /// Builder pattern helper to modify configuration in place.
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
+  public func with(_ config: (inout Self) -> Void) -> Self {
     var copy = self
-    try config(&copy)
+    config(&copy)
     return copy
   }
 }

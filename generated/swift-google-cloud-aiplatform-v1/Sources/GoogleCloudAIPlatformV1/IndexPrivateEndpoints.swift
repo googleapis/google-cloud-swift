@@ -16,7 +16,7 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// IndexPrivateEndpoints proto is used to provide paths for users to send
   /// requests via private endpoints (e.g. private service access, private service

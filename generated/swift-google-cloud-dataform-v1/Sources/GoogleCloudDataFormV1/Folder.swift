@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a Dataform Folder. This is a resource that is used to organize
 /// Files and other Folders and provide hierarchical access controls.

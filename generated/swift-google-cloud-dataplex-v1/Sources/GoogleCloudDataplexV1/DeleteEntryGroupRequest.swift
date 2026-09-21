@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Delete EntryGroup Request.
 public struct DeleteEntryGroupRequest: Codable, Equatable, GoogleWKT._AnyPackable,

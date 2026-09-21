@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains what resources are changing and how they are changing.
 public struct RecommendationContent: Codable, Equatable, GoogleWKT._AnyPackable,

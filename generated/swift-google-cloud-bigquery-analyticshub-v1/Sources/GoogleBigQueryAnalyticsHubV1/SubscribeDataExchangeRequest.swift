@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for subscribing to a Data Exchange.
 public struct SubscribeDataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,

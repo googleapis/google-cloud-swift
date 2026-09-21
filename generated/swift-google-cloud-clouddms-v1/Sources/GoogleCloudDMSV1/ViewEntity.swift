@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// View's parent is a schema.
 public struct ViewEntity: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message for listing TagValues for the specified TagKey.
 /// Resource name for TagKey, parent of the TagValues to be listed,

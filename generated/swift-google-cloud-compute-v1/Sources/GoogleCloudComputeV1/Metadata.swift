@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceTemplates || Instances || MachineImages || Projects || RegionInstanceTemplates || RegionInstances
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A metadata key/value entry.
   public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if TestCases
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Error info for importing a test.
   public struct TestCaseError: Codable, Equatable, GoogleWKT._AnyPackable,

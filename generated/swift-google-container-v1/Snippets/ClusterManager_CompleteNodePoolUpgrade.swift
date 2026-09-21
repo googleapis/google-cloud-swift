@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudContainerV1
-import GoogleWKT
 
 func sample(client: ClusterManagerClient) async throws {
   try await client.completeNodePoolUpgrade(

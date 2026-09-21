@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `ListMonitoredResourceDescriptors` response.
 public struct ListMonitoredResourceDescriptorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

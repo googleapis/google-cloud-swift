@@ -16,7 +16,7 @@
 
 #if Changelogs
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Changelogs represents a change made to a given agent.
   public struct Changelog: Codable, Equatable, GoogleWKT._AnyPackable,

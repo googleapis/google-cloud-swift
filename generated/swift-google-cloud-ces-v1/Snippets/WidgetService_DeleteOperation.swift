@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: WidgetServiceClient) async throws {
   try await client.deleteOperation(

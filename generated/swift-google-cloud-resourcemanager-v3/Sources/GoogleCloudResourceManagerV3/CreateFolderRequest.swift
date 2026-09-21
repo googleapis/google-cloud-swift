@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The CreateFolder request message.
 public struct CreateFolderRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a distinct capability or function that an agent can perform.
 public struct AgentSkill: Codable, Equatable, GoogleWKT._AnyPackable,

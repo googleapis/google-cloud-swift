@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The message containing the errors for a data table operation.
 public struct DataTableOperationErrors: Codable, Equatable, GoogleWKT._AnyPackable,

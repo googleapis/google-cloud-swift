@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A BackupRun resource.
   public struct BackupRun: Codable, Equatable, GoogleWKT._AnyPackable,

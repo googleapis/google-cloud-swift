@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// IAM policy binding resource.
 public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,

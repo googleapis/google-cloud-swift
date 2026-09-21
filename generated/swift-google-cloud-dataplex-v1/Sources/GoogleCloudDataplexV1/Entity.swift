@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents tables and fileset metadata contained within a zone.
 public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,

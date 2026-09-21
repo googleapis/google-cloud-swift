@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// To support the custom weighting across document schemas.
 public struct CustomWeightsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

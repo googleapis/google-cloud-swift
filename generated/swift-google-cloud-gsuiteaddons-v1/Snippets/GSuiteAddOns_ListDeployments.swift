@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudGSuiteAddOnsV1
-import GoogleWKT
 
 func sample(client: GSuiteAddOnsClient, parent: String) async throws {
   let items = try client.listDeployments(

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for creating a QaScorecardRevision.
 public struct CreateQaScorecardRevisionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

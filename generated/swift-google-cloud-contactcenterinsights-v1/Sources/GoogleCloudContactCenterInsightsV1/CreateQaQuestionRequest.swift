@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for creating a QaQuestion.
 public struct CreateQaQuestionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

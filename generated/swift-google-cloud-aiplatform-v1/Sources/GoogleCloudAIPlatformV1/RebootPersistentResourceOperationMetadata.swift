@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that perform reboot PersistentResource.
   public struct RebootPersistentResourceOperationMetadata: Codable, Equatable, GoogleWKT

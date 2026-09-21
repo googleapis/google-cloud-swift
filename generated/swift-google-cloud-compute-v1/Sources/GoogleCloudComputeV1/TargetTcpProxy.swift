@@ -16,7 +16,7 @@
 
 #if RegionTargetTcpProxies || TargetTcpProxies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Target TCP Proxy resource.
   ///

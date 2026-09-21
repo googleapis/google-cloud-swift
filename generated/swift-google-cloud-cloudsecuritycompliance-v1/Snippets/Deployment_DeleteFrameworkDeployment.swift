@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(
   client: DeploymentClient, organizationId: String, locationId: String,

@@ -16,6 +16,10 @@
 
 import PackageDescription
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("InternalImportsByDefault")
+]
+
 let package = Package(
   name: "GoogleCloudStorage",
   platforms: [
@@ -89,7 +93,8 @@ let package = Package(
         .product(name: "_NIOFileSystem", package: "swift-nio"),
         .product(name: "NIOHTTP1", package: "swift-nio"),
       ],
-      path: "Sources/GoogleCloudStorage"
+      path: "Sources/GoogleCloudStorage",
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "GoogleCloudStorageTests",
@@ -104,7 +109,8 @@ let package = Package(
         .product(name: "NIOHTTP1", package: "swift-nio"),
       ],
       path: "Tests",
-      exclude: ["IntegrationTests"]
+      exclude: ["IntegrationTests"],
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "GoogleCloudStorageIntegrationTests",
@@ -114,7 +120,8 @@ let package = Package(
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "NIOCore", package: "swift-nio"),
       ],
-      path: "Tests/IntegrationTests"
+      path: "Tests/IntegrationTests",
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "StorageControlProtos",

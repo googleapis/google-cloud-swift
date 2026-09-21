@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudOrchestrationAirflowServiceV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: ImageVersionsClient) async throws {
   let items = try client.listImageVersions(

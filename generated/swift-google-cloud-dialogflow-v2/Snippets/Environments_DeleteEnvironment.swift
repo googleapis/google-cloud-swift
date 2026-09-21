@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: EnvironmentsClient, projectId: String, environmentId: String) async throws {
     try await client.deleteEnvironment(

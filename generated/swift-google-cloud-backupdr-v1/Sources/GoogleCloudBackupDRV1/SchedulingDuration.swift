@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A SchedulingDuration represents a fixed-length span of time represented
 /// as a count of seconds and fractions of seconds at nanosecond

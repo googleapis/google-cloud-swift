@@ -16,7 +16,7 @@
 
 #if ReasoningEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an environment variable where the value is a secret in Cloud
   /// Secret Manager.

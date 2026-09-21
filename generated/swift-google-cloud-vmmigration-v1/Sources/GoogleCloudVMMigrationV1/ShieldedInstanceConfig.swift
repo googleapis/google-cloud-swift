@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Shielded instance configuration.
 public struct ShieldedInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

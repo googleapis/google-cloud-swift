@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Generator evaluation input config.
   public struct GeneratorEvaluationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

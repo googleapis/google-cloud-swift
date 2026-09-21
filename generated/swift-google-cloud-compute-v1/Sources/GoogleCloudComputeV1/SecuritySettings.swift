@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The authentication and authorization settings for a BackendService.
   public struct SecuritySettings: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies all documents on Cloud Storage with a common prefix.
 public struct GcsPrefix: Codable, Equatable, GoogleWKT._AnyPackable,

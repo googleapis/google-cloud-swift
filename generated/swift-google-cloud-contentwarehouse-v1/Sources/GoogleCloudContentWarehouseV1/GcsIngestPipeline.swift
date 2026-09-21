@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The configuration of the Cloud Storage Ingestion pipeline.
 public struct GcsIngestPipeline: Codable, Equatable, GoogleWKT._AnyPackable,

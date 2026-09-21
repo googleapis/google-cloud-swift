@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for response when you subscribe to a listing.
 public struct SubscribeListingResponse: Codable, Equatable, GoogleWKT._AnyPackable,

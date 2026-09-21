@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 @_spi(GoogleCloudInternal) import class GoogleWKT._ProtoJSONEncoder
 import struct AsyncHTTPClient.HTTPClientRequest
-import struct NIOCore.ByteBuffer
-import struct NIOHTTP1.HTTPHeaders
-import enum NIOHTTP1.HTTPMethod
 import struct Logging.Logger
+@_spi(GoogleCloudInternal) public import NIOCore
 import NIOFoundationCompat
+@_spi(GoogleCloudInternal) public import NIOHTTP1
 
 /// Represents the body of an HTTP request, encapsulating either `Foundation.Data`,
 /// `NIOCore.ByteBuffer`, or a custom body without premature conversion or copying.

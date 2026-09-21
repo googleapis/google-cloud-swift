@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for LookupDiscoveredService.
 public struct LookupDiscoveredServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains the name and datatype of a column.
   public struct Column: Codable, Equatable, GoogleWKT._AnyPackable,

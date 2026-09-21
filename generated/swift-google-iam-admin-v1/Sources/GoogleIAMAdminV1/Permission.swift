@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A permission which can be included by a role.
 public struct Permission: Codable, Equatable, GoogleWKT._AnyPackable,

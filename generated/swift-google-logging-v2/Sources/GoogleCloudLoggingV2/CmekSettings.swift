@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes the customer-managed encryption key (CMEK) settings associated with
 /// a project, folder, organization, billing account, or flexible resource.

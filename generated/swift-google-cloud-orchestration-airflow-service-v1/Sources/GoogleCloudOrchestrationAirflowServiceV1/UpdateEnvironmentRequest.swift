@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Update an environment.
 public struct UpdateEnvironmentRequest: Codable, Equatable, GoogleWKT._AnyPackable,

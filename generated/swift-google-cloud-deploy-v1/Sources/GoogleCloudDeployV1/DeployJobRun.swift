@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DeployJobRun contains information specific to a deploy `JobRun`.
 public struct DeployJobRun: Codable, Equatable, GoogleWKT._AnyPackable,

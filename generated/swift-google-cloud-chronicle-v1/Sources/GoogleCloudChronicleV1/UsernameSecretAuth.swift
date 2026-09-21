@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Info for username and secret based authentication.
 public struct UsernameSecretAuth: Codable, Equatable, GoogleWKT._AnyPackable,

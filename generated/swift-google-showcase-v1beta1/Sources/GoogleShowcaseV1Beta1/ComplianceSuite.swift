@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ComplianceSuite contains a set of requests that microgenerators should issue
 /// over REST to the Compliance service to test their gRPC-to-REST transcoding

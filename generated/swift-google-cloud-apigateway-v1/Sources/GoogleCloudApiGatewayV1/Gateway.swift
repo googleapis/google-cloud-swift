@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Gateway is an API-aware HTTP proxy. It performs API-Method and/or
 /// API-Consumer specific actions based on an API Config such as authentication,

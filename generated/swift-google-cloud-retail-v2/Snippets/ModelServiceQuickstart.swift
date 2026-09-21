@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(projectId: String, locationId: String, catalogId: String, ) async throws {

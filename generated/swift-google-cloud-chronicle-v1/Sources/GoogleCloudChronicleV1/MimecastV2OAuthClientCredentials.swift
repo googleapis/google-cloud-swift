@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// OAuth 2.0 client credentials grant. See https://tools.ietf.org/html/rfc6749.
 public struct MimecastV2OAuthClientCredentials: Codable, Equatable, GoogleWKT._AnyPackable,

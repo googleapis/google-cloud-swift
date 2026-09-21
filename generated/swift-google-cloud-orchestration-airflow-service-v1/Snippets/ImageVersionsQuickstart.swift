@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudOrchestrationAirflowServiceV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudOrchestrationAirflowServiceV1.ImageVersionsClient()

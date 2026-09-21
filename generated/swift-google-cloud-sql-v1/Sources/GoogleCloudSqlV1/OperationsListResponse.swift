@@ -16,8 +16,8 @@
 
 #if SqlOperationsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Operations list response.
   public struct OperationsListResponse: Codable, Equatable, GoogleWKT._AnyPackable,

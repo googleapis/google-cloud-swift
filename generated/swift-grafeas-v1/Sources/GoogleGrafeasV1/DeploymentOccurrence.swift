@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The period during which some deployable was active in a runtime.
 public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,

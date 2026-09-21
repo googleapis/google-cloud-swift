@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to schedule transfer runs for a time range.
 public struct ScheduleTransferRunsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

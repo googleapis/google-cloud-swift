@@ -16,7 +16,7 @@
 
 #if NodeGroups || NodeTemplates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct ServerBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

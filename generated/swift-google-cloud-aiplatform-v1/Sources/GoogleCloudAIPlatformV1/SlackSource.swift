@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The Slack source for the ImportRagFilesRequest.
   public struct SlackSource: Codable, Equatable, GoogleWKT._AnyPackable,

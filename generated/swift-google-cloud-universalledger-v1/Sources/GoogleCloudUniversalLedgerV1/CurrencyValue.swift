@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents an amount of currency (i.e. money). Note that the denominated
 /// currency is not included in this message. The relevant currency is decided by

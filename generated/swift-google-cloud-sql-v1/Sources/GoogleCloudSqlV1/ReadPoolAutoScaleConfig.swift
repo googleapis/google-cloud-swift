@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The read pool auto-scale configuration.
   public struct ReadPoolAutoScaleConfig: Codable, Equatable, GoogleWKT._AnyPackable,

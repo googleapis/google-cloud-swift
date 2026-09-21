@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for upgrading a notebook instance
 public struct UpgradeInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

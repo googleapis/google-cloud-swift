@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudVectorSearchV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: DataObjectSearchServiceClient) async throws {
   try await client.deleteOperation(

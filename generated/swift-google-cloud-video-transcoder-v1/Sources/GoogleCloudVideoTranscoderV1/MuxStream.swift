@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Multiplexing settings for output stream.
 public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,

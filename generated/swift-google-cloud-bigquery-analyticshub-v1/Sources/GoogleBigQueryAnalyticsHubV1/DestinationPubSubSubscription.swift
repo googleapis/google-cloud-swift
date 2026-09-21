@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines the destination Pub/Sub subscription.
 public struct DestinationPubSubSubscription: Codable, Equatable, GoogleWKT._AnyPackable,

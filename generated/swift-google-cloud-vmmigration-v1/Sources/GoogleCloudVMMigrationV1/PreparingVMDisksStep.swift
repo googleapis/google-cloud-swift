@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// PreparingVMDisksStep contains specific step details.
 public struct PreparingVMDisksStep: Codable, Equatable, GoogleWKT._AnyPackable,

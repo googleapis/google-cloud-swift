@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Verification information for target sites in advanced site search.
   public struct SiteVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackable,

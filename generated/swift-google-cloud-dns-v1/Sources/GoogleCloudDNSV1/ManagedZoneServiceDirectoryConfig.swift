@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains information about Service Directory-backed zones.
 public struct ManagedZoneServiceDirectoryConfig: Codable, Equatable, GoogleWKT._AnyPackable,

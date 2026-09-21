@@ -16,9 +16,9 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleRpc
-  import GoogleType
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  public import GoogleType
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// FeatureViewSync is a representation of sync operation which copies data from
   /// data source to Feature View in Online Store.

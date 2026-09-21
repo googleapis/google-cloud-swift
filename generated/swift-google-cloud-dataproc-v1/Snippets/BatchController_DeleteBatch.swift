@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDataprocV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: BatchControllerClient, projectId: String, locationId: String, batchId: String)
   async throws

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents an operation contained in an API version in the API Hub.
 /// An operation is added/updated/deleted in an API version when a new spec is

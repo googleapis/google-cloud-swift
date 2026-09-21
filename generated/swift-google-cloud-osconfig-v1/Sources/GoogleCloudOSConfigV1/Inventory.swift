@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// This API resource represents the available inventory data for a
 /// Compute Engine virtual machine (VM) instance at a given point in time.

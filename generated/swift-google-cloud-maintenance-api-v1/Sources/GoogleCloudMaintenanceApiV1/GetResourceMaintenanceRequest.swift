@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request structure for the GetResourceMaintenance method.
 public struct GetResourceMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

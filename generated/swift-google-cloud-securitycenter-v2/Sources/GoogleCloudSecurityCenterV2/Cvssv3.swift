@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Common Vulnerability Scoring System version 3.
 public struct Cvssv3: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response for the list request.
   public struct WireGroupList: Codable, Equatable, GoogleWKT._AnyPackable,

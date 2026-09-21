@@ -21,8 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: EncryptionSpecServiceClient) async throws {
     let poller = try await client.initializeEncryptionSpec(

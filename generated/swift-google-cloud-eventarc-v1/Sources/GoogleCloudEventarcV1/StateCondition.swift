@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A condition that is part of the trigger state computation.
 public struct StateCondition: Codable, Equatable, GoogleWKT._AnyPackable,

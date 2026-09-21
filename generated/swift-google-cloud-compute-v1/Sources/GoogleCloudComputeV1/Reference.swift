@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a reference to a resource.
   public struct Reference: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if PublicDelegatedPrefixes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension PublicDelegatedPrefixesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.publicDelegatedPrefixes.aggregatedList] method.

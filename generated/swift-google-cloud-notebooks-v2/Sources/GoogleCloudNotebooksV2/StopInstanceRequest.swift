@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for stopping a notebook instance
 public struct StopInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

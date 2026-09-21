@@ -21,7 +21,6 @@ import GoogleCloudBeyondCorpAppConnectionsV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: AppConnectionsServiceClient, projectId: String, locationId: String) async throws

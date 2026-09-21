@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AWS IAM Role Auth for SQS V2.
 public struct SQSV2AwsIamRoleAuth: Codable, Equatable, GoogleWKT._AnyPackable,

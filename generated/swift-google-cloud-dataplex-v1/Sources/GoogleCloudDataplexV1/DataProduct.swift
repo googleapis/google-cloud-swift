@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A data product is a curated collection of data assets, packaged to address
 /// specific use cases. It's a way to manage and share data in a more organized,

@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleWKT
 
 func sample(client: CommentServiceClient, organizationId: String, caseId: String) async throws {
   let response = try await client.createComment(

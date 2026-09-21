@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains various matching options for values for a GCP resource field.
 public struct ValueMatcher: Codable, Equatable, GoogleWKT._AnyPackable,

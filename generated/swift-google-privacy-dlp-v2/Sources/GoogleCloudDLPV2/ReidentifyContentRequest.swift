@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to re-identify an item.
 public struct ReidentifyContentRequest: Codable, Equatable, GoogleWKT._AnyPackable,

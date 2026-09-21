@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request to delete a analysis rule.
 public struct DeleteAnalysisRuleRequest: Codable, Equatable, GoogleWKT._AnyPackable,

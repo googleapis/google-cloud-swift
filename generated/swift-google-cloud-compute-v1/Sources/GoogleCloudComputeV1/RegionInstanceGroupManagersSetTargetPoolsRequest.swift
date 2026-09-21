@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if RegionInstanceGroupManagers
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RegionInstanceGroupManagersSetTargetPoolsRequest: Codable, Equatable, GoogleWKT
       ._AnyPackable,

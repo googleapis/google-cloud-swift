@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines the Human Agent Assist to connect to a conversation.
   public struct HumanAgentAssistantConfig: Codable, Equatable, GoogleWKT._AnyPackable,

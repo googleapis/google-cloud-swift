@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configurations for a Map property.
 public struct MapTypeOptions: Codable, Equatable, GoogleWKT._AnyPackable,

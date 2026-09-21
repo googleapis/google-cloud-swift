@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIdentityAccessContextManagerType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIdentityAccessContextManagerType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A restriction on the OS type and version of devices making requests.
 public struct OsConstraint: Codable, Equatable, GoogleWKT._AnyPackable,

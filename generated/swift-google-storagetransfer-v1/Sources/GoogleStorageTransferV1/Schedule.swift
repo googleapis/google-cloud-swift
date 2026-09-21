@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Transfers can be scheduled to recur or to run just once.
 public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,

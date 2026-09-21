@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CycleStep holds information about a step progress.
 public struct CycleStep: Codable, Equatable, GoogleWKT._AnyPackable,

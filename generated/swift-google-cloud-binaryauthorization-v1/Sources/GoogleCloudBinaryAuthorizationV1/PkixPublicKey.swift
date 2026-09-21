@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A public key in the PkixPublicKey
 /// [format](https://tools.ietf.org/html/rfc5280#section-4.1.2.7). Public keys of

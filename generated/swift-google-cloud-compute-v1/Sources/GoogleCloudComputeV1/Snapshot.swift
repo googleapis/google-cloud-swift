@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Disks || RegionDisks || RegionSnapshots || Snapshots
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Persistent Disk Snapshot resource.
   ///

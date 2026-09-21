@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Workspace Chrome OS settings.
 public struct WorkspaceChromeOSSettings: Codable, Equatable, GoogleWKT._AnyPackable,

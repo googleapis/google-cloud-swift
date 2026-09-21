@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GKE node pools that Dataproc workloads run on.
 public struct GkeNodePoolTarget: Codable, Equatable, GoogleWKT._AnyPackable,

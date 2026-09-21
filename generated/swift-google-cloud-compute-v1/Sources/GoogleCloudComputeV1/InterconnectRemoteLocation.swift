@@ -16,7 +16,7 @@
 
 #if InterconnectRemoteLocations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Cross-Cloud Interconnect Remote Location resource.
   ///

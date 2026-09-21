@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata describing the Model's input and output for explanation.
   public struct ExplanationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

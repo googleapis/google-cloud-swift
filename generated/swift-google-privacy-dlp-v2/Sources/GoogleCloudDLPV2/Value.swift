@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Set of primitive values supported by the system.
 /// Note that for the purposes of inspection or transformation, the number

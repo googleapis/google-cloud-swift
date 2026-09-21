@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// SQL Server Entra ID configuration.
   public struct SqlServerEntraIdConfig: Codable, Equatable, GoogleWKT._AnyPackable,

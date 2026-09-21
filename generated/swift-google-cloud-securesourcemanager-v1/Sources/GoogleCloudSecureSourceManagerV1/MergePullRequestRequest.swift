@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MergePullRequestRequest is the request to merge a pull request.
 public struct MergePullRequestRequest: Codable, Equatable, GoogleWKT._AnyPackable,

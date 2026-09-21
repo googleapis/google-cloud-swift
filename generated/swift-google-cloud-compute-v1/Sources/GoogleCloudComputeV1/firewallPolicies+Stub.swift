@@ -16,7 +16,6 @@
 
 #if FirewallPolicies
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

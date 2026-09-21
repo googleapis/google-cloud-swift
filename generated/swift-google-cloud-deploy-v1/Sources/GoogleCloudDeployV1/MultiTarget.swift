@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Information specifying a multiTarget.
 public struct MultiTarget: Codable, Equatable, GoogleWKT._AnyPackable,

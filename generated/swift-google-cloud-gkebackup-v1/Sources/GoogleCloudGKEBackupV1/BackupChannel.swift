@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A BackupChannel imposes constraints on where clusters can be backed up.
 /// The BackupChannel should be in the same project and region

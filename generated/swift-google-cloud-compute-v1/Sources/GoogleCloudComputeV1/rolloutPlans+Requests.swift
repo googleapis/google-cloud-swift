@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RolloutPlansClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.rolloutPlans.delete] method.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOrgPolicyV2
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudOrgPolicyV2
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The proposed changes to OrgPolicy.
 public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,

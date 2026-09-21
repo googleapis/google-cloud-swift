@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to create a new occurrence.
 public struct CreateOccurrenceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

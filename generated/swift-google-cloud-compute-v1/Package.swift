@@ -757,6 +757,9 @@ let package = Package(
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

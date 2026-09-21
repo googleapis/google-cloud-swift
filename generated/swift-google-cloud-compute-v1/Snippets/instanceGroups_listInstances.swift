@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: InstanceGroupsClient) async throws {
     let items = try client.listInstances(

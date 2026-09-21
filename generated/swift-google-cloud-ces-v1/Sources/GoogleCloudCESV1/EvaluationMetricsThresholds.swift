@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Threshold settings for metrics in an Evaluation.
 public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPackable,

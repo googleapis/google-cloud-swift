@@ -19,7 +19,6 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: FirewallClient) async throws {
   let response = try await client.getIngressRule(

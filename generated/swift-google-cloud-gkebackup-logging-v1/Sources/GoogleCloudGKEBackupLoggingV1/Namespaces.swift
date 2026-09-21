@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Namespaces, list of namespaces
 public struct Namespaces: Codable, Equatable, GoogleWKT._AnyPackable,

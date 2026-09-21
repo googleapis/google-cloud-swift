@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The status of human review on a processed document.
 public struct HumanReviewStatus: Codable, Equatable, GoogleWKT._AnyPackable,

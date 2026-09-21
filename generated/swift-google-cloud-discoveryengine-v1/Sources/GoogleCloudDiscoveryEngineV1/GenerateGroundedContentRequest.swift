@@ -16,7 +16,7 @@
 
 #if GroundedGenerationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Top-level message sent by the client for the `GenerateGroundedContent`
   /// method.

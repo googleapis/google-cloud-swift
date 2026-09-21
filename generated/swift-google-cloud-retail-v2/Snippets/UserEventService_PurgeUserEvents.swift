@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudRetailV2
 import GoogleApi
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: UserEventServiceClient) async throws {
   let poller = try await client.purgeUserEvents(

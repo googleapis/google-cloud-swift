@@ -16,7 +16,7 @@
 
 #if MachineImages
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// DEPRECATED: Please use compute#savedDisk instead.
   /// An instance-attached disk resource.

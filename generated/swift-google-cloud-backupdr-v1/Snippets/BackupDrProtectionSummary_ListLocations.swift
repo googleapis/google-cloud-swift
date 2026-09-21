@@ -21,7 +21,6 @@ import GoogleCloudBackupDRV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: BackupDrProtectionSummaryClient) async throws {
   let items = try client.listLocations(

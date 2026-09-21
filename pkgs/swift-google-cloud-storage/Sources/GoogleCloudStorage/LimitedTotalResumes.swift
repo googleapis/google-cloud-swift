@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 
 /// A ``ResumePolicy`` decorator that caps the total number of resume attempts across an entire operation.
 public struct LimitedTotalResumes<P: Sendable>: Sendable {

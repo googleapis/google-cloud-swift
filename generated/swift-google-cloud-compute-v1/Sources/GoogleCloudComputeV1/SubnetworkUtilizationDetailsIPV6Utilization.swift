@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The IPV6 utilization of a single IP range.
   public struct SubnetworkUtilizationDetailsIPV6Utilization: Codable, Equatable, GoogleWKT

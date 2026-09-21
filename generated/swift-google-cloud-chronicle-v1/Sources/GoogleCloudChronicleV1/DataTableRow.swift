@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DataTableRow represents a single row in a data table.
 public struct DataTableRow: Codable, Equatable, GoogleWKT._AnyPackable,

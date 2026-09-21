@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration of gVNIC feature.
 public struct VirtualNIC: Codable, Equatable, GoogleWKT._AnyPackable,

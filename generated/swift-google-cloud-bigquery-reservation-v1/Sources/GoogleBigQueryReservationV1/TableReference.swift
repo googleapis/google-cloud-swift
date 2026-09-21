@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Fully qualified reference to BigQuery table.
 /// Internally stored as google.cloud.bi.v1.BqTableReference.

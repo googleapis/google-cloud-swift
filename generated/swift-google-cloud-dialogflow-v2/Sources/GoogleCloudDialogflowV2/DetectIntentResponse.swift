@@ -15,9 +15,9 @@
 // limitations under the License.
 
 #if Participants || Sessions
-  import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The message returned from the [DetectIntent][] method.
   public struct DetectIntentResponse: Codable, Equatable, GoogleWKT._AnyPackable,

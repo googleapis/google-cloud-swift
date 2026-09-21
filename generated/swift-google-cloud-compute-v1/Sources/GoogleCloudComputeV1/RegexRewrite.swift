@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The spec for modifying the path using a regular expression.
   public struct RegexRewrite: Codable, Equatable, GoogleWKT._AnyPackable,

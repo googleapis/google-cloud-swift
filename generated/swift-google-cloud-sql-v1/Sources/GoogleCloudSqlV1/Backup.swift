@@ -16,8 +16,8 @@
 
 #if SqlBackupsService
   import Foundation
-  import GoogleType
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleType
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A backup resource.
   public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,

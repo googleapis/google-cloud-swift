@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudAlloyDBV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: AlloyDBCSQLAdminClient) async throws {
   let items = try client.listOperations(

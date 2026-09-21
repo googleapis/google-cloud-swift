@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Preferences concerning Sole Tenancy nodes and VMs.
 public struct SoleTenancyPreferences: Codable, Equatable, GoogleWKT._AnyPackable,

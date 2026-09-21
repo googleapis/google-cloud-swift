@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments || InterconnectRemoteLocations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange: Codable, Equatable,
     GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GoogleCloudStorageV2Settings is the settings proto for Omniflow Google Cloud
 /// Storage feeds.

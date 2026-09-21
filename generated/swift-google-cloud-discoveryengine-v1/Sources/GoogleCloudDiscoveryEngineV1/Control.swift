@@ -16,7 +16,7 @@
 
 #if ControlService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines a conditioned behavior to employ during serving.
   /// Must be attached to a

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// OS policy assignment is an API resource that is used to
 /// apply a set of OS policies to a dynamically targeted group of Compute Engine

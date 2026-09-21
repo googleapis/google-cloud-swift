@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A value of a field, including its frequency.
 public struct ValueFrequency: Codable, Equatable, GoogleWKT._AnyPackable,

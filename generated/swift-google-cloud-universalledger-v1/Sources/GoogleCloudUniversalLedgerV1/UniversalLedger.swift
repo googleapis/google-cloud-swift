@@ -14,12 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// A service for interacting with the Google Cloud Universal Ledger.
 /// Endpoints are pre-created and managed by Google and cannot

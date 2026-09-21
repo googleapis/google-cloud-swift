@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: PipelineServiceClient) async throws {
   let poller = try await client.runPipeline(

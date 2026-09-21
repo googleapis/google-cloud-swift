@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a user facing message for a particular data transfer run.
 public struct TransferMessage: Codable, Equatable, GoogleWKT._AnyPackable,

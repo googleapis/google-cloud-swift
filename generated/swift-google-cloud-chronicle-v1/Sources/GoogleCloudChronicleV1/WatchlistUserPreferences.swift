@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A collection of user preferences for watchlist UI configuration.
 public struct WatchlistUserPreferences: Codable, Equatable, GoogleWKT._AnyPackable,

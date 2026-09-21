@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample() async throws {
     let client = try GoogleCloudDialogflowCXV3.SessionsClient()

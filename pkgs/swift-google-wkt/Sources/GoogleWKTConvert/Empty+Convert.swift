@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleWKT
-import SwiftProtobuf
+public import GoogleWKT
+public import SwiftProtobuf
 
 extension GoogleWKT.Empty {
   public init(proto: SwiftProtobuf.Google_Protobuf_Empty) throws {

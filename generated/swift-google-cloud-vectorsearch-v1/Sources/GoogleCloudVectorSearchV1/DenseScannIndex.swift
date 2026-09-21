@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Dense ScaNN index configuration.
 public struct DenseScannIndex: Codable, Equatable, GoogleWKT._AnyPackable,

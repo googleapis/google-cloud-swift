@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to validate an import job.
 public struct ValidateImportJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A type schema object that's specified inline.
   public struct InlineSchema: Codable, Equatable, GoogleWKT._AnyPackable,

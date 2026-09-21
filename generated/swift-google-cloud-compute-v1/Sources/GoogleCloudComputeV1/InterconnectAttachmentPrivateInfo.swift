@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Information for an interconnect attachment when this belongs to an
   /// interconnect of type DEDICATED.

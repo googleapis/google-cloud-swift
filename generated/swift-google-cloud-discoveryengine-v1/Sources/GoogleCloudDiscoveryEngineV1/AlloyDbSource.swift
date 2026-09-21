@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// AlloyDB source import data from.
   public struct AlloyDbSource: Codable, Equatable, GoogleWKT._AnyPackable,

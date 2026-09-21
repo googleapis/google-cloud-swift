@@ -19,8 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service to manage SSL certs for Cloud SQL instances.
   ///
@@ -172,7 +171,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable,

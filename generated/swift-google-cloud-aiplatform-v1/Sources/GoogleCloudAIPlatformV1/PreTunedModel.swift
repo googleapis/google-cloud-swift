@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A pre-tuned model for continuous tuning.
   public struct PreTunedModel: Codable, Equatable, GoogleWKT._AnyPackable,

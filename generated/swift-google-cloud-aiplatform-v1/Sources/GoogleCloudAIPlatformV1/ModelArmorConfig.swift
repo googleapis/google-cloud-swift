@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration for Model Armor integrations of prompt and responses.
   public struct ModelArmorConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A YARN application created by a job. Application information is a subset of
 /// <code>org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto</code>.

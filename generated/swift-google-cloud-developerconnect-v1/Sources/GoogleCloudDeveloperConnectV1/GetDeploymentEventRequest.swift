@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for getting a DeploymentEvent.
 public struct GetDeploymentEventRequest: Codable, Equatable, GoogleWKT._AnyPackable,

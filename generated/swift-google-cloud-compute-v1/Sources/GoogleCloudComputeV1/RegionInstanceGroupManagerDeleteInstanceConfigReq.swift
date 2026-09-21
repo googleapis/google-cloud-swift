@@ -16,7 +16,7 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// RegionInstanceGroupManagers.deletePerInstanceConfigs
   public struct RegionInstanceGroupManagerDeleteInstanceConfigReq: Codable, Equatable, GoogleWKT

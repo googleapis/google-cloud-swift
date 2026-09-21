@@ -105,7 +105,7 @@ import Testing
 }
 
 extension ExponentialBackoffError: Equatable {
-  public static func == (lhs: ExponentialBackoffError, rhs: ExponentialBackoffError) -> Bool {
+  static func == (lhs: ExponentialBackoffError, rhs: ExponentialBackoffError) -> Bool {
     switch (lhs, rhs) {
     case (.invalidScalingFactor(let l), .invalidScalingFactor(let r)): return l == r
     case (.invalidInitialDelay(let l), .invalidInitialDelay(let r)): return l == r

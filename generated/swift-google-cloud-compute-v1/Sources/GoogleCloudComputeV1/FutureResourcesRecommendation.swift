@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Recommendation for single resources specification, to be created in the
   /// future.

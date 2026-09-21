@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UndeployIndex response once the operation is done.
 public struct UndeployIndexResponse: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response for creating notes in batch.
 public struct BatchCreateNotesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

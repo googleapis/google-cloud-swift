@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Mandiant IOC settings.
 public struct MandiantIoCSettings: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Platform specific details for Physical Machines.
 public struct PhysicalPlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,

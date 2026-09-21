@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A span is a unit of work or a single operation during the request processing.
 public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,

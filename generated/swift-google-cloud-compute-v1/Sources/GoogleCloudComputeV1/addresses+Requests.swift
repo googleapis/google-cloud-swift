@@ -16,7 +16,7 @@
 
 #if Addresses
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension AddressesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.addresses.aggregatedList] method.

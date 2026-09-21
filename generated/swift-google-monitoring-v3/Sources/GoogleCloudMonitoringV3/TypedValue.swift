@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A single strongly-typed value.
 public struct TypedValue: Codable, Equatable, GoogleWKT._AnyPackable,

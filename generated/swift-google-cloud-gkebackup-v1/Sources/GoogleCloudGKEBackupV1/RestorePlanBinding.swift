@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A RestorePlanBinding binds a RestorePlan with a RestoreChannel.
 /// This resource is created automatically when a RestorePlan is created using a

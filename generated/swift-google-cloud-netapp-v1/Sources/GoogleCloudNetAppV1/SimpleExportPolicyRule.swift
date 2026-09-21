@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An export policy rule describing various export options.
 public struct SimpleExportPolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,

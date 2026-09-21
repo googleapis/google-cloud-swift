@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GetBackupVaultRequest gets the state of a backupVault.
 public struct GetBackupVaultRequest: Codable, Equatable, GoogleWKT._AnyPackable,

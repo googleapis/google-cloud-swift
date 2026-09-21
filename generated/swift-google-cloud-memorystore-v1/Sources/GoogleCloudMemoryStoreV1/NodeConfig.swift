@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents configuration for nodes of the instance.
 public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,

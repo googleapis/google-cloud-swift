@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings required by Feeds of Custom API (Codeless).
 /// Supports fetching data from third-party APIs with configurable pagination,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Identities of a user-type subject for Attached clusters.
 public struct AttachedClusterUser: Codable, Equatable, GoogleWKT._AnyPackable,

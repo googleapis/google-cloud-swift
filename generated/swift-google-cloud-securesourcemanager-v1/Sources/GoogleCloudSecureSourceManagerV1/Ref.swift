@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Ref represents a git reference within a repository.
 public struct Ref: Codable, Equatable, GoogleWKT._AnyPackable,

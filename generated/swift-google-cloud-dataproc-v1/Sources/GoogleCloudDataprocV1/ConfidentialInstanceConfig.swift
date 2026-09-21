@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Confidential Instance Config for clusters using [Confidential
 /// VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs)

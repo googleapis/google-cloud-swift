@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if BackendBuckets || BackendServices || Images || InstanceTemplates || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkFirewallPolicies || Snapshots
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct GlobalSetPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

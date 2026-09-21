@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Glossary represents a collection of GlossaryCategories and GlossaryTerms
 /// defined by the user. Glossary is a top level resource and is the Google Cloud

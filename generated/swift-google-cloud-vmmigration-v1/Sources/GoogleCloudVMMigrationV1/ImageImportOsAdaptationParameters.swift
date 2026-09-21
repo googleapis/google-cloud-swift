@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Parameters affecting the OS adaptation process.
 public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._AnyPackable,

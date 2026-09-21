@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines the metadata for a schema property.
 public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,

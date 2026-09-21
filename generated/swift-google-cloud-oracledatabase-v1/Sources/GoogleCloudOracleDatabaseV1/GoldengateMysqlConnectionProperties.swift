@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Properties of GoldengateMysqlConnection.
 public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleWKT._AnyPackable,

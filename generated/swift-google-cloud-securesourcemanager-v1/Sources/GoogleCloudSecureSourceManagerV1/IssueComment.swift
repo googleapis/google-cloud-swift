@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// IssueComment represents a comment on an issue.
 public struct IssueComment: Codable, Equatable, GoogleWKT._AnyPackable,

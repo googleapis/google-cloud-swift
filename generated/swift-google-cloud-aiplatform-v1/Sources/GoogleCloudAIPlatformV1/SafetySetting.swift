@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Safety settings.
   public struct SafetySetting: Codable, Equatable, GoogleWKT._AnyPackable,

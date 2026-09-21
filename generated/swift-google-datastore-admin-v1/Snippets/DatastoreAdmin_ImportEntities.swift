@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: DatastoreAdminClient) async throws {
   let poller = try await client.importEntities(

@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A routing configuration attached to a network resource. The message
   /// includes the list of routers associated with the network, and a flag

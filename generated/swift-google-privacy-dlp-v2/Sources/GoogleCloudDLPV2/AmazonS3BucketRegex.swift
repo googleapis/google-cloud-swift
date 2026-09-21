@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Amazon S3 bucket regex.
 public struct AmazonS3BucketRegex: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource that represents a location with full geographic information.
 public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,

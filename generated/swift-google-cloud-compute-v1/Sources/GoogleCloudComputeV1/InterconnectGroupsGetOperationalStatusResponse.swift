@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response for the InterconnectGroupsGetOperationalStatusResponse.
   public struct InterconnectGroupsGetOperationalStatusResponse: Codable, Equatable, GoogleWKT

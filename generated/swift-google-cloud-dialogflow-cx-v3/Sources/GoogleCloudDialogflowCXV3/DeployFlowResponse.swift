@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The response message for
   /// [Environments.DeployFlow][google.cloud.dialogflow.cx.v3.Environments.DeployFlow].

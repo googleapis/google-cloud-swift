@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing the Stream object. The Stream and the Event resources are
 /// many to many; i.e., each Stream resource can associate to many Event

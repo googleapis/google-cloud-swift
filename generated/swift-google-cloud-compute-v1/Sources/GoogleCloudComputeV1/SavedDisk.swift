@@ -16,7 +16,7 @@
 
 #if MachineImages
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An instance-attached disk resource.
   public struct SavedDisk: Codable, Equatable, GoogleWKT._AnyPackable,

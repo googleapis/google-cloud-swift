@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// NetworkTierConfig contains network tier information.
 public struct NetworkTierConfig: Codable, Equatable, GoogleWKT._AnyPackable,

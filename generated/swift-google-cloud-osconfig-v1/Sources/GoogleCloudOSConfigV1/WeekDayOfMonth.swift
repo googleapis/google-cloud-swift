@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents one week day in a month. An example is "the 4th Sunday".
 public struct WeekDayOfMonth: Codable, Equatable, GoogleWKT._AnyPackable,

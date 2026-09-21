@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The SSH public key information associated with a Google account.
 public struct SshPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,

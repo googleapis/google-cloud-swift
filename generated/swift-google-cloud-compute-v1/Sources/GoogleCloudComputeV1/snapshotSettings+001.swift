@@ -19,8 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for the `snapshotSettings` resource.
   ///
@@ -217,7 +216,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable,

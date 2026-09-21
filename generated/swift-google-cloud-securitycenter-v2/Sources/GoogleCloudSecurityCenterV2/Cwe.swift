@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CWE stands for Common Weakness Enumeration. Information about this weakness,
 /// as described by [CWE](https://cwe.mitre.org/).

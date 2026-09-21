@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Firestore source import data from.
   public struct FirestoreSource: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,9 +15,9 @@
 // limitations under the License.
 
 #if Documents
-  import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A knowledge document to be used by a
   /// [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The message for deleting a DnsThreatDetector.
 public struct DeleteDnsThreatDetectorRequest: Codable, Equatable, GoogleWKT._AnyPackable,

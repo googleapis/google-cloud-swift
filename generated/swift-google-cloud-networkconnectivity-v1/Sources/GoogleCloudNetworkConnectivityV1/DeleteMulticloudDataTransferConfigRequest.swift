@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message to delete a `MulticloudDataTransferConfig` resource.
 public struct DeleteMulticloudDataTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

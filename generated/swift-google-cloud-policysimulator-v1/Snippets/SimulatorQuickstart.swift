@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudPolicySimulatorV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, replayId: String, ) async throws {
   let client = try GoogleCloudPolicySimulatorV1.SimulatorClient()

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A dataObject resource in Vector Search.
 public struct DataObject: Codable, Equatable, GoogleWKT._AnyPackable,

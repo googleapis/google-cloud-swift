@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A service account that acts as an identity.
 public struct ServiceAccount: Codable, Equatable, GoogleWKT._AnyPackable,

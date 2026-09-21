@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines what action to take for a specific severity match.
 public struct SeverityOverride: Codable, Equatable, GoogleWKT._AnyPackable,

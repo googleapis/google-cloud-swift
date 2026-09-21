@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The scheduling policy controls how a reservation's resources are distributed.
 public struct SchedulingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

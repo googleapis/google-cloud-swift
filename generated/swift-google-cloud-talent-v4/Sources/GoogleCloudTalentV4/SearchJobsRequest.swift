@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The Request body of the `SearchJobs` call.
 public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

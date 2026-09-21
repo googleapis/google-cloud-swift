@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a geographical location for a given access.
 public struct Geolocation: Codable, Equatable, GoogleWKT._AnyPackable,

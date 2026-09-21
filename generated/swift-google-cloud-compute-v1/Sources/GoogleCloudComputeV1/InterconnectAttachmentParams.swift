@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional interconnect attachment parameters.
   public struct InterconnectAttachmentParams: Codable, Equatable, GoogleWKT._AnyPackable,

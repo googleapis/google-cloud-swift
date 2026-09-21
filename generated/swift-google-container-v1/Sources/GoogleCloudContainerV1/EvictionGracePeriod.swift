@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Eviction grace periods are grace periods for each eviction signal.
 public struct EvictionGracePeriod: Codable, Equatable, GoogleWKT._AnyPackable,

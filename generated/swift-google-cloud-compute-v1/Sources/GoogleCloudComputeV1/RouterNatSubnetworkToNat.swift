@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines the IP ranges that want to use NAT for a subnetwork.
   public struct RouterNatSubnetworkToNat: Codable, Equatable, GoogleWKT._AnyPackable,

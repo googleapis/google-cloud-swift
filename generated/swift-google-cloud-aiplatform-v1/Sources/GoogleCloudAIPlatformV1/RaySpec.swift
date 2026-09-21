@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration information for the Ray cluster.
   /// For experimental launch, Ray cluster creation and Persistent

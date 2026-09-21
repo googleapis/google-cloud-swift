@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Error message of a verification Migration job.
 public struct MigrationJobVerificationError: Codable, Equatable, GoogleWKT._AnyPackable,

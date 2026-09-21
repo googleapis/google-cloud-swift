@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Payload associated with Business Glossary related log events.
 public struct BusinessGlossaryEvent: Codable, Equatable, GoogleWKT._AnyPackable,

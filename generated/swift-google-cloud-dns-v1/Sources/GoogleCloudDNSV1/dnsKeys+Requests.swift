@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 extension DnsKeysClient {
   /// Synthetic request message for the [get()][.dnsKeys.get] method.

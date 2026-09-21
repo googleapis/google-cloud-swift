@@ -16,7 +16,7 @@
 
 #if CmekConfigService || DataStoreService || IdentityMappingStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configurations used to enable CMEK data encryption with Cloud KMS keys.
   public struct CmekConfig: Codable, Equatable, GoogleWKT._AnyPackable,

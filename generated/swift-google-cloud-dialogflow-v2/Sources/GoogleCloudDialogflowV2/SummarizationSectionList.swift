@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// List of summarization sections.
   public struct SummarizationSectionList: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource that aggregates the validation errors found in an import job file.
 public struct FileValidationReport: Codable, Equatable, GoogleWKT._AnyPackable,

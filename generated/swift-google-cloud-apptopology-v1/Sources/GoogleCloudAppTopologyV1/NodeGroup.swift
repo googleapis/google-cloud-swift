@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// NodeGroup represents a dynamic collection of nodes that satisfy specific
 /// criteria. A node is considered part of this group if it matches the defined

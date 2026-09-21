@@ -19,7 +19,6 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: AuthorizedCertificatesClient) async throws {
   try await client.deleteAuthorizedCertificate(

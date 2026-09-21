@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringDashboardV1
-import GoogleWKT
 
 func sample(client: DashboardsServiceClient, projectId: String, dashboardId: String) async throws {
   let response = try await client.getDashboard(

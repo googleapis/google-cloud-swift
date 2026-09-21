@@ -16,7 +16,7 @@
 
 #if FutureReservations || NodeGroups || RegionCommitments || ReservationSlots || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The share setting for reservations and sole tenancy node groups.
   public struct ShareSettings: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A collection of source attributions for a piece of content.
   public struct CitationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

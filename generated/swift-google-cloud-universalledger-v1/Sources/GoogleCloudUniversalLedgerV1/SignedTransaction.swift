@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A transaction with attached signatures. To submit a transaction, this message
 /// should be serialized and included in a

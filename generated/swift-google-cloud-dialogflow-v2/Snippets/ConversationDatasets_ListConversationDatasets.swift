@@ -21,8 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: ConversationDatasetsClient, projectId: String, locationId: String)
     async throws

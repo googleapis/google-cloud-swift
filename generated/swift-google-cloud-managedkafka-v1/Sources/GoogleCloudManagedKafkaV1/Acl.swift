@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the set of ACLs for a given Kafka Resource Pattern, which consists
 /// of resource_type, resource_name and pattern_type.

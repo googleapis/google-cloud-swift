@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VerticalPodAutoscaling contains global, per-cluster information
 /// required by Vertical Pod Autoscaler to automatically adjust

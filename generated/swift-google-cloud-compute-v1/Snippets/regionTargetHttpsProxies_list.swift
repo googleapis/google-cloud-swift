@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: RegionTargetHttpsProxiesClient) async throws {
     let items = try client.list(

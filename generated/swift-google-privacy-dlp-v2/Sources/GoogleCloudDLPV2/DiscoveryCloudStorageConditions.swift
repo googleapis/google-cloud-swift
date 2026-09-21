@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Requirements that must be true before a Cloud Storage bucket or object is
 /// scanned in discovery for the first time. There is an AND relationship between

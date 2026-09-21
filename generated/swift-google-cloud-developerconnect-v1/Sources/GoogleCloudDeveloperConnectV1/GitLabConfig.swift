@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for connections to gitlab.com.
 public struct GitLabConfig: Codable, Equatable, GoogleWKT._AnyPackable,

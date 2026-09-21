@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The permissions granted to the partner for a workload
 public struct PartnerPermissions: Codable, Equatable, GoogleWKT._AnyPackable,

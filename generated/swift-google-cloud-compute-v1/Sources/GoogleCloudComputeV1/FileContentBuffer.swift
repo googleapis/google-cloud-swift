@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct FileContentBuffer: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

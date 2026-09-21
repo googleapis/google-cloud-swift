@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An event produced by a transaction.
 public struct TransactionEvent: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance rotate Entra ID certificate context.
   public struct RotateEntraIdCertificateContext: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Amazon SQS access key and secret auth.
 public struct SQSAccessKeySecretAuth: Codable, Equatable, GoogleWKT._AnyPackable,

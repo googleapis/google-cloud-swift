@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of
 /// [CryptoKeys][google.cloud.kms.v1.CryptoKey].

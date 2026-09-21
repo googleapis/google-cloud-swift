@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional metadata about the status of each wave provided by the server.
   public struct RolloutWaveDetails: Codable, Equatable, GoogleWKT._AnyPackable,

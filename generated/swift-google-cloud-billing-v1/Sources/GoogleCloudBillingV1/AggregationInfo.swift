@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the aggregation level and interval for pricing of a single SKU.
 public struct AggregationInfo: Codable, Equatable, GoogleWKT._AnyPackable,

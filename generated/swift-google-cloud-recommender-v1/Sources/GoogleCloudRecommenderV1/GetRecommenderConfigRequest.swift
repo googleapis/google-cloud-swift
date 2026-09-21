@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the GetRecommenderConfig` method.
 public struct GetRecommenderConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

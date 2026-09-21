@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudAppTopologyV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: AppTopologyClient, projectId: String, locationId: String) async throws {
   let items = try client.listDomains(

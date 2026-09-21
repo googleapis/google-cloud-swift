@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to create a new note.
 public struct CreateNoteRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The aggregation result for the entire dataset and all metrics.
   public struct AggregationOutput: Codable, Equatable, GoogleWKT._AnyPackable,

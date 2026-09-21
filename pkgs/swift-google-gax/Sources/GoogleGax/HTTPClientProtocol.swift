@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import struct AsyncHTTPClient.HTTPClientRequest
-import struct AsyncHTTPClient.HTTPClientResponse
+@_spi(GoogleCloudInternal) public import AsyncHTTPClient
 import struct Logging.Logger
 
 /// A protocol to mock `AsyncHTTPClient.HTTPClient`.

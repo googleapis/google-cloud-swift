@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A response containing the recommended way of creating the specified resources
   /// in the future. It contains (will contain) multiple recommendations that can

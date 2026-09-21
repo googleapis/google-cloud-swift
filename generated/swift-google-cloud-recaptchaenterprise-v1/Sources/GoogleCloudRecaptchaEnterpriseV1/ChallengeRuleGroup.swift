@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A collection of challenge rules that applies to one or more actions.
 public struct ChallengeRuleGroup: Codable, Equatable, GoogleWKT._AnyPackable,

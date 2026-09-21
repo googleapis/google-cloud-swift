@@ -18,8 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Web Security Scanner Service identifies security vulnerabilities in web
 /// applications hosted on Google Cloud. It crawls your application, and

@@ -15,9 +15,9 @@
 // limitations under the License.
 
 #if NotebookService || ScheduleService
-  import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// NotebookExecutionJob represents an instance of a notebook execution.
   public struct NotebookExecutionJob: Codable, Equatable, GoogleWKT._AnyPackable,

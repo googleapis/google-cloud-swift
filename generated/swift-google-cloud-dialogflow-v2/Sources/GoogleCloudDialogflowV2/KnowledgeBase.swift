@@ -16,7 +16,7 @@
 
 #if KnowledgeBases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A knowledge base represents a collection of knowledge documents that you
   /// provide to Dialogflow. Your knowledge documents contain information that may

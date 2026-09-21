@@ -16,9 +16,9 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  import GoogleType
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  public import GoogleType
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// DataLabelingJob is used to trigger a human labeling job on unlabeled data
   /// from the following Dataset:

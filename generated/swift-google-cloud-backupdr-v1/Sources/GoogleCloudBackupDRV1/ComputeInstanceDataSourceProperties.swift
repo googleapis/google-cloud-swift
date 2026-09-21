@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ComputeInstanceDataSourceProperties represents the properties of a
 /// ComputeEngine resource that are stored in the DataSource.

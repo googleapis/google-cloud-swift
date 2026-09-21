@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudOptimizationV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: FleetRoutingClient) async throws {
   let poller = try await client.batchOptimizeTours(

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudAssetV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: AssetServiceClient) async throws {

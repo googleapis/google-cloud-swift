@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata of the flow trace.
   public struct FlowTraceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

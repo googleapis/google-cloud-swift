@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Malicious URI Filter Result.
 public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,

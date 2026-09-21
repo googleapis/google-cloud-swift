@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The CustomerContact reference as defined by Oracle.
 /// https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/CustomerContact

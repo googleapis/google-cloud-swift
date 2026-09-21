@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Holds the facet value, selections state, and metadata.
 public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,

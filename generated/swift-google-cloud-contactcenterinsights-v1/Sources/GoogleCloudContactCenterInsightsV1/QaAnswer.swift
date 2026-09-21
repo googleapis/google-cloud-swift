@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An answer to a QaQuestion.
 public struct QaAnswer: Codable, Equatable, GoogleWKT._AnyPackable,

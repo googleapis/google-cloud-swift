@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for response of DisableInteractiveSerialConsole.
 public struct DisableInteractiveSerialConsoleResponse: Codable, Equatable, GoogleWKT._AnyPackable,

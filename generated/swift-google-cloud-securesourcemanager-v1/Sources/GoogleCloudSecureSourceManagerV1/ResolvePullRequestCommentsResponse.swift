@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The response to resolve multiple pull request comments.
 public struct ResolvePullRequestCommentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

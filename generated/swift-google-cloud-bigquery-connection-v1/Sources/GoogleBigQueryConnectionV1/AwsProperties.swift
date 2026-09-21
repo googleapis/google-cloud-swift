@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Connection properties specific to Amazon Web Services (AWS).
 public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,

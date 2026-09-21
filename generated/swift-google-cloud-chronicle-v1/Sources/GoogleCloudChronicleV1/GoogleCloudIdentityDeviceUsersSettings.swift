@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Google Cloud Identity Device Users settings.
 public struct GoogleCloudIdentityDeviceUsersSettings: Codable, Equatable, GoogleWKT._AnyPackable,

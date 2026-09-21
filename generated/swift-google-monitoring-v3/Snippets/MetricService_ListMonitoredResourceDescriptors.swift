@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMonitoringV3
 import GoogleApi
-import GoogleWKT
 
 func sample(client: MetricServiceClient) async throws {
   let items = try client.listMonitoredResourceDescriptors(

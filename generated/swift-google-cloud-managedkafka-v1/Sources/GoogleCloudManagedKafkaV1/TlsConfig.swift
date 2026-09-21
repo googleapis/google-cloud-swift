@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The TLS configuration for the Kafka cluster.
 public struct TlsConfig: Codable, Equatable, GoogleWKT._AnyPackable,

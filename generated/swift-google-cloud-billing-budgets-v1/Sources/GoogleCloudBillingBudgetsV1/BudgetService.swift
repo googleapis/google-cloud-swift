@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// BudgetService stores Cloud Billing budgets, which define a
 /// budget plan and rules to execute as we track spend against that plan.

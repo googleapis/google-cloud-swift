@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The details of a metadata restore operation.
 public struct Restore: Codable, Equatable, GoogleWKT._AnyPackable,

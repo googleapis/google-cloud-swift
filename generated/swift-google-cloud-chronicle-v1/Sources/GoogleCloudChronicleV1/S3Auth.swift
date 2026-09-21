@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Amazon S3 auth.
 public struct S3Auth: Codable, Equatable, GoogleWKT._AnyPackable,

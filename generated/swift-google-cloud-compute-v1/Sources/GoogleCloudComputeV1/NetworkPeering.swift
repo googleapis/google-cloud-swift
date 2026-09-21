@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A network peering attached to a network resource. The message includes the
   /// peering name, peer network, peering state, and a flag indicating whether

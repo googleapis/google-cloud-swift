@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Gets information about an event that affects a project under an organization.
 public struct GetOrganizationImpactRequest: Codable, Equatable, GoogleWKT._AnyPackable,

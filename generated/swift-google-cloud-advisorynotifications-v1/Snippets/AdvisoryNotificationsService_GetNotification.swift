@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudAdvisoryNotificationsV1
-import GoogleWKT
 
 func sample(
   client: AdvisoryNotificationsServiceClient, organizationId: String, locationId: String,

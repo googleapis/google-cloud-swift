@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateSnapshotRequest updates description and/or labels for a snapshot.
 public struct UpdateSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPackable,

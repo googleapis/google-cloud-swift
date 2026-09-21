@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ListBackupPoliciesRequest for requesting multiple backup policies.
 public struct ListBackupPoliciesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

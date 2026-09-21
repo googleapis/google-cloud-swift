@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Usage data aggregation for a single day.
 public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyPackable,

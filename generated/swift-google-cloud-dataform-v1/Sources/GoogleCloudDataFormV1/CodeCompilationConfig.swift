@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configures various aspects of Dataform code compilation.
 public struct CodeCompilationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

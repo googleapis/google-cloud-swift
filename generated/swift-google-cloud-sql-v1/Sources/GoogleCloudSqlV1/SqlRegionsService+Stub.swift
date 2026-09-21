@@ -16,7 +16,6 @@
 
 #if SqlRegionsService
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

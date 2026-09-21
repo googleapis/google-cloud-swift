@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for extracting existing policies on a workload as a Posture.
 public struct ExtractPostureRequest: Codable, Equatable, GoogleWKT._AnyPackable,

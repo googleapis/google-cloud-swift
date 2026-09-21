@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details of the Exascale configuration for the Exadata Infrastructure.
 public struct ExascaleConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Deprecated. Prefer to use a regular Occurrence, and populate the
 /// Envelope at the top level of the Occurrence.

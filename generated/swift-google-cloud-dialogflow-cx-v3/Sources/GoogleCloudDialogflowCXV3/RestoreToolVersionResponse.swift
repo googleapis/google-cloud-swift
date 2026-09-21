@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The response message for
   /// [Tools.RestoreToolVersion][google.cloud.dialogflow.cx.v3.Tools.RestoreToolVersion].

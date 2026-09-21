@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Half-open range interval [start, end)
 public struct RangeInfo: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// HTTPHeader describes a custom header to be used in HTTP probes
 public struct HTTPHeader: Codable, Equatable, GoogleWKT._AnyPackable,

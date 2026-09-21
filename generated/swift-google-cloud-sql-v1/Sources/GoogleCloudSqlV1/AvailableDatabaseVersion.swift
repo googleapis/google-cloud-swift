@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An available database version. It can be a major or a minor version.
   public struct AvailableDatabaseVersion: Codable, Equatable, GoogleWKT._AnyPackable,

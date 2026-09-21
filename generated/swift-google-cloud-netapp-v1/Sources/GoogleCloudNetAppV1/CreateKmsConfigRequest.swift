@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CreateKmsConfigRequest creates a KMS Config.
 public struct CreateKmsConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

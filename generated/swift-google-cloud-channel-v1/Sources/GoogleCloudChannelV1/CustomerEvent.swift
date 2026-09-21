@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents Pub/Sub message content describing customer update.
 public struct CustomerEvent: Codable, Equatable, GoogleWKT._AnyPackable,

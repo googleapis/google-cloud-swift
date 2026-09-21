@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Config to control which ProductSet contains the Products to be deleted.
 public struct ProductSetPurgeConfig: Codable, Equatable, GoogleWKT._AnyPackable,

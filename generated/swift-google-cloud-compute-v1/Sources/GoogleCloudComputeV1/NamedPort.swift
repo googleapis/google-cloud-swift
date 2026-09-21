@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || InstanceGroups || RegionInstanceGroupManagers || RegionInstanceGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The named port. For example: <"http", 80>.
   public struct NamedPort: Codable, Equatable, GoogleWKT._AnyPackable,

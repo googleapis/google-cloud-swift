@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Netskope Alert V2 settings.
 public struct NetskopeAlertV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,

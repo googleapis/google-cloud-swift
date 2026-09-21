@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// InstanceGroupManagers.deletePerInstanceConfigs
   public struct InstanceGroupManagersDeletePerInstanceConfigsReq: Codable, Equatable, GoogleWKT

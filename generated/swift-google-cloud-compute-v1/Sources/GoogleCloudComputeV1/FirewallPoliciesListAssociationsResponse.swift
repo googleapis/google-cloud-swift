@@ -16,7 +16,7 @@
 
 #if FirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct FirewallPoliciesListAssociationsResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// App Engine admin service audit log.
 public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,

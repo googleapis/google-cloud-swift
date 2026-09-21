@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Reference to another Cloud SQL instance.
   public struct InstanceReference: Codable, Equatable, GoogleWKT._AnyPackable,

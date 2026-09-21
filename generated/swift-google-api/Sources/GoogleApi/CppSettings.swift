@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings for C++ client libraries.
 public struct CppSettings: Codable, Equatable, GoogleWKT._AnyPackable,

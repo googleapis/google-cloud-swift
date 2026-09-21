@@ -16,7 +16,7 @@
 
 #if NodeTemplates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represent a sole-tenant Node Template resource.
   ///

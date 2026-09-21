@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGKEHubConfigManagementV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudGKEHubConfigManagementV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MembershipFeatureState contains Feature status information for a single
 /// Membership.

@@ -15,7 +15,7 @@
 import GoogleGax
 
 extension RetryResult: Equatable {
-  public static func == (lhs: RetryResult, rhs: RetryResult) -> Bool {
+  static func == (lhs: RetryResult, rhs: RetryResult) -> Bool {
     switch (lhs, rhs) {
     case (.permanent(let l), .permanent(let r)): return l == r
     case (.exhausted(let l), .exhausted(let r)): return l == r

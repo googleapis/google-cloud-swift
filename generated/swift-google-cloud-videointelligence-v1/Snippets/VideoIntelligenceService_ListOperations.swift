@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudVideoIntelligenceV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: VideoIntelligenceServiceClient) async throws {
   let items = try client.listOperations(

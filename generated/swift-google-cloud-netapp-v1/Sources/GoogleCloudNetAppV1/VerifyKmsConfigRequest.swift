@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VerifyKmsConfigRequest specifies the KMS config to be validated.
 public struct VerifyKmsConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

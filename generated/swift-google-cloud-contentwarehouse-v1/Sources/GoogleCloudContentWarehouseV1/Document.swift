@@ -14,9 +14,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleCloudDocumentAIV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+public import GoogleCloudDocumentAIV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines the structure for content warehouse document proto.
 public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,

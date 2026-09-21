@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// HttpRouteRuleMatch criteria for a request's query parameter.
   public struct HttpQueryParameterMatch: Codable, Equatable, GoogleWKT._AnyPackable,

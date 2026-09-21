@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the output of agent validation.
   public struct ValidationResult: Codable, Equatable, GoogleWKT._AnyPackable,

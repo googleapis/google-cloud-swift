@@ -16,7 +16,7 @@
 
 #if DataFoundryService && DatasetService && DeploymentResourcePoolService && EndpointService && EvaluationService && FeatureOnlineStoreAdminService && FeatureOnlineStoreService && FeatureRegistryService && FeaturestoreOnlineServingService && FeaturestoreService && GenAiCacheService && GenAiTuningService && IndexEndpointService && IndexService && JobService && LlmUtilityService && MatchService && MetadataService && MigrationService && ModelGardenService && ModelService && NotebookService && PersistentResourceService && PipelineService && PredictionService && ReasoningEngineExecutionService && ReasoningEngineService && ScheduleService && SessionService && SpecialistPoolService && TensorboardService && VertexRagDataService && VertexRagService && VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that perform create FeatureGroup.
   public struct CreateRegistryFeatureOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

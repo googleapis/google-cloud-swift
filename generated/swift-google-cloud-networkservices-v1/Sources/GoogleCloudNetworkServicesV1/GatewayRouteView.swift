@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GatewayRouteView defines view-only resource for Routes to a Gateway
 public struct GatewayRouteView: Codable, Equatable, GoogleWKT._AnyPackable,

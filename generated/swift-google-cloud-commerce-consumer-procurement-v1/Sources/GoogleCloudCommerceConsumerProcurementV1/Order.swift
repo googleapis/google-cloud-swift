@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a purchase made by a customer on Cloud Marketplace.
 /// Creating an order makes sure that both the Google backend systems

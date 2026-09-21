@@ -18,10 +18,8 @@
 // snippet.show
 import Foundation
 import GoogleCloudFilestoreV1
-import GoogleCloudCommon
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient) async throws {

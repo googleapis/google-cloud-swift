@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Disk encryption status for an instance.
   public struct DiskEncryptionStatus: Codable, Equatable, GoogleWKT._AnyPackable,

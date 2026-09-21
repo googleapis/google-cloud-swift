@@ -16,7 +16,7 @@
 
 #if CrossSiteNetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A resource that represents a cross-site network.
   ///

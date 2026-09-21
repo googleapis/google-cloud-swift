@@ -16,7 +16,7 @@
 
 #if CompletionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata related to the progress of the ImportCompletionSuggestions
   /// operation. This will be returned by the google.longrunning.Operation.metadata

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for exporting cluster resource usages.
 public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPackable,

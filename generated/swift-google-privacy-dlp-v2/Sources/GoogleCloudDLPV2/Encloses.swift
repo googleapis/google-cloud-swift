@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines a condition where one bounding box encloses another.
 public struct Encloses: Codable, Equatable, GoogleWKT._AnyPackable,

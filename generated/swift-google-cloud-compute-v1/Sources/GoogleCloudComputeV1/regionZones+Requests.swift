@@ -16,7 +16,7 @@
 
 #if RegionZones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionZonesClient {
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionZones.list] method.

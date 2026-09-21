@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for getting the details of a Connection.
 public struct GetConnectionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

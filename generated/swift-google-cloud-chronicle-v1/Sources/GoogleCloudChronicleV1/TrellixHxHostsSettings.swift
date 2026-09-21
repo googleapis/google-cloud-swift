@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings required by Feeds of TrellixHxHosts.
 public struct TrellixHxHostsSettings: Codable, Equatable, GoogleWKT._AnyPackable,

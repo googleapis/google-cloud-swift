@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An attack exposure contains the results of an attack path simulation run.
 public struct AttackExposure: Codable, Equatable, GoogleWKT._AnyPackable,

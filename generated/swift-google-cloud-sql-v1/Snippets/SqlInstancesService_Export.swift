@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudSqlV1
-  import GoogleWKT
 
   func sample(client: SqlInstancesServiceClient) async throws {
     let response = try await client.export(

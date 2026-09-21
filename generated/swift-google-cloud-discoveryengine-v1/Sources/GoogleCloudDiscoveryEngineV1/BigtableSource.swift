@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The Cloud Bigtable source for importing data.
   public struct BigtableSource: Codable, Equatable, GoogleWKT._AnyPackable,

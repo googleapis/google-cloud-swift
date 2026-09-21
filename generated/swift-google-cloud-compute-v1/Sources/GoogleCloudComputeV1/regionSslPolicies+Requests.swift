@@ -16,7 +16,7 @@
 
 #if RegionSslPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionSslPoliciesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionSslPolicies.delete] method.

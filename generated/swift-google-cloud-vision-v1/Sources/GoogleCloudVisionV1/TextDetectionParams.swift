@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Parameters for text detections. This is used to control TEXT_DETECTION and
 /// DOCUMENT_TEXT_DETECTION features.

@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specify CDN TTLs for response error codes.
   public struct CachePolicyNegativeCachingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

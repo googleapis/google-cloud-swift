@@ -16,8 +16,8 @@
 
 #if SearchTuningService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response of the
   /// [TrainCustomModelRequest][google.cloud.discoveryengine.v1.TrainCustomModelRequest].

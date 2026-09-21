@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a message posted into a conversation.
   public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,

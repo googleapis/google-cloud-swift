@@ -16,7 +16,7 @@
 
 #if UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for PurgeUserEvents method.
   public struct PurgeUserEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

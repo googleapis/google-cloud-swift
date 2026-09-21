@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Read-replica configuration for connecting to the primary instance.
   public struct ReplicaConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,

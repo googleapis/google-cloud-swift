@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Storage pool provisioned capacities for each SKU type.
   public struct FutureReservationStoragePoolProvisionedCapacity: Codable, Equatable, GoogleWKT

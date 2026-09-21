@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VolumeMount describes a mounting of a Volume within a container.
 public struct VolumeMount: Codable, Equatable, GoogleWKT._AnyPackable,

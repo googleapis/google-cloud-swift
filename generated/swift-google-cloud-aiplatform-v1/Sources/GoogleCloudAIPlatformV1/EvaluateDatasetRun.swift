@@ -16,8 +16,8 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Evaluate Dataset Run Result for Tuning Job.
   public struct EvaluateDatasetRun: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Summary statistics of a custom dictionary.
 public struct LargeCustomDictionaryStats: Codable, Equatable, GoogleWKT._AnyPackable,

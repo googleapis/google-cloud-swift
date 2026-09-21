@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Point in time recovery settings of the backup configuration resource.
 public struct PitrSettings: Codable, Equatable, GoogleWKT._AnyPackable,

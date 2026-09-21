@@ -16,7 +16,7 @@
 
 #if Licenses
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension LicensesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.licenses.delete] method.

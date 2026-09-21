@@ -18,8 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Executions is used to start and manage running instances of
 /// [Workflows][google.cloud.workflows.v1.Workflow] called executions.

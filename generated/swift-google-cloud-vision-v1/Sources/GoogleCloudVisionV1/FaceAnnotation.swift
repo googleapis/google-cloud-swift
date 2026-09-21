@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A face annotation object contains the results of face detection.
 public struct FaceAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,

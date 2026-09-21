@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Execution represents the configuration of a single execution. A execution an
 /// immutable resource that references a container image which is run to

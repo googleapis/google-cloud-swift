@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Blueprint contains a collection of kubernetes resources in the form of
 /// YAML files. The file contents of a blueprint are collectively known as

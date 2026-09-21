@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Lists the asset IDs of all assets.
 public struct AssetList: Codable, Equatable, GoogleWKT._AnyPackable,

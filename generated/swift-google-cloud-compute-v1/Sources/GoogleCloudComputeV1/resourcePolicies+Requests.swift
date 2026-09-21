@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension ResourcePoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.resourcePolicies.aggregatedList] method.

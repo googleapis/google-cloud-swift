@@ -16,8 +16,8 @@
 
 #if Participants || Sessions
   import Foundation
-  import GoogleType
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleType
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the parameters of the conversational query.
   public struct QueryParameters: Codable, Equatable, GoogleWKT._AnyPackable,

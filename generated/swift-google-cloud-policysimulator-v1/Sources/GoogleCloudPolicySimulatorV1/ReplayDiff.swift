@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The difference between the results of evaluating an access tuple under
 /// the current (baseline) policies and under the proposed (simulated) policies.

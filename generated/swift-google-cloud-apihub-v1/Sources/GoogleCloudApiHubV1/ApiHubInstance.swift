@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An ApiHubInstance represents the instance resources of the API Hub.
 /// Currently, only one ApiHub instance is allowed for each project.

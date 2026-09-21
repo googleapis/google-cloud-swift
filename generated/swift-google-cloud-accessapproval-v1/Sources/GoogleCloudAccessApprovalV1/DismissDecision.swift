@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A decision that has been made to dismiss an approval request.
 public struct DismissDecision: Codable, Equatable, GoogleWKT._AnyPackable,

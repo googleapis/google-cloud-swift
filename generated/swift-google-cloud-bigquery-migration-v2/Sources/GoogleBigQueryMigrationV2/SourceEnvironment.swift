@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the default source environment values for the translation.
 public struct SourceEnvironment: Codable, Equatable, GoogleWKT._AnyPackable,

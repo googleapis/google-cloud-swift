@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: InstancesClient) async throws {
   let items = try client.listOperations(

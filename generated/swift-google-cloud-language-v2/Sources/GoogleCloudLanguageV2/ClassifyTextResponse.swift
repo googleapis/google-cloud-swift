@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The document classification response message.
 public struct ClassifyTextResponse: Codable, Equatable, GoogleWKT._AnyPackable,

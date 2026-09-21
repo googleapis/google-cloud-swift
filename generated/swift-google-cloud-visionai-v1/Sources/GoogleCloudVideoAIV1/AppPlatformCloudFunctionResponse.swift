@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message of the response from customer's Cloud Function to AppPlatform.
 public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._AnyPackable,

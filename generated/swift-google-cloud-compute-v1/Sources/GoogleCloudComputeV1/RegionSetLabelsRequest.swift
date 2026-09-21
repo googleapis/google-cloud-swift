@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Addresses || ForwardingRules || InterconnectAttachments || RegionDisks || RegionInstantSnapshots || RegionSecurityPolicies || RegionSnapshots || TargetVpnGateways || VpnGateways || VpnTunnels
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RegionSetLabelsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

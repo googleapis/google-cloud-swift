@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Collection of [Resource Manager
 /// labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).

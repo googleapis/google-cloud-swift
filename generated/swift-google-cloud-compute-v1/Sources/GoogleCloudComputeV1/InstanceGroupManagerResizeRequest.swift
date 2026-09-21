@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests || RegionInstanceGroupManagerResizeRequests
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// InstanceGroupManagerResizeRequest represents a request to create
   /// a number of VMs: either immediately or by queuing the request for the

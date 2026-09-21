@@ -16,7 +16,7 @@
 
 #if CmekConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for GetCmekConfigRequest method.
   public struct GetCmekConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

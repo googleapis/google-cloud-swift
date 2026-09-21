@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, queryId: String, )
   async throws

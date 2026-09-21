@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 import GoogleRpc
 
 /// A base retry policy for Google Cloud Storage that retries transient errors on idempotent requests.

@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Tool config. This config is shared for all tools provided in the request.
   public struct ToolConfig: Codable, Equatable, GoogleWKT._AnyPackable,

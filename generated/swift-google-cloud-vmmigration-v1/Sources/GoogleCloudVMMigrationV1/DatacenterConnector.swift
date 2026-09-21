@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DatacenterConnector message describes a connector between the Source and
 /// Google Cloud, which is installed on a vmware datacenter (an OVA vm installed

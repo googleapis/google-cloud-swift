@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Gets a node pool.
 public struct GetNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

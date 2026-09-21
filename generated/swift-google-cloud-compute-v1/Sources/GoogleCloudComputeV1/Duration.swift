@@ -16,7 +16,7 @@
 
 #if BackendServices || FutureReservations || InstanceGroupManagerResizeRequests || InstanceGroupManagers || InstanceTemplates || Instances || LicenseCodes || Licenses || MachineImages || NodeGroups || RegionBackendServices || RegionCommitments || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers || RegionInstanceTemplates || RegionInstances || RegionNotificationEndpoints || RegionUrlMaps || Reservations || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A Duration represents a fixed-length span of time represented
   /// as a count of seconds and fractions of seconds at nanosecond

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudEdgeNetworkV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: EdgeNetworkClient) async throws {

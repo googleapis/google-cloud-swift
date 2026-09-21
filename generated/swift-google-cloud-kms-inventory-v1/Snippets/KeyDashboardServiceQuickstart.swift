@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudKMSInventoryV1
 import GoogleCloudKMSV1
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSInventoryV1.KeyDashboardServiceClient()

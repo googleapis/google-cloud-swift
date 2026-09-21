@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Sensitive Data Protection Inspection Result.
 public struct SdpInspectResult: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `QueryTimeSeries` request. For information about the status of
 /// Monitoring Query Language (MQL), see the [MQL deprecation

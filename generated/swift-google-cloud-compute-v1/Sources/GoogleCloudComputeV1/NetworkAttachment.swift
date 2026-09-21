@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if NetworkAttachments
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// NetworkAttachments
   /// A network attachment resource ...

@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional reservation params.
   public struct ReservationParams: Codable, Equatable, GoogleWKT._AnyPackable,

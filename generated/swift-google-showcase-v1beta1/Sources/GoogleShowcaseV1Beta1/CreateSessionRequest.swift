@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for the CreateSession method.
 public struct CreateSessionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

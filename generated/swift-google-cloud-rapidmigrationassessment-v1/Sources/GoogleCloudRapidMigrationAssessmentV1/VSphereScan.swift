@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing a MC Source of type VSphere Scan.
 public struct VSphereScan: Codable, Equatable, GoogleWKT._AnyPackable,

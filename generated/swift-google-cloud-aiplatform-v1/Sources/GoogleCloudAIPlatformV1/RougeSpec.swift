@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Spec for rouge score metric - calculates the recall of n-grams in prediction
   /// as compared to reference - returns a score ranging between 0 and 1.

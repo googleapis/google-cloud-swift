@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for `CloudVmCluster.List`.
 public struct ListCloudVmClustersRequest: Codable, Equatable, GoogleWKT._AnyPackable,

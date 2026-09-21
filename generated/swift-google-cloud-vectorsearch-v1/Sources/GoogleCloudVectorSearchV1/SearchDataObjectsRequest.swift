@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for performing a single search.
 public struct SearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

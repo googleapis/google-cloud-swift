@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about each available version for an infotype.
 public struct VersionDescription: Codable, Equatable, GoogleWKT._AnyPackable,

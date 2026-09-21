@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configurations for authentication with API key.
 public struct ApiKeyConfig: Codable, Equatable, GoogleWKT._AnyPackable,

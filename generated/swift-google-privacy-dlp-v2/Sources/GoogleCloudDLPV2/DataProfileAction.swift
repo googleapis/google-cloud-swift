@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A task to execute when a data profile has been generated.
 public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,

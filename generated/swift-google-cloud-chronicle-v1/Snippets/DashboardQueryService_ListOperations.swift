@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: DashboardQueryServiceClient) async throws {
   let items = try client.listOperations(

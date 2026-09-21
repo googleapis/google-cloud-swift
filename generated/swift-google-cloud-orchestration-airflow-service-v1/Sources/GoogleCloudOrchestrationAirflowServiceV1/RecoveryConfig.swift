@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The Recovery settings of an environment.
 public struct RecoveryConfig: Codable, Equatable, GoogleWKT._AnyPackable,

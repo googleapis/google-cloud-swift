@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a single commit log.
 public struct CommitLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,

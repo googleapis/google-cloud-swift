@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A ConnectorTool allows connections to different integrations.
 /// See: https://cloud.google.com/integration-connectors/docs/overview.

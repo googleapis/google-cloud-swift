@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Points to a NotebookRuntimeTemplateRef.
   public struct NotebookRuntimeTemplateRef: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,6 @@
 
 #if Licenses
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

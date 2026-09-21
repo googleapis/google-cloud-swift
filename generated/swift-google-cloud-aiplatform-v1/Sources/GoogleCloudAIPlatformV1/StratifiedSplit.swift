@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Assigns input data to the training, validation, and test sets so that the
   /// distribution of values found in the categorical column (as specified by the

@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// GeneveHeader related configurations.
   public struct InterconnectAttachmentL2ForwardingGeneveHeader: Codable, Equatable, GoogleWKT

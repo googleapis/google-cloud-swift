@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Collection of node-level [Kubernetes
 /// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).

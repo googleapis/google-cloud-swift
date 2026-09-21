@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of
   /// [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel]

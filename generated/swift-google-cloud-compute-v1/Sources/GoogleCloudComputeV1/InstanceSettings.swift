@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceSettings
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Instance Settings resource. You can use instance settings to
   /// configure default settings for Compute Engine VM instances. For example, you

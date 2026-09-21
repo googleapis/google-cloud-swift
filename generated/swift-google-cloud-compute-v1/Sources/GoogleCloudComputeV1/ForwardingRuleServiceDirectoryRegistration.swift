@@ -16,7 +16,7 @@
 
 #if ForwardingRules || GlobalForwardingRules
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Describes the auto-registration of the forwarding rule to Service Directory.
   /// The region and project of the Service Directory resource generated from

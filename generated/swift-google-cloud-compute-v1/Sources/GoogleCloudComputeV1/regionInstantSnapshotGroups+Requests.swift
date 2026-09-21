@@ -16,7 +16,7 @@
 
 #if RegionInstantSnapshotGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionInstantSnapshotGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstantSnapshotGroups.delete] method.

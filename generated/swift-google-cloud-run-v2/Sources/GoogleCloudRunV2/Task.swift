@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Task represents a single run of a container to completion.
 public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,

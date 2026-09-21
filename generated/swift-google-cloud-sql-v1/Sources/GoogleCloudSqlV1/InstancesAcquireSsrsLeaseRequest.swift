@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request to acquire a lease for SSRS.
   public struct InstancesAcquireSsrsLeaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,

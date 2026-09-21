@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudControlsPartnerV1
-import GoogleWKT
 
 func sample(
   client: CloudControlsPartnerMonitoringClient, organizationId: String, locationId: String,

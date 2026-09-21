@@ -16,7 +16,7 @@
 
 #if EncryptionSpecService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A customer-managed encryption key specification that can be applied to all
   /// created resources (e.g. Conversation).

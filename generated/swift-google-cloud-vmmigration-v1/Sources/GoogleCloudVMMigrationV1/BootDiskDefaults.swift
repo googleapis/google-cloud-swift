@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BootDiskDefaults hold information about the boot disk of a VM.
 public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,

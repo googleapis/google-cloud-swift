@@ -16,7 +16,7 @@
 
 #if RegionZones || Zones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The periodic partial maintenance schedule includes 52 weeks worth of
   /// maintenance windows.

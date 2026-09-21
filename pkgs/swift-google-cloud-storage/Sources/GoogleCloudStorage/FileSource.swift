@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 import NIOCore
 // We expect the API is stable, see https://github.com/apple/swift-nio/issues/3052 for details
 import _NIOFileSystem

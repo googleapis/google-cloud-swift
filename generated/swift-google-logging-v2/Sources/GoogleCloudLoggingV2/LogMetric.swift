@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a logs-based metric. The value of the metric is the number of log
 /// entries that match a logs filter in a given time interval.

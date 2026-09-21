@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents one path to the location that holds source data.
 public struct SourceSpec: Codable, Equatable, GoogleWKT._AnyPackable,

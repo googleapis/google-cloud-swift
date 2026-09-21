@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to unenroll a set of data sources so they are no longer visible in
 /// the BigQuery UI's `Transfer` tab.

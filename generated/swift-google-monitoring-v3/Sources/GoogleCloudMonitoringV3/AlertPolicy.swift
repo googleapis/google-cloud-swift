@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A description of the conditions under which some aspect of your system is
 /// considered to be "unhealthy" and the ways to notify people or services about

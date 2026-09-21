@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MaintenanceSchedule stores the maintenance schedule generated from
 /// the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if

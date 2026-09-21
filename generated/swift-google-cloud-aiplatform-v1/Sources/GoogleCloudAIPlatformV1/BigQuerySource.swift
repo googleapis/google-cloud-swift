@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService || GenAiTuningService || JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The BigQuery location for the input content.
   public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,

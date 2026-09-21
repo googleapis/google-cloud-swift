@@ -21,8 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: EntityTypesClient) async throws {
     let poller = try await client.batchDeleteEntityTypes(

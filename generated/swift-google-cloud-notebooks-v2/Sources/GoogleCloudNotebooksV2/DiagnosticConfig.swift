@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines flags that are used to run the diagnostic tool
 public struct DiagnosticConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An API that can be served by one or more Gateways.
 public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,

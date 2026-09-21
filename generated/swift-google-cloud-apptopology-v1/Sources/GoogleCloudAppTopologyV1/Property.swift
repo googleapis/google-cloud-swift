@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Property defines the schema of a property in the graph.
 public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,

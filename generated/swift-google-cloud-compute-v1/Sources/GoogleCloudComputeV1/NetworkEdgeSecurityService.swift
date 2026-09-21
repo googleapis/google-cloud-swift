@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if NetworkEdgeSecurityServices
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Google Cloud Armor network edge security service resource.
   public struct NetworkEdgeSecurityService: Codable, Equatable, GoogleWKT._AnyPackable,

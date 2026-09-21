@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Actions are parts of events that are executed by the agent.
   public struct EventActions: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration of Shielded Nodes feature.
 public struct ShieldedNodes: Codable, Equatable, GoogleWKT._AnyPackable,

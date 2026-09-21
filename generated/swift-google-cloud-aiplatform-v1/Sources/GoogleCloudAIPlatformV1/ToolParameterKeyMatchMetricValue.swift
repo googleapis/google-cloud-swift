@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Tool parameter key match metric value for an instance.
   public struct ToolParameterKeyMatchMetricValue: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A filter defining the entities that a mapping rule should be applied to.
 /// When more than one field is specified, the rule is applied only to

@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Debug information related to Knowledge Assist feature.
   public struct KnowledgeAssistDebugInfo: Codable, Equatable, GoogleWKT._AnyPackable,

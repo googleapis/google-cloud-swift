@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An event handler specifies an
   /// [event][google.cloud.dialogflow.cx.v3.EventHandler.event] that can be handled

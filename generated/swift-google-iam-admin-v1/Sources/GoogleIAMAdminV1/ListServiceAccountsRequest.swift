@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The service account list request.
 public struct ListServiceAccountsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

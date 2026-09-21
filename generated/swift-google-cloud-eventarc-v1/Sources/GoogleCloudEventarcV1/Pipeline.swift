@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A representation of the Pipeline resource.
 public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,

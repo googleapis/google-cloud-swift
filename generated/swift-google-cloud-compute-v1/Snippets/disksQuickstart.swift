@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.DisksClient()

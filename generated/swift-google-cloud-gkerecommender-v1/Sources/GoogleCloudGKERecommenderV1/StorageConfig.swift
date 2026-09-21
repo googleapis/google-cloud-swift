@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Storage configuration for a model deployment.
 public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,

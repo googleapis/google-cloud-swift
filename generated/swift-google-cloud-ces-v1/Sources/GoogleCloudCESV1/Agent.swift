@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An agent acts as the fundamental building block that provides instructions to
 /// the Large Language Model (LLM) for executing specific tasks.

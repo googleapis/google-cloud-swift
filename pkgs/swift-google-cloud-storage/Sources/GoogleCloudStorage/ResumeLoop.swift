@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+package import GoogleGax
 
 /// Runs a resume loop for long-running or multi-step operations (such as resumable uploads and downloads).
 ///

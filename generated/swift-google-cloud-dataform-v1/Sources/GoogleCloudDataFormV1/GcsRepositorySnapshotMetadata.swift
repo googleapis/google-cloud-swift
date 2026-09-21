@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata about a repository snapshot stored in Google Cloud Storage.
 public struct GcsRepositorySnapshotMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

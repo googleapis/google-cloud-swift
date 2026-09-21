@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to get a previously created migration subtasks.
 public struct GetMigrationSubtaskRequest: Codable, Equatable, GoogleWKT._AnyPackable,

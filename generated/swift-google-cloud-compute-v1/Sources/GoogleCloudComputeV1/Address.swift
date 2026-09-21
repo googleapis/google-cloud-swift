@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Addresses || GlobalAddresses
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an IP Address resource.
   ///

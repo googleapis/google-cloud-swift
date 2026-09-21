@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Cluster-wide networking configuration.
 public struct ClusterNetworking: Codable, Equatable, GoogleWKT._AnyPackable,

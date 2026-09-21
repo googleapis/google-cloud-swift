@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An instance's screenshot.
   public struct Screenshot: Codable, Equatable, GoogleWKT._AnyPackable,

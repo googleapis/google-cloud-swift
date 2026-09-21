@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A deployment group aggregates many zonal intercept backends (deployments)
 /// into a single global intercept service. Consumers can connect this service

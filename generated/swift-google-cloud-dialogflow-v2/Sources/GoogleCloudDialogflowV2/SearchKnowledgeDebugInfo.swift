@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Debug information related to SearchKnowledge feature.
   public struct SearchKnowledgeDebugInfo: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to terminate an interactive session.
 public struct TerminateSessionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

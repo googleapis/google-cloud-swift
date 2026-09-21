@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to replace all existing Service Perimeters in an Access Policy
 /// with the Service Perimeters provided. This is done atomically.

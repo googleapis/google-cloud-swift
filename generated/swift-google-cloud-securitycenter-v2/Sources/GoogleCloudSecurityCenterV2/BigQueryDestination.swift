@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The destination big query dataset to export findings to.
 public struct BigQueryDestination: Codable, Equatable, GoogleWKT._AnyPackable,

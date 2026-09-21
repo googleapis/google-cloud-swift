@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Image context and/or feature-specific parameters.
 public struct ImageContext: Codable, Equatable, GoogleWKT._AnyPackable,

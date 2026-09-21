@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a repository in which log entries are stored.
 public struct LogBucket: Codable, Equatable, GoogleWKT._AnyPackable,

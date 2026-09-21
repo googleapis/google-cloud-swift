@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A CloudWorkspaceId is a unique identifier for a cloud workspace.
 /// A cloud workspace is a place associated with a repo where modified files

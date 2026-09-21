@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: MonitoringClient, projectId: String, locationId: String) async throws {
   let items = try client.listFrameworkComplianceSummaries(

@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata for AsyncRetrieveContextsOperation.
   public struct AsyncRetrieveContextsOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

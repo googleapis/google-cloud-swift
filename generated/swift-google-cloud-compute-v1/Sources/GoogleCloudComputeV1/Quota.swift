@@ -16,7 +16,7 @@
 
 #if Projects || Regions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A quotas entry.
   public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: DashboardChartServiceClient) async throws {
   let response = try await client.batchGetDashboardCharts(

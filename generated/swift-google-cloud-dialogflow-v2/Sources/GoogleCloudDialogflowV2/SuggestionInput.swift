@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the action to take for a tool call that requires confirmation.
   public struct SuggestionInput: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message for AugmentPrompt.
   public struct AugmentPromptResponse: Codable, Equatable, GoogleWKT._AnyPackable,

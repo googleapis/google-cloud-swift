@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Logged during the processing of an event published to a message bus.
 public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,

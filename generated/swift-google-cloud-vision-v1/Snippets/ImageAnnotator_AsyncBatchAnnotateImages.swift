@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudVisionV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ImageAnnotatorClient) async throws {
   let poller = try await client.asyncBatchAnnotateImages(

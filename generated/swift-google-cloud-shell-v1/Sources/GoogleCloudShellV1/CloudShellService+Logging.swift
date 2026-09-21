@@ -20,7 +20,6 @@ import Foundation
 #endif
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 import GoogleGax
 import struct Logging.Logger
 

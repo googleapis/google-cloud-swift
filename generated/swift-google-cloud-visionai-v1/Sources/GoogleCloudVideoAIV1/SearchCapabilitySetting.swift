@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Setting for search capability to enable.
 public struct SearchCapabilitySetting: Codable, Equatable, GoogleWKT._AnyPackable,

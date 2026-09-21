@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Used for advanced voice options.
 public struct AdvancedVoiceOptions: Codable, Equatable, GoogleWKT._AnyPackable,

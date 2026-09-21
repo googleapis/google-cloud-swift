@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Spec for custom output format configuration.
   public struct CustomOutputFormatConfig: Codable, Equatable, GoogleWKT._AnyPackable,

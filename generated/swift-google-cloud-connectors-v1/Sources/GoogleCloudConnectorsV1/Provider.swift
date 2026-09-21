@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Provider indicates the owner who provides the connectors.
 public struct Provider: Codable, Equatable, GoogleWKT._AnyPackable,

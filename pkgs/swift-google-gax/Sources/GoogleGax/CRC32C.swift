@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import CGoogleGaxCRC32C
-import Foundation
+public import Foundation
 
 /// A hardware-accelerated and lookup-table based implementation of the CRC32C (Castagnoli) checksum algorithm.
 @_spi(GoogleCloudInternal) public struct _CRC32C: Sendable {

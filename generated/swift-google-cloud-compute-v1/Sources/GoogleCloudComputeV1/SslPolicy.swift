@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if RegionSslPolicies || SslPolicies
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an SSL Policy resource.
   ///

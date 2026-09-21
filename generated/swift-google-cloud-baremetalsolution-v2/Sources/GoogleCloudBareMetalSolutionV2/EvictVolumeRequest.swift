@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for skip volume cooloff and delete it.
 public struct EvictVolumeRequest: Codable, Equatable, GoogleWKT._AnyPackable,

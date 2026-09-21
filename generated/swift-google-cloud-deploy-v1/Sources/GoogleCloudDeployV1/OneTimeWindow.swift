@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// One-time window within which actions are restricted. For example, blocking
 /// actions over New Year's Eve from December 31st at 5pm to January 1st at 9am.

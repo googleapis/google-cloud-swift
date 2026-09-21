@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Connectivity Test for a network reachability analysis.
 public struct ConnectivityTest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudAppTopologyV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: AppTopologyClient) async throws {
   let response = try await client.getLocation(

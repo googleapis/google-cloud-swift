@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: InstanceSettingsClient) async throws {
     let poller = try await client.patch(

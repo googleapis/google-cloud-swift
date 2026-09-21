@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// UrlMaps
   /// A host-matching rule for a URL. If matched, will use the namedPathMatcher to select the BackendService.

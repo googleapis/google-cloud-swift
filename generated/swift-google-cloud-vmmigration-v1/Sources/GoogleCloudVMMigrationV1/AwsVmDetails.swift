@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AwsVmDetails describes a VM in AWS.
 public struct AwsVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,

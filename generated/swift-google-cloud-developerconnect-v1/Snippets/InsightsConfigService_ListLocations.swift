@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDeveloperConnectV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: InsightsConfigServiceClient) async throws {
   let items = try client.listLocations(

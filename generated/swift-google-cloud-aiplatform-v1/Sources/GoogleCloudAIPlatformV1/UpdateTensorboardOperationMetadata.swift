@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that perform update Tensorboard.
   public struct UpdateTensorboardOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

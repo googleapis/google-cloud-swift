@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for Org Policy Canned Constraint.
 public struct OrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPackable,

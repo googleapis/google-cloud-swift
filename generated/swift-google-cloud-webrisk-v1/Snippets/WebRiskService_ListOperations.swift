@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudWebRiskV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: WebRiskServiceClient) async throws {
   let items = try client.listOperations(

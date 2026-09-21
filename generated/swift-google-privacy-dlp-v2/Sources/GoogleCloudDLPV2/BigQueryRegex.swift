@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A pattern to match against one or more tables, datasets, or projects that
 /// contain BigQuery tables. At least one pattern must be specified.

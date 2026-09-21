@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the Google Cloud product impacted by the event.
 public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,

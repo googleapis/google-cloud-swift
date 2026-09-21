@@ -16,8 +16,8 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Result for a single metric on a single instance.
   public struct MetricResult: Codable, Equatable, GoogleWKT._AnyPackable,

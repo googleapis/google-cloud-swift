@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Associates `members`, or principals, with a `role`.
 public struct Binding: Codable, Equatable, GoogleWKT._AnyPackable,

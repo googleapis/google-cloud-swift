@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The details of the VPC where the source database is located in Google Cloud.
 /// We will use this information to set up the VPC peering connection between

@@ -21,7 +21,6 @@ import GoogleCloudNotebooksV2
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: NotebookServiceClient, projectId: String, locationId: String) async throws {

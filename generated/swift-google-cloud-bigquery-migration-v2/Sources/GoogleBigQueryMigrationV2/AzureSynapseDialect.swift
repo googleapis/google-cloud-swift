@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The dialect definition for Azure Synapse.
 public struct AzureSynapseDialect: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudVectorSearchV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudVectorSearchV1.DataObjectSearchServiceClient()

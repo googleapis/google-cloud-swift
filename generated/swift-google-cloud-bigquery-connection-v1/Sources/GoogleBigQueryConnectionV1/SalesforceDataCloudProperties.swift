@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Connection properties specific to Salesforce DataCloud. This is intended for
 /// use only by Salesforce partner projects.

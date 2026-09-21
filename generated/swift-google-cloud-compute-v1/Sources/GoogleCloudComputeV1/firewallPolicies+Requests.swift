@@ -16,7 +16,7 @@
 
 #if FirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension FirewallPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.firewallPolicies.addAssociation] method.

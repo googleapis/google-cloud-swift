@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Service-Level Objective (SLO) describes a level of desired good service. It
 /// consists of a service-level indicator (SLI), a performance goal, and a period

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specific versioning information pertaining to ConfigSync's Pods
 public struct ConfigSyncVersion: Codable, Equatable, GoogleWKT._AnyPackable,

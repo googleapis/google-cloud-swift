@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: InstanceGroupManagerResizeRequestsClient) async throws {
     let poller = try await client.cancel(

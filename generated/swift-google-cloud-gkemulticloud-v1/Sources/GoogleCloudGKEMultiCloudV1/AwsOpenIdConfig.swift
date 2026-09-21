@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AwsOpenIdConfig is an OIDC discovery document for the cluster.
 /// See the OpenID Connect Discovery 1.0 specification for details.

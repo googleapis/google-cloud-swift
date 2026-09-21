@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Model error analysis for each annotation.
   public struct ErrorAnalysisAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,

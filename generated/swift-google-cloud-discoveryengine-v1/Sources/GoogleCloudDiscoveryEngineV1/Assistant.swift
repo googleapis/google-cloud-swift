@@ -16,7 +16,7 @@
 
 #if AssistantService && CmekConfigService && CompletionService && ControlService && ConversationalSearchService && DataStoreService && DocumentService && EngineService && GroundedGenerationService && IdentityMappingStoreService && ProjectService && RankService && RecommendationService && SchemaService && SearchService && SearchTuningService && ServingConfigService && SessionService && SiteSearchEngineService && UserEventService && UserLicenseService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Discovery Engine Assistant resource.
   public struct Assistant: Codable, Equatable, GoogleWKT._AnyPackable,

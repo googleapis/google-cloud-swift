@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A subgraph of the overall lineage graph. Event edges connect Artifact and
   /// Execution nodes.

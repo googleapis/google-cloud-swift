@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request used with the ListSecurityProfileGroups method.
 public struct ListSecurityProfileGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

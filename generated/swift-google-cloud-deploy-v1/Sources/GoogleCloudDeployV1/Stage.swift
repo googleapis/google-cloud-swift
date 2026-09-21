@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Stage specifies a location to which to deploy.
 public struct Stage: Codable, Equatable, GoogleWKT._AnyPackable,

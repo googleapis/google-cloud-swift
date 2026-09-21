@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message used for storing full (not subrange) object checksums.
 public struct ObjectChecksums: Codable, Equatable, GoogleWKT._AnyPackable,

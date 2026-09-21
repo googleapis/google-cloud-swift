@@ -16,7 +16,7 @@
 
 #if ReservationSubBlocks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Info for a slice of a given topology.
   public struct AcceleratorTopologiesInfoAcceleratorTopologyInfo: Codable, Equatable, GoogleWKT

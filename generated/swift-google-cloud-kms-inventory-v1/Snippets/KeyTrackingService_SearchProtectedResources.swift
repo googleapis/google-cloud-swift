@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudKMSInventoryV1
-import GoogleWKT
 
 func sample(client: KeyTrackingServiceClient) async throws {
   let items = try client.searchProtectedResources(

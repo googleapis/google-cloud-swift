@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Host project registration refers to the registration of a Google cloud
 /// project with Api Hub as a host project. This is the project where Api Hub is

@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudContainerV1
-import GoogleWKT
 
 func sample(client: ClusterManagerClient) async throws {
   let items = try client.listUsableSubnetworks(

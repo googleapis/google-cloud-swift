@@ -16,7 +16,6 @@
 
 #if HttpHealthChecks
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

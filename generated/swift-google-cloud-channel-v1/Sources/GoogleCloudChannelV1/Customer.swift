@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Entity representing a customer of a reseller or distributor.
 public struct Customer: Codable, Equatable, GoogleWKT._AnyPackable,

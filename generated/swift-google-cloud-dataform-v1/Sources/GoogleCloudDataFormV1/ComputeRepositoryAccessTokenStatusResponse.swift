@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `ComputeRepositoryAccessTokenStatus` response message.
 public struct ComputeRepositoryAccessTokenStatusResponse: Codable, Equatable, GoogleWKT

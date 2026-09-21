@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Errors pertaining to the installation of Config Sync
 public struct ConfigSyncError: Codable, Equatable, GoogleWKT._AnyPackable,

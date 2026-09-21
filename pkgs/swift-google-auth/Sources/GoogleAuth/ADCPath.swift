@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import SystemPackage
+package import SystemPackage
 
 /// Represents the location of an Application Default Credentials (ADC) file.
 package enum ADCPath: Equatable, Sendable {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A `Snooze` will prevent any alerts from being opened, and close any that
 /// are already open. The `Snooze` will work on alerts that match the

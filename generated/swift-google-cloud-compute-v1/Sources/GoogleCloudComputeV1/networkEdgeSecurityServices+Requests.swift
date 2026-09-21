@@ -16,7 +16,7 @@
 
 #if NetworkEdgeSecurityServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension NetworkEdgeSecurityServicesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkEdgeSecurityServices.aggregatedList] method.

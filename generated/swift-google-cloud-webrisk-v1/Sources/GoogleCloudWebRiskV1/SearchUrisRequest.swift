@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to check URI entries against threatLists.
 public struct SearchUrisRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudNetAppV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: NetAppClient) async throws {

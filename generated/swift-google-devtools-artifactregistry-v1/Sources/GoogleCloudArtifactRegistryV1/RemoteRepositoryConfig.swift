@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Remote repository configuration.
 public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable,

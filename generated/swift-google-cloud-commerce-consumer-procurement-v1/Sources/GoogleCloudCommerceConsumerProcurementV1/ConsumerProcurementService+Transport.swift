@@ -20,7 +20,6 @@ import Foundation
 #endif
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
 extension Clients {

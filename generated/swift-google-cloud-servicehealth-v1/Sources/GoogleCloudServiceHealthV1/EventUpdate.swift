@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Records an update made to the event.
 public struct EventUpdate: Codable, Equatable, GoogleWKT._AnyPackable,

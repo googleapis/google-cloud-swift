@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudBinaryAuthorizationV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudBinaryAuthorizationV1.ValidationHelperV1Client()

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if AssistantService || ConversationalSearchService || SessionService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Multi-modal content.
   public struct AssistantContent: Codable, Equatable, GoogleWKT._AnyPackable,

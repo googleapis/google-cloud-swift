@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Azure Blob Storage settings.
 public struct AzureBlobStoreSettings: Codable, Equatable, GoogleWKT._AnyPackable,

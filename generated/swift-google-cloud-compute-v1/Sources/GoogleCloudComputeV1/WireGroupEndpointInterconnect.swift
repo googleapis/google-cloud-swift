@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The redundant Interconnect connections for this endpoint.
   public struct WireGroupEndpointInterconnect: Codable, Equatable, GoogleWKT._AnyPackable,

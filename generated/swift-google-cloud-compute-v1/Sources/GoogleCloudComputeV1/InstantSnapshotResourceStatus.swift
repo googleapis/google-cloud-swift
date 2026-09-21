@@ -16,7 +16,7 @@
 
 #if InstantSnapshots || RegionInstantSnapshots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct InstantSnapshotResourceStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudTextToSpeechV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudTextToSpeechV1.TextToSpeechClient()

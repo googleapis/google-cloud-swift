@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Tools
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A tool provides a list of actions which are available to the
   /// [Playbook][google.cloud.dialogflow.cx.v3.Playbook] to attain its goal. A Tool

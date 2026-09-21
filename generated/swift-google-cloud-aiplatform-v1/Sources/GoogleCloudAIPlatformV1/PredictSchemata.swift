@@ -16,7 +16,7 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains the schemata used in Model's predictions and explanations via
   /// [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict],

@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Custom utilization metric policy.
   public struct AutoscalingPolicyCustomMetricUtilization: Codable, Equatable, GoogleWKT

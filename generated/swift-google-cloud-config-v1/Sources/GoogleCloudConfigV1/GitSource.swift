@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A set of files in a Git repository.
 public struct GitSource: Codable, Equatable, GoogleWKT._AnyPackable,

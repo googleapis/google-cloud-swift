@@ -16,7 +16,7 @@
 
 #if VpnTunnels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension VpnTunnelsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.vpnTunnels.aggregatedList] method.

@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: DeploymentClient) async throws {
   let items = try client.listOperations(

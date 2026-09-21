@@ -69,6 +69,9 @@ let package = Package(
         .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
         .product(name: "GoogleCloudAIPlatformV1", package: "swift-google-cloud-aiplatform-v1"),
         .product(name: "Logging", package: "swift-log"),
+      ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
       ]
     )
   ]

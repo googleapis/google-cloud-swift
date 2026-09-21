@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CloneJob describes the process of creating a clone of a
 /// [MigratingVM][google.cloud.vmmigration.v1.MigratingVm] to the

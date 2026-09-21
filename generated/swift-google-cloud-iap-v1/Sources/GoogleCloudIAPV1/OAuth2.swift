@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The OAuth 2.0 Settings
 public struct OAuth2: Codable, Equatable, GoogleWKT._AnyPackable,

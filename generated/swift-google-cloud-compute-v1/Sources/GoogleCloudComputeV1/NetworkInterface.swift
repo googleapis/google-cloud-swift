@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A network interface resource attached to an instance.
   public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,

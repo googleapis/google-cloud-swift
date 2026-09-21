@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || RegionInstanceTemplates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A specification of the desired way to instantiate a disk in the instance
   /// template when its created from a source instance.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGrafeasV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleGrafeasV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for
 /// [ValidationHelperV1.ValidateAttestationOccurrence][google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence].

@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that perform batch create Features.
   public struct BatchCreateFeaturesOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

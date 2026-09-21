@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension InstanceGroupManagerResizeRequestsClient {
     /// Synthetic request message for the [cancel()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.cancel] method.

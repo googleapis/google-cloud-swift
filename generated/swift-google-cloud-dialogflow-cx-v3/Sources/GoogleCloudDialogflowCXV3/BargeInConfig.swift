@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration of the barge-in behavior. Barge-in instructs the API to return
   /// a detected utterance at a proper time while the client is playing back the

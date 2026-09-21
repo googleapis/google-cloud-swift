@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration that allows for slower scale in so that even if Autoscaler
   /// recommends an abrupt scale in of a MIG, it will be throttled as specified

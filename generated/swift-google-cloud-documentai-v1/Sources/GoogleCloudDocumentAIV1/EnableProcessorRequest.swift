@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for the
 /// [EnableProcessor][google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]

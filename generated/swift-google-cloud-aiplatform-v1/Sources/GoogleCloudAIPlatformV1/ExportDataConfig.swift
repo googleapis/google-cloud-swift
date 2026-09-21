@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Describes what part of the Dataset is to be exported, the destination of
   /// the export and how to export.

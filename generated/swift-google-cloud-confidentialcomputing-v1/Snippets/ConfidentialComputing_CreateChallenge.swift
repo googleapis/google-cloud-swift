@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudConfidentialComputingV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: ConfidentialComputingClient, parent: String) async throws {
   let response = try await client.createChallenge(

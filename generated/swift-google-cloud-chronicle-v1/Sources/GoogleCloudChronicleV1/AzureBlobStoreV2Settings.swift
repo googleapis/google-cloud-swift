@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AzureBlobStoreV2Settings is the settings proto for Azure Blob Storage feeds.
 public struct AzureBlobStoreV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,

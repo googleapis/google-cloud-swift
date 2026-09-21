@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings required by Amazon Kinesis Firehose Feeds(HTTP-Push).
 public struct AmazonKinesisFirehoseSettings: Codable, Equatable, GoogleWKT._AnyPackable,

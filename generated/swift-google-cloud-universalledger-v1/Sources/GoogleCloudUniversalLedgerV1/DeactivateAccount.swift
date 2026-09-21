@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Marks an account as `ACCOUNT_STATUS_INACTIVE`. The sender must be the account
 /// manager of the account to deactivate.

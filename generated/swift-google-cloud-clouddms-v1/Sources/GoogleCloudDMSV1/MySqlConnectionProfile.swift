@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies connection parameters required specifically for MySQL databases.
 public struct MySqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,

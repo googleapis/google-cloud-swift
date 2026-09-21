@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Resource Policy resource. You can use resource policies to
   /// schedule actions for some Compute Engine resources. For example, you can

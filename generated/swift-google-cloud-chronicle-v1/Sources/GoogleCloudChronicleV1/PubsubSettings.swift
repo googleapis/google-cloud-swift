@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings required by Google Cloud Pub/Sub Feeds(HTTP-Push).
 public struct PubsubSettings: Codable, Equatable, GoogleWKT._AnyPackable,

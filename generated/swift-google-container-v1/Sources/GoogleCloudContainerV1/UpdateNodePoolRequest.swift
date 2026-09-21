@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateNodePoolRequests update a node pool's image and/or version.
 public struct UpdateNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

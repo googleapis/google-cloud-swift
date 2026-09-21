@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The selected object that Cloud SQL migrates.
   public struct ExternalSyncSelectedObject: Codable, Equatable, GoogleWKT._AnyPackable,

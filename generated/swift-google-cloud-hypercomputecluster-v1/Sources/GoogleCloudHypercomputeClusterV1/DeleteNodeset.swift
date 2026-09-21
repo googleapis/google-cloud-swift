@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// When set in OperationStep, indicates that a nodeset should be deleted.
 public struct DeleteNodeset: Codable, Equatable, GoogleWKT._AnyPackable,

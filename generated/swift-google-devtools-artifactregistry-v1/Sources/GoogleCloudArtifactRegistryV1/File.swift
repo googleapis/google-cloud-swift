@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Files store content that is potentially associated with Packages or Versions.
 public struct File: Codable, Equatable, GoogleWKT._AnyPackable,

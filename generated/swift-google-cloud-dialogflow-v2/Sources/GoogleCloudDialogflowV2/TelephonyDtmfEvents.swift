@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A wrapper of repeated TelephonyDtmf digits.
   public struct TelephonyDtmfEvents: Codable, Equatable, GoogleWKT._AnyPackable,

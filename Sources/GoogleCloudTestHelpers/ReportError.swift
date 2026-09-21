@@ -15,7 +15,7 @@
 import Foundation
 import GoogleGax
 import InMemoryLogging
-import Logging
+public import Logging
 
 public func runLoggedTest(_ name: String, _ test: (Logger) async throws -> Void) async throws {
   let handler = InMemoryLogHandler()

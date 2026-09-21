@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a managed Microsoft Active Directory domain.
 public struct Domain: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for sending an AdaptiveMt translation query.
 public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPackable,

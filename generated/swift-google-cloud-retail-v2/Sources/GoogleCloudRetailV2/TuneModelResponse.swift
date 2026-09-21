@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response associated with a tune operation.
 public struct TuneModelResponse: Codable, Equatable, GoogleWKT._AnyPackable,

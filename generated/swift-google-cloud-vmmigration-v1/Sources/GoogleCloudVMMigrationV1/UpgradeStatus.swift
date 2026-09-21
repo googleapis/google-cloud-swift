@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpgradeStatus contains information about upgradeAppliance operation.
 public struct UpgradeStatus: Codable, Equatable, GoogleWKT._AnyPackable,

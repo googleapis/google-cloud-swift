@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An interconnect group resource allows customers to create, analyze, and
   /// expand their redundant connections.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Agents
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The request message for
   /// [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].

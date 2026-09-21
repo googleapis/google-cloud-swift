@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The data scanned during processing (e.g. in incremental DataScan)
 public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,

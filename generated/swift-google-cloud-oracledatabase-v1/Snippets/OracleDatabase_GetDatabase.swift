@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudOracleDatabaseV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String, databaseId: String)

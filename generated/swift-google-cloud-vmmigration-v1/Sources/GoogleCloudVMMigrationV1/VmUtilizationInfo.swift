@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Utilization information of a single VM.
 public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Payload proto for "clouddeploy.googleapis.com/deploypolicy_evaluation"
 /// Platform Log event that describes the deploy policy evaluation event.

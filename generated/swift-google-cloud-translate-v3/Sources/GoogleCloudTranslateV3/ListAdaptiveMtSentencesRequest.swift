@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for listing Adaptive MT sentences from a Dataset/File.
 public struct ListAdaptiveMtSentencesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

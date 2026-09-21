@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if PredictionService || SessionService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Google search entry point.
   public struct SearchEntryPoint: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Runtime operation information for creating a TagValue.
 public struct CreateTagBindingMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

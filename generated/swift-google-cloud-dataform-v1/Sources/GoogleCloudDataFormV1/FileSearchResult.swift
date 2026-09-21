@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Client-facing representation of a file entry in search results.
 public struct FileSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,

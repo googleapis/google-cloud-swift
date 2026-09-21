@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// File represents a yaml file present in a blueprint's package.
 public struct File: Codable, Equatable, GoogleWKT._AnyPackable,

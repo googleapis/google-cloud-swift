@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Summarization context that customer can configure.
   public struct SummarizationContext: Codable, Equatable, GoogleWKT._AnyPackable,

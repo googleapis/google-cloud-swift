@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudStorageBatchOperationsV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: StorageBatchOperationsClient, projectId: String, locationId: String)
   async throws

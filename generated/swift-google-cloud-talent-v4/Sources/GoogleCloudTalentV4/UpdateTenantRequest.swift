@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for updating a specified tenant.
 public struct UpdateTenantRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The LRO metadata for a ExportFindings request.
 public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

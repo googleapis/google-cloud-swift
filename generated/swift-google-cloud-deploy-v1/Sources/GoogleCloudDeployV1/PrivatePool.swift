@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Execution using a private Cloud Build pool.
 public struct PrivatePool: Codable, Equatable, GoogleWKT._AnyPackable,

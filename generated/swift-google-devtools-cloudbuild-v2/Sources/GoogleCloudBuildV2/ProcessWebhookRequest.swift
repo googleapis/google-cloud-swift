@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RPC request object accepted by the ProcessWebhook RPC method.
 public struct ProcessWebhookRequest: Codable, Equatable, GoogleWKT._AnyPackable,

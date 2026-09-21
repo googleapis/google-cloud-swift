@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// LoggedBackupPlanMetadata as stored in Platform log. It's used to log the
 /// details of a BackupPlan, which are not provided by users, but are filled

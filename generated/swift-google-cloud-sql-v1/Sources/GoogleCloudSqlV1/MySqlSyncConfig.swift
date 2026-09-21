@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// MySQL-specific external server sync settings.
   public struct MySqlSyncConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: RuleSetServiceClient, projectId: String, locationId: String, ruleSetId: String)
   async throws

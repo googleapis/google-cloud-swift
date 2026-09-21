@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The config for scheduling monitoring job.
   public struct ModelDeploymentMonitoringScheduleConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 
 /// A ``ResumePolicy`` decorator that permits resumes as long as forward progress
 /// is made, halting when consecutive errors reach a maximum threshold.

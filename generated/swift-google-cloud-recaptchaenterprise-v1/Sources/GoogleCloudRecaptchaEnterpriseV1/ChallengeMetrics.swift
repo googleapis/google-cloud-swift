@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metrics related to challenges.
 public struct ChallengeMetrics: Codable, Equatable, GoogleWKT._AnyPackable,

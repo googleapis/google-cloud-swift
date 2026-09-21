@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request message for deleting a OS policy assignment.
 public struct DeleteOSPolicyAssignmentRequest: Codable, Equatable, GoogleWKT._AnyPackable,

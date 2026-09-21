@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Declares a combination of a target URL, transport and protocol version for
 /// interacting with the agent. This allows agents to expose the same

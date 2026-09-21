@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Timestamps associated with this resource in a particular system.
 public struct SystemTimestamps: Codable, Equatable, GoogleWKT._AnyPackable,

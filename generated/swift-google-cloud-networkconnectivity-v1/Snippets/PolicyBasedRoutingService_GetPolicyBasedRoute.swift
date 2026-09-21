@@ -21,8 +21,6 @@ import GoogleCloudNetworkConnectivityV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: PolicyBasedRoutingServiceClient, projectId: String, policyBasedRouteId: String)
   async throws

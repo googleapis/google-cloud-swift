@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Strategy contains deployment strategy information.
 public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,

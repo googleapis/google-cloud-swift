@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ResourceBundle represent a collection of kubernetes configuration resources.
 public struct ResourceBundle: Codable, Equatable, GoogleWKT._AnyPackable,

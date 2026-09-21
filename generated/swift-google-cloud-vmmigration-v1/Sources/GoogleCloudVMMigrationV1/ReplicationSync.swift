@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ReplicationSync contain information about the last replica sync to the cloud.
 public struct ReplicationSync: Codable, Equatable, GoogleWKT._AnyPackable,

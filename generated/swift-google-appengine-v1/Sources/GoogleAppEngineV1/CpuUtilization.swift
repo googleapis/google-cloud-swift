@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Target scaling by CPU usage.
 public struct CpuUtilization: Codable, Equatable, GoogleWKT._AnyPackable,

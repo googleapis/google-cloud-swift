@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a Terraform output.
 public struct TerraformOutput: Codable, Equatable, GoogleWKT._AnyPackable,

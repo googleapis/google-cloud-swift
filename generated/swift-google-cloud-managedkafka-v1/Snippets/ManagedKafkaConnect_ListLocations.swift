@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudManagedKafkaV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ManagedKafkaConnectClient) async throws {

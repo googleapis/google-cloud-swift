@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The attribute at the given path that's substituted entirely.
 public struct AttributeSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPackable,

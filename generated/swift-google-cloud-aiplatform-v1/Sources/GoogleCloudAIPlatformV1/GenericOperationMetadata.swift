@@ -16,8 +16,8 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || FeatureRegistryService || FeaturestoreService || GenAiTuningService || IndexEndpointService || IndexService || JobService || MetadataService || MigrationService || ModelGardenService || ModelService || NotebookService || PersistentResourceService || PipelineService || ReasoningEngineExecutionService || ReasoningEngineService || ScheduleService || SessionService || SpecialistPoolService || TensorboardService || VertexRagDataService || VertexRagService || VizierService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Generic Metadata shared by all operations.
   public struct GenericOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

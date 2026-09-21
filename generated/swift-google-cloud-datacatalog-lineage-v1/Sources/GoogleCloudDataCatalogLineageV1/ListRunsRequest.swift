@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for
 /// [ListRuns][google.cloud.datacatalog.lineage.v1.Lineage.ListRuns].

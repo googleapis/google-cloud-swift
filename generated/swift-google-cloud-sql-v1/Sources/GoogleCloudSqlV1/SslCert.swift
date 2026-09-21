@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlConnectService || SqlInstancesService || SqlSslCertsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// SslCerts Resource
   public struct SslCert: Codable, Equatable, GoogleWKT._AnyPackable,

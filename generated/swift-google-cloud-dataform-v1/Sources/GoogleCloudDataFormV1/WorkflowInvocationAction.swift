@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a single action in a workflow invocation.
 public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackable,

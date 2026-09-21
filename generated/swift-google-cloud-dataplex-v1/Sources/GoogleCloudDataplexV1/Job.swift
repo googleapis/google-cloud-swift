@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A job represents an instance of a task.
 public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,

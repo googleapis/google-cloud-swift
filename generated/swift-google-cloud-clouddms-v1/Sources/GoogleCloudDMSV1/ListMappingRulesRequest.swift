@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Retrieve a list of all mapping rules in a given conversion workspace.
 public struct ListMappingRulesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests || InstanceGroupManagers || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Preserved state for a given instance.
   public struct PreservedState: Codable, Equatable, GoogleWKT._AnyPackable,

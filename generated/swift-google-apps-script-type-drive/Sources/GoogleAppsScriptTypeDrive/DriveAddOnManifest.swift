@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAppsScriptType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleAppsScriptType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Drive add-on manifest.
 public struct DriveAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,

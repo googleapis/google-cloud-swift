@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// PackLogtype is a log type featured in the feed pack.
 public struct PackLogType: Codable, Equatable, GoogleWKT._AnyPackable,

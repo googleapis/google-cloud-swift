@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// References an API call. It contains more information about long running
   /// operation and Jobs that are triggered by the API call.

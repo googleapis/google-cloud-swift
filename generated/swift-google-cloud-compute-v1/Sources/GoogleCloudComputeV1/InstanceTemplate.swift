@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || RegionInstanceTemplates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an Instance Template resource.
   ///

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A key/value pair to be used for storing metadata.
 public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,

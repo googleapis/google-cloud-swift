@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An issue found in the test.
 public struct Issue: Codable, Equatable, GoogleWKT._AnyPackable,

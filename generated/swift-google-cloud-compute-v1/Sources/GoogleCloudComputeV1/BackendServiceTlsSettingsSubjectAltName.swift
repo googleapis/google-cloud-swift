@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A Subject Alternative Name that the load balancer matches against the SAN
   /// field in the TLS certificate provided by the backend, specified as either

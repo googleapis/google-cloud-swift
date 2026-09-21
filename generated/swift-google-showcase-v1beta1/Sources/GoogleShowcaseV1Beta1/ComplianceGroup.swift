@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ComplianceGroups encapsulates a group of RPC requests to the Compliance
 /// server: one request for each combination of elements of `rpcs` and of

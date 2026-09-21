@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RequestMetadata is the metadata message for the request.
 public struct RequestMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

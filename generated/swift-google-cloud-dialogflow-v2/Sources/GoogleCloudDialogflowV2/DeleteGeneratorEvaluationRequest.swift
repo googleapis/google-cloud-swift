@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request of DeleteGeneratorEvaluation.
   public struct DeleteGeneratorEvaluationRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metadata associated with a spec of the API version.
 public struct SpecMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message for getting a list of `BackupPlanRevision`.
 public struct ListBackupPlanRevisionsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

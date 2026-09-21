@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Detailed completion information including completion attribution token and
   /// clicked completion info.

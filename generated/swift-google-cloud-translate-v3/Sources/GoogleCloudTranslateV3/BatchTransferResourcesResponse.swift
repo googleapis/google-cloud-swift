@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response message for BatchTransferResources.
 public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

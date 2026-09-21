@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An Anthos cluster running on customer own infrastructure.
 public struct AttachedCluster: Codable, Equatable, GoogleWKT._AnyPackable,

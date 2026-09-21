@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metadata from querying metrics.
 public struct QueryMetricsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

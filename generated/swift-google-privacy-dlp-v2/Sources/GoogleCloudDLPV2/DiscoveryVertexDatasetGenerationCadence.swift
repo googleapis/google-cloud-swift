@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// How often existing datasets should have their profiles refreshed.
 /// New datasets are scanned as quickly as possible depending on system

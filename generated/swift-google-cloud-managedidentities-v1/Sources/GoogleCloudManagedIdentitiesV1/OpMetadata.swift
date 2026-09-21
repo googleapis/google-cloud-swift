@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the metadata of the long-running operation.
 public struct OpMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

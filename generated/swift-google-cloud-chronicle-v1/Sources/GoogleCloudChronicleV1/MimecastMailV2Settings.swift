@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Mimecast Mail V2 Settings.
 public struct MimecastMailV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,

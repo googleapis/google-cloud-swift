@@ -15,7 +15,7 @@
 import GoogleGax
 
 extension PollingResult: Equatable {
-  public static func == (lhs: PollingResult, rhs: PollingResult) -> Bool {
+  static func == (lhs: PollingResult, rhs: PollingResult) -> Bool {
     switch (lhs, rhs) {
     case (.permanent(let l), .permanent(let r)): return l == r
     case (.exhausted(let l), .exhausted(let r)): return l == r

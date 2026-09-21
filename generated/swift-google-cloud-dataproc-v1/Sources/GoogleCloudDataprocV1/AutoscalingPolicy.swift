@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes an autoscaling policy for Dataproc cluster autoscaler.
 public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

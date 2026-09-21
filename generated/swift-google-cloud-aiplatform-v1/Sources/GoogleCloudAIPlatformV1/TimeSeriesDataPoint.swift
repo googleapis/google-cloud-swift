@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A TensorboardTimeSeries data point.
   public struct TimeSeriesDataPoint: Codable, Equatable, GoogleWKT._AnyPackable,

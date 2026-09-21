@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudBatchV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBatchV1.BatchServiceClient()

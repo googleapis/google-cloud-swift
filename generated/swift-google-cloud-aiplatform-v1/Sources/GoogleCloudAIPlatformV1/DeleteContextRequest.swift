@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [MetadataService.DeleteContext][google.cloud.aiplatform.v1.MetadataService.DeleteContext].

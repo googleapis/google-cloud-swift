@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpgradeClusterResponse contains the response for upgrade cluster operation.
 public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable,

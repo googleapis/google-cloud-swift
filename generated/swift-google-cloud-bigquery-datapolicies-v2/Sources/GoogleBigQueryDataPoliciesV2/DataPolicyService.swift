@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Data Policy Service provides APIs for managing the BigQuery Data Policy.
 ///

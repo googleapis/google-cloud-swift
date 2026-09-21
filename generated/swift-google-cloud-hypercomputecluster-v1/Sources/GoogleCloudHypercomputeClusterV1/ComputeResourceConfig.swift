@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes how a compute resource should be created at runtime.
 public struct ComputeResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

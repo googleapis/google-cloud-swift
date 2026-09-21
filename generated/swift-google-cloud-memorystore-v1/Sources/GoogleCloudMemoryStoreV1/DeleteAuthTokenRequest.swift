@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for `DeleteAuthToken`.
 public struct DeleteAuthTokenRequest: Codable, Equatable, GoogleWKT._AnyPackable,

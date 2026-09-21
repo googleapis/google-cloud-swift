@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Config to store data store type configuration for workspace data
   public struct WorkspaceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

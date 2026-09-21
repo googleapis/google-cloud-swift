@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [SessionService.ListSessions][google.cloud.aiplatform.v1.SessionService.ListSessions].

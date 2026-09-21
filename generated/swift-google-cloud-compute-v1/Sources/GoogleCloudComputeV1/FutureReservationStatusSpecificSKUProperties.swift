@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Properties to be set for the Future Reservation.
   public struct FutureReservationStatusSpecificSKUProperties: Codable, Equatable, GoogleWKT

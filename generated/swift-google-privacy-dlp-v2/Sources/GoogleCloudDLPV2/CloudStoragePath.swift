@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message representing a single file or path in Cloud Storage.
 public struct CloudStoragePath: Codable, Equatable, GoogleWKT._AnyPackable,

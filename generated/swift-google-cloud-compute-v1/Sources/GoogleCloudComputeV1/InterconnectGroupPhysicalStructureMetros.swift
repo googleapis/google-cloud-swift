@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] The metros Interconnects in this group are in.
   public struct InterconnectGroupPhysicalStructureMetros: Codable, Equatable, GoogleWKT

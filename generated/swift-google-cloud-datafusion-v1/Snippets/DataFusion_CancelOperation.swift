@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudDataFusionV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: DataFusionClient) async throws {

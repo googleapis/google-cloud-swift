@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message used by AlloyDB connectors to exchange client and connection metadata
 /// with the server after a successful TLS handshake. This metadata includes an

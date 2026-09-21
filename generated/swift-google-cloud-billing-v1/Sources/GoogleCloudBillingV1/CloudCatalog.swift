@@ -18,8 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// A catalog of Google Cloud Platform services and SKUs.
 /// Provides pricing information and metadata on Google Cloud Platform services

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// EdgeType defines the schema of an edge type in the graph.
 public struct EdgeType: Codable, Equatable, GoogleWKT._AnyPackable,

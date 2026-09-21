@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Nat resource. It enables the VMs within the specified
   /// subnetworks to access Internet without external IP addresses. It specifies

@@ -16,7 +16,7 @@
 
 #if ServiceAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] A connection connected to this service attachment.
   public struct ServiceAttachmentConnectedEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

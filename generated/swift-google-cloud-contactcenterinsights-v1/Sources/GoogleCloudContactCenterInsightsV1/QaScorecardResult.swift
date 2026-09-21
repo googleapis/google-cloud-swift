@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The results of scoring a single conversation against a QaScorecard. Contains
 /// a collection of QaAnswers and aggregate score.

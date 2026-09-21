@@ -19,8 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for the `machineTypes` resource.
   ///
@@ -280,7 +279,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable, message: "Enable the 'MachineTypes' trait in Package.swift to use this client."

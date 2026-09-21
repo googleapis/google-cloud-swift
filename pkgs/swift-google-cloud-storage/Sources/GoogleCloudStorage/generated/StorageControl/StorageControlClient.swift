@@ -16,12 +16,10 @@
 
 import Foundation
 import GoogleAuth
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 @_spi(GoogleCloudInternal) import GoogleGaxGRPC
-@_spi(GoogleCloudInternal) import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleLongRunning
 
 /// A client for Google Cloud Storage control-plane and administrative operations that unifies bucket lifecycle,
 /// IAM access control, object metadata, and control-plane features (folders, caches, intelligence).

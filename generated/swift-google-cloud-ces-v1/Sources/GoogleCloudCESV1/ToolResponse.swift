@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The execution result of a specific tool from the client or the agent.
 public struct ToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,

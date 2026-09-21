@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
 /// individual cryptographic key, and the associated key material.

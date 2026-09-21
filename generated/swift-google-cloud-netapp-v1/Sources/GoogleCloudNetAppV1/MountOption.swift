@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// View only mount options for a volume.
 public struct MountOption: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for ConnectorsService.ListRuntimeActionSchemas.
 /// For filter, only action field is supported with literal equality operator.

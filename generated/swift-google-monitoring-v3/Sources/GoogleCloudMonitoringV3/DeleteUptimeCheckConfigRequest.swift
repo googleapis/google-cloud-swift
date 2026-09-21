@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The protocol for the `DeleteUptimeCheckConfig` request.
 public struct DeleteUptimeCheckConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

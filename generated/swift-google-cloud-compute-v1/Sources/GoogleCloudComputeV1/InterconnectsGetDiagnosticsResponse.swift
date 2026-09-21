@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response for the InterconnectsGetDiagnosticsRequest.
   public struct InterconnectsGetDiagnosticsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

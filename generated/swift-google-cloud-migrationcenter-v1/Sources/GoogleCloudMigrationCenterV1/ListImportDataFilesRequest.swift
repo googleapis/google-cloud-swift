@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to list import data files of an import job.
 public struct ListImportDataFilesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

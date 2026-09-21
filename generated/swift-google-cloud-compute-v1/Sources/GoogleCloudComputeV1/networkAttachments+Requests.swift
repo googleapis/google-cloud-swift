@@ -16,7 +16,7 @@
 
 #if NetworkAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension NetworkAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkAttachments.aggregatedList] method.

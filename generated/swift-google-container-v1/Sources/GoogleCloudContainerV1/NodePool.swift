@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// NodePool contains the name and configuration for a cluster's node pool.
 /// Node pools are a set of nodes (i.e. VM's), with a common configuration and

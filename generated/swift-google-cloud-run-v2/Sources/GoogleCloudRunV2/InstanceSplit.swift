@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Holds a single instance split entry for the Worker. Allocations can be done
 /// to a specific Revision name, or pointing to the latest Ready Revision.

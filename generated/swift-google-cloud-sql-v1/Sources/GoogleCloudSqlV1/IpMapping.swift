@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlConnectService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Database instance IP mapping
   public struct IpMapping: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A remote API tool defined by an OpenAPI schema.
 public struct OpenApiTool: Codable, Equatable, GoogleWKT._AnyPackable,

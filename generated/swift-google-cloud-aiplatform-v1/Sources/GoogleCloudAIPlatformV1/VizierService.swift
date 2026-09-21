@@ -19,12 +19,10 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleCloudLocation
-  @_spi(GoogleCloudInternal) import GoogleIAMV1
-  @_spi(GoogleCloudInternal) import GoogleLongRunning
-  @_spi(GoogleCloudInternal) import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) public import GoogleIAMV1
+  @_spi(GoogleCloudInternal) public import GoogleLongRunning
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Vertex AI Vizier API.
   ///
@@ -1303,7 +1301,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable, message: "Enable the 'VizierService' trait in Package.swift to use this client."

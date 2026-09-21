@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message representing IndexEndpoint resource. Indexes are deployed into it.
 public struct IndexEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

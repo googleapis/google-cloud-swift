@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: SessionsClient) async throws {
     try await client.cancelOperation(

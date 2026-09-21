@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A selector which specifies what resource(s) are included in a given wave.
   public struct RolloutPlanWaveSelector: Codable, Equatable, GoogleWKT._AnyPackable,

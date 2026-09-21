@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines a certificate map entry.
 public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,

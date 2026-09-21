@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specifications of the resource to roll out.
   public struct RolloutRolloutEntity: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An Autonomous Database refreshable clone
 public struct AutonomousDatabaseRefreshableClone: Codable, Equatable, GoogleWKT._AnyPackable,

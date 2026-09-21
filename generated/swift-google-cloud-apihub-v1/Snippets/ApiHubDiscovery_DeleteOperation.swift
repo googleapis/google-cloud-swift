@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: ApiHubDiscoveryClient) async throws {
   try await client.deleteOperation(

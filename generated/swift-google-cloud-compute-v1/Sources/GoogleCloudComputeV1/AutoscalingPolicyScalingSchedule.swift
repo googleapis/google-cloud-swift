@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Scaling based on user-defined schedule. The message describes a single
   /// scaling schedule. A scaling schedule changes the minimum number of VM

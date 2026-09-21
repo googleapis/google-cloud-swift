@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-import GoogleWKT
+public import GoogleRpc
+public import GoogleWKT
 
 /// Additional information accompanying service errors.
 ///

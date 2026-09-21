@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The environment creating the assessment. This describes your environment
 /// (the system invoking CreateAssessment), NOT the environment of your user.

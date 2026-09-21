@@ -21,7 +21,6 @@ import GoogleCloudFunctionsV2
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: FunctionServiceClient, projectId: String, locationId: String) async throws {

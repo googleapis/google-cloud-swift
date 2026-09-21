@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A reference to a [VPC network](https://cloud.google.com/vpc/docs/vpc) in
 /// Google Compute Engine.

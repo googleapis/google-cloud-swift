@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The parameters to `UpdateView`.
 public struct UpdateViewRequest: Codable, Equatable, GoogleWKT._AnyPackable,

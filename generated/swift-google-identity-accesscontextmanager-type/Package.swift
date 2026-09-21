@@ -28,6 +28,9 @@ let package = Package(
   targets: [
     .target(
       name: "GoogleIdentityAccessContextManagerType",
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

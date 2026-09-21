@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// This message is used if the resource type follows the Orchestrated
   /// integration model with ProgressiveRollout.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Video segment level annotation results for face detection.
 public struct FaceSegment: Codable, Equatable, GoogleWKT._AnyPackable,

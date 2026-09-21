@@ -16,7 +16,7 @@
 
 #if ReservationSubBlocks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The reason for the fault experienced with the subBlock.
   public struct ReservationSubBlocksReportFaultyRequestFaultReason: Codable, Equatable, GoogleWKT

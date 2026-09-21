@@ -16,7 +16,7 @@
 
 #if Agents || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration of how speech should be synthesized.
   public struct SynthesizeSpeechConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Burns currency tokens. The sender must be a token manager and the account
 /// supplying the tokens to burn must additionally sign the transaction.

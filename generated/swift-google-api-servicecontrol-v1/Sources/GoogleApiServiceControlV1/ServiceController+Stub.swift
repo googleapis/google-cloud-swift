@@ -15,7 +15,6 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

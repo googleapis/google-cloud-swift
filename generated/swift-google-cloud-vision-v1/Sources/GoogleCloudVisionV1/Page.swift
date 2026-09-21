@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Detected page from OCR.
 public struct Page: Codable, Equatable, GoogleWKT._AnyPackable,

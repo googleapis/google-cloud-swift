@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A `Property` consists of a user-supplied name/value pair.
 public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,

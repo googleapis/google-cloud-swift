@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The migration task result.
 public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,

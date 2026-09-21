@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A test message for google.protobuf.Int32Value.
 public struct MessageWithInt32Value: Codable, Equatable, GoogleWKT._AnyPackable,

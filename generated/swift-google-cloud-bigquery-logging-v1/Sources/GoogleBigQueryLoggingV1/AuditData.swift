@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BigQuery request and response messages for audit log.
 /// Note: `Table.schema` has been deprecated in favor of `Table.schemaJson`.

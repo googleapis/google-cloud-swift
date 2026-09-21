@@ -16,7 +16,7 @@
 
 #if MachineImages
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension MachineImagesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.machineImages.delete] method.

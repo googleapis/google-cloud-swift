@@ -21,7 +21,6 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: DataProductServiceClient) async throws {

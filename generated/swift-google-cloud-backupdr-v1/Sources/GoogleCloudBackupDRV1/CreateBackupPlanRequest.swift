@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message for creating a `BackupPlan`.
 public struct CreateBackupPlanRequest: Codable, Equatable, GoogleWKT._AnyPackable,

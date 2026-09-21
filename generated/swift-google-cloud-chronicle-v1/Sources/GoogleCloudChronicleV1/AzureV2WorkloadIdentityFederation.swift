@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Azure V2 Workload Identity Federation.
 public struct AzureV2WorkloadIdentityFederation: Codable, Equatable, GoogleWKT._AnyPackable,

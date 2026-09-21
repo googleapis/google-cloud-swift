@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that delete Feature values.
   public struct DeleteFeatureValuesOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

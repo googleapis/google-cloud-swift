@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudLanguageV2
-import GoogleWKT
 
 func sample(client: LanguageServiceClient) async throws {
   let response = try await client.analyzeSentiment(

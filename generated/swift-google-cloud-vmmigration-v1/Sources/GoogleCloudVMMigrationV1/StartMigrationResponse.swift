@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response message for 'StartMigration' request.
 public struct StartMigrationResponse: Codable, Equatable, GoogleWKT._AnyPackable,

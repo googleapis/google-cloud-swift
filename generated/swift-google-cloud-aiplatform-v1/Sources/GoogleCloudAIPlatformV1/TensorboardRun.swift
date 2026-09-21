@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// TensorboardRun maps to a specific execution of a training job with a given
   /// set of hyperparameter values, model definition, dataset, etc

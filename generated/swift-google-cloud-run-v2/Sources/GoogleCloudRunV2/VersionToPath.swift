@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VersionToPath maps a specific version of a secret to a relative file to mount
 /// to, relative to VolumeMount's mount_path.

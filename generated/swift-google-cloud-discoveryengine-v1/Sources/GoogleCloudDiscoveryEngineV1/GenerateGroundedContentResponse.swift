@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if GroundedGenerationService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response for the `GenerateGroundedContent` method.
   public struct GenerateGroundedContentResponse: Codable, Equatable, GoogleWKT._AnyPackable,

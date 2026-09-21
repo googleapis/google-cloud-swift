@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a result from running a test case in an agent environment.
   public struct TestCaseResult: Codable, Equatable, GoogleWKT._AnyPackable,

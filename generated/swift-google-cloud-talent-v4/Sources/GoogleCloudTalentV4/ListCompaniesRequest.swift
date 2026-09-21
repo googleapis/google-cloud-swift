@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// List companies for which the client has ACL visibility.
 public struct ListCompaniesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

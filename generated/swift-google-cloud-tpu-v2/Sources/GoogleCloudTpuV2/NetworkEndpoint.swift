@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A network endpoint over which a TPU worker can be reached.
 public struct NetworkEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

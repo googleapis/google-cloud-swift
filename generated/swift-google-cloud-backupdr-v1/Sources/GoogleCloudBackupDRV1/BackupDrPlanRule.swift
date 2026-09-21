@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BackupDrPlanRule has rule specific information of the backup plan resource.
 public struct BackupDrPlanRule: Codable, Equatable, GoogleWKT._AnyPackable,

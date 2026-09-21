@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Snapshot of the configurations used to generate the profile.
 public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleWKT._AnyPackable,

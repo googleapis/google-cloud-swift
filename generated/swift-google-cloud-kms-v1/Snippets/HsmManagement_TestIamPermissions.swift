@@ -21,8 +21,6 @@ import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: HsmManagementClient) async throws {
   let response = try await client.testIamPermissions(

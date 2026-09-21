@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Explicitly specified decoding parameters.
 public struct ExplicitDecodingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

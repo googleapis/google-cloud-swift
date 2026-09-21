@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A documentation rule provides information about individual API elements.
 public struct DocumentationRule: Codable, Equatable, GoogleWKT._AnyPackable,

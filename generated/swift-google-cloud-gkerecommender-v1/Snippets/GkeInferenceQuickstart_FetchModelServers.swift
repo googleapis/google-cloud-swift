@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudGKERecommenderV1
-import GoogleWKT
 
 func sample(client: GkeInferenceQuickstartClient) async throws {
   let response = try await client.fetchModelServers(

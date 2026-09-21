@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudDataCatalogLineageV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: LineageClient, projectId: String, locationId: String, processId: String)

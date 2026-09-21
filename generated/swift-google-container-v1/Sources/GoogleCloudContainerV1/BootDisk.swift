@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BootDisk specifies the boot disk configuration for node pools.
 public struct BootDisk: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ControlService || ConversationalSearchService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Promotion proto includes uri and other helping information to display the
   /// promotion.

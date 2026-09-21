@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The data for a sentiment annotation.
 public struct SentimentData: Codable, Equatable, GoogleWKT._AnyPackable,

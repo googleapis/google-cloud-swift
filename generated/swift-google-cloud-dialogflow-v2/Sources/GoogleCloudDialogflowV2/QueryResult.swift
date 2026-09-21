@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the result of conversational query or event processing.
   public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,

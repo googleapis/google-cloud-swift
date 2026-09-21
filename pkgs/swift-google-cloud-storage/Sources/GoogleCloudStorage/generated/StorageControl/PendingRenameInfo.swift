@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains information about a pending rename operation.
 public struct PendingRenameInfo: Codable, Equatable, GoogleWKT._AnyPackable,

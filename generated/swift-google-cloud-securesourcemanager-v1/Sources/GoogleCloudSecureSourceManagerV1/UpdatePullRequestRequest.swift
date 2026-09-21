@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdatePullRequestRequest is the request to update a pull request.
 public struct UpdatePullRequestRequest: Codable, Equatable, GoogleWKT._AnyPackable,

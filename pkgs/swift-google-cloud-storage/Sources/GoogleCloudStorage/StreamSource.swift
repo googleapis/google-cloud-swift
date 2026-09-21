@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 import NIOCore
 
 /// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.

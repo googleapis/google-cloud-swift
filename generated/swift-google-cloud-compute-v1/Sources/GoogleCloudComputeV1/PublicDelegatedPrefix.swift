@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if GlobalPublicDelegatedPrefixes || PublicDelegatedPrefixes
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A PublicDelegatedPrefix resource represents an IP block within a
   /// PublicAdvertisedPrefix that is configured within a single cloud scope

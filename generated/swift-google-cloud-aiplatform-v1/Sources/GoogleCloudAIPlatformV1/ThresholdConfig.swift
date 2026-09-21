@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The config for feature monitoring threshold.
   public struct ThresholdConfig: Codable, Equatable, GoogleWKT._AnyPackable,

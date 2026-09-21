@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The rotation time and period for a
 /// [Secret][google.cloud.secretmanager.v1.Secret]. At next_rotation_time, Secret

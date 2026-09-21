@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// FeedServiceAccount is a resource that wraps the feed service account's name.
 public struct FeedServiceAccount: Codable, Equatable, GoogleWKT._AnyPackable,

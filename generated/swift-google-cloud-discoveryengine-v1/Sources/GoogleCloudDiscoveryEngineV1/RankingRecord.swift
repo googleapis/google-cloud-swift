@@ -16,7 +16,7 @@
 
 #if RankService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Record message for
   /// [RankService.Rank][google.cloud.discoveryengine.v1.RankService.Rank] method.

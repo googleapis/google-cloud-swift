@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Removes the account signing key from the specified slot. The other slot must
 /// not be empty, and must hold the key used to sign the `ClientTransaction`.

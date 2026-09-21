@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the `DeleteRegistration` method.
 public struct DeleteRegistrationRequest: Codable, Equatable, GoogleWKT._AnyPackable,

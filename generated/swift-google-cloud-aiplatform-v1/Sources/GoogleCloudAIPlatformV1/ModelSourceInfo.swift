@@ -16,7 +16,7 @@
 
 #if DatasetService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Detail description of the source information of the model.
   public struct ModelSourceInfo: Codable, Equatable, GoogleWKT._AnyPackable,

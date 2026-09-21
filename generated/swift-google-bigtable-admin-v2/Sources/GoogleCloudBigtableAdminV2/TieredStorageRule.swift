@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Rule to specify what data is stored in a storage tier.
 public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,

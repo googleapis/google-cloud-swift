@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the context of an entity (node or edge) in the graph.
 public struct EntityContext: Codable, Equatable, GoogleWKT._AnyPackable,

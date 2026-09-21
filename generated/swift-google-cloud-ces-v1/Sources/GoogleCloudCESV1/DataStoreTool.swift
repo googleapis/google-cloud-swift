@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Tool to retrieve from Vertex AI Search datastore or engine for grounding.
 /// Accepts either a datastore or an engine, but not both.

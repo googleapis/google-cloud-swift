@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `QueryTimeSeries` response. For information about the status of
 /// Monitoring Query Language (MQL), see the [MQL deprecation

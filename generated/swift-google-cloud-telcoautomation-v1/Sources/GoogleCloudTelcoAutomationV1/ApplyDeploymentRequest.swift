@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request object for `ApplyDeployment`. The resources in given deployment
 /// gets applied to Orchestration Cluster. A new revision is created when a

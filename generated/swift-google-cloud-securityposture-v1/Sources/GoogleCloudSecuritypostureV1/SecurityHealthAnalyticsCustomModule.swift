@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for SHA Custom Module
 public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleWKT._AnyPackable,

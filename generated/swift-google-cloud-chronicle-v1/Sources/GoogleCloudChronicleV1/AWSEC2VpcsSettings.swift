@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AWS EC2 Vpcs Settings.
 public struct AWSEC2VpcsSettings: Codable, Equatable, GoogleWKT._AnyPackable,

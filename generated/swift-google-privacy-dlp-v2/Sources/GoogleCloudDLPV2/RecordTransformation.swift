@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The field in a record to transform.
 public struct RecordTransformation: Codable, Equatable, GoogleWKT._AnyPackable,

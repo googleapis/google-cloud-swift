@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A accelerator type that a Node can be configured with.
 public struct AcceleratorType: Codable, Equatable, GoogleWKT._AnyPackable,

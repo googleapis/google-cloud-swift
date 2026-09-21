@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if NetworkAttachments || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || ResourcePolicies || ServiceAttachments || Subnetworks
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RegionSetPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

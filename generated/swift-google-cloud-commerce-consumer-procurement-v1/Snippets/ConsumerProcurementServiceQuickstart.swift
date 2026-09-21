@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudCommerceConsumerProcurementV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudCommerceConsumerProcurementV1.ConsumerProcurementServiceClient()

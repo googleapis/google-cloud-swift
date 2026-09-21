@@ -16,7 +16,7 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Pipeline template metadata if
   /// [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]

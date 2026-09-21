@@ -16,7 +16,7 @@
 
 #if Snapshots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension SnapshotsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.snapshots.delete] method.

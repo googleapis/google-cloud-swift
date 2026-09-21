@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudConfigDeliveryV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ConfigDeliveryClient, projectId: String, locationId: String) async throws {

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIAMV2
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIAMV2
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about how a specific IAM deny policy [Policy][google.iam.v2.Policy]
 /// contributed to the access check.

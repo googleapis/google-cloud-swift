@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A TrainingJob that trains and uploads an AutoML Image Segmentation Model.
 public struct AutoMlImageSegmentation: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Files served directly to the user for a given URL, such as images, CSS
 /// stylesheets, or JavaScript source files. Static file handlers describe which

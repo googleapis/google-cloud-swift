@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata for an IFrame ad resource.
 public struct IframeAdResource: Codable, Equatable, GoogleWKT._AnyPackable,

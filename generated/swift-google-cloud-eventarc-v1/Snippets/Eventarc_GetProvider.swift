@@ -21,7 +21,6 @@ import GoogleCloudEventarcV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String, providerId: String)

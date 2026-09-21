@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource that reports result of the import job execution.
 public struct ExecutionReport: Codable, Equatable, GoogleWKT._AnyPackable,

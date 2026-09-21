@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request Option for processing Cloud AI Document in CW Document.
 public struct CloudAIDocumentOption: Codable, Equatable, GoogleWKT._AnyPackable,

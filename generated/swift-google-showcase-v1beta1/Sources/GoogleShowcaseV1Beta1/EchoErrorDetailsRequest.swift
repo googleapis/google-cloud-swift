@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message used for the EchoErrorDetails method.
 public struct EchoErrorDetailsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

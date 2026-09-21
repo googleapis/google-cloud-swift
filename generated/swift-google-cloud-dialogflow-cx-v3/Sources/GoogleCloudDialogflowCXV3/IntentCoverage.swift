@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Intent coverage represents the percentage of all possible intents in the
   /// agent that are triggered in any of a parent's test cases.

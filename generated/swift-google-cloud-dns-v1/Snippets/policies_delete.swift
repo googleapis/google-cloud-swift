@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudDNSV1
-import GoogleWKT
 
 func sample(client: PoliciesClient) async throws {
   try await client.delete(

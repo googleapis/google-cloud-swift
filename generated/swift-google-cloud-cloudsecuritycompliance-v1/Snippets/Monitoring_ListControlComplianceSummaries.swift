@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 #if hasAttribute(diagnose)
   @diagnose(DeprecatedDeclaration, as: ignored)

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for `ExadbVmCluster.List`.
 public struct ListExadbVmClustersRequest: Codable, Equatable, GoogleWKT._AnyPackable,

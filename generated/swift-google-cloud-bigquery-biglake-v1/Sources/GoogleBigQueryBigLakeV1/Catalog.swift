@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Catalog is the container of databases.
 public struct Catalog: Codable, Equatable, GoogleWKT._AnyPackable,

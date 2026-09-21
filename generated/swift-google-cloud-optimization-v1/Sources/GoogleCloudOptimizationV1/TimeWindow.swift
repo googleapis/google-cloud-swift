@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Time windows constrain the time of an event, such as the arrival time at a
 /// visit, or the start and end time of a vehicle.

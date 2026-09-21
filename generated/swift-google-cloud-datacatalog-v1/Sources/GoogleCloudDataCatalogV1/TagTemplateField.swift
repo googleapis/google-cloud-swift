@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The template for an individual field within a tag template.
 public struct TagTemplateField: Codable, Equatable, GoogleWKT._AnyPackable,

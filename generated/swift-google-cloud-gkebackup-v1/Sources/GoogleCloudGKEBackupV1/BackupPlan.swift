@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines the configuration and scheduling for a "line" of Backups.
 public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,

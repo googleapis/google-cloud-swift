@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudServiceDirectoryV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudServiceDirectoryV1.LookupServiceClient()

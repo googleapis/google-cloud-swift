@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for fetching all notifications for a given parent.
 public struct ListNotificationsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

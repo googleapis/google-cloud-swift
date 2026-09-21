@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents feedback the customer has about the quality & correctness of a
   /// certain answer in a conversation.

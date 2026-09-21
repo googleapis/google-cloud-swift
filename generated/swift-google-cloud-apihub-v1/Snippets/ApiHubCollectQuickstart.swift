@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudApiHubV1.ApiHubCollectClient()

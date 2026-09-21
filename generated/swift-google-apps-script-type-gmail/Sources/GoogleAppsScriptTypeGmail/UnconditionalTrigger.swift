@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A trigger that fires when any email message is opened.
 public struct UnconditionalTrigger: Codable, Equatable, GoogleWKT._AnyPackable,

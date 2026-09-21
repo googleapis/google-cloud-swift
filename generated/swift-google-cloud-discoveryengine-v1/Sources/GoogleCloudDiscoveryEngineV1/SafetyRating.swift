@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Safety rating corresponding to the generated content.
   public struct SafetyRating: Codable, Equatable, GoogleWKT._AnyPackable,

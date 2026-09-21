@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Workload is an App Hub data model that contains a discovered workload, which
 /// represents a binary deployment (such as managed instance groups (MIGs) and

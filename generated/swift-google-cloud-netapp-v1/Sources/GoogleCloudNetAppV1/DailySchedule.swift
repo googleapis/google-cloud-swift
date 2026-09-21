@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Make a snapshot every day e.g. at 04:00, 05:20, 23:50
 public struct DailySchedule: Codable, Equatable, GoogleWKT._AnyPackable,

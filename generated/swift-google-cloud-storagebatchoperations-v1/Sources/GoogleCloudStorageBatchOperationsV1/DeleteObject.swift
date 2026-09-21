@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes options to delete an object.
 public struct DeleteObject: Codable, Equatable, GoogleWKT._AnyPackable,

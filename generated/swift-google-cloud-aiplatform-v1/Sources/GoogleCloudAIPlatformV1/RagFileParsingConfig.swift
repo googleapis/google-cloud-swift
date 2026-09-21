@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specifies the parsing config for RagFiles.
   public struct RagFileParsingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

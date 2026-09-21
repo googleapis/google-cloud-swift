@@ -22,7 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
   import GoogleWKT
 
   func sample(client: FeatureRegistryServiceClient, projectId: String, locationId: String)

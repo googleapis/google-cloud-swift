@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudSecurityPublicCAV1
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSecurityPublicCAV1.PublicCertificateAuthorityServiceClient()

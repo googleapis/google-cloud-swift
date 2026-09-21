@@ -16,7 +16,6 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

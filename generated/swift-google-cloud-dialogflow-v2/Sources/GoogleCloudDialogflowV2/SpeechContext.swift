@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Hints for the speech recognizer to help with recognition in a specific
   /// conversation state.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BackupLocation represents a cloud location where a backup can be stored.
 public struct BackupLocation: Codable, Equatable, GoogleWKT._AnyPackable,

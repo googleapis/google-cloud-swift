@@ -16,7 +16,7 @@
 
 #if Agents || Generators || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Settings for LLM models.
   public struct LlmModelSettings: Codable, Equatable, GoogleWKT._AnyPackable,

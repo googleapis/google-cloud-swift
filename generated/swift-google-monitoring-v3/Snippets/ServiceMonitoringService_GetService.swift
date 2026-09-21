@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleWKT
 
 func sample(client: ServiceMonitoringServiceClient, projectId: String, serviceId: String)
   async throws

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `LbTrafficExtension` is a resource that lets the extension service modify the
 /// headers and payloads of both requests and responses without impacting the

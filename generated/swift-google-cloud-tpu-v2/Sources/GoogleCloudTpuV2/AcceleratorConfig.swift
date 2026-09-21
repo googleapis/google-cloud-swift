@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A TPU accelerator configuration.
 public struct AcceleratorConfig: Codable, Equatable, GoogleWKT._AnyPackable,

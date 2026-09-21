@@ -16,7 +16,7 @@
 
 #if RegionSslPolicies || SslPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct SslPoliciesListAvailableFeaturesResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,

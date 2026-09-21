@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// User specified templates and configs for how to deidentify structured,
 /// unstructures, and image files. User must provide either a unstructured

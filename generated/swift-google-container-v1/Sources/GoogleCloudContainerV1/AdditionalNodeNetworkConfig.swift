@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AdditionalNodeNetworkConfig is the configuration for additional node networks
 /// within the NodeNetworkConfig message

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing general annotation for resources.
 public struct ResourceAnnotations: Codable, Equatable, GoogleWKT._AnyPackable,

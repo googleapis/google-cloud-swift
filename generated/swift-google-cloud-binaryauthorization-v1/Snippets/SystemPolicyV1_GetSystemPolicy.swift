@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudBinaryAuthorizationV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(client: SystemPolicyV1Client, projectId: String) async throws {
   let response = try await client.getSystemPolicy(

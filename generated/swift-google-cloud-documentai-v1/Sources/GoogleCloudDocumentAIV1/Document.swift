@@ -14,10 +14,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleRpc
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+public import GoogleRpc
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Document represents the canonical document resource in Document AI. It is an
 /// interchange format that provides insights into documents and allows for

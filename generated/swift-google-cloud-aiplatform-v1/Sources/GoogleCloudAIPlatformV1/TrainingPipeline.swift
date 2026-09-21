@@ -16,8 +16,8 @@
 
 #if PipelineService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The TrainingPipeline orchestrates tasks associated with training a Model. It
   /// always executes the training task, and optionally may also

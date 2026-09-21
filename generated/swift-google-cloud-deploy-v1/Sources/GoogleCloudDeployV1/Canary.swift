@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Canary represents the canary deployment strategy.
 public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,

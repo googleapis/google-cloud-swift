@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request message for creating a patch deployment.
 public struct CreatePatchDeploymentRequest: Codable, Equatable, GoogleWKT._AnyPackable,

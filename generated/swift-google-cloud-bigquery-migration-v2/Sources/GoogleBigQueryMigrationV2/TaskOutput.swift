@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The task output for a task type including the status and any errors.
 public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,

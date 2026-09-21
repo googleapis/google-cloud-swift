@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: ConversationsClient) async throws {
     let response = try await client.completeConversation(

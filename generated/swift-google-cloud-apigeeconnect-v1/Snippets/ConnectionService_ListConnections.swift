@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudApigeeConnectV1
-import GoogleWKT
 
 func sample(client: ConnectionServiceClient) async throws {
   let items = try client.listConnections(

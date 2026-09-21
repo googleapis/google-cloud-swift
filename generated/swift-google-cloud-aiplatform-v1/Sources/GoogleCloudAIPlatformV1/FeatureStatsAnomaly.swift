@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService || JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Stats and Anomaly generated at specific timestamp for specific Feature.
   /// The start_time and end_time are used to define the time range of the dataset

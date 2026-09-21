@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A message with a list of double values.
 public struct DoubleList: Codable, Equatable, GoogleWKT._AnyPackable,

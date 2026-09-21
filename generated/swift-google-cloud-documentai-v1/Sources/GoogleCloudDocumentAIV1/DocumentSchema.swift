@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The schema defines the output of the processed document by a processor.
 public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,

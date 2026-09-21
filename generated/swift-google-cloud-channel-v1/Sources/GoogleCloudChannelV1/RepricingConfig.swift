@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for repricing a Google bill over a period of time.
 public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

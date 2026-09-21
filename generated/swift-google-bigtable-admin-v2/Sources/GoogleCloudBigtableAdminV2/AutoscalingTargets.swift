@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The Autoscaling targets for a Cluster. These determine the recommended nodes.
 public struct AutoscalingTargets: Codable, Equatable, GoogleWKT._AnyPackable,

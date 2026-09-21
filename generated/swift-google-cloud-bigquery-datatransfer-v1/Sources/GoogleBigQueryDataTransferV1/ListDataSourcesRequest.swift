@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to list supported data sources and their data transfer settings.
 public struct ListDataSourcesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Collection of findings saved to a Cloud Storage bucket. This is used as the
 /// proto schema for textproto files created when specifying a cloud storage

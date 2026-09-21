@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a Synthetic Monitor to be invoked by Uptime.
 public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable,

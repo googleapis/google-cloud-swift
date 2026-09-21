@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for GetEntityReconciliationJob.
 public struct GetEntityReconciliationJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,

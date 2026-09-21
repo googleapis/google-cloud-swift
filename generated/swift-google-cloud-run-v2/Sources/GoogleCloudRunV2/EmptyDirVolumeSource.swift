@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// In memory (tmpfs) ephemeral storage.
 /// It is ephemeral in the sense that when the sandbox is taken down, the data is

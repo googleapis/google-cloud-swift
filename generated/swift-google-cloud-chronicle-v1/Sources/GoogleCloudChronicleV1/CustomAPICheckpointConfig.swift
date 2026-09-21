@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Checkpoint configuration to enable sequential (cursor-based) polling.
 public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPackable,

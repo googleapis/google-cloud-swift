@@ -16,7 +16,6 @@
 
 import Foundation
 import GoogleCloudLocation
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

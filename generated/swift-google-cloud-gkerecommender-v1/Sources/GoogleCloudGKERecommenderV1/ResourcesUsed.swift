@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Resources used by a model deployment.
 public struct ResourcesUsed: Codable, Equatable, GoogleWKT._AnyPackable,

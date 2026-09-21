@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Location of a finding within a row or record.
 public struct RecordLocation: Codable, Equatable, GoogleWKT._AnyPackable,

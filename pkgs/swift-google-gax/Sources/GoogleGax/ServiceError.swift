@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
+public import GoogleRpc
 
 /// The details for ``RequestError/service(_:)``.
 public struct ServiceError: Sendable, Error, Equatable, CustomStringConvertible {

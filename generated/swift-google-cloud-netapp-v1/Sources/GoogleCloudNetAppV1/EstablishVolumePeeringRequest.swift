@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// EstablishVolumePeeringRequest establishes cluster and svm peerings between
 /// the source and destination clusters.

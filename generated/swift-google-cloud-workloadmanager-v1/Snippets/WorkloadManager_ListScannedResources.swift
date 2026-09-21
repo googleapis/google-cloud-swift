@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudWorkloadManagerV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: WorkloadManagerClient) async throws {

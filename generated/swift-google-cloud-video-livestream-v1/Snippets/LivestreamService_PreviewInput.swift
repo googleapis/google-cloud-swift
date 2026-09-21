@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudVideoLiveStreamV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient) async throws {

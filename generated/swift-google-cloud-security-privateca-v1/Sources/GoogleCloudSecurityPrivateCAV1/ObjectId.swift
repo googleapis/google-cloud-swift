@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An [ObjectId][google.cloud.security.privateca.v1.ObjectId] specifies an
 /// object identifier (OID). These provide context and describe types in ASN.1

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request message to list OS policy assignments for a parent resource
 public struct ListOSPolicyAssignmentsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

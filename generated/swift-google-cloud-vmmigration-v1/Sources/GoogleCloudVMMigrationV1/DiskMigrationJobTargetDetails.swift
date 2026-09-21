@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details of the target disk in Compute Engine.
 public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Config used to determine the final backup settings for the instance.
   public struct FinalBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,

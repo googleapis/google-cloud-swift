@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `LbEdgeExtension` is a resource that lets the extension service influence
 /// the selection of backend services and Cloud CDN cache keys by modifying

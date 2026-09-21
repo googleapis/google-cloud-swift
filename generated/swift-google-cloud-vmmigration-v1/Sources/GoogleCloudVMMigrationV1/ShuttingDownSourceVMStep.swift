@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ShuttingDownSourceVMStep contains specific step details.
 public struct ShuttingDownSourceVMStep: Codable, Equatable, GoogleWKT._AnyPackable,

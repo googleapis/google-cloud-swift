@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for Slurm nodesets in the cluster. Nodesets are groups of
 /// compute nodes used by Slurm that are responsible for running workloads

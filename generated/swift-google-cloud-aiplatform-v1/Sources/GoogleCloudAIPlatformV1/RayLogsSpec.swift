@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration for the Ray OSS Logs.
   public struct RayLogsSpec: Codable, Equatable, GoogleWKT._AnyPackable,

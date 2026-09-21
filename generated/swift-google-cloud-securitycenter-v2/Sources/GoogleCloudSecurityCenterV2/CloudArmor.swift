@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Fields related to Google Cloud Armor findings.
 public struct CloudArmor: Codable, Equatable, GoogleWKT._AnyPackable,

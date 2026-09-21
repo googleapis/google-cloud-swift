@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the `DeleteScanConfig` method.
 public struct DeleteScanConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

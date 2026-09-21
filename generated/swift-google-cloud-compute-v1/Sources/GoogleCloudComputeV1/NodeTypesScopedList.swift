@@ -16,7 +16,7 @@
 
 #if NodeTypes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct NodeTypesScopedList: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

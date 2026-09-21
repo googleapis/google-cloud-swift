@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing annotations specific to application node.
 /// This message is a duplication of StreamWithAnnotation.NodeAnnotation.

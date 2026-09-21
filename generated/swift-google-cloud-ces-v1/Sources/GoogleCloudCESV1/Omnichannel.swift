@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents an Omnichannel resource.
 public struct Omnichannel: Codable, Equatable, GoogleWKT._AnyPackable,

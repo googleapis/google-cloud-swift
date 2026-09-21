@@ -16,7 +16,7 @@
 
 #if Firewalls || Instances || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional firewall parameters.
   public struct FirewallParams: Codable, Equatable, GoogleWKT._AnyPackable,

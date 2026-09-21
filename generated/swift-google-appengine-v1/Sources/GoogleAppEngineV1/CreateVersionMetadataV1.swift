@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata for the given [google.longrunning.Operation][google.longrunning.Operation] during a
 /// [google.appengine.v1.CreateVersionRequest][google.appengine.v1.CreateVersionRequest].

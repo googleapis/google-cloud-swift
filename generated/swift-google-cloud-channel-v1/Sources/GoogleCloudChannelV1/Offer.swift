@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents an offer made to resellers for purchase.
 /// An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan

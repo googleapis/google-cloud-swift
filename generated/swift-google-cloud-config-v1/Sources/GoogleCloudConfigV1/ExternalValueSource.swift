@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for a source of an external value.
 public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Replace each input value with a value randomly selected from the dictionary.
 public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPackable,

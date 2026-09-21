@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings for Java client libraries.
 public struct JavaSettings: Codable, Equatable, GoogleWKT._AnyPackable,

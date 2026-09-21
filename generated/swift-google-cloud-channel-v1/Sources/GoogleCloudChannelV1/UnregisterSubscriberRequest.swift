@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request Message for UnregisterSubscriber.
 public struct UnregisterSubscriberRequest: Codable, Equatable, GoogleWKT._AnyPackable,

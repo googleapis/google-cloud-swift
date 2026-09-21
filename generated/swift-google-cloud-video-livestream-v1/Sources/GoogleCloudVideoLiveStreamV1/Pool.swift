@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Pool resource defines the configuration of Live Stream pools for a specific
 /// location. Currently we support only one pool resource per project per

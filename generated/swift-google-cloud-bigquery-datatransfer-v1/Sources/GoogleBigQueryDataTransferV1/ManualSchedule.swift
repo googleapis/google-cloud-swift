@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Options customizing manual transfers schedule.
 public struct ManualSchedule: Codable, Equatable, GoogleWKT._AnyPackable,

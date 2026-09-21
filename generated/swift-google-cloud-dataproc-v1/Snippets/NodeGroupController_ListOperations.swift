@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDataprocV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: NodeGroupControllerClient) async throws {
   let items = try client.listOperations(

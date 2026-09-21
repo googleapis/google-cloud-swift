@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ConnectorVersion indicates a specific version of a connector.
 public struct ConnectorVersion: Codable, Equatable, GoogleWKT._AnyPackable,

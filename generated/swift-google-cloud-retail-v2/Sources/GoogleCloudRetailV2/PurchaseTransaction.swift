@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A transaction represents the entire purchase transaction.
 public struct PurchaseTransaction: Codable, Equatable, GoogleWKT._AnyPackable,

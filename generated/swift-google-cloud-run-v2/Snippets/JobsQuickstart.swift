@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudRunV2
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudRunV2.JobsClient()

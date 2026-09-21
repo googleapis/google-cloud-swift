@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleCloudLoggingType", package: "swift-google-logging-type"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

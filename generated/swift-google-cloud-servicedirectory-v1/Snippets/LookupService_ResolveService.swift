@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudServiceDirectoryV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: LookupServiceClient) async throws {
   let response = try await client.resolveService(

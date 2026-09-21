@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance of a general MetadataSchema.
   public struct MetadataSchema: Codable, Equatable, GoogleWKT._AnyPackable,

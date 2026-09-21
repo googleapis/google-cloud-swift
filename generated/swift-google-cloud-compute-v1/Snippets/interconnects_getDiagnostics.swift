@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: InterconnectsClient) async throws {
     let response = try await client.getDiagnostics(

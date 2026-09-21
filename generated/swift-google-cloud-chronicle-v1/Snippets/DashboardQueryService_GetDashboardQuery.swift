@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(
   client: DashboardQueryServiceClient, projectId: String, locationId: String, instanceId: String,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request to get a view.
 public struct GetViewRequest: Codable, Equatable, GoogleWKT._AnyPackable,

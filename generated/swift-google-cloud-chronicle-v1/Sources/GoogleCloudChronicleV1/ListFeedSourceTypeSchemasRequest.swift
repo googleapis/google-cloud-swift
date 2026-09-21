@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ListFeedSourceTypeSchemas request message. Note that Feed schemas do not
 /// contain customer data, so are not scoped to a particular customer.

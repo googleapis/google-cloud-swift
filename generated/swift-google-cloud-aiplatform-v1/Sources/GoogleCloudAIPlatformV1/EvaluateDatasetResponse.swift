@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The results from an evaluation run performed by the EvaluationService.
   public struct EvaluateDatasetResponse: Codable, Equatable, GoogleWKT._AnyPackable,

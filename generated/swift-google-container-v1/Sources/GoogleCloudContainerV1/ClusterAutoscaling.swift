@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ClusterAutoscaling contains global, per-cluster information
 /// required by Cluster Autoscaler to automatically adjust

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Retrohunt is an execution of a Rule over a time range in the past.
 public struct Retrohunt: Codable, Equatable, GoogleWKT._AnyPackable,

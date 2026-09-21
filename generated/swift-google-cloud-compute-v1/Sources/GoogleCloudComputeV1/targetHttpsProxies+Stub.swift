@@ -16,7 +16,6 @@
 
 #if TargetHttpsProxies
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

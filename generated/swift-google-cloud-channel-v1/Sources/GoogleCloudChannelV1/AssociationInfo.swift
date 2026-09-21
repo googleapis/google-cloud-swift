@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Association links that an entitlement has to other entitlements.
 public struct AssociationInfo: Codable, Equatable, GoogleWKT._AnyPackable,

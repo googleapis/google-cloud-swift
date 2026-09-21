@@ -16,7 +16,7 @@
 
 #if Agents || Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Google Cloud Storage location for a Dialogflow operation that writes or
   /// exports objects (e.g. exported agent or transcripts) outside of Dialogflow.

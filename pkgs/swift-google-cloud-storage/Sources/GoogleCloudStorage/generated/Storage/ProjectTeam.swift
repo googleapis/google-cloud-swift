@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the Viewers, Editors, or Owners of a given project.
 public struct ProjectTeam: Codable, Equatable, GoogleWKT._AnyPackable,

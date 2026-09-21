@@ -16,7 +16,6 @@
 
 #if Advice
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

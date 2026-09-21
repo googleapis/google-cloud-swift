@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Windows patching is performed using the Windows Update Agent.
 public struct WindowsUpdateSettings: Codable, Equatable, GoogleWKT._AnyPackable,

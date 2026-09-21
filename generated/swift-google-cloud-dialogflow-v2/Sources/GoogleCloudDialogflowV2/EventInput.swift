@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Events allow for matching intents by event name instead of the natural
   /// language input. For instance, input `<event: { name: "welcome_event",

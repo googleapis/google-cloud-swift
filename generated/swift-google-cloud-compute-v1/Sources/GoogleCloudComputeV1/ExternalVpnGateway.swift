@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if ExternalVpnGateways
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an external VPN gateway.
   ///

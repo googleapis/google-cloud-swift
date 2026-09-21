@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message of
   /// [ModelService.CopyModel][google.cloud.aiplatform.v1.ModelService.CopyModel]

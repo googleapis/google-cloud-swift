@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The Upgrade Distribution represents metadata about the Upgrade for each
 /// operating system (CPE). Some distributions have additional metadata around

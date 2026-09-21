@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A ScanRunLog is an output-only proto used for Stackdriver customer logging.
 /// It is used for logs covering the start and end of scan pipelines.

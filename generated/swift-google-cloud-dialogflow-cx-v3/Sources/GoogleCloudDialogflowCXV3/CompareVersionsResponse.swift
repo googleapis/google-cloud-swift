@@ -16,7 +16,7 @@
 
 #if Versions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The response message for
   /// [Versions.CompareVersions][google.cloud.dialogflow.cx.v3.Versions.CompareVersions].

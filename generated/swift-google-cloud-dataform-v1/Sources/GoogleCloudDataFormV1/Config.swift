@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Config for all repositories in a given project and location.
 public struct Config: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if RegionDisks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension RegionDisksClient {
     /// Synthetic request message for the [addResourcePolicies()][google.cloud.compute.v1.regionDisks.addResourcePolicies] method.

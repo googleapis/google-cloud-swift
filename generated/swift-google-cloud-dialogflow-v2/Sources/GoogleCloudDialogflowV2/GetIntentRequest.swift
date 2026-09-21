@@ -16,7 +16,7 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The request message for
   /// [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.GetIntent].

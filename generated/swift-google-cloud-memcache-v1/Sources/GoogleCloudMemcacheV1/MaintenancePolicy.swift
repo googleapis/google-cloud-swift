@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Maintenance policy per instance.
 public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The audit configuration for Compliance Manager.
 public struct AuditConfig: Codable, Equatable, GoogleWKT._AnyPackable,

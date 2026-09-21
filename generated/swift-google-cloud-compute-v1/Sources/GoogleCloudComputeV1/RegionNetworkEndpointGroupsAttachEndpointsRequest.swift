@@ -16,7 +16,7 @@
 
 #if RegionNetworkEndpointGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RegionNetworkEndpointGroupsAttachEndpointsRequest: Codable, Equatable, GoogleWKT
       ._AnyPackable,

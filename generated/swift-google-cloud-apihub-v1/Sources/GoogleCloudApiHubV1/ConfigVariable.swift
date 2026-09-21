@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ConfigVariable represents a additional configuration variable present in a
 /// PluginInstance Config or AuthConfig, based on a ConfigVariableTemplate.

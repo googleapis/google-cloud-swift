@@ -16,7 +16,7 @@
 
 #if SessionEntityTypes || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Session entity types are referred to as **User** entity types and are
   /// entities that are built for an individual user such as favorites,

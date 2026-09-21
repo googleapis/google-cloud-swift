@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for creating a batch of instances under the specified cluster.
 public struct BatchCreateInstancesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

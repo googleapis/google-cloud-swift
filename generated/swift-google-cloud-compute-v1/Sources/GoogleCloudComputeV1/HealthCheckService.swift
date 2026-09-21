@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if RegionHealthCheckServices
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Health-Check as a Service resource.
   public struct HealthCheckService: Codable, Equatable, GoogleWKT._AnyPackable,

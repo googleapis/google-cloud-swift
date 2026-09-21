@@ -19,8 +19,6 @@
 import Foundation
 import GoogleIAMV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: PoliciesClient) async throws {
   let poller = try await client.deletePolicy(

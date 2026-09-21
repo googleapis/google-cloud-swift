@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if ExternalVpnGateways || GlobalAddresses || GlobalForwardingRules || Images || Interconnects || MachineImages || SecurityPolicies || Snapshots
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct GlobalSetLabelsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

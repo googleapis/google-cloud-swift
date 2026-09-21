@@ -20,7 +20,6 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: RecommendationServiceClient) async throws {
     let response = try await client.recommend(

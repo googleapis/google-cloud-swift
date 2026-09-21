@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateRepositoryRequest is the request to update a repository.
 public struct UpdateRepositoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,

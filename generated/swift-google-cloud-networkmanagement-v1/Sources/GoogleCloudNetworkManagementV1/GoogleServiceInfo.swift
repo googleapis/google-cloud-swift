@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// For display only. Details of a Google Service sending packets to a
 /// VPC network. Although the source IP might be a publicly routable address,

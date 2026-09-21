@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudTpuV2
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String, runtimeVersionId: String)

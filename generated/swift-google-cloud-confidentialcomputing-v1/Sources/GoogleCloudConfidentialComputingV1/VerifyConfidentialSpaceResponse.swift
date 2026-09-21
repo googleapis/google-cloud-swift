@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VerifyConfidentialSpaceResponse is returned once a Confidential Space
 /// attestation has been successfully verified, containing a signed token.

@@ -16,7 +16,6 @@
 
 #if SqlFlagsService
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

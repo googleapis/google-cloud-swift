@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Guest OS running process details.
 public struct RunningProcess: Codable, Equatable, GoogleWKT._AnyPackable,

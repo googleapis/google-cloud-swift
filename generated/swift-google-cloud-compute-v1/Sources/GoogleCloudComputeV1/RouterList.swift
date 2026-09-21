@@ -16,8 +16,8 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains a list of Router resources.
   public struct RouterList: Codable, Equatable, GoogleWKT._AnyPackable,

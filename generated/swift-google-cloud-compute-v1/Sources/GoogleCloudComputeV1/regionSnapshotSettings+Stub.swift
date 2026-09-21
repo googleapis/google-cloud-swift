@@ -16,7 +16,6 @@
 
 #if RegionSnapshotSettings
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

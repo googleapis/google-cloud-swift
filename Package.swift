@@ -78,6 +78,10 @@ let baseDependencies: [Package.Dependency] = [
   .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
 ]
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("InternalImportsByDefault")
+]
+
 let package = Package(
   name: "GoogleCloudSwift",
   platforms: [
@@ -90,6 +94,7 @@ let package = Package(
       dependencies: [
         .product(name: "UserGuide", package: "guide")
       ] + baseModules + generatedModules,
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "Discovery",
@@ -160,7 +165,8 @@ let package = Package(
         .product(name: "GoogleIAMCredentialsV1", package: "swift-google-iam-credentials-v1"),
         "GoogleCloudTestHelpers",
       ],
-      path: "Tests/Auth"
+      path: "Tests/Auth",
+      swiftSettings: swiftSettings
     ),
     .executableTarget(
       name: "Endurance",
@@ -197,6 +203,7 @@ let package = Package(
         .product(name: "NIOHTTP1", package: "swift-nio"),
         .product(name: "NIOPosix", package: "swift-nio"),
       ],
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "StorageSamples",
@@ -218,6 +225,7 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
       ],
       path: "Tests/StorageSamplesDriver",
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "RequestBody",
@@ -233,6 +241,7 @@ let package = Package(
         "GoogleCloudTestHelpers",
       ],
       exclude: ["README.md"],
+      swiftSettings: swiftSettings
     ),
   ]
 )

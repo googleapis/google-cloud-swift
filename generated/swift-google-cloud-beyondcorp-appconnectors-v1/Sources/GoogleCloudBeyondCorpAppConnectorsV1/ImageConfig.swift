@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ImageConfig defines the control plane images to run.
 public struct ImageConfig: Codable, Equatable, GoogleWKT._AnyPackable,

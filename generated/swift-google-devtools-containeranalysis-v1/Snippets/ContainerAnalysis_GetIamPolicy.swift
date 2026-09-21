@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContainerAnalysisV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(client: ContainerAnalysisClient) async throws {
   let response = try await client.getIamPolicy(

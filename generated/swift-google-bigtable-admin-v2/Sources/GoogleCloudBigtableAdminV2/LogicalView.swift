@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A SQL logical view object that can be referenced in SQL queries.
 public struct LogicalView: Codable, Equatable, GoogleWKT._AnyPackable,

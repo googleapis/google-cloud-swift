@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AWS EC2 Instances Settings.
 public struct AWSEC2InstancesSettings: Codable, Equatable, GoogleWKT._AnyPackable,

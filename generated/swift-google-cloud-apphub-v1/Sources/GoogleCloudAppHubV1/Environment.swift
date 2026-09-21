@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Environment of the Application, Service, or Workload
 public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,

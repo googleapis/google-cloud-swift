@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for [RewriteObject][google.storage.v2.Storage.RewriteObject].
 /// If the source object is encrypted using a Customer-Supplied Encryption Key

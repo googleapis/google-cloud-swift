@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension InstancesClient {
     /// Synthetic request message for the [addAccessConfig()][google.cloud.compute.v1.instances.addAccessConfig] method.

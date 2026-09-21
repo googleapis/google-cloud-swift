@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ServiceLbPolicy holds global load balancing and traffic distribution
 /// configuration that can be applied to a BackendService.

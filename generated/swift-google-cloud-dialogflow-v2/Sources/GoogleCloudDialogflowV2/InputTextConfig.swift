@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines the language used in the input text.
   public struct InputTextConfig: Codable, Equatable, GoogleWKT._AnyPackable,

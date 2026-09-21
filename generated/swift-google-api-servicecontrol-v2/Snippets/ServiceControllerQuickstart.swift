@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleApiServiceControlV2
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleApiServiceControlV2.ServiceControllerClient()

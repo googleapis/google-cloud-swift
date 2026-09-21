@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `MulticloudDataTransferConfig` resource. It lists the services that you
 /// configure for Data Transfer Essentials billing and metering.

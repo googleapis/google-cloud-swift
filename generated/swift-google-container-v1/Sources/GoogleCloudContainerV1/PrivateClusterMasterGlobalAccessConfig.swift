@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for controlling master global access settings.
 public struct PrivateClusterMasterGlobalAccessConfig: Codable, Equatable, GoogleWKT._AnyPackable,

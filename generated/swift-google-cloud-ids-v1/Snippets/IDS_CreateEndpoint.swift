@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudIDSV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: IDSClient, projectId: String, locationId: String) async throws {
   let poller = try await client.createEndpoint(

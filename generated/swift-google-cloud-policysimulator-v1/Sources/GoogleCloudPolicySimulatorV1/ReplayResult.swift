@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The result of replaying a single access tuple against a simulated state.
 public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,

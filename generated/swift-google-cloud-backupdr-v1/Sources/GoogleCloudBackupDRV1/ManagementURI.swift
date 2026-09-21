@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ManagementURI for the Management Server resource.
 public struct ManagementURI: Codable, Equatable, GoogleWKT._AnyPackable,

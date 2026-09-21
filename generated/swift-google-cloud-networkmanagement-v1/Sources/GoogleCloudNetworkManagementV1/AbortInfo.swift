@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details of the final state "abort" and associated resource.
 public struct AbortInfo: Codable, Equatable, GoogleWKT._AnyPackable,

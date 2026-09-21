@@ -21,7 +21,6 @@ import Foundation
 import GoogleApi
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 import GoogleGax
 import struct Logging.Logger
 

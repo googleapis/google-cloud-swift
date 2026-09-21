@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GkeAutoUpgradeConfig is the configuration for GKE auto upgrades.
 public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleWKT._AnyPackable,

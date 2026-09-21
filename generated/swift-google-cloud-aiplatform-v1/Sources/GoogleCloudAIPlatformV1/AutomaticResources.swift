@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || IndexEndpointService || ModelGardenService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A description of resources that to large degree are decided by Vertex AI,
   /// and require only a modest additional configuration.

@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Description-tagged IP ranges for the router to advertise.
   public struct RouterAdvertisedIpRange: Codable, Equatable, GoogleWKT._AnyPackable,

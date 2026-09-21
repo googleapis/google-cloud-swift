@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GetJSONWebKeysResponse is a valid JSON Web Key Set as specified in rfc 7517
 public struct GetJSONWebKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,

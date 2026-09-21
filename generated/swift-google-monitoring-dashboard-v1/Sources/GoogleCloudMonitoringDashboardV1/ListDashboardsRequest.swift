@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `ListDashboards` request.
 public struct ListDashboardsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

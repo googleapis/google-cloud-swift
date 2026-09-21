@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A pattern to match against one or more file stores.
 public struct FileStoreRegex: Codable, Equatable, GoogleWKT._AnyPackable,

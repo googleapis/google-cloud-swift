@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// TransferStats reports all statistics related to replication transfer.
 public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,

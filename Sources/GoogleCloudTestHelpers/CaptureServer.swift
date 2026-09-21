@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 import NIOConcurrencyHelpers
 import NIOCore
-import NIOHTTP1
+public import NIOHTTP1
 import NIOPosix
 
 /// A minimal HTTP/1.1 server that records the requests it receives.

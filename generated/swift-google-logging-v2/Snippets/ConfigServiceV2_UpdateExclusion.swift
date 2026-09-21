@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudLoggingV2
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client, projectId: String, exclusionId: String) async throws {

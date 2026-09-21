@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// HttpRouteRuleMatch specifies a set of criteria for matching
   /// requests to an HttpRouteRule. All specified criteria must

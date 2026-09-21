@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudAssuredWorkloadsV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: AssuredWorkloadsServiceClient, organizationId: String, locationId: String)

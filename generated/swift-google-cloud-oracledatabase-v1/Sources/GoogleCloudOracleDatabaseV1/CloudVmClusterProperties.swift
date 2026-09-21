@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Various properties and settings associated with Exadata VM cluster.
 public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackable,

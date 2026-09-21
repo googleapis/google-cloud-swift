@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Manifest configuration.
 public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,

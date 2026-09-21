@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GcpBackupConfig captures the Backup configuration details for Google Cloud
 /// resources. All Google Cloud resources regardless of type are protected with

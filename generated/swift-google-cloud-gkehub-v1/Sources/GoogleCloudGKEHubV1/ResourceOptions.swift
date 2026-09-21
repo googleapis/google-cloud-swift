@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ResourceOptions represent options for Kubernetes resource generation.
 public struct ResourceOptions: Codable, Equatable, GoogleWKT._AnyPackable,

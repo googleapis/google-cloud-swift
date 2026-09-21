@@ -19,8 +19,6 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: DomainMappingsClient) async throws {
   let poller = try await client.deleteDomainMapping(

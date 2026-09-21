@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudSecurityCenterV2
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(organizationId: String, simulationId: String, valuedResourceId: String, ) async throws {

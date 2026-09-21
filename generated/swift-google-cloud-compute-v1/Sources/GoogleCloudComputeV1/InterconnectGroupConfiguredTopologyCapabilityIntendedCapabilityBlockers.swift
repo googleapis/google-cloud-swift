@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] Reasons why configuration.topologyCapability.sla differs
   /// from intent.topologyCapability. This list is empty if and only if those

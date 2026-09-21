@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes list of buckets and their objects to be transformed.
 public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The rule output of the violation.
 public struct RuleOutput: Codable, Equatable, GoogleWKT._AnyPackable,

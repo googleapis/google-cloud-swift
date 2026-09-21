@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Filter on job compensation type and amount.
 public struct CompensationFilter: Codable, Equatable, GoogleWKT._AnyPackable,

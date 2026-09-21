@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to get user facing log messages associated with data transfer run.
 public struct ListTransferLogsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The export asset response. This message is returned by the
 /// [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]

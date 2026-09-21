@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if ReasoningEngineService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// ReasoningEngine configurations
   public struct ReasoningEngineSpec: Codable, Equatable, GoogleWKT._AnyPackable,

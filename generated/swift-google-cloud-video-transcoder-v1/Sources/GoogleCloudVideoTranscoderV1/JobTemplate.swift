@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Transcoding job template resource.
 public struct JobTemplate: Codable, Equatable, GoogleWKT._AnyPackable,

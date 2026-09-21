@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for CreateServiceConfig method.
 public struct CreateServiceConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

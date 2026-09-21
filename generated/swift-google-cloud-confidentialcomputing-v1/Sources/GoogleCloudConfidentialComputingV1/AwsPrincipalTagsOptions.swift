@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Token options that only apply to the AWS Principal Tags token type.
 public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackable,

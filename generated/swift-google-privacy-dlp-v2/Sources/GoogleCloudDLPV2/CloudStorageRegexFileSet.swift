@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message representing a set of files in a Cloud Storage bucket. Regular
 /// expressions are used to allow fine-grained control over which files in the

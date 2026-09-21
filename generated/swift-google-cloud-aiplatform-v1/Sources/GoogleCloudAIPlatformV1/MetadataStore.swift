@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance of a metadata store. Contains a set of metadata that can be
   /// queried.

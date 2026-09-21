@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Word-specific information for recognized words.
 public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,

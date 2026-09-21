@@ -16,8 +16,8 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RegionInstanceGroupManagersListInstancesResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,

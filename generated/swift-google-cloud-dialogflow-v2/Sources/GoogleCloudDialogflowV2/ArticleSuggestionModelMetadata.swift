@@ -16,7 +16,7 @@
 
 #if ConversationModels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata for article suggestion models.
   public struct ArticleSuggestionModelMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// QueuedResourceState defines the details of the QueuedResource request.
 public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,

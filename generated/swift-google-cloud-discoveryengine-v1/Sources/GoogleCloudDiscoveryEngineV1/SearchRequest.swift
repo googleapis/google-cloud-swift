@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SearchService || ServingConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]

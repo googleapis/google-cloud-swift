@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specification of locations to create resources in.
   public struct FutureResourcesSpecLocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

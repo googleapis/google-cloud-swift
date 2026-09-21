@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudTextToSpeechV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: TextToSpeechClient) async throws {
   let items = try client.listOperations(

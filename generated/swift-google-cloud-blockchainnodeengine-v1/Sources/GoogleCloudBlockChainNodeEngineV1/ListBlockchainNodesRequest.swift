@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for requesting list of blockchain nodes.
 public struct ListBlockchainNodesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

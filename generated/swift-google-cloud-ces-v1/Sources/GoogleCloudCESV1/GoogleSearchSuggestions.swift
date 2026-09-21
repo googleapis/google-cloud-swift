@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Search suggestions from [Google Search
 /// Tool][google.cloud.ces.v1.GoogleSearchTool].

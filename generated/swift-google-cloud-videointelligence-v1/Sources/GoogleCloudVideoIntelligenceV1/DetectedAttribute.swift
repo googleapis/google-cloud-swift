@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A generic detected attribute represented by name in string format.
 public struct DetectedAttribute: Codable, Equatable, GoogleWKT._AnyPackable,

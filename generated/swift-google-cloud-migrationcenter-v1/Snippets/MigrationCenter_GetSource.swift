@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudMigrationCenterV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String, sourceId: String)

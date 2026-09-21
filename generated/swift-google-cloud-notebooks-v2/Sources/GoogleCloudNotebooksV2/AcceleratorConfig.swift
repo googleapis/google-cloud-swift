@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An accelerator configuration for a VM instance
 /// Definition of a hardware accelerator. Note that there is no check on `type`

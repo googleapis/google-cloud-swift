@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AppConnectorInstanceConfig defines the instance config of a AppConnector.
 public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

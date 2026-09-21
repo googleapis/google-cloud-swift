@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MonitoringComponentConfig is cluster monitoring component configuration.
 public struct MonitoringComponentConfig: Codable, Equatable, GoogleWKT._AnyPackable,

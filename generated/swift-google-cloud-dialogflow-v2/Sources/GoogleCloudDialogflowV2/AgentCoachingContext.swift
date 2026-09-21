@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Agent Coaching context that customer can configure.
   public struct AgentCoachingContext: Codable, Equatable, GoogleWKT._AnyPackable,

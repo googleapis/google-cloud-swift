@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata for undeploying an issue model.
 public struct UndeployIssueModelMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

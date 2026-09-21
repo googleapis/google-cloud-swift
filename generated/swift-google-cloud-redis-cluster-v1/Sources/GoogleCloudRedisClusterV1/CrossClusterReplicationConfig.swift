@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Cross cluster replication config.
 public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

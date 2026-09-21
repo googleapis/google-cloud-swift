@@ -21,7 +21,6 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 #if hasAttribute(diagnose)
   @diagnose(DeprecatedDeclaration, as: ignored)

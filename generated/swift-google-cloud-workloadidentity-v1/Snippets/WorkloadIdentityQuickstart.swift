@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudWorkloadIdentityV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudWorkloadIdentityV1.WorkloadIdentityClient()

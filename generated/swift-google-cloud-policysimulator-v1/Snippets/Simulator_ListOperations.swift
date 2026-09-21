@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudPolicySimulatorV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: SimulatorClient) async throws {
   let items = try client.listOperations(

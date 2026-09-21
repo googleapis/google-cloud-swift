@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request for a list of data tables.
 public struct ListDataTablesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

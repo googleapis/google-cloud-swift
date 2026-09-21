@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Policy for retention of scheduled snapshots.
   public struct ResourcePolicySnapshotSchedulePolicyRetentionPolicy: Codable, Equatable, GoogleWKT

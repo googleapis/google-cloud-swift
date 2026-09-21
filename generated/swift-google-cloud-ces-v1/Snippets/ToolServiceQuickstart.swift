@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudCESV1.ToolServiceClient()

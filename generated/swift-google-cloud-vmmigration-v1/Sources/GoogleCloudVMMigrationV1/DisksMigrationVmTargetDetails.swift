@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details for the VM created VM as part of disks migration.
 public struct DisksMigrationVmTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable,

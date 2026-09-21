@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a part of a message possibly annotated with an entity. The part
   /// can be an entity or purely a part of the message between two entities or

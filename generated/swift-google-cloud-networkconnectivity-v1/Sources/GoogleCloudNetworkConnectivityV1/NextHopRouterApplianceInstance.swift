@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A route next hop that leads to a Router appliance instance.
 public struct NextHopRouterApplianceInstance: Codable, Equatable, GoogleWKT._AnyPackable,

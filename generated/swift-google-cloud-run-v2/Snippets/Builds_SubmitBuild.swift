@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: BuildsClient) async throws {
   let response = try await client.submitBuild(

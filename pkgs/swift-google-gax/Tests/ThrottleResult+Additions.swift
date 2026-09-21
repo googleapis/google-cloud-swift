@@ -15,7 +15,7 @@
 import GoogleGax
 
 extension ThrottleResult: Equatable {
-  public static func == (lhs: ThrottleResult, rhs: ThrottleResult) -> Bool {
+  static func == (lhs: ThrottleResult, rhs: ThrottleResult) -> Bool {
     switch (lhs, rhs) {
     case (.exhausted(let l), .exhausted(let r)): return l == r
     case (.retry(let l), .retry(let r)): return l == r

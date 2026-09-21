@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata returned to client when grounding is enabled.
   public struct GroundingMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryMigrationV2
-import GoogleWKT
 
 func sample(client: MigrationServiceClient, parent: String) async throws {
   let response = try await client.createMigrationWorkflow(

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ProviderOAuthConfig is the OAuth config for a provider.
 public struct ProviderOAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,

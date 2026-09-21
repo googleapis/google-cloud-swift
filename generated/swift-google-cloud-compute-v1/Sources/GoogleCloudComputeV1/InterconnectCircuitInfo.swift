@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Describes a single physical circuit between the Customer and Google.
   /// CircuitInfo objects are created by Google, so all fields are output only.

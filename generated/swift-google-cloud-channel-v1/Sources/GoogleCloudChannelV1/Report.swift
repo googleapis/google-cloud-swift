@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The ID and description of a report that was used to generate report data.
 /// For example, "Google Cloud Daily Spend", "Google Workspace License Activity",

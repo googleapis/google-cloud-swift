@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Filter on create timestamp or update timestamp of documents.
 public struct TimeFilter: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudOrchestrationAirflowServiceV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: EnvironmentsClient, parent: String) async throws {

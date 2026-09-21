@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Encryption setting when updating encryption.
 public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Entry overview fields for rich text descriptions of entries.
 public struct EntryOverview: Codable, Equatable, GoogleWKT._AnyPackable,

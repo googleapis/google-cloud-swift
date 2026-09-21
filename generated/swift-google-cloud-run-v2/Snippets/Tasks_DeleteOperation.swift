@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: TasksClient) async throws {
   try await client.deleteOperation(

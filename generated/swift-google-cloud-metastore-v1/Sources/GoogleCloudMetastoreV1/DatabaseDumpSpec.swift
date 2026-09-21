@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The specification of database dump to import from or export to.
 public struct DatabaseDumpSpec: Codable, Equatable, GoogleWKT._AnyPackable,

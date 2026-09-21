@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Reservation Affinity for consuming Zonal reservation.
 public struct ReservationAffinity: Codable, Equatable, GoogleWKT._AnyPackable,

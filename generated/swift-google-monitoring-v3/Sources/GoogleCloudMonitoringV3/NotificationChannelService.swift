@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// The Notification Channel API provides access to configuration that
 /// controls how messages related to incidents are sent.

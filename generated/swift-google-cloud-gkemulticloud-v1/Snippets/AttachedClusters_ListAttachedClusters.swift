@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudGKEMultiCloudV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: AttachedClustersClient, projectId: String, locationId: String) async throws {

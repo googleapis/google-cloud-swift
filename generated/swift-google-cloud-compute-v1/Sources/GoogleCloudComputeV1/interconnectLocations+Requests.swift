@@ -16,7 +16,7 @@
 
 #if InterconnectLocations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension InterconnectLocationsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnectLocations.get] method.

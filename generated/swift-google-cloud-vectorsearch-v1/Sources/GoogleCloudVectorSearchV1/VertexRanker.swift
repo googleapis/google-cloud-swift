@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines a ranker using the Vertex AI ranking service.
 /// See <https://cloud.google.com/generative-ai-app-builder/docs/ranking> for

@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output only] Represents status related to the future reservation.
   public struct FutureReservationStatus: Codable, Equatable, GoogleWKT._AnyPackable,

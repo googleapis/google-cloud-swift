@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BoolValue represents a property that has a boolean value type.
 public struct BoolValue: Codable, Equatable, GoogleWKT._AnyPackable,

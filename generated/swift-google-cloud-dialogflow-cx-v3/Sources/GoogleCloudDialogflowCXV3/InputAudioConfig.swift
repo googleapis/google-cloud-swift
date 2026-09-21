@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instructs the speech recognizer on how to process the audio content.
   public struct InputAudioConfig: Codable, Equatable, GoogleWKT._AnyPackable,

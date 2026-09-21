@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a response message that can be returned by a conversational agent.
   ///

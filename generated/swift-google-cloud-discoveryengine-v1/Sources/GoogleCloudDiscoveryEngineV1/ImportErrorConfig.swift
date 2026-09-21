@@ -16,7 +16,7 @@
 
 #if CompletionService || DocumentService || SearchTuningService || UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration of destination for Import related errors.
   public struct ImportErrorConfig: Codable, Equatable, GoogleWKT._AnyPackable,

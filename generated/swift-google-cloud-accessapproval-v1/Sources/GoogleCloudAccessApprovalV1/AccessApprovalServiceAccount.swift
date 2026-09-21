@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Access Approval service account related to a project/folder/organization.
 public struct AccessApprovalServiceAccount: Codable, Equatable, GoogleWKT._AnyPackable,

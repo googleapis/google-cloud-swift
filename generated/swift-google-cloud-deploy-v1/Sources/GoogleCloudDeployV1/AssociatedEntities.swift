@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Information about entities associated with a `Target`.
 public struct AssociatedEntities: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Subset of NodeConfig message that has defaults.
 public struct NodeConfigDefaults: Codable, Equatable, GoogleWKT._AnyPackable,

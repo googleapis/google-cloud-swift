@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudDatastreamV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudDatastreamV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Log definition for activities related to a stream.
 public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,

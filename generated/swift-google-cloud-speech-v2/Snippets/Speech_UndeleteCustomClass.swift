@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudSpeechV2
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: SpeechClient, projectId: String, locationId: String, customClassId: String)

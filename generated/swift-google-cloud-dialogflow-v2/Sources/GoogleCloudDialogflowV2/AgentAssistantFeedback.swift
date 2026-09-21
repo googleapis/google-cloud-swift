@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Detail feedback of Agent Assist result.
   public struct AgentAssistantFeedback: Codable, Equatable, GoogleWKT._AnyPackable,

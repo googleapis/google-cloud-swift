@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if LlmUtilityService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Tokens info with a list of tokens and the corresponding list of token ids.
   public struct TokensInfo: Codable, Equatable, GoogleWKT._AnyPackable,

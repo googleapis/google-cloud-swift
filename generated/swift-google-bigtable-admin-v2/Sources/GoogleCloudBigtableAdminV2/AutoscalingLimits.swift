@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Limits for the number of nodes a Cluster can autoscale up/down to.
 public struct AutoscalingLimits: Codable, Equatable, GoogleWKT._AnyPackable,

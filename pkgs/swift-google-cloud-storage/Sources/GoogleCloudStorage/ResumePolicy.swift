@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 
 /// Defines the strategy for resuming an interrupted multi-step or long-running operation
 /// (such as resumable uploads and downloads).

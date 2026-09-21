@@ -37,6 +37,9 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleWKT", package: "swift-google-wkt")
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

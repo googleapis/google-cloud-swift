@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Logged event discussing an abuse finding on the monitored resource.
 public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,

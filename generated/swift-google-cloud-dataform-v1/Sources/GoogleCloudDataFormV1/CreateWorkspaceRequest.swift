@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `CreateWorkspace` request message.
 public struct CreateWorkspaceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Filter criteria applied to current search results.
 public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,

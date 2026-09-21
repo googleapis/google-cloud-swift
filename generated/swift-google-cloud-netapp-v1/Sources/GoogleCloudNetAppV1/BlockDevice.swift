@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Block device represents the device(s) which are stored in the block volume.
 public struct BlockDevice: Codable, Equatable, GoogleWKT._AnyPackable,

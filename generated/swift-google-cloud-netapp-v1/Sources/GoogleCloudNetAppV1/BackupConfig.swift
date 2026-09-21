@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BackupConfig contains backup related config on a volume.
 public struct BackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request to lint a Cloud IAM policy object.
 public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,

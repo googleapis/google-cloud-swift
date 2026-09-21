@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to search for potentially sensitive info in a ContentItem.
 public struct InspectContentRequest: Codable, Equatable, GoogleWKT._AnyPackable,

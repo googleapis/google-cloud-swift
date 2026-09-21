@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata for the `UpdateWorkerPool` operation.
 public struct UpdateWorkerPoolOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

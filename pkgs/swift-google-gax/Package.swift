@@ -16,6 +16,10 @@
 
 import PackageDescription
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("InternalImportsByDefault")
+]
+
 let package = Package(
   name: "GoogleGax",
   platforms: [
@@ -65,7 +69,8 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
-      ]
+      ],
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "GoogleGaxGRPC",
@@ -80,7 +85,8 @@ let package = Package(
         .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-      ]
+      ],
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "GoogleGaxTests",
@@ -97,6 +103,7 @@ let package = Package(
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       path: "Tests",
+      swiftSettings: swiftSettings
     ),
   ]
 )

@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ProvisioningClient) async throws {
   try await client.cancelOperation(

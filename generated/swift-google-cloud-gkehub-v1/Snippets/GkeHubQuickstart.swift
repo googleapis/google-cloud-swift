@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudGKEHubV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {

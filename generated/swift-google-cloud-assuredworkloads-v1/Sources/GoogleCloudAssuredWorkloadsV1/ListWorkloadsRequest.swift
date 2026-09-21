@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for fetching workloads in an organization.
 public struct ListWorkloadsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

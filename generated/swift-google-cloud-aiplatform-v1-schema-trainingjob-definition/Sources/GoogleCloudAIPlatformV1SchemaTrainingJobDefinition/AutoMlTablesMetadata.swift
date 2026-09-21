@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Model metadata specific to AutoML Tables.
 public struct AutoMlTablesMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

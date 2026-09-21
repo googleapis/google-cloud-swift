@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// The SnoozeService API is used to temporarily prevent an alert policy from
 /// generating alerts. A Snooze is a description of the criteria under which one

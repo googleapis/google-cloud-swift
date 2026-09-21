@@ -16,7 +16,7 @@
 
 #if ServingConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configures metadata that is used to generate serving time results (e.g.
   /// search results or recommendation predictions).

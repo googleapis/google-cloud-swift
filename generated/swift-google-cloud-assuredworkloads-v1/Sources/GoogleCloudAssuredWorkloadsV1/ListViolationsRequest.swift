@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for fetching violations in an organization.
 public struct ListViolationsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

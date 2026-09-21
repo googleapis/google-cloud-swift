@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if EntityTypes || Intents
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Inline source for a Dialogflow operation that reads or imports objects
   /// (e.g. [intents][google.cloud.dialogflow.cx.v3.Intent]) into Dialogflow.

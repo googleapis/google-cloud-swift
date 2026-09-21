@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An organization, folder, or project with its enrollment status.
 public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleWKT._AnyPackable,

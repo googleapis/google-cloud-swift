@@ -14,14 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleLongRunning
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Web Risk API defines an interface to detect malicious URLs on your
 /// website and in client applications.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing Endpoint object.
 public struct FirewallEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

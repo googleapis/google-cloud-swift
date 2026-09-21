@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `projectId`, `jobNames`, and `jobStatuses` are query parameters that can
 /// be specified when listing transfer jobs.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Corpus is a set of media contents for management.
 /// Within a corpus, media shares the same data schema. Search is also restricted

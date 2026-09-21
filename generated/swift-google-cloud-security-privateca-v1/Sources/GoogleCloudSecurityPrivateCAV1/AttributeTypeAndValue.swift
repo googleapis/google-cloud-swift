@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// [AttributeTypeAndValue][google.cloud.security.privateca.v1.AttributeTypeAndValue]
 /// specifies an attribute type and value. It can use either a OID or enum value

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Config for PERSON_DETECTION.
 public struct PersonDetectionConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to report a set of asset frames.
 public struct ReportAssetFramesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if PredictionService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A tensor value type.
   public struct Tensor: Codable, Equatable, GoogleWKT._AnyPackable,

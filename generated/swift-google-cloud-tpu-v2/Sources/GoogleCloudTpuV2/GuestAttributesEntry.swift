@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A guest attributes namespace/key/value entry.
 public struct GuestAttributesEntry: Codable, Equatable, GoogleWKT._AnyPackable,

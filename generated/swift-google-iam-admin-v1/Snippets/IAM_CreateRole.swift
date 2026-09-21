@@ -19,7 +19,6 @@
 import Foundation
 import GoogleIAMAdminV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(client: IAMClient) async throws {
   let response = try await client.createRole(

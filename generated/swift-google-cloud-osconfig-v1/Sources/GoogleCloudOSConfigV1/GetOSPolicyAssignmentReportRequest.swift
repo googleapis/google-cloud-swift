@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Get a report of the OS policy assignment for a VM instance.
 public struct GetOSPolicyAssignmentReportRequest: Codable, Equatable, GoogleWKT._AnyPackable,

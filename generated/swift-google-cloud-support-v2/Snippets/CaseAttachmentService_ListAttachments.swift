@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleWKT
 
 func sample(client: CaseAttachmentServiceClient, organizationId: String, caseId: String)
   async throws

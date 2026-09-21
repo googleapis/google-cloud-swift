@@ -16,7 +16,7 @@
 
 #if GenAiCacheService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A resource used in LLM queries for users to explicitly specify what to cache
   /// and how to cache.

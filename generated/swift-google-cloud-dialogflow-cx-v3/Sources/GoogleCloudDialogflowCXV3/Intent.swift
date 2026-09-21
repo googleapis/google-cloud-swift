@@ -16,7 +16,7 @@
 
 #if Intents || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An intent represents a user's intent to interact with a conversational agent.
   ///

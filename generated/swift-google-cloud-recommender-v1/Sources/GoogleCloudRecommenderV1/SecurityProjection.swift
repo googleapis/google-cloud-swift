@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains various ways of describing the impact on Security.
 public struct SecurityProjection: Codable, Equatable, GoogleWKT._AnyPackable,

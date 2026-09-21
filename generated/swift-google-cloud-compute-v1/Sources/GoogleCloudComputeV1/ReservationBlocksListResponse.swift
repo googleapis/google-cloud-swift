@@ -16,8 +16,8 @@
 
 #if ReservationBlocks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A list of reservation blocks under a single reservation.
   public struct ReservationBlocksListResponse: Codable, Equatable, GoogleWKT._AnyPackable,

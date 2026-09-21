@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudTranslateV3
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(

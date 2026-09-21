@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// MySQL database.
 public struct MysqlDatabase: Codable, Equatable, GoogleWKT._AnyPackable,

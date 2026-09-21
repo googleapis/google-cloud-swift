@@ -16,7 +16,7 @@
 
 #if ReasoningEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// ReasoningEngine provides a customizable runtime for models to determine
   /// which actions to take and in which order.

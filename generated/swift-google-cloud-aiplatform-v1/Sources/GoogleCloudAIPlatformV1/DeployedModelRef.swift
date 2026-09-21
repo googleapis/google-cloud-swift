@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Points to a DeployedModel.
   public struct DeployedModelRef: Codable, Equatable, GoogleWKT._AnyPackable,

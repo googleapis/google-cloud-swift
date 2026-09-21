@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudBillingV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBillingV1.CloudBillingClient()

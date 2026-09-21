@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a ranking-based time series filter. Each input time series is
 /// ranked with an aligner. The filter will allow up to `num_time_series` time

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contact information for a customer account.
 public struct ContactInfo: Codable, Equatable, GoogleWKT._AnyPackable,

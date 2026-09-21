@@ -16,7 +16,7 @@
 
 #if RegionZones || Zones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct ZoneResourceStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

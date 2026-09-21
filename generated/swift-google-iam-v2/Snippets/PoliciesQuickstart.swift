@@ -19,8 +19,6 @@
 import Foundation
 import GoogleIAMV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleIAMV2.PoliciesClient()

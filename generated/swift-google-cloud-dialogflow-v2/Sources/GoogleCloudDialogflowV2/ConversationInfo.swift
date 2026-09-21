@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents metadata of a conversation.
   public struct ConversationInfo: Codable, Equatable, GoogleWKT._AnyPackable,

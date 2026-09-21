@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A pseudowire that connects two Interconnect connections.
   public struct Wire: Codable, Equatable, GoogleWKT._AnyPackable,

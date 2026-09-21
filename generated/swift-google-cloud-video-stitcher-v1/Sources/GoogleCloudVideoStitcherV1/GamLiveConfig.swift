@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata used to register a live stream with Google Ad Manager (GAM)
 public struct GamLiveConfig: Codable, Equatable, GoogleWKT._AnyPackable,

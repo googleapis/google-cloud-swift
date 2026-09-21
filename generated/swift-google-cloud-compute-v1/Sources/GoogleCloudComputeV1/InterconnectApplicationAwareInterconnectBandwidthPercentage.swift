@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specify bandwidth percentages [1-100] for various traffic classes in
   /// BandwidthPercentagePolicy. The sum of all percentages must equal 100.

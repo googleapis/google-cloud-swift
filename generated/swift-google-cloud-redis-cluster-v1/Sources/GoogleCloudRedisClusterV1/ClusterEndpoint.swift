@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ClusterEndpoint consists of PSC connections that are created
 /// as a group in each VPC network for accessing the cluster. In each group,

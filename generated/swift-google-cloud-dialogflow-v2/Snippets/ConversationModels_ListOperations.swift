@@ -21,8 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: ConversationModelsClient) async throws {
     let items = try client.listOperations(

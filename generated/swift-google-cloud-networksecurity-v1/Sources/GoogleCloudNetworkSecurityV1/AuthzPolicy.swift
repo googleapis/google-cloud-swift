@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `AuthzPolicy` is a resource that allows to forward traffic to a
 /// callout backend designed to scan the traffic for security purposes.

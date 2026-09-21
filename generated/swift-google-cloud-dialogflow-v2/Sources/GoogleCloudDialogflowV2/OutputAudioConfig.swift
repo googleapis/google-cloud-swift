@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instructs the speech synthesizer on how to generate the output audio content.
   /// If this audio config is supplied in a request, it overrides all existing

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines project/location level endpoint control policy.
 public struct EndpointControlPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

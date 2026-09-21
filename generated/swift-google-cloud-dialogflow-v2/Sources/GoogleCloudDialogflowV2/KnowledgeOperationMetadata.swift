@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata in google::longrunning::Operation for Knowledge operations.
   public struct KnowledgeOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

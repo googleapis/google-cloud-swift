@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes a BigQuery dataset that was created by a link.
 public struct BigQueryDataset: Codable, Equatable, GoogleWKT._AnyPackable,

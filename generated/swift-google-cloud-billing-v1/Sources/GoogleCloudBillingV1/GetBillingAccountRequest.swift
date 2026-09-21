@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for `GetBillingAccount`.
 public struct GetBillingAccountRequest: Codable, Equatable, GoogleWKT._AnyPackable,

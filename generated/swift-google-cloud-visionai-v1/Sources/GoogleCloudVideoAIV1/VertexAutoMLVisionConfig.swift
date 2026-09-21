@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message of configurations of Vertex AutoML Vision Processors.
 public struct VertexAutoMLVisionConfig: Codable, Equatable, GoogleWKT._AnyPackable,

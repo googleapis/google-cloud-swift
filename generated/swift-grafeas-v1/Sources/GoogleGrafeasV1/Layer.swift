@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Layer holds metadata specific to a layer of a Docker image.
 public struct Layer: Codable, Equatable, GoogleWKT._AnyPackable,

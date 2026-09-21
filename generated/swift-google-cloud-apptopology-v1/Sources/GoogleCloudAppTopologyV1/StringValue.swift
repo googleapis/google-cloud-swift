@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// StringValue represents a property that has a string value type.
 public struct StringValue: Codable, Equatable, GoogleWKT._AnyPackable,

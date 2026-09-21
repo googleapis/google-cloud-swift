@@ -22,8 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: ModelGardenServiceClient) async throws {
     try await client.deleteOperation(

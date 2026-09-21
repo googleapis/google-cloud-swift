@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the action responsible for access control list management
 /// operations.

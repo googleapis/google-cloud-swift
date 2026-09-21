@@ -16,7 +16,7 @@
 
 #if Disks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct DisksAddResourcePoliciesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

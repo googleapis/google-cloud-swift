@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes an error encountered when validating an `OptimizeToursRequest`.
 public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPackable,

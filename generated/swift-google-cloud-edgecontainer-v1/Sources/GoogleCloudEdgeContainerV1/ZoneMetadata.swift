@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Google Distributed Cloud Edge zone where edge machines are located.
 public struct ZoneMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

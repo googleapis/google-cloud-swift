@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for creating a Cluster
 public struct CreateClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,

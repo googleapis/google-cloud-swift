@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a Google Cloud Storage volume.
 public struct GCS: Codable, Equatable, GoogleWKT._AnyPackable,

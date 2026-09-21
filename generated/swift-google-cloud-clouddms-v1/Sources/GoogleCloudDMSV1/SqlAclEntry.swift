@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An entry for an Access Control list.
 public struct SqlAclEntry: Codable, Equatable, GoogleWKT._AnyPackable,

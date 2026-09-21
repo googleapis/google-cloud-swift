@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Node pattern matcher to match the node id, labels and properties.
 public struct NodePattern: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: RuleSetServiceClient, parent: String) async throws {
   let items = try client.listRuleSets(

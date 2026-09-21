@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Account defense risk assessment.
 public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AutoIpamConfig contains all information related to Auto IPAM
 public struct AutoIpamConfig: Codable, Equatable, GoogleWKT._AnyPackable,

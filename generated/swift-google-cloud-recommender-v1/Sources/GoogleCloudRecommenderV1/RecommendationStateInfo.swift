@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Information for state. Contains state and metadata.
 public struct RecommendationStateInfo: Codable, Equatable, GoogleWKT._AnyPackable,

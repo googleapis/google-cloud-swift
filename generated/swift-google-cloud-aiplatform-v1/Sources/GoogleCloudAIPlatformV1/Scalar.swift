@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// One point viewable on a scalar metric plot.
   public struct Scalar: Codable, Equatable, GoogleWKT._AnyPackable,

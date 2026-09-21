@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes the fit level of an asset for migration to a specific target.
 public struct FitDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,

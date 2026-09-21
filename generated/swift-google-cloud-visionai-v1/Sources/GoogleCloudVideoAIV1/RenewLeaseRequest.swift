@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for renewing a lease.
 public struct RenewLeaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,

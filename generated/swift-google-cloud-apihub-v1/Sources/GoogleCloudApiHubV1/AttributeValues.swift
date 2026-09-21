@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The attribute values associated with resource.
 public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,

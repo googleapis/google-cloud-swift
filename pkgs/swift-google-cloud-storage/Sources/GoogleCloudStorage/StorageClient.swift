@@ -14,7 +14,7 @@
 
 import Foundation
 import GoogleAuth
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// A client for the [Cloud Storage] data-plane operations.
 ///

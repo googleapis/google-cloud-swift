@@ -16,6 +16,10 @@
 
 import PackageDescription
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("InternalImportsByDefault")
+]
+
 let package = Package(
   name: "GoogleWKT",
   platforms: [
@@ -35,14 +39,16 @@ let package = Package(
       name: "GoogleWKT",
       dependencies: [
         .product(name: "ExtrasBase64", package: "swift-extras-base64")
-      ]
+      ],
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "GoogleWKTConvert",
       dependencies: [
         "GoogleWKT",
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-      ]
+      ],
+      swiftSettings: swiftSettings
     ),
 
     .testTarget(
@@ -52,7 +58,8 @@ let package = Package(
         "GoogleWKTConvert",
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
-      path: "Tests"
+      path: "Tests",
+      swiftSettings: swiftSettings
     ),
   ]
 )

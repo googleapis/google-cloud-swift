@@ -16,7 +16,7 @@
 
 #if UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response of the PurgeUserEventsRequest. If the long running operation is
   /// successfully done, then this message is returned by the

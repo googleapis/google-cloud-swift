@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: TagBindingsClient) async throws {
   let items = try client.listEffectiveTags(

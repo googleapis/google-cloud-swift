@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AWSIAMSettings contains details needed for creating an AWS IAM feed.
 public struct AWSIAMSettings: Codable, Equatable, GoogleWKT._AnyPackable,

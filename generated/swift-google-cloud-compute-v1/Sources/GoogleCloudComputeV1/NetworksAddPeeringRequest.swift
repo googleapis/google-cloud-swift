@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct NetworksAddPeeringRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

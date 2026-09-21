@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Privacy metric to compute for reidentification risk analysis.
 public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,

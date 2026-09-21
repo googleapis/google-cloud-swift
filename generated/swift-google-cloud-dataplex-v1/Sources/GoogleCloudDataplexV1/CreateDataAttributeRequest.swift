@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Create DataAttribute request.
 public struct CreateDataAttributeRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudPolicySimulatorV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: SimulatorClient, parent: String) async throws {
   let poller = try await client.createReplay(

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The settings for Compliance Manager at a specific resource scope.=
 public struct CmEnrollment: Codable, Equatable, GoogleWKT._AnyPackable,

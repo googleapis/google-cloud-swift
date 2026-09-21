@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration information of a phrase match rule.
 public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,

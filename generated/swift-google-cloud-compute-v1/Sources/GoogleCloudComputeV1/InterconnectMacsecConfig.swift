@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// MACsec configuration information for the Interconnect connection. Contains
   /// the generated Connectivity Association Key Name (CKN) and the key (CAK) for

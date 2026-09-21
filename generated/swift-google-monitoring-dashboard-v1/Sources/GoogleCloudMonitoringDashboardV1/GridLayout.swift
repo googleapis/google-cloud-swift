@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A basic layout divides the available space into vertical columns of equal
 /// width and arranges a list of widgets using a row-first strategy.

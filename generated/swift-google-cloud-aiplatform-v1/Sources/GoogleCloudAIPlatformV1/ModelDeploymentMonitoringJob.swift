@@ -16,8 +16,8 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a job that runs periodically to monitor the deployed models in an
   /// endpoint. It will analyze the logged training & prediction data to detect any

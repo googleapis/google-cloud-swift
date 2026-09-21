@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for deleting a connection profile.
 public struct DeleteConnectionProfileRequest: Codable, Equatable, GoogleWKT._AnyPackable,

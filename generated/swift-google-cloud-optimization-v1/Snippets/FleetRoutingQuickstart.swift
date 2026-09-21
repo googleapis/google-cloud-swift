@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudOptimizationV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 #if hasAttribute(diagnose)
   @diagnose(DeprecatedDeclaration, as: ignored)

@@ -22,7 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample() async throws {
     let client = try GoogleCloudAIPlatformV1.EvaluationServiceClient()

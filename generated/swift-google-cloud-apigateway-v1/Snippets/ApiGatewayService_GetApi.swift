@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudApiGatewayV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String) async throws {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A message to group impacts of moving the target resource.
 public struct MoveImpact: Codable, Equatable, GoogleWKT._AnyPackable,

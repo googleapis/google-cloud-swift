@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration of the environment to use when calling Skaffold.
 public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,

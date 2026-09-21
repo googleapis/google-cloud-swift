@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Define the Connectors target endpoint.
 public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

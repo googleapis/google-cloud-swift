@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Reconciliation log for cluster heal event.
 public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPackable,

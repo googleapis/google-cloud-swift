@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMonitoringV3
 import GoogleApi
-import GoogleWKT
 
 func sample(client: MetricServiceClient) async throws {
   try await client.deleteMetricDescriptor(

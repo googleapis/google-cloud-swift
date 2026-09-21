@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for enabling the interactive serial console on an instance.
 public struct EnableInteractiveSerialConsoleRequest: Codable, Equatable, GoogleWKT._AnyPackable,

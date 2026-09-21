@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Do not profile the tables.
 public struct Disabled: Codable, Equatable, GoogleWKT._AnyPackable,

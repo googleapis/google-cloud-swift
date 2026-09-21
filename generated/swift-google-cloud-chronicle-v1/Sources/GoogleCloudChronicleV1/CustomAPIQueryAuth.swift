@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CustomAPIQueryAuth lists URL Query parameters for custom API auth.
 public struct CustomAPIQueryAuth: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,6 +16,10 @@
 
 import PackageDescription
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("InternalImportsByDefault")
+]
+
 let package = Package(
   name: "GoogleAuth",
   platforms: [
@@ -43,7 +47,8 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
-      ]
+      ],
+      swiftSettings: swiftSettings
     ),
     .testTarget(
       name: "GoogleAuthTests",
@@ -53,6 +58,7 @@ let package = Package(
         .product(name: "JWTKit", package: "jwt-kit"),
       ],
       path: "Tests",
+      swiftSettings: swiftSettings
     ),
   ]
 )

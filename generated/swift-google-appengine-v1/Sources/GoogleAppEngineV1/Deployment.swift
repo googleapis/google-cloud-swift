@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Code and application artifacts used to deploy a version to App Engine.
 public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,

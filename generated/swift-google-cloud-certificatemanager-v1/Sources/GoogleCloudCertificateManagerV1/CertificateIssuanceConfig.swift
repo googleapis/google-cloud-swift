@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CertificateIssuanceConfig specifies how to issue and manage a certificate.
 public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

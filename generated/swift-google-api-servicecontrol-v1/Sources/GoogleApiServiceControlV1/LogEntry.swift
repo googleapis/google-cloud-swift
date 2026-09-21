@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudLoggingType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudLoggingType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An individual log entry.
 public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,

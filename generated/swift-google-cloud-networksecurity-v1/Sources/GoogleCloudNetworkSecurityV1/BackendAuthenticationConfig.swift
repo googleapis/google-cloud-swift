@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BackendAuthenticationConfig message groups the TrustConfig together with
 /// other settings that control how the load balancer authenticates, and

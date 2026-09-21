@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for PauseAnywhereCache.
 public struct PauseAnywhereCacheRequest: Codable, Equatable, GoogleWKT._AnyPackable,

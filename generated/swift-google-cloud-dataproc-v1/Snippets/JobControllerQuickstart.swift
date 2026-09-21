@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDataprocV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudDataprocV1.JobControllerClient()

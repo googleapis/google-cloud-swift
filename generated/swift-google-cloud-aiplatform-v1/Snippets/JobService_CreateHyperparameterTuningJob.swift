@@ -22,7 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
   import GoogleWKT
 
   func sample(client: JobServiceClient, parent: String) async throws {

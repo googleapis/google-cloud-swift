@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// External conversation proto definition.
   public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,

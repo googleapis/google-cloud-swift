@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: PolicyTagManagerSerializationClient) async throws {
   try await client.deleteOperation(

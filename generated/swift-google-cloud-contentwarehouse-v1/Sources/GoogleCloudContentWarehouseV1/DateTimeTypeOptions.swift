@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configurations for a date time property.
 public struct DateTimeTypeOptions: Codable, Equatable, GoogleWKT._AnyPackable,

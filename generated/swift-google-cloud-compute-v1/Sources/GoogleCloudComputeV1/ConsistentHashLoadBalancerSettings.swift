@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// This message defines settings for a consistent hash style load balancer.
   public struct ConsistentHashLoadBalancerSettings: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The state of a transaction.
 public struct TransactionState: Codable, Equatable, GoogleWKT._AnyPackable,

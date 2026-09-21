@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMonitoringV3
 import GoogleApi
-import GoogleWKT
 
 func sample(client: GroupServiceClient, projectId: String) async throws {
   let items = try client.listGroups(

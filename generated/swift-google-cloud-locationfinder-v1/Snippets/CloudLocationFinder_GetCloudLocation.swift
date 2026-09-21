@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudLocationFinderV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(
   client: CloudLocationFinderClient, projectId: String, locationId: String, cloudLocationId: String

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ContainerdConfig contains configuration to customize containerd.
 public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,

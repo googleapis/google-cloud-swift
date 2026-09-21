@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Agent Assist Smart Reply data.
 public struct SmartReplyData: Codable, Equatable, GoogleWKT._AnyPackable,

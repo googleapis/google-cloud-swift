@@ -22,7 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: FeaturestoreOnlineServingServiceClient) async throws {
     let response = try await client.getIamPolicy(

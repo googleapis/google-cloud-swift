@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing Vision AI stream with application specific annotations.
 /// All the StreamAnnotation object inside this message MUST have unique id.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Information about a supported Attached Clusters platform version.
 public struct AttachedPlatformVersionInfo: Codable, Equatable, GoogleWKT._AnyPackable,

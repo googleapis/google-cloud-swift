@@ -18,11 +18,10 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleLongRunning
+@_spi(GoogleCloudInternal) public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// The Cloud Domains API enables management and configuration of domain names.
 ///

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Retrieve a list of all conversion workspaces in a given project and location.
 public struct ListConversionWorkspacesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

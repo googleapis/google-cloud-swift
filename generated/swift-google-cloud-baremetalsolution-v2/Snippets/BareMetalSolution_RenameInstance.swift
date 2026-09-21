@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudBareMetalSolutionV2
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient) async throws {

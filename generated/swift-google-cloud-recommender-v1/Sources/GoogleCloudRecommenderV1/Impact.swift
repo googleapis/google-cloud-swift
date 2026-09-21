@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains the impact a recommendation can have for a given category.
 public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,

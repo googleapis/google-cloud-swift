@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// [Product][google.cloud.retail.v2.Product] image. Recommendations AI and
 /// Retail Search use product images to improve prediction and search results.

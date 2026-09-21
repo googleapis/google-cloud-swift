@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message for the PublishEvents method.
 public struct PublishEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

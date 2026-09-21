@@ -16,7 +16,6 @@
 
 #if ImageFamilyViews
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

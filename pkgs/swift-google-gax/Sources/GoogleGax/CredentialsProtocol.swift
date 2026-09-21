@@ -13,8 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import struct GoogleAuth.AuthHeaders
-import struct GoogleAuth.Credentials
+@_spi(GoogleCloudInternal) public import GoogleAuth
 
 /// Dependency injection for `_HTTPClient`.
 ///

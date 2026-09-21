@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for deleting a ParameterVersion
 public struct DeleteParameterVersionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Cloud SQL instance's BPA properties.
 public struct CloudSqlInstanceBackupPlanAssociationProperties: Codable, Equatable, GoogleWKT

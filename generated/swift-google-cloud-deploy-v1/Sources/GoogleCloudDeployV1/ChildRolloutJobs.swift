@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ChildRollouts job composition
 public struct ChildRolloutJobs: Codable, Equatable, GoogleWKT._AnyPackable,

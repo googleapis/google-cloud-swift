@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Conversations
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a conversation.
   /// A conversation is an interaction between an agent, including live agents

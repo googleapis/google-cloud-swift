@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains the custom image info for a node pool.
 public struct CustomImageInfo: Codable, Equatable, GoogleWKT._AnyPackable,

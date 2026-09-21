@@ -21,8 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.ConversationModelsClient()

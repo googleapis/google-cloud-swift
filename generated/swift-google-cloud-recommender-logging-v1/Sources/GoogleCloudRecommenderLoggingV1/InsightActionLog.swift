@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudRecommenderV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudRecommenderV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Log content of an action on an insight. This includes Mark* actions.
 public struct InsightActionLog: Codable, Equatable, GoogleWKT._AnyPackable,

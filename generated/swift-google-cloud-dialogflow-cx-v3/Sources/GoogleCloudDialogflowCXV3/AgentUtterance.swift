@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// AgentUtterance represents one message sent by the agent.
   public struct AgentUtterance: Codable, Equatable, GoogleWKT._AnyPackable,

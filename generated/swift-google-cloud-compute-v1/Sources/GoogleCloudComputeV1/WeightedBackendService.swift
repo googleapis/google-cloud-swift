@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// In contrast to a single BackendService in
   /// HttpRouteAction to which all matching traffic is directed to,WeightedBackendService allows traffic to be split across

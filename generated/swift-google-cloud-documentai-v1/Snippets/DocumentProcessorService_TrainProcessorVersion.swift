@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDocumentAIV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: DocumentProcessorServiceClient) async throws {
   let poller = try await client.trainProcessorVersion(

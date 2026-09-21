@@ -16,8 +16,8 @@
 
 #if GeneratorEvaluations
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A common evalaution pipeline status.
   public struct EvaluationStatus: Codable, Equatable, GoogleWKT._AnyPackable,

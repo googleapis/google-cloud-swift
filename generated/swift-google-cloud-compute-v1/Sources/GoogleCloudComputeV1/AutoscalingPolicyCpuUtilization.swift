@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// CPU utilization policy.
   public struct AutoscalingPolicyCpuUtilization: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Target used to match against for discovery with Cloud SQL tables.
 public struct CloudSqlDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,

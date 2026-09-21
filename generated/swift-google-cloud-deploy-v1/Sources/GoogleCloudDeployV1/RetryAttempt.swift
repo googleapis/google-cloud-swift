@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RetryAttempt represents an action of retrying the failed Cloud Deploy job.
 public struct RetryAttempt: Codable, Equatable, GoogleWKT._AnyPackable,

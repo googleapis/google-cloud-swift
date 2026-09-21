@@ -16,7 +16,6 @@
 
 import Foundation
 import GoogleIAMV1
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

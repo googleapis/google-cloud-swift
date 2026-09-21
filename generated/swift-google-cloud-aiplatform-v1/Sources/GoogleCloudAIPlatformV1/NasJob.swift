@@ -16,8 +16,8 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Neural Architecture Search (NAS) job.
   public struct NasJob: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ! Information about a vulnerability with an HTML.
 public struct Form: Codable, Equatable, GoogleWKT._AnyPackable,

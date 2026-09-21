@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration of logging on a NAT.
   public struct RouterNatLogConfig: Codable, Equatable, GoogleWKT._AnyPackable,

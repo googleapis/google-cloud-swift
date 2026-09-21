@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance reschedule maintenance request.
   public struct SqlInstancesRescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT

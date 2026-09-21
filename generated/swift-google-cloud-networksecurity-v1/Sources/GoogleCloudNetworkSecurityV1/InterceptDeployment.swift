@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A deployment represents a zonal intercept backend ready to accept
 /// GENEVE-encapsulated traffic, e.g. a zonal instance group fronted by an

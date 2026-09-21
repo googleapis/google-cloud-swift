@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CutoverForecast holds information about future CutoverJobs of a MigratingVm.
 public struct CutoverForecast: Codable, Equatable, GoogleWKT._AnyPackable,

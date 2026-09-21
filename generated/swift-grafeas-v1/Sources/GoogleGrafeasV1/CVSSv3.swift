@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Common Vulnerability Scoring System version 3.
 /// For details, see https://www.first.org/cvss/specification-document

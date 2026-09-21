@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Indicates the session has terminated, due to either successful completion
 /// (e.g. user says "Good bye!" ) or an agent escalation.

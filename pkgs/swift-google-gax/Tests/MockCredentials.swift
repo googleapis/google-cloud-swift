@@ -34,7 +34,7 @@ final class MockCredentials: GoogleGax._CredentialsProtocol, @unchecked Sendable
     #expect(handlers.withLock { $0.isEmpty })
   }
 
-  public func headers() async throws -> GoogleAuth.AuthHeaders {
+  func headers() async throws -> GoogleAuth.AuthHeaders {
     guard let handler = self.handlers.withLock({ $0.popFirst() }) else {
       throw MockError.empty
     }

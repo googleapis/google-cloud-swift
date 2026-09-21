@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleAppsScriptType", package: "swift-google-apps-script-type"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

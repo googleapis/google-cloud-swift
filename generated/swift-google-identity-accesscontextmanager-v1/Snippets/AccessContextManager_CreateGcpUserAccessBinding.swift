@@ -20,7 +20,6 @@ import Foundation
 import GoogleIdentityAccessContextManagerV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, parent: String) async throws {

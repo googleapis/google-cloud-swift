@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpcContext
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpcContext
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for the Report method.
 public struct ReportRequest: Codable, Equatable, GoogleWKT._AnyPackable,

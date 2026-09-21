@@ -16,7 +16,7 @@
 
 #if FutureReservations || RegionCommitments || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk: Codable,
     Equatable, GoogleWKT._AnyPackable,

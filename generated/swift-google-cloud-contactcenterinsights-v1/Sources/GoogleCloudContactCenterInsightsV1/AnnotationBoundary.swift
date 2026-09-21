@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A point in a conversation that marks the start or the end of an annotation.
 public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,

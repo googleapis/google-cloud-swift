@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The widget subset used by an add-on.
 public struct AddOnWidgetSet: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Container associated with the finding.
 public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,

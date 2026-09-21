@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Schema is used to define the format of input/output data. Represents a select
   /// subset of an [OpenAPI 3.0 schema

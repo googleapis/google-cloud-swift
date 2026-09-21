@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudLoggingV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: MetricsServiceV2Client) async throws {
   try await client.deleteLogMetric(

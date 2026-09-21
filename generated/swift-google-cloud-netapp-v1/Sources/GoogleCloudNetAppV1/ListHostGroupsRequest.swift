@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ListHostGroupsRequest for listing host groups.
 public struct ListHostGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

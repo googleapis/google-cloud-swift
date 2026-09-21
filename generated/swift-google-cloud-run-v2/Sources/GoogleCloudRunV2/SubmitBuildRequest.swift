@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message for submitting a Build.
 public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,

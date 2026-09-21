@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A toolset that generates tools from an Integration Connectors Connection.
 public struct ConnectorToolset: Codable, Equatable, GoogleWKT._AnyPackable,

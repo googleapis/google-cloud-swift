@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A condition necessary for an `AccessLevel` to be granted. The Condition is an
 /// AND over its fields. So a Condition is true if: 1) the request IP is from one

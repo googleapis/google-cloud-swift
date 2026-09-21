@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing ReportDetail object. ReportDetail represents metadata of
 /// generated reports for a ReportConfig.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Encryption message describes the details of the applied encryption.
 public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,

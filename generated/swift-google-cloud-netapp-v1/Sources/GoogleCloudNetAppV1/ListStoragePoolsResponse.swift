@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ListStoragePoolsResponse is the response to a ListStoragePoolsRequest.
 public struct ListStoragePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

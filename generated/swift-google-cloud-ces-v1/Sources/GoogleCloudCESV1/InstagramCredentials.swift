@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Ephemeral Meta credentials for Instagram native integration.
 public struct InstagramCredentials: Codable, Equatable, GoogleWKT._AnyPackable,

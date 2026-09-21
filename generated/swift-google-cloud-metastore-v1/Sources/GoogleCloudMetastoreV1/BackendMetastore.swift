@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a backend metastore for the federation.
 public struct BackendMetastore: Codable, Equatable, GoogleWKT._AnyPackable,

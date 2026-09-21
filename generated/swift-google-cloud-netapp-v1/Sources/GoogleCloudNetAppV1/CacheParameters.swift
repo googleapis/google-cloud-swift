@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Cache Parameters for the volume.
 public struct CacheParameters: Codable, Equatable, GoogleWKT._AnyPackable,

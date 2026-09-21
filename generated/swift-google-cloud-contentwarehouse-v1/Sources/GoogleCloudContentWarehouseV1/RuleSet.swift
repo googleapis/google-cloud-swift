@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a set of rules from a single customer.
 public struct RuleSet: Codable, Equatable, GoogleWKT._AnyPackable,

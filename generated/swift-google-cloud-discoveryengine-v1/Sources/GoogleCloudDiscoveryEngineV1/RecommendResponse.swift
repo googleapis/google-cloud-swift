@@ -16,7 +16,7 @@
 
 #if RecommendationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message for Recommend method.
   public struct RecommendResponse: Codable, Equatable, GoogleWKT._AnyPackable,

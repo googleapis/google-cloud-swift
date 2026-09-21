@@ -16,7 +16,7 @@
 
 #if VpnTunnels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct VpnTunnelPhase1Algorithms: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

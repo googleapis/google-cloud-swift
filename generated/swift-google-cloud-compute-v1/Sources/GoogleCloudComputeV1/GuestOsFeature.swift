@@ -16,7 +16,7 @@
 
 #if Disks || ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionDisks || RegionInstanceTemplates || RegionInstances || RegionSnapshots || Snapshots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Guest OS features.
   public struct GuestOsFeature: Codable, Equatable, GoogleWKT._AnyPackable,

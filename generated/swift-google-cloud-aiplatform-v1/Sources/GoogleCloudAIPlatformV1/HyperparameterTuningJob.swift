@@ -16,8 +16,8 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a HyperparameterTuningJob. A HyperparameterTuningJob
   /// has a Study specification and multiple CustomJobs with identical

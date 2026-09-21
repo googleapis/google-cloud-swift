@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The call participant speaking for a given utterance.
 public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackable,

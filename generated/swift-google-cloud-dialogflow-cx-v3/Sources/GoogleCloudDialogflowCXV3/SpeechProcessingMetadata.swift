@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata of the speech-to-text and text-to-speech processing.
   public struct SpeechProcessingMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

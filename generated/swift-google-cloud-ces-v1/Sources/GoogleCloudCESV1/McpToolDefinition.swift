@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Container for a tool's core definition elements that are snapshot.
 /// Schemas in the snapshot are used as-is and cannot be overridden.

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudRapidMigrationAssessmentV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: RapidMigrationAssessmentClient, parent: String) async throws {

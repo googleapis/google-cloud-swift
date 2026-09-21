@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about a record.
 public struct TranslationReportRecord: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -22,8 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: VizierServiceClient, parent: String) async throws {
     let response = try await client.createStudy(

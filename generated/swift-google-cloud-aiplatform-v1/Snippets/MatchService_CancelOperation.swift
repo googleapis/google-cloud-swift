@@ -22,7 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: MatchServiceClient) async throws {
     try await client.cancelOperation(

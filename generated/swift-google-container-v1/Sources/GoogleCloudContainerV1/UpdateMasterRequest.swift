@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateMasterRequest updates the master of the cluster.
 public struct UpdateMasterRequest: Codable, Equatable, GoogleWKT._AnyPackable,

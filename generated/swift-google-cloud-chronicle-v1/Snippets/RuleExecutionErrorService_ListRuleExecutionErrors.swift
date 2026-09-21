@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(
   client: RuleExecutionErrorServiceClient, projectId: String, locationId: String, instanceId: String

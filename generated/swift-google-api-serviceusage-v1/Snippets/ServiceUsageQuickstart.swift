@@ -19,8 +19,6 @@
 import Foundation
 import GoogleApiServiceUsageV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleApiServiceUsageV1.ServiceUsageClient()

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOSConfigV1
-import GoogleCloudOrgPolicyV1
-import GoogleIAMV1
-import GoogleIdentityAccessContextManagerV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudOSConfigV1
+public import GoogleCloudOrgPolicyV1
+public import GoogleIAMV1
+public import GoogleIdentityAccessContextManagerV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An asset in Google Cloud. An asset can be any resource in the Google Cloud
 /// [resource

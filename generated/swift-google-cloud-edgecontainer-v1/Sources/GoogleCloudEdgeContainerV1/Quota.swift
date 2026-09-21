@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents quota for Edge Container resources.
 public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,

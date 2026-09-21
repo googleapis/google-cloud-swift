@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Push contains filter properties for matching GitHub git pushes.
 public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,

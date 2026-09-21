@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RenderMetadata includes information associated with a `Release` render.
 public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

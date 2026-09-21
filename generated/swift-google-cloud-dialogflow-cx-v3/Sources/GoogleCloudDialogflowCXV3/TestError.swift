@@ -16,8 +16,8 @@
 
 #if Environments || TestCases
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Error info for running a test.
   public struct TestError: Codable, Equatable, GoogleWKT._AnyPackable,

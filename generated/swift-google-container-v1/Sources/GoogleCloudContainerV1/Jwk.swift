@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Jwk is a JSON Web Key as specified in RFC 7517
 public struct Jwk: Codable, Equatable, GoogleWKT._AnyPackable,

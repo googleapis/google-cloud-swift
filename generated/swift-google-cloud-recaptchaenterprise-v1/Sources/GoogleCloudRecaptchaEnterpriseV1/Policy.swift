@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A complete configuration set containing multiple grouped rules defining the
 /// behavior of reCAPTCHA for fraud detection and prevention.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Subnetworks
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Subnetwork resource.
   ///

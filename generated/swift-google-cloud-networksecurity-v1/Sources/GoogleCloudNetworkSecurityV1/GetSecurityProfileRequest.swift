@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request used by the GetSecurityProfile method.
 public struct GetSecurityProfileRequest: Codable, Equatable, GoogleWKT._AnyPackable,

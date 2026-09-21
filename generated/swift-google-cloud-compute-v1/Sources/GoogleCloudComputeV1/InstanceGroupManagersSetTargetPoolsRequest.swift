@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceGroupManagers
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct InstanceGroupManagersSetTargetPoolsRequest: Codable, Equatable, GoogleWKT
       ._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional interconnect parameters.
   public struct InterconnectParams: Codable, Equatable, GoogleWKT._AnyPackable,

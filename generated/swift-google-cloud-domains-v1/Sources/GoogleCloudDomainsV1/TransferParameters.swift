@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Parameters required to transfer a domain from another registrar.
 public struct TransferParameters: Codable, Equatable, GoogleWKT._AnyPackable,

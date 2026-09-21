@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Weekly windows. For example, blocking actions every Saturday and Sunday.
 /// Another example would be blocking actions every weekday from 5pm to midnight.

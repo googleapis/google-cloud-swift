@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a widget tool that the agent can invoke. When the tool is chosen
 /// by the agent, agent will return the widget to the client. The client is

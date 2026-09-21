@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// When set in OperationStep, indicates that a new network should be created.
 public struct CreateNetwork: Codable, Equatable, GoogleWKT._AnyPackable,

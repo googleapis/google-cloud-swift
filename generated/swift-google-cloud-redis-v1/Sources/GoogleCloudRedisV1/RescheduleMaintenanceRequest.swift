@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for
 /// [RescheduleMaintenance][google.cloud.redis.v1.CloudRedis.RescheduleMaintenance].

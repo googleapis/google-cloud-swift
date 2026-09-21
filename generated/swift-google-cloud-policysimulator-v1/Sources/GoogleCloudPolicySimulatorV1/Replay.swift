@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource describing a `Replay`, or simulation.
 public struct Replay: Codable, Equatable, GoogleWKT._AnyPackable,

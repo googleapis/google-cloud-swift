@@ -16,7 +16,7 @@
 
 #if JobService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A message representing a Trial. A Trial contains a unique set of Parameters
   /// that has been or will be evaluated, along with the objective metrics got by

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A single search request within a batch operation.
 public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,

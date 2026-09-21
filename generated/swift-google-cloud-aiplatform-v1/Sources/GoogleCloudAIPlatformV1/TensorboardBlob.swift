@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if TensorboardService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// One blob (e.g, image, graph) viewable on a blob metric plot.
   public struct TensorboardBlob: Codable, Equatable, GoogleWKT._AnyPackable,

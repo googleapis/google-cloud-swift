@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Options to control visual rendering of a chart.
 public struct ChartOptions: Codable, Equatable, GoogleWKT._AnyPackable,

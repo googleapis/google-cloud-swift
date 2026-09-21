@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudApiRegistryV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: CloudApiRegistryClient) async throws {
   let items = try client.listLocations(

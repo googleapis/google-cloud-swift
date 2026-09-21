@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DiskRestoreProperties represents the properties of a Disk restore.
 public struct DiskRestoreProperties: Codable, Equatable, GoogleWKT._AnyPackable,

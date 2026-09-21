@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudTraceV2
-import GoogleWKT
 
 func sample(client: TraceServiceClient) async throws {
   try await client.batchWriteSpans(

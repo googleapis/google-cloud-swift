@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A vector which can be either dense or sparse.
 public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,

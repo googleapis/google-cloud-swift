@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An auxiliary table containing statistical information on the relative
 /// frequency of different quasi-identifiers values. It has one or several

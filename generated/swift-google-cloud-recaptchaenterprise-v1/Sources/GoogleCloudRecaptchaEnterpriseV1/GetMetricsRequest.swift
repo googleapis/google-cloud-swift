@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The get metrics request message.
 public struct GetMetricsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

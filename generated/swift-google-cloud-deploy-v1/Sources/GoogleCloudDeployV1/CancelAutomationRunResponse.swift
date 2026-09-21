@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The response object from `CancelAutomationRun`.
 public struct CancelAutomationRunResponse: Codable, Equatable, GoogleWKT._AnyPackable,

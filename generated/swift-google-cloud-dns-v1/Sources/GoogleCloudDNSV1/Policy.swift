@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A policy is a collection of DNS rules applied to one or more Virtual Private Cloud resources.
 public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,

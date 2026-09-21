@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// One channel of conversation-level sentiment data.
 public struct ConversationLevelSentiment: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Provides details for errors and the corresponding resources.
 public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,

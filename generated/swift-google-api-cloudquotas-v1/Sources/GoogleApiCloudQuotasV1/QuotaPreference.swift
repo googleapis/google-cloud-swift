@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// QuotaPreference represents the preferred quota configuration specified for
 /// a project, folder or organization. There is only one QuotaPreference

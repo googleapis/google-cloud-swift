@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)

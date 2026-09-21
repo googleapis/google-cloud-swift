@@ -16,8 +16,8 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The response message for
   /// [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].

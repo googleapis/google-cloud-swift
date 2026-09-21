@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message signifying that the stream failed to open
 public struct Fail: Codable, Equatable, GoogleWKT._AnyPackable,

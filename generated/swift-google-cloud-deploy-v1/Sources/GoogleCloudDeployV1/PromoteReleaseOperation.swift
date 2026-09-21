@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains the information of an automated promote-release operation.
 public struct PromoteReleaseOperation: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `MoveRepository` request message.
 public struct MoveRepositoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,

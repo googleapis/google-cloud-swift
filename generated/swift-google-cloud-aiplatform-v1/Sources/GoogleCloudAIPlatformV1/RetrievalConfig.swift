@@ -16,8 +16,8 @@
 
 #if GenAiCacheService || PredictionService
   import Foundation
-  import GoogleType
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleType
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Retrieval config.
   public struct RetrievalConfig: Codable, Equatable, GoogleWKT._AnyPackable,

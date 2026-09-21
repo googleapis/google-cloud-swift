@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Info for No-Authentication custom API feeds.
 public struct CustomAPINoAuth: Codable, Equatable, GoogleWKT._AnyPackable,

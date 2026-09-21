@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: ConversationsClient, projectId: String, conversationId: String) async throws {
     let items = try client.listMessages(

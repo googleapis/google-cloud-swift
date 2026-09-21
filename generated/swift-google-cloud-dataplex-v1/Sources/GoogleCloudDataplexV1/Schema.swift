@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Schema information describing the structure and layout of the data.
 public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -21,7 +21,6 @@ import GoogleCloudNetworkManagementV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: OrganizationVpcFlowLogsServiceClient, projectId: String, locationId: String)

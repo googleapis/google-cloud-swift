@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Relevant contexts for one query.
   public struct RagContexts: Codable, Equatable, GoogleWKT._AnyPackable,

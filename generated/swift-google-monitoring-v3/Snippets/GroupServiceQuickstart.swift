@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMonitoringV3
 import GoogleApi
-import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudMonitoringV3.GroupServiceClient()

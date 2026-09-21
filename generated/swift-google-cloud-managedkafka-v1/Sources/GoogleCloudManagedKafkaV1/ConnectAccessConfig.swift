@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The configuration of access to the Kafka Connect cluster.
 public struct ConnectAccessConfig: Codable, Equatable, GoogleWKT._AnyPackable,

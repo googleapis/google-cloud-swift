@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Spec of CES tool that the generator can choose from.
   public struct CesToolSpec: Codable, Equatable, GoogleWKT._AnyPackable,

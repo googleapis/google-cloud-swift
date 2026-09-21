@@ -16,7 +16,7 @@
 
 #if ProjectService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata and configurations for a Google Cloud project in the service.
   public struct Project: Codable, Equatable, GoogleWKT._AnyPackable,

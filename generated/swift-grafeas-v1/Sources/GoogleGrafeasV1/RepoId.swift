@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A unique identifier for a Cloud Repo.
 public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,

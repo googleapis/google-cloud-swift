@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || DocumentService || RecommendationService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Principal identifier of a user or a group.
   public struct Principal: Codable, Equatable, GoogleWKT._AnyPackable,

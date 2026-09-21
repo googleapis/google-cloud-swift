@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Message representing the validation result for a UrlMap.
   public struct UrlMapValidationResult: Codable, Equatable, GoogleWKT._AnyPackable,

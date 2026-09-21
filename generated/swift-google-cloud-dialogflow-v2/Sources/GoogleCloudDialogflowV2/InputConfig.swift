@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the configuration of importing a set of conversation files in
   /// Google Cloud Storage.

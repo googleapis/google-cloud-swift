@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The configuration for an individual load balancer to health check.
 public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleWKT._AnyPackable,

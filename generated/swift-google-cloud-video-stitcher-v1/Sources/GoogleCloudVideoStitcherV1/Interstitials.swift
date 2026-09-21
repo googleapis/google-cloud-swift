@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes what was stitched into a VOD session's manifest.
 public struct Interstitials: Codable, Equatable, GoogleWKT._AnyPackable,

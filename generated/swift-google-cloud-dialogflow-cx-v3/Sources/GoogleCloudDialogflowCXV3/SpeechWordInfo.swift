@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Information for a word recognized by the speech recognizer.
   public struct SpeechWordInfo: Codable, Equatable, GoogleWKT._AnyPackable,

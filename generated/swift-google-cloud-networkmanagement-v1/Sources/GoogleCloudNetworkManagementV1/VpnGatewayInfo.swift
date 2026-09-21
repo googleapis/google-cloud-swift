@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// For display only. Metadata associated with a Compute Engine VPN gateway.
 public struct VpnGatewayInfo: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The idle shutdown configuration of NotebookRuntimeTemplate, which contains
   /// the idle_timeout as required field.

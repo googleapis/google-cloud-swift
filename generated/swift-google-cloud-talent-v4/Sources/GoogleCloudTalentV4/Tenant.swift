@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Tenant resource represents a tenant in the service. A tenant is a group or
 /// entity that shares common access with specific privileges for resources like

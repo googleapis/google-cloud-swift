@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Finding corresponding to Sensitive Data Protection filter.
 public struct SdpFinding: Codable, Equatable, GoogleWKT._AnyPackable,

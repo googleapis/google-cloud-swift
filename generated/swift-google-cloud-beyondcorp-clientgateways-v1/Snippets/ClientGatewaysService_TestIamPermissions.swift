@@ -21,8 +21,6 @@ import GoogleCloudBeyondCorpClientGatewaysV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ClientGatewaysServiceClient) async throws {
   let response = try await client.testIamPermissions(

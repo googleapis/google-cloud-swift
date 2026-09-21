@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for
   /// [SessionService.UpdateSession][google.cloud.aiplatform.v1.SessionService.UpdateSession].

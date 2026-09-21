@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UDT's parent is a schema.
 public struct UDTEntity: Codable, Equatable, GoogleWKT._AnyPackable,

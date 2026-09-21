@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents credentials of an FTP Server.
 public struct ServerCredential: Codable, Equatable, GoogleWKT._AnyPackable,

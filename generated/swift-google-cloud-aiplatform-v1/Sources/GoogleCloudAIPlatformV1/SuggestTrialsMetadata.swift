@@ -16,7 +16,7 @@
 
 #if VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Details of operations that perform Trials suggestion.
   public struct SuggestTrialsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

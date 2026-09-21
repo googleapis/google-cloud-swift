@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Determines which HTTP headers will be logged to Stackdriver.
   public struct BackendServiceLogConfigLoggingHttpHeader: Codable, Equatable, GoogleWKT

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudPrivilegedAccessManagerV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {

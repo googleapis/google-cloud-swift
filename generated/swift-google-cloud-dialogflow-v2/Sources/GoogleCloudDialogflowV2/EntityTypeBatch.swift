@@ -16,7 +16,7 @@
 
 #if EntityTypes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// This message is a wrapper around a collection of entity types.
   public struct EntityTypeBatch: Codable, Equatable, GoogleWKT._AnyPackable,

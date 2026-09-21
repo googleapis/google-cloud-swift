@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Wrapper for any item that can be contained in the dump.
 public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,

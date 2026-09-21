@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The spec of a Container.
   public struct ContainerSpec: Codable, Equatable, GoogleWKT._AnyPackable,

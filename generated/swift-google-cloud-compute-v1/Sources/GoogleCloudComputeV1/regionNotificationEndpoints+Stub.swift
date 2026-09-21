@@ -16,7 +16,6 @@
 
 #if RegionNotificationEndpoints
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

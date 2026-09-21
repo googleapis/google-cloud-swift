@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GetSnapshotRequest gets the state of a snapshot.
 public struct GetSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPackable,

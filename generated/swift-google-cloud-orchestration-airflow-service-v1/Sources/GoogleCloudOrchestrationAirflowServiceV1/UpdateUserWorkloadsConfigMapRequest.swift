@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Update user workloads ConfigMap request.
 public struct UpdateUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleWKT._AnyPackable,

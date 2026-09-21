@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about the lock which locked the deployment.
 public struct LockInfo: Codable, Equatable, GoogleWKT._AnyPackable,

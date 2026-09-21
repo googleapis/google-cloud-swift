@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for deleting a Serverless VPC Access connector.
 public struct DeleteConnectorRequest: Codable, Equatable, GoogleWKT._AnyPackable,

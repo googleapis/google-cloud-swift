@@ -18,9 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleCloudKMSV1
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleCloudKMSV1
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
 ///

@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Used to assign specific AnnotationSpec to a particular area of a DataItem or
   /// the whole part of the DataItem.

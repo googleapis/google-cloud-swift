@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// NotificationConfig is the configuration of notifications.
 public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

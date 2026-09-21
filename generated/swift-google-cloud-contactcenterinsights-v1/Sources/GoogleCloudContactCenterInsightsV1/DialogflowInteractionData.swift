@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Dialogflow interaction data.
 public struct DialogflowInteractionData: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for a unique key indicating a record that contains a finding.
 public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,

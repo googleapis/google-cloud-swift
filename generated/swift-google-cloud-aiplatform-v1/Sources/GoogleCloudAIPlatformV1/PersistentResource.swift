@@ -16,8 +16,8 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents long-lasting resources that are dedicated to users to runs custom
   /// workloads.

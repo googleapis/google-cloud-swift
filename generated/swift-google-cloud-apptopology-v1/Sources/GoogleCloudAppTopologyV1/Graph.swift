@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a graph structure composed of nodes and edges.
 public struct Graph: Codable, Equatable, GoogleWKT._AnyPackable,

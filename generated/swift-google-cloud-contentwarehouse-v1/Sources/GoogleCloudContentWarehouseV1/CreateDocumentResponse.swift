@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleLongRunning
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response message for DocumentService.CreateDocument.
 public struct CreateDocumentResponse: Codable, Equatable, GoogleWKT._AnyPackable,

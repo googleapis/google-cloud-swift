@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Job configuration information.
 /// See the [Jobs](/bigquery/docs/reference/v2/jobs) API resource

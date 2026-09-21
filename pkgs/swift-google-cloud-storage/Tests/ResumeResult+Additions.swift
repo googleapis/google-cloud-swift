@@ -17,7 +17,7 @@ import GoogleGax
 import GoogleCloudStorage
 
 extension ResumeResult: Equatable {
-  public static func == (lhs: ResumeResult, rhs: ResumeResult) -> Bool {
+  static func == (lhs: ResumeResult, rhs: ResumeResult) -> Bool {
     switch (lhs, rhs) {
     case (.permanent(let l), .permanent(let r)): return isEquivalent(l, r)
     case (.exhausted(let l), .exhausted(let r)): return isEquivalent(l, r)

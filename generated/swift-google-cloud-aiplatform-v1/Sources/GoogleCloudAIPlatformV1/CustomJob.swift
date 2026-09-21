@@ -16,8 +16,8 @@
 
 #if JobService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a job that runs custom workloads such as a Docker container or a
   /// Python package. A CustomJob can have multiple worker pools and each worker

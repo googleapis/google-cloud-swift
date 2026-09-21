@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+package import Foundation
 import SystemPackage
 
 /// The outcome of loading Application Default Credentials (ADC) from the local filesystem.

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The request payload used to execute SQL statements.
   public struct ExecuteSqlPayload: Codable, Equatable, GoogleWKT._AnyPackable,

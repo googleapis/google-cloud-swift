@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudFinancialServicesV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(parent: String, ) async throws {

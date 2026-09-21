@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes an event and a trigger URI.
 public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,

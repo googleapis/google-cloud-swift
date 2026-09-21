@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AWS IAM Role Auth for S3 V2.
 public struct S3V2AwsIamRoleAuth: Codable, Equatable, GoogleWKT._AnyPackable,

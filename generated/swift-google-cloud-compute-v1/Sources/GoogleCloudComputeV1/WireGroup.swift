@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A resource that represents a group of redundant wires.
   public struct WireGroup: Codable, Equatable, GoogleWKT._AnyPackable,

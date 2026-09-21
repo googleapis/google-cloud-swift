@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The HTTP cookie used for stateful session affinity.
   public struct BackendServiceHttpCookie: Codable, Equatable, GoogleWKT._AnyPackable,

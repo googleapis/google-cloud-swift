@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Track definition for the input asset.
 public struct TrackDefinition: Codable, Equatable, GoogleWKT._AnyPackable,

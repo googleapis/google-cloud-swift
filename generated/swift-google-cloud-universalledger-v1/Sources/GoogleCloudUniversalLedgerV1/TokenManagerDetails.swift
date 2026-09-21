@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details specific to a Token Manager.
 public struct TokenManagerDetails: Codable, Equatable, GoogleWKT._AnyPackable,

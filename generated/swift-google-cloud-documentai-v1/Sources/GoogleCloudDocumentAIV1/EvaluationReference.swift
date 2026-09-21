@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Gives a short summary of an evaluation, and links to the evaluation itself.
 public struct EvaluationReference: Codable, Equatable, GoogleWKT._AnyPackable,

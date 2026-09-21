@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudUniversalLedgerV1
-import GoogleWKT
 
 func sample(client: UniversalLedgerClient) async throws {
   let response = try await client.submitOperationalTransaction(

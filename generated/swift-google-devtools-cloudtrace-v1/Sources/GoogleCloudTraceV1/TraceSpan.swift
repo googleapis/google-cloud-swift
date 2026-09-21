@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A span represents a single timed event within a trace. Spans can be nested
 /// and form a trace tree. Often, a trace contains a root span that describes the

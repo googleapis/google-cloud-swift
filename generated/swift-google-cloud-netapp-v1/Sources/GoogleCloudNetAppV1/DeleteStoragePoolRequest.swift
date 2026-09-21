@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DeleteStoragePoolRequest deletes a Storage Pool.
 public struct DeleteStoragePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

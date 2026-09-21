@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Retrieves a list of all migration jobs in a given project and location.
 public struct ListMigrationJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

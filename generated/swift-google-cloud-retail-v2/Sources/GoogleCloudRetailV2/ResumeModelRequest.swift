@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for resuming training of a model.
 public struct ResumeModelRequest: Codable, Equatable, GoogleWKT._AnyPackable,

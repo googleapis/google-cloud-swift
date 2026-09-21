@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for requesting list of Streams.
 public struct ListStreamsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

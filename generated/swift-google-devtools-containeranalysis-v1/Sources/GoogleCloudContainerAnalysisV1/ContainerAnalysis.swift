@@ -18,9 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-@_spi(GoogleCloudInternal) import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Retrieves analysis results of Cloud components such as Docker container
 /// images. The Container Analysis API is an implementation of the

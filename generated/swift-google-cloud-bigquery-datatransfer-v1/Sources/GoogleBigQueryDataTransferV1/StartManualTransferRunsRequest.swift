@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to start manual transfer runs.
 public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

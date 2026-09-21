@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Proofpoint Mail settings.
 public struct ProofpointMailSettings: Codable, Equatable, GoogleWKT._AnyPackable,

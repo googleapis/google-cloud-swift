@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource representing streaming data from a source to a destination.
 public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,

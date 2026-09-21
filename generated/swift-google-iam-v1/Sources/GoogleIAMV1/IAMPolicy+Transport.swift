@@ -18,7 +18,6 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
 extension Clients {

@@ -16,7 +16,6 @@
 
 import Foundation
 import GoogleCloudKMSV1
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

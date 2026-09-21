@@ -22,8 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: GenAiTuningServiceClient, parent: String) async throws {
     let items = try client.listTuningJobs(

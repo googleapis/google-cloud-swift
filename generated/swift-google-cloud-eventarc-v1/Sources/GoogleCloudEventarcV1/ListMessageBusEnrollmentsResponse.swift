@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The response message for the `ListMessageBusEnrollments` method.`
 public struct ListMessageBusEnrollmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

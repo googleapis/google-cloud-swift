@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ApiHubResource is one of the resources such as Api, Operation, Deployment,
 /// Definition, Spec and Version resources stored in API-Hub.

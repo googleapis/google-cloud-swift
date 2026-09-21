@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message used to identify file cluster type being profiled.
 public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,

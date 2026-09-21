@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The data for a Dialogflow intent.
 /// Represents a detected intent in the conversation, e.g. MAKES_PROMISE.

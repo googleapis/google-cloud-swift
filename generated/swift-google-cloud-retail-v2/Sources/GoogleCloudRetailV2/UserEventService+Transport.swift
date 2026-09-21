@@ -21,7 +21,6 @@ import Foundation
 import GoogleApi
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
 extension Clients {

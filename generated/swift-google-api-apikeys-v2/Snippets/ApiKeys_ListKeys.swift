@@ -19,7 +19,6 @@
 import Foundation
 import GoogleApiApiKeysV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ApiKeysClient, projectId: String, locationId: String) async throws {

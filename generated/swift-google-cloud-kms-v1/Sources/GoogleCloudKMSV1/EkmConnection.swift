@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An [EkmConnection][google.cloud.kms.v1.EkmConnection] represents an
 /// individual EKM connection. It can be used for creating

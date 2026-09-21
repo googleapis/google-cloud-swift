@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A response to a `ListPreviews` call. Contains a list of Previews.
 public struct ListPreviewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

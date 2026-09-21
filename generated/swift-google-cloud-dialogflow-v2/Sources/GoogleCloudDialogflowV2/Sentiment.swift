@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The sentiment, such as positive/negative feeling or association, for a unit
   /// of analysis, such as the query text. See:

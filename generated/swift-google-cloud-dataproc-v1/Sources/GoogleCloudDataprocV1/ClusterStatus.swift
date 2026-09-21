@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The status of a cluster and its instances.
 public struct ClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,

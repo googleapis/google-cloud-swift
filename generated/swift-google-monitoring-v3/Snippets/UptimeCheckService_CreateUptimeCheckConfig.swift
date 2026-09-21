@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleWKT
 
 func sample(client: UptimeCheckServiceClient, projectId: String) async throws {
   let response = try await client.createUptimeCheckConfig(

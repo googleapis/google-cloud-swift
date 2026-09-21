@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Roll out to resources by location.
   public struct RolloutPlanWaveSelectorLocationSelector: Codable, Equatable, GoogleWKT._AnyPackable,

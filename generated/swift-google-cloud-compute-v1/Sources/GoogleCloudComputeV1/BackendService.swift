@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if BackendServices || RegionBackendServices
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Backend Service resource.
   ///

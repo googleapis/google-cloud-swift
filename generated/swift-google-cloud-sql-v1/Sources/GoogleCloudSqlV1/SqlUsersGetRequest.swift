@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for Users Get RPC
   public struct SqlUsersGetRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for RCToken generated for service mesh workloads protected by
 /// IAP. RCToken are IAP generated JWTs that can be verified at the application.

@@ -16,8 +16,8 @@
 
 #if Routes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains a list of Route resources.
   public struct RouteList: Codable, Equatable, GoogleWKT._AnyPackable,

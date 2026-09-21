@@ -16,7 +16,7 @@
 
 #if SipTrunks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// SipTrunk is the resource that represents a SIP trunk to connect to Google
   /// Telephony platform SIP trunking service.

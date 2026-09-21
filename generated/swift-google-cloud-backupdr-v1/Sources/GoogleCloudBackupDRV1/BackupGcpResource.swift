@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Minimum details to identify a Google Cloud resource for a backup.
 public struct BackupGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,

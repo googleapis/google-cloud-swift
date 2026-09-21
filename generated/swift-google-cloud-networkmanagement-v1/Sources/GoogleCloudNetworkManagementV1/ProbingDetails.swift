@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Results of active probing from the last run of the test.
 public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Input to be synthesized.
 public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if TargetSslProxies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains a list of TargetSslProxy resources.
   public struct TargetSslProxyList: Codable, Equatable, GoogleWKT._AnyPackable,

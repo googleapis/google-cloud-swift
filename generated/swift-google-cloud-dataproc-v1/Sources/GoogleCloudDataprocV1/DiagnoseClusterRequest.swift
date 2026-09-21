@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to collect cluster diagnostic information.
 public struct DiagnoseClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,

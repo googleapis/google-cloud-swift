@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Shared regional certificate authority for an instance.
 public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance restore backup request.
   public struct SqlInstancesRestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,

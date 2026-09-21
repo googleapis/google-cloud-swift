@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudVisionV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ProductSearchClient) async throws {

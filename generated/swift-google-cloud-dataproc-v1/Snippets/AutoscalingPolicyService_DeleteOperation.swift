@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudDataprocV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: AutoscalingPolicyServiceClient) async throws {
   try await client.deleteOperation(

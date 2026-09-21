@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Stores the criteria-annotation matching results for each search result item.
 public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackable,

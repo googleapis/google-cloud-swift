@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudLoggingV2
 import GoogleApi
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: LoggingServiceV2Client, projectId: String) async throws {
   let items = try client.listLogEntries(

@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The status of update/delete for a consensus peering connection. Only set
   /// when connection_status.update_strategy isCONSENSUS or a network peering is proposing to update the

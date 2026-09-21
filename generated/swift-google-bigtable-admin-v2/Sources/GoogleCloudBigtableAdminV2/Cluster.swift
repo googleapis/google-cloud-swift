@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resizable group of nodes in a particular cloud location, capable
 /// of serving all [Tables][google.bigtable.admin.v2.Table] in the parent

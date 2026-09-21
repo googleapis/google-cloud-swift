@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudDNSV1
-import GoogleWKT
 
 func sample(client: ManagedZonesClient) async throws {
   let poller = try await client.patch(

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [CaPool][google.cloud.security.privateca.v1.CaPool] represents a group of
 /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]

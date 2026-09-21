@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GceShieldedIdentity contains information about a Compute Engine instance.
 public struct GceShieldedIdentity: Codable, Equatable, GoogleWKT._AnyPackable,

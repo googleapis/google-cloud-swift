@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for listing all feedback labels.
 public struct ListAllFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

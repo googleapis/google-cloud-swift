@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Make a snapshot every hour e.g. at 04:00, 05:00, 06:00.
 public struct HourlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,

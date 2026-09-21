@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for updating a Stream.
 public struct UpdateStreamRequest: Codable, Equatable, GoogleWKT._AnyPackable,

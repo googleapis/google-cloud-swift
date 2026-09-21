@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a fraction in terms of a numerator divided by a denominator.
 public struct Fraction: Codable, Equatable, GoogleWKT._AnyPackable,

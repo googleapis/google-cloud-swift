@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeaturestoreService || GenAiTuningService || JobService || ModelService || PipelineService || PredictionService || VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The Google Cloud Storage location for the input content.
   public struct GcsSource: Codable, Equatable, GoogleWKT._AnyPackable,

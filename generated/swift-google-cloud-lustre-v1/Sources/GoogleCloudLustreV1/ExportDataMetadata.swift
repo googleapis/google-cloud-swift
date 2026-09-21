@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata of the export data operation.
 public struct ExportDataMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

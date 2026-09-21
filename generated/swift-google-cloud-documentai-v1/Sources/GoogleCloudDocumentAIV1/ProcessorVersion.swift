@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A processor version is an implementation of a processor. Each processor
 /// can have multiple versions, pretrained by Google internally or uptrained

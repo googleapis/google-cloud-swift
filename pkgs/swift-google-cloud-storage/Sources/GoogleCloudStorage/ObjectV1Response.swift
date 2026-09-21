@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleWKT
+package import GoogleWKT
 
 package struct StringOrInt64: Decodable, Sendable {
   package let value: Int64

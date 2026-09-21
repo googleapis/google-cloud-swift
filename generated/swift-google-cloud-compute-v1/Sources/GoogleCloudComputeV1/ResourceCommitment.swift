@@ -16,7 +16,7 @@
 
 #if RegionCommitments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Commitment for a particular hardware resource (a commitment is composed of
   /// one or more of these).

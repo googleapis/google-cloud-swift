@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CreateBackupRequest creates a backup.
 public struct CreateBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,

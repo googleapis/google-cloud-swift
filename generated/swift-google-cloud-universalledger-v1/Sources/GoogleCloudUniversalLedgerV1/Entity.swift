@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An entity in the Universal Ledger network. All accounts are attached to an
 /// entity. The entity ID, also often referred to as the account ID, is unique

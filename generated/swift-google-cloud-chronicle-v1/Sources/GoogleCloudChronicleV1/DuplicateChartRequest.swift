@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message to duplicate chart in a dashboard.
 public struct DuplicateChartRequest: Codable, Equatable, GoogleWKT._AnyPackable,

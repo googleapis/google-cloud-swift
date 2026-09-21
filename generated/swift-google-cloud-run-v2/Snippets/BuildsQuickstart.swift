@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudRunV2.BuildsClient()

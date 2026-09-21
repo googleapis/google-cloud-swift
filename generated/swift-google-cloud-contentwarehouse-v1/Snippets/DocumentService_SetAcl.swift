@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: DocumentServiceClient) async throws {
   let response = try await client.setAcl(

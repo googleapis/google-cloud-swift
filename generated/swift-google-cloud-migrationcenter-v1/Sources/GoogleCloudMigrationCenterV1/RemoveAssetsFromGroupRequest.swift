@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to remove assets from a group.
 public struct RemoveAssetsFromGroupRequest: Codable, Equatable, GoogleWKT._AnyPackable,

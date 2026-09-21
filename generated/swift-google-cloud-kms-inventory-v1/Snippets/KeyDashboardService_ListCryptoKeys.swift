@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudKMSInventoryV1
 import GoogleCloudKMSV1
-import GoogleWKT
 
 func sample(client: KeyDashboardServiceClient, parent: String) async throws {
   let items = try client.listCryptoKeys(

@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudBatchV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: BatchServiceClient) async throws {
   let response = try await client.getLocation(

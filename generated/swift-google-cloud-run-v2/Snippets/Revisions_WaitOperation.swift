@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: RevisionsClient) async throws {
   let response = try await client.waitOperation(

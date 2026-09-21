@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'.
 public struct RollbackAttempt: Codable, Equatable, GoogleWKT._AnyPackable,

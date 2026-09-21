@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// In Customer Engagement Suite (CES), an app version is a snapshot of the app
 /// at a specific point in time. It is immutable and cannot be modified once

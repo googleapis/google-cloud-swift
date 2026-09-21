@@ -16,7 +16,7 @@
 
 #if FutureReservations || RegionCommitments || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// This reservation type is specified by total resource amounts (e.g. total
   /// count of CPUs) and can account for multiple instance SKUs. In other words,

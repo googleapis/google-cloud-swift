@@ -19,10 +19,10 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleCloudLocation
-  @_spi(GoogleCloudInternal) import GoogleLongRunning
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) public import GoogleLongRunning
+  @_spi(GoogleCloudInternal) public import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for managing [Tools][google.cloud.dialogflow.cx.v3.Tool].
   ///
@@ -906,7 +906,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable, message: "Enable the 'Tools' trait in Package.swift to use this client."

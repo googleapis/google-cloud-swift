@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ApprovalConfig describes configuration for manual approval of a build.
 public struct ApprovalConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudChannelV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudChannelV1.CloudChannelServiceClient()

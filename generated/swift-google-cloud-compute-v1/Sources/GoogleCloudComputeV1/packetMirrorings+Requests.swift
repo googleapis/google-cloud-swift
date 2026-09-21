@@ -16,7 +16,7 @@
 
 #if PacketMirrorings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension PacketMirroringsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.packetMirrorings.aggregatedList] method.

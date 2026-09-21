@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Stores metadata of the transition to another target playbook. Playbook
   /// transition actions exit the caller playbook and enter the target playbook.

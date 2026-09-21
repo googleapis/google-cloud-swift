@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// UserUtterance represents one message sent by the customer.
   public struct UserUtterance: Codable, Equatable, GoogleWKT._AnyPackable,

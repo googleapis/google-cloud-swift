@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Config for RagEngine.
   public struct RagEngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,

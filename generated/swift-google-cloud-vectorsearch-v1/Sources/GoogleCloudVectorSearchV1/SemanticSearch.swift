@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines a semantic search operation.
 public struct SemanticSearch: Codable, Equatable, GoogleWKT._AnyPackable,

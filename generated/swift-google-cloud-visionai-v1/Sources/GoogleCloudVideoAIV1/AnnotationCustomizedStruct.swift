@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Customized struct represnation in annotation.
 public struct AnnotationCustomizedStruct: Codable, Equatable, GoogleWKT._AnyPackable,

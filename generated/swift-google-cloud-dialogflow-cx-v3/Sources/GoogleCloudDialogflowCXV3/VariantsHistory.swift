@@ -16,7 +16,7 @@
 
 #if Experiments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The history of variants update.
   public struct VariantsHistory: Codable, Equatable, GoogleWKT._AnyPackable,

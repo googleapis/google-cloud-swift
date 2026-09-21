@@ -16,7 +16,7 @@
 
 #if SchemaService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata for UpdateSchema LRO.
   public struct UpdateSchemaMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

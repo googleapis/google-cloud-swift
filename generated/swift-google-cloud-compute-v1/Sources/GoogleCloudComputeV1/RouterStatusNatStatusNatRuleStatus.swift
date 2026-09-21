@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Status of a NAT Rule contained in this NAT.
   public struct RouterStatusNatStatusNatRuleStatus: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A transition route specifies a [intent][google.cloud.dialogflow.cx.v3.Intent]
   /// that can be matched and/or a data condition that can be evaluated during a

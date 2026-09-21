@@ -16,7 +16,7 @@
 
 #if ModelGardenService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains information about the Large Model.
   public struct LargeModelReference: Codable, Equatable, GoogleWKT._AnyPackable,

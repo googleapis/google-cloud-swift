@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message requesting to stop a server.
 public struct StopInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

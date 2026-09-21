@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for representing an error from exchanging OAuth tokens.
 public struct ExchangeError: Codable, Equatable, GoogleWKT._AnyPackable,

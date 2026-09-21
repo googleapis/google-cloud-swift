@@ -19,7 +19,6 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleIAMV1
-import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
 extension Clients {

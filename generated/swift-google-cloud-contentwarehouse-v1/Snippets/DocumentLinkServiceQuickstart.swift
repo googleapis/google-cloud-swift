@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, documentId: String, ) async throws {
   let client = try GoogleCloudContentWarehouseV1.DocumentLinkServiceClient()

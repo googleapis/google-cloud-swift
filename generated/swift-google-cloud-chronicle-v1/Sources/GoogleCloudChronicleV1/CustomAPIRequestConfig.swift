@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for the outgoing API request.
 public struct CustomAPIRequestConfig: Codable, Equatable, GoogleWKT._AnyPackable,

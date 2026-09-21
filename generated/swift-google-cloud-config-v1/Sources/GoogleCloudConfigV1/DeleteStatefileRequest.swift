@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to delete a state file passed to a 'DeleteStatefile' call.
 public struct DeleteStatefileRequest: Codable, Equatable, GoogleWKT._AnyPackable,

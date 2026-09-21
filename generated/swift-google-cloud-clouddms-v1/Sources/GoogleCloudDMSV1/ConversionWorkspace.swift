@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The main conversion workspace resource entity.
 public struct ConversionWorkspace: Codable, Equatable, GoogleWKT._AnyPackable,

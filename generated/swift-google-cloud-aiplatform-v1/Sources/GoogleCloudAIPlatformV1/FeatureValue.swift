@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Value for a feature.
   public struct FeatureValue: Codable, Equatable, GoogleWKT._AnyPackable,

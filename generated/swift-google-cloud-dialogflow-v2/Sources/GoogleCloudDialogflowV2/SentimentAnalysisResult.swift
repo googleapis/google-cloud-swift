@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The result of sentiment analysis. Sentiment analysis inspects user input
   /// and identifies the prevailing subjective opinion, especially to determine a

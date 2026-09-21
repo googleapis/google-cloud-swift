@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A resource that contains a URI to which a data file can be uploaded.
 public struct UploadFileInfo: Codable, Equatable, GoogleWKT._AnyPackable,

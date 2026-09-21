@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Sessions
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response of [FulfillIntent][]
   public struct FulfillIntentResponse: Codable, Equatable, GoogleWKT._AnyPackable,

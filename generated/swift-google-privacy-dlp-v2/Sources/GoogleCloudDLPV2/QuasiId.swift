@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A column with a semantic tag attached.
 public struct QuasiId: Codable, Equatable, GoogleWKT._AnyPackable,

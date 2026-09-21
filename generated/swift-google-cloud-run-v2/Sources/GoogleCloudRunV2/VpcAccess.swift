@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VPC Access settings. For more information on sending traffic to a VPC
 /// network, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a single component of the total discount applicable on a Price.
 public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,

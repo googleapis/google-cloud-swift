@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The entry of VM image upgrade history.
 public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,

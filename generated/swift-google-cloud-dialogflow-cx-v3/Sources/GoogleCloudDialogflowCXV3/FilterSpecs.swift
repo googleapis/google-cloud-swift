@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Filter specifications for data stores.
   public struct FilterSpecs: Codable, Equatable, GoogleWKT._AnyPackable,

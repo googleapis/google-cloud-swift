@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The result of calling a tool's action.
   public struct ToolCallResult: Codable, Equatable, GoogleWKT._AnyPackable,

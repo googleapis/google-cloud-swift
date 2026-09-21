@@ -16,7 +16,7 @@
 
 #if EntityTypes || SessionEntityTypes || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Entities are extracted from user input and represent parameters that are
   /// meaningful to your application. For example, a date range, a proper name

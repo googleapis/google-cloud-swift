@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response of querying an issue model's statistics.
 public struct CalculateIssueModelStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

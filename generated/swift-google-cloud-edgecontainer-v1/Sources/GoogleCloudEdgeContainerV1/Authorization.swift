@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RBAC policy that will be applied and managed by GEC.
 public struct Authorization: Codable, Equatable, GoogleWKT._AnyPackable,

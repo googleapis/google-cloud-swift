@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for response to metadata exchange request. The sole purpose of this
 /// message is for the use of AlloyDB connectors. Clients should not rely on this

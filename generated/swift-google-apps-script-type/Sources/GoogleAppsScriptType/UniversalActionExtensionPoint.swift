@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Format for declaring a universal action menu item extension point.
 public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyPackable,

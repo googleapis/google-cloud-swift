@@ -16,7 +16,7 @@
 
 #if TargetInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Target Instance resource.
   ///

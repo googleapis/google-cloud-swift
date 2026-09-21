@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The template used for importing documents.
   public struct ImportDocumentTemplate: Codable, Equatable, GoogleWKT._AnyPackable,

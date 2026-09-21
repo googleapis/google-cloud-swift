@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `WeekDayOfMonth` defines the week day of the month on which the backups will
 /// run. The message combines a `WeekOfMonth` and `DayOfWeek` to produce values

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: RuleExecutionErrorServiceClient) async throws {
   try await client.cancelOperation(

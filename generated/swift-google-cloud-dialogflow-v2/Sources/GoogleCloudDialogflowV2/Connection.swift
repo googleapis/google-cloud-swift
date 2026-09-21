@@ -16,7 +16,7 @@
 
 #if SipTrunks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a connection for SIP Trunk.
   public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,

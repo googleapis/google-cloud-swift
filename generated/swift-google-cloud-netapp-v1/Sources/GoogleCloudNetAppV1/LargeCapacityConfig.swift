@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for a Large Capacity Volume. A Large Capacity Volume
 /// supports sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple

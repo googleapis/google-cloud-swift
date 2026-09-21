@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a NasTrial details along with its parameters. If there is a
   /// corresponding train NasTrial, the train NasTrial is also returned.

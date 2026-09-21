@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AwsSecurityGroup describes a security group of an AWS VM.
 public struct AwsSecurityGroup: Codable, Equatable, GoogleWKT._AnyPackable,

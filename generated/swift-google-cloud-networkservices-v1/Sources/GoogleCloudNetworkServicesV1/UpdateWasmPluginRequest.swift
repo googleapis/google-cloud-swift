@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request used by the `UpdateWasmPlugin` method.
 public struct UpdateWasmPluginRequest: Codable, Equatable, GoogleWKT._AnyPackable,

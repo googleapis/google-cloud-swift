@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata used for export issue model.
 public struct ExportIssueModelMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

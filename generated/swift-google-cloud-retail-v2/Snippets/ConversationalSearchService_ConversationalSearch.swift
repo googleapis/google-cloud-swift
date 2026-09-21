@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: ConversationalSearchServiceClient) async throws {
 }

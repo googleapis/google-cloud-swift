@@ -19,7 +19,6 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: FirewallClient) async throws {
   try await client.deleteIngressRule(

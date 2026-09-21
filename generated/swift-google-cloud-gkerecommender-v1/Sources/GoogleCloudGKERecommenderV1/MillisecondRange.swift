@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents a range of latency values in milliseconds.
 public struct MillisecondRange: Codable, Equatable, GoogleWKT._AnyPackable,

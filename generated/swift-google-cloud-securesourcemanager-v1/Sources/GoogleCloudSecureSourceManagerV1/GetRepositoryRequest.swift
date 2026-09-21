@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GetRepositoryRequest is the request for getting a repository.
 public struct GetRepositoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,

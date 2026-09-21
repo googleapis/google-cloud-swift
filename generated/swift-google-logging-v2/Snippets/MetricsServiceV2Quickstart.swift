@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudLoggingV2
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudLoggingV2.MetricsServiceV2Client()

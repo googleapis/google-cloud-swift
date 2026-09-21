@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDataprocV1
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: WorkflowTemplateServiceClient) async throws {
   let poller = try await client.instantiateInlineWorkflowTemplate(

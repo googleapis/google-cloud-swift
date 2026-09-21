@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudRedisV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: CloudRedisClient) async throws {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines the properties and custom parameters for a data source.
 public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metrics object for a SubTask.
 public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,

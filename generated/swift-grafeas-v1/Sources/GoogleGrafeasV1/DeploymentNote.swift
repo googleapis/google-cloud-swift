@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An artifact that can be deployed in some runtime.
 public struct DeploymentNote: Codable, Equatable, GoogleWKT._AnyPackable,

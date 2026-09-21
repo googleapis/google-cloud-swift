@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metadata message for ImportAssets LRO.
 public struct ImportAssetsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

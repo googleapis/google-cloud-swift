@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudMemoryStoreV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: MemorystoreClient, projectId: String, locationId: String, instanceId: String)

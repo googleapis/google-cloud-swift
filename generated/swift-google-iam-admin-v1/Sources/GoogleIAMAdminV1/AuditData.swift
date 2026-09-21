@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Audit log information specific to Cloud IAM admin APIs. This message is
 /// serialized as an `Any` type in the `ServiceData` message of an

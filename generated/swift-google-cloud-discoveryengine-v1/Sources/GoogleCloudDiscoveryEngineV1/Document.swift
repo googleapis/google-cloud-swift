@@ -15,9 +15,9 @@
 // limitations under the License.
 
 #if ConversationalSearchService || DocumentService || RecommendationService || SearchService
-  import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Document captures all raw metadata information of items to be recommended or
   /// searched.

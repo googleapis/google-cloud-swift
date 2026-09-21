@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Filters events based on exact matches on the CloudEvents attributes.
 public struct EventFilter: Codable, Equatable, GoogleWKT._AnyPackable,

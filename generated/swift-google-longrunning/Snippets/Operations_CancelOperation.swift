@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: OperationsClient) async throws {
   try await client.cancelOperation(

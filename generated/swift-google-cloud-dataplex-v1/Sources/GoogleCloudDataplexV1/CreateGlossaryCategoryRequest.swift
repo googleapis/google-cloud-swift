@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Creates a new GlossaryCategory under the specified Glossary.
 public struct CreateGlossaryCategoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata required if type = "time".
   public struct RolloutPlanWaveValidationTimeBasedValidationMetadata: Codable, Equatable, GoogleWKT

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// HTTP header based authentication.
 public struct HttpHeaderAuth: Codable, Equatable, GoogleWKT._AnyPackable,

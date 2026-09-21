@@ -16,7 +16,7 @@
 
 #if NodeTemplates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension NodeTemplatesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.nodeTemplates.aggregatedList] method.

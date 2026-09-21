@@ -19,7 +19,6 @@
 import Foundation
 import GoogleIAMV3
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: PolicyBindingsClient) async throws {

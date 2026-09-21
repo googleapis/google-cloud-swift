@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Performance range for a model deployment.
 public struct PerformanceRange: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Transaction data associated with a payment protected by reCAPTCHA Enterprise.
 public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,

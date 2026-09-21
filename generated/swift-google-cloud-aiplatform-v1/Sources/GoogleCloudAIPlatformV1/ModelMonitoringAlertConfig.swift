@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The alert config for model monitoring.
   public struct ModelMonitoringAlertConfig: Codable, Equatable, GoogleWKT._AnyPackable,

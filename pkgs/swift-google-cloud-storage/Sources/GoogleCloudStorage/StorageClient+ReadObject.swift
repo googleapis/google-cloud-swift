@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
+@_spi(GoogleCloudInternal) package import GoogleGax
 import NIOHTTP1
 
 extension StorageClient {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Ephemeral metadata content describing the state of a deployment operation.
 public struct DeploymentOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

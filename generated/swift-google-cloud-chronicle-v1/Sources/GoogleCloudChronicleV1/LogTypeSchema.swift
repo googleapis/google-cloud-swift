@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata that pertains to a log type in the context of Feeds, and is useful
 /// for building interfaces to construct valid Feed messages.

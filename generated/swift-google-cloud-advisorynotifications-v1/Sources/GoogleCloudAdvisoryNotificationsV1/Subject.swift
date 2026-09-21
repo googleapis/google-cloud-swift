@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A subject line of a notification.
 public struct Subject: Codable, Equatable, GoogleWKT._AnyPackable,

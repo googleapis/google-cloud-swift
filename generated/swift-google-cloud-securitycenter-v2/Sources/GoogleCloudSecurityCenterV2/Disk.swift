@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains information about the disk associated with the finding.
 public struct Disk: Codable, Equatable, GoogleWKT._AnyPackable,

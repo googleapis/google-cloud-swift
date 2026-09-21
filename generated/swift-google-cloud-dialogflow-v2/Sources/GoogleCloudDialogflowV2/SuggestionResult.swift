@@ -16,8 +16,8 @@
 
 #if Participants
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// One response of different type of suggestion response which is used in
   /// the response of

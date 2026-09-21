@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
   import GoogleWKT
 
   func sample(client: ConversationProfilesClient) async throws {

@@ -20,8 +20,6 @@ import Foundation
 import GoogleCloudDocumentAIV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDocumentAIV1.DocumentProcessorServiceClient()

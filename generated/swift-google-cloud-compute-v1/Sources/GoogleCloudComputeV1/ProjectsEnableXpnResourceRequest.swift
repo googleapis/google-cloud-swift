@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct ProjectsEnableXpnResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

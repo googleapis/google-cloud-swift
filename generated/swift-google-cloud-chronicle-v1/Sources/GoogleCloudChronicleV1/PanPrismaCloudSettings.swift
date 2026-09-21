@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// PAN Prisma Cloud settings.
 public struct PanPrismaCloudSettings: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if NetworkAttachments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct NetworkAttachmentsScopedList: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

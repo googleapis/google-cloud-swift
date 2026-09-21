@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: LocationsClient) async throws {
   let items = try client.listLocations(

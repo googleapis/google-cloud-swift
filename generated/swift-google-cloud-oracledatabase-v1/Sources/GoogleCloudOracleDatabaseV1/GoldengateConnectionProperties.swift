@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The properties of a GoldengateConnection.
 public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._AnyPackable,

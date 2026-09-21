@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BigQuery dataset information.
 /// See the [Dataset](/bigquery/docs/reference/v2/datasets) API resource

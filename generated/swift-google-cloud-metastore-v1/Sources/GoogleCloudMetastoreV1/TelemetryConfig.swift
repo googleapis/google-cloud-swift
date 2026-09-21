@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Telemetry Configuration for the Dataproc Metastore service.
 public struct TelemetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,

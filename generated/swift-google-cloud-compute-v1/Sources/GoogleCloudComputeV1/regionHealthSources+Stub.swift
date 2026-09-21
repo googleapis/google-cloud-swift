@@ -16,7 +16,6 @@
 
 #if RegionHealthSources
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

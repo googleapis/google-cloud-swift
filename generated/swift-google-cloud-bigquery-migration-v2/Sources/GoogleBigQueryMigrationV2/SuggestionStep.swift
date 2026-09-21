@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Suggestion step to skip.
 public struct SuggestionStep: Codable, Equatable, GoogleWKT._AnyPackable,

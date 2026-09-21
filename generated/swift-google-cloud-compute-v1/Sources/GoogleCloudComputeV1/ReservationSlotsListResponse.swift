@@ -16,8 +16,8 @@
 
 #if ReservationSlots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A list of reservation slots within a single reservation.
   public struct ReservationSlotsListResponse: Codable, Equatable, GoogleWKT._AnyPackable,

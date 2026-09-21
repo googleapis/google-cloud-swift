@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Roll out to resources by Cloud Resource Manager resource hierarchy
   /// nodes such as projects, folders, orgs.

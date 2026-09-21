@@ -16,7 +16,7 @@
 
 #if CompletionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Suggestion deny list entry identifying the phrase to block from suggestions
   /// and the applied operation for the phrase.

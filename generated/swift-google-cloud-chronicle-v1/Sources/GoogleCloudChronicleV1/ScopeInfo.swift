@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ScopeInfo specifies the scope info of the reference list.
 public struct ScopeInfo: Codable, Equatable, GoogleWKT._AnyPackable,

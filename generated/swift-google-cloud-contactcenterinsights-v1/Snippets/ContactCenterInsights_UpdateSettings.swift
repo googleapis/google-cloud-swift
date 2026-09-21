@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContactCenterInsightsV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, projectId: String, locationId: String) async throws

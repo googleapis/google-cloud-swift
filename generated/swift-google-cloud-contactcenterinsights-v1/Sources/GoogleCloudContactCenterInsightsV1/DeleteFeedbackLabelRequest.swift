@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for deleting a feedback label.
 public struct DeleteFeedbackLabelRequest: Codable, Equatable, GoogleWKT._AnyPackable,

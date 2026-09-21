@@ -16,7 +16,7 @@
 
 #if ControlService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request for DeleteControl method.
   public struct DeleteControlRequest: Codable, Equatable, GoogleWKT._AnyPackable,

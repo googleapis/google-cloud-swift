@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A Dialogflow agent is a virtual agent that handles conversations with your
   /// end-users. It is a natural language understanding module that understands the

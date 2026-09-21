@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents details about an anomaly detected in an AI agent's behavior.
 public struct AgentAnomaly: Codable, Equatable, GoogleWKT._AnyPackable,

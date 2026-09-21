@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for canceling a patch job.
 public struct CancelPatchJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,

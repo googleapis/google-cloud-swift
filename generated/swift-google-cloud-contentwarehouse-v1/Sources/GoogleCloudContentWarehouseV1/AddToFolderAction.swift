@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents the action responsible for adding document under a folder.
 public struct AddToFolderAction: Codable, Equatable, GoogleWKT._AnyPackable,

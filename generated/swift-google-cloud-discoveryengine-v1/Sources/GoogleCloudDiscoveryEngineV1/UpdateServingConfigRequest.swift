@@ -16,7 +16,7 @@
 
 #if ServingConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request for UpdateServingConfig method.
   public struct UpdateServingConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

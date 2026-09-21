@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings to describe the Cloud Logging behaviors for the app.
 public struct CloudLoggingSettings: Codable, Equatable, GoogleWKT._AnyPackable,

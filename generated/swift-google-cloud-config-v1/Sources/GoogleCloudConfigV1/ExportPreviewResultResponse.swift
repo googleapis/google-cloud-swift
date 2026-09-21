@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A response to `ExportPreviewResult` call. Contains preview results.
 public struct ExportPreviewResultResponse: Codable, Equatable, GoogleWKT._AnyPackable,

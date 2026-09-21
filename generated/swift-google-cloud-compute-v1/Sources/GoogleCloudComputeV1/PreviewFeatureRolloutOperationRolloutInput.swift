@@ -16,7 +16,7 @@
 
 #if PreviewFeatures
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the input for the rollout operation.
   public struct PreviewFeatureRolloutOperationRolloutInput: Codable, Equatable, GoogleWKT

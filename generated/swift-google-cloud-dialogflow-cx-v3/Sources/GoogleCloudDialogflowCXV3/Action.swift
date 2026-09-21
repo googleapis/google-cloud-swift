@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Action performed by end user or Dialogflow agent in the conversation.
   public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,

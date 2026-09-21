@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `BackupRule` binds the backup schedule to a retention policy.
 public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,

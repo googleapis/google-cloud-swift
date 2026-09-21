@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about intercept in a specific cloud location.
 public struct InterceptLocation: Codable, Equatable, GoogleWKT._AnyPackable,

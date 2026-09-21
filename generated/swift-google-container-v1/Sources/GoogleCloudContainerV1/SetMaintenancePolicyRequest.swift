@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// SetMaintenancePolicyRequest sets the maintenance policy for a cluster.
 public struct SetMaintenancePolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,

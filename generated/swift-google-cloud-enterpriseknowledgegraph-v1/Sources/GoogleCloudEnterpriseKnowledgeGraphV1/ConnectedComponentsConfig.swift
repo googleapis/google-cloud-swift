@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Options for connected components.
 public struct ConnectedComponentsConfig: Codable, Equatable, GoogleWKT._AnyPackable,

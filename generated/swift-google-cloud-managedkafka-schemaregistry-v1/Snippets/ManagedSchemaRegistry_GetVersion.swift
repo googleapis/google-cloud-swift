@@ -21,7 +21,6 @@ import GoogleCloudManagedKafkaSchemaRegistryV1
 import GoogleApi
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(
   client: ManagedSchemaRegistryClient, projectId: String, locationId: String,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Node Group Affinity for clusters using sole-tenant node groups.
 /// **The Dataproc `NodeGroupAffinity` resource is not related to the

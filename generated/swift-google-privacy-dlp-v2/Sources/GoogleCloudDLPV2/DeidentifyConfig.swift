@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The configuration that controls how the data will change.
 public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,

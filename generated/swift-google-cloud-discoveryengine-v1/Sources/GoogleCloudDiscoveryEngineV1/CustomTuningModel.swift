@@ -16,7 +16,7 @@
 
 #if SearchTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata that describes a custom tuned model.
   public struct CustomTuningModel: Codable, Equatable, GoogleWKT._AnyPackable,

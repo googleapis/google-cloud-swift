@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UrlList proto helps users to set reusable, independently manageable lists
 /// of hosts, host patterns, URLs, URL patterns.

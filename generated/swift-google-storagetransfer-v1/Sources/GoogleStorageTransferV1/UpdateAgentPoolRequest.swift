@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies the request passed to UpdateAgentPool.
 public struct UpdateAgentPoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

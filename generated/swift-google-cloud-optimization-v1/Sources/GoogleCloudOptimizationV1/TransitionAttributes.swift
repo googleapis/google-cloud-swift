@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies attributes of transitions between two consecutive visits on a
 /// route. Several `TransitionAttributes` may apply to the same transition: in

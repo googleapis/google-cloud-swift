@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The spec for a pre-defined metric.
   public struct PredefinedMetricSpec: Codable, Equatable, GoogleWKT._AnyPackable,

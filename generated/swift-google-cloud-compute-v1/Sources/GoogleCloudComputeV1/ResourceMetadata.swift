@@ -16,7 +16,7 @@
 
 #if AcceleratorTypes || FutureReservations || RegionCommitments || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Standardized resource metadata common to all compute resources.
   public struct ResourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

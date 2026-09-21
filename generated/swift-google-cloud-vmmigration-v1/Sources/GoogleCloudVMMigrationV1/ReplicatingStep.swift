@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ReplicatingStep contains specific step details.
 public struct ReplicatingStep: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]
 /// represents a single-tenant HSM instance. It can be used for creating

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for all of the cluster's control plane endpoints.
 public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPackable,

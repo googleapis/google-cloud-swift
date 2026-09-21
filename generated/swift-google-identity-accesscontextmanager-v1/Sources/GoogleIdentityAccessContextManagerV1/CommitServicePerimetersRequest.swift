@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to commit dry-run specs in all [Service Perimeters]
 /// [google.identity.accesscontextmanager.v1.ServicePerimeter] belonging to

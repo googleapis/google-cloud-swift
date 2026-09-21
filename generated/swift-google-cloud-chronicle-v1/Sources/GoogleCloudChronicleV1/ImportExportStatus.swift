@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ImportExportStatus is a wrapper for dashboard name and status.
 public struct ImportExportStatus: Codable, Equatable, GoogleWKT._AnyPackable,

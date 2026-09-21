@@ -16,8 +16,8 @@
 
 #if TestCases
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// One interaction between a human and virtual agent. The human provides some
   /// input and the virtual agent provides a response.

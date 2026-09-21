@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A policy to apply to content based on its inspection findings.
 public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

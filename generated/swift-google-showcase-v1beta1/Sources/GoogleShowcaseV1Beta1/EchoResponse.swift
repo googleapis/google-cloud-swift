@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The response message for the Echo methods.
 public struct EchoResponse: Codable, Equatable, GoogleWKT._AnyPackable,

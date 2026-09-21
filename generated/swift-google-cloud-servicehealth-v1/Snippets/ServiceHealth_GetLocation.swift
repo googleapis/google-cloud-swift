@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudServiceHealthV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(client: ServiceHealthClient) async throws {
   let response = try await client.getLocation(

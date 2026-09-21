@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The current IP utilization of all subnetwork ranges. Contains the total
   /// number of allocated and free IPs in each range.

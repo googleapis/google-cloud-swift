@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleCloudRecommenderV1", package: "swift-google-cloud-recommender-v1"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: TagHoldsClient, tagValueId: String) async throws {
   let items = try client.listTagHolds(

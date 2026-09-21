@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Replace each matching finding with the name of the info_type.
 public struct ReplaceWithInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,

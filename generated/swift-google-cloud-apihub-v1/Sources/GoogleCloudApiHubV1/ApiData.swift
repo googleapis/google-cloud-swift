@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The API data to be collected.
 public struct ApiData: Codable, Equatable, GoogleWKT._AnyPackable,

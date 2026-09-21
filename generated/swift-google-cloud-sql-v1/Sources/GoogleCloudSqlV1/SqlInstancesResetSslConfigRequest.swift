@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance reset SSL config request.
   public struct SqlInstancesResetSslConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

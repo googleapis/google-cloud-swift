@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Entry specyfication for a Dataplex fileset.
 public struct DataplexFilesetSpec: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A sequence of responses to be returned in order for each unary call attempt
 public struct Sequence: Codable, Equatable, GoogleWKT._AnyPackable,

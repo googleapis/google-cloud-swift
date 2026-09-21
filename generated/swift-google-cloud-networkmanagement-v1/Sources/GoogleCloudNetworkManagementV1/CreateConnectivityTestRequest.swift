@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the `CreateConnectivityTest` method.
 public struct CreateConnectivityTestRequest: Codable, Equatable, GoogleWKT._AnyPackable,

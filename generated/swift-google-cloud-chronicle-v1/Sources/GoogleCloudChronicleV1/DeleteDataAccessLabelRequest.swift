@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message to delete a data access label.
 public struct DeleteDataAccessLabelRequest: Codable, Equatable, GoogleWKT._AnyPackable,

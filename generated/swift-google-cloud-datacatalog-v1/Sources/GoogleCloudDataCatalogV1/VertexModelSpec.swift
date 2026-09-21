@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specification for vertex model resources.
 public struct VertexModelSpec: Codable, Equatable, GoogleWKT._AnyPackable,

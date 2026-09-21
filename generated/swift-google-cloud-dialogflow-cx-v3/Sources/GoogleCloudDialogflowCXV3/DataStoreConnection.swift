@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Sessions || TestCases || Tools
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A data store connection. It represents a data store in Discovery Engine and
   /// the type of the contents it contains.

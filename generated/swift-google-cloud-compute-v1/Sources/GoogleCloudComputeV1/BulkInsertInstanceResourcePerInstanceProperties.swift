@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Per-instance properties to be set on individual instances.
   /// To be extended in the future.

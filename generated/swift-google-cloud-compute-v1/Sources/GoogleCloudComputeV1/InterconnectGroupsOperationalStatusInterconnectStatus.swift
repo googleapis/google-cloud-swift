@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The status of one Interconnect in the group. The order is arbitrary.
   public struct InterconnectGroupsOperationalStatusInterconnectStatus: Codable, Equatable, GoogleWKT

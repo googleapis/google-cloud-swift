@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if RegionTargetHttpsProxies || TargetHttpsProxies
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Target HTTPS Proxy resource.
   ///

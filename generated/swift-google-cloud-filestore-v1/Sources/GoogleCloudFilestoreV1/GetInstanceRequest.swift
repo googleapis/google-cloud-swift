@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GetInstanceRequest gets the state of an instance.
 public struct GetInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,

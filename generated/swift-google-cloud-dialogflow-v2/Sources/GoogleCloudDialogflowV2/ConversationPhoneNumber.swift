@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a phone number for telephony integration. It allows for connecting
   /// a particular conversation over telephony.

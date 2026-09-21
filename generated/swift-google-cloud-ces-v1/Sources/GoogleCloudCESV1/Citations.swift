@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Citations associated with the agent response.
 public struct Citations: Codable, Equatable, GoogleWKT._AnyPackable,

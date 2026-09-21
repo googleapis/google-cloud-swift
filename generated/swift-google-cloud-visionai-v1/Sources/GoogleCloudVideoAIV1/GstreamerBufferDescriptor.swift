@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The descriptor for a gstreamer buffer payload.
 public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,

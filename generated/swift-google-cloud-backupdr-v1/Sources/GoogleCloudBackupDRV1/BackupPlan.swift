@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A `BackupPlan` specifies some common fields, such as `description` as well
 /// as one or more `BackupRule` messages. Each `BackupRule` has a retention

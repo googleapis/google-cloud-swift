@@ -20,7 +20,6 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: SearchServiceClient) async throws {
     let items = try client.listOperations(

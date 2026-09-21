@@ -16,7 +16,7 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Value is the value of the field.
   public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,

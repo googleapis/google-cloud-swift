@@ -16,7 +16,7 @@
 
 #if RegionSnapshotSettings || SnapshotSettings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A structure for specifying storage locations.
   public struct SnapshotSettingsStorageLocationSettingsStorageLocationPreference: Codable,

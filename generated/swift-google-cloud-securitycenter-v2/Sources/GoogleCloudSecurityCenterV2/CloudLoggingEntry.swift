@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata taken from a [Cloud Logging
 /// LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)

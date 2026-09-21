@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Uses Google Cloud Endpoints to handle requests.
 public struct ApiEndpointHandler: Codable, Equatable, GoogleWKT._AnyPackable,

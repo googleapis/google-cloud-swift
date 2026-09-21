@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to list fleet namespaces.
 public struct ListScopeNamespacesRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AmazonS3V2Settings is the settings proto for Omniflow S3 feeds.
 public struct AmazonS3V2Settings: Codable, Equatable, GoogleWKT._AnyPackable,

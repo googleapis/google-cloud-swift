@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to check whether image upgrade will succeed.
 public struct CheckUpgradeRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BaseImage describes a base image of a container image.
 public struct BaseImage: Codable, Equatable, GoogleWKT._AnyPackable,

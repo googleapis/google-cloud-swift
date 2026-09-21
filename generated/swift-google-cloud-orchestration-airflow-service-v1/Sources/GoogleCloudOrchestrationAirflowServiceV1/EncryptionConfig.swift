@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The encryption options for the Cloud Composer environment
 /// and its dependencies.Supported for Cloud Composer environments in versions

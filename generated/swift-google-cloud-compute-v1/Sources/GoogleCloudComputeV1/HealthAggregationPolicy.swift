@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if RegionHealthAggregationPolicies
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a health aggregation policy.
   ///

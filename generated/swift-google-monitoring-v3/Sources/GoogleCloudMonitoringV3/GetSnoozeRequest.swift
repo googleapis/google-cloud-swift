@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The message definition for retrieving a `Snooze`. Users must specify the
 /// field, `name`, which identifies the `Snooze`.

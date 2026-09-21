@@ -15,9 +15,9 @@
 // limitations under the License.
 
 #if Sessions
-  import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The top-level message returned from the
   /// [StreamingDetectIntent][] method.

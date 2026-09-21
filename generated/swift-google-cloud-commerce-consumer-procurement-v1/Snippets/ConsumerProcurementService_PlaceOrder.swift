@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudCommerceConsumerProcurementV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ConsumerProcurementServiceClient) async throws {
   let poller = try await client.placeOrder(

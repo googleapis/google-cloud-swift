@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Meta information is used to improve the performance of the service.
 public struct RequestMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

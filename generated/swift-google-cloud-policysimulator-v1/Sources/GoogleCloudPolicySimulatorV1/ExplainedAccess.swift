@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details about how a set of policies, listed in
 /// [ExplainedPolicy][google.cloud.policysimulator.v1.ExplainedPolicy], resulted

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RegionDiskTargetEnvironment represents the target environment for the disk.
 public struct RegionDiskTargetEnvironment: Codable, Equatable, GoogleWKT._AnyPackable,

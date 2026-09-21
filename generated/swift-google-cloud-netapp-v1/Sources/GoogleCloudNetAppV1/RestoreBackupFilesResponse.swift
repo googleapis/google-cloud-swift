@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RestoreBackupFilesResponse is the result of RestoreBackupFilesRequest.
 public struct RestoreBackupFilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

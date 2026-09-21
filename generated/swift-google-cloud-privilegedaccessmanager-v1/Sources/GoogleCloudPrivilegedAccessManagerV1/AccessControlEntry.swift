@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// `AccessControlEntry` is used to control who can do some operation.
 public struct AccessControlEntry: Codable, Equatable, GoogleWKT._AnyPackable,

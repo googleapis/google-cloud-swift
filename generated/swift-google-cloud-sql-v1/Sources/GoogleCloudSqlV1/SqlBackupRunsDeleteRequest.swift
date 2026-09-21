@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Backup runs delete request.
   public struct SqlBackupRunsDeleteRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudVideoAIV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: StreamingServiceClient) async throws {
   let response = try await client.getLocation(

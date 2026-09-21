@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The retry policy associates with HttpRouteRule
   public struct HttpRetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

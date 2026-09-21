@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Optional arguments to enable specific features of builds.
 public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,

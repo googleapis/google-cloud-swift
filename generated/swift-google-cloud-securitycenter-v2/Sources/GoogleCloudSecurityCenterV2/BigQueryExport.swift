@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configures how to deliver Findings to BigQuery Instance.
 public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,

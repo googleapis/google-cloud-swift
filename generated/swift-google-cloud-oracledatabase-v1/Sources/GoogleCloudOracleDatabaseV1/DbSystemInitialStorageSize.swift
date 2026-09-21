@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Summary of the DbSystem initial storage size.
 public struct DbSystemInitialStorageSize: Codable, Equatable, GoogleWKT._AnyPackable,

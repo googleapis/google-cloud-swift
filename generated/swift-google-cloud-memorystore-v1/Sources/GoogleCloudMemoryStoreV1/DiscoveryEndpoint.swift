@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents an endpoint for clients to connect to the instance.
 public struct DiscoveryEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

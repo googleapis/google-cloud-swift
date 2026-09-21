@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: AnalyticsServiceClient) async throws {
   let poller = try await client.exportAnalyticsMetrics(

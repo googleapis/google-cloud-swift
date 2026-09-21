@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request to get a `ReportConfig` resource.
 public struct GetReportConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CustomInterceptProfile defines in-band integration behavior (intercept).
 /// It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.

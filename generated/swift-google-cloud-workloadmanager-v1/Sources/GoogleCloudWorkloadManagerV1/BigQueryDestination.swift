@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BigQuery destination for evaluation results.
 public struct BigQueryDestination: Codable, Equatable, GoogleWKT._AnyPackable,

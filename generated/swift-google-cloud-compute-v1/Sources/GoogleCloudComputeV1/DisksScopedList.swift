@@ -16,7 +16,7 @@
 
 #if Disks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct DisksScopedList: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

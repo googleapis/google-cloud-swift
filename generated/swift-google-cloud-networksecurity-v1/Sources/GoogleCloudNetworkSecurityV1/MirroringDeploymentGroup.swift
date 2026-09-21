@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A deployment group aggregates many zonal mirroring backends (deployments)
 /// into a single global mirroring service. Consumers can connect this service

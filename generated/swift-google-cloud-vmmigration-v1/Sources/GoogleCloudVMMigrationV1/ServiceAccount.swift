@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Service account to assign to the instance created by the machine image.
 public struct ServiceAccount: Codable, Equatable, GoogleWKT._AnyPackable,

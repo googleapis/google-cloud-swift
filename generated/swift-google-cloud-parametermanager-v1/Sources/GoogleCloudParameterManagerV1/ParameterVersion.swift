@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing ParameterVersion resource
 public struct ParameterVersion: Codable, Equatable, GoogleWKT._AnyPackable,

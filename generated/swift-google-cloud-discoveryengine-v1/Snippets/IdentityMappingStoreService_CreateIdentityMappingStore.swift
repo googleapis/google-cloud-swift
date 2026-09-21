@@ -20,8 +20,6 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: IdentityMappingStoreServiceClient, parent: String) async throws {
     let response = try await client.createIdentityMappingStore(

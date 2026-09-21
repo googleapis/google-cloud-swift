@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Routers
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct RoutePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

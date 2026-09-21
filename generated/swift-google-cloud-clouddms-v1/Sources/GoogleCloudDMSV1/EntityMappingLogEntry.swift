@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A single record of a rule which was used for a mapping.
 public struct EntityMappingLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,

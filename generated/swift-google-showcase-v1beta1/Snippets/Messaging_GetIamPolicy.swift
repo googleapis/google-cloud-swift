@@ -21,8 +21,6 @@ import GoogleShowcaseV1Beta1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: MessagingClient) async throws {
   let response = try await client.getIamPolicy(

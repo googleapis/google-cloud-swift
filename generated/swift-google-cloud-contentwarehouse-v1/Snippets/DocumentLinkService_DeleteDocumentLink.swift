@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(
   client: DocumentLinkServiceClient, projectId: String, locationId: String, documentId: String,

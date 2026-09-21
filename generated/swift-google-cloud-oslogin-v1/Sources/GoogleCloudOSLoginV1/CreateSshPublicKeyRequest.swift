@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOSLoginCommon
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudOSLoginCommon
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A request message for creating an SSH public key.
 public struct CreateSshPublicKeyRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Forward SSH Tunnel connectivity.
 public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPackable,

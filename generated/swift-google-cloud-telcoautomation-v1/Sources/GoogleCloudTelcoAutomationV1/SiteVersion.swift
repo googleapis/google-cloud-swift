@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// SiteVersion Hydration is targeting.
 public struct SiteVersion: Codable, Equatable, GoogleWKT._AnyPackable,

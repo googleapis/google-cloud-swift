@@ -16,8 +16,8 @@
 
 #if VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message for
   /// [VizierService.ListStudies][google.cloud.aiplatform.v1.VizierService.ListStudies].

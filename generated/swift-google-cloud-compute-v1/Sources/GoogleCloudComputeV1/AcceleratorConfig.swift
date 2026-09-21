@@ -16,7 +16,7 @@
 
 #if FutureReservations || InstanceTemplates || Instances || MachineImages || NodeGroups || NodeTemplates || RegionCommitments || RegionInstanceTemplates || RegionInstances || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A specification of the type and number of accelerator cards attached to the
   /// instance.

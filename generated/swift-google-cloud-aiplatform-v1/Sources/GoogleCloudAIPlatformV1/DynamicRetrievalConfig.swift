@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Describes the options to customize dynamic retrieval.
   public struct DynamicRetrievalConfig: Codable, Equatable, GoogleWKT._AnyPackable,

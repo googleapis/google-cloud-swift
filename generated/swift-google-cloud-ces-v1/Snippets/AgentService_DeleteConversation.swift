@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 #if hasAttribute(diagnose)

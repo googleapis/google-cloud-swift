@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifications of BigQuery partitioned table as export destination.
 public struct PartitionSpec: Codable, Equatable, GoogleWKT._AnyPackable,

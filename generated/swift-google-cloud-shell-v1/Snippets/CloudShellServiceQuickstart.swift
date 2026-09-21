@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudShellV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(userId: String, environmentId: String, ) async throws {
   let client = try GoogleCloudShellV1.CloudShellServiceClient()

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Rollout resource represents an instance of `FleetPackage` rollout operation
 /// across a fleet. This is a system generated resource and will be read only for

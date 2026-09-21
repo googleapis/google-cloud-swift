@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Information about operation (or operation stage) progress.
 public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,

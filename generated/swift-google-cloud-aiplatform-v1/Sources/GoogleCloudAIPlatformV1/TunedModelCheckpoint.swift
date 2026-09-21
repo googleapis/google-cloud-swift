@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// TunedModelCheckpoint for the Tuned Model of a Tuning Job.
   public struct TunedModelCheckpoint: Codable, Equatable, GoogleWKT._AnyPackable,

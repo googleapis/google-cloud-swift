@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

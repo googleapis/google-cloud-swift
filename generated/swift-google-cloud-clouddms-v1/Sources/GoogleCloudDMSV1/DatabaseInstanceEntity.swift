@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DatabaseInstance acts as a parent entity to other database entities.
 public struct DatabaseInstanceEntity: Codable, Equatable, GoogleWKT._AnyPackable,

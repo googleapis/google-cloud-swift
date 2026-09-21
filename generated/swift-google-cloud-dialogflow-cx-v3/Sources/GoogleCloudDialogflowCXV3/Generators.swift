@@ -19,10 +19,10 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleCloudLocation
-  @_spi(GoogleCloudInternal) import GoogleLongRunning
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) public import GoogleLongRunning
+  @_spi(GoogleCloudInternal) public import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for managing [Generators][google.cloud.dialogflow.cx.v3.Generator]
   ///
@@ -621,7 +621,7 @@
     }
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable, message: "Enable the 'Generators' trait in Package.swift to use this client."

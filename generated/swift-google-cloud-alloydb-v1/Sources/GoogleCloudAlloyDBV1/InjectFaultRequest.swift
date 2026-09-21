@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for triggering fault injection on an instance
 public struct InjectFaultRequest: Codable, Equatable, GoogleWKT._AnyPackable,

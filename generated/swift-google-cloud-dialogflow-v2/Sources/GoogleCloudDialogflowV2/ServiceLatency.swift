@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Message to represent the latency of the service.
   public struct ServiceLatency: Codable, Equatable, GoogleWKT._AnyPackable,

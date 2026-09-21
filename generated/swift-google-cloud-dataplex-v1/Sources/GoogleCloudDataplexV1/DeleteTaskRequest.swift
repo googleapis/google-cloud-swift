@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Delete task request.
 public struct DeleteTaskRequest: Codable, Equatable, GoogleWKT._AnyPackable,

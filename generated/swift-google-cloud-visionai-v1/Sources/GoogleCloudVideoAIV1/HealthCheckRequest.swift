@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// HealthCheckRequest is the request message for Check.
 public struct HealthCheckRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Fraud signals describing users and cards involved in the transaction.
 public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,

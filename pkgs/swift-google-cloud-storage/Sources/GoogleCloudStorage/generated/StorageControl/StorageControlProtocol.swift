@@ -16,11 +16,9 @@
 
 import Foundation
 import GoogleAuth
-@_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleIAMV1
-@_spi(GoogleCloudInternal) import GoogleLongRunning
-@_spi(GoogleCloudInternal) import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleGax
+public import GoogleIAMV1
+public import GoogleLongRunning
 
 /// A Swift protocol representing the control-plane and administrative surface for Google Cloud Storage.
 public protocol StorageControlProtocol {

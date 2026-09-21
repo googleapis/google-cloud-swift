@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Aggregate information about the resources protected by a Cloud KMS key in the
 /// same Cloud organization/project as the key.

@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata related to url context retrieval tool.
   public struct UrlContextMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

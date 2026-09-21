@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Crypto
-import Foundation
-import GoogleGax
-import GoogleWKT
+public import Crypto
+public import Foundation
+public import GoogleGax
+public import GoogleWKT
 
 /// Errors thrown when validating or creating a `CustomerEncryptionKeyOptions`.
 ///

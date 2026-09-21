@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message to retrieve a data access label.
 public struct GetDataAccessLabelRequest: Codable, Equatable, GoogleWKT._AnyPackable,

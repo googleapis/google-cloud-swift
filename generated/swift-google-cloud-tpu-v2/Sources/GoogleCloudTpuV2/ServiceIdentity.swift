@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The per-product per-project service identity for Cloud TPU service.
 public struct ServiceIdentity: Codable, Equatable, GoogleWKT._AnyPackable,

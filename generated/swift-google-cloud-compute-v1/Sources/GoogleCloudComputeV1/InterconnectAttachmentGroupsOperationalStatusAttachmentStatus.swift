@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The status of one Attachment in the group. List order is arbitrary.
   public struct InterconnectAttachmentGroupsOperationalStatusAttachmentStatus: Codable, Equatable,

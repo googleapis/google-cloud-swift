@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Container for a specific API interaction.
 public struct CustomAPITransferNode: Codable, Equatable, GoogleWKT._AnyPackable,

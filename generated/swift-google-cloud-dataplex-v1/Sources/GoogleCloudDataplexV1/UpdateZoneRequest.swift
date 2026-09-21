@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Update zone request.
 public struct UpdateZoneRequest: Codable, Equatable, GoogleWKT._AnyPackable,

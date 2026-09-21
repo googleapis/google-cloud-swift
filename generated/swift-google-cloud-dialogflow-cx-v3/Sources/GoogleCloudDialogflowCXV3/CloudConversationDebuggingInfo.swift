@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Cloud conversation info for easier debugging.
   /// It will get populated in `StreamingDetectIntentResponse` or

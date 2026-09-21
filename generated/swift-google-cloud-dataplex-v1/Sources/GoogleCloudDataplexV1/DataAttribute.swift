@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Denotes one dataAttribute in a dataTaxonomy, for example, PII.
 /// DataAttribute resources can be defined in a hierarchy.

@@ -16,8 +16,8 @@
 
 #if FutureReservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Contains a list of future reservations.
   public struct FutureReservationsAggregatedListResponse: Codable, Equatable, GoogleWKT

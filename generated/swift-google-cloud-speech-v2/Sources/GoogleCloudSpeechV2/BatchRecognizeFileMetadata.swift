@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata about a single file in a batch for BatchRecognize.
 public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

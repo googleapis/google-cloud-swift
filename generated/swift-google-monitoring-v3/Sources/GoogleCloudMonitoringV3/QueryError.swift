@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An error associated with a query in the time series query language format.
 public struct QueryError: Codable, Equatable, GoogleWKT._AnyPackable,

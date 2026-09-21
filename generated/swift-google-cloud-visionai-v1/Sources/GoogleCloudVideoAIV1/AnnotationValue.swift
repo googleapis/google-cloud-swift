@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Value of annotation, including all types available in data schema.
 public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,

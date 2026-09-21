@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The metadata for an IngestConversations operation.
 public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

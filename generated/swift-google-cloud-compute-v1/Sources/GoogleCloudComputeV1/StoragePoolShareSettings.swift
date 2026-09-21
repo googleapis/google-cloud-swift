@@ -16,7 +16,7 @@
 
 #if StoragePools
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Share settings for the storage pool.
   public struct StoragePoolShareSettings: Codable, Equatable, GoogleWKT._AnyPackable,

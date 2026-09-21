@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AutoMigrationConfig contains the automigration configuration for a project.
 public struct AutoMigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for exporting test set predictions to a BigQuery table.
 public struct ExportEvaluatedDataItemsConfig: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A session contains a set of actions between users and Vertex agents.
   public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,

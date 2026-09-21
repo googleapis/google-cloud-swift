@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A representation of the trigger resource.
 public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The create key request message.
 public struct CreateKeyRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,8 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) import GoogleWKT
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service that exposes Cloud SQL region information. This service is only used
   /// internally and does not follow the same patterns as the other v1 RPCs.
@@ -54,7 +53,7 @@
   extension Clients.SqlRegionsServiceProtocol {
   }
 #else
-  @_spi(GoogleCloudInternal) import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleGax
 
   @available(
     *, unavailable,

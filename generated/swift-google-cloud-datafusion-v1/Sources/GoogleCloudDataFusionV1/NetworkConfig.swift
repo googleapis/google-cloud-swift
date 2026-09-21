@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Network configuration for a Data Fusion instance. These configurations
 /// are used for peering with the customer network. Configurations are optional

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Postdeploy contains the postdeploy job configuration information.
 public struct Postdeploy: Codable, Equatable, GoogleWKT._AnyPackable,

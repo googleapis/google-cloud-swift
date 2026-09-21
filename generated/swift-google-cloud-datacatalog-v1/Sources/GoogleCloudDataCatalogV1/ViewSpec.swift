@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Table view specification.
 public struct ViewSpec: Codable, Equatable, GoogleWKT._AnyPackable,

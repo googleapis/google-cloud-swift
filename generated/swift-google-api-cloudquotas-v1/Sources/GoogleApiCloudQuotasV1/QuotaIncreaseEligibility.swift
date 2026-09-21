@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Eligibility information regarding requesting increase adjustment of a quota.
 public struct QuotaIncreaseEligibility: Codable, Equatable, GoogleWKT._AnyPackable,

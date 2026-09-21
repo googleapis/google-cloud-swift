@@ -19,8 +19,6 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ExecutionsClient, projectId: String, locationId: String, jobId: String)
   async throws

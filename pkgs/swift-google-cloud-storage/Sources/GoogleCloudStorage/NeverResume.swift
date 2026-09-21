@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+public import GoogleGax
 
 /// A ``ResumePolicy`` that halts the transfer immediately on the first error encountered.
 public struct NeverResume<Details: Sendable>: ResumePolicy, Sendable, Equatable {

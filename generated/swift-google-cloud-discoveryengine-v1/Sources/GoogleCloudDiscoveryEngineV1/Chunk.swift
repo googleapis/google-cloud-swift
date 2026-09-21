@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Chunk captures all raw metadata information of items to be recommended or
   /// searched in the chunk mode.

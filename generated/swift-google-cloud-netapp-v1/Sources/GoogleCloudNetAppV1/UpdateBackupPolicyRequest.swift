@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UpdateBackupPolicyRequest for updating a backup policy.
 public struct UpdateBackupPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,

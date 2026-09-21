@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Static IP address connectivity. Used when the source database is configured
 /// to allow incoming connections from the Datastream public IP addresses

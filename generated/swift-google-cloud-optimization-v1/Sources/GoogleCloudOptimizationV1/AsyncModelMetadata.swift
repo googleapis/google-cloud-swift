@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The long running operation metadata for async model related methods.
 public struct AsyncModelMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

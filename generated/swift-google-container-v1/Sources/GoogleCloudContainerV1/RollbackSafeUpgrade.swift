@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// RollbackSafeUpgrade is the configuration for the rollback safe upgrade.
 public struct RollbackSafeUpgrade: Codable, Equatable, GoogleWKT._AnyPackable,

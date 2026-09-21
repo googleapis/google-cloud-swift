@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Microsoft OAuth 2.0 client credentials grant.
 public struct MicrosoftOAuthClientCredentials: Codable, Equatable, GoogleWKT._AnyPackable,

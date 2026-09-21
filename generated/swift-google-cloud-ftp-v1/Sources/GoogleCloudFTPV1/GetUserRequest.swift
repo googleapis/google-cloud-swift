@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message for getting a User
 public struct GetUserRequest: Codable, Equatable, GoogleWKT._AnyPackable,

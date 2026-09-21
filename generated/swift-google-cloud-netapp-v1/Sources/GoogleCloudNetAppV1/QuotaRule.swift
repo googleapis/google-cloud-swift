@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// QuotaRule specifies the maximum disk space a user or group can use within a
 /// volume. They can be used for creating default and individual quota rules.

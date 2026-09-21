@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Endpoints on each network, for Redis clients to connect to the cluster.
 public struct DiscoveryEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration for logging request-response to a BigQuery table.
   public struct PredictRequestResponseLoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

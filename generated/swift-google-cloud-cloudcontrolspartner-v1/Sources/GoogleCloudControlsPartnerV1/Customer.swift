@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains metadata around a Cloud Controls Partner Customer
 public struct Customer: Codable, Equatable, GoogleWKT._AnyPackable,

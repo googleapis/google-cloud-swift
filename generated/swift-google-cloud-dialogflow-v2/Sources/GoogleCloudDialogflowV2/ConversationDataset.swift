@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a conversation dataset that a user imports raw data into.
   /// The data inside ConversationDataset can not be changed after

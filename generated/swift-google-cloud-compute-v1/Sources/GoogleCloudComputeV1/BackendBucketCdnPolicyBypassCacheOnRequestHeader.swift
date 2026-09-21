@@ -16,7 +16,7 @@
 
 #if BackendBuckets || RegionBackendBuckets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Bypass the cache when the specified request headers are present,
   /// e.g. Pragma or Authorization headers. Values are case insensitive.

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudManagedIdentitiesV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(

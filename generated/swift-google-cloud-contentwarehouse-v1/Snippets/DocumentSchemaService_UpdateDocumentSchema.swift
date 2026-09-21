@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: DocumentSchemaServiceClient) async throws {
   let response = try await client.updateDocumentSchema(

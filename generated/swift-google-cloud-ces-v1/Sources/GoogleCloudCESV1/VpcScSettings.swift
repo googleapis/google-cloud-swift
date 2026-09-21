@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// VPC-SC settings for the app.
 public struct VpcScSettings: Codable, Equatable, GoogleWKT._AnyPackable,

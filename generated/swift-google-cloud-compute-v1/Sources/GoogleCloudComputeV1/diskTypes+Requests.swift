@@ -16,7 +16,7 @@
 
 #if DiskTypes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension DiskTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.diskTypes.aggregatedList] method.

@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Suggestion generated using a Generator.
   public struct GeneratorSuggestion: Codable, Equatable, GoogleWKT._AnyPackable,

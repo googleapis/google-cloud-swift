@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Explanation for how a condition affects a principal's access
 public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,

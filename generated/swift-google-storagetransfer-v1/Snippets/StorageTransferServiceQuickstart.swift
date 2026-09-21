@@ -19,7 +19,6 @@
 import Foundation
 import GoogleStorageTransferV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(projectId: String, agentPoolId: String, ) async throws {

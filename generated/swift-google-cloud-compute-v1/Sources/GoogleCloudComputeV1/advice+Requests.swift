@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension AdviceClient {
     /// Synthetic request message for the [calendarMode()][google.cloud.compute.v1.advice.calendarMode] method.

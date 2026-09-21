@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Secret provides a reference to entries in Secret Manager.
 public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,

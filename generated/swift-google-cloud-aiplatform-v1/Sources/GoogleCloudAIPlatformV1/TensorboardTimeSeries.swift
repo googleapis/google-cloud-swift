@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if TensorboardService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// TensorboardTimeSeries maps to times series produced in training runs
   public struct TensorboardTimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,

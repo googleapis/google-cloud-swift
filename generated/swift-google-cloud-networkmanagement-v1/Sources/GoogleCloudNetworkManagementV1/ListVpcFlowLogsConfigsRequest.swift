@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the `ListVpcFlowLogsConfigs` method.
 public struct ListVpcFlowLogsConfigsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

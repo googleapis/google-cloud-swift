@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if Sessions || TestCases
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the natural speech audio to be processed.
   public struct AudioInput: Codable, Equatable, GoogleWKT._AnyPackable,

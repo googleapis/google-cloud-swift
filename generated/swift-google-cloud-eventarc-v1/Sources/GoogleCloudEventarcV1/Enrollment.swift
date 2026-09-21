@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An enrollment represents a subscription for messages on a particular message
 /// bus. It defines a matching criteria for messages on the bus and the

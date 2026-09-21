@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `Destination` resource. It specifies the IP prefix and the associated
 /// autonomous system numbers (ASN) that you want to include in a

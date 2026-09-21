@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The Dataset resource contains summary information about a dataset.
 public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,

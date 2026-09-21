@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines policies applying to an RPC method.
 public struct MethodPolicy: Codable, Equatable, GoogleWKT._AnyPackable,

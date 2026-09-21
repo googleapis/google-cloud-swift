@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The [CreateCuration][ApiHub.CreateCuration] method's request.
 public struct CreateCurationRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Representation of third party SIEM/SOAR fields within SCC.
 public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,

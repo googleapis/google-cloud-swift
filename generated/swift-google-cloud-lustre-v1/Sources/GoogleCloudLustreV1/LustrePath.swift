@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The root directory path to the Lustre file system.
 public struct LustrePath: Codable, Equatable, GoogleWKT._AnyPackable,

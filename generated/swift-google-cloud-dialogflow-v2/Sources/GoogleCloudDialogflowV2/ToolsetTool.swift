@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A tool that is created from a toolset.
   public struct ToolsetTool: Codable, Equatable, GoogleWKT._AnyPackable,

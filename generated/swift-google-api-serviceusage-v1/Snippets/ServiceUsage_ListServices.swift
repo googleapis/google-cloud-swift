@@ -19,8 +19,6 @@
 import Foundation
 import GoogleApiServiceUsageV1
 import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
 
 func sample(client: ServiceUsageClient, parent: String) async throws {
   let items = try client.listServices(

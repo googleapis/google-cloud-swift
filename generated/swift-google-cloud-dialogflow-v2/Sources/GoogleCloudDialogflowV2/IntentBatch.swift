@@ -16,7 +16,7 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// This message is a wrapper around a collection of intents.
   public struct IntentBatch: Codable, Equatable, GoogleWKT._AnyPackable,

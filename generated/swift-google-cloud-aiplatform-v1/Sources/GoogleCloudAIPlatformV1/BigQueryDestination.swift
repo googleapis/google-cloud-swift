@@ -16,7 +16,7 @@
 
 #if EndpointService || FeaturestoreService || JobService || PipelineService || VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The BigQuery location for the output content.
   public struct BigQueryDestination: Codable, Equatable, GoogleWKT._AnyPackable,

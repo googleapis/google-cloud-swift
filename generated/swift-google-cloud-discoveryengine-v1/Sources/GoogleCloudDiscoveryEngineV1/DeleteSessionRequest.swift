@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request for DeleteSession method.
   public struct DeleteSessionRequest: Codable, Equatable, GoogleWKT._AnyPackable,

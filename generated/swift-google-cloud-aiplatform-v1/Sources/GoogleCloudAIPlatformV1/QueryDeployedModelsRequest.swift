@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message for QueryDeployedModels method.
   public struct QueryDeployedModelsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

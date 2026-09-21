@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents partition metadata contained within entity instances.
 public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request message for the `CreateIcebergTable` API.
 public struct CreateIcebergTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,

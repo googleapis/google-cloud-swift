@@ -19,7 +19,6 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudKMSV1
-import GoogleWKT
 import GoogleGax
 import struct Logging.Logger
 

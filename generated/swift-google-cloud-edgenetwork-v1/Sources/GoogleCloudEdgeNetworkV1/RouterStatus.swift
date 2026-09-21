@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describing the current status of a router.
 public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,

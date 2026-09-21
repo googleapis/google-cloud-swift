@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A DNS threat detector sends DNS query logs to a _provider_ that then
 /// analyzes the logs to identify threat events in the DNS queries.

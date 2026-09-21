@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 @_spi(GoogleCloudInternal) import class GoogleWKT._ProtoJSONDecoder
-import struct AsyncHTTPClient.HTTPClientResponse
-import struct NIOHTTP1.HTTPHeaders
-import enum NIOHTTP1.HTTPResponseStatus
+@_spi(GoogleCloudInternal) public import AsyncHTTPClient
 import struct NIOCore.ByteBuffer
+@_spi(GoogleCloudInternal) public import NIOHTTP1
 
 /// Represents an HTTP response.
 ///

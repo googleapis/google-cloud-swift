@@ -21,7 +21,6 @@ import GoogleShowcaseV1Beta1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleWKT
 
 func sample(client: TestingClient, sessionId: String) async throws {
   let response = try await client.getSession(

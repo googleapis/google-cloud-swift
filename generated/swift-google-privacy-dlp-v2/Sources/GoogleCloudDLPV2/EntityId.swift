@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An entity in a dataset is a field or set of fields that correspond to a
 /// single person. For example, in medical records the `EntityId` might be a

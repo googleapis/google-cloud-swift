@@ -16,7 +16,7 @@
 
 #if SecuritySettingsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the settings related to security issues, such as data redaction
   /// and data retention. It may take hours for updates on the settings to

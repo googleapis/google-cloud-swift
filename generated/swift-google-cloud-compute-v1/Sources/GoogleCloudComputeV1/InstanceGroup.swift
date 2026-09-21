@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceGroups || RegionInstanceGroups
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents an Instance Group resource.
   ///

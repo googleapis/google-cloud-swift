@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The URLs for accessing Oracle Application Express (APEX) and SQL Developer
 /// Web with a browser from a Compute instance.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request for the `ConfigureDnsSettings` method.
 public struct ConfigureDnsSettingsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

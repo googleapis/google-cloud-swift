@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAppsScriptType
-import GoogleAppsScriptTypeCalendar
-import GoogleAppsScriptTypeDocs
-import GoogleAppsScriptTypeDrive
-import GoogleAppsScriptTypeGmail
-import GoogleAppsScriptTypeSheets
-import GoogleAppsScriptTypeSlides
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleAppsScriptType
+public import GoogleAppsScriptTypeCalendar
+public import GoogleAppsScriptTypeDocs
+public import GoogleAppsScriptTypeDrive
+public import GoogleAppsScriptTypeGmail
+public import GoogleAppsScriptTypeSheets
+public import GoogleAppsScriptTypeSlides
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Google Workspace add-on configuration.
 public struct AddOns: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Represents one mapping from a source SQL to a target SQL.
 public struct SourceTargetMapping: Codable, Equatable, GoogleWKT._AnyPackable,

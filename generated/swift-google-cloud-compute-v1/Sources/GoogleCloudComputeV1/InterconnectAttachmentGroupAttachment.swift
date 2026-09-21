@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An Attachment in this AttachmentGroup.
   public struct InterconnectAttachmentGroupAttachment: Codable, Equatable, GoogleWKT._AnyPackable,

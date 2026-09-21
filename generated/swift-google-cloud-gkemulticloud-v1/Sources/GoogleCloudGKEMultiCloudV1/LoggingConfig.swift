@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Parameters that describe the Logging configuration in a cluster.
 public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

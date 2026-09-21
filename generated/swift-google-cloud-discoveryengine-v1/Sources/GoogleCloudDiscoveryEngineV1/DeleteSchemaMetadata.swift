@@ -16,7 +16,7 @@
 
 #if SchemaService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata for DeleteSchema LRO.
   public struct DeleteSchemaMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

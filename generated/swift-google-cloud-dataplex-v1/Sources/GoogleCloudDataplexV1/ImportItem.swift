@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An object that describes the values that you want to set for an entry and its
 /// attached aspects when you import metadata. Used when you run a metadata

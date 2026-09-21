@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Recorded Future IOC settings.
 public struct RecordedFutureIocSettings: Codable, Equatable, GoogleWKT._AnyPackable,

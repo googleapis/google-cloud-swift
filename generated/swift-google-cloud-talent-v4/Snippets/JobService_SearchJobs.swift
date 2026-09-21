@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 #if hasAttribute(diagnose)

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response message for SubmitConfigSource method.
 public struct SubmitConfigSourceResponse: Codable, Equatable, GoogleWKT._AnyPackable,

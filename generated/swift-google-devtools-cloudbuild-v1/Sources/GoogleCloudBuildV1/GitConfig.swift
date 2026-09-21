@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GitConfig is a configuration for git operations.
 public struct GitConfig: Codable, Equatable, GoogleWKT._AnyPackable,

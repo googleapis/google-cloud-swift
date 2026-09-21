@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The IP addresses of callers that are allowed to use the key.
 public struct ServerKeyRestrictions: Codable, Equatable, GoogleWKT._AnyPackable,

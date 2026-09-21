@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Defines what action to take for antivirus threats per protocol.
 public struct AntivirusOverride: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if PreviewFeatures
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a single Google Compute Engine preview feature.
   public struct PreviewFeature: Codable, Equatable, GoogleWKT._AnyPackable,

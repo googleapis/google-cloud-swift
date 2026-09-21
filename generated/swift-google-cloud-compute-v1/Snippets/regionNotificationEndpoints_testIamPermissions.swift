@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleWKT
 
   func sample(client: RegionNotificationEndpointsClient) async throws {
     let response = try await client.testIamPermissions(

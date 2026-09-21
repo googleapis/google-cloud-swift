@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Microsoft Security Center alert settings.
 public struct MicrosoftSecurityCenterAlertSettings: Codable, Equatable, GoogleWKT._AnyPackable,

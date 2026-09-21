@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to delete a saved query.
 public struct DeleteSavedQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,

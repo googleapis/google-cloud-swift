@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CreatingSourceDiskSnapshotStep contains specific step details.
 public struct CreatingSourceDiskSnapshotStep: Codable, Equatable, GoogleWKT._AnyPackable,

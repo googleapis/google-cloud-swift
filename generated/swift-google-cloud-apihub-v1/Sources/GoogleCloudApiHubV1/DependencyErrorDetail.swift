@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details describing error condition of a dependency.
 public struct DependencyErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,

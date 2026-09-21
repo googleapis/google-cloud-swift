@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to update data table rows in bulk.
 public struct BulkUpdateDataTableRowsRequest: Codable, Equatable, GoogleWKT._AnyPackable,

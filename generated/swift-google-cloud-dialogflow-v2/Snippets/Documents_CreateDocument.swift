@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleRpc
   import GoogleWKT
 
   func sample(client: DocumentsClient, projectId: String, knowledgeBaseId: String) async throws {

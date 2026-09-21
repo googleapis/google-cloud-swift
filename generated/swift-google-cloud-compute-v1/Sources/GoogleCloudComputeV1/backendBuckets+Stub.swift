@@ -16,7 +16,6 @@
 
 #if BackendBuckets
   import Foundation
-  import GoogleWKT
   import GoogleGax
 
   extension Clients {

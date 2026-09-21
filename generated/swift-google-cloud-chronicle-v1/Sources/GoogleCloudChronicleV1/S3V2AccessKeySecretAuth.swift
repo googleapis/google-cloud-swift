@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// S3 V2 access key and secret auth.
 public struct S3V2AccessKeySecretAuth: Codable, Equatable, GoogleWKT._AnyPackable,

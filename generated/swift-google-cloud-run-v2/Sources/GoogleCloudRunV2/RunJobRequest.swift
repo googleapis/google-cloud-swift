@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request message to create a new Execution of a Job.
 public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,

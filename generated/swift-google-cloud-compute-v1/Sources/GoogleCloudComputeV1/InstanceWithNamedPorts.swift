@@ -16,7 +16,7 @@
 
 #if InstanceGroups || RegionInstanceGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct InstanceWithNamedPorts: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Settings specific to keys that can be used for reCAPTCHA Express.
 public struct ExpressKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,

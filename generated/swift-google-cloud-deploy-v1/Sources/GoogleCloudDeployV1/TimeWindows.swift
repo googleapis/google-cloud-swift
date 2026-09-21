@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Time windows within which actions are restricted. See the
 /// [documentation](https://cloud.google.com/deploy/docs/deploy-policy#dates_times)

@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Network Layer Reachability Information (NLRI) for a route.
   public struct BgpRouteNetworkLayerReachabilityInformation: Codable, Equatable, GoogleWKT

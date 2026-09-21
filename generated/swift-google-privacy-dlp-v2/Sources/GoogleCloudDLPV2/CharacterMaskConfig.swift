@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Partially mask a string by replacing a given number of characters with a
 /// fixed character. Masking can start from the beginning or end of the string.

@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Defines logging behavior for conversation lifecycle events.
   public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,

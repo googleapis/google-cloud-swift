@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Identifier for the label and corresponding properties.
 public struct LabelProperties: Codable, Equatable, GoogleWKT._AnyPackable,

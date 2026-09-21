@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Quota exceeded errors will be thrown once quota has been met.
 public struct HybridInspectResponse: Codable, Equatable, GoogleWKT._AnyPackable,

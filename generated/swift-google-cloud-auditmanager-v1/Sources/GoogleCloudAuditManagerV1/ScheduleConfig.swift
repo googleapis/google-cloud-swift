@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Timing and frequency parameters for recurring audit runs.
 public struct ScheduleConfig: Codable, Equatable, GoogleWKT._AnyPackable,

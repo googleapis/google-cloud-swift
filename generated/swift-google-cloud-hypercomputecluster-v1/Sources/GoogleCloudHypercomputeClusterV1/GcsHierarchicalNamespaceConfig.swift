@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message describing Google Cloud Storage hierarchical namespace configuration
 public struct GcsHierarchicalNamespaceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

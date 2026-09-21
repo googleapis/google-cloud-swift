@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Time window specified for weekly operations.
 public struct ClusterWeeklyMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,

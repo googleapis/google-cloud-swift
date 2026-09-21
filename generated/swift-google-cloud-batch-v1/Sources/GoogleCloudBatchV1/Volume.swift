@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Volume describes a volume and parameters for it to be mounted to a VM.
 public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,

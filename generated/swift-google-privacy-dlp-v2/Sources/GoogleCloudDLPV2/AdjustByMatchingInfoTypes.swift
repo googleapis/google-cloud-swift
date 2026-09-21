@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AdjustmentRule condition for matching infoTypes.
 public struct AdjustByMatchingInfoTypes: Codable, Equatable, GoogleWKT._AnyPackable,

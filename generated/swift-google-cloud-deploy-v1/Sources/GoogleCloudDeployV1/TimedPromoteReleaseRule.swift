@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `TimedPromoteReleaseRule` will automatically promote a release from the
 /// current target(s) to the specified target(s) on a configured schedule.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Google Cloud metadata associated with the resource. Only applicable if the
 /// finding's cloud provider is Google Cloud.

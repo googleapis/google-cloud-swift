@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A Challenge from the server used to guarantee freshness of attestations
 public struct Challenge: Codable, Equatable, GoogleWKT._AnyPackable,

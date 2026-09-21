@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The maintenance window of the GoldengateDeployment.
 public struct GoldengateMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,

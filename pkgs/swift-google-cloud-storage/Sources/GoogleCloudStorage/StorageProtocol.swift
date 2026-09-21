@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// Protocol defining the high-level object data-plane operations.
 public protocol StorageProtocol {

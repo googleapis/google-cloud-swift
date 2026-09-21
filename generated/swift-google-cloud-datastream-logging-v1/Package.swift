@@ -42,6 +42,9 @@ let package = Package(
         .product(name: "GoogleCloudDatastreamV1", package: "swift-google-cloud-datastream-v1"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
+      swiftSettings: [
+        .enableUpcomingFeature("InternalImportsByDefault")
+      ]
     )
   ]
 )

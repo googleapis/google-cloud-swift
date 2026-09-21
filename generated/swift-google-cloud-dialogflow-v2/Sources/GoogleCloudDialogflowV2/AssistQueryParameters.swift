@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the parameters of human assist query.
   public struct AssistQueryParameters: Codable, Equatable, GoogleWKT._AnyPackable,

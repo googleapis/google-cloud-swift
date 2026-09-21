@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Metadata for [DeleteConversationDataset][].
   public struct DeleteConversationDatasetOperationMetadata: Codable, Equatable, GoogleWKT

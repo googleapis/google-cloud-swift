@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// When set in [Orchestrator][google.cloud.hypercomputecluster.v1.Orchestrator],
 /// indicates that the cluster should use [Slurm](https://slurm.schedmd.com/) as

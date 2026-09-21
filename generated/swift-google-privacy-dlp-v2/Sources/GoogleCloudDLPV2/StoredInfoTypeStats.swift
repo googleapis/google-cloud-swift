@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Statistics for a StoredInfoType.
 public struct StoredInfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,

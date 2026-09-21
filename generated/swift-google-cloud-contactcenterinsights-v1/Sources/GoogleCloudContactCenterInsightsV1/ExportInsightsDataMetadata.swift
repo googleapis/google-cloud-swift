@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata for an export insights operation.
 public struct ExportInsightsDataMetadata: Codable, Equatable, GoogleWKT._AnyPackable,

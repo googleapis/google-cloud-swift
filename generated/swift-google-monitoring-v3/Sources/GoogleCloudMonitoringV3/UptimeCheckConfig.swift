@@ -14,9 +14,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import Foundation
+public import GoogleApi
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// This message configures which resources and services to monitor for
 /// availability.

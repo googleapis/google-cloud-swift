@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Message representing a set of files in Cloud Storage.
 public struct CloudStorageFileSet: Codable, Equatable, GoogleWKT._AnyPackable,

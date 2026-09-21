@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Stores image properties, such as dominant colors.
 public struct ImageProperties: Codable, Equatable, GoogleWKT._AnyPackable,

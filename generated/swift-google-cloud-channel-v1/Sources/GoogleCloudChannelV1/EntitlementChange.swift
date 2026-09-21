@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Change event entry for Entitlement order history
 public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,

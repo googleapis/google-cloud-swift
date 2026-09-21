@@ -16,7 +16,7 @@
 
 #if BackendBuckets || RegionBackendBuckets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Specify CDN TTLs for response error codes.
   public struct BackendBucketCdnPolicyNegativeCachingPolicy: Codable, Equatable, GoogleWKT

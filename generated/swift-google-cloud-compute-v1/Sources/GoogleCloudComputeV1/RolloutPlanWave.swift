@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A single wave in a rollout plan.
   public struct RolloutPlanWave: Codable, Equatable, GoogleWKT._AnyPackable,

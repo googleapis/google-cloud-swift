@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Properties of an underlying cloud resource that can comprise a Service.
 public struct ServiceProperties: Codable, Equatable, GoogleWKT._AnyPackable,

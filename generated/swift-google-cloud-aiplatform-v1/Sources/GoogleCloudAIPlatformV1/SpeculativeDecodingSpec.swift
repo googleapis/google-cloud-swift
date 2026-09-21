@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration for Speculative Decoding.
   public struct SpeculativeDecodingSpec: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CreateStoragePoolRequest creates a Storage Pool.
 public struct CreateStoragePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// SecretManagerConfig is config for secret manager enablement.
 public struct SecretManagerConfig: Codable, Equatable, GoogleWKT._AnyPackable,

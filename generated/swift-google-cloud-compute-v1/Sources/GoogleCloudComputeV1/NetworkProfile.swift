@@ -16,7 +16,7 @@
 
 #if NetworkProfiles
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// NetworkProfile represents a Google managed network profile resource.
   public struct NetworkProfile: Codable, Equatable, GoogleWKT._AnyPackable,

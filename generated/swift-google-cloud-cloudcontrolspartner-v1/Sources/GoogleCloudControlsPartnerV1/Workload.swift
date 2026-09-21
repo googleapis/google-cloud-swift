@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Contains metadata around the [Workload
 /// resource](https://cloud.google.com/assured-workloads/docs/reference/rest/Shared.Types/Workload)

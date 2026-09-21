@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Describes the high availability requirement state for the VPN connection
   /// between this Cloud VPN gateway and a peer gateway.

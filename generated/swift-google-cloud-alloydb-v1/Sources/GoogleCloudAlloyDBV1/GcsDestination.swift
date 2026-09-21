@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Destination for Export. Export will be done to cloud storage.
 public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,

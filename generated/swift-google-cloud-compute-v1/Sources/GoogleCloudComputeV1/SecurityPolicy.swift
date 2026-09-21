@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a Google Cloud Armor security policy resource.
   ///

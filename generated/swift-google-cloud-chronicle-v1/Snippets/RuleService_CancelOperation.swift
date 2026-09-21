@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudChronicleV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: RuleServiceClient) async throws {

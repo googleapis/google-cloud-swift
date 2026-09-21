@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The taint content for the node taint.
 public struct NodeTaint: Codable, Equatable, GoogleWKT._AnyPackable,

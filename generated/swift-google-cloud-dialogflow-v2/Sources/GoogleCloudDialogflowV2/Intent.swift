@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Intents || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// An intent categorizes an end-user's intention for one conversation turn. For
   /// each agent, you define many intents, where your combined intents can handle a

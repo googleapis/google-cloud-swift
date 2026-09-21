@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for the PagedExpandLegacy method.  This is a pattern used by some legacy APIs. New
 /// APIs should NOT use this pattern, but rather something like PagedExpandRequest which conforms to

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Effective settings for the current revision
 public struct RevisionScalingStatus: Codable, Equatable, GoogleWKT._AnyPackable,

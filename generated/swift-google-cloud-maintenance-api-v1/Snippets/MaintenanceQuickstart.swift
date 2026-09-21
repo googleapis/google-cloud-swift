@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMaintenanceApiV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudMaintenanceApiV1.MaintenanceClient()

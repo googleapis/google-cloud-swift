@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata of a Secure Source Manager Hook.
 public struct Hook: Codable, Equatable, GoogleWKT._AnyPackable,

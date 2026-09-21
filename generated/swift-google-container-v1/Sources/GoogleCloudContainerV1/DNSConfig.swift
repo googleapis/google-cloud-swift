@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// DNSConfig contains the desired set of options for configuring clusterDNS.
 public struct DNSConfig: Codable, Equatable, GoogleWKT._AnyPackable,

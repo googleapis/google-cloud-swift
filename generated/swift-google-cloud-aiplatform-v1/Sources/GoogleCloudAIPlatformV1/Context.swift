@@ -16,7 +16,7 @@
 
 #if MetadataService || PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Instance of a general context.
   public struct Context: Codable, Equatable, GoogleWKT._AnyPackable,

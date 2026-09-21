@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// ScopeFeatureState contains Scope-wide Feature status information.
 public struct ScopeFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,

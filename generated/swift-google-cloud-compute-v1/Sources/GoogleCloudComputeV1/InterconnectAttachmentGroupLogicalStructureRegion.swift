@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// [Output Only] The regions Attachments in this group are in.
   public struct InterconnectAttachmentGroupLogicalStructureRegion: Codable, Equatable, GoogleWKT

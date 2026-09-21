@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGKEHubRBACRoleBindingActuationV1
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleCloudGKEHubRBACRoleBindingActuationV1
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CommonFeatureState contains Fleet-wide Feature status information.
 public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,

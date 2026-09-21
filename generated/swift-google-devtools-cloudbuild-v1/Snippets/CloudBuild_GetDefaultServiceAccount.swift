@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudBuildV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: CloudBuildClient, projectId: String, locationId: String) async throws {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AzureJsonWebKeys is a valid JSON Web Key Set as specififed in RFC 7517.
 @available(*, deprecated)

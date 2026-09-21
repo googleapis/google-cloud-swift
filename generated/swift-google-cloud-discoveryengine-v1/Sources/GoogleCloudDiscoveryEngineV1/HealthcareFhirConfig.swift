@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Config to data store for `HEALTHCARE_FHIR` vertical.
   public struct HealthcareFhirConfig: Codable, Equatable, GoogleWKT._AnyPackable,

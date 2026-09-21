@@ -20,7 +20,6 @@ import Foundation
 import GoogleCloudBigtableAdminV2
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(client: BigtableTableAdminClient) async throws {

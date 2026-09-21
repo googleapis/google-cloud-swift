@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A time window specified by its `start_time` and `end_time`.
 public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,

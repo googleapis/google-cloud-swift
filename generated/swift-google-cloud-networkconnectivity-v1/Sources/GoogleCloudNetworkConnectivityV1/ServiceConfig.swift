@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies eligibility information for the service.
 public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,

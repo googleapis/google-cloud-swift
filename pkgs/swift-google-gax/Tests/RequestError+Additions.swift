@@ -16,7 +16,7 @@ import Foundation
 import GoogleGax
 
 extension RequestError: Equatable {
-  public static func == (lhs: RequestError, rhs: RequestError) -> Bool {
+  static func == (lhs: RequestError, rhs: RequestError) -> Bool {
     switch (lhs, rhs) {
     case (.binding(let l), .binding(let r)): return l == r
     case (.http(let l), .http(let r)): return l == r
@@ -35,14 +35,14 @@ extension RequestError: Equatable {
 }
 
 extension HTTPDetails: Equatable {
-  public static func == (lhs: HTTPDetails, rhs: HTTPDetails) -> Bool {
+  static func == (lhs: HTTPDetails, rhs: HTTPDetails) -> Bool {
     return lhs.httpStatusCode == rhs.httpStatusCode && lhs.headers == rhs.headers
       && lhs.payload == rhs.payload
   }
 }
 
 extension LimitedElapsedTimeError: Equatable {
-  public static func == (lhs: LimitedElapsedTimeError, rhs: LimitedElapsedTimeError) -> Bool {
+  static func == (lhs: LimitedElapsedTimeError, rhs: LimitedElapsedTimeError) -> Bool {
     return lhs.maximumDuration == rhs.maximumDuration && lhs.source == rhs.source
   }
 }

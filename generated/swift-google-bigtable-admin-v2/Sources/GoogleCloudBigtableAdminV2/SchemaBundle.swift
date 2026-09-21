@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A named collection of related schemas.
 public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,

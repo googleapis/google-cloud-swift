@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The IPV4 utilization of a single IP range.
   public struct SubnetworkUtilizationDetailsIPV4Utilization: Codable, Equatable, GoogleWKT

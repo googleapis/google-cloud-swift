@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// FeedFailureDetails contains details about the errors thrown by chronicle for
 /// the feeds. These are user visible details. These details help user identify

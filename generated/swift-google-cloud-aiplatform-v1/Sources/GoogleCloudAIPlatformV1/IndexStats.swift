@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Stats of the Index.
   public struct IndexStats: Codable, Equatable, GoogleWKT._AnyPackable,

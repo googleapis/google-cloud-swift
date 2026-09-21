@@ -22,7 +22,6 @@ import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
 extension Clients {

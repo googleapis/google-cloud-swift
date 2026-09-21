@@ -21,7 +21,6 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample(client: EnvironmentsClient) async throws {
     let items = try client.getEnvironmentHistory(

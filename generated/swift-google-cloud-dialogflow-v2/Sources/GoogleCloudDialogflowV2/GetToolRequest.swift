@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Request message of GetTool.
   public struct GetToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,

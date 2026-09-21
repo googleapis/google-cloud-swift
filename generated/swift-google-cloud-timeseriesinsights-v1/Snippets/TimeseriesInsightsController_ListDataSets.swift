@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudTimeseriesInsightsV1
-import GoogleWKT
 
 func sample(client: TimeseriesInsightsControllerClient, parent: String) async throws {
   let items = try client.listDataSets(

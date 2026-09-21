@@ -16,7 +16,7 @@
 
 #if RegionSslCertificates || SslCertificates
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration and status of a self-managed SSL certificate.
   public struct SslCertificateSelfManagedSslCertificate: Codable, Equatable, GoogleWKT._AnyPackable,

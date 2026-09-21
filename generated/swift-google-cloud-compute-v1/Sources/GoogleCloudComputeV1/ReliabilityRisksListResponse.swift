@@ -16,8 +16,8 @@
 
 #if ReliabilityRisks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleGax
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleGax
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response message for the List method of ReliabilityRisksService.
   public struct ReliabilityRisksListResponse: Codable, Equatable, GoogleWKT._AnyPackable,

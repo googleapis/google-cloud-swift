@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method's
 /// request.

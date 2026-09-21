@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A response containing a list of auditable services for a resource.
 public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._AnyPackable,

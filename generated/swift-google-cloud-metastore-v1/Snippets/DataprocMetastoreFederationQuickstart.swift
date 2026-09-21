@@ -21,7 +21,6 @@ import GoogleCloudMetastoreV1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {

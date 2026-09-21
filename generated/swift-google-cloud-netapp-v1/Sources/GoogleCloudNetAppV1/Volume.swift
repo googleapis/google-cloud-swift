@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Volume provides a filesystem that you can mount.
 public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,

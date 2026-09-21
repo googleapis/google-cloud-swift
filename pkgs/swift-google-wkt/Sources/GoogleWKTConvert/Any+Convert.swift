@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
-import SwiftProtobuf
+@_spi(GoogleCloudInternal) public import GoogleWKT
+public import SwiftProtobuf
 
 extension GoogleWKT.`Any` {
   public init(proto: SwiftProtobuf.Google_Protobuf_Any) throws {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Feature type of the Guest OS.
 public struct GuestOsFeature: Codable, Equatable, GoogleWKT._AnyPackable,

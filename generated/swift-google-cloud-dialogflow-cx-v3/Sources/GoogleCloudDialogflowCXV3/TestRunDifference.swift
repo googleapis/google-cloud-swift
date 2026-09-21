@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The description of differences between original and replayed agent output.
   public struct TestRunDifference: Codable, Equatable, GoogleWKT._AnyPackable,

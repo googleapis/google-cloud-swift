@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// CompilationDiagnostic represents a compilation diagnostic generated
 /// during a rule's compilation, such as a compilation error or a compilation

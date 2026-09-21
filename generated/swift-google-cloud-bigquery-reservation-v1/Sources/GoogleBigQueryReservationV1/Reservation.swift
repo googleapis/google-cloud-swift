@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleRpc
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A reservation is a mechanism used to guarantee slots to users.
 public struct Reservation: Codable, Equatable, GoogleWKT._AnyPackable,

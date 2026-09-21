@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// IntValue represents a property that has an integer value type.
 public struct IntValue: Codable, Equatable, GoogleWKT._AnyPackable,

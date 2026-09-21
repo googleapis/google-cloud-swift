@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// AppliedLicense holds the license data returned by adaptation module report.
 public struct AppliedLicense: Codable, Equatable, GoogleWKT._AnyPackable,

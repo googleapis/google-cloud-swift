@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for Slurm [login
 /// nodes](https://slurm.schedmd.com/quickstart_admin.html#login) in the cluster.

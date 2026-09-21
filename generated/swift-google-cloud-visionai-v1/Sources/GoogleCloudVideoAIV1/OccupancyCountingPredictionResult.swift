@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The prediction result proto for occupancy counting.
 public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._AnyPackable,

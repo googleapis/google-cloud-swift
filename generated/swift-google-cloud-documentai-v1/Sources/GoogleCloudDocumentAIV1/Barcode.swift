@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Encodes the detailed information of a barcode.
 public struct Barcode: Codable, Equatable, GoogleWKT._AnyPackable,

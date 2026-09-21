@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// An external API represents an API being provided by external sources. This
 /// can be used to model third-party APIs and can be used to define dependencies.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The `SendNotificationChannelVerificationCode` request.
 public struct SendNotificationChannelVerificationCodeRequest: Codable, Equatable, GoogleWKT

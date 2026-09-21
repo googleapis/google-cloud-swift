@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration parameters of autoscaling based on load balancing.
   public struct AutoscalingPolicyLoadBalancingUtilization: Codable, Equatable, GoogleWKT

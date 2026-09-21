@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudBinaryAuthorizationV1
 import GoogleIAMV1
-import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudBinaryAuthorizationV1.SystemPolicyV1Client()

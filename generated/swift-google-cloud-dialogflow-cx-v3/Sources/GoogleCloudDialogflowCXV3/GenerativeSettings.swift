@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Settings for Generative AI.
   public struct GenerativeSettings: Codable, Equatable, GoogleWKT._AnyPackable,

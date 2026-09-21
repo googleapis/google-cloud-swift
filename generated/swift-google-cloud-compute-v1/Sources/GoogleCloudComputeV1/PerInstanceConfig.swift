@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if InstanceGroupManagerResizeRequests || InstanceGroupManagers || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct PerInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable

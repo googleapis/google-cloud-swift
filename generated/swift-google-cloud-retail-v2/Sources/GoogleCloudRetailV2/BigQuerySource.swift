@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// BigQuery source import data from.
 public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,

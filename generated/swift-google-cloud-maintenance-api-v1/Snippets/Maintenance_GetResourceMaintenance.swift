@@ -19,7 +19,6 @@
 import Foundation
 import GoogleCloudMaintenanceApiV1
 import GoogleCloudLocation
-import GoogleWKT
 
 func sample(
   client: MaintenanceClient, projectId: String, locationId: String, resourceMaintenanceId: String

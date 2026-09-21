@@ -17,8 +17,8 @@ import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
 import GoogleAuth
-@_spi(GoogleCloudInternal) import GoogleGax
-import SwiftProtobuf
+@_spi(GoogleCloudInternal) public import GoogleGax
+@_spi(GoogleCloudInternal) public import SwiftProtobuf
 
 /// Implements a generic gRPC client for the Swift SDK client libraries.
 ///

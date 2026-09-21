@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Metadata type for the google.longrunning.Operation returned by
 /// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup].

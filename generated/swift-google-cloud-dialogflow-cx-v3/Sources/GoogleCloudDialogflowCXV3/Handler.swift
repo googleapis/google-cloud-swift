@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Handler can be used to define custom logic to be executed based on the
   /// user-specified triggers.

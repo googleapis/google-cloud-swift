@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleType
-@_spi(GoogleCloudInternal) import GoogleWKT
+public import GoogleType
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// All date times begin at 12 AM US and Canadian Pacific Time (UTC-8).
 public struct CustomPeriod: Codable, Equatable, GoogleWKT._AnyPackable,

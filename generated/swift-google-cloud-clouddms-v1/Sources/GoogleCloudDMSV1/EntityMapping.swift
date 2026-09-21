@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Details of the mappings of a database entity.
 public struct EntityMapping: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -19,7 +19,6 @@
 import Foundation
 import GoogleIAMAdminV1
 import GoogleIAMV1
-import GoogleWKT
 
 #if hasAttribute(diagnose)
   @diagnose(DeprecatedDeclaration, as: ignored)

@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Configuration for location policy among multiple possible locations
   /// (e.g. preferences for zone selection among zones in a single region).

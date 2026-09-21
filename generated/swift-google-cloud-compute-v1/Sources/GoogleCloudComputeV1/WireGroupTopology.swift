@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Topology details for the wire group.
   public struct WireGroupTopology: Codable, Equatable, GoogleWKT._AnyPackable,

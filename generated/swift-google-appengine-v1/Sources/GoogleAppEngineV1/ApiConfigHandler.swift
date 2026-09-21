@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// [Google Cloud Endpoints](https://cloud.google.com/appengine/docs/python/endpoints/)
 /// configuration for API handlers.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies a location in a source code file.
 public struct SourceLocation: Codable, Equatable, GoogleWKT._AnyPackable,

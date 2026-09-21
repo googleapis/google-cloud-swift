@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Response for checking if a notebook instance is upgradeable.
 public struct CheckInstanceUpgradabilityResponse: Codable, Equatable, GoogleWKT._AnyPackable,

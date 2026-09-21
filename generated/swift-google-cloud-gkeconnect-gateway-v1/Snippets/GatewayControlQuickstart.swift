@@ -18,7 +18,6 @@
 // snippet.show
 import Foundation
 import GoogleCloudGKEConnectGatewayV1
-import GoogleWKT
 
 func sample() async throws {
   let client = try GoogleCloudGKEConnectGatewayV1.GatewayControlClient()

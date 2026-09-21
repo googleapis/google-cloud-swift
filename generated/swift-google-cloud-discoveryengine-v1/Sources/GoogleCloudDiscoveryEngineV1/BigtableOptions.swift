@@ -15,8 +15,8 @@
 // limitations under the License.
 
 #if DocumentService
-  import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import Foundation
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The Bigtable Options object that contains information to support
   /// the import.

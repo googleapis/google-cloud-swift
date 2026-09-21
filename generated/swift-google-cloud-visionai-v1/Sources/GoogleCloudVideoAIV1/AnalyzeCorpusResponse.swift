@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The response message for AnalyzeCorpus LRO.
 public struct AnalyzeCorpusResponse: Codable, Equatable, GoogleWKT._AnyPackable,

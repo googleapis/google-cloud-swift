@@ -16,8 +16,8 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// QueryResult contains the result of executing a single SQL statement.
   public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,

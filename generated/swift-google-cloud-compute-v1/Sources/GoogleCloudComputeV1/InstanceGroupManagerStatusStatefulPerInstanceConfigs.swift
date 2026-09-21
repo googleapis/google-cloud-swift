@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   public struct InstanceGroupManagerStatusStatefulPerInstanceConfigs: Codable, Equatable, GoogleWKT
       ._AnyPackable,

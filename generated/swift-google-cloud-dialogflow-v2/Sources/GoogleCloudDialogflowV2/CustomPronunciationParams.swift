@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations || Environments || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Pronunciation customization for a phrase.
   public struct CustomPronunciationParams: Codable, Equatable, GoogleWKT._AnyPackable,

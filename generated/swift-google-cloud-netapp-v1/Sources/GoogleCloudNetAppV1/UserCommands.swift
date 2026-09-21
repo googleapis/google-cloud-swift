@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// UserCommands contains the commands to be executed by the customer.
 public struct UserCommands: Codable, Equatable, GoogleWKT._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A transient resource used in compute.disks.bulkInsert and
   /// compute.regionDisks.bulkInsert. It is only used to process

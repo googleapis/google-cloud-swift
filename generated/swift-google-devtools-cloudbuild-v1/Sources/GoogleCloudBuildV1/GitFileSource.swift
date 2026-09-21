@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// GitFileSource describes a file within a (possibly remote) code repository.
 public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,

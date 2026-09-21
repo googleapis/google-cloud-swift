@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Custom static error page to be served when an error occurs.
 public struct ErrorHandler: Codable, Equatable, GoogleWKT._AnyPackable,

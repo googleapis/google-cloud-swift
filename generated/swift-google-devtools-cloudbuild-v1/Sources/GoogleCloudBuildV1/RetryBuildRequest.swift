@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Specifies a build to retry.
 public struct RetryBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,

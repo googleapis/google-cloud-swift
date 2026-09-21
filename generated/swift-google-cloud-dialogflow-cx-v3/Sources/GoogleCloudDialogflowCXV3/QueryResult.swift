@@ -16,8 +16,8 @@
 
 #if Sessions
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents the result of a conversational query.
   public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,

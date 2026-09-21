@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A managed metastore service that serves metadata queries.
 public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,

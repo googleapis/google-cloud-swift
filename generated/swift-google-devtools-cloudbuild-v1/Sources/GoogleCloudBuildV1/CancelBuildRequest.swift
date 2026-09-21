@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Request to cancel an ongoing build.
 public struct CancelBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,

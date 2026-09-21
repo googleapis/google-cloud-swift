@@ -19,7 +19,6 @@ import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
-import GoogleWKT
 import GoogleGax
 
 extension Clients {

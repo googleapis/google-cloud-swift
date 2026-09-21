@@ -20,7 +20,6 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
-  import GoogleWKT
 
   func sample() async throws {
     let client = try GoogleCloudDiscoveryEngineV1.GroundedGenerationServiceClient()

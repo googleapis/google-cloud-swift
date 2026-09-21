@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for a QaScorecard. By default, returns the latest revision.
 public struct GetQaScorecardRequest: Codable, Equatable, GoogleWKT._AnyPackable,

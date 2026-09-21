@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Identifies a concept with which DataItems may be annotated with.
   public struct AnnotationSpec: Codable, Equatable, GoogleWKT._AnyPackable,

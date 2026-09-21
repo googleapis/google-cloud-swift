@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Properties for an AlloyDB cluster backup plan association.
 public struct AlloyDBClusterBackupPlanAssociationProperties: Codable, Equatable, GoogleWKT

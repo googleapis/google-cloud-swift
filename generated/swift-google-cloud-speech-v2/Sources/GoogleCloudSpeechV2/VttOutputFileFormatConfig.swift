@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Output configurations for [WebVTT](https://www.w3.org/TR/webvtt1/) formatted
 /// subtitle file.

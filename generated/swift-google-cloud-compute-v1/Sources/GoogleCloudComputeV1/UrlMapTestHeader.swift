@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// HTTP headers used in UrlMapTests.
   public struct UrlMapTestHeader: Codable, Equatable, GoogleWKT._AnyPackable,

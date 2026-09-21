@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [Persistent disk](https://cloud.google.com/compute/docs/disks) used as the
 /// boot disk for a Compute Engine VM instance.

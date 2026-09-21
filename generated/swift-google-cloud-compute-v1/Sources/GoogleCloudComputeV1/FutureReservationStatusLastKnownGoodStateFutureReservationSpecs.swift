@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The properties of the last known good state for the Future Reservation.
   public struct FutureReservationStatusLastKnownGoodStateFutureReservationSpecs: Codable, Equatable,

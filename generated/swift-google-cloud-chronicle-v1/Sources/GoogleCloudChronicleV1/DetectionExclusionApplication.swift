@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Describes the detectors a detection exclusion is applied to.
 public struct DetectionExclusionApplication: Codable, Equatable, GoogleWKT._AnyPackable,

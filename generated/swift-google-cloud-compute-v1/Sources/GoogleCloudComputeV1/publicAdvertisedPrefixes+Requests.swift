@@ -16,7 +16,7 @@
 
 #if PublicAdvertisedPrefixes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   extension PublicAdvertisedPrefixesClient {
     /// Synthetic request message for the [announce()][google.cloud.compute.v1.publicAdvertisedPrefixes.announce] method.

@@ -16,7 +16,7 @@
 
 #if StoragePools
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Additional storage pool params.
   public struct StoragePoolParams: Codable, Equatable, GoogleWKT._AnyPackable,

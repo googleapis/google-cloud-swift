@@ -16,8 +16,8 @@
 
 #if DocumentService
   import Foundation
-  import GoogleRpc
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  public import GoogleRpc
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Response of the
   /// [ImportDocumentsRequest][google.cloud.discoveryengine.v1.ImportDocumentsRequest].

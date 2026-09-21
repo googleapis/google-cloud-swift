@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// A transient resource used in compute.instances.bulkInsert and
   /// compute.regionInstances.bulkInsert . This resource is not persisted

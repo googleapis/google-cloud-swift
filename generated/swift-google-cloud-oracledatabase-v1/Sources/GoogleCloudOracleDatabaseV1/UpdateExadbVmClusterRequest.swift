@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for `ExadbVmCluster.Update`. We only support adding the
 /// Virtual Machine to the ExadbVmCluster. Rest of the fields in ExadbVmCluster

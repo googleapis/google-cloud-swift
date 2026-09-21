@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// A [Certificate][google.cloud.security.privateca.v1.Certificate] corresponds
 /// to a signed X.509 certificate issued by a

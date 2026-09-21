@@ -22,8 +22,6 @@
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
 
   func sample(client: ModelGardenServiceClient, publisherId: String, modelId: String) async throws {
     let response = try await client.getPublisherModel(

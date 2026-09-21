@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Agent Assist Smart Compose suggestion data.
 public struct SmartComposeSuggestionData: Codable, Equatable, GoogleWKT._AnyPackable,

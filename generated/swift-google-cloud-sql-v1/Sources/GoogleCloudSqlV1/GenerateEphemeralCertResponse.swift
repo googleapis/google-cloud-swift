@@ -16,7 +16,7 @@
 
 #if SqlConnectService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Ephemeral certificate creation request.
   public struct GenerateEphemeralCertResponse: Codable, Equatable, GoogleWKT._AnyPackable,

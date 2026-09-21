@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Data for an IAM policy.
 public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
