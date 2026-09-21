@@ -38,6 +38,10 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Protobuf and Model Conversions**:
   - When protobuf messages or data model conversions are required, add them to `librarian.yaml` under the appropriate library with module types `swift-protobuf` or `convert-swift`, then run `librarian generate`.
   - Do not handwrite protobuf messages or invoke `protoc` manually.
+- **Deprecation Warnings**:
+  - The generated code carries the deprecations from the source specification, and must still read, write and convert those declarations. The generator emits `#if hasAttribute(diagnose)` / `@diagnose(DeprecatedDeclaration, as: ignored)` blocks to silence the resulting warnings.
+  - `@diagnose` requires Swift 6.4 (SE-0522). The build scripts demote the diagnostic with `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration` only for older toolchains, via `swift_supports_diagnose` in `ci/swift-version.sh`.
+  - **Do not make that demotion unconditional**. On Swift 6.4 and later it would also hide genuine use of deprecated APIs in the hand-written code.
 
 ## Testing Strategy
 

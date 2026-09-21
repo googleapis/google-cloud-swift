@@ -31,13 +31,19 @@ count=0
 generated=(
   "generated/swift-google-cloud-secretmanager-v1"
   "generated/swift-google-cloud-security-publicca-v1"
+  # Compiles deprecated fields, deprecated enum values and deprecated message
+  # types, so PR builds exercise the `@diagnose` suppression the generator
+  # emits for them.
+  "generated/swift-google-container-v1"
 )
 flags=(
     -Xswiftc -warnings-as-errors
-    -Xswiftc -Wwarning
-    -Xswiftc DeprecatedDeclaration
     --scratch-path "${REPO_ROOT}/.build-cache"
 )
+source "${SCRIPT_DIR}/swift-version.sh"
+if ! swift_supports_diagnose; then
+    flags+=(-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration)
+fi
 source "${SCRIPT_DIR}/glinux-flags.sh"
 add_glinux_flags
 source "${SCRIPT_DIR}/package-dependencies.sh"

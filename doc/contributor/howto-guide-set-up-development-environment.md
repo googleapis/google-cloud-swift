@@ -105,8 +105,12 @@ stest --package-path generated/swift-google-cloud-secretmanager-v1
 You can customize these aliases even further. Consider
 
 - Add `-Xswiftc -warnings-as-errors` to catch build problems earlier
-  - You may need to suppress some warnings too, with
-    `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration`
+  - On Swift 6.2 and 6.3 you also need
+    `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration`. The generated code
+    must read, write and convert deprecated fields and enum values, which
+    warns. On Swift 6.4 and later the generated code suppresses those warnings
+    with `@diagnose(DeprecatedDeclaration, as: ignored)`, so the flag is not
+    needed, and leaving it off also catches genuine use of deprecated APIs.
 - Add `--quiet` to `stest` to reduce the noise and only see test failures
 
 ## Testing with local dependencies (`swift package edit`)

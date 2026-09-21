@@ -16,9 +16,15 @@
 
 build_flags=(
     -Xswiftc -warnings-as-errors
-    -Xswiftc -Wwarning
-    -Xswiftc DeprecatedDeclaration
     --scratch-path "/workspace/.build-cache"
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )
+# `ci/gcb/minimum-swift.yaml` and `ci/gcb/intermediate-swift.yaml` build with
+# older toolchains, which cannot honor the `@diagnose` attributes in the
+# generated code. The remaining builds stay strict.
+_BUILD_FLAGS_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${_BUILD_FLAGS_SCRIPT_DIR}/../../swift-version.sh"
+if ! swift_supports_diagnose; then
+    build_flags+=(-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration)
+fi

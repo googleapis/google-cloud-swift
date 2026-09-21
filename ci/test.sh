@@ -33,12 +33,14 @@ packages=($(git ls-files -- 'Package.swift' 'pkgs/*Package.swift' 'guide/*Packag
 unset IFS
 flags=(
     -Xswiftc -warnings-as-errors
-    -Xswiftc -Wwarning
-    -Xswiftc DeprecatedDeclaration
     --scratch-path "${REPO_ROOT}/.build-cache"
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )
+source "${SCRIPT_DIR}/swift-version.sh"
+if ! swift_supports_diagnose; then
+    flags+=(-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration)
+fi
 source "${SCRIPT_DIR}/glinux-flags.sh"
 add_glinux_flags
 source "${SCRIPT_DIR}/package-dependencies.sh"
