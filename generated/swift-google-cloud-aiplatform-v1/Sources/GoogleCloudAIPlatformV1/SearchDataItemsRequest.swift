@@ -159,6 +159,9 @@
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
@@ -221,6 +224,9 @@
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataset, forKey: .dataset)

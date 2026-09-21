@@ -20,6 +20,9 @@ import Foundation
 import GoogleCloudMonitoringV3
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample() async throws {
   let client = try GoogleCloudMonitoringV3.QueryServiceClient()
   let items = try client.queryTimeSeries(

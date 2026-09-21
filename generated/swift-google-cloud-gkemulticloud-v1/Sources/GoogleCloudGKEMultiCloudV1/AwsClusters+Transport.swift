@@ -34,6 +34,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createAwsCluster(
       request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -88,6 +91,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateAwsCluster(
       request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -144,6 +150,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAwsCluster(
       request: GetAwsClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AwsCluster {
@@ -194,6 +203,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listAwsClusters(
       request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse {
@@ -245,6 +257,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteAwsCluster(
       request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +315,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAwsClusterAgentToken(
       request: GenerateAwsClusterAgentTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAwsClusterAgentTokenResponse {
@@ -354,6 +372,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAwsAccessToken(
       request: GenerateAwsAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAwsAccessTokenResponse {
@@ -405,6 +426,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createAwsNodePool(
       request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -462,6 +486,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateAwsNodePool(
       request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -520,6 +547,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func rollbackAwsNodePoolUpdate(
       request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -575,6 +605,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAwsNodePool(
       request: GetAwsNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AwsNodePool {
@@ -627,6 +660,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listAwsNodePools(
       request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse {
@@ -680,6 +716,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteAwsNodePool(
       request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -737,6 +776,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAwsOpenIdConfig(
       request: GetAwsOpenIdConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AwsOpenIdConfig {
@@ -787,6 +829,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAwsJsonWebKeys(
       request: GetAwsJsonWebKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AwsJsonWebKeys {
@@ -837,6 +882,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAwsServerConfig(
       request: GetAwsServerConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AwsServerConfig {

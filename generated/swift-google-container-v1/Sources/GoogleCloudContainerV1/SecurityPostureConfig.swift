@@ -144,6 +144,9 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Mode/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "MODE_UNSPECIFIED": self = .unspecified
@@ -157,6 +160,9 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Mode/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -262,6 +268,9 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VulnerabilityMode/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "VULNERABILITY_MODE_UNSPECIFIED": self = .unspecified
@@ -275,6 +284,9 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VulnerabilityMode/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

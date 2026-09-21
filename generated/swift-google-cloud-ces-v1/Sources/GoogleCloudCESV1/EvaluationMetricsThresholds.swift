@@ -81,6 +81,9 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.goldenEvaluationMetricsThresholds = try container.decodeIfPresent(
@@ -110,6 +113,9 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(

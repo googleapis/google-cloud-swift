@@ -24,6 +24,9 @@ public struct ListDataAttributesResponse: Codable, Equatable, GoogleWKT._AnyPack
   Sendable
 {
   /// DataAttributes under the given parent DataTaxonomy.
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public var dataAttributes: [DataAttribute] = []
 
   /// Token to retrieve the next page of results, or empty if there are no more
@@ -68,6 +71,9 @@ public struct ListDataAttributesResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([DataAttribute].self, forKey: .dataAttributes) {
@@ -86,6 +92,9 @@ public struct ListDataAttributesResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataAttributes, forKey: .dataAttributes)
@@ -106,10 +115,16 @@ public struct ListDataAttributesResponse: Codable, Equatable, GoogleWKT._AnyPack
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func _getPaginatedItems() -> [DataAttribute] {
     return self.dataAttributes
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func _nextPageToken() -> Swift.String {
     return self.nextPageToken
   }

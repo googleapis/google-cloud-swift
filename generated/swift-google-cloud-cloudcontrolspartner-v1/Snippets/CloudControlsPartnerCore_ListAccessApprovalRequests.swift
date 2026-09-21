@@ -20,6 +20,9 @@ import Foundation
 import GoogleCloudControlsPartnerV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(
   client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String,
   customerId: String, workloadId: String

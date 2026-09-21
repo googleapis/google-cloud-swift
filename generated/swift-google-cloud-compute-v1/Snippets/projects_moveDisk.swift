@@ -21,6 +21,9 @@
   import GoogleCloudComputeV1
   import GoogleWKT
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   func sample(client: ProjectsClient) async throws {
     let poller = try await client.moveDisk(
       withPolling: ProjectsClient.MoveDiskRequest()

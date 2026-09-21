@@ -58,6 +58,9 @@ extension Clients {
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func runReportJob(
       request: RunReportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +76,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func fetchReportResults(
       request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.FetchReportResultsResponse {
@@ -88,6 +94,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listReports(
       request: ListReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListReportsResponse {

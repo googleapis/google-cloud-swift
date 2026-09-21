@@ -24,6 +24,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample() async throws {
   let client = try GoogleApiServiceManagementV1.ServiceManagerClient()
   let items = try client.listServices(

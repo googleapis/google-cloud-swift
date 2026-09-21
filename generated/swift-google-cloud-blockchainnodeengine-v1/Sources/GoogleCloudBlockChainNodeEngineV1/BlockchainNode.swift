@@ -102,6 +102,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
@@ -148,6 +151,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
@@ -824,6 +830,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mevRelayUrls) {
@@ -842,6 +851,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mevRelayUrls, forKey: .mevRelayUrls)
@@ -933,6 +945,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Initialize from a string value.
       ///
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Network/unknownStringValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NETWORK_UNSPECIFIED": self = .unspecified
@@ -947,6 +962,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Initialize from an integer value.
       ///
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Network/unknownIntValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

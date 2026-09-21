@@ -1113,6 +1113,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func searchDataItems(
         request: SearchDataItemsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchDataItemsResponse {

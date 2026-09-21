@@ -355,6 +355,7 @@
     /// to continue using the service without interruption.
     ///
     /// @Snippet(path: "projects_moveDisk")
+    @available(*, deprecated)
     public func moveDisk(
       withPolling: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -416,6 +417,7 @@
     /// zones](/compute/docs/instances/moving-instance-across-zones) instead.
     ///
     /// @Snippet(path: "projects_moveInstance")
+    @available(*, deprecated)
     public func moveInstance(
       withPolling: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {

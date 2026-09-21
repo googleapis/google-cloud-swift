@@ -21,6 +21,9 @@ import GoogleCloudRetailV2
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: PredictionServiceClient) async throws {
   let response = try await client.predict(
     request: PredictRequest()

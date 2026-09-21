@@ -837,6 +837,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func embedContent(
         request: EmbedContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.EmbedContentResponse {

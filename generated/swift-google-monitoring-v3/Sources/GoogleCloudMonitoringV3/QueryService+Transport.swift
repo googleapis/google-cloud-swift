@@ -32,6 +32,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func queryTimeSeries(
       request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse {

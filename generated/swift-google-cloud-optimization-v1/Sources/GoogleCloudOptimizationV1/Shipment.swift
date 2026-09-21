@@ -217,6 +217,9 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Shipment.VisitRequest].self, forKey: .pickups) {
@@ -268,6 +271,9 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pickups, forKey: .pickups)
@@ -444,6 +450,9 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.arrivalLocation = try container.decodeIfPresent(
@@ -483,6 +492,9 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.arrivalLocation, forKey: .arrivalLocation)

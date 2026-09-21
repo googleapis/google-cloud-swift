@@ -53,10 +53,16 @@
         request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.XpnHostList
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       func moveDisk(
         request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       func moveInstance(
         request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

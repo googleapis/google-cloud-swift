@@ -195,6 +195,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createTransferConfig(
       request: CreateTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
@@ -287,6 +290,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateTransferConfig(
       request: UpdateTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {

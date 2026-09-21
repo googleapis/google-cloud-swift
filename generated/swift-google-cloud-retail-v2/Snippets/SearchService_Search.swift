@@ -21,6 +21,9 @@ import GoogleCloudRetailV2
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: SearchServiceClient) async throws {
   let items = try client.search(
     byItem: SearchRequest()

@@ -23,6 +23,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: DataCatalogClient, projectId: String, locationId: String) async throws {
   let response = try await client.createTagTemplate(
     request: CreateTagTemplateRequest()
@@ -37,6 +40,9 @@ func sample(client: DataCatalogClient, projectId: String, locationId: String) as
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudDataCatalogV1.DataCatalogClient()

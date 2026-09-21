@@ -292,6 +292,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vehicleIndex) {
@@ -349,6 +352,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vehicleIndex, forKey: .vehicleIndex)
@@ -595,6 +601,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shipmentIndex) {
@@ -633,6 +642,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.shipmentIndex, forKey: .shipmentIndex)
@@ -801,6 +813,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.travelDuration = try container.decodeIfPresent(
@@ -838,6 +853,9 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)

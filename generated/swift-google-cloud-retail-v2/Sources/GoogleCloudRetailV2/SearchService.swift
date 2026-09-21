@@ -59,6 +59,9 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "SearchService_Search")
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func search(
     byItem: SearchRequest, options: GoogleGax.RequestOptions
   ) throws -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {

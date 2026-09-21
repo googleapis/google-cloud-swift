@@ -22,6 +22,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample() async throws {
   let client = try GoogleCloudOptimizationV1.FleetRoutingClient()
   let response = try await client.optimizeTours(

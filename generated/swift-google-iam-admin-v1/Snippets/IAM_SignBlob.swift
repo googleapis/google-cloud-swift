@@ -21,6 +21,9 @@ import GoogleIAMAdminV1
 import GoogleIAMV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: IAMClient) async throws {
   let response = try await client.signBlob(
     request: SignBlobRequest()

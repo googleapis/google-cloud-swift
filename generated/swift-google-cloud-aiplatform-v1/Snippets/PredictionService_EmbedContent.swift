@@ -25,6 +25,9 @@
   import GoogleLongRunning
   import GoogleWKT
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   func sample(client: PredictionServiceClient) async throws {
     let response = try await client.embedContent(
       request: EmbedContentRequest()

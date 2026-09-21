@@ -52,6 +52,9 @@ extension Clients {
       return try await loop.run(attempt: attempt)
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createDataTaxonomy(
       request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -67,6 +70,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateDataTaxonomy(
       request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -82,6 +88,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteDataTaxonomy(
       request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -97,6 +106,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listDataTaxonomies(
       request: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListDataTaxonomiesResponse {
@@ -112,6 +124,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getDataTaxonomy(
       request: GetDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.DataTaxonomy {
@@ -127,6 +142,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createDataAttributeBinding(
       request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -142,6 +160,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateDataAttributeBinding(
       request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -172,6 +193,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listDataAttributeBindings(
       request: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListDataAttributeBindingsResponse {
@@ -187,6 +211,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getDataAttributeBinding(
       request: GetDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.DataAttributeBinding {
@@ -202,6 +229,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createDataAttribute(
       request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -217,6 +247,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateDataAttribute(
       request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -247,6 +280,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listDataAttributes(
       request: ListDataAttributesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListDataAttributesResponse {
@@ -262,6 +298,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getDataAttribute(
       request: GetDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.DataAttribute {

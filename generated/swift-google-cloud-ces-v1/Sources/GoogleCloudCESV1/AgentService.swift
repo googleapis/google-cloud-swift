@@ -1158,6 +1158,9 @@ extension Clients {
       -> GoogleCloudCESV1.Conversation
 
     /// See `AgentServiceClient.getConversation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getConversation(
       name: Swift.String,
     ) async throws -> GoogleCloudCESV1.Conversation
@@ -1166,6 +1169,9 @@ extension Clients {
     func deleteConversation(request: DeleteConversationRequest) async throws
 
     /// See `AgentServiceClient.deleteConversation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deleteConversation(
       name: Swift.String,
     ) async throws
@@ -2465,6 +2471,9 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getConversation(
     name: Swift.String,
   ) async throws -> GoogleCloudCESV1.Conversation {
@@ -2484,6 +2493,9 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deleteConversation(
     name: Swift.String,
   ) async throws {

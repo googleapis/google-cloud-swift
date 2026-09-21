@@ -2473,6 +2473,9 @@
           ]
         }
 
+        #if hasAttribute(diagnose)
+          @diagnose(DeprecatedDeclaration, as: ignored)
+        #endif
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSnippetCount) {
@@ -2490,6 +2493,9 @@
           }
         }
 
+        #if hasAttribute(diagnose)
+          @diagnose(DeprecatedDeclaration, as: ignored)
+        #endif
         public func encode(to encoder: Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.maxSnippetCount, forKey: .maxSnippetCount)
@@ -4914,6 +4920,9 @@
       /// Initialize from a string value.
       ///
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RankingExpressionBackend/unknownStringValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RANKING_EXPRESSION_BACKEND_UNSPECIFIED": self = .unspecified
@@ -4928,6 +4937,9 @@
       /// Initialize from an integer value.
       ///
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RankingExpressionBackend/unknownIntValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

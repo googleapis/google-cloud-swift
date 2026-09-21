@@ -24,6 +24,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: DataTaxonomyServiceClient, parent: String) async throws {
   let poller = try await client.createDataTaxonomy(
     withPolling: CreateDataTaxonomyRequest()
@@ -39,6 +42,9 @@ func sample(client: DataTaxonomyServiceClient, parent: String) async throws {
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudDataplexV1.DataTaxonomyServiceClient()

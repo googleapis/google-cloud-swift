@@ -33,6 +33,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func search(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.SearchResponse {

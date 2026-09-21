@@ -359,6 +359,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func importProducts(
       request: ImportProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

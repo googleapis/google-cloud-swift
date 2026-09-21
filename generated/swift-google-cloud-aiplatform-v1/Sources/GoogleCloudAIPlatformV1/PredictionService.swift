@@ -388,6 +388,9 @@
         -> GoogleCloudAIPlatformV1.EmbedContentResponse
 
       /// See `PredictionServiceClient.embedContent`.
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       func embedContent(
         model: Swift.String?,
         content: Content?,
@@ -750,6 +753,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func embedContent(
       model: Swift.String?,
       content: Content?,

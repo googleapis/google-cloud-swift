@@ -356,6 +356,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// Search group memberships related to a given account.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_SearchRelatedAccountGroupMemberships")
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func searchRelatedAccountGroupMemberships(
     byItem: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
   ) throws -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
@@ -618,6 +621,9 @@ extension Clients {
     ) throws -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error>
 
     /// See `RecaptchaEnterpriseServiceClient.searchRelatedAccountGroupMemberships`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func searchRelatedAccountGroupMemberships(
       project: Swift.String,
       hashedAccountId: Foundation.Data,
@@ -1378,6 +1384,9 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func searchRelatedAccountGroupMemberships(
     project: Swift.String,
     hashedAccountId: Foundation.Data,

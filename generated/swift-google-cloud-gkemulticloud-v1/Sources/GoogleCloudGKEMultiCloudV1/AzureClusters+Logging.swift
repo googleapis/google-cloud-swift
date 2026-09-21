@@ -58,6 +58,9 @@ extension Clients {
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createAzureClient(
       request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +76,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureClient(
       request: GetAzureClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureClient {
@@ -88,6 +94,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listAzureClients(
       request: ListAzureClientsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClientsResponse {
@@ -103,6 +112,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteAzureClient(
       request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -118,6 +130,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createAzureCluster(
       request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -133,6 +148,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateAzureCluster(
       request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -148,6 +166,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureCluster(
       request: GetAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureCluster {
@@ -163,6 +184,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listAzureClusters(
       request: ListAzureClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse {
@@ -178,6 +202,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteAzureCluster(
       request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +220,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAzureClusterAgentToken(
       request: GenerateAzureClusterAgentTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAzureClusterAgentTokenResponse {
@@ -208,6 +238,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAzureAccessToken(
       request: GenerateAzureAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAzureAccessTokenResponse {
@@ -223,6 +256,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createAzureNodePool(
       request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -238,6 +274,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateAzureNodePool(
       request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -253,6 +292,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureNodePool(
       request: GetAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureNodePool {
@@ -268,6 +310,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listAzureNodePools(
       request: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureNodePoolsResponse {
@@ -283,6 +328,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteAzureNodePool(
       request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +346,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureOpenIdConfig(
       request: GetAzureOpenIdConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureOpenIdConfig {
@@ -313,6 +364,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureJsonWebKeys(
       request: GetAzureJsonWebKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureJsonWebKeys {
@@ -328,6 +382,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getAzureServerConfig(
       request: GetAzureServerConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureServerConfig {

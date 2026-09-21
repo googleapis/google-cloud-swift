@@ -82,6 +82,9 @@
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([DeployedModel].self, forKey: .deployedModels) {
@@ -109,6 +112,9 @@
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.deployedModels, forKey: .deployedModels)
@@ -131,10 +137,16 @@
       return try GoogleWKT._slowAnySerialize(message: self)
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func _getPaginatedItems() -> [DeployedModel] {
       return self.deployedModels
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func _nextPageToken() -> Swift.String {
       return self.nextPageToken
     }

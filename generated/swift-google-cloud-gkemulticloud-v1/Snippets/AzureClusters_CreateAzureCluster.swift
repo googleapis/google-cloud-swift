@@ -22,6 +22,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: AzureClustersClient, projectId: String, locationId: String) async throws {
   let poller = try await client.createAzureCluster(
     withPolling: CreateAzureClusterRequest()
@@ -37,6 +40,9 @@ func sample(client: AzureClustersClient, projectId: String, locationId: String) 
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudGKEMultiCloudV1.AzureClustersClient()

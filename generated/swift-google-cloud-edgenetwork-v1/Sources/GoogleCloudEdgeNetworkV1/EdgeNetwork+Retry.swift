@@ -66,6 +66,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listZones(
       request: ListZonesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListZonesResponse {
@@ -81,6 +84,9 @@ extension Clients {
         })
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getZone(
       request: GetZoneRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.Zone {

@@ -33,6 +33,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func predict(
       request: PredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.PredictResponse {

@@ -76,6 +76,9 @@ public struct Mint: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.mintAmount = try container.decodeIfPresent(CurrencyValue.self, forKey: .mintAmount)
@@ -89,6 +92,9 @@ public struct Mint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.mintAmount, forKey: .mintAmount)

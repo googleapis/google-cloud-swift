@@ -1098,6 +1098,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getConversation(
       request: GetConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.Conversation {
@@ -1150,6 +1153,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteConversation(
       request: DeleteConversationRequest, options: GoogleGax.RequestOptions
     ) async throws {

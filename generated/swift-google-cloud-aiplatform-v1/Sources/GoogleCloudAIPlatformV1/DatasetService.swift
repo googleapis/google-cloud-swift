@@ -411,6 +411,9 @@
     /// Searches DataItems in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_SearchDataItems")
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func searchDataItems(
       byItem: SearchDataItemsRequest, options: GoogleGax.RequestOptions
     ) throws -> any AsyncSequence<DataItemView, Swift.Error> {

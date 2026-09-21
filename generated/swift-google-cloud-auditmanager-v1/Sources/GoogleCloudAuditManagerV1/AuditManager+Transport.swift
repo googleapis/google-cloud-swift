@@ -639,6 +639,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
@@ -753,6 +756,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func generateAuditReport(
       request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

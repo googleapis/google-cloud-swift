@@ -71,6 +71,9 @@ public enum DatabaseType: Codable, Equatable, Sendable {
   /// Initialize from a string value.
   ///
   /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DatabaseType/unknownStringValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "DB_UNKNOWN": self = .dbUnknown
@@ -83,6 +86,9 @@ public enum DatabaseType: Codable, Equatable, Sendable {
   /// Initialize from an integer value.
   ///
   /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DatabaseType/unknownIntValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .dbUnknown

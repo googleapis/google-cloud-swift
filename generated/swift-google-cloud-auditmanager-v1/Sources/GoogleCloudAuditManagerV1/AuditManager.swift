@@ -455,6 +455,9 @@ extension Clients {
       -> GoogleCloudAuditManagerV1.AuditScopeReport
 
     /// See `AuditManagerClient.generateAuditScopeReport`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func generateAuditScopeReport(
       scope: Swift.String,
       complianceStandard: Swift.String,
@@ -470,6 +473,9 @@ extension Clients {
       .PollableOperation<AuditReport>
 
     /// See `AuditManagerClient.generateAuditReport`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func generateAuditReport(
       scope: Swift.String,
       gcsUri: Swift.String,
@@ -846,6 +852,9 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func generateAuditScopeReport(
     scope: Swift.String,
     complianceStandard: Swift.String,
@@ -887,6 +896,9 @@ extension Clients.AuditManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func generateAuditReport(
     scope: Swift.String,
     gcsUri: Swift.String,

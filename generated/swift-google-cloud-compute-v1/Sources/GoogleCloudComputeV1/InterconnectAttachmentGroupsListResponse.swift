@@ -481,6 +481,9 @@
         /// Initialize from a string value.
         ///
         /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Code/unknownStringValue(_:)).
+        #if hasAttribute(diagnose)
+          @diagnose(DeprecatedDeclaration, as: ignored)
+        #endif
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CLEANUP_FAILED": self = .cleanupFailed
@@ -521,6 +524,9 @@
         /// Initialize from an integer value.
         ///
         /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Code/unknownIntValue(_:)).
+        #if hasAttribute(diagnose)
+          @diagnose(DeprecatedDeclaration, as: ignored)
+        #endif
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .cleanupFailed

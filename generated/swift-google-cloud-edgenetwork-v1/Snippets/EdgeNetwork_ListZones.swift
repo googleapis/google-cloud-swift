@@ -23,6 +23,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String) async throws {
   let items = try client.listZones(
     byItem: ListZonesRequest()

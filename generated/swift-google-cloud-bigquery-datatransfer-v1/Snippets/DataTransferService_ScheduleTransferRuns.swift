@@ -21,6 +21,9 @@ import GoogleBigQueryDataTransferV1
 import GoogleCloudLocation
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: DataTransferServiceClient) async throws {
   let response = try await client.scheduleTransferRuns(
     request: ScheduleTransferRunsRequest()

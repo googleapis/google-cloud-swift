@@ -367,6 +367,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deletePartition(
       request: DeletePartitionRequest, options: GoogleGax.RequestOptions
     ) async throws {

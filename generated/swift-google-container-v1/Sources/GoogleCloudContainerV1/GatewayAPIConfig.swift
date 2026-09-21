@@ -135,6 +135,9 @@ public struct GatewayAPIConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Channel/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CHANNEL_UNSPECIFIED": self = .unspecified
@@ -148,6 +151,9 @@ public struct GatewayAPIConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Channel/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

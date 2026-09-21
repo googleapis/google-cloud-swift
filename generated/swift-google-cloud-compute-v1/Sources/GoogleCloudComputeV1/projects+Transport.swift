@@ -426,6 +426,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func moveDisk(
         request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -476,6 +479,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func moveInstance(
         request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

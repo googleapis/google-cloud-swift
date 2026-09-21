@@ -24,6 +24,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: ServiceManagerClient) async throws {
   let items = try client.listServices(
     byItem: ListServicesRequest()

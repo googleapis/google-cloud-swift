@@ -22,6 +22,9 @@
   import GoogleLongRunning
   import GoogleWKT
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   func sample(client: ConversationalSearchServiceClient) async throws {
     let response = try await client.answerQuery(
       request: AnswerQueryRequest()

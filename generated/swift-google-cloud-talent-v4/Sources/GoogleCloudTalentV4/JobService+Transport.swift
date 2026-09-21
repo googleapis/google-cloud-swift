@@ -446,6 +446,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func searchJobs(
       request: SearchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {
@@ -497,6 +500,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func searchJobsForAlert(
       request: SearchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {

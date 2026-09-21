@@ -170,6 +170,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
@@ -234,6 +237,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
@@ -395,6 +401,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Initialize from a string value.
       ///
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ResourceType/unknownStringValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RESOURCE_TYPE_UNSPECIFIED": self = .unspecified
@@ -409,6 +418,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Initialize from an integer value.
       ///
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ResourceType/unknownIntValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

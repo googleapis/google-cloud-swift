@@ -76,6 +76,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Lists the finding summary by category for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listFindingSummaries(
     byItem: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
   ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
@@ -110,6 +113,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Lists the control compliance summary for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listControlComplianceSummaries(
     byItem: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
@@ -292,6 +298,9 @@ extension Clients {
     ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
 
     /// See `MonitoringClient.listFindingSummaries`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listFindingSummaries(
       parent: Swift.String,
     ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
@@ -315,6 +324,9 @@ extension Clients {
     ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.listControlComplianceSummaries`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listControlComplianceSummaries(
       parent: Swift.String,
     ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
@@ -518,6 +530,9 @@ extension Clients.MonitoringProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listFindingSummaries(
     parent: Swift.String,
   ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
@@ -577,6 +592,9 @@ extension Clients.MonitoringProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listControlComplianceSummaries(
     parent: Swift.String,
   ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {

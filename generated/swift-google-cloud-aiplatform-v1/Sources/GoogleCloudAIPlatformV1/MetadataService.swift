@@ -835,6 +835,9 @@
         -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `MetadataServiceClient.deleteMetadataStore`.
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       func deleteMetadataStore(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
@@ -1616,6 +1619,9 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteMetadataStore(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {

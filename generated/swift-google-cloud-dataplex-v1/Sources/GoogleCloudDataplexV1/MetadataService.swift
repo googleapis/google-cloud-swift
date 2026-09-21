@@ -382,6 +382,9 @@ extension Clients {
     func deletePartition(request: DeletePartitionRequest) async throws
 
     /// See `MetadataServiceClient.deletePartition`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deletePartition(
       name: Swift.String,
     ) async throws
@@ -714,6 +717,9 @@ extension Clients.MetadataServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deletePartition(
     name: Swift.String,
   ) async throws {

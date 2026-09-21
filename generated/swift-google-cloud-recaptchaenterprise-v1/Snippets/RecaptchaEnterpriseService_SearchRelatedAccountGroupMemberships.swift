@@ -20,6 +20,9 @@ import Foundation
 import GoogleCloudRecaptchaEnterpriseV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: RecaptchaEnterpriseServiceClient) async throws {
   let items = try client.searchRelatedAccountGroupMemberships(
     byItem: SearchRelatedAccountGroupMembershipsRequest()

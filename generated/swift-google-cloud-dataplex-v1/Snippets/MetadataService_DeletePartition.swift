@@ -23,6 +23,9 @@ import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(
   client: MetadataServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String, entityId: String, partitionId: String

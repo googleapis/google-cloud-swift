@@ -34,6 +34,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func optimizeTours(
       request: OptimizeToursRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOptimizationV1.OptimizeToursResponse {

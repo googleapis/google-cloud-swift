@@ -22,14 +22,23 @@ import GoogleGax
 
 extension Clients {
   protocol CloudChannelReportsServiceStub: Sendable {
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func runReportJob(
       request: RunReportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func fetchReportResults(
       request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.FetchReportResultsResponse
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listReports(
       request: ListReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListReportsResponse

@@ -595,6 +595,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
@@ -615,6 +618,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.type, forKey: .type)
@@ -1395,6 +1401,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProvisioningModel/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PROVISIONING_MODEL_UNSPECIFIED": self = .unspecified
@@ -1410,6 +1419,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProvisioningModel/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

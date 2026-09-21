@@ -382,6 +382,9 @@
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
@@ -532,6 +535,9 @@
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
@@ -728,6 +734,9 @@
         ]
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
@@ -745,6 +754,9 @@
         }
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -1171,6 +1183,9 @@
       /// Initialize from a string value.
       ///
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlInstanceState/unknownStringValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_INSTANCE_STATE_UNSPECIFIED": self = .unspecified
@@ -1189,6 +1204,9 @@
       /// Initialize from an integer value.
       ///
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlInstanceState/unknownIntValue(_:)).
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

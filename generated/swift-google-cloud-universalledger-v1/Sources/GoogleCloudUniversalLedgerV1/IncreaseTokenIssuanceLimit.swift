@@ -78,6 +78,9 @@ public struct IncreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
@@ -91,6 +94,9 @@ public struct IncreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)

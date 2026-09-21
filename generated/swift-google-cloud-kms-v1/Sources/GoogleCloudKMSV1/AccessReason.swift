@@ -149,6 +149,9 @@ public enum AccessReason: Codable, Equatable, Sendable {
   /// Initialize from a string value.
   ///
   /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AccessReason/unknownStringValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "REASON_UNSPECIFIED": self = .reasonUnspecified
@@ -171,6 +174,9 @@ public enum AccessReason: Codable, Equatable, Sendable {
   /// Initialize from an integer value.
   ///
   /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AccessReason/unknownIntValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .reasonUnspecified

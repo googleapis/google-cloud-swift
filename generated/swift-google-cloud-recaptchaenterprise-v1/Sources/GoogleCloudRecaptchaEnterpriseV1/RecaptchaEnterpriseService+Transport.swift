@@ -1184,6 +1184,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func searchRelatedAccountGroupMemberships(
       request: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.SearchRelatedAccountGroupMembershipsResponse

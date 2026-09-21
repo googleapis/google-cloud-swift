@@ -20,6 +20,9 @@ import Foundation
 import GoogleCloudContainerV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample() async throws {
   let client = try GoogleCloudContainerV1.ClusterManagerClient()
   let response = try await client.listClusters(

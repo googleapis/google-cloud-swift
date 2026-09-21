@@ -337,6 +337,9 @@ extension Clients {
       -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.createTransferConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func createTransferConfig(
       parent: Swift.String,
       transferConfig: TransferConfig?,
@@ -347,6 +350,9 @@ extension Clients {
       -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.updateTransferConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func updateTransferConfig(
       transferConfig: TransferConfig?,
       updateMask: GoogleWKT.FieldMask?,
@@ -663,6 +669,9 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func createTransferConfig(
     parent: Swift.String,
     transferConfig: TransferConfig?,
@@ -686,6 +695,9 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func updateTransferConfig(
     transferConfig: TransferConfig?,
     updateMask: GoogleWKT.FieldMask?,

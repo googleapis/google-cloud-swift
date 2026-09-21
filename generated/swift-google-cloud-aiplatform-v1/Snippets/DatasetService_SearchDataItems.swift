@@ -25,6 +25,9 @@
   import GoogleRpc
   import GoogleWKT
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   func sample(client: DatasetServiceClient) async throws {
     let items = try client.searchDataItems(
       byItem: SearchDataItemsRequest()

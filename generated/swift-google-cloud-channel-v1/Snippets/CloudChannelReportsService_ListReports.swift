@@ -22,6 +22,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: CloudChannelReportsServiceClient, parent: String) async throws {
   let items = try client.listReports(
     byItem: ListReportsRequest()
@@ -37,6 +40,9 @@ func sample(client: CloudChannelReportsServiceClient, parent: String) async thro
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudChannelV1.CloudChannelReportsServiceClient()

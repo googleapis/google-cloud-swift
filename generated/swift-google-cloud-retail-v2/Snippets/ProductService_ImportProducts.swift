@@ -22,6 +22,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: ProductServiceClient) async throws {
   let poller = try await client.importProducts(
     withPolling: ImportProductsRequest()

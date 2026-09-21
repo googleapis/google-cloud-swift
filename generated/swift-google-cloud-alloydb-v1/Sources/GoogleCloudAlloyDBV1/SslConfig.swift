@@ -157,6 +157,9 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SslMode/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SSL_MODE_UNSPECIFIED": self = .unspecified
@@ -172,6 +175,9 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SslMode/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

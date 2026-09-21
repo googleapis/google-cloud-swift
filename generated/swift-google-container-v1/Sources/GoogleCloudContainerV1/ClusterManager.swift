@@ -435,12 +435,18 @@ extension Clients {
       -> GoogleCloudContainerV1.ListClustersResponse
 
     /// See `ClusterManagerClient.listClusters`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listClusters(
       projectId: Swift.String,
       zone: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ListClustersResponse
 
     /// See `ClusterManagerClient.listClusters`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listClusters(
       parent: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ListClustersResponse
@@ -449,6 +455,9 @@ extension Clients {
     func getCluster(request: GetClusterRequest) async throws -> GoogleCloudContainerV1.Cluster
 
     /// See `ClusterManagerClient.getCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getCluster(
       projectId: Swift.String,
       zone: Swift.String,
@@ -456,6 +465,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Cluster
 
     /// See `ClusterManagerClient.getCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getCluster(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Cluster
@@ -465,6 +477,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.createCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func createCluster(
       projectId: Swift.String,
       zone: Swift.String,
@@ -472,6 +487,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.createCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func createCluster(
       parent: Swift.String,
       cluster: Cluster?,
@@ -482,6 +500,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.updateCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func updateCluster(
       projectId: Swift.String,
       zone: Swift.String,
@@ -490,6 +511,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.updateCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func updateCluster(
       name: Swift.String,
       update: ClusterUpdate?,
@@ -508,6 +532,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setLoggingService`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setLoggingService(
       projectId: Swift.String,
       zone: Swift.String,
@@ -516,6 +543,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setLoggingService`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setLoggingService(
       name: Swift.String,
       loggingService: Swift.String,
@@ -526,6 +556,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setMonitoringService`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setMonitoringService(
       projectId: Swift.String,
       zone: Swift.String,
@@ -534,6 +567,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setMonitoringService`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setMonitoringService(
       name: Swift.String,
       monitoringService: Swift.String,
@@ -544,6 +580,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setAddonsConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setAddonsConfig(
       projectId: Swift.String,
       zone: Swift.String,
@@ -552,6 +591,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setAddonsConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setAddonsConfig(
       name: Swift.String,
       addonsConfig: AddonsConfig?,
@@ -581,6 +623,9 @@ extension Clients {
     func updateMaster(request: UpdateMasterRequest) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.updateMaster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func updateMaster(
       projectId: Swift.String,
       zone: Swift.String,
@@ -589,6 +634,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.updateMaster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func updateMaster(
       name: Swift.String,
       masterVersion: Swift.String,
@@ -603,6 +651,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.deleteCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deleteCluster(
       projectId: Swift.String,
       zone: Swift.String,
@@ -610,6 +661,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.deleteCluster`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deleteCluster(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -619,12 +673,18 @@ extension Clients {
       -> GoogleCloudContainerV1.ListOperationsResponse
 
     /// See `ClusterManagerClient.listOperations`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listOperations(
       projectId: Swift.String,
       zone: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ListOperationsResponse
 
     /// See `ClusterManagerClient.listOperations`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listOperations(
       parent: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ListOperationsResponse
@@ -633,6 +693,9 @@ extension Clients {
     func getOperation(request: GetOperationRequest) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.getOperation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getOperation(
       projectId: Swift.String,
       zone: Swift.String,
@@ -640,6 +703,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.getOperation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getOperation(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -648,6 +714,9 @@ extension Clients {
     func cancelOperation(request: CancelOperationRequest) async throws
 
     /// See `ClusterManagerClient.cancelOperation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func cancelOperation(
       projectId: Swift.String,
       zone: Swift.String,
@@ -655,6 +724,9 @@ extension Clients {
     ) async throws
 
     /// See `ClusterManagerClient.cancelOperation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func cancelOperation(
       name: Swift.String,
     ) async throws
@@ -664,12 +736,18 @@ extension Clients {
       -> GoogleCloudContainerV1.ServerConfig
 
     /// See `ClusterManagerClient.getServerConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getServerConfig(
       projectId: Swift.String,
       zone: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ServerConfig
 
     /// See `ClusterManagerClient.getServerConfig`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getServerConfig(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ServerConfig
@@ -683,6 +761,9 @@ extension Clients {
       -> GoogleCloudContainerV1.ListNodePoolsResponse
 
     /// See `ClusterManagerClient.listNodePools`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listNodePools(
       projectId: Swift.String,
       zone: Swift.String,
@@ -690,6 +771,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse
 
     /// See `ClusterManagerClient.listNodePools`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listNodePools(
       parent: Swift.String,
     ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse
@@ -698,6 +782,9 @@ extension Clients {
     func getNodePool(request: GetNodePoolRequest) async throws -> GoogleCloudContainerV1.NodePool
 
     /// See `ClusterManagerClient.getNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getNodePool(
       projectId: Swift.String,
       zone: Swift.String,
@@ -706,6 +793,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.NodePool
 
     /// See `ClusterManagerClient.getNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func getNodePool(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.NodePool
@@ -715,6 +805,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.createNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func createNodePool(
       projectId: Swift.String,
       zone: Swift.String,
@@ -723,6 +816,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.createNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func createNodePool(
       parent: Swift.String,
       nodePool: NodePool?,
@@ -733,6 +829,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.deleteNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deleteNodePool(
       projectId: Swift.String,
       zone: Swift.String,
@@ -741,6 +840,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.deleteNodePool`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func deleteNodePool(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -753,6 +855,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.rollbackNodePoolUpgrade`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func rollbackNodePoolUpgrade(
       projectId: Swift.String,
       zone: Swift.String,
@@ -761,6 +866,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.rollbackNodePoolUpgrade`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func rollbackNodePoolUpgrade(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -777,6 +885,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setLegacyAbac`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setLegacyAbac(
       projectId: Swift.String,
       zone: Swift.String,
@@ -785,6 +896,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setLegacyAbac`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setLegacyAbac(
       name: Swift.String,
       enabled: Swift.Bool,
@@ -795,6 +909,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.startIprotation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func startIprotation(
       projectId: Swift.String,
       zone: Swift.String,
@@ -802,6 +919,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.startIprotation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func startIprotation(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -811,6 +931,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.completeIprotation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func completeIprotation(
       projectId: Swift.String,
       zone: Swift.String,
@@ -818,6 +941,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.completeIprotation`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func completeIprotation(
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.Operation
@@ -831,6 +957,9 @@ extension Clients {
       -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setNetworkPolicy`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setNetworkPolicy(
       projectId: Swift.String,
       zone: Swift.String,
@@ -839,6 +968,9 @@ extension Clients {
     ) async throws -> GoogleCloudContainerV1.Operation
 
     /// See `ClusterManagerClient.setNetworkPolicy`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func setNetworkPolicy(
       name: Swift.String,
       networkPolicy: NetworkPolicy?,
@@ -1104,6 +1236,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listClusters(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1115,6 +1250,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listClusters(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listClusters(
     parent: Swift.String,
   ) async throws -> GoogleCloudContainerV1.ListClustersResponse {
@@ -1135,6 +1273,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getCluster(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1148,6 +1289,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getCluster(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Cluster {
@@ -1169,6 +1313,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func createCluster(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1182,6 +1329,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createCluster(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func createCluster(
     parent: Swift.String,
     cluster: Cluster?,
@@ -1205,6 +1355,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func updateCluster(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1220,6 +1373,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateCluster(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func updateCluster(
     name: Swift.String,
     update: ClusterUpdate?,
@@ -1267,6 +1423,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setLoggingService(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1282,6 +1441,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLoggingService(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setLoggingService(
     name: Swift.String,
     loggingService: Swift.String,
@@ -1305,6 +1467,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setMonitoringService(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1320,6 +1485,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setMonitoringService(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setMonitoringService(
     name: Swift.String,
     monitoringService: Swift.String,
@@ -1343,6 +1511,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setAddonsConfig(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1358,6 +1529,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setAddonsConfig(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setAddonsConfig(
     name: Swift.String,
     addonsConfig: AddonsConfig?,
@@ -1423,6 +1597,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func updateMaster(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1438,6 +1615,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateMaster(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func updateMaster(
     name: Swift.String,
     masterVersion: Swift.String,
@@ -1473,6 +1653,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deleteCluster(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1486,6 +1669,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteCluster(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deleteCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1507,6 +1693,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listOperations(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1518,6 +1707,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listOperations(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listOperations(
     parent: Swift.String,
   ) async throws -> GoogleCloudContainerV1.ListOperationsResponse {
@@ -1539,6 +1731,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getOperation(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1552,6 +1747,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1571,6 +1769,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func cancelOperation(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1584,6 +1785,9 @@ extension Clients.ClusterManagerProtocol {
     try await self.cancelOperation(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
@@ -1605,6 +1809,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getServerConfig(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1616,6 +1823,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getServerConfig(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getServerConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.ServerConfig {
@@ -1649,6 +1859,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listNodePools(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1662,6 +1875,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listNodePools(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listNodePools(
     parent: Swift.String,
   ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse {
@@ -1683,6 +1899,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getNodePool(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1698,6 +1917,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getNodePool(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func getNodePool(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.NodePool {
@@ -1719,6 +1941,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func createNodePool(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1734,6 +1959,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createNodePool(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func createNodePool(
     parent: Swift.String,
     nodePool: NodePool?,
@@ -1757,6 +1985,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deleteNodePool(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1772,6 +2003,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteNodePool(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func deleteNodePool(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1803,6 +2037,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func rollbackNodePoolUpgrade(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1818,6 +2055,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.rollbackNodePoolUpgrade(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func rollbackNodePoolUpgrade(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1862,6 +2102,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setLegacyAbac(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1877,6 +2120,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLegacyAbac(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setLegacyAbac(
     name: Swift.String,
     enabled: Swift.Bool,
@@ -1900,6 +2146,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func startIprotation(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1913,6 +2162,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.startIprotation(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func startIprotation(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1934,6 +2186,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func completeIprotation(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1947,6 +2202,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.completeIprotation(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func completeIprotation(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1980,6 +2238,9 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setNetworkPolicy(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1995,6 +2256,9 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setNetworkPolicy(request: request)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func setNetworkPolicy(
     name: Swift.String,
     networkPolicy: NetworkPolicy?,

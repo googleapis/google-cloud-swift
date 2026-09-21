@@ -24,6 +24,9 @@ public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._
   Sendable
 {
   /// DataAttributeBindings under the given parent Location.
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public var dataAttributeBindings: [DataAttributeBinding] = []
 
   /// Token to retrieve the next page of results, or empty if there are no more
@@ -68,6 +71,9 @@ public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
@@ -88,6 +94,9 @@ public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataAttributeBindings, forKey: .dataAttributeBindings)
@@ -108,10 +117,16 @@ public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func _getPaginatedItems() -> [DataAttributeBinding] {
     return self.dataAttributeBindings
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func _nextPageToken() -> Swift.String {
     return self.nextPageToken
   }

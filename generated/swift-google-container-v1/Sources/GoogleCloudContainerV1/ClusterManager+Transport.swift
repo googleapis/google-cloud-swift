@@ -32,6 +32,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ListClustersResponse {
@@ -126,6 +129,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Cluster {
@@ -238,6 +244,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -330,6 +339,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -441,6 +453,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateNodePool(
       request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -567,6 +582,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setNodePoolAutoscaling(
       request: SetNodePoolAutoscalingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -693,6 +711,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setLoggingService(
       request: SetLoggingServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -804,6 +825,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setMonitoringService(
       request: SetMonitoringServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -915,6 +939,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setAddonsConfig(
       request: SetAddonsConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1026,6 +1053,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setLocations(
       request: SetLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1137,6 +1167,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateMaster(
       request: UpdateMasterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1248,6 +1281,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setMasterAuth(
       request: SetMasterAuthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1359,6 +1395,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1471,6 +1510,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listOperations(
       request: ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ListOperationsResponse {
@@ -1565,6 +1607,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getOperation(
       request: GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -1677,6 +1722,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func cancelOperation(
       request: CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1788,6 +1836,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getServerConfig(
       request: GetServerConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ServerConfig {
@@ -1932,6 +1983,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listNodePools(
       request: ListNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse {
@@ -2044,6 +2098,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func getNodePool(
       request: GetNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.NodePool {
@@ -2171,6 +2228,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func createNodePool(
       request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2282,6 +2342,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func deleteNodePool(
       request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2462,6 +2525,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func rollbackNodePoolUpgrade(
       request: RollbackNodePoolUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2588,6 +2654,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setNodePoolManagement(
       request: SetNodePoolManagementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2714,6 +2783,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setLabels(
       request: SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2825,6 +2897,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setLegacyAbac(
       request: SetLegacyAbacRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -2936,6 +3011,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func startIprotation(
       request: StartIPRotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -3047,6 +3125,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func completeIprotation(
       request: CompleteIPRotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -3158,6 +3239,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setNodePoolSize(
       request: SetNodePoolSizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -3284,6 +3368,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func setNetworkPolicy(
       request: SetNetworkPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {

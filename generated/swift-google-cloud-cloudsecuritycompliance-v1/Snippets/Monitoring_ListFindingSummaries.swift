@@ -22,6 +22,9 @@ import GoogleCloudLocation
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: MonitoringClient, projectId: String, locationId: String) async throws {
   let items = try client.listFindingSummaries(
     byItem: ListFindingSummariesRequest()

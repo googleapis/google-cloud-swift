@@ -195,6 +195,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func deleteMetadataStore(
         request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

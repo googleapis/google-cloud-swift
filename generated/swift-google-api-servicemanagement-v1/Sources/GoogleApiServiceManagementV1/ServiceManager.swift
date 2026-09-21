@@ -66,6 +66,9 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// for.
   ///
   /// @Snippet(path: "ServiceManager_ListServices")
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
   ) throws -> any AsyncSequence<ManagedService, Swift.Error> {
@@ -571,6 +574,9 @@ extension Clients {
     ) throws -> any AsyncSequence<ManagedService, Swift.Error>
 
     /// See `ServiceManagerClient.listServices`.
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     func listServices(
       producerProjectId: Swift.String,
       consumerId: Swift.String,
@@ -906,6 +912,9 @@ extension Clients.ServiceManagerProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func listServices(
     producerProjectId: Swift.String,
     consumerId: Swift.String,

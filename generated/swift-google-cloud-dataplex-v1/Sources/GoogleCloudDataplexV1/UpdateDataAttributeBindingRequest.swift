@@ -25,6 +25,9 @@ public struct UpdateDataAttributeBindingRequest: Codable, Equatable, GoogleWKT._
   public var updateMask: GoogleWKT.FieldMask? = nil
 
   /// Required. Only fields specified in `update_mask` are updated.
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public var dataAttributeBinding: DataAttributeBinding? = nil
 
   /// Optional. Only validate the request, but do not perform mutations.
@@ -66,6 +69,9 @@ public struct UpdateDataAttributeBindingRequest: Codable, Equatable, GoogleWKT._
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
@@ -80,6 +86,9 @@ public struct UpdateDataAttributeBindingRequest: Codable, Equatable, GoogleWKT._
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

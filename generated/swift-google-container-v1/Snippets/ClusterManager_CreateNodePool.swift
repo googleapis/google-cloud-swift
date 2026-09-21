@@ -20,6 +20,9 @@ import Foundation
 import GoogleCloudContainerV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: ClusterManagerClient) async throws {
   let response = try await client.createNodePool(
     request: CreateNodePoolRequest()

@@ -21,6 +21,9 @@ import GoogleBigQueryReservationV1
 import GoogleIAMV1
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: ReservationServiceClient) async throws {
   let items = try client.searchAssignments(
     byItem: SearchAssignmentsRequest()

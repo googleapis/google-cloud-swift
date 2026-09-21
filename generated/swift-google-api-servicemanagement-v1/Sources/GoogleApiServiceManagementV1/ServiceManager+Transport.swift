@@ -36,6 +36,9 @@ extension Clients {
       )
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.ListServicesResponse {

@@ -24,6 +24,9 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDataplexV1.DataTaxonomyServiceClient()
   let items = try client.listDataTaxonomies(

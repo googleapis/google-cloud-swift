@@ -798,6 +798,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func answerQuery(
         request: AnswerQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
@@ -924,6 +927,9 @@
         ).get()
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func streamAnswerQuery(
         request: AnswerQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {

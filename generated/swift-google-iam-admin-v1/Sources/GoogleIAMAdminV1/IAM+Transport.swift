@@ -177,6 +177,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func updateServiceAccount(
       request: ServiceAccount, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -859,6 +862,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func signBlob(
       request: SignBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
@@ -912,6 +918,9 @@ extension Clients {
       ).get()
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func signJwt(
       request: SignJwtRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
