@@ -15,6 +15,10 @@
 import Foundation
 
 /// Strategy for data integrity validation.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum ChecksumValidation: Sendable {
   /// Do not perform client-side checksum validation.
   case none
@@ -35,6 +39,10 @@ public struct ChecksumOptions: Sendable, Hashable {
   public var md5: ChecksumValue?
 
   /// Specifies how a checksum should be provided for validation.
+  ///
+  /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+  ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+  ///   clause in `switch` statements.
   public enum ChecksumValue: Sendable, Hashable, ExpressibleByStringLiteral,
     ExpressibleByIntegerLiteral
   {

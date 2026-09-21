@@ -16,6 +16,10 @@ import Foundation
 import GoogleGax
 
 /// The result of evaluating an error with a ``ResumePolicy``.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum ResumeResult: Sendable {
   /// Resume the transfer from the last verified progress point.
   case resume(RequestError)

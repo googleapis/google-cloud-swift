@@ -15,6 +15,10 @@
 import Foundation
 
 /// Errors thrown by the upload API.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum UploadError: Error, Sendable {
   /// The local source is smaller than the offset reported by GCS.
   /// Indicates the source was modified or truncated.

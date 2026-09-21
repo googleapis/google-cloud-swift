@@ -18,6 +18,10 @@ import GoogleGax
 import GoogleWKT
 
 /// Errors thrown when validating or creating a `CustomerEncryptionKeyOptions`.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum CustomerEncryptionKeyError: Error, Sendable, Equatable,
   CustomStringConvertible
 {
@@ -46,6 +50,10 @@ public enum CustomerEncryptionKeyError: Error, Sendable, Equatable,
 /// Cloud Storage does not permanently store your key in its servers or otherwise manage your key.
 ///
 /// Encryption algorithm used for Customer-Supplied Encryption Keys (CSEK).
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum CustomerEncryptionAlgorithm: String, Sendable, Equatable, CustomStringConvertible {
   /// AES-256 encryption algorithm (default and currently the only supported algorithm in Cloud Storage).
   case aes256 = "AES256"
@@ -203,6 +211,10 @@ extension StoragePreconditions {
 }
 
 /// Predefined ACL options for object uploads.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum PredefinedAcl: String, Sendable, Equatable {
   case authenticatedRead
   case bucketOwnerFullControl
