@@ -328,6 +328,98 @@ Where interoperability with `swift-protobuf` is required, the
 `GoogleWKTConvert` target provides explicit conversions between WKT types
 and protobuf messages.
 
+### Field nullability: Discovery vs. Protobuf APIs
+
+Client libraries in `google-cloud-swift` are generated from two primary
+specification formats:
+
+1. **Protobuf service definitions** (`googleapis/googleapis`): Used by the vast
+   majority of Google Cloud services (such as KMS, Secret Manager, Storage Control,
+   and IAM).
+2. **Google Discovery Documents** (`discoveries/*.json`): Used by services whose
+   primary public API specification is Discovery REST, most notably Google
+   Compute Engine (`swift-google-cloud-compute-v1`) and Google Cloud DNS
+   (`swift-google-cloud-dns-v1`).
+
+These two specification systems have fundamentally different data modeling and
+field presence semantics, which are intentionally reflected in the generated
+Swift APIs:
+
+#### Protobuf scalar fields default to zero values
+
+In Protocol Buffers v3 (`proto3`), singular primitive scalar fields (such as
+`string`, `int64`, `bool`) do not track presence by default unless explicitly
+marked with the `optional` keyword. Protobuf defines default zero values for unset
+scalar fields: empty string (`""`) for strings, `0` for numbers, and `false` for
+booleans.
+
+In generated Swift packages, these fields are modeled as non-optional types with
+sensible default initializers:
+
+```swift
+// Protobuf-generated (e.g., GoogleCloudKMSV1.CryptoKey)
+public var name: Swift.String = Swift.String()
+public var primary: CryptoKeyVersion? = nil // Submessages have presence
+```
+
+Callers can safely read `key.name` without optional unwrapping. Only message fields
+(submessages) and explicitly `optional` fields are modeled as Swift `Optional`.
+
+#### Discovery scalar fields are optional and nullable
+
+Discovery documents describe JSON/REST resource schemas where almost every
+property is inherently optional and nullable. In particular, Google Compute
+Engine (`compute.v1`) treats virtually all properties—including scalar resource
+attributes like `name`, `machineType`, `description`, and `id`—as nullable or
+omittable.
+
+In Compute Engine REST APIs:
+
+- Partial updates (`PATCH`) and resource creation requests make a strict
+  distinction between omitting a field (leaving it unchanged or letting the
+  server assign a default) versus supplying an explicit empty value.
+- Server responses omit fields that are not set, not applicable to the VM state,
+  or unavailable in a given zone.
+
+Because Compute Engine and similar Discovery-based services treat almost every
+field as nullable, the generator models all scalar properties as Swift
+`Optional`:
+
+```swift
+// Discovery-generated (e.g., GoogleCloudComputeV1.Instance)
+public var name: Swift.String? = nil
+public var machineType: Swift.String? = nil
+public var description: Swift.String? = nil
+public var id: Swift.UInt64? = nil
+public var networkInterfaces: [NetworkInterface] = []
+```
+
+#### Why we do not homogenize the models
+
+Unifying the two generators into a single field nullability model would harm both
+APIs:
+
+- **Making Protobuf scalars optional** would introduce unnecessary `nil`
+  unwrapping friction across hundreds of packages where fields have well-defined
+  proto defaults, deviating from idiomatic Swift Protobuf conventions and client
+  libraries in other languages (Go, Java, Python).
+- **Making Discovery scalars non-optional** would violate Compute Engine's REST
+  semantics, preventing clients from omitting fields during partial updates and
+  distorting server responses that omit unset properties.
+
+Instead, the SDK faithfully reflects the native semantics of each underlying
+specification. When writing code that consumes both kinds of packages, expect
+Discovery scalar fields to be optional and handle them using optional binding,
+nil-coalescing (`instance.name ?? ""`), or optional chaining.
+
+#### Protocol conformance and property naming
+
+Discovery schemas may include property names such as `description: Swift.String?`.
+Because this property is optional (`String?`), it does not satisfy the standard
+library's `CustomStringConvertible.description: String { get }` requirement.
+Per our public API guidelines in `doc/public-api.md`, application code should not
+attempt to conform SDK generated types to external standard library protocols.
+
 ### Separate namespace for fields vs. options
 
 Request parameters belong to the request struct (e.g. `CreateSecretRequest`),
