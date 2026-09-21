@@ -1,6 +1,6 @@
 # ``UserGuide``
 
-The client libraries use Swift 6.0 to access Google Cloud using asynchronous,
+The client libraries use Swift to access Google Cloud using asynchronous,
 memory-safe, and thread-safe APIs.
 
 ## Overview

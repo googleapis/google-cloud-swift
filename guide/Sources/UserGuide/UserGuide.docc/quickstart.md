@@ -49,10 +49,13 @@ swift package init --name Quickstart --type executable
 
 ## Configure the platforms
 
-The Google Cloud client libraries only support macOS >= 15, while
-`swift package init` defaults to much older versions. Edit the `Package.swift`
-project to insert a `platforms: [ .macOS(.v15) ]` directive. The delta should
-look like this:
+The Google Cloud client libraries fully support Linux without requiring any
+platform configuration in `Package.swift`.
+
+When building for Apple platforms, the client libraries require macOS 15 or
+later. Because `swift package init` defaults to older macOS deployment targets,
+edit `Package.swift` to add a `platforms: [ .macOS(.v15) ]` directive if you are
+developing or deploying on macOS. The delta should look like this:
 
 ```diff
 diff --git a/Package.swift b/Package.swift

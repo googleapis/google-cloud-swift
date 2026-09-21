@@ -14,9 +14,8 @@ information and best practices to keep your toolchain and libraries up-to-date.
 
 ## Minimum supported Swift version
 
-The Swift client libraries support and test against the last 3 minor releases of
-Swift (currently 6.2, 6.3, and 6.4). For more information on Cloud client
-libraries, see [Client libraries explained].
+As mentioned, the minimum supported version is Swift 6.2. For more information
+on Cloud client libraries, see [Client libraries explained].
 
 Our Swift client libraries increment the major version when dropping
 compatibility with a Swift major version. For more information about the use
