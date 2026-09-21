@@ -15,6 +15,10 @@
 import Foundation
 
 /// Represents any error occurring during credentials resolution or initialization.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum CredentialsError: Error, Sendable {
   /// Indicates that the requested operation or credential type is not supported by the current backend.
   ///

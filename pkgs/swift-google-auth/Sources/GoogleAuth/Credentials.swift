@@ -45,6 +45,10 @@ public typealias AuthHeaders = [(String, String)]
 ///
 /// See [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111) and
 /// [OAuth 2.0 Scopes](https://developers.google.com/identity/protocols/oauth2/scopes).
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum AccessSpecifier: Sendable, Hashable {
   /// Sets the target audience (`aud`) claim in the token.
   ///
@@ -79,6 +83,10 @@ public enum AccessSpecifier: Sendable, Hashable {
 }
 
 /// Defines the configurations for authenticating Google Cloud API requests.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum CredentialsConfiguration: Sendable {
   /// Automatically resolves credentials using Application Default Credentials (ADC).
   ///
@@ -212,6 +220,10 @@ public enum CredentialsConfiguration: Sendable {
 /// [Workforce Identity Federation](https://cloud.google.com/iam/docs/workforce-identity-federation).
 public struct ExternalAccountConfig: Sendable {
   /// Defines how the external subject token is supplied.
+  ///
+  /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+  ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+  ///   clause in `switch` statements.
   public enum CredentialSource: Sendable {
     /// The subject token is resolved programmatically via a custom callback.
     case programmatic(subjectTokenProvider: any SubjectTokenProvider)
