@@ -48,11 +48,11 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
     #expect(
-      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "my-quota-project" },
+      headers["x-goog-user-project"] == "my-quota-project",
       "Missing quota project ID header in \(headers)"
     )
   }
@@ -90,7 +90,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -125,7 +125,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-override-token" },
+      headers["Authorization"] == "Bearer mock-override-token",
       "Missing authorization header in \(headers) for overridden MDS host"
     )
   }
@@ -212,7 +212,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -247,7 +247,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -343,7 +343,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -389,7 +389,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -449,7 +449,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -484,7 +484,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -521,7 +521,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -556,7 +556,7 @@ import Testing
     let headers = try await provider.headers()
 
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      headers["Authorization"] == "Bearer mock-token",
       "Missing authorization header in \(headers)"
     )
   }

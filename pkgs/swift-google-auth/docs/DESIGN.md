@@ -182,17 +182,17 @@ The library delegates credential resolution to concrete internal sources
 conforming to the `CredentialsProvider` protocol. This internal protocol
 handles token retrieval and formatting.
 
-HTTP headers are represented as `AuthHeaders` (which is a typealias for an
-array of key-value tuples `[(String, String)]`) rather than a dictionary, ensuring
-native support for duplicate header names (which HTTP permits) and full backward
-compatibility with the GAX package and test suites.
+HTTP headers are represented as `AuthHeaders`, an ordered collection of name-value
+pairs, rather than a dictionary. This gives native support for duplicate header names
+(which HTTP permits) while keeping the type `Equatable`, so callers and tests can
+compare header sets directly.
 
 ```swift
 /// A type that can provide authentication headers for Google Cloud API requests.
 protocol CredentialsProvider: Sendable {
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
-  /// - Returns: An array of key-value tuples representing HTTP headers.
+  /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
 
   /// Retrieves the universe domain associated with the credentials.

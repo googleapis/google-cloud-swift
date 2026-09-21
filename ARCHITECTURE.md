@@ -470,9 +470,9 @@ Features include:
 - **Multiple credential flows:** Supports explicit service account keys (with
   local JWS signing), authorized user credentials, Workforce Identity
   Federation (external account STS token exchange), and API keys.
-- **Multi-header support:** Authentication providers return `AuthHeaders`
-  (`[(String, String)]`), allowing credentials that require multiple headers,
-  duplicate header keys, or non-token schemes.
+- **Multi-header support:** Authentication providers return `AuthHeaders`, an ordered
+  collection of name-value pairs, allowing credentials that require multiple headers,
+  duplicate header names, or non-token schemes.
 - **Token caching:** Credentials automatically cache tokens in memory (`TokenCache`)
   and refresh them proactively before expiration.
 

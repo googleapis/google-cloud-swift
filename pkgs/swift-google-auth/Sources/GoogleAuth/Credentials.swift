@@ -27,15 +27,6 @@ import Foundation
 /// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
 package let defaultUniverseDomain = "googleapis.com"
 
-/// Represents the HTTP request header fields required to authenticate a Google Cloud API request.
-///
-/// Formatted as an array of key-value tuples to natively support duplicate header names.
-/// Common headers produced include:
-/// - `Authorization: Bearer <token>`: An OAuth 2.0 access token or self-signed JWT.
-/// - `x-goog-api-key: <key>`: An API key identifying the calling project.
-/// - `x-goog-user-project: <project-id>`: An optional project ID used for billing and quota attribution.
-public typealias AuthHeaders = [(String, String)]
-
 /// Represents the access specifier for a service account based token,
 /// specifying either OAuth 2.0 scopes or a JWT audience.
 ///
@@ -322,7 +313,7 @@ public struct ExternalAccountConfig: Sendable {
 protocol CredentialsProvider: Sendable {
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
-  /// - Returns: An array of key-value tuples representing HTTP headers.
+  /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
 
   /// Retrieves the universe domain associated with the credentials.
@@ -375,7 +366,7 @@ public struct Credentials: Sendable {
   ///
   /// Returns cached headers if valid, or waits for an active refresh if the token is missing or expired.
   ///
-  /// - Returns: An array of key-value tuples representing HTTP headers.
+  /// - Returns: The HTTP header fields to apply to the request.
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
   }

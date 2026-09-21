@@ -28,6 +28,11 @@
 ///   request.addHeader(name: name, value: value)
 /// }
 /// ```
+///
+/// Two collections are equal when they hold the same fields in the same order, comparing names
+/// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
+/// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)``,
+/// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
 public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
@@ -46,6 +51,9 @@ public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage = headers
   }
 
+  /// Creates a collection from an array literal of header fields.
+  ///
+  /// - Parameter elements: The header fields, in the order they should be applied.
   public init(arrayLiteral elements: Element...) {
     self.storage = elements
   }
@@ -59,13 +67,50 @@ public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage.append((name: name, value: value))
   }
 
-  /// Returns whether two collections hold the same header fields in the same order.
+  /// The value of the first field whose name matches `name`, ignoring case.
   ///
-  /// This cannot be synthesized: tuples do not conform to `Equatable`, so neither does the
-  /// underlying storage.
+  /// - Parameter name: The header field name to look up.
+  /// - Returns: The matching value, or `nil` when no field has that name.
+  public subscript(name: String) -> String? {
+    self.storage.first { Self.namesMatch($0.name, name) }?.value
+  }
+
+  /// The values of every field whose name matches `name`, ignoring case, in order.
+  ///
+  /// - Parameter name: The header field name to look up.
+  /// - Returns: The matching values, or an empty array when no field has that name.
+  public func values(for name: String) -> [String] {
+    self.storage
+      .filter { Self.namesMatch($0.name, name) }
+      .map(\.value)
+  }
+
+  /// Returns whether any field has the given name, ignoring case.
+  ///
+  /// - Parameter name: The header field name to look up.
+  public func contains(name: String) -> Bool {
+    self.storage.contains { Self.namesMatch($0.name, name) }
+  }
+
+  /// Compares HTTP field names using ASCII case folding, as required by RFC 9110.
+  ///
+  /// Deliberately avoids `lowercased()` and `caseInsensitiveCompare`, which apply Unicode case
+  /// folding and would treat characters outside the ASCII range as equivalent.
+  private static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
+    let lhs = lhs.utf8
+    let rhs = rhs.utf8
+    guard lhs.count == rhs.count else { return false }
+    return zip(lhs, rhs).allSatisfy { left, right in
+      // Bit 0x20 distinguishes case for ASCII letters, but also for unrelated byte pairs such as
+      // "-" (0x2D) and a carriage return (0x0D), so the folded byte must itself be a letter.
+      left == right || ((left | 0x20) == (right | 0x20) && (0x61...0x7A).contains(left | 0x20))
+    }
+  }
+
+  // Equality cannot be synthesized: tuples do not conform to `Equatable`, so neither does the
+  // underlying storage.
   public static func == (lhs: AuthHeaders, rhs: AuthHeaders) -> Bool {
-    lhs.storage.count == rhs.storage.count
-      && zip(lhs.storage, rhs.storage).allSatisfy { $0 == $1 }
+    lhs.storage.elementsEqual(rhs.storage, by: ==)
   }
 }
 

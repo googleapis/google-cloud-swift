@@ -102,7 +102,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let headers = try await source.headers()
     #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "test-token-type test-access-token" },
+      headers["Authorization"] == "test-token-type test-access-token",
       "Missing authorization header in \(headers)"
     )
   }
@@ -183,9 +183,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let headers = try await source.headers()
     #expect(
-      headers.contains {
-        $0.0 == "Authorization" && $0.1 == "test-token-type test-access-token-with-scopes"
-      },
+      headers["Authorization"] == "test-token-type test-access-token-with-scopes",
       "Missing authorization header in \(headers)"
     )
   }
@@ -383,7 +381,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     #expect(results.count == 10)
     for headers in results {
       #expect(
-        headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer concurrent-token" },
+        headers["Authorization"] == "Bearer concurrent-token",
         "Missing authorization header in \(headers)"
       )
     }
@@ -542,8 +540,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     // Now headers() should succeed using the cached token
     let headers = try await source.headers()
-    #expect(
-      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer recovered-timeout-token" })
+    #expect(headers["Authorization"] == "Bearer recovered-timeout-token")
     #expect(attempts.getCount() == 2)
   }
 
@@ -584,8 +581,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
 
     let headers = try await source.headers()
-    #expect(
-      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "user-json-quota-proj" })
+    #expect(headers["x-goog-user-project"] == "user-json-quota-proj")
   }
 
   @Test func headersQuotaProjectParameterOverridesUserAccountData() async throws {
@@ -626,9 +622,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
 
     let headers = try await source.headers()
-    #expect(
-      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "override-quota-proj" })
-    #expect(
-      !headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "user-json-quota-proj" })
+    #expect(headers["x-goog-user-project"] == "override-quota-proj")
+    #expect(headers["x-goog-user-project"] != "user-json-quota-proj")
   }
 }

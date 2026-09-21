@@ -253,11 +253,8 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     let headers = try await creds.headers()
-    #expect(
-      headers.contains {
-        $0.0 == "Authorization" && $0.1 == "Bearer ya29.fake-sts-access-token"
-      })
-    #expect(headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "quota-project" })
+    #expect(headers["Authorization"] == "Bearer ya29.fake-sts-access-token")
+    #expect(headers["x-goog-user-project"] == "quota-project")
   }
 
   @Test("Programmatic credentials retry correctly on transient errors")
@@ -309,7 +306,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
 
     // The call should succeed because the internal retry engine resolves it
     let headers = try await creds.headers()
-    #expect(headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer ya29.success-token" })
+    #expect(headers["Authorization"] == "Bearer ya29.success-token")
   }
 
   @Test("Programmatic credentials do not retry on non-transient failures")
@@ -427,10 +424,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     let headers = try await creds.headers()
-    #expect(
-      headers.contains {
-        $0.0 == "Authorization" && $0.1 == "Bearer ya29.sts-direct-token"
-      })
+    #expect(headers["Authorization"] == "Bearer ya29.sts-direct-token")
   }
 
   @Test(
@@ -500,11 +494,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     let headers = try await creds.headers()
-    #expect(
-      headers.contains {
-        $0.0 == "Authorization"
-          && $0.1 == "Bearer ya29.success-after-retries"
-      })
+    #expect(headers["Authorization"] == "Bearer ya29.success-after-retries")
     #expect(attempts.getCount() == 3)
   }
 

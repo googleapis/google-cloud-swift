@@ -47,7 +47,7 @@ We define functional and non-functional requirements using a binary classificati
 ### Non-Functional Requirements
 *   **JWS Signing Latency**: Local cryptographic signature computation for JWS assertions MUST have reasonable performance suitable for a one-off operation (as tokens are cached and refreshed hourly). Sub-millisecond signing latency is not a requirement.
 *   **Thread Safety**: All stateful token operations, caching, and background refreshing MUST be completely thread-safe and free of data races, implemented natively via Swift structured concurrency and Actor isolation.
-*   **GAX Backward Compatibility**: The library MUST maintain complete public API compatibility with GAX `HTTPClient` and generated mono-repo libraries, preserving `AuthHeaders` as duplicate-supporting arrays of key-value tuples.
+*   **GAX Backward Compatibility**: The library MUST maintain complete public API compatibility with GAX `HTTPClient` and generated mono-repo libraries, preserving `AuthHeaders` as an ordered, duplicate-supporting collection of name-value pairs.
 *   **Acyclic Dependency Boundaries**: The authentication library MUST remain completely independent of `GoogleGax`.
 
 ---

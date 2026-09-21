@@ -120,11 +120,7 @@ import Testing
     )
 
     let headers = try await credentials.headers()
-    #expect(headers.count == 1)
-    #expect(
-      headers.contains { $0.0 == "x-goog-api-key" && $0.1 == "test-api-key" },
-      "Missing x-goog-api-key header in \(headers)"
-    )
+    #expect(headers == [("x-goog-api-key", "test-api-key")])
 
     let ud = await credentials.universeDomain()
     #expect(ud == nil)

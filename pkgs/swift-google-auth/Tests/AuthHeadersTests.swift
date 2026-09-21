@@ -20,8 +20,11 @@ import Testing
   @Test func emptyByDefault() {
     let headers = AuthHeaders()
     #expect(headers.isEmpty)
-    #expect(headers.count == 0)
     #expect(headers == [])
+  }
+
+  @Test func emptyArrayInitializerMatchesDefault() {
+    #expect(AuthHeaders([]) == AuthHeaders())
   }
 
   @Test func arrayLiteralPreservesOrder() {
@@ -43,7 +46,14 @@ import Testing
     #expect(headers == [("x-goog-ext", "first"), ("x-goog-ext", "second")])
   }
 
-  @Test func equalityMatchesOnNameValueAndOrder() {
+  @Test func appendExtendsExistingHeaders() {
+    var headers: AuthHeaders = [("Authorization", "Bearer token")]
+    headers.append(name: "x-goog-user-project", value: "my-project")
+
+    #expect(headers == [("Authorization", "Bearer token"), ("x-goog-user-project", "my-project")])
+  }
+
+  @Test func equalityRequiresSameNamesAndValues() {
     let headers: AuthHeaders = [("a", "1"), ("b", "2")]
 
     #expect(headers == [("a", "1"), ("b", "2")])
@@ -79,12 +89,50 @@ import Testing
     #expect(visited == ["a=1", "b=2"])
   }
 
-  @Test func exposesRandomAccessCollectionMembers() {
+  @Test func supportsIndexedAccess() {
     let headers: AuthHeaders = [("a", "1"), ("b", "2"), ("c", "3")]
 
     #expect(headers.first?.name == "a")
     #expect(headers.last?.value == "3")
     #expect(headers[1] == ("b", "2"))
     #expect(headers.contains { $0.name == "c" })
+  }
+
+  @Test func lookupIgnoresNameCase() {
+    let headers: AuthHeaders = [
+      ("Authorization", "Bearer token"),
+      ("x-goog-user-project", "my-project"),
+    ]
+
+    #expect(headers["AUTHORIZATION"] == "Bearer token")
+    #expect(headers["x-goog-USER-project"] == "my-project")
+    #expect(headers.contains(name: "authorization"))
+    #expect(headers.values(for: "AUTHORIZATION") == ["Bearer token"])
+  }
+
+  @Test func lookupMissesUnknownNames() {
+    let headers: AuthHeaders = [("Authorization", "Bearer token")]
+
+    #expect(headers["x-goog-api-key"] == nil)
+    #expect(!headers.contains(name: "x-goog-api-key"))
+    #expect(headers.values(for: "x-goog-api-key").isEmpty)
+  }
+
+  @Test func lookupReturnsFirstOfDuplicateNamesAndValuesReturnsAll() {
+    let headers: AuthHeaders = [("x-goog-ext", "first"), ("X-Goog-Ext", "second")]
+
+    #expect(headers["x-goog-ext"] == "first")
+    #expect(headers.values(for: "x-goog-ext") == ["first", "second"])
+  }
+
+  @Test func lookupFoldsOnlyASCIICase() {
+    // Unicode case folding maps "İ" (U+0130) toward "i"; ASCII folding must keep them distinct.
+    let headers: AuthHeaders = [("i", "1")]
+    #expect(headers["İ"] == nil)
+
+    // "-" (0x2D) and a carriage return (0x0D) differ only in the bit that distinguishes ASCII
+    // letter case, so they must not be folded together either.
+    let dashed: AuthHeaders = [("x-a", "1")]
+    #expect(dashed["x\ra"] == nil)
   }
 }

@@ -99,13 +99,13 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   ///
   /// Includes `Authorization: Bearer <token>` and, if configured, `x-goog-user-project: <quotaProjectID>`.
   ///
-  /// - Returns: An array of key-value header pairs.
+  /// - Returns: The HTTP header fields to apply to the request.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server cannot be reached or returns an error.
-  func headers() async throws -> [(String, String)] {
+  func headers() async throws -> AuthHeaders {
     let token = try await self.cache.token()
-    var headers = [("Authorization", "Bearer \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "Bearer \(token.accessToken)")]
     if let quota = self.provider.quotaProjectID {
-      headers.append(("x-goog-user-project", quota))
+      headers.append(name: "x-goog-user-project", value: quota)
     }
     return headers
   }

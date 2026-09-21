@@ -113,7 +113,7 @@ where C.Instant.Duration == Duration {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
     if let quotaProjectID = quotaProjectID {
-      headers.append(("x-goog-user-project", quotaProjectID))
+      headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
     return headers
   }
