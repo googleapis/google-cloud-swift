@@ -622,7 +622,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
 
     let headers = try await source.headers()
-    #expect(headers["x-goog-user-project"] == "override-quota-proj")
-    #expect(headers["x-goog-user-project"] != "user-json-quota-proj")
+    #expect(headers.values(for: "x-goog-user-project") == ["override-quota-proj"])
   }
 }

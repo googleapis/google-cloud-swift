@@ -33,7 +33,7 @@
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
 /// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
-public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
+public struct AuthHeaders: Sendable, Equatable, Hashable, ExpressibleByArrayLiteral {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
@@ -67,6 +67,15 @@ public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage.append((name: name, value: value))
   }
 
+  /// Appends the elements of a sequence of name-value pairs to the collection.
+  ///
+  /// - Parameter elements: The header fields to append.
+  public mutating func append(contentsOf elements: some Sequence<(String, String)>) {
+    for (name, value) in elements {
+      self.storage.append((name: name, value: value))
+    }
+  }
+
   /// The value of the first field whose name matches `name`, ignoring case.
   ///
   /// - Parameter name: The header field name to look up.
@@ -92,25 +101,33 @@ public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage.contains { Self.namesMatch($0.name, name) }
   }
 
-  /// Compares HTTP field names using ASCII case folding, as required by RFC 9110.
+  /// Compares HTTP field names case-insensitively, as RFC 9110 requires.
   ///
-  /// Deliberately avoids `lowercased()` and `caseInsensitiveCompare`, which apply Unicode case
-  /// folding and would treat characters outside the ASCII range as equivalent.
+  /// Folds ASCII case only. `lowercased()` and `caseInsensitiveCompare` apply Unicode case
+  /// folding, which would match "İ" (U+0130) against "i".
   private static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
-    let lhs = lhs.utf8
-    let rhs = rhs.utf8
-    guard lhs.count == rhs.count else { return false }
-    return zip(lhs, rhs).allSatisfy { left, right in
-      // Bit 0x20 distinguishes case for ASCII letters, but also for unrelated byte pairs such as
-      // "-" (0x2D) and a carriage return (0x0D), so the folded byte must itself be a letter.
-      left == right || ((left | 0x20) == (right | 0x20) && (0x61...0x7A).contains(left | 0x20))
-    }
+    guard lhs.utf8.count == rhs.utf8.count else { return false }
+    return lhs.utf8.elementsEqual(rhs.utf8) { toASCIILower($0) == toASCIILower($1) }
+  }
+
+  /// Returns the lowercase form of an ASCII letter, leaving every other byte unchanged.
+  private static func toASCIILower(_ byte: UInt8) -> UInt8 {
+    (0x41...0x5A).contains(byte) ? byte + 0x20 : byte
   }
 
   // Equality cannot be synthesized: tuples do not conform to `Equatable`, so neither does the
   // underlying storage.
   public static func == (lhs: AuthHeaders, rhs: AuthHeaders) -> Bool {
-    lhs.storage.elementsEqual(rhs.storage, by: ==)
+    guard lhs.storage.count == rhs.storage.count else { return false }
+    return lhs.storage.elementsEqual(rhs.storage, by: ==)
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.storage.count)
+    for (name, value) in self.storage {
+      hasher.combine(name)
+      hasher.combine(value)
+    }
   }
 }
 
@@ -120,4 +137,11 @@ extension AuthHeaders: RandomAccessCollection {
   public var endIndex: Int { self.storage.endIndex }
 
   public subscript(position: Int) -> Element { self.storage[position] }
+}
+
+extension AuthHeaders: RangeReplaceableCollection {
+  public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C)
+  where C: Collection, C.Element == Element {
+    self.storage.replaceSubrange(subrange, with: newElements)
+  }
 }
