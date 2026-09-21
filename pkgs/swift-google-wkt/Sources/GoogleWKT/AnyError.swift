@@ -15,6 +15,10 @@
 import Foundation
 
 /// An error that occurs when extracting messages from an ``Any``.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum AnyError: Error {
   /// The typeUrl of the message does not match the contents in the `Any`.
   ///

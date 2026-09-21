@@ -342,6 +342,10 @@ extension Timestamp: _AnyPackable {
 }
 
 /// An error type for the `Timestamp` initializer.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum TimestampError: Error {
   /// The seconds or nanosecond components are out of range.
   case outOfRange

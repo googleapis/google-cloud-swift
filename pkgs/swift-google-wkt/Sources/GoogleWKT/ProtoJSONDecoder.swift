@@ -268,7 +268,9 @@ extension InternalUnkeyedDecodingContainer: UnkeyedDecodingContainer {
 /// the JSON representation.
 ///
 /// [ProtoJSON]: https://protobuf.dev/programming-guides/json/
-/// [Protobuf]: https://protobuf.dev/
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum ProtoJSONError: Error {
   case unsupportedType(String)
 }

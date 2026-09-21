@@ -20,6 +20,10 @@ import Foundation
 /// null, a number, a string, a boolean, a recursive struct value, or a
 /// list of values. A producer of value is expected to set one of these
 /// variants. Absence of any variant is an invalid state.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum Value: Codable, Equatable, Sendable {
   /// Represents a JSON `null`.
   case null(NullValue)

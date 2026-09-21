@@ -169,6 +169,10 @@ extension Duration: _AnyPackable {
 }
 
 /// An error type for the `Duration` initializer.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum DurationError: Error {
   /// The seconds and nanosecond signs did no match.
   case mismatchedSigns
