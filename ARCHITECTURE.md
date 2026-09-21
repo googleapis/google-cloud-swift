@@ -288,6 +288,31 @@ Each Google Cloud service and version has its own Swift package (for example,
   `ci/test.sh`, and `ci/package-dependencies.sh`) temporarily override remote
   references with local monorepo checkouts.
 
+#### Split repositories and distribution
+
+Each Google Cloud package is published to its own standalone GitHub repository under
+`https://github.com/googleapis/<package-name>` (for example, `https://github.com/googleapis/swift-google-auth`
+or `https://github.com/googleapis/swift-google-rpc`). We split packages into separate repositories
+for several practical reasons:
+
+- **Independent Versioning:** Different Google Cloud APIs mature and evolve at different paces.
+  Separate repositories allow each service package to be versioned, tagged, and released independently
+  without bumping the entire SDK.
+- **Smaller Download Sizes:** Most applications only need a handful of services (e.g. Cloud Storage
+  or Secret Manager). If all 200+ clients were distributed solely in a single repository, Swift Package
+  Manager would force consumers to clone the entire monorepo with its full history, significantly slowing
+  down dependency resolution and CI pipelines.
+- **Compatibility with SPM:** Swift Package Manager performs full git checkouts for dependencies. Distributing
+  individual service repositories provides a lightweight, modular dependency graph.
+
+**Contribution and Release Model:**
+
+The split repositories are strictly read-only distribution artifacts. We do not accept pull requests,
+track issues, or perform development in the split repositories. All source code, tests, documentation,
+and issue tracking reside exclusively in the `google-cloud-swift` monorepo. During the release process,
+tooling (`librarian split` and `librarian publish`) extracts the package subtree and synchronizes commits
+to the corresponding standalone distribution repository.
+
 ### Handwritten vs. generated clients
 
 Most Google Cloud APIs are straightforward request-response or streaming
