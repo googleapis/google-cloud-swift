@@ -149,7 +149,7 @@ do {
         print("Transport I/O error: \(ioError)")
     case .exhausted(let exhausted):
         print("Retries exhausted after \(exhausted.maximumDuration): \(exhausted.source)")
-    default:
+    @unknown default:
         print("Request failed: \(error)")
     }
 }

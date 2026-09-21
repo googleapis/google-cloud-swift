@@ -11,7 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+/// Errors that can occur during protobuf conversions.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum ProtobufConversionError: Error, CustomStringConvertible, Sendable, Equatable {
   /// Thrown when an unknown string enum value is serialized back to binary protobuf raw value.
   case noIntegerValue(enumType: String, stringValue: String)

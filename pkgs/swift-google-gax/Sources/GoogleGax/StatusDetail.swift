@@ -17,6 +17,11 @@ import GoogleRpc
 import GoogleWKT
 
 /// Additional information accompanying service errors.
+///
+/// - Note: As Google Cloud APIs evolve, new detail types may be added as dedicated cases to this
+///   enumeration. Always include an `@unknown default:` clause when switching over this type.
+///   Do not inspect the `.other` case expecting specific payload types to remain unparsed, as
+///   unrecognized types may be promoted to dedicated cases in future releases.
 public enum StatusDetail: Equatable, Sendable {
   /// Describes violations in a client request.
   ///
@@ -69,6 +74,9 @@ public enum StatusDetail: Equatable, Sendable {
   case retryInfo(GoogleRpc.RetryInfo)
 
   /// Other details (represented as Any).
+  ///
+  /// - Warning: Future releases may promote specific payload types out of `.other` into dedicated
+  ///   enum cases. Do not rely on specific error details matching this case.
   case other(GoogleWKT.`Any`)
 }
 

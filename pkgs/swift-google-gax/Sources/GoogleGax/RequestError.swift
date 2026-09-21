@@ -20,6 +20,10 @@ import Foundation
 /// an invalid endpoint, the network may experience a temporary problem, there may be problems
 /// trying to create the authentication tokens, or the service may reject the request, to name just
 /// a few.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum RequestError: Error {
   /// Cannot construct the URL path to send the request.
   ///

@@ -15,6 +15,10 @@
 import Foundation
 
 /// Errors that can occur when building a retry throttler.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum RetryThrottlerError: Error {
   /// The scaling factor is out of range (must be >= 0.0).
   case scalingOutOfRange(Double)

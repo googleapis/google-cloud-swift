@@ -17,6 +17,10 @@ import Foundation
 /// The result of a loop control decision.
 ///
 /// Application developers only need to use this type when implementing their own retry policies.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
 public enum RetryResult: Sendable {
   /// The error is non-retryable, stop the loop.
   case permanent(RequestError)
