@@ -59,12 +59,12 @@ let rfc3339DateTimeLength = 19
 ///
 /// For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017.
 public struct Timestamp: Codable, Equatable, Sendable {
-  /// The maximum value for the `seconds` component.
+  /// The minimum value for the `seconds` component.
   ///
   /// Corresponds to 0001-01-01T00:00:00Z
   static public let minSeconds: Int64 = -62_135_596_800
 
-  /// The minimum value for the `seconds` component, approximately  years.
+  /// The maximum value for the `seconds` component.
   ///
   /// Corresponds to 9999-12-31T23:59:59Z
   static public let maxSeconds: Int64 = 253_402_300_799
