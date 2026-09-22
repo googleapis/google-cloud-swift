@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
 
 /// Represents an error while trying to make a request to Google Cloud.
 ///
@@ -112,46 +111,10 @@ public enum RequestError: Error {
   /// Typically, this indicates an invalid URL in the client's endpoint. The client library is
   /// unable to form a valid HTTP request. Review how you configured the client.
   case badURL(String)
-
-  /// Creates a `.service` request error from a status code, message, and optional details.
-  public static func service(
-    code: GoogleRpc.Code,
-    message: String,
-    details: [StatusDetail] = [],
-    httpStatusCode: Int? = nil
-  ) -> RequestError {
-    .service(
-      ServiceError(
-        code: code,
-        message: message,
-        details: details,
-        httpStatusCode: httpStatusCode
-      ))
-  }
-}
-
-extension RequestError: Equatable {
-  public static func == (lhs: RequestError, rhs: RequestError) -> Bool {
-    switch (lhs, rhs) {
-    case (.binding(let l), .binding(let r)): return l == r
-    case (.http(let l), .http(let r)): return l == r
-    case (.io(let l), .io(let r)):
-      if let el = l as? RequestError, let er = r as? RequestError {
-        return el == er
-      }
-      return (l as NSError) == (r as NSError)
-    case (.service(let l), .service(let r)): return l == r
-    case (.unimplemented, .unimplemented): return true
-    case (.exhausted(let l), .exhausted(let r)): return l == r
-    case (.malformedResponse(let l), .malformedResponse(let r)): return l == r
-    case (.badURL(let l), .badURL(let r)): return l == r
-    default: return false
-    }
-  }
 }
 
 /// The details for ``RequestError/http(_:)``.
-public struct HTTPDetails: Sendable, Equatable {
+public struct HTTPDetails: Sendable {
   /// The HTTP status code.
   public let httpStatusCode: Int
 
@@ -174,7 +137,7 @@ public struct HTTPDetails: Sendable, Equatable {
 }
 
 /// The details for ``RequestError/exhausted(_:)``.
-public struct LimitedElapsedTimeError: Error, Sendable, Equatable {
+public struct LimitedElapsedTimeError: Error, Sendable {
   /// The maximum duration allowed by the policy.
   public let maximumDuration: Duration
 

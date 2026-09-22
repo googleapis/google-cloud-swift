@@ -43,9 +43,12 @@ import Testing
     }
   }
 
-  @Test func equatableAndRequestErrorComparison() {
+  @Test func equatableConformance() {
     let expected = ServiceError(code: .permissionDenied, message: "denied")
-    let caught: RequestError = .service(code: .permissionDenied, message: "denied")
+    let actual = ServiceError(code: .permissionDenied, message: "denied")
+    #expect(actual == expected)
+
+    let caught: RequestError = .service(actual)
     #expect(caught == .service(expected))
 
     let differentCode = ServiceError(code: .unauthenticated, message: "denied")
