@@ -116,10 +116,24 @@ import Testing
   }
 
   @Test func attemptTimeoutDefaultWhenNil() {
-    let defaultOptions = ClientOptions()
+    let defaultOptions = ClientOptions().with { $0.attemptTimeout = nil }
     let requestOptions = RequestOptions()
     let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
     #expect(loop.attemptTimeout == nil)
+  }
+
+  @Test func attemptTimeoutInheritedFromClientOptions() {
+    let defaultOptions = ClientOptions()
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.attemptTimeout == .seconds(15))
+  }
+
+  @Test func attemptTimeoutRequestOverridesClientOptions() {
+    let defaultOptions = ClientOptions().with { $0.attemptTimeout = .seconds(30) }
+    let requestOptions = RequestOptions().with { $0.attemptTimeout = .seconds(5) }
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.attemptTimeout == .seconds(5))
   }
 
   @Test func attemptTimeoutPassedToInner() async throws {

@@ -105,6 +105,13 @@ public struct ClientOptions: Sendable {
   /// [swift-log]: https://swiftpackageindex.com/apple/swift-log/
   public var logger: Logger? = nil
 
+  /// Configures the client's per-attempt timeout for all requests.
+  ///
+  /// By default the clients use a per-attempt timeout of 15 seconds (approximately 1/4 of the
+  /// default 60-second retry loop maximum duration). Setting this to `nil` disables the per-attempt
+  /// timeout, leaving the attempt duration bounded only by the overall retry policy.
+  public var attemptTimeout: Duration? = defaultAttemptTimeout()
+
   /// Configures the client's retry policy.
   ///
   /// By default the clients use ``BaseRetryPolicy`` with a limit of 60 seconds or 10 attempts.
@@ -131,6 +138,10 @@ public struct ClientOptions: Sendable {
   /// By default the clients use ``ExponentialBackoff`` with an initial backoff of 1 seconds,
   /// doubling each time the default initialization.
   public var pollingBackoffPolicy: any BackoffPolicy = defaultPollingBackoffPolicy()
+}
+
+func defaultAttemptTimeout() -> Duration? {
+  .seconds(15)
 }
 
 func defaultRetryPolicy() -> any RetryPolicy {
