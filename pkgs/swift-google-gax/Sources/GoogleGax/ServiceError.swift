@@ -16,7 +16,7 @@ import Foundation
 import GoogleRpc
 
 /// The details for ``RequestError/service(_:)``.
-public struct ServiceError: Sendable {
+public struct ServiceError: Sendable, Error, Equatable, CustomStringConvertible {
   /// The status code.
   public let code: GoogleRpc.Code
   /// The error message.
@@ -30,22 +30,26 @@ public struct ServiceError: Sendable {
   public init(
     code: GoogleRpc.Code,
     message: String,
-    details: [StatusDetail] = []
-  ) {
-    self.init(code: code, message: message, details: details, httpStatusCode: nil)
-  }
-
-  /// Create a new `ServiceError`.
-  public init(
-    code: GoogleRpc.Code,
-    message: String,
     details: [StatusDetail] = [],
-    httpStatusCode: Int?
+    httpStatusCode: Int? = nil
   ) {
     self.code = code
     self.message = message
     self.details = details
     self.httpStatusCode = httpStatusCode
+  }
+
+  public var description: String {
+    let codeStr = code.stringValue ?? code.intValue.map(String.init) ?? "\(code)"
+    var header = codeStr
+    if let httpStatusCode {
+      header += " (HTTP \(httpStatusCode))"
+    }
+    var result = "\(header): \(message)"
+    if !details.isEmpty {
+      result += " \(details)"
+    }
+    return result
   }
 }
 
