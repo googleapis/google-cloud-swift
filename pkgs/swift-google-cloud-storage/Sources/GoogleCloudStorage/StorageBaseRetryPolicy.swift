@@ -23,8 +23,8 @@ import GoogleRpc
 /// `deadlineExceeded`, and `internal`).
 ///
 /// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and
-/// 10-attempt limit), or ``unbounded()`` decorated with ``GoogleGax/RetryPolicy/withTimeLimit(_:)``
-/// and/or ``GoogleGax/RetryPolicy/withAttemptLimit(_:)`` to configure custom limits.
+/// 10-attempt limit), or ``unbounded()`` decorated with `withTimeLimit(_:)`
+/// and/or `withAttemptLimit(_:)` to configure custom limits.
 public final class StorageBaseRetryPolicy: Sendable {
   let inner: StrictIdempotency<ContinueOnIO<StorageRetryErrors>>
 
@@ -34,8 +34,8 @@ public final class StorageBaseRetryPolicy: Sendable {
 
   /// Creates an unconstrained Cloud Storage base retry policy without attempt or time limits.
   ///
-  /// Decorate this policy with ``GoogleGax/RetryPolicy/withTimeLimit(_:)`` and/or
-  /// ``GoogleGax/RetryPolicy/withAttemptLimit(_:)`` to bound the retry loop:
+  /// Decorate this policy with `withTimeLimit(_:)` and/or
+  /// `withAttemptLimit(_:)` to bound the retry loop:
   /// ```swift
   /// let policy = StorageBaseRetryPolicy.unbounded()
   ///   .withTimeLimit(.seconds(30))
