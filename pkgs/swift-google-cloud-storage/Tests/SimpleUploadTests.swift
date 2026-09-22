@@ -346,12 +346,12 @@ import Testing
         UInt64(data.count)
       }
 
-      func read(maxBytes: Int) async throws -> GoogleCloudStorage.ByteBuffer? {
+      func read(maxBytes: Int) async throws -> ByteChunk? {
         guard offset < data.count else { return nil }
         let end = min(offset + maxBytes, data.count)
         let chunk = data.subdata(in: offset..<end)
         offset = end
-        return GoogleCloudStorage.ByteBuffer(chunk)
+        return ByteChunk(chunk)
       }
 
       func seek(to offset: UInt64) async throws {

@@ -62,7 +62,7 @@ import Testing
     // With NIOCore buffer storage
     var nioBuf = NIOCore.ByteBuffer()
     nioBuf.writeBytes([10, 11, 12, 13])
-    var nioSrc = BytesSource(buffer: GoogleCloudStorage.ByteBuffer(nioBuf))
+    var nioSrc = BytesSource(buffer: ByteChunk(nioBuf))
     #expect(nioSrc.totalSize == 4)
 
     let nioChunk1 = try await nioSrc.read(maxBytes: 2)

@@ -35,8 +35,8 @@ extension ChecksumCalculator {
     data.withUnsafeBytes { update($0) }
   }
 
-  /// Convenience helper for ByteBuffer chunks.
-  mutating func update(_ buffer: ByteBuffer) {
+  /// Convenience helper for ByteChunk chunks.
+  mutating func update(_ buffer: ByteChunk) {
     buffer.withUnsafeBytes { update($0) }
   }
 

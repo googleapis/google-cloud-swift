@@ -106,7 +106,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         var nio = chunk.byteBuffer
         buffer.writeBuffer(&nio)
       }
-      preparedSource = BytesSource(buffer: ByteBuffer(buffer))
+      preparedSource = BytesSource(buffer: ByteChunk(buffer))
     }
 
     let checksum =
@@ -172,7 +172,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         return buffer
 
       case .body:
-        let chunk: ByteBuffer?
+        let chunk: ByteChunk?
         chunk = try await source.read(maxBytes: chunkSize)
         if let chunk = chunk, !chunk.isEmpty {
           bytesYielded += UInt64(chunk.count)

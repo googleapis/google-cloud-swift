@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Foundation
-import NIOCore
 import GoogleAuth
 import GoogleGax
 import GoogleCloudStorage
@@ -23,7 +22,7 @@ extension StorageW1R3 {
   func runWorker(
     taskIndex: Int,
     counters: BenchmarkCounters,
-    buffer: NIOCore.ByteBuffer,
+    buffer: ByteChunk,
     storageClient: StorageClient,
     controlClient: StorageControlClient,
   ) async {
@@ -55,7 +54,7 @@ extension StorageW1R3 {
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
       let uploadCrc32c = self.pickCrc32c()
-      let uploadSlice = buffer.getSlice(at: 0, length: size) ?? buffer.slice()
+      let uploadSlice = buffer.subdata(in: 0..<size)
       let iterationId = IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
 
@@ -124,7 +123,7 @@ extension StorageW1R3 {
     controlClient: StorageControlClient,
     bucketName: String,
     objectName: String,
-    buffer: NIOCore.ByteBuffer,
+    buffer: ByteChunk,
     isResumable: Bool,
     crc32cEnabled: Bool
   ) async -> GoogleCloudStorage.Object? {
@@ -133,7 +132,7 @@ extension StorageW1R3 {
     let uploadBuilder = SampleBuilder(
       iterationId: iterationId,
       op: uploadOp,
-      targetSize: buffer.readableBytes,
+      targetSize: buffer.count,
       object: objectName,
       crc32cEnabled: crc32cEnabled
     )
@@ -246,10 +245,9 @@ extension StorageW1R3 {
     print(sample.toRow())
   }
 
-  func generateRandomBuffer() -> NIOCore.ByteBuffer {
+  func generateRandomBuffer() -> ByteChunk {
     let size = self.maxObjectSize
-    var buffer = ByteBufferAllocator().buffer(capacity: size)
-    guard size > 0 else { return buffer }
+    guard size > 0 else { return ByteChunk() }
     // There is a lot going on here. Sometimes the benchmark is used with really large buffers,
     // 256MiB and 2GiB are not uncommon. To efficiently initialized the buffer with random data
     // we create an array of the desired size.
@@ -268,8 +266,7 @@ extension StorageW1R3 {
       }
       initializedCount = size
     }
-    buffer.writeBytes(bytes)
-    return buffer
+    return ByteChunk(bytes)
   }
 
   private static func randomObjectName() -> String {

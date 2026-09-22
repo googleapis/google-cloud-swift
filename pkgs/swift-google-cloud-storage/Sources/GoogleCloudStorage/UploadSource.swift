@@ -13,13 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import NIOCore
 
 /// Represents a data source that can be read from sequentially.
 public protocol UploadSource: Sendable {
   /// Reads the next chunk of data, up to `maxBytes`.
   /// Returns `nil` when the source is exhausted.
-  mutating func read(maxBytes: Int) async throws -> ByteBuffer?
+  mutating func read(maxBytes: Int) async throws -> ByteChunk?
 
   /// The total size of the source, if known.
   var totalSize: UInt64? { get }

@@ -17,45 +17,38 @@ import NIOCore
 import NIOFoundationCompat
 
 /// A container representing a sequence of bytes backed either by `Foundation.Data`
-/// or `NIOCore.ByteBuffer` without unnecessary memory copying.
-public struct ByteBuffer: Sendable {
-  @usableFromInline
+/// or an internal network buffer without unnecessary memory copying.
+public struct ByteChunk: Sendable, ContiguousBytes {
   internal enum Storage: Sendable {
     case data(Data)
     case byteBuffer(NIOCore.ByteBuffer)
   }
 
-  @usableFromInline
   internal let storage: Storage
 
   // MARK: - Initializers
 
-  /// Creates a byte buffer wrapping a `Foundation.Data` instance (zero-copy).
-  @inlinable
+  /// Creates a byte chunk wrapping a `Foundation.Data` instance (zero-copy).
   public init(_ data: Data) {
     self.storage = .data(data)
   }
 
-  /// Creates a byte buffer wrapping a `NIOCore.ByteBuffer` instance (zero-copy).
-  @inlinable
-  public init(_ buffer: NIOCore.ByteBuffer) {
+  /// Creates a byte chunk wrapping a `NIOCore.ByteBuffer` instance (zero-copy).
+  internal init(_ buffer: NIOCore.ByteBuffer) {
     self.storage = .byteBuffer(buffer)
   }
 
-  /// Creates an empty byte buffer instance.
-  @inlinable
+  /// Creates an empty byte chunk instance.
   public init() {
     self.storage = .data(Data())
   }
 
-  /// Creates a byte buffer from an array of bytes.
-  @inlinable
+  /// Creates a byte chunk from an array of bytes.
   public init(_ bytes: [UInt8]) {
     self.storage = .data(Data(bytes))
   }
 
-  /// Creates a byte buffer from a contiguous raw buffer pointer.
-  @inlinable
+  /// Creates a byte chunk from a contiguous raw buffer pointer.
   public init(_ bufferPointer: UnsafeRawBufferPointer) {
     self.storage = .data(Data(bufferPointer))
   }
@@ -63,9 +56,8 @@ public struct ByteBuffer: Sendable {
 
 // MARK: - Core Properties & Accessors
 
-extension ByteBuffer {
+extension ByteChunk {
   /// The total number of readable bytes stored.
-  @inlinable
   public var count: Int {
     switch storage {
     case .data(let data):
@@ -75,14 +67,12 @@ extension ByteBuffer {
     }
   }
 
-  /// Indicates whether the buffer contains zero bytes.
-  @inlinable
+  /// Indicates whether the chunk contains zero bytes.
   public var isEmpty: Bool {
     count == 0
   }
 
   /// Calls a closure with a pointer to the contiguous bytes without copying.
-  @inlinable
   public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
     switch storage {
     case .data(let data):
@@ -95,8 +85,7 @@ extension ByteBuffer {
   /// The underlying contents as a `Foundation.Data` instance.
   ///
   /// - Returns: The original `Data` with zero copies if backed by `Data`,
-  ///   or copies the bytes into a new `Data` instance if backed by `NIOCore.ByteBuffer`.
-  @inlinable
+  ///   or copies the bytes into a new `Data` instance if backed by an internal network buffer.
   public var data: Data {
     switch storage {
     case .data(let data):
@@ -110,8 +99,7 @@ extension ByteBuffer {
   ///
   /// - Returns: The original `NIOCore.ByteBuffer` with zero copies if backed by `NIOCore.ByteBuffer`,
   ///   or copies the bytes into a new `NIOCore.ByteBuffer` instance if backed by `Data`.
-  @inlinable
-  public var byteBuffer: NIOCore.ByteBuffer {
+  internal var byteBuffer: NIOCore.ByteBuffer {
     switch storage {
     case .byteBuffer(let buffer):
       return buffer
@@ -125,42 +113,38 @@ extension ByteBuffer {
   }
 
   /// Returns the bytes as a newly allocated `[UInt8]` array.
-  @inlinable
   public var byteArray: [UInt8] {
     withUnsafeBytes { Array($0) }
   }
 
-  /// Returns a zero-copy sub-buffer within the specified byte range.
-  public func subdata(in range: Range<Int>) -> ByteBuffer {
+  /// Returns a zero-copy sub-chunk within the specified byte range.
+  public func subdata(in range: Range<Int>) -> ByteChunk {
     switch storage {
     case .data(let data):
       let start = data.startIndex.advanced(by: range.lowerBound)
       let end = data.startIndex.advanced(by: range.upperBound)
-      return ByteBuffer(data[start..<end])
+      return ByteChunk(data[start..<end])
     case .byteBuffer(let nioBuffer):
       var copy = nioBuffer
       copy.moveReaderIndex(to: nioBuffer.readerIndex + range.lowerBound)
       if let slice = copy.readSlice(length: range.count) {
-        return ByteBuffer(slice)
+        return ByteChunk(slice)
       }
-      return ByteBuffer()
+      return ByteChunk()
     }
   }
 }
 
 // MARK: - RandomAccessCollection Conformance
 
-extension ByteBuffer: RandomAccessCollection {
+extension ByteChunk: RandomAccessCollection {
   public typealias Element = UInt8
   public typealias Index = Int
 
-  @inlinable
   public var startIndex: Int { 0 }
 
-  @inlinable
   public var endIndex: Int { count }
 
-  @inlinable
   public subscript(position: Int) -> UInt8 {
     precondition(position >= 0 && position < count, "Index \(position) out of bounds 0..<\(count)")
     switch storage {
@@ -174,8 +158,8 @@ extension ByteBuffer: RandomAccessCollection {
 
 // MARK: - Equatable & Hashable
 
-extension ByteBuffer: Equatable {
-  public static func == (lhs: ByteBuffer, rhs: ByteBuffer) -> Bool {
+extension ByteChunk: Equatable {
+  public static func == (lhs: ByteChunk, rhs: ByteChunk) -> Bool {
     guard lhs.count == rhs.count else { return false }
     if lhs.isEmpty { return true }
     return lhs.withUnsafeBytes { lhsBytes in
@@ -189,7 +173,7 @@ extension ByteBuffer: Equatable {
   }
 }
 
-extension ByteBuffer: Hashable {
+extension ByteChunk: Hashable {
   public func hash(into hasher: inout Hasher) {
     withUnsafeBytes { hasher.combine(bytes: $0) }
   }
@@ -197,13 +181,13 @@ extension ByteBuffer: Hashable {
 
 // MARK: - Literal & Description Conformances
 
-extension ByteBuffer: ExpressibleByArrayLiteral {
+extension ByteChunk: ExpressibleByArrayLiteral {
   public init(arrayLiteral elements: UInt8...) {
     self.init(Data(elements))
   }
 }
 
-extension ByteBuffer: CustomStringConvertible, CustomDebugStringConvertible {
+extension ByteChunk: CustomStringConvertible, CustomDebugStringConvertible {
   public var description: String {
     "\(count) bytes"
   }
@@ -214,6 +198,6 @@ extension ByteBuffer: CustomStringConvertible, CustomDebugStringConvertible {
     case .data: backing = "Data"
     case .byteBuffer: backing = "NIOCore.ByteBuffer"
     }
-    return "ByteBuffer(\(count) bytes, backing: \(backing))"
+    return "ByteChunk(\(count) bytes, backing: \(backing))"
   }
 }

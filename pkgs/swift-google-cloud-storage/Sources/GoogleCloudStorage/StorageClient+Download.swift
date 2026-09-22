@@ -17,7 +17,7 @@ import Foundation
 import NIOHTTP1
 
 extension StorageClient {
-  /// Reads (downloads) an object from Cloud Storage as an async sequence of Data chunks.
+  /// Reads (downloads) an object from Cloud Storage as an async sequence of `ByteChunk` chunks.
   ///
   /// - Parameters:
   ///   - bucket: The GCS bucket name.
@@ -46,7 +46,7 @@ extension StorageClient {
     return ReadObjectTask(coordinator: coordinator)
   }
 
-  package static func parseReadObjectMetadata(
+  internal static func parseReadObjectMetadata(
     from headers: NIOHTTP1.HTTPHeaders,
     bucket: String,
     object: String
