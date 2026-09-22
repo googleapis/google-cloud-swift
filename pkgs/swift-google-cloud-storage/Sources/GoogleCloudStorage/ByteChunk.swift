@@ -40,17 +40,17 @@ public struct ByteChunk: Sendable, ContiguousBytes {
 
   /// Creates an empty byte chunk instance.
   public init() {
-    self.storage = .data(Data())
+    self.storage = .byteBuffer(NIOCore.ByteBuffer())
   }
 
   /// Creates a byte chunk from an array of bytes.
   public init(_ bytes: [UInt8]) {
-    self.storage = .data(Data(bytes))
+    self.storage = .byteBuffer(NIOCore.ByteBuffer(bytes: bytes))
   }
 
   /// Creates a byte chunk from a contiguous raw buffer pointer.
   public init(_ bufferPointer: UnsafeRawBufferPointer) {
-    self.storage = .data(Data(bufferPointer))
+    self.storage = .byteBuffer(NIOCore.ByteBuffer(bytes: bufferPointer))
   }
 }
 
@@ -68,6 +68,7 @@ extension ByteChunk {
   }
 
   /// Indicates whether the chunk contains zero bytes.
+  @inlinable
   public var isEmpty: Bool {
     count == 0
   }
@@ -79,6 +80,18 @@ extension ByteChunk {
       return try data.withUnsafeBytes(body)
     case .byteBuffer(let buffer):
       return try buffer.withUnsafeReadableBytes(body)
+    }
+  }
+
+  /// Executes a closure on the sequence's contiguous storage.
+  @inlinable
+  public func withContiguousStorageIfAvailable<R>(
+    _ body: (UnsafeBufferPointer<UInt8>) throws -> R
+  ) rethrows -> R? {
+    try withUnsafeBytes { rawBuffer in
+      try rawBuffer.withMemoryRebound(to: UInt8.self) { buffer in
+        try body(buffer)
+      }
     }
   }
 
@@ -113,6 +126,7 @@ extension ByteChunk {
   }
 
   /// Returns the bytes as a newly allocated `[UInt8]` array.
+  @inlinable
   public var byteArray: [UInt8] {
     withUnsafeBytes { Array($0) }
   }
@@ -141,8 +155,10 @@ extension ByteChunk: RandomAccessCollection {
   public typealias Element = UInt8
   public typealias Index = Int
 
+  @inlinable
   public var startIndex: Int { 0 }
 
+  @inlinable
   public var endIndex: Int { count }
 
   public subscript(position: Int) -> UInt8 {
@@ -174,6 +190,7 @@ extension ByteChunk: Equatable {
 }
 
 extension ByteChunk: Hashable {
+  @inlinable
   public func hash(into hasher: inout Hasher) {
     withUnsafeBytes { hasher.combine(bytes: $0) }
   }
@@ -183,7 +200,7 @@ extension ByteChunk: Hashable {
 
 extension ByteChunk: ExpressibleByArrayLiteral {
   public init(arrayLiteral elements: UInt8...) {
-    self.init(Data(elements))
+    self.init(elements)
   }
 }
 

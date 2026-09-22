@@ -167,5 +167,23 @@ import Testing
     let bufferStorage = ByteChunk(buffer)
     #expect(bufferStorage.description == "2 bytes")
     #expect(bufferStorage.debugDescription.contains("NIOCore.ByteBuffer"))
+
+    let arrayStorage = ByteChunk([4, 5, 6])
+    #expect(arrayStorage.debugDescription.contains("NIOCore.ByteBuffer"))
+  }
+
+  @Test func withContiguousStorageIfAvailable() {
+    let expected: [UInt8] = [10, 20, 30, 40]
+    let dataChunk = ByteChunk(Data(expected))
+    let dataContiguous = dataChunk.withContiguousStorageIfAvailable { Array($0) }
+    #expect(dataContiguous == expected)
+    #expect(Array(dataChunk) == expected)
+    #expect(Data(dataChunk) == Data(expected))
+
+    let bufferChunk = ByteChunk(expected)
+    let bufferContiguous = bufferChunk.withContiguousStorageIfAvailable { Array($0) }
+    #expect(bufferContiguous == expected)
+    #expect(Array(bufferChunk) == expected)
+    #expect(Data(bufferChunk) == Data(expected))
   }
 }
