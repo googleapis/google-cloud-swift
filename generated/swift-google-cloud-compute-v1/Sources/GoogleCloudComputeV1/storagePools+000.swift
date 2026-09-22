@@ -874,4 +874,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'StoragePools' trait in Package.swift to use this client."
+  )
+  public final class StoragePoolsClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'StoragePools' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

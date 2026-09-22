@@ -11,25 +11,30 @@ client will let you interact with the API. The methods in the client type
 corresponds to RPCs in the API. Many APIs have more than one client, exposing
 different aspects of the API, consult the reference documentation for details.
 
-- ``AgentsClient``: enabled by the `Agents` feature.
-- ``AnswerRecordsClient``: enabled by the `AnswerRecords` feature.
-- ``ContextsClient``: enabled by the `Contexts` feature.
-- ``ConversationsClient``: enabled by the `Conversations` feature.
-- ``ConversationDatasetsClient``: enabled by the `ConversationDatasets` feature.
-- ``ConversationModelsClient``: enabled by the `ConversationModels` feature.
-- ``ConversationProfilesClient``: enabled by the `ConversationProfiles` feature.
-- ``DocumentsClient``: enabled by the `Documents` feature.
-- ``EncryptionSpecServiceClient``: enabled by the `EncryptionSpecService` feature.
-- ``EntityTypesClient``: enabled by the `EntityTypes` feature.
-- ``EnvironmentsClient``: enabled by the `Environments` feature.
-- ``FulfillmentsClient``: enabled by the `Fulfillments` feature.
-- ``GeneratorsClient``: enabled by the `Generators` feature.
-- ``GeneratorEvaluationsClient``: enabled by the `GeneratorEvaluations` feature.
-- ``IntentsClient``: enabled by the `Intents` feature.
-- ``KnowledgeBasesClient``: enabled by the `KnowledgeBases` feature.
-- ``ParticipantsClient``: enabled by the `Participants` feature.
-- ``SessionsClient``: enabled by the `Sessions` feature.
-- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` feature.
-- ``SipTrunksClient``: enabled by the `SipTrunks` feature.
-- ``ToolsClient``: enabled by the `Tools` feature.
-- ``VersionsClient``: enabled by the `Versions` feature.
+- ``AgentsClient``: enabled by the `Agents` trait.
+- ``AnswerRecordsClient``: enabled by the `AnswerRecords` trait.
+- ``ContextsClient``: enabled by the `Contexts` trait.
+- ``ConversationsClient``: enabled by the `Conversations` trait.
+- ``ConversationDatasetsClient``: enabled by the `ConversationDatasets` trait.
+- ``ConversationModelsClient``: enabled by the `ConversationModels` trait.
+- ``ConversationProfilesClient``: enabled by the `ConversationProfiles` trait.
+- ``DocumentsClient``: enabled by the `Documents` trait.
+- ``EncryptionSpecServiceClient``: enabled by the `EncryptionSpecService` trait.
+- ``EntityTypesClient``: enabled by the `EntityTypes` trait.
+- ``EnvironmentsClient``: enabled by the `Environments` trait.
+- ``FulfillmentsClient``: enabled by the `Fulfillments` trait.
+- ``GeneratorsClient``: enabled by the `Generators` trait.
+- ``GeneratorEvaluationsClient``: enabled by the `GeneratorEvaluations` trait.
+- ``IntentsClient``: enabled by the `Intents` trait.
+- ``KnowledgeBasesClient``: enabled by the `KnowledgeBases` trait.
+- ``ParticipantsClient``: enabled by the `Participants` trait.
+- ``SessionsClient``: enabled by the `Sessions` trait.
+- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` trait.
+- ``SipTrunksClient``: enabled by the `SipTrunks` trait.
+- ``ToolsClient``: enabled by the `Tools` trait.
+- ``VersionsClient``: enabled by the `Versions` trait.
+
+## See Also
+
+- <doc:PackageTraits>
+

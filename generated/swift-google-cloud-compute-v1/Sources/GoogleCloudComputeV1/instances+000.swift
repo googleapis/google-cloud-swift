@@ -4889,4 +4889,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'Instances' trait in Package.swift to use this client."
+  )
+  public final class InstancesClient: Sendable {
+    @available(
+      *, unavailable, message: "Enable the 'Instances' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

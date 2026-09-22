@@ -259,4 +259,17 @@
       return try await self.testIamPermissions(request: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'LicenseCodes' trait in Package.swift to use this client."
+  )
+  public final class LicenseCodesClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'LicenseCodes' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

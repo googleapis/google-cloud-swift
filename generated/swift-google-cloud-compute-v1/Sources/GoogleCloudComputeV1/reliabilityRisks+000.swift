@@ -182,4 +182,18 @@
       return try self.list(byItem: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'ReliabilityRisks' trait in Package.swift to use this client."
+  )
+  public final class ReliabilityRisksClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'ReliabilityRisks' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

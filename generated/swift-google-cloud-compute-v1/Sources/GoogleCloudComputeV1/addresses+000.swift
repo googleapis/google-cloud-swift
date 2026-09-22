@@ -763,4 +763,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'Addresses' trait in Package.swift to use this client."
+  )
+  public final class AddressesClient: Sendable {
+    @available(
+      *, unavailable, message: "Enable the 'Addresses' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

@@ -310,4 +310,18 @@
       return try await self.deleteBackup(request: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'SqlBackupsService' trait in Package.swift to use this client."
+  )
+  public final class SqlBackupsServiceClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'SqlBackupsService' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

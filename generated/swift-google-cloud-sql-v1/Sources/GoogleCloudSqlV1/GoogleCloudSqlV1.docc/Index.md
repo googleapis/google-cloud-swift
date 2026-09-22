@@ -10,19 +10,24 @@ client will let you interact with the API. The methods in the client type
 corresponds to RPCs in the API. Many APIs have more than one client, exposing
 different aspects of the API, consult the reference documentation for details.
 
-- ``SqlAvailableDatabaseVersionsServiceClient``: enabled by the `SqlAvailableDatabaseVersionsService` feature.
-- ``SqlBackupRunsServiceClient``: enabled by the `SqlBackupRunsService` feature.
-- ``SqlBackupsServiceClient``: enabled by the `SqlBackupsService` feature.
-- ``SqlConnectServiceClient``: enabled by the `SqlConnectService` feature.
-- ``SqlDatabasesServiceClient``: enabled by the `SqlDatabasesService` feature.
-- ``SqlEventsServiceClient``: enabled by the `SqlEventsService` feature.
-- ``SqlFeatureEligibilityServiceClient``: enabled by the `SqlFeatureEligibilityService` feature.
-- ``SqlFlagsServiceClient``: enabled by the `SqlFlagsService` feature.
-- ``SqlIamPoliciesServiceClient``: enabled by the `SqlIamPoliciesService` feature.
-- ``SqlInstanceNamesServiceClient``: enabled by the `SqlInstanceNamesService` feature.
-- ``SqlInstancesServiceClient``: enabled by the `SqlInstancesService` feature.
-- ``SqlOperationsServiceClient``: enabled by the `SqlOperationsService` feature.
-- ``SqlRegionsServiceClient``: enabled by the `SqlRegionsService` feature.
-- ``SqlSslCertsServiceClient``: enabled by the `SqlSslCertsService` feature.
-- ``SqlTiersServiceClient``: enabled by the `SqlTiersService` feature.
-- ``SqlUsersServiceClient``: enabled by the `SqlUsersService` feature.
+- ``SqlAvailableDatabaseVersionsServiceClient``: enabled by the `SqlAvailableDatabaseVersionsService` trait.
+- ``SqlBackupRunsServiceClient``: enabled by the `SqlBackupRunsService` trait.
+- ``SqlBackupsServiceClient``: enabled by the `SqlBackupsService` trait.
+- ``SqlConnectServiceClient``: enabled by the `SqlConnectService` trait.
+- ``SqlDatabasesServiceClient``: enabled by the `SqlDatabasesService` trait.
+- ``SqlEventsServiceClient``: enabled by the `SqlEventsService` trait.
+- ``SqlFeatureEligibilityServiceClient``: enabled by the `SqlFeatureEligibilityService` trait.
+- ``SqlFlagsServiceClient``: enabled by the `SqlFlagsService` trait.
+- ``SqlIamPoliciesServiceClient``: enabled by the `SqlIamPoliciesService` trait.
+- ``SqlInstanceNamesServiceClient``: enabled by the `SqlInstanceNamesService` trait.
+- ``SqlInstancesServiceClient``: enabled by the `SqlInstancesService` trait.
+- ``SqlOperationsServiceClient``: enabled by the `SqlOperationsService` trait.
+- ``SqlRegionsServiceClient``: enabled by the `SqlRegionsService` trait.
+- ``SqlSslCertsServiceClient``: enabled by the `SqlSslCertsService` trait.
+- ``SqlTiersServiceClient``: enabled by the `SqlTiersService` trait.
+- ``SqlUsersServiceClient``: enabled by the `SqlUsersService` trait.
+
+## See Also
+
+- <doc:PackageTraits>
+

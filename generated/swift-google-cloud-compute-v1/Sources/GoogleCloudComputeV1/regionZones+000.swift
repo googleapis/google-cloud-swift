@@ -138,4 +138,16 @@
       return try self.list(byItem: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'RegionZones' trait in Package.swift to use this client."
+  )
+  public final class RegionZonesClient: Sendable {
+    @available(
+      *, unavailable, message: "Enable the 'RegionZones' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

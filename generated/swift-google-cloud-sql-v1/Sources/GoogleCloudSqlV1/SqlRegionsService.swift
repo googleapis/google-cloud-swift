@@ -53,4 +53,18 @@
   // Default implementations
   extension Clients.SqlRegionsServiceProtocol {
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'SqlRegionsService' trait in Package.swift to use this client."
+  )
+  public final class SqlRegionsServiceClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'SqlRegionsService' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

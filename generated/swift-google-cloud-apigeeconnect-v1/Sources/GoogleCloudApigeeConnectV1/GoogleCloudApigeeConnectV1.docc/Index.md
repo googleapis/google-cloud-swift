@@ -10,3 +10,4 @@ different aspects of the API, consult the reference documentation for details.
 
 - ``ConnectionServiceClient``
 - ``TetherClient``
+

@@ -775,4 +775,18 @@
       try await self.cancelOperation(request: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'DocumentService' trait in Package.swift to use this client."
+  )
+  public final class DocumentServiceClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'DocumentService' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

@@ -161,6 +161,151 @@ Then add `GoogleCloudComputeV1` to your target's dependencies:
 swift package add-target-dependency GoogleCloudComputeV1 <target-name> --package swift-google-cloud-compute-v1
 ```
 
+### Package Traits
+
+This package uses Swift package traits to conditionally compile individual service
+clients and their associated types. Enabling a trait enables the corresponding
+client and all the request, response, and model types needed to use that client.
+
+The following traits are enabled by default:
+- `Instances`
+
+To enable additional traits alongside the defaults, specify them in `Package.swift`:
+
+```swift
+.package(url: "https://github.com/googleapis/swift-google-cloud-compute-v1.git", from: "0.2.0", traits: [".defaults", "<TraitName>"])
+```
+
+| Trait | Default | Enabled Client |
+|---|:---:|---|
+| `AcceleratorTypes` | No | `AcceleratorTypesClient` |
+| `Addresses` | No | `AddressesClient` |
+| `Advice` | No | `AdviceClient` |
+| `Autoscalers` | No | `AutoscalersClient` |
+| `BackendBuckets` | No | `BackendBucketsClient` |
+| `BackendServices` | No | `BackendServicesClient` |
+| `CrossSiteNetworks` | No | `CrossSiteNetworksClient` |
+| `DiskTypes` | No | `DiskTypesClient` |
+| `Disks` | No | `DisksClient` |
+| `ExternalVpnGateways` | No | `ExternalVpnGatewaysClient` |
+| `FirewallPolicies` | No | `FirewallPoliciesClient` |
+| `Firewalls` | No | `FirewallsClient` |
+| `ForwardingRules` | No | `ForwardingRulesClient` |
+| `FutureReservations` | No | `FutureReservationsClient` |
+| `GlobalAddresses` | No | `GlobalAddressesClient` |
+| `GlobalForwardingRules` | No | `GlobalForwardingRulesClient` |
+| `GlobalNetworkEndpointGroups` | No | `GlobalNetworkEndpointGroupsClient` |
+| `GlobalOperations` | No | `GlobalOperationsClient` |
+| `GlobalOrganizationOperations` | No | `GlobalOrganizationOperationsClient` |
+| `GlobalPublicDelegatedPrefixes` | No | `GlobalPublicDelegatedPrefixesClient` |
+| `GlobalVmExtensionPolicies` | No | `GlobalVmExtensionPoliciesClient` |
+| `HealthChecks` | No | `HealthChecksClient` |
+| `Hosts` | No | `HostsClient` |
+| `HttpHealthChecks` | No | `HttpHealthChecksClient` |
+| `HttpsHealthChecks` | No | `HttpsHealthChecksClient` |
+| `ImageFamilyViews` | No | `ImageFamilyViewsClient` |
+| `Images` | No | `ImagesClient` |
+| `InstanceGroupManagerResizeRequests` | No | `InstanceGroupManagerResizeRequestsClient` |
+| `InstanceGroupManagers` | No | `InstanceGroupManagersClient` |
+| `InstanceGroups` | No | `InstanceGroupsClient` |
+| `InstanceSettings` | No | `InstanceSettingsClient` |
+| `InstanceTemplates` | No | `InstanceTemplatesClient` |
+| `Instances` | Yes | `InstancesClient` |
+| `InstantSnapshotGroups` | No | `InstantSnapshotGroupsClient` |
+| `InstantSnapshots` | No | `InstantSnapshotsClient` |
+| `InterconnectAttachmentGroups` | No | `InterconnectAttachmentGroupsClient` |
+| `InterconnectAttachments` | No | `InterconnectAttachmentsClient` |
+| `InterconnectGroups` | No | `InterconnectGroupsClient` |
+| `InterconnectLocations` | No | `InterconnectLocationsClient` |
+| `InterconnectRemoteLocations` | No | `InterconnectRemoteLocationsClient` |
+| `Interconnects` | No | `InterconnectsClient` |
+| `LicenseCodes` | No | `LicenseCodesClient` |
+| `Licenses` | No | `LicensesClient` |
+| `MachineImages` | No | `MachineImagesClient` |
+| `MachineTypes` | No | `MachineTypesClient` |
+| `NetworkAttachments` | No | `NetworkAttachmentsClient` |
+| `NetworkEdgeSecurityServices` | No | `NetworkEdgeSecurityServicesClient` |
+| `NetworkEndpointGroups` | No | `NetworkEndpointGroupsClient` |
+| `NetworkFirewallPolicies` | No | `NetworkFirewallPoliciesClient` |
+| `NetworkProfiles` | No | `NetworkProfilesClient` |
+| `Networks` | No | `NetworksClient` |
+| `NodeGroups` | No | `NodeGroupsClient` |
+| `NodeTemplates` | No | `NodeTemplatesClient` |
+| `NodeTypes` | No | `NodeTypesClient` |
+| `OrganizationSecurityPolicies` | No | `OrganizationSecurityPoliciesClient` |
+| `PacketMirrorings` | No | `PacketMirroringsClient` |
+| `PreviewFeatures` | No | `PreviewFeaturesClient` |
+| `Projects` | No | `ProjectsClient` |
+| `PublicAdvertisedPrefixes` | No | `PublicAdvertisedPrefixesClient` |
+| `PublicDelegatedPrefixes` | No | `PublicDelegatedPrefixesClient` |
+| `RegionAutoscalers` | No | `RegionAutoscalersClient` |
+| `RegionBackendBuckets` | No | `RegionBackendBucketsClient` |
+| `RegionBackendServices` | No | `RegionBackendServicesClient` |
+| `RegionCommitments` | No | `RegionCommitmentsClient` |
+| `RegionCompositeHealthChecks` | No | `RegionCompositeHealthChecksClient` |
+| `RegionDiskTypes` | No | `RegionDiskTypesClient` |
+| `RegionDisks` | No | `RegionDisksClient` |
+| `RegionHealthAggregationPolicies` | No | `RegionHealthAggregationPoliciesClient` |
+| `RegionHealthCheckServices` | No | `RegionHealthCheckServicesClient` |
+| `RegionHealthChecks` | No | `RegionHealthChecksClient` |
+| `RegionHealthSources` | No | `RegionHealthSourcesClient` |
+| `RegionInstanceGroupManagerResizeRequests` | No | `RegionInstanceGroupManagerResizeRequestsClient` |
+| `RegionInstanceGroupManagers` | No | `RegionInstanceGroupManagersClient` |
+| `RegionInstanceGroups` | No | `RegionInstanceGroupsClient` |
+| `RegionInstanceTemplates` | No | `RegionInstanceTemplatesClient` |
+| `RegionInstances` | No | `RegionInstancesClient` |
+| `RegionInstantSnapshotGroups` | No | `RegionInstantSnapshotGroupsClient` |
+| `RegionInstantSnapshots` | No | `RegionInstantSnapshotsClient` |
+| `RegionNetworkEndpointGroups` | No | `RegionNetworkEndpointGroupsClient` |
+| `RegionNetworkFirewallPolicies` | No | `RegionNetworkFirewallPoliciesClient` |
+| `RegionNotificationEndpoints` | No | `RegionNotificationEndpointsClient` |
+| `RegionOperations` | No | `RegionOperationsClient` |
+| `RegionSecurityPolicies` | No | `RegionSecurityPoliciesClient` |
+| `RegionSnapshotSettings` | No | `RegionSnapshotSettingsClient` |
+| `RegionSnapshots` | No | `RegionSnapshotsClient` |
+| `RegionSslCertificates` | No | `RegionSslCertificatesClient` |
+| `RegionSslPolicies` | No | `RegionSslPoliciesClient` |
+| `RegionTargetHttpProxies` | No | `RegionTargetHttpProxiesClient` |
+| `RegionTargetHttpsProxies` | No | `RegionTargetHttpsProxiesClient` |
+| `RegionTargetTcpProxies` | No | `RegionTargetTcpProxiesClient` |
+| `RegionUrlMaps` | No | `RegionUrlMapsClient` |
+| `RegionZones` | No | `RegionZonesClient` |
+| `Regions` | No | `RegionsClient` |
+| `ReliabilityRisks` | No | `ReliabilityRisksClient` |
+| `ReservationBlocks` | No | `ReservationBlocksClient` |
+| `ReservationSlots` | No | `ReservationSlotsClient` |
+| `ReservationSubBlocks` | No | `ReservationSubBlocksClient` |
+| `Reservations` | No | `ReservationsClient` |
+| `ResourcePolicies` | No | `ResourcePoliciesClient` |
+| `RolloutPlans` | No | `RolloutPlansClient` |
+| `Rollouts` | No | `RolloutsClient` |
+| `Routers` | No | `RoutersClient` |
+| `Routes` | No | `RoutesClient` |
+| `SecurityPolicies` | No | `SecurityPoliciesClient` |
+| `ServiceAttachments` | No | `ServiceAttachmentsClient` |
+| `SnapshotSettings` | No | `SnapshotSettingsClient` |
+| `Snapshots` | No | `SnapshotsClient` |
+| `SslCertificates` | No | `SslCertificatesClient` |
+| `SslPolicies` | No | `SslPoliciesClient` |
+| `StoragePoolTypes` | No | `StoragePoolTypesClient` |
+| `StoragePools` | No | `StoragePoolsClient` |
+| `Subnetworks` | No | `SubnetworksClient` |
+| `TargetGrpcProxies` | No | `TargetGrpcProxiesClient` |
+| `TargetHttpProxies` | No | `TargetHttpProxiesClient` |
+| `TargetHttpsProxies` | No | `TargetHttpsProxiesClient` |
+| `TargetInstances` | No | `TargetInstancesClient` |
+| `TargetPools` | No | `TargetPoolsClient` |
+| `TargetSslProxies` | No | `TargetSslProxiesClient` |
+| `TargetTcpProxies` | No | `TargetTcpProxiesClient` |
+| `TargetVpnGateways` | No | `TargetVpnGatewaysClient` |
+| `UrlMaps` | No | `UrlMapsClient` |
+| `VpnGateways` | No | `VpnGatewaysClient` |
+| `VpnTunnels` | No | `VpnTunnelsClient` |
+| `WireGroups` | No | `WireGroupsClient` |
+| `ZoneOperations` | No | `ZoneOperationsClient` |
+| `ZoneVmExtensionPolicies` | No | `ZoneVmExtensionPoliciesClient` |
+| `Zones` | No | `ZonesClient` |
+
 ## Troubleshooting
 
 For questions, bug reports, or feature requests, please open an issue in the

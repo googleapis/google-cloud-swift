@@ -211,4 +211,18 @@
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'SqlBackupRunsService' trait in Package.swift to use this client."
+  )
+  public final class SqlBackupRunsServiceClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'SqlBackupRunsService' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

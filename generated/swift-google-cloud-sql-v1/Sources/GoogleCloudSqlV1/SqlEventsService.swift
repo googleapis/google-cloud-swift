@@ -53,4 +53,18 @@
   // Default implementations
   extension Clients.SqlEventsServiceProtocol {
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'SqlEventsService' trait in Package.swift to use this client."
+  )
+  public final class SqlEventsServiceClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'SqlEventsService' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

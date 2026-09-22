@@ -551,4 +551,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'NetworkEdgeSecurityServices' trait in Package.swift to use this client."
+  )
+  public final class NetworkEdgeSecurityServicesClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'NetworkEdgeSecurityServices' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

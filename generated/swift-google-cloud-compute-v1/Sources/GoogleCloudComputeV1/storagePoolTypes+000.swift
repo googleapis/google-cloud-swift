@@ -281,4 +281,18 @@
       return try self.list(byItem: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'StoragePoolTypes' trait in Package.swift to use this client."
+  )
+  public final class StoragePoolTypesClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'StoragePoolTypes' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

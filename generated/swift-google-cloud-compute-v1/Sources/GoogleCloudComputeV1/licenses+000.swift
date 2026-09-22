@@ -694,4 +694,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable, message: "Enable the 'Licenses' trait in Package.swift to use this client."
+  )
+  public final class LicensesClient: Sendable {
+    @available(
+      *, unavailable, message: "Enable the 'Licenses' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

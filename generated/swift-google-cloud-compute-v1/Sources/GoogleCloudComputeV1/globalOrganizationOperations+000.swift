@@ -210,4 +210,19 @@
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'GlobalOrganizationOperations' trait in Package.swift to use this client."
+  )
+  public final class GlobalOrganizationOperationsClient: Sendable {
+    @available(
+      *, unavailable,
+      message:
+        "Enable the 'GlobalOrganizationOperations' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

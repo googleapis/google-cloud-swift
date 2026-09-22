@@ -948,4 +948,18 @@
       try await self.cancelOperation(request: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'ConversationProfiles' trait in Package.swift to use this client."
+  )
+  public final class ConversationProfilesClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'ConversationProfiles' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

@@ -10,24 +10,29 @@ client will let you interact with the API. The methods in the client type
 corresponds to RPCs in the API. Many APIs have more than one client, exposing
 different aspects of the API, consult the reference documentation for details.
 
-- ``AssistantServiceClient``: enabled by the `AssistantService` feature.
-- ``CmekConfigServiceClient``: enabled by the `CmekConfigService` feature.
-- ``CompletionServiceClient``: enabled by the `CompletionService` feature.
-- ``ControlServiceClient``: enabled by the `ControlService` feature.
-- ``ConversationalSearchServiceClient``: enabled by the `ConversationalSearchService` feature.
-- ``DataStoreServiceClient``: enabled by the `DataStoreService` feature.
-- ``DocumentServiceClient``: enabled by the `DocumentService` feature.
-- ``EngineServiceClient``: enabled by the `EngineService` feature.
-- ``GroundedGenerationServiceClient``: enabled by the `GroundedGenerationService` feature.
-- ``IdentityMappingStoreServiceClient``: enabled by the `IdentityMappingStoreService` feature.
-- ``ProjectServiceClient``: enabled by the `ProjectService` feature.
-- ``RankServiceClient``: enabled by the `RankService` feature.
-- ``RecommendationServiceClient``: enabled by the `RecommendationService` feature.
-- ``SchemaServiceClient``: enabled by the `SchemaService` feature.
-- ``SearchServiceClient``: enabled by the `SearchService` feature.
-- ``SearchTuningServiceClient``: enabled by the `SearchTuningService` feature.
-- ``ServingConfigServiceClient``: enabled by the `ServingConfigService` feature.
-- ``SessionServiceClient``: enabled by the `SessionService` feature.
-- ``SiteSearchEngineServiceClient``: enabled by the `SiteSearchEngineService` feature.
-- ``UserEventServiceClient``: enabled by the `UserEventService` feature.
-- ``UserLicenseServiceClient``: enabled by the `UserLicenseService` feature.
+- ``AssistantServiceClient``: enabled by the `AssistantService` trait.
+- ``CmekConfigServiceClient``: enabled by the `CmekConfigService` trait.
+- ``CompletionServiceClient``: enabled by the `CompletionService` trait.
+- ``ControlServiceClient``: enabled by the `ControlService` trait.
+- ``ConversationalSearchServiceClient``: enabled by the `ConversationalSearchService` trait.
+- ``DataStoreServiceClient``: enabled by the `DataStoreService` trait.
+- ``DocumentServiceClient``: enabled by the `DocumentService` trait.
+- ``EngineServiceClient``: enabled by the `EngineService` trait.
+- ``GroundedGenerationServiceClient``: enabled by the `GroundedGenerationService` trait.
+- ``IdentityMappingStoreServiceClient``: enabled by the `IdentityMappingStoreService` trait.
+- ``ProjectServiceClient``: enabled by the `ProjectService` trait.
+- ``RankServiceClient``: enabled by the `RankService` trait.
+- ``RecommendationServiceClient``: enabled by the `RecommendationService` trait.
+- ``SchemaServiceClient``: enabled by the `SchemaService` trait.
+- ``SearchServiceClient``: enabled by the `SearchService` trait.
+- ``SearchTuningServiceClient``: enabled by the `SearchTuningService` trait.
+- ``ServingConfigServiceClient``: enabled by the `ServingConfigService` trait.
+- ``SessionServiceClient``: enabled by the `SessionService` trait.
+- ``SiteSearchEngineServiceClient``: enabled by the `SiteSearchEngineService` trait.
+- ``UserEventServiceClient``: enabled by the `UserEventService` trait.
+- ``UserLicenseServiceClient``: enabled by the `UserLicenseService` trait.
+
+## See Also
+
+- <doc:PackageTraits>
+

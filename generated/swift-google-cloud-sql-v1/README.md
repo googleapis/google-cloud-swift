@@ -48,6 +48,37 @@ Then add `GoogleCloudSqlV1` to your target's dependencies:
 swift package add-target-dependency GoogleCloudSqlV1 <target-name> --package swift-google-cloud-sql-v1
 ```
 
+### Package Traits
+
+This package uses Swift package traits to conditionally compile individual service
+clients and their associated types. Enabling a trait enables the corresponding
+client and all the request, response, and model types needed to use that client.
+
+No traits are enabled by default. Specify the traits you need in `Package.swift`:
+
+```swift
+.package(url: "https://github.com/googleapis/swift-google-cloud-sql-v1.git", from: "0.2.0", traits: ["<TraitName>"])
+```
+
+| Trait | Default | Enabled Client |
+|---|:---:|---|
+| `SqlAvailableDatabaseVersionsService` | No | `SqlAvailableDatabaseVersionsServiceClient` |
+| `SqlBackupRunsService` | No | `SqlBackupRunsServiceClient` |
+| `SqlBackupsService` | No | `SqlBackupsServiceClient` |
+| `SqlConnectService` | No | `SqlConnectServiceClient` |
+| `SqlDatabasesService` | No | `SqlDatabasesServiceClient` |
+| `SqlEventsService` | No | `SqlEventsServiceClient` |
+| `SqlFeatureEligibilityService` | No | `SqlFeatureEligibilityServiceClient` |
+| `SqlFlagsService` | No | `SqlFlagsServiceClient` |
+| `SqlIamPoliciesService` | No | `SqlIamPoliciesServiceClient` |
+| `SqlInstanceNamesService` | No | `SqlInstanceNamesServiceClient` |
+| `SqlInstancesService` | No | `SqlInstancesServiceClient` |
+| `SqlOperationsService` | No | `SqlOperationsServiceClient` |
+| `SqlRegionsService` | No | `SqlRegionsServiceClient` |
+| `SqlSslCertsService` | No | `SqlSslCertsServiceClient` |
+| `SqlTiersService` | No | `SqlTiersServiceClient` |
+| `SqlUsersService` | No | `SqlUsersServiceClient` |
+
 ## Troubleshooting
 
 For questions, bug reports, or feature requests, please open an issue in the

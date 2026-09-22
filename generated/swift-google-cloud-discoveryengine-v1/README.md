@@ -53,6 +53,46 @@ Then add `GoogleCloudDiscoveryEngineV1` to your target's dependencies:
 swift package add-target-dependency GoogleCloudDiscoveryEngineV1 <target-name> --package swift-google-cloud-discoveryengine-v1
 ```
 
+### Package Traits
+
+This package uses Swift package traits to conditionally compile individual service
+clients and their associated types. Enabling a trait enables the corresponding
+client and all the request, response, and model types needed to use that client.
+
+The following traits are enabled by default:
+- `SearchService`
+- `RecommendationService`
+
+To enable additional traits alongside the defaults, specify them in `Package.swift`:
+
+```swift
+.package(url: "https://github.com/googleapis/swift-google-cloud-discoveryengine-v1.git", from: "0.2.0", traits: [".defaults", "<TraitName>"])
+```
+
+| Trait | Default | Enabled Client |
+|---|:---:|---|
+| `AssistantService` | No | `AssistantServiceClient` |
+| `CmekConfigService` | No | `CmekConfigServiceClient` |
+| `CompletionService` | No | `CompletionServiceClient` |
+| `ControlService` | No | `ControlServiceClient` |
+| `ConversationalSearchService` | No | `ConversationalSearchServiceClient` |
+| `DataStoreService` | No | `DataStoreServiceClient` |
+| `DocumentService` | No | `DocumentServiceClient` |
+| `EngineService` | No | `EngineServiceClient` |
+| `GroundedGenerationService` | No | `GroundedGenerationServiceClient` |
+| `IdentityMappingStoreService` | No | `IdentityMappingStoreServiceClient` |
+| `ProjectService` | No | `ProjectServiceClient` |
+| `RankService` | No | `RankServiceClient` |
+| `RecommendationService` | Yes | `RecommendationServiceClient` |
+| `SchemaService` | No | `SchemaServiceClient` |
+| `SearchService` | Yes | `SearchServiceClient` |
+| `SearchTuningService` | No | `SearchTuningServiceClient` |
+| `ServingConfigService` | No | `ServingConfigServiceClient` |
+| `SessionService` | No | `SessionServiceClient` |
+| `SiteSearchEngineService` | No | `SiteSearchEngineServiceClient` |
+| `UserEventService` | No | `UserEventServiceClient` |
+| `UserLicenseService` | No | `UserLicenseServiceClient` |
+
 ## Troubleshooting
 
 For questions, bug reports, or feature requests, please open an issue in the

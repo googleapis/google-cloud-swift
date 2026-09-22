@@ -7,3 +7,4 @@ Lets you define and config your API service.
 
 This is a type-only library. You will not find functions to make RPCs in this
 library. Its types are used in other libraries that access Google Cloud.
+

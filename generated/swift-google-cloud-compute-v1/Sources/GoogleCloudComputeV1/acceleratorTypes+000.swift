@@ -281,4 +281,18 @@
       return try self.list(byItem: request)
     }
   }
+#else
+  @_spi(GoogleCloudInternal) import GoogleGax
+
+  @available(
+    *, unavailable,
+    message: "Enable the 'AcceleratorTypes' trait in Package.swift to use this client."
+  )
+  public final class AcceleratorTypesClient: Sendable {
+    @available(
+      *, unavailable,
+      message: "Enable the 'AcceleratorTypes' trait in Package.swift to use this client."
+    )
+    public init(_ options: GoogleGax.ClientOptions = .init()) throws {}
+  }
 #endif

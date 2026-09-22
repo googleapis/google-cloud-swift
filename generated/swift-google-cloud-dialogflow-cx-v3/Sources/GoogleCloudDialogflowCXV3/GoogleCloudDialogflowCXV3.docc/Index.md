@@ -11,23 +11,28 @@ client will let you interact with the API. The methods in the client type
 corresponds to RPCs in the API. Many APIs have more than one client, exposing
 different aspects of the API, consult the reference documentation for details.
 
-- ``AgentsClient``: enabled by the `Agents` feature.
-- ``ChangelogsClient``: enabled by the `Changelogs` feature.
-- ``DeploymentsClient``: enabled by the `Deployments` feature.
-- ``EntityTypesClient``: enabled by the `EntityTypes` feature.
-- ``EnvironmentsClient``: enabled by the `Environments` feature.
-- ``ExamplesClient``: enabled by the `Examples` feature.
-- ``ExperimentsClient``: enabled by the `Experiments` feature.
-- ``FlowsClient``: enabled by the `Flows` feature.
-- ``GeneratorsClient``: enabled by the `Generators` feature.
-- ``IntentsClient``: enabled by the `Intents` feature.
-- ``PagesClient``: enabled by the `Pages` feature.
-- ``PlaybooksClient``: enabled by the `Playbooks` feature.
-- ``SecuritySettingsServiceClient``: enabled by the `SecuritySettingsService` feature.
-- ``SessionsClient``: enabled by the `Sessions` feature.
-- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` feature.
-- ``TestCasesClient``: enabled by the `TestCases` feature.
-- ``ToolsClient``: enabled by the `Tools` feature.
-- ``TransitionRouteGroupsClient``: enabled by the `TransitionRouteGroups` feature.
-- ``VersionsClient``: enabled by the `Versions` feature.
-- ``WebhooksClient``: enabled by the `Webhooks` feature.
+- ``AgentsClient``: enabled by the `Agents` trait.
+- ``ChangelogsClient``: enabled by the `Changelogs` trait.
+- ``DeploymentsClient``: enabled by the `Deployments` trait.
+- ``EntityTypesClient``: enabled by the `EntityTypes` trait.
+- ``EnvironmentsClient``: enabled by the `Environments` trait.
+- ``ExamplesClient``: enabled by the `Examples` trait.
+- ``ExperimentsClient``: enabled by the `Experiments` trait.
+- ``FlowsClient``: enabled by the `Flows` trait.
+- ``GeneratorsClient``: enabled by the `Generators` trait.
+- ``IntentsClient``: enabled by the `Intents` trait.
+- ``PagesClient``: enabled by the `Pages` trait.
+- ``PlaybooksClient``: enabled by the `Playbooks` trait.
+- ``SecuritySettingsServiceClient``: enabled by the `SecuritySettingsService` trait.
+- ``SessionsClient``: enabled by the `Sessions` trait.
+- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` trait.
+- ``TestCasesClient``: enabled by the `TestCases` trait.
+- ``ToolsClient``: enabled by the `Tools` trait.
+- ``TransitionRouteGroupsClient``: enabled by the `TransitionRouteGroups` trait.
+- ``VersionsClient``: enabled by the `Versions` trait.
+- ``WebhooksClient``: enabled by the `Webhooks` trait.
+
+## See Also
+
+- <doc:PackageTraits>
+

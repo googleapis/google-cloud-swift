@@ -11,37 +11,42 @@ client will let you interact with the API. The methods in the client type
 corresponds to RPCs in the API. Many APIs have more than one client, exposing
 different aspects of the API, consult the reference documentation for details.
 
-- ``DataFoundryServiceClient``: enabled by the `DataFoundryService` feature.
-- ``DatasetServiceClient``: enabled by the `DatasetService` feature.
-- ``DeploymentResourcePoolServiceClient``: enabled by the `DeploymentResourcePoolService` feature.
-- ``EndpointServiceClient``: enabled by the `EndpointService` feature.
-- ``EvaluationServiceClient``: enabled by the `EvaluationService` feature.
-- ``FeatureOnlineStoreAdminServiceClient``: enabled by the `FeatureOnlineStoreAdminService` feature.
-- ``FeatureOnlineStoreServiceClient``: enabled by the `FeatureOnlineStoreService` feature.
-- ``FeatureRegistryServiceClient``: enabled by the `FeatureRegistryService` feature.
-- ``FeaturestoreOnlineServingServiceClient``: enabled by the `FeaturestoreOnlineServingService` feature.
-- ``FeaturestoreServiceClient``: enabled by the `FeaturestoreService` feature.
-- ``GenAiCacheServiceClient``: enabled by the `GenAiCacheService` feature.
-- ``GenAiTuningServiceClient``: enabled by the `GenAiTuningService` feature.
-- ``IndexEndpointServiceClient``: enabled by the `IndexEndpointService` feature.
-- ``IndexServiceClient``: enabled by the `IndexService` feature.
-- ``JobServiceClient``: enabled by the `JobService` feature.
-- ``LlmUtilityServiceClient``: enabled by the `LlmUtilityService` feature.
-- ``MatchServiceClient``: enabled by the `MatchService` feature.
-- ``MetadataServiceClient``: enabled by the `MetadataService` feature.
-- ``MigrationServiceClient``: enabled by the `MigrationService` feature.
-- ``ModelGardenServiceClient``: enabled by the `ModelGardenService` feature.
-- ``ModelServiceClient``: enabled by the `ModelService` feature.
-- ``NotebookServiceClient``: enabled by the `NotebookService` feature.
-- ``PersistentResourceServiceClient``: enabled by the `PersistentResourceService` feature.
-- ``PipelineServiceClient``: enabled by the `PipelineService` feature.
-- ``PredictionServiceClient``: enabled by the `PredictionService` feature.
-- ``ReasoningEngineExecutionServiceClient``: enabled by the `ReasoningEngineExecutionService` feature.
-- ``ReasoningEngineServiceClient``: enabled by the `ReasoningEngineService` feature.
-- ``ScheduleServiceClient``: enabled by the `ScheduleService` feature.
-- ``SessionServiceClient``: enabled by the `SessionService` feature.
-- ``SpecialistPoolServiceClient``: enabled by the `SpecialistPoolService` feature.
-- ``TensorboardServiceClient``: enabled by the `TensorboardService` feature.
-- ``VertexRagDataServiceClient``: enabled by the `VertexRagDataService` feature.
-- ``VertexRagServiceClient``: enabled by the `VertexRagService` feature.
-- ``VizierServiceClient``: enabled by the `VizierService` feature.
+- ``DataFoundryServiceClient``: enabled by the `DataFoundryService` trait.
+- ``DatasetServiceClient``: enabled by the `DatasetService` trait.
+- ``DeploymentResourcePoolServiceClient``: enabled by the `DeploymentResourcePoolService` trait.
+- ``EndpointServiceClient``: enabled by the `EndpointService` trait.
+- ``EvaluationServiceClient``: enabled by the `EvaluationService` trait.
+- ``FeatureOnlineStoreAdminServiceClient``: enabled by the `FeatureOnlineStoreAdminService` trait.
+- ``FeatureOnlineStoreServiceClient``: enabled by the `FeatureOnlineStoreService` trait.
+- ``FeatureRegistryServiceClient``: enabled by the `FeatureRegistryService` trait.
+- ``FeaturestoreOnlineServingServiceClient``: enabled by the `FeaturestoreOnlineServingService` trait.
+- ``FeaturestoreServiceClient``: enabled by the `FeaturestoreService` trait.
+- ``GenAiCacheServiceClient``: enabled by the `GenAiCacheService` trait.
+- ``GenAiTuningServiceClient``: enabled by the `GenAiTuningService` trait.
+- ``IndexEndpointServiceClient``: enabled by the `IndexEndpointService` trait.
+- ``IndexServiceClient``: enabled by the `IndexService` trait.
+- ``JobServiceClient``: enabled by the `JobService` trait.
+- ``LlmUtilityServiceClient``: enabled by the `LlmUtilityService` trait.
+- ``MatchServiceClient``: enabled by the `MatchService` trait.
+- ``MetadataServiceClient``: enabled by the `MetadataService` trait.
+- ``MigrationServiceClient``: enabled by the `MigrationService` trait.
+- ``ModelGardenServiceClient``: enabled by the `ModelGardenService` trait.
+- ``ModelServiceClient``: enabled by the `ModelService` trait.
+- ``NotebookServiceClient``: enabled by the `NotebookService` trait.
+- ``PersistentResourceServiceClient``: enabled by the `PersistentResourceService` trait.
+- ``PipelineServiceClient``: enabled by the `PipelineService` trait.
+- ``PredictionServiceClient``: enabled by the `PredictionService` trait.
+- ``ReasoningEngineExecutionServiceClient``: enabled by the `ReasoningEngineExecutionService` trait.
+- ``ReasoningEngineServiceClient``: enabled by the `ReasoningEngineService` trait.
+- ``ScheduleServiceClient``: enabled by the `ScheduleService` trait.
+- ``SessionServiceClient``: enabled by the `SessionService` trait.
+- ``SpecialistPoolServiceClient``: enabled by the `SpecialistPoolService` trait.
+- ``TensorboardServiceClient``: enabled by the `TensorboardService` trait.
+- ``VertexRagDataServiceClient``: enabled by the `VertexRagDataService` trait.
+- ``VertexRagServiceClient``: enabled by the `VertexRagService` trait.
+- ``VizierServiceClient``: enabled by the `VizierService` trait.
+
+## See Also
+
+- <doc:PackageTraits>
+
