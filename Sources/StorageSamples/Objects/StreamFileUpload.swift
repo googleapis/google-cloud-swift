@@ -27,7 +27,7 @@ public func streamFileUpload(
     continuation.finish()
   }
   let source = StreamSource(sequence: stream)
-  let object = try await client.upload(source, to: bucketId, as: objectName)
+  let object = try await client.writeObject(source, to: bucketId, as: objectName)
   print("successfully uploaded object \(objectName) to bucket \(bucketId): \(object)")
 }
 // [END storage_stream_file_upload]

@@ -28,7 +28,7 @@ import GoogleRpc
 /// This policy can be composed with decorators such as ``StopOnConsecutiveErrors`` or
 /// ``LimitedTotalResumes``:
 /// ```swift
-/// let resumePolicy = StorageResumePolicy<UploadDetails>().stopOnConsecutiveErrors(3)
+/// let resumePolicy = StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(3)
 /// ```
 public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Equatable {
   public init() {}

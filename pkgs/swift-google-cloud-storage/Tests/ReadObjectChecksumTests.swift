@@ -19,7 +19,7 @@ import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
-@Suite struct DownloadChecksumTests {
+@Suite struct ReadObjectChecksumTests {
   private func makeClient(registry: MockRegistry) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -94,11 +94,11 @@ import Testing
 
     do {
       for try await _ in result.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: invalidExpectedCrc,
             actual: actualCrcBase64,
             algorithm: "crc32c"
@@ -173,11 +173,11 @@ import Testing
 
     do {
       for try await _ in result.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: invalidExpectedMd5,
             actual: actualMd5Base64,
             algorithm: "md5"
@@ -235,11 +235,11 @@ import Testing
     let mismatchResult = client.readObject(from: bucket, object: "mismatch.txt", options: options)
     do {
       for try await _ in mismatchResult.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: "wrong_content_md5",
             actual: actualMd5Base64,
             algorithm: "md5"
@@ -299,11 +299,11 @@ import Testing
     let md5FailResult = client.readObject(from: bucket, object: "md5-fail.txt", options: options)
     do {
       for try await _ in md5FailResult.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: "wrong_md5",
             actual: md5Base64,
             algorithm: "md5"
@@ -358,11 +358,11 @@ import Testing
     let wrongResult = client.readObject(from: bucket, object: objectName, options: wrongOptions)
     do {
       for try await _ in wrongResult.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: "wrong_crc_value",
             actual: crcBase64,
             algorithm: "crc32c"
@@ -445,11 +445,11 @@ import Testing
     let wrongResult = client.readObject(from: bucket, object: objectName, options: wrongOptions)
     do {
       for try await _ in wrongResult.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: "wrong_md5_value",
             actual: md5Base64,
             algorithm: "md5"
@@ -582,11 +582,11 @@ import Testing
     let wrongResult = client.readObject(from: bucket, object: objectName, options: wrongOptions)
     do {
       for try await _ in wrongResult.body {}
-      Issue.record("Expected DownloadError.checksumMismatch to be thrown")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
+    } catch let error as ReadObjectError {
       #expect(
         error
-          == DownloadError.checksumMismatch(
+          == ReadObjectError.checksumMismatch(
             expected: "wrong_range_crc",
             actual: rangeCrcBase64,
             algorithm: "crc32c"

@@ -14,24 +14,24 @@
 
 import Foundation
 
-/// Progress and size details for an ongoing upload operation.
-public struct UploadDetails: Sendable, Equatable {
-  /// The total number of bytes successfully uploaded or committed so far.
-  public var bytesUploaded: UInt64
+/// Progress and size details for an ongoing write object operation.
+public struct WriteObjectDetails: Sendable, Equatable {
+  /// The total number of bytes successfully written or committed so far.
+  public var bytesWritten: UInt64
 
-  /// The total size of the object to upload in bytes, if known.
+  /// The total size of the object to write in bytes, if known.
   public var totalBytes: UInt64?
 
-  /// Creates a new `UploadDetails` instance.
+  /// Creates a new `WriteObjectDetails` instance.
   ///
   /// - Parameters:
-  ///   - bytesUploaded: Initial bytes uploaded. Defaults to 0.
+  ///   - bytesWritten: Initial bytes written. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   public init(
-    bytesUploaded: UInt64 = 0,
+    bytesWritten: UInt64 = 0,
     totalBytes: UInt64? = nil
   ) {
-    self.bytesUploaded = bytesUploaded
+    self.bytesWritten = bytesWritten
     self.totalBytes = totalBytes
   }
 }

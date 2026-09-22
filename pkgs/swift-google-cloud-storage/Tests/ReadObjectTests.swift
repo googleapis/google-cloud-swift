@@ -19,7 +19,7 @@ import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
-@Suite struct DownloadTests {
+@Suite struct ReadObjectTests {
   private static func sampleKey() -> CustomerEncryptionKeyOptions {
     let keyData = Data(repeating: 0x42, count: 32)
     return try! CustomerEncryptionKeyOptions(key: keyData)
@@ -30,7 +30,7 @@ import Testing
   private func makeClient(
     registry: MockRegistry,
     retryPolicy: (any RetryPolicy)? = nil,
-    downloadOptions: ReadObjectOptions? = nil
+    readObjectOptions: ReadObjectOptions? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -40,8 +40,8 @@ import Testing
           $0.retryPolicy = retryPolicy
         }
       }
-      if let downloadOptions {
-        $0.download = downloadOptions
+      if let readObjectOptions {
+        $0.readObject = readObjectOptions
       }
     }
     return try StorageClient(options, mock: registry)
@@ -264,7 +264,7 @@ import Testing
       $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 999 }
     }
 
-    let err = await expectError(DownloadError.self) {
+    let err = await expectError(ReadObjectError.self) {
       try await client.readObject(from: bucket, object: objectName, options: options).metadata
     }
 
@@ -329,7 +329,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    let err = await expectError(DownloadError.self) {
+    let err = await expectError(ReadObjectError.self) {
       try await client.readObject(from: bucket, object: objectName).metadata
     }
 
@@ -614,7 +614,7 @@ import Testing
         options: ReadObjectOptions().with { $0.range = .prefix(0) }
       ).metadata
       Issue.record("Expected unexpectedServerResponse error to be thrown for 404")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
       #expect(statusCode == 404)
     } catch {
       Issue.record("Expected unexpectedServerResponse, got \(error)")
@@ -820,10 +820,12 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume<DownloadDetails>() }
+      readObjectOptions: ReadObjectOptions().with {
+        $0.resumePolicy = NeverResume<ReadObjectDetails>()
+      }
     )
 
-    let err = await expectError(DownloadError.self) {
+    let err = await expectError(ReadObjectError.self) {
       try await client.readObject(from: bucket, object: objectName).metadata
     }
     #expect(err != nil)
@@ -846,10 +848,10 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.resumePolicy = NeverResume<DownloadDetails>()
+      $0.resumePolicy = NeverResume<ReadObjectDetails>()
     }
 
-    let err = await expectError(DownloadError.self) {
+    let err = await expectError(ReadObjectError.self) {
       try await client.readObject(from: bucket, object: objectName, options: options).metadata
     }
     #expect(err != nil)
@@ -858,7 +860,7 @@ import Testing
     #expect(requests.count == 1)
   }
 
-  @Test func downloadObjectWithClientDownloadOptionsResumePolicyOverridesDefault() async throws {
+  @Test func downloadObjectWithClientReadObjectOptionsResumePolicyOverridesDefault() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-client-override.txt"
@@ -872,10 +874,12 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume<DownloadDetails>() }
+      readObjectOptions: ReadObjectOptions().with {
+        $0.resumePolicy = NeverResume<ReadObjectDetails>()
+      }
     )
 
-    let err = await expectError(DownloadError.self) {
+    let err = await expectError(ReadObjectError.self) {
       try await client.readObject(from: bucket, object: objectName).metadata
     }
     #expect(err != nil)
@@ -1097,7 +1101,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.resumePolicy = NeverResume<DownloadDetails>()
+      $0.resumePolicy = NeverResume<ReadObjectDetails>()
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -1105,10 +1109,10 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected error to be thrown when resumePolicy is NeverResume")
-    } catch DownloadError.resumeFailed(let bytesReceived, _) {
+    } catch ReadObjectError.resumeFailed(let bytesReceived, _) {
       #expect(bytesReceived == UInt64(chunk1.count))
     } catch {
-      Issue.record("Expected DownloadError.resumeFailed, but got \(error)")
+      Issue.record("Expected ReadObjectError.resumeFailed, but got \(error)")
     }
 
     let requests = registry.recordedRequests()
@@ -1149,7 +1153,7 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected error when resume fails with 404")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
       #expect(statusCode == 404)
       #expect(message == "Object deleted")
     } catch {
@@ -1371,7 +1375,7 @@ import Testing
     let clientOptions = StorageClientOptions().with {
       $0.client.endpoint = registry.endpoint
       $0.client.quotaProject = clientQuota
-      $0.download.quotaProject = downloadQuota
+      $0.readObject.quotaProject = downloadQuota
     }
     let client = try StorageClient(clientOptions, mock: registry)
 

@@ -17,7 +17,7 @@ import GoogleGax
 @testable import GoogleCloudStorage
 import Testing
 
-@Suite struct DownloadOptionsTests {
+@Suite struct ReadObjectOptionsTests {
   @Test func readRangeHeaderValues() {
     #expect(ReadObjectRange.entire.headerValue == nil)
     #expect(ReadObjectRange.fromOffset(1024).headerValue == "bytes=1024-")
@@ -56,7 +56,7 @@ import Testing
       $0.customerEncryptionKey = csek
       $0.range = .bounded(0...1024)
       $0.enableDecompressiveTranscoding = false
-      $0.resumePolicy = NeverResume<DownloadDetails>()
+      $0.resumePolicy = NeverResume<ReadObjectDetails>()
       $0.checksums = .none
     }
 
@@ -172,12 +172,12 @@ import Testing
         == .suffix(40))
   }
 
-  @Test func downloadErrorEquality() {
-    let err1 = DownloadError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
-    let err2 = DownloadError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
-    let err3 = DownloadError.invalidRangeHeader("bytes=1-0")
-    let err4 = DownloadError.resumeFailed(bytesReceived: 100, message: "failed")
-    let err5 = DownloadError.resumeFailed(bytesReceived: 100, message: "failed")
+  @Test func readObjectErrorEquality() {
+    let err1 = ReadObjectError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
+    let err2 = ReadObjectError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
+    let err3 = ReadObjectError.invalidRangeHeader("bytes=1-0")
+    let err4 = ReadObjectError.resumeFailed(bytesReceived: 100, message: "failed")
+    let err5 = ReadObjectError.resumeFailed(bytesReceived: 100, message: "failed")
 
     #expect(err1 == err2)
     #expect(err1 != err3)
@@ -203,7 +203,7 @@ import Testing
       ),
       (
         options: ReadObjectOptions().with {
-          $0.resumePolicy = AlwaysResume<DownloadDetails>()
+          $0.resumePolicy = AlwaysResume<ReadObjectDetails>()
           $0.quotaProject = "override-download-quota"
         },
         expectedIsAlwaysResume: true,
@@ -217,16 +217,16 @@ import Testing
     expectedQuotaProject: String
   ) {
     let defaults = ReadObjectOptions().with {
-      $0.resumePolicy = NeverResume<DownloadDetails>()
+      $0.resumePolicy = NeverResume<ReadObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-download-quota"
     }
 
     let resolved = options.withDefaults(defaults)
     if expectedIsAlwaysResume {
-      #expect(resolved.resumePolicy is AlwaysResume<DownloadDetails>)
+      #expect(resolved.resumePolicy is AlwaysResume<ReadObjectDetails>)
     } else {
-      #expect(resolved.resumePolicy is NeverResume<DownloadDetails>)
+      #expect(resolved.resumePolicy is NeverResume<ReadObjectDetails>)
     }
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == expectedQuotaProject)

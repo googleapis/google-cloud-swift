@@ -19,7 +19,7 @@ import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
-@Suite struct UploadMetadataTests {
+@Suite struct WriteObjectMetadataTests {
   private func makeClient(registry: MockRegistry) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -30,7 +30,7 @@ import Testing
     return try StorageClient(options, mock: registry)
   }
 
-  @Test func uploadMetadataEncodingAndDecoding() throws {
+  @Test func writeObjectMetadataEncodingAndDecoding() throws {
     let customTime = try GoogleWKT.Timestamp(seconds: 1_700_000_000, nanos: 0)
     let aclEntry = ObjectAccessControl().with {
       $0.entity = "user-test@example.com"
@@ -44,7 +44,7 @@ import Testing
       $0.entity = "user-owner@example.com"
     }
 
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentType = "text/plain"
       $0.contentEncoding = "gzip"
       $0.contentDisposition = "inline"
@@ -72,7 +72,7 @@ import Testing
     #expect(jsonString.contains("user-test@example.com"))
 
     let decoder = _ProtoJSONDecoder()
-    let decoded = try decoder.decode(UploadMetadata.self, from: data)
+    let decoded = try decoder.decode(WriteObjectMetadata.self, from: data)
 
     #expect(decoded == uploadMetadata)
     #expect(decoded.contentType == "text/plain")
@@ -90,7 +90,7 @@ import Testing
     #expect(decoded.owner == owner)
   }
 
-  @Test func simpleUploadWithUploadMetadataInUploadOptions() async throws {
+  @Test func simpleUploadWithWriteObjectMetadataInWriteObjectOptions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
@@ -123,17 +123,17 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentType = "text/plain"
       $0.contentEncoding = "gzip"
       $0.customMetadata = ["author": "swift-sdk"]
     }
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.metadata = uploadMetadata
       $0.predefinedAcl = .publicRead
     }
 
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -151,7 +151,7 @@ import Testing
     }
   }
 
-  @Test func resumableUploadWithUploadMetadata() async throws {
+  @Test func resumableUploadWithWriteObjectMetadata() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "resumable-object"
@@ -191,17 +191,17 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let metadata = UploadMetadata().with {
+    let metadata = WriteObjectMetadata().with {
       $0.contentType = "image/png"
       $0.customMetadata = ["resolution": "1080p"]
       $0.storageClass = "NEARLINE"
     }
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.metadata = metadata
       $0.predefinedAcl = .private
     }
 
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -289,7 +289,7 @@ import Testing
     #expect(object.owner?.entityId == "owner123")
   }
 
-  @Test func uploadMetadataWithObjectContextsEncodingAndDecoding() throws {
+  @Test func writeObjectMetadataWithObjectContextsEncodingAndDecoding() throws {
     let createTime = try GoogleWKT.Timestamp(seconds: 1_700_000_000, nanos: 0)
     let updateTime = try GoogleWKT.Timestamp(seconds: 1_700_000_100, nanos: 0)
 
@@ -299,7 +299,7 @@ import Testing
       "payment_status": "unpaid",
     ])
 
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentType = "application/json"
       $0.contexts = contexts
     }
@@ -319,7 +319,7 @@ import Testing
     #expect(jsonString.contains("\"unpaid\""))
 
     let decoder = _ProtoJSONDecoder()
-    let decoded = try decoder.decode(UploadMetadata.self, from: data)
+    let decoded = try decoder.decode(WriteObjectMetadata.self, from: data)
 
     #expect(decoded == uploadMetadata)
     #expect(decoded.contexts?.custom["customer_id"]?.value == "cust-78901")
@@ -328,7 +328,7 @@ import Testing
     #expect(decoded.contexts?.custom["payment_status"]?.value == "unpaid")
   }
 
-  @Test func simpleUploadWithObjectContextsInUploadOptions() async throws {
+  @Test func simpleUploadWithObjectContextsInWriteObjectOptions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "context-object"
@@ -366,15 +366,15 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
-      $0.metadata = UploadMetadata().with {
+    let uploadOptions = WriteObjectOptions().with {
+      $0.metadata = WriteObjectMetadata().with {
         $0.contexts = ObjectContexts(customValues: [
           "dept": "engineering", "environment": "production",
         ])
       }
     }
 
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -433,13 +433,13 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
-      $0.metadata = UploadMetadata().with {
+    let uploadOptions = WriteObjectOptions().with {
+      $0.metadata = WriteObjectMetadata().with {
         $0.contexts = ObjectContexts(customValues: ["batch_id": "2026_Q3"])
       }
     }
 
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)

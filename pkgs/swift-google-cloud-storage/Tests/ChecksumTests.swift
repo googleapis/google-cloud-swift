@@ -98,10 +98,10 @@ import Testing
     }
 
     let client = try StorageClient(options, mock: registry)
-    let uploadOptions = UploadOptions().with { $0.validation = .crc32c }
+    let uploadOptions = WriteObjectOptions().with { $0.validation = .crc32c }
 
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+      try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 400)
@@ -143,10 +143,10 @@ import Testing
     }
 
     let client = try StorageClient(options, mock: registry)
-    let uploadOptions = UploadOptions().with { $0.validation = .md5 }
+    let uploadOptions = WriteObjectOptions().with { $0.validation = .md5 }
 
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+      try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 400)
@@ -212,9 +212,9 @@ import Testing
     #expect(chunk!.checksum == "crc32c=TVUQaA==, md5=CUSTOM_MD5")
   }
 
-  /// Tests that a non-seekable UploadSource can be wrapped in ChecksummedSource and streamed cleanly.
+  /// Tests that a non-seekable WriteObjectSource can be wrapped in ChecksummedSource and streamed cleanly.
   @Test func testChecksummedSourceNonSeekableSourceStreaming() async throws {
-    struct NonSeekableSource: UploadSource {
+    struct NonSeekableSource: WriteObjectSource {
       let data: Data
       private var readCompleted = false
       init(data: Data) { self.data = data }

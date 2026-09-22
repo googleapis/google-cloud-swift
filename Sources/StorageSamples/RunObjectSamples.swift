@@ -43,24 +43,27 @@ public func runObjectSamples(
   let sampleData = Data(sampleText.utf8)
 
   // Seed test objects
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-download.txt")
-  _ = try await dataClient.upload(sampleData, to: id, as: "prefixes/are-not-always/folders-001")
-  _ = try await dataClient.upload(sampleData, to: id, as: "prefixes/are-not-always/folders-002")
-  _ = try await dataClient.upload(sampleData, to: id, as: "prefixes/are-not-always/folders-003")
-  _ = try await dataClient.upload(sampleData, to: id, as: "uploaded-file.txt")
-  _ = try await dataClient.upload(sampleData, to: id, as: "deleted-object-name")
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-read")
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-update")
-  _ = try await dataClient.upload(sampleData, to: id, as: "update-storage-class")
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-with-contexts")
-  _ = try await dataClient.upload(sampleData, to: id, as: "compose-source-object-1")
-  _ = try await dataClient.upload(sampleData, to: id, as: "compose-source-object-2")
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-copy")
-  _ = try await dataClient.upload(sampleData, to: id, as: "hello-world.txt")
-  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-move")
-  let archivedCopy = try await dataClient.upload(
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-to-download.txt")
+  _ = try await dataClient.writeObject(
+    sampleData, to: id, as: "prefixes/are-not-always/folders-001")
+  _ = try await dataClient.writeObject(
+    sampleData, to: id, as: "prefixes/are-not-always/folders-002")
+  _ = try await dataClient.writeObject(
+    sampleData, to: id, as: "prefixes/are-not-always/folders-003")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "uploaded-file.txt")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "deleted-object-name")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-to-read")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-to-update")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "update-storage-class")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-with-contexts")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "compose-source-object-1")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "compose-source-object-2")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-to-copy")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "hello-world.txt")
+  _ = try await dataClient.writeObject(sampleData, to: id, as: "object-to-move")
+  let archivedCopy = try await dataClient.writeObject(
     sampleData, to: id, as: "object-generation-to-copy")
-  let archivedDelete = try await dataClient.upload(
+  let archivedDelete = try await dataClient.writeObject(
     sampleData, to: id, as: "object-generation-to-delete")
 
   let uploadFilePath = FileManager.default.temporaryDirectory.appendingPathComponent(
@@ -260,11 +263,11 @@ public func runObjectSamples(
 
     let csekKey = try generateEncryptionKey()
     let csekObjectName = "csek-file.txt"
-    _ = try await dataClient.upload(
+    _ = try await dataClient.writeObject(
       sampleData,
       to: kmsBucketId,
       as: csekObjectName,
-      options: UploadOptions().with {
+      options: WriteObjectOptions().with {
         $0.customerEncryptionKey = csekKey
       }
     )
@@ -300,7 +303,7 @@ public func runObjectSamples(
     }
   )
 
-  _ = try await dataClient.upload(
+  _ = try await dataClient.writeObject(
     sampleData, to: retentionAclBucketId, as: "object-to-update")
 
   print("running addFileOwner() sample")

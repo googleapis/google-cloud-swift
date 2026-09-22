@@ -22,11 +22,11 @@ struct PreparedMultipartUpload: Sendable {
   let checksum: String?
 }
 
-/// An AsyncSequence that frames an UploadSource with multipart/related boundaries on the fly.
+/// An AsyncSequence that frames a WriteObjectSource with multipart/related boundaries on the fly.
 struct MultipartUploadStream: AsyncSequence, Sendable {
   typealias Element = NIOCore.ByteBuffer
 
-  var source: any UploadSource
+  var source: any WriteObjectSource
   let boundary: String
   let metadataJson: Data
   let contentType: String
@@ -34,7 +34,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
   let chunkSize: Int
 
   init(
-    source: any UploadSource,
+    source: any WriteObjectSource,
     boundary: String,
     metadataJson: Data,
     contentType: String,
@@ -51,7 +51,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
 
   /// Rewinds the underlying source to offset 0 if it is seekable.
   mutating func rewind() async throws {
-    if var seekable = source as? (any SeekableUploadSource) {
+    if var seekable = source as? (any SeekableWriteObjectSource) {
       try await seekable.seek(to: 0)
       source = seekable
     }
@@ -67,13 +67,13 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     return UInt64(preambleLen) + totalSize + UInt64(epilogueLen)
   }
 
-  /// Prepares an upload source for a simple multipart upload by calculating or extracting the `x-goog-hash` header.
+  /// Prepares a write object source for a simple multipart upload by calculating or extracting the `x-goog-hash` header.
   ///
   /// The GCS JSON API simple upload endpoint requires the `x-goog-hash` header to be sent in the initial HTTP request
   /// headers before the request body is received. This helper computes or extracts the required checksum, prepares
   /// the source for streaming, and constructs the `MultipartUploadStream`.
   static func prepare(
-    source: any UploadSource,
+    source: any WriteObjectSource,
     boundary: String,
     metadataJson: Data,
     contentType: String,
@@ -82,11 +82,11 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     chunkSize: Int = 64 * 1024
   ) async throws -> PreparedMultipartUpload {
     var calculators = options.makeUploadCalculators()
-    var preparedSource: any UploadSource = source
+    var preparedSource: any WriteObjectSource = source
 
     // Only inspect/read the source if automatic checksum computation is needed.
     let autoCalculators = calculators.filter { !($0 is ProvidedChecksumCalculator) }
-    if var seekable = source as? (any SeekableUploadSource) {
+    if var seekable = source as? (any SeekableWriteObjectSource) {
       if !autoCalculators.isEmpty {
         while let chunk = try await seekable.read(maxBytes: chunkSize) {
           for i in calculators.indices {
@@ -134,7 +134,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     }
 
     private var state: State = .preamble
-    private var source: any UploadSource
+    private var source: any WriteObjectSource
     private let boundary: String
     private let metadataJson: Data
     private let contentType: String
@@ -143,7 +143,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     private var bytesYielded: UInt64 = 0
 
     init(
-      source: any UploadSource,
+      source: any WriteObjectSource,
       boundary: String,
       metadataJson: Data,
       contentType: String,
@@ -179,7 +179,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
           return chunk.byteBuffer
         }
         if bytesYielded < totalSize {
-          throw UploadError.internalError("Failed to read data from source")
+          throw WriteObjectError.internalError("Failed to read data from source")
         }
         state = .epilogue
         return try await next()

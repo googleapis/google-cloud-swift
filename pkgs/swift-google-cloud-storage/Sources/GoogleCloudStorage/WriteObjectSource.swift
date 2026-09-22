@@ -15,7 +15,7 @@
 import Foundation
 
 /// Represents a data source that can be read from sequentially.
-public protocol UploadSource: Sendable {
+public protocol WriteObjectSource: Sendable {
   /// Reads the next chunk of data, up to `maxBytes`.
   /// Returns `nil` when the source is exhausted.
   mutating func read(maxBytes: Int) async throws -> ByteChunk?
@@ -24,9 +24,9 @@ public protocol UploadSource: Sendable {
   var totalSize: UInt64? { get }
 }
 
-/// Represents an upload source that supports seeking (rewinding/skipping).
+/// Represents a write object source that supports seeking (rewinding/skipping).
 /// Conformance to this protocol enables persistent resumption.
-public protocol SeekableUploadSource: UploadSource {
+public protocol SeekableWriteObjectSource: WriteObjectSource {
   /// Seeks to a specific byte offset.
   mutating func seek(to offset: UInt64) async throws
 }

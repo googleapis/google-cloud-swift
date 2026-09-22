@@ -21,7 +21,7 @@ public func fileUploadFromMemory(
 ) async throws {
   let objectName = "object-to-upload.txt"
   let data = Data("Hello, world!".utf8)
-  let _ = try await client.upload(data, to: "projects/_/buckets/\(bucketId)", as: objectName)
+  let _ = try await client.writeObject(data, to: "projects/_/buckets/\(bucketId)", as: objectName)
   print("Uploaded to \(objectName) in bucket \(bucketId) from memory.")
 }
 // [END storage_file_upload_from_memory]

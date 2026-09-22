@@ -17,14 +17,14 @@ import GoogleGax
 @testable import GoogleCloudStorage
 import Testing
 
-@Suite struct UploadOptionsTests {
-  @Test func uploadOptionsDefaults() {
-    #expect(UploadOptions.defaultResumableUploadThreshold == 8 * 1024 * 1024)
-    #expect(UploadOptions.defaultChunkSize == 8 * 1024 * 1024)
+@Suite struct WriteObjectOptionsTests {
+  @Test func writeObjectOptionsDefaults() {
+    #expect(WriteObjectOptions.defaultResumableUploadThreshold == 8 * 1024 * 1024)
+    #expect(WriteObjectOptions.defaultChunkSize == 8 * 1024 * 1024)
 
-    let options = UploadOptions.default
+    let options = WriteObjectOptions.default
     #expect(options.resumableUploadThreshold == nil)
-    #expect(options.chunkSize == UploadOptions.defaultChunkSize)
+    #expect(options.chunkSize == WriteObjectOptions.defaultChunkSize)
     #expect(options.preconditions == nil)
     #expect(options.kmsKeyName == nil)
     #expect(options.customerEncryptionKey == nil)
@@ -36,16 +36,16 @@ import Testing
     #expect(options.quotaProject == nil)
   }
 
-  @Test func uploadOptionsWithBuilder() throws {
+  @Test func writeObjectOptionsWithBuilder() throws {
     let preconditions = StoragePreconditions().with {
       $0.ifGenerationMatch = 100
     }
     let csek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x42, count: 32))
-    let metadata = UploadMetadata().with {
+    let metadata = WriteObjectMetadata().with {
       $0.contentType = "application/json"
     }
 
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 4 * 1024 * 1024
       $0.chunkSize = 16 * 1024 * 1024
       $0.preconditions = preconditions
@@ -54,7 +54,7 @@ import Testing
       $0.checksums = .none
       $0.metadata = metadata
       $0.predefinedAcl = .publicRead
-      $0.resumePolicy = NeverResume<UploadDetails>()
+      $0.resumePolicy = NeverResume<WriteObjectDetails>()
       $0.quotaProject = "upload-quota-project"
     }
 
@@ -73,15 +73,15 @@ import Testing
   @Test(
     arguments: [
       (
-        options: UploadOptions(),
+        options: WriteObjectOptions(),
         expectedThreshold: 16 * 1024 * 1024,
         expectedIsAlwaysResume: false,
         expectedQuotaProject: "default-upload-quota"
       ),
       (
-        options: UploadOptions().with {
+        options: WriteObjectOptions().with {
           $0.resumableUploadThreshold = 32 * 1024 * 1024
-          $0.resumePolicy = AlwaysResume<UploadDetails>()
+          $0.resumePolicy = AlwaysResume<WriteObjectDetails>()
           $0.quotaProject = "override-upload-quota"
         },
         expectedThreshold: 32 * 1024 * 1024,
@@ -90,15 +90,15 @@ import Testing
       ),
     ]
   )
-  func uploadOptionsWithDefaults(
-    options: UploadOptions,
+  func writeObjectOptionsWithDefaults(
+    options: WriteObjectOptions,
     expectedThreshold: Int,
     expectedIsAlwaysResume: Bool,
     expectedQuotaProject: String
   ) {
-    let defaults = UploadOptions().with {
+    let defaults = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 16 * 1024 * 1024
-      $0.resumePolicy = NeverResume<UploadDetails>()
+      $0.resumePolicy = NeverResume<WriteObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-upload-quota"
     }
@@ -106,9 +106,9 @@ import Testing
     let resolved = options.withDefaults(defaults)
     #expect(resolved.resumableUploadThreshold == expectedThreshold)
     if expectedIsAlwaysResume {
-      #expect(resolved.resumePolicy is AlwaysResume<UploadDetails>)
+      #expect(resolved.resumePolicy is AlwaysResume<WriteObjectDetails>)
     } else {
-      #expect(resolved.resumePolicy is NeverResume<UploadDetails>)
+      #expect(resolved.resumePolicy is NeverResume<WriteObjectDetails>)
     }
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == expectedQuotaProject)

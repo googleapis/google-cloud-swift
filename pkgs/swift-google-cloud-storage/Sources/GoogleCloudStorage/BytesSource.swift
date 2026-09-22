@@ -14,8 +14,8 @@
 
 import Foundation
 
-/// An upload source that wraps in-memory bytes or buffers.
-public struct BytesSource: SeekableUploadSource {
+/// A write object source that wraps in-memory bytes or buffers.
+public struct BytesSource: SeekableWriteObjectSource {
   public let buffer: ByteChunk
   public var totalSize: UInt64? {
     return UInt64(buffer.count)
@@ -45,7 +45,7 @@ public struct BytesSource: SeekableUploadSource {
   public mutating func seek(to offset: UInt64) async throws {
     let size = UInt64(buffer.count)
     guard offset <= size else {
-      throw UploadError.localSourceTooSmall(localSize: size, gcsOffset: offset)
+      throw WriteObjectError.localSourceTooSmall(localSize: size, gcsOffset: offset)
     }
     self.offset = offset
   }

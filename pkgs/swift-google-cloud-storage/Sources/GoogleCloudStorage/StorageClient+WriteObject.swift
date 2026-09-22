@@ -31,28 +31,29 @@ package enum ResumableUploadStatus: Sendable {
 }
 
 extension StorageClient {
-  /// Core upload method accepting any upload source.
+  /// Core write method accepting any write object source.
   ///
   /// - Parameters:
-  ///   - source: The upload source containing the data.
+  ///   - source: The write object source containing the data.
   ///   - bucket: The destination GCS bucket name.
   ///   - objectName: The destination GCS object name.
-  ///   - options: Configuration options for the upload.
+  ///   - options: Configuration options for the write operation.
   /// - Returns: The created `Object`.
-  public func upload(
-    _ source: some UploadSource,
+  public func writeObject(
+    _ source: some WriteObjectSource,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions = .default
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    let effectiveOptions = options.withDefaults(self.options.upload)
+    let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<UploadDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let effectiveThreshold =
-      effectiveOptions.resumableUploadThreshold ?? UploadOptions.defaultResumableUploadThreshold
+      effectiveOptions.resumableUploadThreshold
+      ?? WriteObjectOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
     var source = source
@@ -88,28 +89,29 @@ extension StorageClient {
     }
   }
 
-  /// Upload method specialized for seekable upload sources.
+  /// Write method specialized for seekable write object sources.
   ///
   /// - Parameters:
-  ///   - source: The seekable upload source containing the data.
+  ///   - source: The seekable write object source containing the data.
   ///   - bucket: The destination GCS bucket name.
   ///   - objectName: The destination GCS object name.
-  ///   - options: Configuration options for the upload.
+  ///   - options: Configuration options for the write operation.
   /// - Returns: The created `Object`.
-  public func upload(
-    _ source: some SeekableUploadSource,
+  public func writeObject(
+    _ source: some SeekableWriteObjectSource,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions = .default
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    let effectiveOptions = options.withDefaults(self.options.upload)
+    let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<UploadDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let effectiveThreshold =
-      effectiveOptions.resumableUploadThreshold ?? UploadOptions.defaultResumableUploadThreshold
+      effectiveOptions.resumableUploadThreshold
+      ?? WriteObjectOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
     var source = source
@@ -145,15 +147,15 @@ extension StorageClient {
     }
   }
 
-  fileprivate static func performSimpleUpload<S: UploadSource>(
+  fileprivate static func performSimpleUpload<S: WriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     source: inout S,
     bucket: String,
     objectName: String,
-    metadata: UploadMetadata?,
-    options: UploadOptions,
+    metadata: WriteObjectMetadata?,
+    options: WriteObjectOptions,
     totalSize: UInt64,
-    resumeLoop: _ResumeLoop<UploadDetails>
+    resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
     var queryItems = [URLQueryItem(name: "uploadType", value: "multipart")]
     queryItems.append(URLQueryItem(name: "name", value: objectName))
@@ -170,7 +172,7 @@ extension StorageClient {
 
     let bucketId = BucketName.extractBucketName(bucket)
     let boundary = "Boundary-\(UUID().uuidString)"
-    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? UploadMetadata())
+    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? WriteObjectMetadata())
     let dataPartContentType = metadata?.contentType ?? "application/octet-stream"
     let prepared =
       try await MultipartUploadStream.prepare(
@@ -189,7 +191,7 @@ extension StorageClient {
       ?? (options.preconditions?.ifGenerationMatch != nil
         || options.preconditions?.ifMetagenerationMatch != nil)
     let resumeState = ResumeState(
-      details: UploadDetails(bytesUploaded: 0, totalBytes: totalSize),
+      details: WriteObjectDetails(bytesWritten: 0, totalBytes: totalSize),
       idempotent: isIdempotent
     )
     return try await resumeLoop.run(state: resumeState) { _ in
@@ -211,7 +213,7 @@ extension StorageClient {
       do {
         response = try await request.execute()
       } catch {
-        if let uploadError = error as? UploadError {
+        if let uploadError = error as? WriteObjectError {
           throw uploadError
         }
         if let reqError = error as? RequestError {
@@ -230,8 +232,8 @@ extension StorageClient {
     httpClient: GoogleGax._HTTPClient,
     bucket: String,
     objectName: String,
-    metadata: UploadMetadata?,
-    options: UploadOptions
+    metadata: WriteObjectMetadata?,
+    options: WriteObjectOptions
   ) async throws -> String {
     let startRequest = try await buildStartResumableUploadRequest(
       httpClient: httpClient, bucket: bucket, objectName: objectName, metadata: metadata,
@@ -253,7 +255,7 @@ extension StorageClient {
         throw await startResponse.decodeError()
       }
       let startData = try await startResponse.data()
-      throw UploadError.unexpectedServerResponse(
+      throw WriteObjectError.unexpectedServerResponse(
         statusCode: statusCode,
         message: String(data: startData, encoding: .utf8) ?? "")
     }
@@ -266,7 +268,7 @@ extension StorageClient {
   fileprivate static func queryUploadStatus(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
-    options: UploadOptions
+    options: WriteObjectOptions
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let queryRequest = try await buildQueryResumableUploadRequest(
       httpClient: httpClient, uploadId: uploadId, options: options)
@@ -294,7 +296,7 @@ extension StorageClient {
       throw await queryResponse.decodeError()
     } else {
       let queryData = try await queryResponse.data()
-      throw UploadError.unexpectedServerResponse(
+      throw WriteObjectError.unexpectedServerResponse(
         statusCode: statusCode,
         message: String(data: queryData, encoding: .utf8) ?? "")
     }
@@ -306,7 +308,7 @@ extension StorageClient {
     data: ByteChunk,
     offset: UInt64,
     totalSize: UInt64?,
-    options: UploadOptions,
+    options: WriteObjectOptions,
     checksum: String?
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let uploadRequest = try await buildUploadChunkRequest(
@@ -343,7 +345,7 @@ extension StorageClient {
       }
       guard nextOffset >= offset && nextOffset <= chunkEnd else {
         await uploadResponse.drain()
-        throw UploadError.unexpectedServerResponse(
+        throw WriteObjectError.unexpectedServerResponse(
           statusCode: statusCode,
           message:
             "Server reported committed offset \(nextOffset) outside chunk range [\(offset), \(chunkEnd)]"
@@ -361,21 +363,21 @@ extension StorageClient {
       throw await uploadResponse.decodeError()
     } else {
       let uploadData = try await uploadResponse.data()
-      throw UploadError.unexpectedServerResponse(
+      throw WriteObjectError.unexpectedServerResponse(
         statusCode: statusCode,
         message: String(data: uploadData, encoding: .utf8) ?? ""
       )
     }
   }
 
-  fileprivate static func sendNextChunk<S: UploadSource>(
+  fileprivate static func sendNextChunk<S: WriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     checksummedSource: inout ChecksummedSource<S>,
     uploadId: String,
     committedBytes: UInt64,
     chunkSize: Int,
     totalSize: UInt64?,
-    options: UploadOptions,
+    options: WriteObjectOptions,
     maxBytesSent: inout UInt64
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
@@ -416,18 +418,18 @@ extension StorageClient {
     let effectiveTotalSize: UInt64?
   }
 
-  fileprivate static func continueStreamingUpload<S: UploadSource>(
+  fileprivate static func continueStreamingUpload<S: WriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     source: inout S,
     bucket: String? = nil,
     objectName: String? = nil,
-    metadata: UploadMetadata? = nil,
+    metadata: WriteObjectMetadata? = nil,
     uploadId: String?,
     initialStatus: ResumableUploadStatus,
     chunkSize: Int,
     totalSize: UInt64?,
-    options: UploadOptions,
-    resumeLoop: _ResumeLoop<UploadDetails>
+    options: WriteObjectOptions,
+    resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -445,8 +447,8 @@ extension StorageClient {
     }
     var maxBytesSent = initialBytes
     var resumeState = ResumeState(
-      details: UploadDetails(
-        bytesUploaded: initialBytes,
+      details: WriteObjectDetails(
+        bytesWritten: initialBytes,
         totalBytes: totalSize
       )
     )
@@ -457,7 +459,7 @@ extension StorageClient {
         activeUploadId = id
       } else {
         guard let bucket = bucket, let objectName = objectName else {
-          throw UploadError.internalError(
+          throw WriteObjectError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
         let location = try await resumeLoop.run(state: &resumeState) { _ in
@@ -484,7 +486,7 @@ extension StorageClient {
               isResumedSession = false
             } else {
               guard committedBytes <= maxBytesSent else {
-                throw UploadError.unexpectedServerResponse(
+                throw WriteObjectError.unexpectedServerResponse(
                   statusCode: 308,
                   message:
                     "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
@@ -500,12 +502,12 @@ extension StorageClient {
 
       switch uploadStatus {
       case .unknown:
-        throw UploadError.internalError("queryUploadStatus returned unknown status")
+        throw WriteObjectError.internalError("queryUploadStatus returned unknown status")
       case .done(let object):
         return object
       case .inprogress(let committedBytes):
         if let total = totalSize, committedBytes > total {
-          throw UploadError.localSourceTooSmall(
+          throw WriteObjectError.localSourceTooSmall(
             localSize: total, gcsOffset: committedBytes)
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
@@ -514,7 +516,7 @@ extension StorageClient {
 
         if checksummedSource == nil {
           if committedBytes > 0 {
-            throw UploadError.internalError(
+            throw WriteObjectError.internalError(
               "Cannot resume non-seekable source at offset \(committedBytes)"
             )
           }
@@ -526,11 +528,11 @@ extension StorageClient {
           let chunkEnd = chunkStart + UInt64(pending.data.count)
 
           if committedBytes < chunkStart {
-            throw UploadError.internalError(
+            throw WriteObjectError.internalError(
               "Cannot resume non-seekable source at offset \(committedBytes); expected at least \(chunkStart)"
             )
           } else if committedBytes > chunkEnd {
-            throw UploadError.internalError(
+            throw WriteObjectError.internalError(
               "Cannot resume non-seekable source at offset \(committedBytes); expected at most \(chunkEnd)"
             )
           } else if pending.data.isEmpty {
@@ -546,13 +548,13 @@ extension StorageClient {
             }
           }
         } else if committedBytes != sourceBytesRead {
-          throw UploadError.internalError(
+          throw WriteObjectError.internalError(
             "Cannot resume non-seekable source at offset \(committedBytes); expected \(sourceBytesRead)"
           )
         }
 
-        if committedBytes > resumeState.details.bytesUploaded {
-          resumeState.details.bytesUploaded = committedBytes
+        if committedBytes > resumeState.details.bytesWritten {
+          resumeState.details.bytesWritten = committedBytes
           resumeLoop.onProgress(state: &resumeState)
         }
 
@@ -630,8 +632,8 @@ extension StorageClient {
             pendingChunk = pending
           }
 
-          if nextBytes > resumeState.details.bytesUploaded {
-            resumeState.details.bytesUploaded = nextBytes
+          if nextBytes > resumeState.details.bytesWritten {
+            resumeState.details.bytesWritten = nextBytes
             resumeLoop.onProgress(state: &resumeState)
           }
         }
@@ -639,19 +641,19 @@ extension StorageClient {
     }
   }
 
-  fileprivate static func continueResumableSeekableUpload<S: SeekableUploadSource>(
+  fileprivate static func continueResumableSeekableUpload<S: SeekableWriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     source: inout S,
     bucket: String? = nil,
     objectName: String? = nil,
-    metadata: UploadMetadata? = nil,
+    metadata: WriteObjectMetadata? = nil,
     uploadId: String?,
     initialStatus: ResumableUploadStatus,
     initialCrc32cSeed: UInt32? = nil,
     chunkSize: Int,
     totalSize: UInt64?,
-    options: UploadOptions,
-    resumeLoop: _ResumeLoop<UploadDetails>
+    options: WriteObjectOptions,
+    resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -669,8 +671,8 @@ extension StorageClient {
     var maxBytesSent = initialBytes
     var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
-      details: UploadDetails(
-        bytesUploaded: initialBytes,
+      details: WriteObjectDetails(
+        bytesWritten: initialBytes,
         totalBytes: totalSize
       )
     )
@@ -681,7 +683,7 @@ extension StorageClient {
         activeUploadId = id
       } else {
         guard let bucket = bucket, let objectName = objectName else {
-          throw UploadError.internalError(
+          throw WriteObjectError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
         let location = try await resumeLoop.run(state: &resumeState) { _ in
@@ -712,14 +714,14 @@ extension StorageClient {
               isResumedSession = false
             } else {
               guard committedBytes <= maxBytesSent else {
-                throw UploadError.unexpectedServerResponse(
+                throw WriteObjectError.unexpectedServerResponse(
                   statusCode: 308,
                   message:
                     "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
                 )
               }
               guard committedBytes >= lastCommittedBytes else {
-                throw UploadError.unexpectedServerResponse(
+                throw WriteObjectError.unexpectedServerResponse(
                   statusCode: 308,
                   message:
                     "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommittedBytes))"
@@ -727,8 +729,8 @@ extension StorageClient {
               }
               lastCommittedBytes = committedBytes
             }
-            if committedBytes > resumeState.details.bytesUploaded {
-              resumeState.details.bytesUploaded = committedBytes
+            if committedBytes > resumeState.details.bytesWritten {
+              resumeState.details.bytesWritten = committedBytes
               resumeLoop.onProgress(state: &resumeState)
             }
           }
@@ -740,12 +742,12 @@ extension StorageClient {
 
       switch uploadStatus {
       case .unknown:
-        throw UploadError.internalError("queryUploadStatus returned unknown status")
+        throw WriteObjectError.internalError("queryUploadStatus returned unknown status")
       case .done(let object):
         return object
       case .inprogress(let committedBytes):
         if let total = totalSize, committedBytes > total {
-          throw UploadError.localSourceTooSmall(
+          throw WriteObjectError.localSourceTooSmall(
             localSize: total, gcsOffset: committedBytes)
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
@@ -792,8 +794,8 @@ extension StorageClient {
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
           lastCommittedBytes = nextBytes
-          if nextBytes > resumeState.details.bytesUploaded {
-            resumeState.details.bytesUploaded = nextBytes
+          if nextBytes > resumeState.details.bytesWritten {
+            resumeState.details.bytesWritten = nextBytes
             resumeLoop.onProgress(state: &resumeState)
           }
         }
@@ -807,19 +809,19 @@ extension StorageClient {
   /// Resumes a previously interrupted file upload using a saved upload ID.
   ///
   /// - Parameters:
-  ///   - source: The seekable upload source (must match the original source).
+  ///   - source: The seekable write object source (must match the original source).
   ///   - uploadId: The saved GCS Upload ID (Session URI).
-  ///   - options: Configuration options for the upload.
+  ///   - options: Configuration options for the write operation.
   /// - Returns: The created `Object`.
-  public func resumeUpload(
-    _ source: some SeekableUploadSource,
+  public func resumeWriteObject(
+    _ source: some SeekableWriteObjectSource,
     uploadId: String,
-    options: UploadOptions = .default
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    let effectiveOptions = options.withDefaults(self.options.upload)
+    let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<UploadDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let httpClient = self.inner
@@ -843,25 +845,25 @@ extension StorageClient {
 
   // --- Convenience Overloads ---
 
-  /// Convenience upload method for a local file URL.
-  public func upload(
+  /// Convenience write method for a local file URL.
+  public func writeObject(
     _ fileURL: URL,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions = .default
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    return try await self.upload(
+    return try await self.writeObject(
       FileSource(fileURL: fileURL), to: bucket, as: objectName, options: options)
   }
 
-  /// Convenience upload method for in-memory Data.
-  public func upload(
+  /// Convenience write method for in-memory Data.
+  public func writeObject(
     _ data: Data,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions = .default
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    return try await self.upload(
+    return try await self.writeObject(
       BytesSource(data: data), to: bucket, as: objectName, options: options)
   }
 }
@@ -879,8 +881,8 @@ extension StorageClient {
     httpClient: GoogleGax._HTTPClient,
     bucket: String,
     objectName: String,
-    metadata: UploadMetadata?,
-    options: UploadOptions
+    metadata: WriteObjectMetadata?,
+    options: WriteObjectOptions
   ) async throws -> GoogleGax._HTTPClientRequest {
     var queryItems = [URLQueryItem(name: "uploadType", value: "resumable")]
     queryItems.append(URLQueryItem(name: "name", value: objectName))
@@ -904,7 +906,7 @@ extension StorageClient {
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
-    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? UploadMetadata())
+    let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? WriteObjectMetadata())
     var buffer = ByteBufferAllocator().buffer(capacity: metadataJson.count)
     _ = metadataJson.withUnsafeBytes { buffer.writeBytes($0) }
     request.setBody(buffer: buffer)
@@ -914,7 +916,7 @@ extension StorageClient {
   fileprivate static func buildQueryResumableUploadRequest(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
-    options: UploadOptions? = nil
+    options: WriteObjectOptions? = nil
   ) async throws -> GoogleGax._HTTPClientRequest {
     var request = try await httpClient.newRequest(
       uri: uploadId, options: options?.requestOptions ?? .init())
@@ -934,7 +936,7 @@ extension StorageClient {
     data: ByteChunk,
     offset: UInt64,
     totalSize: UInt64?,
-    options: UploadOptions,
+    options: WriteObjectOptions,
     checksum: String? = nil
   ) async throws -> GoogleGax._HTTPClientRequest {
     var request = try await httpClient.newRequest(uri: uploadId, options: options.requestOptions)

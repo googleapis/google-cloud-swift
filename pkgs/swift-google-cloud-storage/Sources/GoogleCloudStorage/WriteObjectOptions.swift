@@ -288,7 +288,7 @@ extension ObjectContexts: ExpressibleByDictionaryLiteral {
 }
 
 /// Represents the metadata of the object to be created.
-public struct UploadMetadata: Sendable, Codable, Equatable {
+public struct WriteObjectMetadata: Sendable, Codable, Equatable {
   /// Content-Type header of the object data (e.g. "application/json", "image/png").
   public var contentType: String?
 
@@ -357,21 +357,21 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
   }
 }
 
-/// Configuration options for object upload operations in Google Cloud Storage.
+/// Configuration options for object write operations in Google Cloud Storage.
 ///
-/// Use `UploadOptions` to customize upload behaviors when calling `StorageClient.upload(...)`.
+/// Use `WriteObjectOptions` to customize write behaviors when calling `StorageClient.writeObject(...)`.
 /// Options include setting chunk size for resumable uploads, object metadata, preconditions (such as generation matches),
 /// encryption settings (CMEK and CSEK), checksum validation strategies, and access control presets (Predefined ACLs).
 ///
 /// ## Configuration Styles
 ///
-/// Configure `UploadOptions` by using the `.with` closure builder.
+/// Configure `WriteObjectOptions` by using the `.with` closure builder.
 ///
 /// ```swift
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.chunkSize = 16 * 1024 * 1024  // 16 MiB
 ///   $0.predefinedAcl = .publicRead
-///   $0.metadata = UploadMetadata().with { meta in
+///   $0.metadata = WriteObjectMetadata().with { meta in
 ///     meta.contentType = "application/json"
 ///     meta.customMetadata = ["env": "prod"]
 ///   }
@@ -385,8 +385,8 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 /// Attach fixed key metadata (such as `Content-Type` or `Cache-Control`) and custom key-value pairs to the uploaded object:
 ///
 /// ```swift
-/// let options = UploadOptions().with {
-///   $0.metadata = UploadMetadata().with { meta in
+/// let options = WriteObjectOptions().with {
+///   $0.metadata = WriteObjectMetadata().with { meta in
 ///     meta.contentType = "image/png"
 ///     meta.cacheControl = "public, max-age=3600"
 ///     meta.customMetadata = ["author": "Jane Doe", "department": "Engineering"]
@@ -399,8 +399,8 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 /// Attach object contexts to improve how you categorize, track, and search your data:
 ///
 /// ```swift
-/// let options = UploadOptions().with {
-///   $0.metadata = UploadMetadata().with { meta in
+/// let options = WriteObjectOptions().with {
+///   $0.metadata = WriteObjectMetadata().with { meta in
 ///     meta.contexts = ObjectContexts(custom: [
 ///       "environment": ObjectCustomContextPayload(value: "production"),
 ///       "team": "Engineering"
@@ -414,7 +414,7 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 /// Apply preconditions to the upload. For example, guaranteeing an object is only created if it does not already exist:
 ///
 /// ```swift
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.preconditions = StoragePreconditions().with {
 ///     $0.ifGenerationMatch = 0  // Succeeds only if the object does not exist
 ///   }
@@ -427,12 +427,12 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 ///
 /// ```swift
 /// // Use automatic CRC32C calculation (default)
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.checksums = .default
 /// }
 ///
 /// // Pass a pre-computed CRC32C checksum
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.checksums = ChecksumOptions(crc32c: "AAAAAA==")
 /// }
 /// ```
@@ -443,13 +443,13 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 ///
 /// ```swift
 /// // Customer-Managed Encryption Key (CMEK) via Cloud KMS
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.kmsKeyName = "projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key"
 /// }
 ///
 /// // Customer-Supplied Encryption Key (CSEK)
 /// let csek = try CustomerEncryptionKeyOptions(keyBase64: "your-base64-encoded-256bit-key==")
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.customerEncryptionKey = csek
 /// }
 /// ```
@@ -459,31 +459,31 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 /// Set predefined permissions for the object upon upload:
 ///
 /// ```swift
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.predefinedAcl = .publicRead
 /// }
 /// ```
 ///
-/// ## Uploading with Options
+/// ## Writing an Object with Options
 ///
-/// Pass your configured options to `StorageClient.upload(...)`:
+/// Pass your configured options to `StorageClient.writeObject(...)`:
 ///
 /// ```swift
-/// let options = UploadOptions().with {
+/// let options = WriteObjectOptions().with {
 ///   $0.chunkSize = 16 * 1024 * 1024
-///   $0.metadata = UploadMetadata().with {
+///   $0.metadata = WriteObjectMetadata().with {
 ///     $0.contentType = "text/csv"
 ///   }
 /// }
 ///
-/// let object = try await storageClient.upload(
+/// let object = try await storageClient.writeObject(
 ///   fileURL,
 ///   to: "my-bucket",
 ///   as: "data/report.csv",
 ///   options: options
 /// )
 /// ```
-public struct UploadOptions: Sendable {
+public struct WriteObjectOptions: Sendable {
   /// The default chunk size in bytes (8 MB) for resumable uploads.
   public static let defaultChunkSize: Int = 8 * 1024 * 1024
 
@@ -497,7 +497,7 @@ public struct UploadOptions: Sendable {
   ///
   /// Uploads of known size strictly less than this threshold use simple (multipart) upload;
   /// uploads greater than or equal to this threshold (or of unknown size) use resumable upload.
-  /// When `nil`, the upload operation falls back to `StorageClientOptions.upload.resumableUploadThreshold`
+  /// When `nil`, the upload operation falls back to `StorageClientOptions.writeObject.resumableUploadThreshold`
   /// or the default threshold (`defaultResumableUploadThreshold`, 8 MB).
   public var resumableUploadThreshold: Int?
 
@@ -514,13 +514,13 @@ public struct UploadOptions: Sendable {
   public var checksums: ChecksumOptions = .default
 
   /// Metadata associated with the object to be created.
-  public var metadata: UploadMetadata?
+  public var metadata: WriteObjectMetadata?
 
   /// Predefined ACL to apply to the uploaded object (e.g. `.publicRead`, `.private`).
   public var predefinedAcl: PredefinedAcl?
 
   /// Overrides the resume policy for this upload.
-  public var resumePolicy: (any ResumePolicy<UploadDetails>)? = nil
+  public var resumePolicy: (any ResumePolicy<WriteObjectDetails>)? = nil
 
   /// Overrides the backoff policy for this upload.
   public var backoffPolicy: (any BackoffPolicy)? = nil
@@ -588,7 +588,7 @@ public struct UploadOptions: Sendable {
     }
   }
 
-  public static var `default`: UploadOptions { UploadOptions() }
+  public static var `default`: WriteObjectOptions { WriteObjectOptions() }
 
   public init() {}
 
@@ -599,7 +599,7 @@ public struct UploadOptions: Sendable {
   }
 }
 
-extension UploadOptions {
+extension WriteObjectOptions {
   internal func withDefaults(_ defaults: Self) -> Self {
     var copy = self
     copy.resumableUploadThreshold =
@@ -644,7 +644,7 @@ struct HttpRange: Sendable, Hashable, Equatable {
   static func parseNextRangeStart(_ header: String) throws -> UInt64 {
     let range = try parse(header)
     guard let end = range.end else {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     return end + 1
   }
@@ -653,12 +653,12 @@ struct HttpRange: Sendable, Hashable, Equatable {
   static func parse(_ header: String) throws -> HttpRange {
     let trimmed = header.trimmingCharacters(in: .whitespaces)
     guard trimmed.hasPrefix("bytes=") else {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     let rangeStr = trimmed.dropFirst("bytes=".count).trimmingCharacters(in: .whitespaces)
     let parts = rangeStr.split(separator: "-", omittingEmptySubsequences: false)
     guard parts.count == 2 else {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
 
     let startStr = parts[0]
@@ -668,19 +668,19 @@ struct HttpRange: Sendable, Hashable, Equatable {
     let end = endStr.isEmpty ? nil : UInt64(endStr)
 
     if startStr.isEmpty && endStr.isEmpty {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     if !startStr.isEmpty && start == nil {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     if !endStr.isEmpty && end == nil {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     if start == nil && end == nil {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
     if let s = start, let e = end, s > e {
-      throw UploadError.invalidRangeHeader(header)
+      throw WriteObjectError.invalidRangeHeader(header)
     }
 
     return HttpRange(start: start, end: end)

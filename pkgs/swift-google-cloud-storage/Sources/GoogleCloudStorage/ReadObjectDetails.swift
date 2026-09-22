@@ -14,24 +14,24 @@
 
 import Foundation
 
-/// Progress and size details for an ongoing download operation.
-public struct DownloadDetails: Sendable, Equatable {
-  /// The total number of bytes successfully downloaded so far.
-  public var bytesDownloaded: UInt64
+/// Progress and size details for an ongoing read object operation.
+public struct ReadObjectDetails: Sendable, Equatable {
+  /// The total number of bytes successfully read so far.
+  public var bytesRead: UInt64
 
-  /// The total size of the object to download in bytes, if known.
+  /// The total size of the object to read in bytes, if known.
   public var totalBytes: Int64?
 
-  /// Creates a new `DownloadDetails` instance.
+  /// Creates a new `ReadObjectDetails` instance.
   ///
   /// - Parameters:
-  ///   - bytesDownloaded: Initial bytes downloaded. Defaults to 0.
+  ///   - bytesRead: Initial bytes read. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   public init(
-    bytesDownloaded: UInt64 = 0,
+    bytesRead: UInt64 = 0,
     totalBytes: Int64? = nil
   ) {
-    self.bytesDownloaded = bytesDownloaded
+    self.bytesRead = bytesRead
     self.totalBytes = totalBytes
   }
 }

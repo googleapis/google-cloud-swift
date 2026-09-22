@@ -20,7 +20,7 @@ struct ChunkInfo: Sendable {
   let checksum: String?
 }
 
-struct ChecksummedSource<S: UploadSource> {
+struct ChecksummedSource<S: WriteObjectSource> {
   var source: S
   let options: ChecksumOptions
   private var calculators: [any ChecksumCalculator] = []
@@ -133,7 +133,7 @@ struct ChecksummedSource<S: UploadSource> {
   }
 }
 
-extension ChecksummedSource where S: SeekableUploadSource {
+extension ChecksummedSource where S: SeekableWriteObjectSource {
   /// Repositions the stream offset for subsequent `readChunk` operations.
   ///
   /// - If `offset > bytesHashed`, catches up checksum computation by reading and hashing
@@ -161,7 +161,7 @@ extension ChecksummedSource where S: SeekableUploadSource {
     while bytesRemaining > 0 {
       let toRead = Int(min(bytesRemaining, bufferSize))
       guard let chunk = try await source.read(maxBytes: toRead), !chunk.isEmpty else {
-        throw UploadError.localSourceTooSmall(localSize: currentSeekOffset, gcsOffset: offset)
+        throw WriteObjectError.localSourceTooSmall(localSize: currentSeekOffset, gcsOffset: offset)
       }
       updateChecksums(data: chunk, startOffset: currentSeekOffset)
       currentSeekOffset += UInt64(chunk.count)

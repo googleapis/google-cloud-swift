@@ -21,10 +21,10 @@ public func uploadEncryptedFile(
   filePath: String, encryptionKey: CustomerEncryptionKeyOptions
 ) async throws {
   let fileURL = URL(fileURLWithPath: filePath)
-  let options = UploadOptions().with {
+  let options = WriteObjectOptions().with {
     $0.customerEncryptionKey = encryptionKey
   }
-  let _ = try await client.upload(
+  let _ = try await client.writeObject(
     fileURL,
     to: bucketId,
     as: objectName,

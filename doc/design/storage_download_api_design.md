@@ -160,10 +160,10 @@ To guarantee data integrity during transfer, Cloud Storage provides CRC32C and M
 
 ### Reusing `ChecksumOptions`
 
-The download API reuses the existing `ChecksumOptions` struct defined in `UploadOptions.swift` to ensure a single, consistent checksum options surface across both uploads and downloads:
+The download API reuses the existing `ChecksumOptions` struct defined in `WriteObjectOptions.swift` to ensure a single, consistent checksum options surface across both uploads and downloads:
 
 ```swift
-/// Configuration options for checksum validation (reused from `UploadOptions.swift`).
+/// Configuration options for checksum validation (reused from `WriteObjectOptions.swift`).
 public struct ChecksumOptions: Sendable, Hashable {
   public var crc32c: ChecksumValue?
   public var md5: ChecksumValue?
@@ -200,7 +200,7 @@ Transient network failures during large object downloads should not require rest
 1. **Offset Tracking:** As chunks of `Data` are yielded by the `AsyncIterator`, the iterator tracks total `bytesReceived`.
 2. **Re-connection Range:** On a transient connection drop or socket error, if resumption is permitted by the configured `resumePolicy` (defaulting to `StopOnConsecutiveErrors`), the iterator transparently initiates a new HTTP GET request requesting range `bytes={rangeStart + bytesReceived}-`.
 3. **Generation Pinning (`generation=X`):** Upon receiving the initial HTTP response, the client captures the object's exact `generation` (`X`) from response headers (or `metadata.generation`). If a transient failure occurs and resumption is triggered, all subsequent range requests explicitly set the `generation=X` parameter. This guarantees that even if the object is overwritten, updated, or soft-deleted in GCS mid-download, the client continues downloading the original version `X` seamlessly without encountering `412 Precondition Failed` errors.
-4. **Failure Handling:** If resumption fails (e.g., generation `X` expired/purged, non-retryable status, or policy limits exhausted), a `DownloadError.resumeFailed` error is thrown through the stream.
+4. **Failure Handling:** If resumption fails (e.g., generation `X` expired/purged, non-retryable status, or policy limits exhausted), a `ReadObjectError.resumeFailed` error is thrown through the stream.
 
 ---
 
@@ -231,7 +231,7 @@ public struct ReadObjectOptions: Sendable {
 
   public var enableDecompressiveTranscoding: Bool = true
   public var checksums: ChecksumOptions = .default
-  public var resumePolicy: (any ResumePolicy<DownloadDetails>)? = nil
+  public var resumePolicy: (any ResumePolicy<ReadObjectDetails>)? = nil
   public var backoffPolicy: (any BackoffPolicy)? = nil
 
   public static var `default`: ReadObjectOptions { ReadObjectOptions() }
@@ -246,7 +246,7 @@ public struct ReadObjectOptions: Sendable {
 
 ```swift
 /// Errors thrown by object read and download operations.
-public enum DownloadError: Error, Sendable, Equatable {
+public enum ReadObjectError: Error, Sendable, Equatable {
   case checksumMismatch(expected: String, actual: String, algorithm: String)
   case invalidRange(String)
   case resumeFailed(bytesReceived: UInt64, message: String)

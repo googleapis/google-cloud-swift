@@ -29,10 +29,10 @@ extension StorageClient {
     object: String,
     options: ReadObjectOptions = .init()
   ) -> ReadObjectTask {
-    let effectiveOptions = options.withDefaults(self.options.download)
+    let effectiveOptions = options.withDefaults(self.options.readObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<DownloadDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<ReadObjectDetails>().stopOnConsecutiveErrors(),
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
 

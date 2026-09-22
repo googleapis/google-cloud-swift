@@ -66,7 +66,7 @@ import Testing
     let client = try makeClient(registry: registry)
     let data = Data("Hello World".utf8)
     do {
-      _ = try await client.upload(data, to: bucket, as: objectName)
+      _ = try await client.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected upload to fail, but it succeeded")
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.code == .notFound)
@@ -96,7 +96,7 @@ import Testing
     // 16MB payload triggers resumable upload path (> 8MB default threshold)
     let data = Data(repeating: 0x42, count: 16 * 1024 * 1024)
     do {
-      _ = try await client.upload(data, to: bucket, as: objectName)
+      _ = try await client.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected resumable upload to fail, but it succeeded")
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.code == .notFound)
@@ -126,7 +126,7 @@ import Testing
     do {
       _ = try await client.readObject(from: bucket, object: objectName).metadata
       Issue.record("Expected download to fail, but it succeeded")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
       #expect(statusCode == 404)
       #expect(message == "The specified bucket does not exist.")
     } catch RequestError.service(let serviceError) {

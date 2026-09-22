@@ -34,7 +34,7 @@ import Testing
     "bytes=2000-1000",
   ])
   func parseRangeHeaderInvalid(header: String) {
-    #expect(throws: UploadError.self) {
+    #expect(throws: WriteObjectError.self) {
       _ = try HttpRange.parse(header)
     }
   }
@@ -53,7 +53,7 @@ import Testing
     "bytes=abc-def",
   ])
   func parseNextRangeStartInvalid(header: String) {
-    #expect(throws: UploadError.self) {
+    #expect(throws: WriteObjectError.self) {
       _ = try HttpRange.parseNextRangeStart(header)
     }
   }
@@ -75,7 +75,7 @@ import Testing
     "foo 0-1999/5000",
   ])
   func parseContentRangeHeaderInvalid(header: String) {
-    #expect(throws: DownloadError.self) {
+    #expect(throws: ReadObjectError.self) {
       _ = try HttpContentRange.parse(header)
     }
   }

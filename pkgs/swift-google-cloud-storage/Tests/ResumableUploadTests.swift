@@ -32,7 +32,7 @@ import Testing
   private func makeClient(
     registry: MockRegistry,
     clientRetryPolicy: (any RetryPolicy)? = nil,
-    uploadResumePolicy: (any ResumePolicy<UploadDetails>)? = nil,
+    uploadResumePolicy: (any ResumePolicy<WriteObjectDetails>)? = nil,
     uploadThreshold: Int? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
@@ -44,10 +44,10 @@ import Testing
         }
       }
       if let uploadResumePolicy {
-        $0.upload.resumePolicy = uploadResumePolicy
+        $0.writeObject.resumePolicy = uploadResumePolicy
       }
       if let uploadThreshold {
-        $0.upload.resumableUploadThreshold = uploadThreshold
+        $0.writeObject.resumableUploadThreshold = uploadThreshold
       }
     }
     return try StorageClient(options, mock: registry)
@@ -77,7 +77,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -100,10 +100,10 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(
-      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
+      registry: registry, uploadResumePolicy: NeverResume<WriteObjectDetails>())
 
     let error = await expectError(RequestError.self) {
-      _ = try await client.upload(source, to: bucket, as: objectName)
+      _ = try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .io(let underlying as URLError) = error {
       #expect(underlying.code == URLError.cannotConnectToHost)
@@ -112,8 +112,8 @@ import Testing
     }
   }
 
-  /// Tests error propagation when `UploadSource.read` fails during a resumable chunk upload.
-  @Test func resumableUploadSourceReadError() async throws {
+  /// Tests error propagation when `WriteObjectSource.read` fails during a resumable chunk upload.
+  @Test func resumableWriteObjectSourceReadError() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
@@ -134,7 +134,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     await #expect(throws: DummyError.self) {
-      _ = try await client.upload(source, to: bucket, as: objectName)
+      _ = try await client.writeObject(source, to: bucket, as: objectName)
     }
   }
 
@@ -156,7 +156,7 @@ import Testing
     let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
 
     let error = await expectError(RequestError.self) {
-      _ = try await client.upload(source, to: bucket, as: objectName)
+      _ = try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .io(let underlying as URLError) = error {
       #expect(underlying.code == .cannotConnectToHost)
@@ -191,7 +191,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName)
+      try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 400)
@@ -234,7 +234,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -290,7 +290,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     #expect(object.name == objectName)
 
     let requests = registry.recordedRequests()
@@ -300,8 +300,8 @@ import Testing
     #expect(hashHeader == expectedFullHashHeader)
   }
 
-  /// Tests error handling when `SeekableUploadSource.seek` fails to seek to the server's reported offset.
-  @Test func resumeUploadSourceSeekError() async throws {
+  /// Tests error handling when `SeekableWriteObjectSource.seek` fails to seek to the server's reported offset.
+  @Test func resumeWriteObjectSourceSeekError() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
@@ -319,7 +319,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     await #expect(throws: DummyError.self) {
-      _ = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+      _ = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
   }
 
@@ -360,7 +360,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -383,7 +383,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -411,7 +411,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -435,7 +435,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let error = await expectError(RequestError.self) {
-      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+      try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 404)
@@ -464,7 +464,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName)
+      try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .unexpectedServerResponse(let statusCode, let message) = error {
       #expect(statusCode == 200)
@@ -492,7 +492,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let error = await expectError(RequestError.self) {
-      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+      try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 499)
@@ -501,7 +501,7 @@ import Testing
     }
   }
 
-  /// Tests resuming an upload where GCS reports an offset larger than the local source size, throwing UploadError.localSourceTooSmall.
+  /// Tests resuming an upload where GCS reports an offset larger than the local source size, throwing WriteObjectError.localSourceTooSmall.
   @Test func resumeLocalSourceTooSmall() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -519,7 +519,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let error = await expectUploadError {
-      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+      try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
     if case .localSourceTooSmall(let localSize, let gcsOffset) = error {
       #expect(localSize == 100)
@@ -570,8 +570,9 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with { $0.customerEncryptionKey = csek }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let uploadOptions = WriteObjectOptions().with { $0.customerEncryptionKey = csek }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.customerEncryption?.keySha256 == sample.keyHashBase64)
@@ -622,7 +623,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -655,7 +656,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -703,7 +704,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -740,7 +741,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -783,7 +784,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -827,8 +828,9 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let uploadOptions = WriteObjectOptions().with { $0.chunkSize = chunkSize }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -872,7 +874,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -911,7 +913,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -948,7 +950,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -981,7 +983,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1036,8 +1038,9 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with { $0.chunkSize = 5 * 1024 * 1024 }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let uploadOptions = WriteObjectOptions().with { $0.chunkSize = 5 * 1024 * 1024 }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1075,7 +1078,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1123,10 +1126,10 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
-    let object = try await client.resumeUpload(
+    let object = try await client.resumeWriteObject(
       source, uploadId: queryUrl.absoluteString, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -1174,10 +1177,10 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
-    let object = try await client.resumeUpload(
+    let object = try await client.resumeWriteObject(
       source, uploadId: queryUrl.absoluteString, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -1243,10 +1246,11 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = 8 * 1024 * 1024
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1325,10 +1329,10 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
     }
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -1407,10 +1411,10 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
     }
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -1467,7 +1471,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
+    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1521,7 +1525,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1610,10 +1614,11 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(5)
     )
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1709,7 +1714,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
     )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1778,7 +1783,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
     )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1793,8 +1798,8 @@ import Testing
     #expect(requests[4].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
   }
 
-  /// Tests that configuring `resumePolicy` on `UploadOptions` overrides client-level retry policy.
-  @Test func resumableUploadWithCustomUploadOptionsResumePolicyOverridesClient() async throws {
+  /// Tests that configuring `resumePolicy` on `WriteObjectOptions` overrides client-level retry policy.
+  @Test func resumableUploadWithCustomWriteObjectOptionsResumePolicyOverridesClient() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "resume-policy-override"
@@ -1812,12 +1817,12 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(registry: registry)
-    // UploadOptions specifies NeverResume, so it should fail immediately on the 503 without retrying
-    let uploadOptions = UploadOptions().with {
+    // WriteObjectOptions specifies NeverResume, so it should fail immediately on the 503 without retrying
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumePolicy = NeverResume()
     }
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+      try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     #expect(error != nil)
     let requests = registry.recordedRequests()
@@ -1825,7 +1830,8 @@ import Testing
   }
 
   /// Tests that configuring `resumePolicy` on `StorageClientOptions.upload` overrides default retry policy.
-  @Test func resumableUploadWithClientUploadOptionsResumePolicyOverridesDefault() async throws {
+  @Test func resumableUploadWithClientWriteObjectOptionsResumePolicyOverridesDefault() async throws
+  {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "client-upload-resume-override"
@@ -1843,16 +1849,16 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(
-      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
+      registry: registry, uploadResumePolicy: NeverResume<WriteObjectDetails>())
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName)
+      try await client.writeObject(source, to: bucket, as: objectName)
     }
     #expect(error != nil)
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
   }
 
-  /// Tests that configuring a lower `resumableUploadThreshold` on `UploadOptions` causes a payload < 8MB to use resumable upload.
+  /// Tests that configuring a lower `resumableUploadThreshold` on `WriteObjectOptions` causes a payload < 8MB to use resumable upload.
   @Test func resumableUploadWithCustomThresholdBelowDefault() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -1890,10 +1896,11 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 512 * 1024  // 512KB threshold
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1941,10 +1948,11 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1955,7 +1963,7 @@ import Testing
   }
 
   /// Tests that configuring `resumableUploadThreshold` on `StorageClientOptions.upload` (client level) causes a payload < 8MB to use resumable upload without specifying request options.
-  @Test func resumableUploadWithClientUploadOptionsThresholdBelowDefault() async throws {
+  @Test func resumableUploadWithClientWriteObjectOptionsThresholdBelowDefault() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-resumable-client-threshold"
@@ -1992,7 +2000,7 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry, uploadThreshold: 512 * 1024)
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2002,8 +2010,8 @@ import Testing
     #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
   }
 
-  /// Tests that provided `UploadOptions.resumableUploadThreshold` overrides client-level threshold to trigger resumable upload.
-  @Test func resumableUploadWithProvidedOptionsOverridingClientUploadOptions() async throws {
+  /// Tests that provided `WriteObjectOptions.resumableUploadThreshold` overrides client-level threshold to trigger resumable upload.
+  @Test func resumableUploadWithProvidedOptionsOverridingClientWriteObjectOptions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-resumable-override-client-threshold"
@@ -2041,10 +2049,11 @@ import Testing
 
     // Client has high threshold (16MB), but call-level options sets 1MB -> resumable upload is chosen
     let client = try makeClient(registry: registry, uploadThreshold: 16 * 1024 * 1024)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 1 * 1024 * 1024
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2080,10 +2089,11 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2121,13 +2131,14 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 0
       $0.preconditions = StoragePreconditions().with {
         $0.ifGenerationMatch = 0
       }
     }
-    let object = try await client.upload(data, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      data, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2168,10 +2179,10 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       fileURL, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -2212,10 +2223,10 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let object = try await client.upload(
+    let object = try await client.writeObject(
       source, to: bucketResource, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
@@ -2261,10 +2272,10 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.idempotency = false
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
+    let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -2327,8 +2338,9 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let uploadOptions = WriteObjectOptions().with { $0.chunkSize = chunkSize }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -2391,8 +2403,9 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let uploadOptions = WriteObjectOptions().with { $0.chunkSize = chunkSize }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -2460,11 +2473,12 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
       $0.resumableUploadThreshold = 0
     }
-    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -2510,13 +2524,13 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024
       $0.resumableUploadThreshold = 0
     }
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName, options: options)
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
 
     if case .unexpectedServerResponse(let statusCode, _) = error {
@@ -2559,13 +2573,13 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024
       $0.resumableUploadThreshold = 0
     }
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName, options: options)
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
 
     if case .unexpectedServerResponse(let statusCode, _) = error {
@@ -2618,13 +2632,13 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024
       $0.resumableUploadThreshold = 0
     }
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName, options: options)
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
 
     if case .unexpectedServerResponse(let statusCode, _) = error {
@@ -2667,13 +2681,13 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024
       $0.resumableUploadThreshold = 0
     }
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName, options: options)
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
 
     if case .unexpectedServerResponse(let statusCode, _) = error {
@@ -2710,13 +2724,13 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024
       $0.resumableUploadThreshold = 0
     }
 
     let error = await expectUploadError {
-      try await client.upload(source, to: bucket, as: objectName, options: options)
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
 
     if case .unexpectedServerResponse(let statusCode, _) = error {
@@ -2730,7 +2744,7 @@ import Testing
 // MARK: - Test Helper Sources
 
 /// A non-seekable computational upload source generating deterministic bytes on-demand.
-private struct DynamicComputationSource: UploadSource {
+private struct DynamicComputationSource: WriteObjectSource {
   let chunkSize: Int
   let totalChunks: Int
   let totalSize: UInt64?
@@ -2752,7 +2766,7 @@ private struct DynamicComputationSource: UploadSource {
 }
 
 /// A seekable computational upload source that can re-initialize its generator to any offset.
-private struct SeekableComputationSource: SeekableUploadSource {
+private struct SeekableComputationSource: SeekableWriteObjectSource {
   let chunkSize: Int
   let totalChunks: Int
   let totalSize: UInt64?
@@ -2776,7 +2790,7 @@ private struct SeekableComputationSource: SeekableUploadSource {
 
   mutating func seek(to offset: UInt64) async throws {
     guard let total = totalSize, offset <= total else {
-      throw UploadError.localSourceTooSmall(localSize: totalSize ?? 0, gcsOffset: offset)
+      throw WriteObjectError.localSourceTooSmall(localSize: totalSize ?? 0, gcsOffset: offset)
     }
     self.currentOffset = offset
   }

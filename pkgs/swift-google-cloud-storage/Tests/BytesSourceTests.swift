@@ -31,7 +31,7 @@ import Testing
     #expect(chunk == [5, 6, 7, 8, 9])
 
     // Seek past end of data
-    let pastEndErr = await expectError(UploadError.self) {
+    let pastEndErr = await expectError(WriteObjectError.self) {
       try await source.seek(to: 20)
     }
     if case .localSourceTooSmall(let localSize, let gcsOffset) = pastEndErr {

@@ -57,8 +57,8 @@ struct RecordedRequest: Sendable {
   }
 }
 
-/// Mock UploadSource that can throw errors
-struct MockUploadSource: SeekableUploadSource {
+/// Mock WriteObjectSource that can throw errors
+struct MockUploadSource: SeekableWriteObjectSource {
   var data: ByteChunk
   var totalSize: UInt64?
   var readError: (any Error)?
@@ -100,7 +100,7 @@ struct MockUploadSource: SeekableUploadSource {
       throw error
     }
     guard offset <= UInt64(data.count) else {
-      throw UploadError.internalError("Invalid seek offset: \(offset)")
+      throw WriteObjectError.internalError("Invalid seek offset: \(offset)")
     }
     self.offset = offset
   }
@@ -141,12 +141,12 @@ func expectError<E: Error>(
   }
 }
 
-/// Helper to assert that an async action throws an `UploadError` and returns the caught error.
+/// Helper to assert that an async action throws a `WriteObjectError` and returns the caught error.
 @discardableResult
 func expectUploadError(
   performing action: () async throws -> Any?
-) async -> UploadError? {
-  await expectError(UploadError.self, performing: action)
+) async -> WriteObjectError? {
+  await expectError(WriteObjectError.self, performing: action)
 }
 
 /// A thread-safe registry to store mocks for a specific test run

@@ -217,7 +217,7 @@ import Testing
     )
 
     // Attempting to mutate stream.source via existential cast (as in performSimpleUpload):
-    if var seekable = stream.source as? (any SeekableUploadSource) {
+    if var seekable = stream.source as? (any SeekableWriteObjectSource) {
       // Read chunks from the local copy
       let chunk = try await seekable.read(maxBytes: 4)
       #expect(chunk != nil)

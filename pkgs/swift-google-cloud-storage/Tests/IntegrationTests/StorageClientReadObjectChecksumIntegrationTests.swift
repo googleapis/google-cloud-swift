@@ -23,7 +23,7 @@ import Testing
   .enabled(
     if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
       && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil))
-struct StorageClientDownloadChecksumIntegrationTests {
+struct StorageClientReadObjectChecksumIntegrationTests {
   struct FixtureState: Sendable {
     let bucketName: String
     let objectName: String
@@ -41,7 +41,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
     let data = Data(content.utf8)
 
     let storageClient = try StorageClient()
-    let obj = try await storageClient.upload(data, to: bucketName, as: objName)
+    let obj = try await storageClient.writeObject(data, to: bucketName, as: objName)
     #expect(obj.bucket == "projects/_/buckets/\(bucketName)")
     #expect(obj.name == objName)
 
@@ -181,8 +181,8 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: options)
     do {
       for try await _ in result.body {}
-      Issue.record("Expected DownloadError.checksumMismatch for \(checksums)")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch for \(checksums)")
+    } catch let error as ReadObjectError {
       if case .checksumMismatch(let expected, _, let algorithm) = error {
         #expect(expected == expectedMismatch)
         #expect(algorithm == expectedAlgorithm)
@@ -263,8 +263,8 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: options)
     do {
       for try await _ in result.body {}
-      Issue.record("Expected DownloadError.checksumMismatch on invalid range checksum")
-    } catch let error as DownloadError {
+      Issue.record("Expected ReadObjectError.checksumMismatch on invalid range checksum")
+    } catch let error as ReadObjectError {
       if case .checksumMismatch(let expected, _, let algorithm) = error {
         #expect(expected == expectedMismatch)
         #expect(algorithm == expectedAlgorithm)

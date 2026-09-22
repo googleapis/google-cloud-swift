@@ -28,7 +28,7 @@ enum StorageOperations {
     isResumable: Bool,
     crc32cEnabled: Bool
   ) async throws -> GoogleCloudStorage.Object {
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.preconditions = StoragePreconditions().with {
         $0.ifGenerationMatch = 0
       }
@@ -43,7 +43,7 @@ enum StorageOperations {
     }
 
     do {
-      return try await client.upload(
+      return try await client.writeObject(
         BytesSource(buffer: buffer), to: bucketName, as: objectName, options: options)
     } catch let reqError as RequestError where reqError.isFailedPrecondition {
       logToStderr("Precondition failed for \(objectName), fetching object details")

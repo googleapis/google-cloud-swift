@@ -41,7 +41,7 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let object = try await storage.upload(fileURL, to: bucketName, as: objectName)
+    let object = try await storage.writeObject(fileURL, to: bucketName, as: objectName)
 
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
@@ -57,7 +57,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
+    let uploadedObject = try await storage.writeObject(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
 
@@ -86,7 +86,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
+    let uploadedObject = try await storage.writeObject(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
 
@@ -101,11 +101,11 @@ struct StorageClientIntegrationTests {
       _ = try await storage.readObject(from: bucketName, object: objectName, options: options)
         .metadata
       Issue.record("Expected download to fail with 412 Precondition Failed, but it succeeded")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
       #expect(statusCode == 412)
       print("GCS correctly returned 412 Precondition Failed: \(message)")
     } catch {
-      Issue.record("Expected DownloadError.unexpectedServerResponse(412), got \(error)")
+      Issue.record("Expected ReadObjectError.unexpectedServerResponse(412), got \(error)")
     }
   }
 
@@ -125,7 +125,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
+    let uploadedObject = try await storage.writeObject(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.size == Int64(data.count))
@@ -159,7 +159,7 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let object = try await storage.upload(fileURL, to: bucketName, as: objectName)
+    let object = try await storage.writeObject(fileURL, to: bucketName, as: objectName)
 
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
@@ -180,8 +180,8 @@ struct StorageClientIntegrationTests {
         try? FileManager.default.removeItem(at: fileURL)
       }
 
-      let options = UploadOptions().with { $0.validation = validation }
-      let object = try await storage.upload(
+      let options = WriteObjectOptions().with { $0.validation = validation }
+      let object = try await storage.writeObject(
         fileURL, to: bucketName, as: objectName, options: options)
 
       #expect(object.bucket == bucketResource)
@@ -208,8 +208,8 @@ struct StorageClientIntegrationTests {
         try? FileManager.default.removeItem(at: fileURL)
       }
 
-      let options = UploadOptions().with { $0.validation = validation }
-      let object = try await storage.upload(
+      let options = WriteObjectOptions().with { $0.validation = validation }
+      let object = try await storage.writeObject(
         fileURL, to: bucketName, as: objectName, options: options)
 
       #expect(object.bucket == bucketResource)
@@ -231,10 +231,10 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.checksums = ChecksumOptions(crc32c: .auto, md5: .auto)
     }
-    let object = try await storage.upload(
+    let object = try await storage.writeObject(
       fileURL, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -258,12 +258,12 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
     // Provide an intentionally invalid pre-calculated CRC32C checksum ("AAAAAA==")
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.checksums = ChecksumOptions(crc32c: "AAAAAA==")
     }
 
     do {
-      _ = try await storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+      _ = try await storage.writeObject(fileURL, to: bucketName, as: objectName, options: options)
       Issue.record("Expected GCS to reject upload with bad checksum, but it succeeded")
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.message.contains("doesn't match"))
@@ -289,10 +289,10 @@ struct StorageClientIntegrationTests {
     let storage = try StorageClient()
 
     // 1. Upload object encrypted with CSEK
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let uploadedObject = try await storage.upload(
+    let uploadedObject = try await storage.writeObject(
       data, to: bucketName, as: objectName, options: uploadOptions)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
@@ -303,10 +303,10 @@ struct StorageClientIntegrationTests {
     do {
       _ = try await storage.readObject(from: bucketName, object: objectName).metadata
       Issue.record("Expected download without CSEK key to fail")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
       #expect(statusCode == 400)
     } catch {
-      Issue.record("Expected DownloadError.unexpectedServerResponse, got \(error)")
+      Issue.record("Expected ReadObjectError.unexpectedServerResponse, got \(error)")
     }
 
     // 3. Download object with matching CSEK key
@@ -346,10 +346,10 @@ struct StorageClientIntegrationTests {
     let csek = try CustomerEncryptionKeyOptions(keyBytes: keyBytes)
 
     let storage = try StorageClient()
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let object = try await storage.upload(
+    let object = try await storage.writeObject(
       fileURL, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -375,10 +375,10 @@ struct StorageClientIntegrationTests {
     let csek = try CustomerEncryptionKeyOptions(key: keyData)
 
     let storage = try StorageClient()
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let object = try await storage.upload(
+    let object = try await storage.writeObject(
       fileURL, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -415,17 +415,17 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let metadata = UploadMetadata().with {
+    let metadata = WriteObjectMetadata().with {
       $0.contentType = "text/plain"
       $0.contentLanguage = "en"
       $0.cacheControl = "public, max-age=3600"
       $0.customMetadata = ["environment": "integration-test", "author": "swift-sdk"]
     }
-    let options = UploadOptions().with {
+    let options = WriteObjectOptions().with {
       $0.metadata = metadata
     }
 
-    let object = try await storage.upload(
+    let object = try await storage.writeObject(
       fileURL, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -450,15 +450,15 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let options = UploadOptions().with {
-      $0.metadata = UploadMetadata().with {
+    let options = WriteObjectOptions().with {
+      $0.metadata = WriteObjectMetadata().with {
         $0.contexts = ObjectContexts(customValues: [
           "environment": "integration-test", "team": "swift-sdk",
         ])
       }
     }
 
-    let object = try await storage.upload(
+    let object = try await storage.writeObject(
       fileURL, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -476,7 +476,7 @@ struct StorageClientIntegrationTests {
       chunkSize: 4 * 1024 * 1024, totalChunks: 0, totalSize: nil)
 
     let storage = try StorageClient()
-    let object = try await storage.upload(source, to: bucketName, as: objectName)
+    let object = try await storage.writeObject(source, to: bucketName, as: objectName)
 
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
@@ -496,8 +496,8 @@ struct StorageClientIntegrationTests {
       chunkSize: chunkSize, totalChunks: totalChunks, totalSize: nil)
 
     let storage = try StorageClient()
-    let options = UploadOptions().with { $0.chunkSize = chunkSize }
-    let object = try await storage.upload(
+    let options = WriteObjectOptions().with { $0.chunkSize = chunkSize }
+    let object = try await storage.writeObject(
       source, to: bucketName, as: objectName, options: options)
 
     #expect(object.bucket == bucketResource)
@@ -518,7 +518,7 @@ struct StorageClientIntegrationTests {
     let storage = try StorageClient()
 
     do {
-      _ = try await storage.upload(data, to: bucket, as: objectName)
+      _ = try await storage.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected upload to non-existent bucket to fail, but it succeeded")
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.code == .notFound)
@@ -554,15 +554,15 @@ struct StorageClientGzipDownloadIntegrationTests {
     let objectName = "test-gzip-transcode-\(UUID().uuidString).txt"
     let storage = try StorageClient()
 
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentEncoding = "gzip"
       $0.contentType = "text/plain"
     }
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.metadata = uploadMetadata
     }
 
-    let uploadedObject = try await storage.upload(
+    let uploadedObject = try await storage.writeObject(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
@@ -594,15 +594,15 @@ struct StorageClientGzipDownloadIntegrationTests {
     let objectName = "test-gzip-no-transcode-header-\(UUID().uuidString).txt"
     let storage = try StorageClient()
 
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentEncoding = "gzip"
       $0.contentType = "text/plain"
     }
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.metadata = uploadMetadata
     }
 
-    let uploadedObject = try await storage.upload(
+    let uploadedObject = try await storage.writeObject(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
@@ -636,16 +636,16 @@ struct StorageClientGzipDownloadIntegrationTests {
     let objectName = "test-gzip-cache-control-no-transform-\(UUID().uuidString).txt"
     let storage = try StorageClient()
 
-    let uploadMetadata = UploadMetadata().with {
+    let uploadMetadata = WriteObjectMetadata().with {
       $0.contentEncoding = "gzip"
       $0.cacheControl = "no-transform"
       $0.contentType = "text/plain"
     }
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.metadata = uploadMetadata
     }
 
-    let uploadedObject = try await storage.upload(
+    let uploadedObject = try await storage.writeObject(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
@@ -692,7 +692,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     let data = Data(content.utf8)
 
     let storageClient = try StorageClient()
-    let obj = try await storageClient.upload(data, to: bucket, as: objName)
+    let obj = try await storageClient.writeObject(data, to: bucket, as: objName)
     #expect(obj.bucket == "projects/_/buckets/\(bucket)")
     #expect(obj.name == objName)
 
@@ -774,15 +774,15 @@ struct StorageClientRangedDownloadIntegrationTests {
         options: options
       ).metadata
       Issue.record("Expected reading non-existent object to throw 404")
-    } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
+    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
       #expect(statusCode == 404)
     } catch {
-      Issue.record("Expected DownloadError.unexpectedServerResponse, got \(error)")
+      Issue.record("Expected ReadObjectError.unexpectedServerResponse, got \(error)")
     }
   }
 }
 
-private struct IntegrationDynamicSource: UploadSource {
+private struct IntegrationDynamicSource: WriteObjectSource {
   let chunkSize: Int
   let totalChunks: Int
   let totalSize: UInt64?

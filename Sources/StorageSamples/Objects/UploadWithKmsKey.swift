@@ -21,10 +21,10 @@ public func uploadWithKmsKey(
 ) async throws {
   let objectName = "object-to-upload.txt"
   let fileURL = URL(fileURLWithPath: filePath)
-  let options = UploadOptions().with {
+  let options = WriteObjectOptions().with {
     $0.kmsKeyName = kmsKey
   }
-  let _ = try await client.upload(
+  let _ = try await client.writeObject(
     fileURL,
     to: bucketId,
     as: objectName,

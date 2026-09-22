@@ -32,54 +32,54 @@ import Testing
     if case .exhausted = result { true } else { false }
   }
 
-  @Test func uploadDetailsDefaults() {
-    let details = UploadDetails()
-    #expect(details.bytesUploaded == 0)
+  @Test func writeObjectDetailsDefaults() {
+    let details = WriteObjectDetails()
+    #expect(details.bytesWritten == 0)
     #expect(details.totalBytes == nil)
 
     let state = ResumeState(details: details)
-    #expect(state.details.bytesUploaded == 0)
+    #expect(state.details.bytesWritten == 0)
     #expect(state.details.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
   }
 
-  @Test func uploadDetailsCustomInitializationAndBuilder() {
+  @Test func writeObjectDetailsCustomInitializationAndBuilder() {
     let now = ContinuousClock.now
-    let details = UploadDetails(bytesUploaded: 1024, totalBytes: 4096)
+    let details = WriteObjectDetails(bytesWritten: 1024, totalBytes: 4096)
     let state = ResumeState(details: details, start: now).with {
       $0.consecutiveErrorCount = 2
       $0.totalResumeCount = 5
     }
 
-    #expect(state.details.bytesUploaded == 1024)
+    #expect(state.details.bytesWritten == 1024)
     #expect(state.details.totalBytes == 4096)
     #expect(state.consecutiveErrorCount == 2)
     #expect(state.totalResumeCount == 5)
     #expect(state.start == now)
   }
 
-  @Test func downloadDetailsDefaults() {
-    let details = DownloadDetails()
-    #expect(details.bytesDownloaded == 0)
+  @Test func readObjectDetailsDefaults() {
+    let details = ReadObjectDetails()
+    #expect(details.bytesRead == 0)
     #expect(details.totalBytes == nil)
 
     let state = ResumeState(details: details)
-    #expect(state.details.bytesDownloaded == 0)
+    #expect(state.details.bytesRead == 0)
     #expect(state.details.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
   }
 
-  @Test func downloadDetailsCustomInitializationAndBuilder() {
+  @Test func readObjectDetailsCustomInitializationAndBuilder() {
     let now = ContinuousClock.now
-    let details = DownloadDetails(bytesDownloaded: 2048, totalBytes: 8192)
+    let details = ReadObjectDetails(bytesRead: 2048, totalBytes: 8192)
     let state = ResumeState(details: details, start: now).with {
       $0.consecutiveErrorCount = 1
       $0.totalResumeCount = 3
     }
 
-    #expect(state.details.bytesDownloaded == 2048)
+    #expect(state.details.bytesRead == 2048)
     #expect(state.details.totalBytes == 8192)
     #expect(state.consecutiveErrorCount == 1)
     #expect(state.totalResumeCount == 3)
@@ -87,20 +87,20 @@ import Testing
   }
 
   @Test func resumePolicyProgressUpdatesState() {
-    let policy = StorageResumePolicy<UploadDetails>()
-    var state = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: 1000)).with {
+    let policy = StorageResumePolicy<WriteObjectDetails>()
+    var state = ResumeState(details: WriteObjectDetails(bytesWritten: 0, totalBytes: 1000)).with {
       $0.consecutiveErrorCount = 3
     }
 
-    state.details.bytesUploaded = 250
+    state.details.bytesWritten = 250
     policy.onProgress(state: &state)
-    #expect(state.details.bytesUploaded == 250)
+    #expect(state.details.bytesWritten == 250)
     #expect(state.consecutiveErrorCount == 0)
 
-    state.details.bytesUploaded = 500
+    state.details.bytesWritten = 500
     state.consecutiveErrorCount = 2
     policy.onProgress(state: &state)
-    #expect(state.details.bytesUploaded == 500)
+    #expect(state.details.bytesWritten == 500)
     #expect(state.consecutiveErrorCount == 0)
   }
 
@@ -261,7 +261,7 @@ import Testing
     #expect(isResume(policy.onError(state: state, error: transientError)))
   }
 
-  @Test func uploadWithOptionsCustomResumePolicy() async throws {
+  @Test func writeObjectWithOptionsCustomResumePolicy() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
@@ -293,12 +293,12 @@ import Testing
     let client = try StorageClient(options, mock: registry)
 
     // With NeverResume, chunk upload 503 must fail immediately without query/retry
-    let uploadOptions = UploadOptions().with {
+    let uploadOptions = WriteObjectOptions().with {
       $0.resumePolicy = NeverResume()
     }
 
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+      try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .http(let details) = error {
       #expect(details.httpStatusCode == 503)

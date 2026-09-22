@@ -288,17 +288,17 @@ extension StorageW1R3 {
                   methodName: "storageClient"
                 )
             }
-            $0.upload.resumePolicy = StorageResumePolicy<UploadDetails>()
+            $0.writeObject.resumePolicy = StorageResumePolicy<WriteObjectDetails>()
               .stopOnConsecutiveErrors()
               .countedAndLogged(
                 counter: GlobalCounters.resumePolicy,
-                operationName: "upload"
+                operationName: "writeObject"
               )
-            $0.download.resumePolicy = StorageResumePolicy<DownloadDetails>()
+            $0.readObject.resumePolicy = StorageResumePolicy<ReadObjectDetails>()
               .stopOnConsecutiveErrors()
               .countedAndLogged(
                 counter: GlobalCounters.resumePolicy,
-                operationName: "download"
+                operationName: "readObject"
               )
           }))
     }

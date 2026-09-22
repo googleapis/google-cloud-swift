@@ -16,35 +16,43 @@ import Foundation
 
 /// Protocol defining the high-level object data-plane operations.
 public protocol StorageProtocol {
-  /// Core upload method accepting any upload source.
-  func upload(
-    _ source: some UploadSource,
+  /// Core write method accepting any write object source.
+  func writeObject(
+    _ source: some WriteObjectSource,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions
+    options: WriteObjectOptions
+  ) async throws -> Object
+
+  /// Write method specialized for seekable write object sources.
+  func writeObject(
+    _ source: some SeekableWriteObjectSource,
+    to bucket: String,
+    as objectName: String,
+    options: WriteObjectOptions
   ) async throws -> Object
 
   /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
-  func resumeUpload(
-    _ source: some SeekableUploadSource,
+  func resumeWriteObject(
+    _ source: some SeekableWriteObjectSource,
     uploadId: String,
-    options: UploadOptions
+    options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Convenience upload method for a local file URL.
-  func upload(
+  /// Convenience write method for a local file URL.
+  func writeObject(
     _ fileURL: URL,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions
+    options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Convenience upload method for in-memory Data.
-  func upload(
+  /// Convenience write method for in-memory Data.
+  func writeObject(
     _ data: Data,
     to bucket: String,
     as objectName: String,
-    options: UploadOptions
+    options: WriteObjectOptions
   ) async throws -> Object
 
   /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteBuffer chunks.

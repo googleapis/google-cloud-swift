@@ -113,7 +113,7 @@ import Testing
     }
     let client = try StorageClient(options, mock: registry)
     let data = Data("hello world".utf8)
-    _ = try await client.upload(data, to: bucket, as: objectName)
+    _ = try await client.writeObject(data, to: bucket, as: objectName)
 
     let request = registry.lastRequest(for: uploadUrl)
     #expect(request?.value(forHTTPHeaderField: "Host") == "storage.googleapis.com")

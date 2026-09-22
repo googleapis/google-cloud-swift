@@ -15,8 +15,8 @@
 import Foundation
 import NIOCore
 
-/// An upload source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
-public struct StreamSource: UploadSource {
+/// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
+public struct StreamSource: WriteObjectSource {
   private final class StateBox: @unchecked Sendable {
     var nextChunk: () async throws -> NIOCore.ByteBuffer?
 

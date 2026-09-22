@@ -20,7 +20,7 @@ public func uploadFile(
   client: StorageClient, bucketId: String, objectName: String, filePath: String
 ) async throws {
   let fileURL = URL(fileURLWithPath: filePath)
-  let _ = try await client.upload(fileURL, to: bucketId, as: objectName)
+  let _ = try await client.writeObject(fileURL, to: bucketId, as: objectName)
   print("Uploaded \(filePath) to \(objectName) in bucket \(bucketId).")
 }
 // [END storage_upload_file]

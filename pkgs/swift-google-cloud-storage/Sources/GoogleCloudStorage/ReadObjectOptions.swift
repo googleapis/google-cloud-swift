@@ -91,22 +91,22 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
   static func parse(_ header: String) throws -> HttpContentRange {
     let trimmed = header.trimmingCharacters(in: .whitespaces)
     guard trimmed.hasPrefix("bytes ") else {
-      throw DownloadError.invalidRangeHeader(header)
+      throw ReadObjectError.invalidRangeHeader(header)
     }
     let spec = trimmed.dropFirst("bytes ".count).trimmingCharacters(in: .whitespaces)
     let parts = spec.split(separator: "/")
     guard parts.count == 2 else {
-      throw DownloadError.invalidRangeHeader(header)
+      throw ReadObjectError.invalidRangeHeader(header)
     }
     let rangeParts = parts[0].split(separator: "-")
     guard rangeParts.count == 2,
       let start = UInt64(rangeParts[0]),
       let end = UInt64(rangeParts[1])
     else {
-      throw DownloadError.invalidRangeHeader(header)
+      throw ReadObjectError.invalidRangeHeader(header)
     }
     guard start <= end else {
-      throw DownloadError.invalidRangeHeader(header)
+      throw ReadObjectError.invalidRangeHeader(header)
     }
     let totalSizeStr = parts[1]
     let totalSize: UInt64?
@@ -115,7 +115,7 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
     } else if let total = UInt64(totalSizeStr) {
       totalSize = total
     } else {
-      throw DownloadError.invalidRangeHeader(header)
+      throw ReadObjectError.invalidRangeHeader(header)
     }
     return HttpContentRange(start: start, end: end, totalSize: totalSize)
   }
@@ -233,11 +233,11 @@ public struct ReadObjectOptions: Sendable {
   /// By default, `.default` enables auto-validation which automatically verifies CRC32C and/or MD5
   /// checksums against the object's server metadata upon reaching EOF.
   ///
-  /// If a checksum mismatch is detected, `DownloadError.checksumMismatch` is thrown.
+  /// If a checksum mismatch is detected, `ReadObjectError.checksumMismatch` is thrown.
   public var checksums: ChecksumOptions = .default
 
   /// Overrides the resume policy for this download.
-  public var resumePolicy: (any ResumePolicy<DownloadDetails>)? = nil
+  public var resumePolicy: (any ResumePolicy<ReadObjectDetails>)? = nil
 
   /// Overrides the backoff policy for this download.
   public var backoffPolicy: (any BackoffPolicy)? = nil
@@ -425,7 +425,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   let object: String
   let options: ReadObjectOptions
   let httpClient: GoogleGax._HTTPClient
-  let resumeLoop: _ResumeLoop<DownloadDetails>
+  let resumeLoop: _ResumeLoop<ReadObjectDetails>
 
   private let lock = NSLock()
   private var isInitialFetched: Bool = false
@@ -434,7 +434,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
-  private var resumeState: ResumeState<DownloadDetails>
+  private var resumeState: ResumeState<ReadObjectDetails>
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
   private var crc32cCalculator: CRC32CCalculator?
@@ -446,14 +446,14 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     object: String,
     options: ReadObjectOptions,
     httpClient: GoogleGax._HTTPClient,
-    resumeLoop: _ResumeLoop<DownloadDetails>
+    resumeLoop: _ResumeLoop<ReadObjectDetails>
   ) {
     self.bucket = bucket
     self.object = object
     self.options = options
     self.httpClient = httpClient
     self.resumeLoop = resumeLoop
-    self.resumeState = ResumeState(details: DownloadDetails())
+    self.resumeState = ResumeState(details: ReadObjectDetails())
     if options.checksums.crc32c != nil {
       self.crc32cCalculator = CRC32CCalculator()
     }
@@ -518,7 +518,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           if let chunk {
             let storage = ByteChunk(chunk)
             bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesDownloaded = bytesReceived
+            resumeState.details.bytesRead = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: storage)
             return storage
@@ -533,7 +533,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           if let chunk {
             let storage = ByteChunk(chunk)
             bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesDownloaded = bytesReceived
+            resumeState.details.bytesRead = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: storage)
             return storage
@@ -548,7 +548,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           return nil
         }
       } catch {
-        if error is DownloadError {
+        if error is ReadObjectError {
           isFinished = true
           throw error
         }
@@ -560,14 +560,14 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           isFinished = true
           if case .http(let details) = err {
             let message = String(data: details.payload, encoding: .utf8) ?? ""
-            throw DownloadError.unexpectedServerResponse(
+            throw ReadObjectError.unexpectedServerResponse(
               statusCode: details.httpStatusCode, message: message)
           } else if case .service(let details) = err {
             let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-            throw DownloadError.unexpectedServerResponse(
+            throw ReadObjectError.unexpectedServerResponse(
               statusCode: statusCode, message: details.message)
           }
-          throw DownloadError.resumeFailed(
+          throw ReadObjectError.resumeFailed(
             bytesReceived: bytesReceived, message: err.localizedDescription)
         }
 
@@ -601,7 +601,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       case .auto:
         if !isRangedRead && !isDecompressedTranscoding, let expected = currentMetadata.crc32c {
           if actual != expected {
-            throw DownloadError.checksumMismatch(
+            throw ReadObjectError.checksumMismatch(
               expected: expected,
               actual: actual,
               algorithm: calc.algorithmName
@@ -610,7 +610,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
       case .value(let expected):
         if actual != expected {
-          throw DownloadError.checksumMismatch(
+          throw ReadObjectError.checksumMismatch(
             expected: expected,
             actual: actual,
             algorithm: calc.algorithmName
@@ -625,7 +625,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       case .auto:
         if !isRangedRead && !isDecompressedTranscoding, let expected = currentMetadata.md5Hash {
           if actual != expected {
-            throw DownloadError.checksumMismatch(
+            throw ReadObjectError.checksumMismatch(
               expected: expected,
               actual: actual,
               algorithm: calc.algorithmName
@@ -634,7 +634,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
       case .value(let expected):
         if actual != expected {
-          throw DownloadError.checksumMismatch(
+          throw ReadObjectError.checksumMismatch(
             expected: expected,
             actual: actual,
             algorithm: calc.algorithmName
@@ -689,28 +689,28 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
         let data = try await resp.data()
         let message = String(data: data, encoding: .utf8) ?? ""
-        throw DownloadError.unexpectedServerResponse(
+        throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
       self.bodyIterator = response.body.makeAsyncIterator()
       self.streamIterator = nil
     } catch {
       isFinished = true
-      if let downloadError = error as? DownloadError {
+      if let downloadError = error as? ReadObjectError {
         throw downloadError
       }
       if let reqError = error as? RequestError {
         if case .http(let details) = reqError {
           let message = String(data: details.payload, encoding: .utf8) ?? ""
-          throw DownloadError.unexpectedServerResponse(
+          throw ReadObjectError.unexpectedServerResponse(
             statusCode: details.httpStatusCode, message: message)
         } else if case .service(let details) = reqError {
           let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-          throw DownloadError.unexpectedServerResponse(
+          throw ReadObjectError.unexpectedServerResponse(
             statusCode: statusCode, message: details.message)
         }
       }
-      throw DownloadError.resumeFailed(
+      throw ReadObjectError.resumeFailed(
         bytesReceived: bytesReceived, message: error.localizedDescription)
     }
   }
@@ -726,8 +726,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     bucket: String,
     object: String,
     options: ReadObjectOptions,
-    resumeLoop: _ResumeLoop<DownloadDetails>,
-    resumeState: ResumeState<DownloadDetails>
+    resumeLoop: _ResumeLoop<ReadObjectDetails>,
+    resumeState: ResumeState<ReadObjectDetails>
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
     do {
       return try await resumeLoop.run(state: resumeState) { _ in
@@ -753,17 +753,17 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
         let data = try await response.data()
         let message = String(data: data, encoding: .utf8) ?? ""
-        throw DownloadError.unexpectedServerResponse(
+        throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
     } catch let error as RequestError {
       if case .http(let details) = error {
         let message = String(data: details.payload, encoding: .utf8) ?? ""
-        throw DownloadError.unexpectedServerResponse(
+        throw ReadObjectError.unexpectedServerResponse(
           statusCode: details.httpStatusCode, message: message)
       } else if case .service(let details) = error {
         let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-        throw DownloadError.unexpectedServerResponse(
+        throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: details.message)
       } else {
         throw error
