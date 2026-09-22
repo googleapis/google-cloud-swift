@@ -31,14 +31,14 @@ import Testing
     #expect(chunk == [5, 6, 7, 8, 9])
 
     // Seek past end of data
-    let pastEndErr = await expectError(WriteObjectError.self) {
+    let pastEndErr = await expectError(WriteObjectSourceError.self) {
       try await source.seek(to: 20)
     }
-    if case .localSourceTooSmall(let localSize, let gcsOffset) = pastEndErr {
-      #expect(localSize == 10)
-      #expect(gcsOffset == 20)
+    if case .offsetOutOfBounds(let offset, let size) = pastEndErr {
+      #expect(size == 10)
+      #expect(offset == 20)
     } else {
-      Issue.record("Expected .localSourceTooSmall, got \(String(describing: pastEndErr))")
+      Issue.record("Expected .offsetOutOfBounds, got \(String(describing: pastEndErr))")
     }
   }
 

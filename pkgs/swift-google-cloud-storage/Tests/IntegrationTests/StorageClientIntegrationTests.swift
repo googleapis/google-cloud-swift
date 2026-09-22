@@ -101,11 +101,16 @@ struct StorageClientIntegrationTests {
       _ = try await storage.readObject(from: bucketName, object: objectName, options: options)
         .metadata
       Issue.record("Expected download to fail with 412 Precondition Failed, but it succeeded")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
-      #expect(statusCode == 412)
-      print("GCS correctly returned 412 Precondition Failed: \(message)")
+    } catch ReadObjectError.requestError(.service(let serviceError)) {
+      #expect(serviceError.httpStatusCode == 412)
+      print("GCS correctly returned 412 Precondition Failed: \(serviceError.message)")
+    } catch ReadObjectError.requestError(.http(let details)) {
+      #expect(details.httpStatusCode == 412)
+      print(
+        "GCS correctly returned 412 Precondition Failed: \(String(data: details.payload, encoding: .utf8) ?? "")"
+      )
     } catch {
-      Issue.record("Expected ReadObjectError.unexpectedServerResponse(412), got \(error)")
+      Issue.record("Expected ReadObjectError.requestError(412), got \(error)")
     }
   }
 
@@ -265,16 +270,16 @@ struct StorageClientIntegrationTests {
     do {
       _ = try await storage.writeObject(fileURL, to: bucketName, as: objectName, options: options)
       Issue.record("Expected GCS to reject upload with bad checksum, but it succeeded")
-    } catch RequestError.service(let serviceError) {
+    } catch WriteObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.message.contains("doesn't match"))
       print("GCS correctly rejected bad checksum: \(serviceError.message)")
-    } catch RequestError.http(let details) {
+    } catch WriteObjectError.requestError(.http(let details)) {
       #expect(details.httpStatusCode == 400)
       print(
         "GCS correctly rejected bad checksum: \(String(data: details.payload, encoding: .utf8) ?? "")"
       )
     } catch {
-      Issue.record("Expected RequestError, but got \(error)")
+      Issue.record("Expected WriteObjectError.requestError, but got \(error)")
     }
   }
 
@@ -303,10 +308,12 @@ struct StorageClientIntegrationTests {
     do {
       _ = try await storage.readObject(from: bucketName, object: objectName).metadata
       Issue.record("Expected download without CSEK key to fail")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
-      #expect(statusCode == 400)
+    } catch ReadObjectError.requestError(.service(let serviceError)) {
+      #expect(serviceError.httpStatusCode == 400)
+    } catch ReadObjectError.requestError(.http(let details)) {
+      #expect(details.httpStatusCode == 400)
     } catch {
-      Issue.record("Expected ReadObjectError.unexpectedServerResponse, got \(error)")
+      Issue.record("Expected ReadObjectError.requestError, got \(error)")
     }
 
     // 3. Download object with matching CSEK key
@@ -520,10 +527,10 @@ struct StorageClientIntegrationTests {
     do {
       _ = try await storage.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected upload to non-existent bucket to fail, but it succeeded")
-    } catch RequestError.service(let serviceError) {
+    } catch WriteObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.code == .notFound)
     } catch {
-      Issue.record("Expected RequestError.service, but got \(error)")
+      Issue.record("Expected WriteObjectError.requestError(.service), but got \(error)")
     }
   }
 }
@@ -774,10 +781,12 @@ struct StorageClientRangedDownloadIntegrationTests {
         options: options
       ).metadata
       Issue.record("Expected reading non-existent object to throw 404")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
-      #expect(statusCode == 404)
+    } catch ReadObjectError.requestError(.service(let serviceError)) {
+      #expect(serviceError.httpStatusCode == 404)
+    } catch ReadObjectError.requestError(.http(let details)) {
+      #expect(details.httpStatusCode == 404)
     } catch {
-      Issue.record("Expected ReadObjectError.unexpectedServerResponse, got \(error)")
+      Issue.record("Expected ReadObjectError.requestError, got \(error)")
     }
   }
 }

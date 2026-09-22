@@ -95,15 +95,10 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: invalidExpectedCrc,
-            actual: actualCrcBase64,
-            algorithm: "crc32c"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == invalidExpectedCrc)
+      #expect(actual == actualCrcBase64)
+      #expect(algorithm == "crc32c")
     }
   }
 
@@ -174,15 +169,10 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: invalidExpectedMd5,
-            actual: actualMd5Base64,
-            algorithm: "md5"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == invalidExpectedMd5)
+      #expect(actual == actualMd5Base64)
+      #expect(algorithm == "md5")
     }
   }
 
@@ -236,15 +226,10 @@ import Testing
     do {
       for try await _ in mismatchResult.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: "wrong_content_md5",
-            actual: actualMd5Base64,
-            algorithm: "md5"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == "wrong_content_md5")
+      #expect(actual == actualMd5Base64)
+      #expect(algorithm == "md5")
     }
   }
 
@@ -300,15 +285,10 @@ import Testing
     do {
       for try await _ in md5FailResult.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: "wrong_md5",
-            actual: md5Base64,
-            algorithm: "md5"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == "wrong_md5")
+      #expect(actual == md5Base64)
+      #expect(algorithm == "md5")
     }
   }
 
@@ -359,15 +339,10 @@ import Testing
     do {
       for try await _ in wrongResult.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: "wrong_crc_value",
-            actual: crcBase64,
-            algorithm: "crc32c"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == "wrong_crc_value")
+      #expect(actual == crcBase64)
+      #expect(algorithm == "crc32c")
     }
   }
 
@@ -446,15 +421,10 @@ import Testing
     do {
       for try await _ in wrongResult.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: "wrong_md5_value",
-            actual: md5Base64,
-            algorithm: "md5"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == "wrong_md5_value")
+      #expect(actual == md5Base64)
+      #expect(algorithm == "md5")
     }
   }
 
@@ -583,15 +553,10 @@ import Testing
     do {
       for try await _ in wrongResult.body {}
       Issue.record("Expected ReadObjectError.checksumMismatch to be thrown")
-    } catch let error as ReadObjectError {
-      #expect(
-        error
-          == ReadObjectError.checksumMismatch(
-            expected: "wrong_range_crc",
-            actual: rangeCrcBase64,
-            algorithm: "crc32c"
-          )
-      )
+    } catch ReadObjectError.checksumMismatch(let expected, let actual, let algorithm) {
+      #expect(expected == "wrong_range_crc")
+      #expect(actual == rangeCrcBase64)
+      #expect(algorithm == "crc32c")
     }
   }
 

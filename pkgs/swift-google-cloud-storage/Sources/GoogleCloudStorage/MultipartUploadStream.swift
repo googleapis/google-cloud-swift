@@ -52,7 +52,11 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
   /// Rewinds the underlying source to offset 0 if it is seekable.
   mutating func rewind() async throws {
     if var seekable = source as? (any SeekableWriteObjectSource) {
-      try await seekable.seek(to: 0)
+      do {
+        try await seekable.seek(to: 0)
+      } catch {
+        throw WriteObjectError.fromSourceError(error)
+      }
       source = seekable
     }
   }
@@ -86,27 +90,31 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
 
     // Only inspect/read the source if automatic checksum computation is needed.
     let autoCalculators = calculators.filter { !($0 is ProvidedChecksumCalculator) }
-    if var seekable = source as? (any SeekableWriteObjectSource) {
-      if !autoCalculators.isEmpty {
-        while let chunk = try await seekable.read(maxBytes: chunkSize) {
+    do {
+      if var seekable = source as? (any SeekableWriteObjectSource) {
+        if !autoCalculators.isEmpty {
+          while let chunk = try await seekable.read(maxBytes: chunkSize) {
+            for i in calculators.indices {
+              calculators[i].update(chunk)
+            }
+          }
+        }
+        try await seekable.seek(to: 0)
+        preparedSource = seekable
+      } else if !autoCalculators.isEmpty {
+        var nonSeekable = source
+        var buffer = NIOCore.ByteBuffer()
+        while let chunk = try await nonSeekable.read(maxBytes: chunkSize) {
           for i in calculators.indices {
             calculators[i].update(chunk)
           }
+          var nio = chunk.byteBuffer
+          buffer.writeBuffer(&nio)
         }
+        preparedSource = BytesSource(buffer: ByteChunk(buffer))
       }
-      try await seekable.seek(to: 0)
-      preparedSource = seekable
-    } else if !autoCalculators.isEmpty {
-      var nonSeekable = source
-      var buffer = NIOCore.ByteBuffer()
-      while let chunk = try await nonSeekable.read(maxBytes: chunkSize) {
-        for i in calculators.indices {
-          calculators[i].update(chunk)
-        }
-        var nio = chunk.byteBuffer
-        buffer.writeBuffer(&nio)
-      }
-      preparedSource = BytesSource(buffer: ByteChunk(buffer))
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
     }
 
     let checksum =
@@ -173,7 +181,11 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
 
       case .body:
         let chunk: ByteChunk?
-        chunk = try await source.read(maxBytes: chunkSize)
+        do {
+          chunk = try await source.read(maxBytes: chunkSize)
+        } catch {
+          throw WriteObjectError.fromSourceError(error)
+        }
         if let chunk = chunk, !chunk.isEmpty {
           bytesYielded += UInt64(chunk.count)
           return chunk.byteBuffer

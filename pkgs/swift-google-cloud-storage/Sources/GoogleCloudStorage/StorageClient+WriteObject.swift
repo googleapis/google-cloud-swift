@@ -58,34 +58,42 @@ extension StorageClient {
 
     var source = source
 
-    // Determine if simple or resumable
-    if let totalSize = source.totalSize, effectiveThreshold > 0,
-      totalSize < UInt64(effectiveThreshold)
-    {
-      return try await Self.performSimpleUpload(
-        httpClient: httpClient,
-        source: &source,
-        bucket: bucket,
-        objectName: objectName,
-        metadata: effectiveOptions.metadata,
-        options: effectiveOptions,
-        totalSize: totalSize,
-        resumeLoop: resumeLoop
-      )
-    } else {
-      return try await Self.continueStreamingUpload(
-        httpClient: httpClient,
-        source: &source,
-        bucket: bucket,
-        objectName: objectName,
-        metadata: effectiveOptions.metadata,
-        uploadId: nil,
-        initialStatus: .inprogress(0),
-        chunkSize: effectiveOptions.chunkSize,
-        totalSize: source.totalSize,
-        options: effectiveOptions,
-        resumeLoop: resumeLoop
-      )
+    do {
+      // Determine if simple or resumable
+      if let totalSize = source.totalSize, effectiveThreshold > 0,
+        totalSize < UInt64(effectiveThreshold)
+      {
+        return try await Self.performSimpleUpload(
+          httpClient: httpClient,
+          source: &source,
+          bucket: bucket,
+          objectName: objectName,
+          metadata: effectiveOptions.metadata,
+          options: effectiveOptions,
+          totalSize: totalSize,
+          resumeLoop: resumeLoop
+        )
+      } else {
+        return try await Self.continueStreamingUpload(
+          httpClient: httpClient,
+          source: &source,
+          bucket: bucket,
+          objectName: objectName,
+          metadata: effectiveOptions.metadata,
+          uploadId: nil,
+          initialStatus: .inprogress(0),
+          chunkSize: effectiveOptions.chunkSize,
+          totalSize: source.totalSize,
+          options: effectiveOptions,
+          resumeLoop: resumeLoop
+        )
+      }
+    } catch let error as WriteObjectError {
+      throw error
+    } catch let error as RequestError {
+      throw WriteObjectError.requestError(error)
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
     }
   }
 
@@ -116,34 +124,42 @@ extension StorageClient {
 
     var source = source
 
-    // Determine if simple or resumable
-    if let totalSize = source.totalSize, effectiveThreshold > 0,
-      totalSize < UInt64(effectiveThreshold)
-    {
-      return try await Self.performSimpleUpload(
-        httpClient: httpClient,
-        source: &source,
-        bucket: bucket,
-        objectName: objectName,
-        metadata: effectiveOptions.metadata,
-        options: effectiveOptions,
-        totalSize: totalSize,
-        resumeLoop: resumeLoop
-      )
-    } else {
-      return try await Self.continueResumableSeekableUpload(
-        httpClient: httpClient,
-        source: &source,
-        bucket: bucket,
-        objectName: objectName,
-        metadata: effectiveOptions.metadata,
-        uploadId: nil,
-        initialStatus: .inprogress(0),
-        chunkSize: effectiveOptions.chunkSize,
-        totalSize: source.totalSize,
-        options: effectiveOptions,
-        resumeLoop: resumeLoop
-      )
+    do {
+      // Determine if simple or resumable
+      if let totalSize = source.totalSize, effectiveThreshold > 0,
+        totalSize < UInt64(effectiveThreshold)
+      {
+        return try await Self.performSimpleUpload(
+          httpClient: httpClient,
+          source: &source,
+          bucket: bucket,
+          objectName: objectName,
+          metadata: effectiveOptions.metadata,
+          options: effectiveOptions,
+          totalSize: totalSize,
+          resumeLoop: resumeLoop
+        )
+      } else {
+        return try await Self.continueResumableSeekableUpload(
+          httpClient: httpClient,
+          source: &source,
+          bucket: bucket,
+          objectName: objectName,
+          metadata: effectiveOptions.metadata,
+          uploadId: nil,
+          initialStatus: .inprogress(0),
+          chunkSize: effectiveOptions.chunkSize,
+          totalSize: source.totalSize,
+          options: effectiveOptions,
+          resumeLoop: resumeLoop
+        )
+      }
+    } catch let error as WriteObjectError {
+      throw error
+    } catch let error as RequestError {
+      throw WriteObjectError.requestError(error)
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
     }
   }
 
@@ -828,19 +844,27 @@ extension StorageClient {
     var source = source
     let totalSize = source.totalSize
 
-    return try await Self.continueResumableSeekableUpload(
-      httpClient: httpClient,
-      source: &source,
-      bucket: nil,
-      objectName: nil,
-      metadata: nil,
-      uploadId: uploadId,
-      initialStatus: .unknown,
-      chunkSize: effectiveOptions.chunkSize,
-      totalSize: totalSize,
-      options: effectiveOptions,
-      resumeLoop: resumeLoop
-    )
+    do {
+      return try await Self.continueResumableSeekableUpload(
+        httpClient: httpClient,
+        source: &source,
+        bucket: nil,
+        objectName: nil,
+        metadata: nil,
+        uploadId: uploadId,
+        initialStatus: .unknown,
+        chunkSize: effectiveOptions.chunkSize,
+        totalSize: totalSize,
+        options: effectiveOptions,
+        resumeLoop: resumeLoop
+      )
+    } catch let error as WriteObjectError {
+      throw error
+    } catch let error as RequestError {
+      throw WriteObjectError.requestError(error)
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
+    }
   }
 
   // --- Convenience Overloads ---
@@ -999,7 +1023,11 @@ extension StorageClient {
     }
     let data = try await response.data()
     let decoder = GoogleWKT._ProtoJSONDecoder()
-    let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
-    return v1Object.toObject()
+    do {
+      let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
+      return v1Object.toObject()
+    } catch {
+      throw RequestError.malformedResponse("\(error)")
+    }
   }
 }

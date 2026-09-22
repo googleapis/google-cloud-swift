@@ -558,14 +558,10 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           try await resumeLoop.handleError(state: &resumeState, error: reqError)
         } catch let err as RequestError {
           isFinished = true
-          if case .http(let details) = err {
-            let message = String(data: details.payload, encoding: .utf8) ?? ""
-            throw ReadObjectError.unexpectedServerResponse(
-              statusCode: details.httpStatusCode, message: message)
-          } else if case .service(let details) = err {
-            let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-            throw ReadObjectError.unexpectedServerResponse(
-              statusCode: statusCode, message: details.message)
+          if case .http = err {
+            throw ReadObjectError.requestError(err)
+          } else if case .service = err {
+            throw ReadObjectError.requestError(err)
           }
           throw ReadObjectError.resumeFailed(
             bytesReceived: bytesReceived, message: err.localizedDescription)
@@ -700,14 +696,10 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         throw downloadError
       }
       if let reqError = error as? RequestError {
-        if case .http(let details) = reqError {
-          let message = String(data: details.payload, encoding: .utf8) ?? ""
-          throw ReadObjectError.unexpectedServerResponse(
-            statusCode: details.httpStatusCode, message: message)
-        } else if case .service(let details) = reqError {
-          let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-          throw ReadObjectError.unexpectedServerResponse(
-            statusCode: statusCode, message: details.message)
+        if case .http = reqError {
+          throw ReadObjectError.requestError(reqError)
+        } else if case .service = reqError {
+          throw ReadObjectError.requestError(reqError)
         }
       }
       throw ReadObjectError.resumeFailed(
@@ -756,18 +748,12 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
+    } catch let error as ReadObjectError {
+      throw error
     } catch let error as RequestError {
-      if case .http(let details) = error {
-        let message = String(data: details.payload, encoding: .utf8) ?? ""
-        throw ReadObjectError.unexpectedServerResponse(
-          statusCode: details.httpStatusCode, message: message)
-      } else if case .service(let details) = error {
-        let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
-        throw ReadObjectError.unexpectedServerResponse(
-          statusCode: statusCode, message: details.message)
-      } else {
-        throw error
-      }
+      throw ReadObjectError.requestError(error)
+    } catch {
+      throw ReadObjectError.requestError(.io(error))
     }
   }
 }

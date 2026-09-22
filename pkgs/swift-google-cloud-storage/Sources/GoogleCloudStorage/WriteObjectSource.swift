@@ -14,6 +14,19 @@
 
 import Foundation
 
+/// Errors thrown by `WriteObjectSource` and `SeekableWriteObjectSource` implementations.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
+///   clause in `switch` statements.
+public enum WriteObjectSourceError: Error, Sendable {
+  /// The requested seek offset exceeds the size of the source.
+  case offsetOutOfBounds(offset: UInt64, size: UInt64)
+
+  /// Reading from the underlying data source failed.
+  case readFailed(underlyingError: any Error)
+}
+
 /// Represents a data source that can be read from sequentially.
 public protocol WriteObjectSource: Sendable {
   /// Reads the next chunk of data, up to `maxBytes`.

@@ -31,22 +31,30 @@ private final class FileHandleBox: @unchecked Sendable {
   }
 
   static func open(fileURL: URL) async throws -> FileHandleBox {
-    let handle = try await FileSystem.shared.openFile(
-      forReadingAt: FilePath(fileURL.path)
-    )
-    return FileHandleBox(handle: handle)
+    do {
+      let handle = try await FileSystem.shared.openFile(
+        forReadingAt: FilePath(fileURL.path)
+      )
+      return FileHandleBox(handle: handle)
+    } catch {
+      throw WriteObjectSourceError.readFailed(underlyingError: error)
+    }
   }
 
   func read(maxBytes: Int, offset: UInt64) async throws -> NIOCore.ByteBuffer? {
     guard let off = Int64(exactly: offset) else {
-      throw WriteObjectError.internalError("Offset exceeds maximum file offset: \(offset)")
+      throw WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: UInt64(Int64.max))
     }
-    let buffer = try await handle.readChunk(
-      fromAbsoluteOffset: off,
-      length: .bytes(Int64(maxBytes))
-    )
-    guard buffer.readableBytes > 0 else { return nil }
-    return buffer
+    do {
+      let buffer = try await handle.readChunk(
+        fromAbsoluteOffset: off,
+        length: .bytes(Int64(maxBytes))
+      )
+      guard buffer.readableBytes > 0 else { return nil }
+      return buffer
+    } catch {
+      throw WriteObjectSourceError.readFailed(underlyingError: error)
+    }
   }
 
   func close() async throws {
@@ -104,7 +112,7 @@ public struct FileSource: SeekableWriteObjectSource {
 
   public mutating func seek(to offset: UInt64) async throws {
     if let size = totalSize, offset > size {
-      throw WriteObjectError.localSourceTooSmall(localSize: size, gcsOffset: offset)
+      throw WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: size)
     }
     self.offset = offset
   }

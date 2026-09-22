@@ -268,11 +268,12 @@ import Testing
       try await client.readObject(from: bucket, object: objectName, options: options).metadata
     }
 
-    if case .unexpectedServerResponse(let statusCode, let message) = err {
-      #expect(statusCode == 412)
-      #expect(message == "Precondition Failed")
+    if case .requestError(.http(let details)) = err {
+      #expect(details.httpStatusCode == 412)
+      #expect(String(data: details.payload, encoding: .utf8) == "Precondition Failed")
     } else {
-      Issue.record("Expected unexpectedServerResponse with 412 status code")
+      Issue.record(
+        "Expected requestError(.http) with 412 status code, got \(String(describing: err))")
     }
   }
 
@@ -333,11 +334,11 @@ import Testing
       try await client.readObject(from: bucket, object: objectName).metadata
     }
 
-    if case .unexpectedServerResponse(let statusCode, let message) = err {
-      #expect(statusCode == 404)
-      #expect(message == "Object not found")
+    if case .requestError(.http(let details)) = err {
+      #expect(details.httpStatusCode == 404)
+      #expect(String(data: details.payload, encoding: .utf8) == "Object not found")
     } else {
-      Issue.record("Expected unexpectedServerResponse error")
+      Issue.record("Expected requestError(.http) error, got \(String(describing: err))")
     }
   }
 
@@ -613,11 +614,11 @@ import Testing
         object: "nonexistent.txt",
         options: ReadObjectOptions().with { $0.range = .prefix(0) }
       ).metadata
-      Issue.record("Expected unexpectedServerResponse error to be thrown for 404")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, _) {
-      #expect(statusCode == 404)
+      Issue.record("Expected requestError(.http) error to be thrown for 404")
+    } catch ReadObjectError.requestError(.http(let details)) {
+      #expect(details.httpStatusCode == 404)
     } catch {
-      Issue.record("Expected unexpectedServerResponse, got \(error)")
+      Issue.record("Expected requestError(.http), got \(error)")
     }
   }
 
@@ -1153,11 +1154,11 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected error when resume fails with 404")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
-      #expect(statusCode == 404)
-      #expect(message == "Object deleted")
+    } catch ReadObjectError.requestError(.http(let details)) {
+      #expect(details.httpStatusCode == 404)
+      #expect(String(data: details.payload, encoding: .utf8) == "Object deleted")
     } catch {
-      Issue.record("Expected unexpectedServerResponse 404, got \(error)")
+      Issue.record("Expected ReadObjectError.requestError(.http) 404, got \(error)")
     }
   }
 

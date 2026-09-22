@@ -36,14 +36,29 @@ import Testing
     #expect(chunk?.count == 50)
 
     // Seek past end of file
-    let pastEndErr = await expectError(WriteObjectError.self) {
+    let pastEndErr = await expectError(WriteObjectSourceError.self) {
       try await source.seek(to: 200)
     }
-    if case .localSourceTooSmall(let localSize, let gcsOffset) = pastEndErr {
-      #expect(localSize == 100)
-      #expect(gcsOffset == 200)
+    if case .offsetOutOfBounds(let offset, let size) = pastEndErr {
+      #expect(size == 100)
+      #expect(offset == 200)
     } else {
-      Issue.record("Expected .localSourceTooSmall, got \(String(describing: pastEndErr))")
+      Issue.record("Expected .offsetOutOfBounds, got \(String(describing: pastEndErr))")
+    }
+  }
+
+  /// Tests reading from a missing file throws WriteObjectSourceError.readFailed.
+  @Test func readMissingFileThrowsReadFailed() async throws {
+    let missingURL = FileManager.default.temporaryDirectory
+      .appendingPathComponent("nonexistent_\(UUID().uuidString).txt")
+    var source = FileSource(fileURL: missingURL)
+    let err = await expectError(WriteObjectSourceError.self) {
+      _ = try await source.read(maxBytes: 10)
+    }
+    if case .readFailed = err {
+      // Expected
+    } else {
+      Issue.record("Expected .readFailed, got \(String(describing: err))")
     }
   }
 

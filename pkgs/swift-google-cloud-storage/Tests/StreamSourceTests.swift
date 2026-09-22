@@ -92,4 +92,22 @@ import Testing
     let chunk = try await source.read(maxBytes: 10)
     #expect(chunk == nil)
   }
+
+  /// Tests that an error thrown by the underlying sequence is wrapped in WriteObjectSourceError.readFailed.
+  @Test func throwingSequenceThrowsReadFailed() async throws {
+    struct CustomStreamError: Error {}
+    let stream = AsyncThrowingStream<Data, any Error> { continuation in
+      continuation.finish(throwing: CustomStreamError())
+    }
+
+    var source = StreamSource(sequence: stream)
+    let err = await expectError(WriteObjectSourceError.self) {
+      _ = try await source.read(maxBytes: 10)
+    }
+    if case .readFailed(let underlying) = err {
+      #expect(underlying is CustomStreamError)
+    } else {
+      Issue.record("Expected WriteObjectSourceError.readFailed, got \(String(describing: err))")
+    }
+  }
 }

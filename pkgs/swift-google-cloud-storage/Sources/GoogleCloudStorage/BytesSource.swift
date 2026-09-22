@@ -45,7 +45,7 @@ public struct BytesSource: SeekableWriteObjectSource {
   public mutating func seek(to offset: UInt64) async throws {
     let size = UInt64(buffer.count)
     guard offset <= size else {
-      throw WriteObjectError.localSourceTooSmall(localSize: size, gcsOffset: offset)
+      throw WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: size)
     }
     self.offset = offset
   }

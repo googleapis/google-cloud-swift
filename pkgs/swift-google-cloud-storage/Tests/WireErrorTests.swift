@@ -68,11 +68,11 @@ import Testing
     do {
       _ = try await client.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected upload to fail, but it succeeded")
-    } catch RequestError.service(let serviceError) {
+    } catch WriteObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.code == .notFound)
       #expect(serviceError.message == "The specified bucket does not exist.")
     } catch {
-      Issue.record("Expected RequestError.service, but got \(error)")
+      Issue.record("Expected WriteObjectError.requestError(.service), but got \(error)")
     }
   }
 
@@ -98,25 +98,41 @@ import Testing
     do {
       _ = try await client.writeObject(data, to: bucket, as: objectName)
       Issue.record("Expected resumable upload to fail, but it succeeded")
-    } catch RequestError.service(let serviceError) {
+    } catch WriteObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.code == .notFound)
       #expect(serviceError.message == "The specified bucket does not exist.")
     } catch {
-      Issue.record("Expected RequestError.service, but got \(error)")
+      Issue.record("Expected WriteObjectError.requestError(.service), but got \(error)")
     }
   }
 
-  /// Tests that downloading a non-existent object fails with HTTP 404.
+  /// Tests that downloading a non-existent object preserves structured ServiceError inside ReadObjectError.requestError.
   @Test func downloadWithWireErrorReturnsNotFound() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "nonexistent.txt"
     let downloadUrl = registry.url(
       "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let detailedErrorJson = """
+      {
+        "error": {
+          "code": 404,
+          "message": "No such object: test-bucket/nonexistent.txt",
+          "status": "NOT_FOUND",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "NOT_FOUND",
+              "domain": "storage.googleapis.com"
+            }
+          ]
+        }
+      }
+      """
     registry.register(
       response: .success(
         statusCode: 404,
-        data: Data(Self.rawWireErrorJson.utf8),
+        data: Data(detailedErrorJson.utf8),
         headers: ["content-type": "application/json; charset=UTF-8"]
       ),
       for: downloadUrl
@@ -126,13 +142,19 @@ import Testing
     do {
       _ = try await client.readObject(from: bucket, object: objectName).metadata
       Issue.record("Expected download to fail, but it succeeded")
-    } catch ReadObjectError.unexpectedServerResponse(let statusCode, let message) {
-      #expect(statusCode == 404)
-      #expect(message == "The specified bucket does not exist.")
-    } catch RequestError.service(let serviceError) {
+    } catch ReadObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.code == .notFound)
+      #expect(serviceError.httpStatusCode == 404)
+      #expect(serviceError.message == "No such object: test-bucket/nonexistent.txt")
+      #expect(serviceError.details.count == 1)
+      if case .errorInfo(let info) = serviceError.details.first {
+        #expect(info.reason == "NOT_FOUND")
+        #expect(info.domain == "storage.googleapis.com")
+      } else {
+        Issue.record("Expected .errorInfo detail, got \(serviceError.details)")
+      }
     } catch {
-      Issue.record("Expected 404 not found error, but got \(error)")
+      Issue.record("Expected ReadObjectError.requestError(.service), but got \(error)")
     }
   }
 }

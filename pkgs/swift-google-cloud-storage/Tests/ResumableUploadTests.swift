@@ -102,13 +102,14 @@ import Testing
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<WriteObjectDetails>())
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       _ = try await client.writeObject(source, to: bucket, as: objectName)
     }
-    if case .io(let underlying as URLError) = error {
+    if case .requestError(.io(let underlying as URLError)) = error {
       #expect(underlying.code == URLError.cannotConnectToHost)
     } else {
-      Issue.record("Expected RequestError.io(URLError), got \(String(describing: error))")
+      Issue.record(
+        "Expected WriteObjectError.requestError(.io(URLError)), got \(String(describing: error))")
     }
   }
 
@@ -133,8 +134,14 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    await #expect(throws: DummyError.self) {
+    let error = await expectError(WriteObjectError.self) {
       _ = try await client.writeObject(source, to: bucket, as: objectName)
+    }
+    if case .sourceError(let underlying) = error {
+      #expect(underlying is DummyError)
+    } else {
+      Issue.record(
+        "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
   }
 
@@ -155,13 +162,14 @@ import Testing
 
     let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       _ = try await client.writeObject(source, to: bucket, as: objectName)
     }
-    if case .io(let underlying as URLError) = error {
+    if case .requestError(.io(let underlying as URLError)) = error {
       #expect(underlying.code == .cannotConnectToHost)
     } else {
-      Issue.record("Expected RequestError.io(URLError), got \(String(describing: error))")
+      Issue.record(
+        "Expected WriteObjectError.requestError(.io(URLError)), got \(String(describing: error))")
     }
   }
 
@@ -190,13 +198,13 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName)
     }
-    if case .http(let details) = error {
+    if case .requestError(.http(let details)) = error {
       #expect(details.httpStatusCode == 400)
     } else {
-      Issue.record("Expected .http RequestError, got \(String(describing: error))")
+      Issue.record("Expected .requestError(.http), got \(String(describing: error))")
     }
   }
 
@@ -318,8 +326,13 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    await #expect(throws: DummyError.self) {
+    let error = await expectUploadError {
       _ = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
+    }
+    if case .sourceError(let underlyingError) = error {
+      #expect(underlyingError is DummyError)
+    } else {
+      Issue.record("Expected .sourceError(DummyError), got \(String(describing: error))")
     }
   }
 
@@ -434,13 +447,13 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectUploadError {
       try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
-    if case .http(let details) = error {
+    if case .requestError(.http(let details)) = error {
       #expect(details.httpStatusCode == 404)
     } else {
-      Issue.record("Expected .http RequestError, got \(String(describing: error))")
+      Issue.record("Expected .requestError(.http), got \(String(describing: error))")
     }
   }
 
@@ -491,13 +504,13 @@ import Testing
 
     let client = try makeClient(registry: registry)
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectUploadError {
       try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
-    if case .http(let details) = error {
+    if case .requestError(.http(let details)) = error {
       #expect(details.httpStatusCode == 499)
     } else {
-      Issue.record("Expected .http RequestError, got \(String(describing: error))")
+      Issue.record("Expected .requestError(.http), got \(String(describing: error))")
     }
   }
 
@@ -1821,7 +1834,7 @@ import Testing
     let uploadOptions = WriteObjectOptions().with {
       $0.resumePolicy = NeverResume()
     }
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     #expect(error != nil)
@@ -1850,7 +1863,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<WriteObjectDetails>())
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName)
     }
     #expect(error != nil)

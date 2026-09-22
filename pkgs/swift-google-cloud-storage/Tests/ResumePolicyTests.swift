@@ -297,13 +297,13 @@ import Testing
       $0.resumePolicy = NeverResume()
     }
 
-    let error = await expectError(RequestError.self) {
+    let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
-    if case .http(let details) = error {
+    if case .requestError(.http(let details)) = error {
       #expect(details.httpStatusCode == 503)
     } else {
-      Issue.record("Expected .http 503 RequestError, got \(String(describing: error))")
+      Issue.record("Expected .requestError(.http) 503, got \(String(describing: error))")
     }
   }
 

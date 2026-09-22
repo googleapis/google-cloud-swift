@@ -172,18 +172,6 @@ import Testing
         == .suffix(40))
   }
 
-  @Test func readObjectErrorEquality() {
-    let err1 = ReadObjectError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
-    let err2 = ReadObjectError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
-    let err3 = ReadObjectError.invalidRangeHeader("bytes=1-0")
-    let err4 = ReadObjectError.resumeFailed(bytesReceived: 100, message: "failed")
-    let err5 = ReadObjectError.resumeFailed(bytesReceived: 100, message: "failed")
-
-    #expect(err1 == err2)
-    #expect(err1 != err3)
-    #expect(err4 == err5)
-  }
-
   @Test func readObjectOptionsQuotaProject() {
     let defaults = ReadObjectOptions.default
     #expect(defaults.quotaProject == nil)

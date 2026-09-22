@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import GoogleGax
 
 /// Errors thrown by the write object API.
 ///
@@ -41,4 +41,20 @@ public enum WriteObjectError: Error, Sendable {
 
   /// The range header returned by GCS is invalid.
   case invalidRangeHeader(String)
+
+  /// A request or service error occurred during the write operation.
+  case requestError(RequestError)
+
+  /// An error occurred while reading from or seeking the write object source.
+  case sourceError(any Error)
+
+  package static func fromSourceError(_ error: any Error) -> WriteObjectError {
+    if let writeError = error as? WriteObjectError {
+      return writeError
+    }
+    if case WriteObjectSourceError.offsetOutOfBounds(let offset, let size) = error {
+      return .localSourceTooSmall(localSize: size, gcsOffset: offset)
+    }
+    return .sourceError(error)
+  }
 }

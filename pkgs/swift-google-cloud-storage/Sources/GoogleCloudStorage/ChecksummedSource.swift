@@ -101,7 +101,11 @@ struct ChecksummedSource<S: WriteObjectSource> {
 
   mutating func readChunk(maxBytes: Int) async throws -> ChunkInfo? {
     if !isInitialized {
-      nextChunk = try await source.read(maxBytes: maxBytes)
+      do {
+        nextChunk = try await source.read(maxBytes: maxBytes)
+      } catch {
+        throw WriteObjectError.fromSourceError(error)
+      }
       isInitialized = true
     }
 
@@ -112,7 +116,11 @@ struct ChecksummedSource<S: WriteObjectSource> {
     let currentChunkOffset = nextChunkOffset
     nextChunkOffset += UInt64(currentChunk.count)
 
-    nextChunk = try await source.read(maxBytes: maxBytes)
+    do {
+      nextChunk = try await source.read(maxBytes: maxBytes)
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
+    }
     let isLast = nextChunk == nil || nextChunk!.isEmpty
 
     updateChecksums(data: currentChunk, startOffset: currentChunkOffset)
@@ -149,18 +157,32 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     nextChunkOffset = offset
 
     guard offset > bytesHashed && !calculators.isEmpty else {
-      try await source.seek(to: offset)
+      do {
+        try await source.seek(to: offset)
+      } catch {
+        throw WriteObjectError.fromSourceError(error)
+      }
       return
     }
 
     // Catch up checksum calculation from `bytesHashed` to `offset`
-    try await source.seek(to: bytesHashed)
+    do {
+      try await source.seek(to: bytesHashed)
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
+    }
     var currentSeekOffset = bytesHashed
     var bytesRemaining = offset - bytesHashed
     let bufferSize: UInt64 = 8 * 1024 * 1024
     while bytesRemaining > 0 {
       let toRead = Int(min(bytesRemaining, bufferSize))
-      guard let chunk = try await source.read(maxBytes: toRead), !chunk.isEmpty else {
+      let chunk: ByteChunk?
+      do {
+        chunk = try await source.read(maxBytes: toRead)
+      } catch {
+        throw WriteObjectError.fromSourceError(error)
+      }
+      guard let chunk, !chunk.isEmpty else {
         throw WriteObjectError.localSourceTooSmall(localSize: currentSeekOffset, gcsOffset: offset)
       }
       updateChecksums(data: chunk, startOffset: currentSeekOffset)

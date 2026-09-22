@@ -68,7 +68,15 @@ public struct StreamSource: WriteObjectSource {
   public mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     guard maxBytes > 0 else { return nil }
     while buffer.readableBytes < maxBytes {
-      guard let nextChunk = try await stateBox.nextChunk() else {
+      let nextChunk: NIOCore.ByteBuffer?
+      do {
+        nextChunk = try await stateBox.nextChunk()
+      } catch let error as WriteObjectSourceError {
+        throw error
+      } catch {
+        throw WriteObjectSourceError.readFailed(underlyingError: error)
+      }
+      guard let nextChunk else {
         break
       }
       var next = nextChunk
