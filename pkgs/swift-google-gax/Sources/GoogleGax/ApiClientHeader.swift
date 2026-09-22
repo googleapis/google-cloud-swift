@@ -18,10 +18,12 @@ func _apiClientHeader(packageVersion: String, libraryType: String) -> String {
   "gl-swift/apple-\(compilerVersion())-lang-\(swiftCompatVersion()) gax/\(gaxVersion()) rest/\(gaxVersion()) \(libraryType)/\(packageVersion)"
 }
 
+@_spi(GoogleCloudInternal)
 public func _gapicApiClientHeader(packageVersion: String) -> String {
   _apiClientHeader(packageVersion: packageVersion, libraryType: "gapic")
 }
 
+@_spi(GoogleCloudInternal)
 public func _veneerApiClientHeader(packageVersion: String) -> String {
   // gccl == Google Cloud Client Library
   _apiClientHeader(packageVersion: packageVersion, libraryType: "gccl")

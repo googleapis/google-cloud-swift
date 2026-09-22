@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 import GoogleRpc
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 
 @Suite struct AggregatedPaginatedResponseTest {
   public struct Item: Codable, Equatable { var name: String }

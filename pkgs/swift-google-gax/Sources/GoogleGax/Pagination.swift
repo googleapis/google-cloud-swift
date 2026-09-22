@@ -14,6 +14,7 @@
 
 /// For internal use only. This protocol identifies response messages that adhere to the
 /// [AIP-158 pagination](https://google.aip.dev/158) standard.
+@_spi(GoogleCloudInternal)
 public protocol _PaginatedResponse<Item> {
   associatedtype Item
 
@@ -23,40 +24,44 @@ public protocol _PaginatedResponse<Item> {
 }
 
 /// A sequence that manages cursor-based pagination automatically.
-public final class PaginatedResponseSequence<Item, ResponseType: _PaginatedResponse<Item>>:
+public final class PaginatedResponseSequence<Item, ResponseType>:
   AsyncSequence
 {
   public typealias Element = Item
   public typealias ListRpc = (String) async throws -> ResponseType
 
-  private let listRpc: ListRpc
+  private let fetchPage: (String) async throws -> (items: [Item], nextToken: String)
 
   // Creates a new paginated response sequence.
-  public init(listRpc: @escaping ListRpc) {
-    self.listRpc = listRpc
+  @_spi(GoogleCloudInternal)
+  public init(listRpc: @escaping ListRpc) where ResponseType: _PaginatedResponse<Item> {
+    self.fetchPage = { token in
+      let response = try await listRpc(token)
+      return (response._getPaginatedItems(), response._nextPageToken())
+    }
   }
 
   public func makeAsyncIterator() -> _ItemIterator {
-    _ItemIterator(listRpc: listRpc)
+    _ItemIterator(fetchPage: fetchPage)
   }
 
   public final class _ItemIterator: AsyncIteratorProtocol {
-    private let listRpc: ListRpc
+    private let fetchPage: (String) async throws -> (items: [Item], nextToken: String)
     private var buffer: [Item] = []
     private var nextToken: String = String()
     private var hasReachedEnd = false
 
-    init(listRpc: @escaping ListRpc) {
-      self.listRpc = listRpc
+    init(fetchPage: @escaping (String) async throws -> (items: [Item], nextToken: String)) {
+      self.fetchPage = fetchPage
     }
 
     public func next() async throws -> Item? {
       // Continue fetching pages until we have items to return or there are no more pages.
       // According to AIP-158, intermediate pages may be empty while still returning a next page token.
       while buffer.isEmpty && !hasReachedEnd {
-        let response = try await listRpc(nextToken)
-        buffer = response._getPaginatedItems()
-        nextToken = response._nextPageToken()
+        let page = try await fetchPage(nextToken)
+        buffer = page.items
+        nextToken = page.nextToken
         if nextToken.isEmpty {
           hasReachedEnd = true
         }

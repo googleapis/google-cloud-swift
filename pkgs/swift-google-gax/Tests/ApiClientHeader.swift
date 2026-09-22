@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import Testing
 
 @Suite struct ApiClientHeader {

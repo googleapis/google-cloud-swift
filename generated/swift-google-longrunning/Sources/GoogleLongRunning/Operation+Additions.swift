@@ -13,10 +13,11 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import GoogleWKT
 import GoogleRpc
 
+@_spi(GoogleCloudInternal)
 extension Operation {
   // Extracts the state of an operation.
   public func _extractStatus<Response>(_ type: Response.Type) throws
