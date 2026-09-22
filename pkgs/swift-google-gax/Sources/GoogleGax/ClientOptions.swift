@@ -150,6 +150,9 @@ func defaultPollingErrorPolicy() -> some PollingErrorPolicy {
 }
 
 func defaultPollingBackoffPolicy() -> some BackoffPolicy {
+  // This try! is needed because `ExponentialBackoff.init()` may throw in the configuration is
+  // invalid, e.g., the the minimum delay is higher than the maximum. In this case we know it won't
+  // fail because the values are fixed.
   try! ExponentialBackoff(
     config: ExponentialBackoffConfig().with {
       $0.initialDelay = .seconds(1)
