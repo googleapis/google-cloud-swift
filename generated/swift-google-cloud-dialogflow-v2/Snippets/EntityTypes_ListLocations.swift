@@ -21,6 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
+  import GoogleWKT
 
   func sample(client: EntityTypesClient) async throws {
     let items = try client.listLocations(

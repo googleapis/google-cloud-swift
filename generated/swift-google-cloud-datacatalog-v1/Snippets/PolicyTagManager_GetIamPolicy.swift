@@ -20,6 +20,7 @@ import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleIAMV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: PolicyTagManagerClient) async throws {
   let response = try await client.getIamPolicy(

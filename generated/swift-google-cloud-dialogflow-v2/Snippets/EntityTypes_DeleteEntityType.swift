@@ -21,6 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
+  import GoogleWKT
 
   func sample(client: EntityTypesClient, projectId: String, entityTypeId: String) async throws {
     try await client.deleteEntityType(

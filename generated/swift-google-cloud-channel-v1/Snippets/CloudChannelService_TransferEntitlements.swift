@@ -19,6 +19,7 @@
 import Foundation
 import GoogleCloudChannelV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
   let poller = try await client.transferEntitlements(

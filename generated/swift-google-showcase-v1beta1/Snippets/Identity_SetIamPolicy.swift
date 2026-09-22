@@ -21,6 +21,7 @@ import GoogleShowcaseV1Beta1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: IdentityClient) async throws {
   let response = try await client.setIamPolicy(

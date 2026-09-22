@@ -19,6 +19,7 @@
 import Foundation
 import GoogleCloudChannelV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, productId: String) async throws {
   let items = try client.listSkus(

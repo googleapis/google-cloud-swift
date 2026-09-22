@@ -21,6 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
+  import GoogleWKT
 
   func sample(client: EnvironmentsClient) async throws {
     try await client.cancelOperation(

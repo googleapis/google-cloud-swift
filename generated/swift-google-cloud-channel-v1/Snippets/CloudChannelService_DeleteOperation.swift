@@ -19,6 +19,7 @@
 import Foundation
 import GoogleCloudChannelV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
   try await client.deleteOperation(

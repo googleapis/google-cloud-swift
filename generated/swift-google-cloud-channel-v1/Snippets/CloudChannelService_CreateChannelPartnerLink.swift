@@ -19,6 +19,7 @@
 import Foundation
 import GoogleCloudChannelV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, parent: String) async throws {
   let response = try await client.createChannelPartnerLink(

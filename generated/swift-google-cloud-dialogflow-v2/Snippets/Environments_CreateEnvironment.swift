@@ -21,6 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleLongRunning
+  import GoogleWKT
 
   func sample(client: EnvironmentsClient, projectId: String) async throws {
     let response = try await client.createEnvironment(
