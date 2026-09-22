@@ -48,7 +48,7 @@ extension StorageClient {
     let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>.defaultPolicy,
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let effectiveThreshold =
@@ -114,7 +114,7 @@ extension StorageClient {
     let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>.defaultPolicy,
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let effectiveThreshold =
@@ -837,7 +837,7 @@ extension StorageClient {
     let effectiveOptions = options.withDefaults(self.options.writeObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<WriteObjectDetails>.defaultPolicy,
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
     let httpClient = self.inner

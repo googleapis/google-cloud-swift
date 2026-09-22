@@ -35,10 +35,10 @@ problem.
 There are three orthogonal controls for the retry loop:
 
 - Types conforming to the ``RetryPolicy`` protocol control what errors are
-  retryable. ``BaseRetryPolicy`` works for most APIs. Remember to limit the
-  number of attempts or the maximum time spent retrying using the
+  retryable. ``BaseRetryPolicy`` works for most APIs (`BaseRetryPolicy.defaultPolicy`
+  for standard limits, or `BaseRetryPolicy.unbounded()` decorated with
   ``RetryPolicy/withAttemptLimit(_:)`` and/or
-  ``RetryPolicy/withTimeLimit(_:)``.
+  ``RetryPolicy/withTimeLimit(_:)``).
 - Types conforming to the ``BackoffPolicy`` protocol determine how long the
   client waits before making a new attempt. The most common implementation is
   ``ExponentialBackoff``.
@@ -55,10 +55,11 @@ Likewise, there are two orthogonal controls for the polling loop:
 
 - Types conforming to the ``PollingErrorPolicy`` protocol control what polling
   errors are retryable (as opposed to stopping the loop).
-  ``BasePollingErrorPolicy`` is a good default that works for most APIs.
-  Remember to limit the number of attempts or the maximum time spent in the
-  polling loop using ``PollingErrorPolicy/withAttemptLimit(_:)`` and/or
-  ``PollingErrorPolicy/withTimeLimit(_:)``.
+  ``BasePollingErrorPolicy`` is a good default that works for most APIs
+  (`BasePollingErrorPolicy.defaultPolicy` for standard limits, or
+  `BasePollingErrorPolicy.unbounded()` decorated with
+  ``PollingErrorPolicy/withAttemptLimit(_:)`` and/or
+  ``PollingErrorPolicy/withTimeLimit(_:)``).
 - Types conforming to the ``BackoffPolicy`` protocol (the same protocol used for
   retry loops) determine how long the polling loop waits before polling again.
   The most common implementation is ``ExponentialBackoff``.

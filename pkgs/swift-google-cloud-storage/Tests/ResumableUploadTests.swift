@@ -1260,7 +1260,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = 8 * 1024 * 1024
@@ -1343,7 +1343,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
@@ -1425,7 +1425,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
@@ -1485,7 +1485,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
 
@@ -1539,7 +1539,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let object = try await client.writeObject(source, to: bucket, as: objectName)
 
@@ -1628,7 +1628,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(5)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(5)
     )
     let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
@@ -1728,7 +1728,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(4)
     )
     let object = try await client.writeObject(source, to: bucket, as: objectName)
 
@@ -1797,7 +1797,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(4)
     )
     let object = try await client.writeObject(source, to: bucket, as: objectName)
 
@@ -2352,7 +2352,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with { $0.chunkSize = chunkSize }
     let object = try await client.writeObject(
@@ -2417,7 +2417,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with { $0.chunkSize = chunkSize }
     let object = try await client.writeObject(
@@ -2487,7 +2487,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let uploadOptions = WriteObjectOptions().with {
       $0.chunkSize = chunkSize
@@ -2646,7 +2646,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
     )
     let options = WriteObjectOptions().with {
       $0.chunkSize = 256 * 1024

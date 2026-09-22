@@ -792,7 +792,7 @@ import Testing
     )
 
     let client = try makeClient(
-      registry: registry, retryPolicy: BaseRetryPolicy().withAttemptLimit(3))
+      registry: registry, retryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3))
     let result = client.readObject(from: bucket, object: objectName)
     let metadata = try await result.metadata
 

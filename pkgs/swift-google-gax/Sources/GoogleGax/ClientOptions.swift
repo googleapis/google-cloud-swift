@@ -150,7 +150,7 @@ func defaultAttemptTimeout() -> Duration? {
 }
 
 func defaultRetryPolicy() -> any RetryPolicy {
-  BaseRetryPolicy().withTimeLimit(.seconds(60)).withAttemptLimit(10)
+  BaseRetryPolicy.defaultPolicy
 }
 
 func defaultBackoffPolicy() -> any BackoffPolicy {
@@ -162,7 +162,7 @@ func defaultRetryThrottler() -> any RetryThrottler {
 }
 
 func defaultPollingErrorPolicy() -> some PollingErrorPolicy {
-  BasePollingErrorPolicy().withTimeLimit(.seconds(30 * 60))
+  BasePollingErrorPolicy.defaultPolicy
 }
 
 func defaultPollingBackoffPolicy() -> some BackoffPolicy {

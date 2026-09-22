@@ -32,7 +32,7 @@ extension StorageClient {
     let effectiveOptions = options.withDefaults(self.options.readObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy
-        ?? StorageResumePolicy<ReadObjectDetails>().stopOnConsecutiveErrors(),
+        ?? StorageResumePolicy<ReadObjectDetails>.defaultPolicy,
       backoffPolicy: effectiveOptions.backoffPolicy ?? self.options.client.backoffPolicy
     )
 

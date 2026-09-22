@@ -18,7 +18,7 @@ import GoogleCloudStorage
 
 public func configureRetries(bucketId: String) async throws {
   // Retries all operations for up to 5 minutes, including any backoff time.
-  let retryPolicy = StorageBaseRetryPolicy().withTimeLimit(.seconds(5 * 60))
+  let retryPolicy = StorageBaseRetryPolicy.unbounded().withTimeLimit(.seconds(5 * 60))
   // On error, it backs off for a random delay between [0, 1] seconds, then
   // [0, 3] seconds, then [0, 9] seconds, etc. The backoff time never grows
   // larger than 1 minute.
@@ -45,7 +45,7 @@ public func configureRetries(bucketId: String) async throws {
   print("Bucket \(bucketId) metadata is \(bucket)")
 
   // Retries all operations for up to 5 attempts.
-  let dataRetryPolicy = StorageBaseRetryPolicy().withAttemptLimit(5)
+  let dataRetryPolicy = StorageBaseRetryPolicy.unbounded().withAttemptLimit(5)
   // On error, it backs off for a random delay between [0, 1] seconds, then
   // [0, 3] seconds, then [0, 9] seconds, etc. The backoff time never grows
   // larger than 1 minute.

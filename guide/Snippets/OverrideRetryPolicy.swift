@@ -26,13 +26,13 @@ func sample(projectId: String) async throws {
   // snippet.client [START swift_override_retry_policy_client]
   let client = try SecretManagerServiceClient(
     ClientOptions().with {
-      $0.retryPolicy = BaseRetryPolicy().withTimeLimit(.seconds(10)).withAttemptLimit(3)
+      $0.retryPolicy = BaseRetryPolicy.unbounded().withTimeLimit(.seconds(10)).withAttemptLimit(3)
     })
   // snippet.end [END swift_override_retry_policy_client]
   // snippet.backoff [START swift_override_retry_policy_backoff]
   let slowerClient = try SecretManagerServiceClient(
     ClientOptions().with {
-      $0.retryPolicy = BaseRetryPolicy().withTimeLimit(.seconds(10)).withAttemptLimit(3)
+      $0.retryPolicy = BaseRetryPolicy.unbounded().withTimeLimit(.seconds(10)).withAttemptLimit(3)
       $0.backoffPolicy = ExponentialBackoff(
         clamping: ExponentialBackoffConfig().with {
           $0.initialDelay = .milliseconds(250)
@@ -52,7 +52,7 @@ func sample(projectId: String) async throws {
   // snippet.end [END swift_override_retry_policy_request]
   // snippet.idempotency [START swift_override_retry_policy_idempotency]
   let retried = RequestOptions().with {
-    $0.retryPolicy = BaseRetryPolicy().withTimeLimit(.seconds(30))
+    $0.retryPolicy = BaseRetryPolicy.unbounded().withTimeLimit(.seconds(30))
     $0.idempotency = true
   }
   try await slowerClient.deleteSecret(

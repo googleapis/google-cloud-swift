@@ -17,17 +17,40 @@ import GoogleRpc
 
 /// A combination of retry policies that works for most services.
 ///
-/// This policy must be decorated to limit the number of retry attempts or the duration of the
-/// retry loop.
+/// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and
+/// 10-attempt limit), or ``unbounded()`` decorated with ``RetryPolicy/withTimeLimit(_:)``
+/// and/or ``RetryPolicy/withAttemptLimit(_:)`` to configure custom limits.
 ///
 /// This policy only retries [idempotent] operations, and then only if the error is an I/O error, or a safe error code.
 ///
 /// [AIP-194]: https://google.aip.dev/194
+/// [idempotent]: https://en.wikipedia.org/wiki/Idempotence
 final public class BaseRetryPolicy: RetryPolicy {
   let inner: StrictIdempotency<ContinueOnIO<Aip194>>
 
-  public init() {
+  init() {
     self.inner = Aip194().retryOnIO().strictIdempotency()
+  }
+
+  /// Creates an unconstrained base retry policy without attempt or time limits.
+  ///
+  /// Decorate this policy with ``RetryPolicy/withTimeLimit(_:)`` and/or
+  /// ``RetryPolicy/withAttemptLimit(_:)`` to bound the retry loop:
+  /// ```swift
+  /// let policy = BaseRetryPolicy.unbounded()
+  ///   .withTimeLimit(.seconds(30))
+  ///   .withAttemptLimit(5)
+  /// ```
+  ///
+  /// - Warning: Without `.withAttemptLimit(_:)` or `.withTimeLimit(_:)` decorators,
+  ///   this policy retries transient errors indefinitely.
+  public static func unbounded() -> BaseRetryPolicy {
+    BaseRetryPolicy()
+  }
+
+  /// The default retry policy, with a 60-second time limit and 10-attempt limit.
+  public static var defaultPolicy: some RetryPolicy {
+    BaseRetryPolicy.unbounded().withTimeLimit(.seconds(60)).withAttemptLimit(10)
   }
 
   public func onError(state: RetryState, error: RequestError) -> RetryResult {

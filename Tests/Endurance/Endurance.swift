@@ -80,9 +80,7 @@ private func makeRetryPolicy(
   counter: RetryAttemptCounter,
   task: String = "worker"
 ) -> some RetryPolicy {
-  BaseRetryPolicy()
-    .withTimeLimit(.seconds(60))
-    .withAttemptLimit(10)
+  BaseRetryPolicy.defaultPolicy
     .countedAndLogged(counter: counter, methodName: methodName, task: task)
 }
 
@@ -94,9 +92,7 @@ private func startWorkers(requestsPerMinute: Int) async throws {
   }
 
   let clientOptions = ClientOptions().with {
-    $0.retryPolicy = BaseRetryPolicy()
-      .withTimeLimit(.seconds(60))
-      .withAttemptLimit(10)
+    $0.retryPolicy = BaseRetryPolicy.defaultPolicy
   }
   let discoveryClient = try SecretManagerServiceClient(clientOptions)
 

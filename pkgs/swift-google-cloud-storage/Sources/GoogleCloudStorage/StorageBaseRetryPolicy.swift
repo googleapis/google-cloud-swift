@@ -22,18 +22,35 @@ import GoogleRpc
 /// (408, 429, and 5xx), or transient gRPC status codes (`unavailable`, `resourceExhausted`,
 /// `deadlineExceeded`, and `internal`).
 ///
-/// This policy must be decorated to limit the number of retry attempts or the duration of the
-/// retry loop.
+/// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and
+/// 10-attempt limit), or ``unbounded()`` decorated with ``GoogleGax/RetryPolicy/withTimeLimit(_:)``
+/// and/or ``GoogleGax/RetryPolicy/withAttemptLimit(_:)`` to configure custom limits.
 public final class StorageBaseRetryPolicy: Sendable {
   let inner: StrictIdempotency<ContinueOnIO<StorageRetryErrors>>
 
-  public init() {
+  init() {
     self.inner = StorageRetryErrors().retryOnIO().strictIdempotency()
   }
 
+  /// Creates an unconstrained Cloud Storage base retry policy without attempt or time limits.
+  ///
+  /// Decorate this policy with ``GoogleGax/RetryPolicy/withTimeLimit(_:)`` and/or
+  /// ``GoogleGax/RetryPolicy/withAttemptLimit(_:)`` to bound the retry loop:
+  /// ```swift
+  /// let policy = StorageBaseRetryPolicy.unbounded()
+  ///   .withTimeLimit(.seconds(30))
+  ///   .withAttemptLimit(5)
+  /// ```
+  ///
+  /// - Warning: Without `.withAttemptLimit(_:)` or `.withTimeLimit(_:)` decorators,
+  ///   this policy retries transient errors indefinitely.
+  public static func unbounded() -> StorageBaseRetryPolicy {
+    StorageBaseRetryPolicy()
+  }
+
   /// The default retry policy for Google Cloud Storage, with a 60-second time limit and 10-attempt limit.
-  package static var defaultPolicy: any RetryPolicy {
-    StorageBaseRetryPolicy().withTimeLimit(.seconds(60)).withAttemptLimit(10)
+  public static var defaultPolicy: some RetryPolicy {
+    StorageBaseRetryPolicy.unbounded().withTimeLimit(.seconds(60)).withAttemptLimit(10)
   }
 }
 

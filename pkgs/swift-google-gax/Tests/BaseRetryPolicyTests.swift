@@ -26,7 +26,7 @@ import Testing
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p = BaseRetryPolicy()
+    let p = BaseRetryPolicy.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .retry(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .permanent(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
@@ -43,13 +43,39 @@ import Testing
     ]
   )
   func onPermanent(e: RequestError) {
-    let p = BaseRetryPolicy()
+    let p = BaseRetryPolicy.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .permanent(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .permanent(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
     #expect(p.onThrottle(state: nonIdempotentState(), error: e) == .exhausted(e))
     #expect(p.remainingTime(state: idempotentState()) == nil)
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
+  }
+
+  @Test("Verify BaseRetryPolicy.defaultPolicy enforces 60s and 10-attempt limits")
+  func defaultPolicyBounds() {
+    let p = BaseRetryPolicy.defaultPolicy
+    let e = Self.unavailable()
+    let start = ContinuousClock.now
+
+    let attempt9 = RetryState(idempotent: true).with {
+      $0.start = start
+      $0.attemptCount = 9
+    }
+    #expect(p.onError(state: attempt9, error: e) == .retry(e))
+    #expect(p.remainingTime(state: attempt9) != nil)
+
+    let attempt10 = RetryState(idempotent: true).with {
+      $0.start = start
+      $0.attemptCount = 10
+    }
+    #expect(p.onError(state: attempt10, error: e) == .exhausted(e))
+
+    let expired = RetryState(idempotent: true).with {
+      $0.start = start - .seconds(61)
+      $0.attemptCount = 1
+    }
+    #expect(p.onError(state: expired, error: e) == .exhausted(e))
   }
 
   static func unavailable() -> RequestError {

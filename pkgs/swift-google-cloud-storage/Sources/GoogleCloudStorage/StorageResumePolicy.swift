@@ -25,13 +25,29 @@ import GoogleRpc
 /// If the transfer operation is not idempotent (some single-shot uploads), errors are treated
 /// as permanent and will not be resumed or retried.
 ///
-/// This policy can be composed with decorators such as ``StopOnConsecutiveErrors`` or
-/// ``LimitedTotalResumes``:
+/// Use ``defaultPolicy`` for the standard bounded configuration (stopping after 3 consecutive
+/// errors without byte progress), or ``unbounded()`` decorated with ``StopOnConsecutiveErrors``
+/// or ``LimitedTotalResumes`` to configure custom limits:
 /// ```swift
-/// let resumePolicy = StorageResumePolicy<WriteObjectDetails>().stopOnConsecutiveErrors(3)
+/// let resumePolicy = StorageResumePolicy<WriteObjectDetails>.unbounded()
+///   .stopOnConsecutiveErrors(3)
 /// ```
 public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Equatable {
-  public init() {}
+  init() {}
+
+  /// Creates an unconstrained Cloud Storage resume policy without error or resume count limits.
+  ///
+  /// - Warning: Without `.stopOnConsecutiveErrors(_:)` or `.withTotalResumeLimit(_:)` decorators,
+  ///   this policy resumes transient transfer errors indefinitely.
+  public static func unbounded() -> StorageResumePolicy<Details> {
+    StorageResumePolicy()
+  }
+
+  /// The default resume policy for Google Cloud Storage, stopping after 3 consecutive errors
+  /// without byte progress.
+  public static var defaultPolicy: some ResumePolicy<Details> {
+    StorageResumePolicy<Details>.unbounded().stopOnConsecutiveErrors()
+  }
 
   public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     guard state.idempotent else {

@@ -106,7 +106,7 @@ import Testing
   }
 
   @Test func storageBaseRetryPolicyIdempotency() {
-    let policy = StorageBaseRetryPolicy()
+    let policy = StorageBaseRetryPolicy.unbounded()
 
     let transientHttp = RequestError.http(HTTPDetails(httpStatusCode: 500, headers: [:]))
     let transientRpc = RequestError.service(
@@ -146,5 +146,19 @@ import Testing
 
     let permanent = RequestError.http(HTTPDetails(httpStatusCode: 404, headers: [:]))
     #expect(isPermanent(policy.onError(state: state, error: permanent)))
+
+    // Verify 10-attempt and 60-second bounds
+    let start = ContinuousClock.now
+    let exhaustedAttempts = RetryState(idempotent: true).with {
+      $0.start = start
+      $0.attemptCount = 10
+    }
+    #expect(isExhausted(policy.onError(state: exhaustedAttempts, error: err503)))
+
+    let exhaustedTime = RetryState(idempotent: true).with {
+      $0.start = start - .seconds(61)
+      $0.attemptCount = 1
+    }
+    #expect(isExhausted(policy.onError(state: exhaustedTime, error: err503)))
   }
 }

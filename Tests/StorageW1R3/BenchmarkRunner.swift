@@ -282,20 +282,18 @@ extension StorageW1R3 {
           .init().with {
             $0.client = .init().with { clientOptions in
               clientOptions.credentials = credentials
-              clientOptions.retryPolicy = StorageBaseRetryPolicy()
+              clientOptions.retryPolicy = StorageBaseRetryPolicy.defaultPolicy
                 .countedAndLogged(
                   counter: GlobalCounters.retryPolicy,
                   methodName: "storageClient"
                 )
             }
-            $0.writeObject.resumePolicy = StorageResumePolicy<WriteObjectDetails>()
-              .stopOnConsecutiveErrors()
+            $0.writeObject.resumePolicy = StorageResumePolicy<WriteObjectDetails>.defaultPolicy
               .countedAndLogged(
                 counter: GlobalCounters.resumePolicy,
                 operationName: "writeObject"
               )
-            $0.readObject.resumePolicy = StorageResumePolicy<ReadObjectDetails>()
-              .stopOnConsecutiveErrors()
+            $0.readObject.resumePolicy = StorageResumePolicy<ReadObjectDetails>.defaultPolicy
               .countedAndLogged(
                 counter: GlobalCounters.resumePolicy,
                 operationName: "readObject"
@@ -312,9 +310,7 @@ extension StorageW1R3 {
         try StorageControlClient(
           .init().with {
             $0.credentials = credentials
-            $0.retryPolicy = StorageBaseRetryPolicy()
-              .withTimeLimit(.seconds(60))
-              .withAttemptLimit(10)
+            $0.retryPolicy = StorageBaseRetryPolicy.defaultPolicy
               .countedAndLogged(
                 counter: GlobalCounters.retryPolicy,
                 methodName: "storageControl"

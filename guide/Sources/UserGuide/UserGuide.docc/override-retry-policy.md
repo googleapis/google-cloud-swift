@@ -53,9 +53,9 @@ The policies set on the client apply to every request made through it.
 2. Write a function that receives the project ID as a parameter
    @Snippet(path: "OverrideRetryPolicy", slice: "function")
 3. Initialize a client that gives up sooner than the default. Use
-   `BaseRetryPolicy` to keep the default notion of which errors are transient,
-   and decorate it with `withTimeLimit(_:)` and `withAttemptLimit(_:)` to set
-   the limits. Either limit may be used on its own:
+   `BaseRetryPolicy.unbounded()` to keep the default notion of which errors are
+   transient, and decorate it with `withTimeLimit(_:)` and `withAttemptLimit(_:)`
+   to set the limits. Either limit may be used on its own:
    @Snippet(path: "OverrideRetryPolicy", slice: "client")
 4. Initialize a client that also waits differently between attempts:
    @Snippet(path: "OverrideRetryPolicy", slice: "backoff")

@@ -99,7 +99,7 @@ enum StorageOperations {
               request: deleteReq,
               options: .init().with {
                 $0.idempotency = true
-                $0.retryPolicy = StorageBaseRetryPolicy()
+                $0.retryPolicy = StorageBaseRetryPolicy.unbounded()
                   .withTimeLimit(.seconds(30))
                   .countedAndLogged(
                     counter: GlobalCounters.retryPolicy,

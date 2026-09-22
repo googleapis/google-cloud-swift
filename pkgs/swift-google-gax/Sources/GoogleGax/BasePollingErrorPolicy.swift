@@ -17,8 +17,9 @@ import GoogleRpc
 
 /// A combination of polling error policies that works for most services.
 ///
-/// This policy must be decorated to limit the number of polling attempts or the duration of the
-/// polling loop.
+/// Use ``defaultPolicy`` for the standard bounded configuration (30-minute time limit), or
+/// ``unbounded()`` decorated with ``PollingErrorPolicy/withTimeLimit(_:)`` and/or
+/// ``PollingErrorPolicy/withAttemptLimit(_:)`` to configure custom limits.
 ///
 /// This policy only continues if the error is an I/O error, or a safe error code.
 ///
@@ -26,8 +27,28 @@ import GoogleRpc
 final public class BasePollingErrorPolicy: PollingErrorPolicy {
   let inner: TooManyRequests<ContinueOnIO<Aip194>>
 
-  public init() {
+  init() {
     self.inner = Aip194().continueOnIoErrors().continueOnTooManyRequests()
+  }
+
+  /// Creates an unconstrained base polling error policy without attempt or time limits.
+  ///
+  /// Decorate this policy with ``PollingErrorPolicy/withTimeLimit(_:)`` and/or
+  /// ``PollingErrorPolicy/withAttemptLimit(_:)`` to bound the polling loop:
+  /// ```swift
+  /// let policy = BasePollingErrorPolicy.unbounded()
+  ///   .withTimeLimit(.seconds(10 * 60))
+  /// ```
+  ///
+  /// - Warning: Without `.withAttemptLimit(_:)` or `.withTimeLimit(_:)` decorators,
+  ///   this policy continues polling on transient errors indefinitely.
+  public static func unbounded() -> BasePollingErrorPolicy {
+    BasePollingErrorPolicy()
+  }
+
+  /// The default polling error policy, with a 30-minute time limit.
+  public static var defaultPolicy: some PollingErrorPolicy {
+    BasePollingErrorPolicy.unbounded().withTimeLimit(.seconds(30 * 60))
   }
 
   public func onError(state: PollingState, error: RequestError) -> PollingResult {

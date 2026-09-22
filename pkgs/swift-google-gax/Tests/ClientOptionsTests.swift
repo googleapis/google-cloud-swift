@@ -41,7 +41,7 @@ import GoogleGax
     let got = try ClientOptions().with {
       $0.endpoint = "https://private.googleapis.com"
       $0.credentials = try Credentials(configuration: .anonymous)
-      $0.retryPolicy = BaseRetryPolicy()
+      $0.retryPolicy = BaseRetryPolicy.unbounded()
         .withAttemptLimit(5)
         .withTimeLimit(.seconds(60))
       $0.backoffPolicy = try ExponentialBackoff(
@@ -73,7 +73,7 @@ import GoogleGax
         $0.credentials = try Credentials()
 
         // Configure retry policy (max 5 attempts and max 60 seconds)
-        $0.retryPolicy = BaseRetryPolicy()
+        $0.retryPolicy = BaseRetryPolicy.unbounded()
           .withAttemptLimit(5)
           .withTimeLimit(.seconds(60))
 

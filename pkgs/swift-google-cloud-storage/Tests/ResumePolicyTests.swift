@@ -87,7 +87,7 @@ import Testing
   }
 
   @Test func resumePolicyProgressUpdatesState() {
-    let policy = StorageResumePolicy<WriteObjectDetails>()
+    let policy = StorageResumePolicy<WriteObjectDetails>.unbounded()
     var state = ResumeState(details: WriteObjectDetails(bytesWritten: 0, totalBytes: 1000)).with {
       $0.consecutiveErrorCount = 3
     }
@@ -105,7 +105,7 @@ import Testing
   }
 
   @Test func storageResumePolicy() {
-    let policy = StorageResumePolicy<Void>()
+    let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState()
 
     // Recoverable HTTP status codes
@@ -166,7 +166,7 @@ import Testing
   }
 
   @Test func storageResumePolicyNonIdempotent() {
-    let policy = StorageResumePolicy<Void>()
+    let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState(idempotent: false)
 
     let err503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
@@ -185,7 +185,7 @@ import Testing
   }
 
   @Test func storageResumePolicyConsecutiveErrors() {
-    let policy = StorageResumePolicy<Void>().stopOnConsecutiveErrors(2)
+    let policy = StorageResumePolicy<Void>.unbounded().stopOnConsecutiveErrors(2)
     var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
@@ -215,8 +215,20 @@ import Testing
     #expect(isExhausted(policy.onError(state: state, error: transientError)))
   }
 
+  @Test func storageResumePolicyDefaultPolicy() {
+    let policy = StorageResumePolicy<Void>.defaultPolicy
+    var state = ResumeState()
+    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
+
+    state.consecutiveErrorCount = 2
+    #expect(isResume(policy.onError(state: state, error: transientError)))
+
+    state.consecutiveErrorCount = 3
+    #expect(isExhausted(policy.onError(state: state, error: transientError)))
+  }
+
   @Test func limitedTotalResumesPolicy() {
-    let policy = StorageResumePolicy<Void>().withTotalResumeLimit(2)
+    let policy = StorageResumePolicy<Void>.unbounded().withTotalResumeLimit(2)
     var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))

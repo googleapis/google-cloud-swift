@@ -99,7 +99,7 @@ let options = try ClientOptions().with {
     $0.credentials = try Credentials()
 
     // Configure retry policy (max 5 attempts and max 60 seconds)
-    $0.retryPolicy = BaseRetryPolicy()
+    $0.retryPolicy = BaseRetryPolicy.unbounded()
         .withAttemptLimit(5)
         .withTimeLimit(.seconds(60))
 

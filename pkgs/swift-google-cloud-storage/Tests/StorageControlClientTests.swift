@@ -33,7 +33,8 @@ import Testing
 
   @Test func customPollingPolicies() throws {
     let credentials = try Credentials(configuration: .anonymous)
-    let customErrorPolicy = GoogleGax.BasePollingErrorPolicy().withTimeLimit(.seconds(120))
+    let customErrorPolicy = GoogleGax.BasePollingErrorPolicy.unbounded().withTimeLimit(
+      .seconds(120))
     let customBackoffPolicy = GoogleGax.ExponentialBackoff()
     let options = ClientOptions().with {
       $0.credentials = credentials
