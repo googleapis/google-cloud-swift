@@ -31,7 +31,7 @@
 ///
 /// Two collections are equal when they hold the same fields in the same order, comparing names
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
-/// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)``,
+/// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)->String?``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
 public struct AuthHeaders: Sendable, Equatable, Hashable, ExpressibleByArrayLiteral {
   /// A single header field, as a name-value pair.
