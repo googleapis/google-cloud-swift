@@ -59,14 +59,14 @@ struct RecordedRequest: Sendable {
 
 /// Mock UploadSource that can throw errors
 struct MockUploadSource: SeekableUploadSource {
-  var data: GoogleCloudStorage.ByteBuffer
+  var data: ByteChunk
   var totalSize: UInt64?
   var readError: (any Error)?
   var seekError: (any Error)?
   private var offset: UInt64 = 0
 
   init(
-    data: GoogleCloudStorage.ByteBuffer, totalSize: UInt64? = nil, readError: (any Error)? = nil,
+    data: ByteChunk, totalSize: UInt64? = nil, readError: (any Error)? = nil,
     seekError: (any Error)? = nil
   ) {
     self.data = data
@@ -80,11 +80,11 @@ struct MockUploadSource: SeekableUploadSource {
     seekError: (any Error)? = nil
   ) {
     self.init(
-      data: GoogleCloudStorage.ByteBuffer(data), totalSize: totalSize, readError: readError,
+      data: ByteChunk(data), totalSize: totalSize, readError: readError,
       seekError: seekError)
   }
 
-  mutating func read(maxBytes: Int) async throws -> GoogleCloudStorage.ByteBuffer? {
+  mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     if let error = readError {
       throw error
     }

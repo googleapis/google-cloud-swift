@@ -13,13 +13,14 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudStorage
 import NIOCore
 import Testing
 
-@Suite struct ByteBufferTests {
+@testable import GoogleCloudStorage
+
+@Suite struct ByteChunkTests {
   @Test func initEmpty() {
-    let empty = GoogleCloudStorage.ByteBuffer()
+    let empty = ByteChunk()
     #expect(empty.isEmpty)
     #expect(empty.count == 0)
     #expect(empty.byteArray.isEmpty)
@@ -29,7 +30,7 @@ import Testing
 
   @Test func initWithData() {
     let original = Data([0x01, 0x02, 0x03, 0x04])
-    let storage = GoogleCloudStorage.ByteBuffer(original)
+    let storage = ByteChunk(original)
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == original)
@@ -43,7 +44,7 @@ import Testing
   @Test func initWithByteBuffer() {
     var buffer = ByteBufferAllocator().buffer(capacity: 8)
     buffer.writeBytes([0x0A, 0x0B, 0x0C, 0x0D])
-    let storage = GoogleCloudStorage.ByteBuffer(buffer)
+    let storage = ByteChunk(buffer)
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == Data([0x0A, 0x0B, 0x0C, 0x0D]))
@@ -53,7 +54,7 @@ import Testing
 
   @Test func initWithByteArray() {
     let bytes: [UInt8] = [0xDE, 0xAD, 0xBE, 0xEF]
-    let storage = GoogleCloudStorage.ByteBuffer(bytes)
+    let storage = ByteChunk(bytes)
     #expect(storage.count == 4)
     #expect(storage.byteArray == bytes)
     #expect(storage.data == Data(bytes))
@@ -62,21 +63,21 @@ import Testing
   @Test func initWithRawBufferPointer() {
     let bytes: [UInt8] = [10, 20, 30]
     bytes.withUnsafeBytes { rawBuffer in
-      let storage = GoogleCloudStorage.ByteBuffer(rawBuffer)
+      let storage = ByteChunk(rawBuffer)
       #expect(storage.count == 3)
       #expect(storage.byteArray == bytes)
     }
   }
 
   @Test func arrayLiteral() {
-    let storage: GoogleCloudStorage.ByteBuffer = [1, 2, 3]
+    let storage: ByteChunk = [1, 2, 3]
     #expect(storage.count == 3)
     #expect(storage.byteArray == [1, 2, 3])
   }
 
   @Test func withUnsafeBytes() throws {
     let expected: [UInt8] = [100, 101, 102]
-    let dataStorage = GoogleCloudStorage.ByteBuffer(Data(expected))
+    let dataStorage = ByteChunk(Data(expected))
     let dataResult = dataStorage.withUnsafeBytes { ptr in
       Array(ptr)
     }
@@ -84,7 +85,7 @@ import Testing
 
     var buffer = ByteBufferAllocator().buffer(capacity: 3)
     buffer.writeBytes(expected)
-    let bufferStorage = GoogleCloudStorage.ByteBuffer(buffer)
+    let bufferStorage = ByteChunk(buffer)
     let bufferResult = bufferStorage.withUnsafeBytes { ptr in
       Array(ptr)
     }
@@ -94,7 +95,7 @@ import Testing
   @Test func collectionAccessWithDataOffset() {
     let baseData = Data([0, 1, 2, 3, 4, 5, 6, 7])
     let subData = baseData.subdata(in: 2..<6)  // contains [2, 3, 4, 5], startIndex may not be 0
-    let storage = GoogleCloudStorage.ByteBuffer(subData)
+    let storage = ByteChunk(subData)
 
     #expect(storage.count == 4)
     #expect(storage[0] == 2)
@@ -114,7 +115,7 @@ import Testing
     buffer.writeBytes([99, 99, 10, 20, 30, 40])
     buffer.moveReaderIndex(forwardBy: 2)  // skip first 2 bytes
 
-    let storage = GoogleCloudStorage.ByteBuffer(buffer)
+    let storage = ByteChunk(buffer)
     #expect(storage.count == 4)
     #expect(storage[0] == 10)
     #expect(storage[1] == 20)
@@ -130,16 +131,16 @@ import Testing
 
   @Test func equalityAndHashing() {
     let bytes: [UInt8] = [1, 2, 3, 4, 5]
-    let dataStorage = GoogleCloudStorage.ByteBuffer(Data(bytes))
+    let dataStorage = ByteChunk(Data(bytes))
 
     var buffer = ByteBufferAllocator().buffer(capacity: 5)
     buffer.writeBytes(bytes)
-    let bufferStorage = GoogleCloudStorage.ByteBuffer(buffer)
+    let bufferStorage = ByteChunk(buffer)
 
-    let arrayStorage = GoogleCloudStorage.ByteBuffer(bytes)
-    let emptyStorage1 = GoogleCloudStorage.ByteBuffer()
-    let emptyStorage2 = GoogleCloudStorage.ByteBuffer(Data())
-    let differentStorage = GoogleCloudStorage.ByteBuffer([1, 2, 3, 4, 6])
+    let arrayStorage = ByteChunk(bytes)
+    let emptyStorage1 = ByteChunk()
+    let emptyStorage2 = ByteChunk(Data())
+    let differentStorage = ByteChunk([1, 2, 3, 4, 6])
 
     #expect(dataStorage == bufferStorage)
     #expect(dataStorage == arrayStorage)
@@ -148,7 +149,7 @@ import Testing
     #expect(dataStorage != differentStorage)
     #expect(dataStorage != emptyStorage1)
 
-    var set = Set<GoogleCloudStorage.ByteBuffer>()
+    var set = Set<ByteChunk>()
     set.insert(dataStorage)
     #expect(set.contains(bufferStorage))
     #expect(set.contains(arrayStorage))
@@ -157,14 +158,32 @@ import Testing
   }
 
   @Test func description() {
-    let dataStorage = GoogleCloudStorage.ByteBuffer(Data([1, 2, 3]))
+    let dataStorage = ByteChunk(Data([1, 2, 3]))
     #expect(dataStorage.description == "3 bytes")
     #expect(dataStorage.debugDescription.contains("Data"))
 
     var buffer = ByteBufferAllocator().buffer(capacity: 2)
     buffer.writeBytes([1, 2])
-    let bufferStorage = GoogleCloudStorage.ByteBuffer(buffer)
+    let bufferStorage = ByteChunk(buffer)
     #expect(bufferStorage.description == "2 bytes")
     #expect(bufferStorage.debugDescription.contains("NIOCore.ByteBuffer"))
+
+    let arrayStorage = ByteChunk([4, 5, 6])
+    #expect(arrayStorage.debugDescription.contains("NIOCore.ByteBuffer"))
+  }
+
+  @Test func withContiguousStorageIfAvailable() {
+    let expected: [UInt8] = [10, 20, 30, 40]
+    let dataChunk = ByteChunk(Data(expected))
+    let dataContiguous = dataChunk.withContiguousStorageIfAvailable { Array($0) }
+    #expect(dataContiguous == expected)
+    #expect(Array(dataChunk) == expected)
+    #expect(Data(dataChunk) == Data(expected))
+
+    let bufferChunk = ByteChunk(expected)
+    let bufferContiguous = bufferChunk.withContiguousStorageIfAvailable { Array($0) }
+    #expect(bufferContiguous == expected)
+    #expect(Array(bufferChunk) == expected)
+    #expect(Data(bufferChunk) == Data(expected))
   }
 }

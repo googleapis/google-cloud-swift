@@ -18,11 +18,11 @@ import NIOCore
 import Testing
 
 @Suite struct StreamSourceTests {
-  /// Tests reading from an AsyncStream of GoogleCloudStorage.ByteBuffer.
-  @Test func readByteBufferSequence() async throws {
-    let stream = AsyncStream<GoogleCloudStorage.ByteBuffer> { continuation in
-      continuation.yield(GoogleCloudStorage.ByteBuffer([1, 2, 3]))
-      continuation.yield(GoogleCloudStorage.ByteBuffer([4, 5, 6, 7]))
+  /// Tests reading from an AsyncStream of ByteChunk.
+  @Test func readByteChunkSequence() async throws {
+    let stream = AsyncStream<ByteChunk> { continuation in
+      continuation.yield(ByteChunk([1, 2, 3]))
+      continuation.yield(ByteChunk([4, 5, 6, 7]))
       continuation.finish()
     }
 

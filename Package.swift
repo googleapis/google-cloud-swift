@@ -183,7 +183,6 @@ let package = Package(
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "Logging", package: "swift-log"),
-        .product(name: "NIOCore", package: "swift-nio"),
       ],
       path: "Tests/StorageW1R3",
       exclude: ["README.md"]

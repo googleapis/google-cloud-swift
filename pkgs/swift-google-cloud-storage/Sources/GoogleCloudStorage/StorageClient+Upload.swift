@@ -303,7 +303,7 @@ extension StorageClient {
   fileprivate static func sendChunk(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
-    data: ByteBuffer,
+    data: ByteChunk,
     offset: UInt64,
     totalSize: UInt64?,
     options: UploadOptions,
@@ -379,7 +379,7 @@ extension StorageClient {
     maxBytesSent: inout UInt64
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
-    let chunk: ByteBuffer
+    let chunk: ByteChunk
     let effectiveTotalSize: UInt64?
     let checksum: String?
 
@@ -390,7 +390,7 @@ extension StorageClient {
       effectiveTotalSize =
         (isLast && totalSize == nil) ? (committedBytes + UInt64(chunk.count)) : totalSize
     } else {
-      chunk = ByteBuffer()
+      chunk = ByteChunk()
       effectiveTotalSize = totalSize ?? committedBytes
       checksum = checksummedSource.finalizeChecksum()
     }
@@ -409,7 +409,7 @@ extension StorageClient {
   }
 
   private struct PendingChunk {
-    var data: ByteBuffer
+    var data: ByteChunk
     let isLast: Bool
     let checksum: String?
     var chunkStartOffset: UInt64
@@ -558,7 +558,7 @@ extension StorageClient {
 
         if pendingChunk == nil {
           let chunkInfo = try await checksummedSource!.readChunk(maxBytes: chunkSize)
-          let chunk: ByteBuffer
+          let chunk: ByteChunk
           let isLast: Bool
           let checksum: String?
           let effectiveTotalSize: UInt64?
@@ -570,7 +570,7 @@ extension StorageClient {
             effectiveTotalSize =
               (isLast && totalSize == nil) ? (sourceBytesRead + UInt64(chunk.count)) : totalSize
           } else {
-            chunk = ByteBuffer()
+            chunk = ByteChunk()
             isLast = true
             effectiveTotalSize = totalSize ?? sourceBytesRead
             checksum = checksummedSource!.finalizeChecksum()
@@ -931,7 +931,7 @@ extension StorageClient {
   fileprivate static func buildUploadChunkRequest(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
-    data: ByteBuffer,
+    data: ByteChunk,
     offset: UInt64,
     totalSize: UInt64?,
     options: UploadOptions,

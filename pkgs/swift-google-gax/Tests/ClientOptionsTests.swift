@@ -98,5 +98,18 @@ import GoogleGax
     #expect(got.universeDomain == nil)
     #expect(got.credentials == nil)
     #expect(got.retryPolicy == nil)
+    #expect(got.attemptTimeout == .seconds(15))
+  }
+
+  @Test func attemptTimeoutConfiguration() {
+    let custom = ClientOptions().with {
+      $0.attemptTimeout = .seconds(30)
+    }
+    #expect(custom.attemptTimeout == .seconds(30))
+
+    let disabled = ClientOptions().with {
+      $0.attemptTimeout = nil
+    }
+    #expect(disabled.attemptTimeout == nil)
   }
 }

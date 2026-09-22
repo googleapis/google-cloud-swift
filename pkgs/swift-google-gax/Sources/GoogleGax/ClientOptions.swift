@@ -105,10 +105,22 @@ public struct ClientOptions: Sendable {
   /// [swift-log]: https://swiftpackageindex.com/apple/swift-log/
   public var logger: Logger? = nil
 
+  /// Configures the client's per-attempt timeout for all requests.
+  ///
+  /// By default the clients use a per-attempt timeout of 15 seconds (approximately 1/4 of the
+  /// default 60-second retry loop maximum duration). Setting this to `nil` disables the per-attempt
+  /// timeout, leaving the attempt duration bounded only by the overall retry policy.
+  public var attemptTimeout: Duration? = defaultAttemptTimeout()
+
   /// Configures the client's retry policy.
   ///
   /// By default the clients use ``BaseRetryPolicy`` with a limit of 60 seconds or 10 attempts.
   /// Whichever limit is reached first stops the retry loop.
+  //
+  // Unlike its siblings, this is optional. We use this to override the default policy for the
+  // storage client and, in the future, other handcrafted clients may need an override too. The
+  // alternative was to create a different `ClientOptions` for each library, which seemed like
+  // overengineering and hard to understand.
   public var retryPolicy: (any RetryPolicy)? = nil
 
   /// Configures the client's backoff policy.
@@ -133,6 +145,10 @@ public struct ClientOptions: Sendable {
   public var pollingBackoffPolicy: any BackoffPolicy = defaultPollingBackoffPolicy()
 }
 
+func defaultAttemptTimeout() -> Duration? {
+  .seconds(15)
+}
+
 func defaultRetryPolicy() -> any RetryPolicy {
   BaseRetryPolicy().withTimeLimit(.seconds(60)).withAttemptLimit(10)
 }
@@ -150,6 +166,9 @@ func defaultPollingErrorPolicy() -> some PollingErrorPolicy {
 }
 
 func defaultPollingBackoffPolicy() -> some BackoffPolicy {
+  // This try! is needed because `ExponentialBackoff.init()` may throw in the configuration is
+  // invalid, e.g., the the minimum delay is higher than the maximum. In this case we know it won't
+  // fail because the values are fixed.
   try! ExponentialBackoff(
     config: ExponentialBackoffConfig().with {
       $0.initialDelay = .seconds(1)

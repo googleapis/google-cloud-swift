@@ -73,7 +73,7 @@ public struct FileSource: SeekableUploadSource {
     self.fileURL = fileURL
   }
 
-  public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+  public mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     guard maxBytes > 0 else { return nil }
     if let size = totalSize, offset >= size {
       if let box = handleBox {
@@ -99,7 +99,7 @@ public struct FileSource: SeekableUploadSource {
     }
 
     offset += UInt64(nioBuffer.readableBytes)
-    return ByteBuffer(nioBuffer)
+    return ByteChunk(nioBuffer)
   }
 
   public mutating func seek(to offset: UInt64) async throws {

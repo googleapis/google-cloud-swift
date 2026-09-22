@@ -15,7 +15,7 @@
 import Foundation
 
 struct ChunkInfo: Sendable {
-  let data: ByteBuffer
+  let data: ByteChunk
   let isLast: Bool
   let checksum: String?
 }
@@ -24,7 +24,7 @@ struct ChecksummedSource<S: UploadSource> {
   var source: S
   let options: ChecksumOptions
   private var calculators: [any ChecksumCalculator] = []
-  private var nextChunk: ByteBuffer? = nil
+  private var nextChunk: ByteChunk? = nil
   private var isInitialized = false
   private var isFinished = false
   /// The high-water mark of sequentially processed bytes in `calculators`.
@@ -78,13 +78,13 @@ struct ChecksummedSource<S: UploadSource> {
   /// To support seeking backward and retrying chunk uploads without corrupting checksums,
   /// this method skips any prefix of `data` that falls below `bytesHashed` (the high-water mark
   /// of bytes already fed into `calculators`). Only bytes beyond `bytesHashed` are accumulated.
-  private mutating func updateChecksums(data: ByteBuffer, startOffset: UInt64) {
+  private mutating func updateChecksums(data: ByteChunk, startOffset: UInt64) {
     guard !calculators.isEmpty else { return }
 
     let endOffset = startOffset + UInt64(data.count)
     guard endOffset > bytesHashed else { return }
 
-    let unhashedData: ByteBuffer
+    let unhashedData: ByteChunk
     if startOffset >= bytesHashed {
       unhashedData = data
     } else {

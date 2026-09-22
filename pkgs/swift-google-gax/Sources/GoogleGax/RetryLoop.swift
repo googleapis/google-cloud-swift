@@ -53,7 +53,7 @@ import Foundation
     self.backoffPolicy = options.backoffPolicy ?? withDefault.backoffPolicy
     self.retryThrottler = options.retryThrottler ?? withDefault.retryThrottler
     self.idempotent = options.idempotency ?? idempotent
-    self.attemptTimeout = options.attemptTimeout
+    self.attemptTimeout = options.attemptTimeout ?? withDefault.attemptTimeout
   }
 
   /// Runs the retry loop.

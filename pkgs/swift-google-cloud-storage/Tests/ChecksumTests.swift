@@ -31,14 +31,14 @@ import Testing
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk1 != nil)
-    #expect(chunk1!.data == ByteBuffer(data1))
+    #expect(chunk1!.data == ByteChunk(data1))
     #expect(chunk1!.isLast == false)
     #expect(chunk1!.checksum == nil)
 
     // Read second chunk
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk2 != nil)
-    #expect(chunk2!.data == ByteBuffer(data2))
+    #expect(chunk2!.data == ByteChunk(data2))
     #expect(chunk2!.isLast == true)
     #expect(chunk2!.checksum != nil)
 
@@ -57,14 +57,14 @@ import Testing
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk1 != nil)
-    #expect(chunk1!.data == ByteBuffer(data1))
+    #expect(chunk1!.data == ByteChunk(data1))
     #expect(chunk1!.isLast == false)
     #expect(chunk1!.checksum == nil)
 
     // Read second chunk
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk2 != nil)
-    #expect(chunk2!.data == ByteBuffer(data2))
+    #expect(chunk2!.data == ByteChunk(data2))
     #expect(chunk2!.isLast == true)
     #expect(chunk2!.checksum != nil)
 
@@ -219,10 +219,10 @@ import Testing
       private var readCompleted = false
       init(data: Data) { self.data = data }
       var totalSize: UInt64? { UInt64(data.count) }
-      mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+      mutating func read(maxBytes: Int) async throws -> ByteChunk? {
         if readCompleted { return nil }
         readCompleted = true
-        return ByteBuffer(data)
+        return ByteChunk(data)
       }
     }
 
@@ -232,7 +232,7 @@ import Testing
 
     let chunk = try await checksummedSource.readChunk(maxBytes: 100)
     #expect(chunk != nil)
-    #expect(chunk?.data == ByteBuffer(data))
+    #expect(chunk?.data == ByteChunk(data))
     #expect(chunk?.isLast == true)
     #expect(chunk?.checksum != nil)
   }
@@ -357,12 +357,12 @@ import Testing
 
     // 1. Read chunk 1: 5 bytes ("Hello")
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk1?.data == ByteBuffer(Data("Hello".utf8)))
+    #expect(chunk1?.data == ByteChunk(Data("Hello".utf8)))
     #expect(chunk1?.isLast == false)
 
     // 2. Read chunk 2: 5 bytes (", Wor") -> bytesHashed becomes 10
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk2?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2?.data == ByteChunk(Data(", Wor".utf8)))
     #expect(chunk2?.isLast == false)
 
     // 3. Simulate upload failure of chunk 2: rewind to offset 5
@@ -370,12 +370,12 @@ import Testing
 
     // 4. Re-read chunk 2 from offset 5: 5 bytes (", Wor") -> should be skipped by updateChecksums
     let chunk2Retry = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk2Retry?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2Retry?.data == ByteChunk(Data(", Wor".utf8)))
     #expect(chunk2Retry?.isLast == false)
 
     // 5. Read final chunk 3: 3 bytes ("ld!") -> bytesHashed becomes 13
     let chunk3 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk3?.data == ByteBuffer(Data("ld!".utf8)))
+    #expect(chunk3?.data == ByteChunk(Data("ld!".utf8)))
     #expect(chunk3?.isLast == true)
     #expect(chunk3?.checksum == "crc32c=TVUQaA==")
   }
@@ -388,12 +388,12 @@ import Testing
 
     // 1. Read chunk 1: 5 bytes ("Hello")
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk1?.data == ByteBuffer(Data("Hello".utf8)))
+    #expect(chunk1?.data == ByteChunk(Data("Hello".utf8)))
     #expect(chunk1?.isLast == false)
 
     // 2. Read chunk 2: 5 bytes (", Wor") -> bytesHashed becomes 10
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk2?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2?.data == ByteChunk(Data(", Wor".utf8)))
     #expect(chunk2?.isLast == false)
 
     // 3. Simulate upload failure of chunk 2: rewind to offset 5
@@ -401,12 +401,12 @@ import Testing
 
     // 4. Re-read chunk 2 from offset 5: 5 bytes (", Wor")
     let chunk2Retry = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk2Retry?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2Retry?.data == ByteChunk(Data(", Wor".utf8)))
     #expect(chunk2Retry?.isLast == false)
 
     // 5. Read final chunk 3: 3 bytes ("ld!") -> bytesHashed becomes 13
     let chunk3 = try await checksummedSource.readChunk(maxBytes: 5)
-    #expect(chunk3?.data == ByteBuffer(Data("ld!".utf8)))
+    #expect(chunk3?.data == ByteChunk(Data("ld!".utf8)))
     #expect(chunk3?.isLast == true)
     #expect(chunk3?.checksum == "md5=ZajifYh5KDgxtmS9i38K1A==")
   }
@@ -456,7 +456,7 @@ import Testing
 
     // Read first chunk (7 bytes: "Hello, ") -> both CRC32C and MD5 hash 0..<7
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
-    #expect(chunk1?.data == ByteBuffer(part1))
+    #expect(chunk1?.data == ByteChunk(part1))
 
     // Server acknowledges commit at byte 7 with running CRC32C seed
     let seed = _CRC32C.compute(part1)
@@ -464,7 +464,7 @@ import Testing
 
     // Read second chunk (6 bytes: "World!")
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
-    #expect(chunk2?.data == ByteBuffer(part2))
+    #expect(chunk2?.data == ByteChunk(part2))
     #expect(chunk2?.isLast == true)
 
     // MD5 was discarded because it cannot be safely reseeded; only CRC32C remains
@@ -482,14 +482,14 @@ import Testing
 
     // Read first chunk (7 bytes: "Hello, ") -> MD5 hashes 0..<7
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
-    #expect(chunk1?.data == ByteBuffer(part1))
+    #expect(chunk1?.data == ByteChunk(part1))
 
     // Calling seedCRC32C discards the MD5 calculator even though there is no CRC32C calculator
     checksummedSource.seedCRC32C(seed: 12345, bytesHashed: 7)
 
     // Read second chunk (6 bytes: "World!")
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
-    #expect(chunk2?.data == ByteBuffer(part2))
+    #expect(chunk2?.data == ByteChunk(part2))
     #expect(chunk2?.isLast == true)
 
     // All dynamic calculators were discarded, and no CRC32C was added; checksum is nil

@@ -25,52 +25,52 @@ import GoogleWKT
 public enum StatusDetail: Equatable, Sendable {
   /// Describes violations in a client request.
   ///
-  /// See [BadRequest][google_cloud_rpc::model::BadRequest] for more information.
+  /// See `GoogleRpc/BadRequest` for more information.
   case badRequest(GoogleRpc.BadRequest)
 
   /// Describes additional debugging info.
   ///
-  /// See [DebugInfo][google_cloud_rpc::model::DebugInfo] for more information.
+  /// See `GoogleRpc/DebugInfo` for more information.
   case debugInfo(GoogleRpc.DebugInfo)
 
   /// Describes the cause of the error with structured details.
   ///
-  /// See [ErrorInfo][google_cloud_rpc::model::ErrorInfo] for more information.
+  /// See `GoogleRpc/ErrorInfo` for more information.
   case errorInfo(GoogleRpc.ErrorInfo)
 
   /// Provides links to documentation or for performing an out of band action.
   ///
-  /// See [Help][google_cloud_rpc::model::Help] for more information.
+  /// See `GoogleRpc/Help` for more information.
   case help(GoogleRpc.Help)
 
   /// Provides a localized error message that is safe to return to the user.
   ///
-  /// See [LocalizedMessage][google_cloud_rpc::model::LocalizedMessage] for more information.
+  /// See `GoogleRpc/LocalizedMessage` for more information.
   case localizedMessage(GoogleRpc.LocalizedMessage)
 
   /// Describes what preconditions have failed.
   ///
-  /// See [PreconditionFailure][google_cloud_rpc::model::PreconditionFailure] for more information.
+  /// See `GoogleRpc/PreconditionFailure` for more information.
   case preconditionFailure(GoogleRpc.PreconditionFailure)
 
   /// Describes a single quota violation.
   ///
-  /// See [QuotaFailure][google_cloud_rpc::model::QuotaFailure] for more information.
+  /// See `GoogleRpc/QuotaFailure` for more information.
   case quotaFailure(GoogleRpc.QuotaFailure)
 
   /// Contains metadata about the request that clients can attach when filing a bug.
   ///
-  /// See [RequestInfo][google_cloud_rpc::model::RequestInfo] for more information.
+  /// See `GoogleRpc/RequestInfo` for more information.
   case requestInfo(GoogleRpc.RequestInfo)
 
   /// Describes the resource that is being accessed.
   ///
-  /// See [ResourceInfo][google_cloud_rpc::model::ResourceInfo] for more information.
+  /// See `GoogleRpc/ResourceInfo` for more information.
   case resourceInfo(GoogleRpc.ResourceInfo)
 
   /// Describes when the clients can retry a failed request.
   ///
-  /// See [RetryInfo][google_cloud_rpc::model::RetryInfo] for more information.
+  /// See `GoogleRpc/RetryInfo` for more information.
   case retryInfo(GoogleRpc.RetryInfo)
 
   /// Other details (represented as Any).

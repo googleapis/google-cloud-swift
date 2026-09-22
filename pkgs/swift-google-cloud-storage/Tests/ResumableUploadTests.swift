@@ -2742,12 +2742,12 @@ private struct DynamicComputationSource: UploadSource {
     self.totalSize = totalSize
   }
 
-  mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+  mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     guard currentChunk < totalChunks else { return nil }
     let count = min(maxBytes, chunkSize)
     let byteVal = UInt8((currentChunk + 1) % 256)
     currentChunk += 1
-    return ByteBuffer(Data(repeating: byteVal, count: count))
+    return ByteChunk(Data(repeating: byteVal, count: count))
   }
 }
 
@@ -2764,14 +2764,14 @@ private struct SeekableComputationSource: SeekableUploadSource {
     self.totalSize = UInt64(chunkSize * totalChunks)
   }
 
-  mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+  mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     guard let totalSize = totalSize, currentOffset < totalSize else { return nil }
     let bytesToRead = min(UInt64(maxBytes), totalSize - currentOffset)
     guard bytesToRead > 0 else { return nil }
     let chunkIndex = Int(currentOffset / UInt64(chunkSize))
     let byteVal = UInt8((chunkIndex + 1) % 256)
     currentOffset += bytesToRead
-    return ByteBuffer(Data(repeating: byteVal, count: Int(bytesToRead)))
+    return ByteChunk(Data(repeating: byteVal, count: Int(bytesToRead)))
   }
 
   mutating func seek(to offset: UInt64) async throws {

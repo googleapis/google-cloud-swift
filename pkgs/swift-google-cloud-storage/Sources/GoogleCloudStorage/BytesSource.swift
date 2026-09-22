@@ -13,25 +13,28 @@
 // limitations under the License.
 
 import Foundation
-import NIOCore
 
 /// An upload source that wraps in-memory bytes or buffers.
 public struct BytesSource: SeekableUploadSource {
-  public let buffer: ByteBuffer
+  public let buffer: ByteChunk
   public var totalSize: UInt64? {
     return UInt64(buffer.count)
   }
   private var offset: UInt64 = 0
 
-  public init(buffer: ByteBuffer) {
+  public init(buffer: ByteChunk) {
     self.buffer = buffer
   }
 
-  public init(data: Data) {
-    self.buffer = ByteBuffer(data)
+  public init(_ chunk: ByteChunk) {
+    self.buffer = chunk
   }
 
-  public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+  public init(data: Data) {
+    self.buffer = ByteChunk(data)
+  }
+
+  public mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     guard maxBytes > 0, offset < UInt64(buffer.count) else { return nil }
     let end = min(offset + UInt64(maxBytes), UInt64(buffer.count))
     let chunk = buffer.subdata(in: Int(offset)..<Int(end))
