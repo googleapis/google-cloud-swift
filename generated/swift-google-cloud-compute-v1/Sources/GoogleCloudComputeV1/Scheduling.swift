@@ -237,6 +237,12 @@
     /// The enumerated type for the [instanceTerminationAction][google.cloud.compute.v1.Scheduling.instanceTerminationAction] field.
     ///
     /// [google.cloud.compute.v1.Scheduling.instanceTerminationAction]: <doc:Scheduling/InstanceTerminationAction>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum InstanceTerminationAction: Codable, Equatable, Sendable {
       /// Delete the VM.
       case delete
@@ -246,15 +252,21 @@
       case stop
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -344,6 +356,12 @@
     /// The enumerated type for the [onHostMaintenance][google.cloud.compute.v1.Scheduling.onHostMaintenance] field.
     ///
     /// [google.cloud.compute.v1.Scheduling.onHostMaintenance]: <doc:Scheduling/OnHostMaintenance>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum OnHostMaintenance: Codable, Equatable, Sendable {
       /// *[Default]* Allows Compute Engine to automatically migrate instances
       /// out of the way of maintenance events.
@@ -356,15 +374,21 @@
       case terminate
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -449,6 +473,12 @@
     /// The enumerated type for the [provisioningModel][google.cloud.compute.v1.Scheduling.provisioningModel] field.
     ///
     /// [google.cloud.compute.v1.Scheduling.provisioningModel]: <doc:Scheduling/ProvisioningModel>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ProvisioningModel: Codable, Equatable, Sendable {
       /// Instance is provisioned using the Flex Start provisioning model and
       /// has a limited runtime.
@@ -461,15 +491,21 @@
       case standard
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

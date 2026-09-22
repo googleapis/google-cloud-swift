@@ -226,6 +226,12 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Defines the strategy for handling conflicts when an app with the same ID
     /// already exists, or when imported resources (like Agents, Tools, etc.)
     /// have the same display names as existing resources within that app.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ConflictResolutionStrategy: Codable, Equatable, Sendable {
       /// The conflict resolution strategy is unspecified.
       case unspecified
@@ -248,15 +254,21 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       case overwrite
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

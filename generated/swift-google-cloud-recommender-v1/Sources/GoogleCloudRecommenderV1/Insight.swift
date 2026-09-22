@@ -245,6 +245,12 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Insight category.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum Category: Codable, Equatable, Sendable {
     /// Unspecified category.
     case unspecified
@@ -262,15 +268,21 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     case reliability
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -378,6 +390,12 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Insight severity levels.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum Severity: Codable, Equatable, Sendable {
     /// Insight has unspecified severity.
     case unspecified
@@ -391,15 +409,21 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     case critical
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

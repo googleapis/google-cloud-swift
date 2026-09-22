@@ -169,6 +169,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// The various consumer groups available in the connection string profile.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum ConsumerGroup: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -184,15 +190,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case tpurgent
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -295,6 +307,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// The host name format being used in the connection string.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum HostFormat: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -304,15 +322,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case ip
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -400,6 +424,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// The protocol being used by the connection.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum Protocol_: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -409,15 +439,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case tcps
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -505,6 +541,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// The session mode of the connection.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum SessionMode: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -514,15 +556,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case `indirect`
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -610,6 +658,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// Specifies syntax of the connection string.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum SyntaxFormat: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -621,15 +675,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case ezconnectplus
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -722,6 +782,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   }
 
   /// This field indicates the TLS authentication type of the connection.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum TLSAuthentication: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -731,15 +797,21 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     case mutual
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

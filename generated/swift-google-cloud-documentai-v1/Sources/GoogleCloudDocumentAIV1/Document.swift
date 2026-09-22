@@ -1206,6 +1206,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Detected human reading orientation.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum Orientation: Codable, Equatable, Sendable {
         /// Unspecified orientation.
         case unspecified
@@ -1222,15 +1228,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         case pageLeft
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -1796,6 +1808,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Enum to denote the type of break found.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
         public enum Type_: Codable, Equatable, Sendable {
           /// Unspecified break type.
           case unspecified
@@ -1807,15 +1825,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           case hyphen
           /// Encodes an unknown integer value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownIntValue(Int)
           /// Encodes an unknown string value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownStringValue(String)
 
           public init() {
@@ -3440,6 +3464,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specifies how the entity's value is obtained.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Method: Codable, Equatable, Sendable {
       /// When the method is not specified, it should be treated as `EXTRACT`.
       case unspecified
@@ -3451,15 +3481,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       case derive
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -4008,6 +4044,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The type of layout that is being referenced.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum LayoutType: Codable, Equatable, Sendable {
         /// Layout Unspecified.
         case unspecified
@@ -4054,15 +4096,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         case formField
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -4390,6 +4438,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// If a processor or agent does an explicit operation on existing elements.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum OperationType: Codable, Equatable, Sendable {
       /// Operation type unspecified. If no operation is specified a provenance
       /// entry is simply used to match against a `parent`.
@@ -4418,15 +4472,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       case update
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -6898,6 +6958,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The result of the validation rule.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum ValidationResultType: Codable, Equatable, Sendable {
         /// The validation result type is unspecified.
         case unspecified
@@ -6911,15 +6977,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         case notApplicable
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {

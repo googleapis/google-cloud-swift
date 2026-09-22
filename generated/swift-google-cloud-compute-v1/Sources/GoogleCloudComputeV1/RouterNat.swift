@@ -362,6 +362,12 @@
     /// The enumerated type for the [autoNetworkTier][google.cloud.compute.v1.RouterNat.autoNetworkTier] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.autoNetworkTier]: <doc:RouterNat/AutoNetworkTier>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AutoNetworkTier: Codable, Equatable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
@@ -376,15 +382,21 @@
       case standardOverridesFixedStandard
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -480,6 +492,12 @@
     /// The enumerated type for the [endpointTypes][google.cloud.compute.v1.RouterNat.endpointTypes] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.endpointTypes]: <doc:RouterNat/EndpointTypes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum EndpointTypes: Codable, Equatable, Sendable {
       /// This is used for regional Application Load Balancers (internal and
       /// external) and regional proxy Network Load Balancers (internal and
@@ -491,15 +509,21 @@
       case endpointTypeVm
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -590,6 +614,12 @@
     /// The enumerated type for the [natIpAllocateOption][google.cloud.compute.v1.RouterNat.natIpAllocateOption] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.natIpAllocateOption]: <doc:RouterNat/NatIpAllocateOption>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum NatIpAllocateOption: Codable, Equatable, Sendable {
       /// Nat IPs are allocated by GCP; customers can not specify any Nat IPs.
       case autoOnly
@@ -598,15 +628,21 @@
       case manualOnly
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -691,6 +727,12 @@
     /// The enumerated type for the [sourceSubnetworkIpRangesToNat][google.cloud.compute.v1.RouterNat.sourceSubnetworkIpRangesToNat] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.sourceSubnetworkIpRangesToNat]: <doc:RouterNat/SourceSubnetworkIpRangesToNat>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SourceSubnetworkIpRangesToNat: Codable, Equatable, Sendable {
       /// All the IP ranges in every Subnetwork are allowed to Nat.
       case allSubnetworksAllIpRanges
@@ -701,15 +743,21 @@
       case listOfSubnetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -801,6 +849,12 @@
     /// The enumerated type for the [sourceSubnetworkIpRangesToNat64][google.cloud.compute.v1.RouterNat.sourceSubnetworkIpRangesToNat64] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.sourceSubnetworkIpRangesToNat64]: <doc:RouterNat/SourceSubnetworkIpRangesToNat64>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SourceSubnetworkIpRangesToNat64: Codable, Equatable, Sendable {
       /// NAT64 is enabled for all the IPv6 subnet ranges.
       /// In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs.
@@ -811,15 +865,21 @@
       case listOfIpv6Subnetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -904,6 +964,12 @@
     /// The enumerated type for the [type][google.cloud.compute.v1.RouterNat.type] field.
     ///
     /// [google.cloud.compute.v1.RouterNat.type]: <doc:RouterNat/Type_>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Type_: Codable, Equatable, Sendable {
       /// NAT used for private IP translation.
       case `private`
@@ -912,15 +978,21 @@
       case `public`
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

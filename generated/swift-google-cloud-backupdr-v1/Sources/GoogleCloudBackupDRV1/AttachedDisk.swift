@@ -287,6 +287,12 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// List of the Disk Types.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum DiskType: Codable, Equatable, Sendable {
     /// Default value, which is unused.
     case unspecified
@@ -296,15 +302,21 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     case persistent
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -392,6 +404,12 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// List of the Disk Modes.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum DiskMode: Codable, Equatable, Sendable {
     /// Default value, which is unused.
     case unspecified
@@ -408,15 +426,21 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     case locked
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -509,6 +533,12 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// List of the Disk Interfaces.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum DiskInterface: Codable, Equatable, Sendable {
     /// Default value, which is unused.
     case unspecified
@@ -522,15 +552,21 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     case iscsi
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -628,6 +664,12 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// List of the states of the Disk.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum DiskSavedState: Codable, Equatable, Sendable {
     /// Default Disk state has not been preserved.
     case unspecified
@@ -635,15 +677,21 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     case preserved
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

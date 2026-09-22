@@ -272,6 +272,12 @@
     /// The enumerated type for the [architecture][google.cloud.compute.v1.AttachedDisk.architecture] field.
     ///
     /// [google.cloud.compute.v1.AttachedDisk.architecture]: <doc:AttachedDisk/Architecture>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Architecture: Codable, Equatable, Sendable {
       /// Default value indicating Architecture is not set.
       case unspecified
@@ -281,15 +287,21 @@
       case x8664
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -379,20 +391,32 @@
     /// The enumerated type for the [interface][google.cloud.compute.v1.AttachedDisk.interface] field.
     ///
     /// [google.cloud.compute.v1.AttachedDisk.interface]: <doc:AttachedDisk/Interface>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Interface: Codable, Equatable, Sendable {
       case nvme
       case scsi
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -477,6 +501,12 @@
     /// The enumerated type for the [mode][google.cloud.compute.v1.AttachedDisk.mode] field.
     ///
     /// [google.cloud.compute.v1.AttachedDisk.mode]: <doc:AttachedDisk/Mode>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Mode: Codable, Equatable, Sendable {
       /// Attaches this disk in read-only mode. Multiple virtual machines can use
       /// a disk in read-only mode at a time.
@@ -486,15 +516,21 @@
       case readWrite
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -579,6 +615,12 @@
     /// The enumerated type for the [savedState][google.cloud.compute.v1.AttachedDisk.savedState] field.
     ///
     /// [google.cloud.compute.v1.AttachedDisk.savedState]: <doc:AttachedDisk/SavedState>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SavedState: Codable, Equatable, Sendable {
       /// *[Default]* Disk state has not been preserved.
       case diskSavedStateUnspecified
@@ -586,15 +628,21 @@
       case preserved
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -679,20 +727,32 @@
     /// The enumerated type for the [type][google.cloud.compute.v1.AttachedDisk.type] field.
     ///
     /// [google.cloud.compute.v1.AttachedDisk.type]: <doc:AttachedDisk/Type_>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Type_: Codable, Equatable, Sendable {
       case persistent
       case scratch
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

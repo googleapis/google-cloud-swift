@@ -272,6 +272,12 @@
     /// The enumerated type for the [destNetworkContext][google.cloud.compute.v1.FirewallPolicyRuleMatcher.destNetworkContext] field.
     ///
     /// [google.cloud.compute.v1.FirewallPolicyRuleMatcher.destNetworkContext]: <doc:FirewallPolicyRuleMatcher/DestNetworkContext>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum DestNetworkContext: Codable, Equatable, Sendable {
       case internet
       case intraVpc
@@ -280,15 +286,21 @@
       case vpcNetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -388,6 +400,12 @@
     /// The enumerated type for the [destNetworkType][google.cloud.compute.v1.FirewallPolicyRuleMatcher.destNetworkType] field.
     ///
     /// [google.cloud.compute.v1.FirewallPolicyRuleMatcher.destNetworkType]: <doc:FirewallPolicyRuleMatcher/DestNetworkType>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum DestNetworkType: Codable, Equatable, Sendable {
       case internet
       case intraVpc
@@ -396,15 +414,21 @@
       case vpcNetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -504,6 +528,12 @@
     /// The enumerated type for the [srcNetworkContext][google.cloud.compute.v1.FirewallPolicyRuleMatcher.srcNetworkContext] field.
     ///
     /// [google.cloud.compute.v1.FirewallPolicyRuleMatcher.srcNetworkContext]: <doc:FirewallPolicyRuleMatcher/SrcNetworkContext>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SrcNetworkContext: Codable, Equatable, Sendable {
       case internet
       case intraVpc
@@ -512,15 +542,21 @@
       case vpcNetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -620,6 +656,12 @@
     /// The enumerated type for the [srcNetworkType][google.cloud.compute.v1.FirewallPolicyRuleMatcher.srcNetworkType] field.
     ///
     /// [google.cloud.compute.v1.FirewallPolicyRuleMatcher.srcNetworkType]: <doc:FirewallPolicyRuleMatcher/SrcNetworkType>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SrcNetworkType: Codable, Equatable, Sendable {
       case internet
       case intraVpc
@@ -628,15 +670,21 @@
       case vpcNetworks
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

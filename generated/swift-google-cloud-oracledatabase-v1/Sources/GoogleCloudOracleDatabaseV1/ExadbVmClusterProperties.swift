@@ -261,6 +261,12 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The Oracle license model that applies to the ExaScale VM cluster
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum LicenseModel: Codable, Equatable, Sendable {
     /// Unspecified.
     case unspecified
@@ -270,15 +276,21 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     case bringYourOwnLicense
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -366,6 +378,12 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The various lifecycle states of the VM cluster.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum ExadbVmClusterLifecycleState: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -385,15 +403,21 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     case maintenanceInProgress
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -508,6 +532,12 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   /// The shape attribute of the VM cluster. The type of Exascale storage used
   /// for Exadata VM cluster. The default is SMART_STORAGE which supports Oracle
   /// Database 23ai and later
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum ShapeAttribute: Codable, Equatable, Sendable {
     /// Default unspecified value.
     case unspecified
@@ -517,15 +547,21 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     case blockStorage
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

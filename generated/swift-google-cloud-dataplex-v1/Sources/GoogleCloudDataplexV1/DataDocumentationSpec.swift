@@ -91,6 +91,12 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The data documentation generation scope. This field contains the possible
   /// components of a data documentation scan which can be selectively generated.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum GenerationScope: Codable, Equatable, Sendable {
     /// Unspecified generation scope. If no generation scope is specified, all
     /// available documentation components will be generated.
@@ -103,15 +109,21 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     case sqlQueries
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

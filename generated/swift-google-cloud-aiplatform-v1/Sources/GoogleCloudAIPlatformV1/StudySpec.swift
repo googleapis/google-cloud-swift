@@ -344,6 +344,12 @@
       }
 
       /// The available types of optimization goals.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum GoalType: Codable, Equatable, Sendable {
         /// Goal Type will default to maximize.
         case unspecified
@@ -353,15 +359,21 @@
         case minimize
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -1299,6 +1311,12 @@
       }
 
       /// The type of scaling that should be applied to this parameter.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum ScaleType: Codable, Equatable, Sendable {
         /// By default, no scaling is applied.
         case unspecified
@@ -1314,15 +1332,21 @@
         case unitReverseLogScale
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -1897,6 +1921,12 @@
     }
 
     /// The available search algorithms for the Study.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Algorithm: Codable, Equatable, Sendable {
       /// The default algorithm used by Vertex AI for [hyperparameter
       /// tuning](https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview)
@@ -1909,15 +1939,21 @@
       case randomSearch
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2008,6 +2044,12 @@
     ///
     /// "Noisy" means that the repeated observations with the same Trial parameters
     /// may lead to different metric evaluations.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ObservationNoise: Codable, Equatable, Sendable {
       /// The default noise level chosen by Vertex AI.
       case unspecified
@@ -2020,15 +2062,21 @@
       case high
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2128,6 +2176,12 @@
     ///     may be better to choose LAST_MEASUREMENT.
     ///  If both or neither of (A) and (B) apply, it doesn't matter which
     ///  selection type is chosen.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum MeasurementSelectionType: Codable, Equatable, Sendable {
       /// Will be treated as LAST_MEASUREMENT.
       case unspecified
@@ -2137,15 +2191,21 @@
       case bestMeasurement
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

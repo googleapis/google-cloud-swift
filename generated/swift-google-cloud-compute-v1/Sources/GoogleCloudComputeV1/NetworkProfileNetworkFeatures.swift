@@ -418,6 +418,12 @@
     /// The enumerated type for the [addressPurposes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.addressPurposes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.addressPurposes]: <doc:NetworkProfileNetworkFeatures/AddressPurposes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AddressPurposes: Codable, Equatable, Sendable {
       /// DNS resolver address in the subnetwork.
       case dnsResolver
@@ -445,15 +451,21 @@
       case vpcPeering
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -568,20 +580,32 @@
     /// The enumerated type for the [allowAddressCreation][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAddressCreation] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAddressCreation]: <doc:NetworkProfileNetworkFeatures/AllowAddressCreation>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowAddressCreation: Codable, Equatable, Sendable {
       case addressCreationAllowed
       case addressCreationBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -666,20 +690,32 @@
     /// The enumerated type for the [allowAliasIpRanges][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAliasIpRanges] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAliasIpRanges]: <doc:NetworkProfileNetworkFeatures/AllowAliasIpRanges>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowAliasIpRanges: Codable, Equatable, Sendable {
       case aliasIpRangesAllowed
       case aliasIpRangesBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -764,20 +800,32 @@
     /// The enumerated type for the [allowAutoModeSubnet][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAutoModeSubnet] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowAutoModeSubnet]: <doc:NetworkProfileNetworkFeatures/AllowAutoModeSubnet>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowAutoModeSubnet: Codable, Equatable, Sendable {
       case autoModeSubnetAllowed
       case autoModeSubnetBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -862,20 +910,32 @@
     /// The enumerated type for the [allowClassDFirewalls][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowClassDFirewalls] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowClassDFirewalls]: <doc:NetworkProfileNetworkFeatures/AllowClassDfirewalls>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowClassDfirewalls: Codable, Equatable, Sendable {
       case classDFirewallsAllowed
       case classDFirewallsBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -960,20 +1020,32 @@
     /// The enumerated type for the [allowCloudNat][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowCloudNat] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowCloudNat]: <doc:NetworkProfileNetworkFeatures/AllowCloudNat>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowCloudNat: Codable, Equatable, Sendable {
       case cloudNatAllowed
       case cloudNatBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1058,20 +1130,32 @@
     /// The enumerated type for the [allowCloudRouter][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowCloudRouter] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowCloudRouter]: <doc:NetworkProfileNetworkFeatures/AllowCloudRouter>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowCloudRouter: Codable, Equatable, Sendable {
       case cloudRouterAllowed
       case cloudRouterBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1156,20 +1240,32 @@
     /// The enumerated type for the [allowDefaultNicAttachment][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowDefaultNicAttachment] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowDefaultNicAttachment]: <doc:NetworkProfileNetworkFeatures/AllowDefaultNicAttachment>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowDefaultNicAttachment: Codable, Equatable, Sendable {
       case defaultNicAttachmentAllowed
       case defaultNicAttachmentBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1256,20 +1352,32 @@
     /// The enumerated type for the [allowExternalIpAccess][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowExternalIpAccess] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowExternalIpAccess]: <doc:NetworkProfileNetworkFeatures/AllowExternalIpAccess>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowExternalIpAccess: Codable, Equatable, Sendable {
       case externalIpAccessAllowed
       case externalIpAccessBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1354,20 +1462,32 @@
     /// The enumerated type for the [allowFirewallPolicy][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowFirewallPolicy] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowFirewallPolicy]: <doc:NetworkProfileNetworkFeatures/AllowFirewallPolicy>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowFirewallPolicy: Codable, Equatable, Sendable {
       case firewallPolicyAllowed
       case firewallPolicyBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1452,20 +1572,32 @@
     /// The enumerated type for the [allowInterconnect][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowInterconnect] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowInterconnect]: <doc:NetworkProfileNetworkFeatures/AllowInterconnect>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowInterconnect: Codable, Equatable, Sendable {
       case interconnectAllowed
       case interconnectBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1550,20 +1682,32 @@
     /// The enumerated type for the [allowIpForwarding][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowIpForwarding] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowIpForwarding]: <doc:NetworkProfileNetworkFeatures/AllowIpForwarding>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowIpForwarding: Codable, Equatable, Sendable {
       case ipForwardingAllowed
       case ipForwardingBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1648,20 +1792,32 @@
     /// The enumerated type for the [allowLoadBalancing][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowLoadBalancing] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowLoadBalancing]: <doc:NetworkProfileNetworkFeatures/AllowLoadBalancing>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowLoadBalancing: Codable, Equatable, Sendable {
       case loadBalancingAllowed
       case loadBalancingBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1746,20 +1902,32 @@
     /// The enumerated type for the [allowMultiNicInSameNetwork][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMultiNicInSameNetwork] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMultiNicInSameNetwork]: <doc:NetworkProfileNetworkFeatures/AllowMultiNicInSameNetwork>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowMultiNicInSameNetwork: Codable, Equatable, Sendable {
       case multiNicInSameNetworkAllowed
       case multiNicInSameNetworkBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1846,20 +2014,32 @@
     /// The enumerated type for the [allowMultiNicInSameSubnetwork][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMultiNicInSameSubnetwork] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMultiNicInSameSubnetwork]: <doc:NetworkProfileNetworkFeatures/AllowMultiNicInSameSubnetwork>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowMultiNicInSameSubnetwork: Codable, Equatable, Sendable {
       case multiNicInSameSubnetworkAllowed
       case multiNicInSameSubnetworkBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1946,20 +2126,32 @@
     /// The enumerated type for the [allowMulticast][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMulticast] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowMulticast]: <doc:NetworkProfileNetworkFeatures/AllowMulticast>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowMulticast: Codable, Equatable, Sendable {
       case multicastAllowed
       case multicastBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2044,20 +2236,32 @@
     /// The enumerated type for the [allowNcc][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowNcc] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowNcc]: <doc:NetworkProfileNetworkFeatures/AllowNcc>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowNcc: Codable, Equatable, Sendable {
       case nccAllowed
       case nccBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2142,20 +2346,32 @@
     /// The enumerated type for the [allowNetworkMigration][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowNetworkMigration] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowNetworkMigration]: <doc:NetworkProfileNetworkFeatures/AllowNetworkMigration>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowNetworkMigration: Codable, Equatable, Sendable {
       case networkMigrationAllowed
       case networkMigrationBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2240,20 +2456,32 @@
     /// The enumerated type for the [allowPacketMirroring][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPacketMirroring] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPacketMirroring]: <doc:NetworkProfileNetworkFeatures/AllowPacketMirroring>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowPacketMirroring: Codable, Equatable, Sendable {
       case packetMirroringAllowed
       case packetMirroringBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2338,20 +2566,32 @@
     /// The enumerated type for the [allowPrivateGoogleAccess][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPrivateGoogleAccess] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPrivateGoogleAccess]: <doc:NetworkProfileNetworkFeatures/AllowPrivateGoogleAccess>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowPrivateGoogleAccess: Codable, Equatable, Sendable {
       case privateGoogleAccessAllowed
       case privateGoogleAccessBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2438,20 +2678,32 @@
     /// The enumerated type for the [allowPsc][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPsc] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowPsc]: <doc:NetworkProfileNetworkFeatures/AllowPsc>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowPsc: Codable, Equatable, Sendable {
       case pscAllowed
       case pscBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2536,20 +2788,32 @@
     /// The enumerated type for the [allowSameNetworkUnicast][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSameNetworkUnicast] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSameNetworkUnicast]: <doc:NetworkProfileNetworkFeatures/AllowSameNetworkUnicast>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowSameNetworkUnicast: Codable, Equatable, Sendable {
       case sameNetworkUnicastAllowed
       case sameNetworkUnicastBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2634,20 +2898,32 @@
     /// The enumerated type for the [allowStaticRoutes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowStaticRoutes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowStaticRoutes]: <doc:NetworkProfileNetworkFeatures/AllowStaticRoutes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowStaticRoutes: Codable, Equatable, Sendable {
       case staticRoutesAllowed
       case staticRoutesBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2732,20 +3008,32 @@
     /// The enumerated type for the [allowSubInterfaces][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSubInterfaces] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSubInterfaces]: <doc:NetworkProfileNetworkFeatures/AllowSubInterfaces>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowSubInterfaces: Codable, Equatable, Sendable {
       case subinterfacesAllowed
       case subinterfacesBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2830,20 +3118,32 @@
     /// The enumerated type for the [allowSubnetworkCreation][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSubnetworkCreation] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowSubnetworkCreation]: <doc:NetworkProfileNetworkFeatures/AllowSubnetworkCreation>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowSubnetworkCreation: Codable, Equatable, Sendable {
       case subnetworkCreationAllowed
       case subnetworkCreationBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -2928,20 +3228,32 @@
     /// The enumerated type for the [allowVpcFirewallRules][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpcFirewallRules] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpcFirewallRules]: <doc:NetworkProfileNetworkFeatures/AllowVpcFirewallRules>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowVpcFirewallRules: Codable, Equatable, Sendable {
       case vpcFirewallRulesAllowed
       case vpcFirewallRulesBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3026,20 +3338,32 @@
     /// The enumerated type for the [allowVpcPeering][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpcPeering] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpcPeering]: <doc:NetworkProfileNetworkFeatures/AllowVpcPeering>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowVpcPeering: Codable, Equatable, Sendable {
       case vpcPeeringAllowed
       case vpcPeeringBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3124,20 +3448,32 @@
     /// The enumerated type for the [allowVpn][google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpn] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.allowVpn]: <doc:NetworkProfileNetworkFeatures/AllowVpn>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AllowVpn: Codable, Equatable, Sendable {
       case vpnAllowed
       case vpnBlocked
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3222,21 +3558,33 @@
     /// The enumerated type for the [firewallPolicyTypes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.firewallPolicyTypes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.firewallPolicyTypes]: <doc:NetworkProfileNetworkFeatures/FirewallPolicyTypes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum FirewallPolicyTypes: Codable, Equatable, Sendable {
       case rdmaRocePolicy
       case ullPolicy
       case vpcPolicy
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3326,6 +3674,12 @@
     /// The enumerated type for the [interfaceTypes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.interfaceTypes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.interfaceTypes]: <doc:NetworkProfileNetworkFeatures/InterfaceTypes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum InterfaceTypes: Codable, Equatable, Sendable {
       /// GVNIC
       case gvnic
@@ -3341,15 +3695,21 @@
       case virtioNet
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3454,20 +3814,32 @@
     /// The enumerated type for the [multicast][google.cloud.compute.v1.NetworkProfileNetworkFeatures.multicast] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.multicast]: <doc:NetworkProfileNetworkFeatures/Multicast>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Multicast: Codable, Equatable, Sendable {
       case sdn
       case ull
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3552,20 +3924,32 @@
     /// The enumerated type for the [subnetPurposes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetPurposes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetPurposes]: <doc:NetworkProfileNetworkFeatures/SubnetPurposes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SubnetPurposes: Codable, Equatable, Sendable {
       case subnetPurposeCustomHardware
       case subnetPurposePrivate
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3651,21 +4035,33 @@
     /// The enumerated type for the [subnetStackTypes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetStackTypes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetStackTypes]: <doc:NetworkProfileNetworkFeatures/SubnetStackTypes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SubnetStackTypes: Codable, Equatable, Sendable {
       case subnetStackTypeIpv4Ipv6
       case subnetStackTypeIpv4Only
       case subnetStackTypeIpv6Only
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3755,6 +4151,12 @@
     /// The enumerated type for the [subnetworkPurposes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetworkPurposes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetworkPurposes]: <doc:NetworkProfileNetworkFeatures/SubnetworkPurposes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SubnetworkPurposes: Codable, Equatable, Sendable {
       /// Subnet reserved for Global Envoy-based Load Balancing.
       case globalManagedProxy
@@ -3777,15 +4179,21 @@
       case regionalManagedProxy
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -3900,6 +4308,12 @@
     /// The enumerated type for the [subnetworkStackTypes][google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetworkStackTypes] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.subnetworkStackTypes]: <doc:NetworkProfileNetworkFeatures/SubnetworkStackTypes>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum SubnetworkStackTypes: Codable, Equatable, Sendable {
       /// New VMs in this subnet can have both IPv4 and IPv6 addresses.
       case ipv4Ipv6
@@ -3909,15 +4323,21 @@
       case ipv6Only
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -4007,20 +4427,32 @@
     /// The enumerated type for the [unicast][google.cloud.compute.v1.NetworkProfileNetworkFeatures.unicast] field.
     ///
     /// [google.cloud.compute.v1.NetworkProfileNetworkFeatures.unicast]: <doc:NetworkProfileNetworkFeatures/Unicast>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Unicast: Codable, Equatable, Sendable {
       case sdn
       case ull
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

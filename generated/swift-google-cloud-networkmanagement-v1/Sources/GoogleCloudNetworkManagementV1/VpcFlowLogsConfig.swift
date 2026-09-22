@@ -242,6 +242,12 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Determines whether this configuration will be generating logs.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum State: Codable, Equatable, Sendable {
     /// If not specified, will default to ENABLED.
     case unspecified
@@ -251,15 +257,21 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case disabled
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -347,6 +359,12 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Toggles the aggregation interval for collecting flow logs by 5-tuple.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum AggregationInterval: Codable, Equatable, Sendable {
     /// If not specified, will default to INTERVAL_5_SEC.
     case unspecified
@@ -364,15 +382,21 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case interval15Min
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -480,6 +504,12 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configures which log fields would be included.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum Metadata: Codable, Equatable, Sendable {
     /// If not specified, will default to INCLUDE_ALL_METADATA.
     case unspecified
@@ -491,15 +521,21 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case customMetadata
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -593,6 +629,12 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Determines whether to include cross project annotations in the logs.
   /// Project configurations will always have CROSS_PROJECT_METADATA_DISABLED.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum CrossProjectMetadata: Codable, Equatable, Sendable {
     /// If not specified, the default is CROSS_PROJECT_METADATA_ENABLED.
     case unspecified
@@ -604,15 +646,21 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case disabled
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -701,6 +749,12 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Indicates whether the target resource exists, for diagnostic
   /// purposes.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum TargetResourceState: Codable, Equatable, Sendable {
     /// Unspecified target resource state.
     case unspecified
@@ -710,15 +764,21 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case targetResourceDoesNotExist
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

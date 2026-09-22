@@ -1040,6 +1040,12 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Defines the kernel module loading policy for nodes in the node pool.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Policy: Codable, Equatable, Sendable {
       /// Default behavior. GKE selects the image based on node type.
       /// For CPU and TPU nodes, the image will not allow loading external
@@ -1061,15 +1067,21 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case doNotEnforceSignedModules
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -1312,6 +1324,12 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible cgroup modes that can be used.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum CgroupMode: Codable, Equatable, Sendable {
     /// CGROUP_MODE_UNSPECIFIED is when unspecified cgroup configuration is used.
     /// The default for the GKE node OS image will be used.
@@ -1324,15 +1342,21 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case v2
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -1420,6 +1444,12 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible values for transparent hugepage enabled support.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum TransparentHugepageEnabled: Codable, Equatable, Sendable {
     /// Default value. GKE will not modify the kernel configuration.
     case unspecified
@@ -1432,15 +1462,21 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case never
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -1533,6 +1569,12 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible values for transparent hugepage defrag support.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum TransparentHugepageDefrag: Codable, Equatable, Sendable {
     /// Default value. GKE will not modify the kernel configuration.
     case unspecified
@@ -1560,15 +1602,21 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case never
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

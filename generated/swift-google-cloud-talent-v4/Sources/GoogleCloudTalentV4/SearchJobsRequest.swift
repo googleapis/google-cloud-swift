@@ -617,6 +617,12 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [CustomRankingInfo.ranking_expression][google.cloud.talent.v4.SearchJobsRequest.CustomRankingInfo.ranking_expression].
     ///
     /// [google.cloud.talent.v4.SearchJobsRequest.CustomRankingInfo.ranking_expression]: <doc:SearchJobsRequest/CustomRankingInfo/rankingExpression>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ImportanceLevel: Codable, Equatable, Sendable {
       /// Default value if the importance level isn't specified.
       case unspecified
@@ -646,15 +652,21 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       case extreme
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -774,6 +786,12 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A string-represented enumeration of the job search mode. The service
   /// operate differently for different modes of service.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum SearchMode: Codable, Equatable, Sendable {
     /// The mode of the search method isn't specified. The default search
     /// behavior is identical to JOB_SEARCH search behavior.
@@ -789,15 +807,21 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     case featuredJobSearch
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -895,6 +919,12 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// latency might be lower but we can't guarantee that all results are
   /// returned. If you are using page offset, latency might be higher but all
   /// results are returned.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum DiversificationLevel: Codable, Equatable, Sendable {
     /// The diversification level isn't specified.
     case unspecified
@@ -924,15 +954,21 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     case maxThreePerCompany
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -1059,6 +1095,12 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// requests.
   ///
   /// [google.cloud.talent.v4.Company.keyword_searchable_job_custom_attributes]: <doc:Company/keywordSearchableJobCustomAttributes>
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum KeywordMatchMode: Codable, Equatable, Sendable {
     /// The keyword match option isn't specified. Defaults to
     /// [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL]
@@ -1092,15 +1134,21 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     case keywordMatchTitleOnly
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -1195,6 +1243,12 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The relevance threshold of the search results. The higher relevance
   /// threshold is, the higher relevant results are shown and the less number of
   /// results are returned.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum RelevanceThreshold: Codable, Equatable, Sendable {
     /// Default value. In this case, server behavior defaults to Google defined
     /// threshold.
@@ -1209,15 +1263,21 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     case high
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

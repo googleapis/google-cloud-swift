@@ -185,6 +185,12 @@
     /// The enumerated type for the [instanceRedistributionType][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.instanceRedistributionType] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.instanceRedistributionType]: <doc:InstanceGroupManagerUpdatePolicy/InstanceRedistributionType>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum InstanceRedistributionType: Codable, Equatable, Sendable {
       /// No action is being proactively performed in order to bring this IGM
       /// to its target instance distribution.
@@ -193,15 +199,21 @@
       case proactive
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -286,6 +298,12 @@
     /// The enumerated type for the [minimalAction][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.minimalAction] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.minimalAction]: <doc:InstanceGroupManagerUpdatePolicy/MinimalAction>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum MinimalAction: Codable, Equatable, Sendable {
       /// Do not perform any action.
       case `none`
@@ -298,15 +316,21 @@
       case restart
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -401,6 +425,12 @@
     /// The enumerated type for the [mostDisruptiveAllowedAction][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.mostDisruptiveAllowedAction] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.mostDisruptiveAllowedAction]: <doc:InstanceGroupManagerUpdatePolicy/MostDisruptiveAllowedAction>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum MostDisruptiveAllowedAction: Codable, Equatable, Sendable {
       /// Do not perform any action.
       case `none`
@@ -413,15 +443,21 @@
       case restart
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -516,6 +552,12 @@
     /// The enumerated type for the [replacementMethod][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.replacementMethod] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.replacementMethod]: <doc:InstanceGroupManagerUpdatePolicy/ReplacementMethod>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ReplacementMethod: Codable, Equatable, Sendable {
       /// Instances will be recreated (with the same name)
       case recreate
@@ -523,15 +565,21 @@
       case substitute
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -616,6 +664,12 @@
     /// The enumerated type for the [type][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.type] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.type]: <doc:InstanceGroupManagerUpdatePolicy/Type_>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Type_: Codable, Equatable, Sendable {
       /// MIG will apply new configurations
       /// to existing VMs only when you selectively target specific or all VMs to
@@ -627,15 +681,21 @@
       case proactive
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

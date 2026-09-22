@@ -289,6 +289,12 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
 
     /// ProducerInstanceLocation is used to specify which authorization mechanism
     /// to use to determine which projects the Producer instance can be within.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ProducerInstanceLocation: Codable, Equatable, Sendable {
       /// Producer instance location is not specified. When this option is
       /// chosen, then the PSC connections created by this
@@ -302,15 +308,21 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       case customResourceHierarchyLevels
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -614,6 +626,12 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
   /// We reserve the right to add more states without notice in the future.
   /// Users should not use exhaustive switch statements on this enum.
   /// See https://google.aip.dev/216.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum State: Codable, Equatable, Sendable {
     /// An invalid state as the default case.
     case unspecified
@@ -634,15 +652,21 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     case deleteRepairing
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

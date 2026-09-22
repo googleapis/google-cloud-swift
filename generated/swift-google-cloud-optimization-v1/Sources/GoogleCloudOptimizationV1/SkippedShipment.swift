@@ -208,6 +208,12 @@ public struct SkippedShipment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Code identifying the reason type. The order here is meaningless. In
     /// particular, it gives no indication of whether a given reason will
     /// appear before another in the solution, if both apply.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Code: Codable, Equatable, Sendable {
       /// This should never be used. If we are unable to understand why a
       /// shipment was skipped, we simply return an empty set of reasons.
@@ -244,15 +250,21 @@ public struct SkippedShipment: Codable, Equatable, GoogleWKT._AnyPackable,
       case vehicleNotAllowed
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

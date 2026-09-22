@@ -19,6 +19,12 @@ import Foundation
 /// Type of the match which can be applied to different ways of matching, like
 /// Dictionary, regular expression and intersecting with findings of another
 /// infoType.
+///
+/// - Note: Adding cases to this enumeration is not considered a breaking change.
+///   Always include an `@unknown default:` case when switching over this type.
+///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+///   expecting specific values to remain unparsed; future releases may promote
+///   them to named cases.
 public enum MatchingType: Codable, Equatable, Sendable {
   /// Invalid.
   case unspecified
@@ -53,15 +59,21 @@ public enum MatchingType: Codable, Equatable, Sendable {
   case ruleSpecific
   /// Encodes an unknown integer value.
   ///
-  /// The most common cause for an unknown values is for the service to send
+  /// The most common cause for an unknown value is for the service to send
   /// a value unknown to the library. We recommend you update your library to
   /// the latest version.
+  ///
+  /// - Warning: Do not pattern-match specific integer values in this case;
+  ///   future releases may promote them to named enum cases.
   case unknownIntValue(Int)
   /// Encodes an unknown string value.
   ///
-  /// The most common cause for an unknown values is for the service to send
+  /// The most common cause for an unknown value is for the service to send
   /// a value unknown to the library. We recommend you update your library to
   /// the latest version.
+  ///
+  /// - Warning: Do not pattern-match specific string literals in this case;
+  ///   future releases may promote them to named enum cases.
   case unknownStringValue(String)
 
   public init() {

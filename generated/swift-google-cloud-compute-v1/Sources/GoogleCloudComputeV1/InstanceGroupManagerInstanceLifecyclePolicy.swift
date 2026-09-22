@@ -135,6 +135,12 @@
     /// The enumerated type for the [defaultActionOnFailure][google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.defaultActionOnFailure] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.defaultActionOnFailure]: <doc:InstanceGroupManagerInstanceLifecyclePolicy/DefaultActionOnFailure>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum DefaultActionOnFailure: Codable, Equatable, Sendable {
       /// MIG does not repair a failed VM.
       case doNothing
@@ -144,15 +150,21 @@
       case repair
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -237,20 +249,32 @@
     /// The enumerated type for the [forceUpdateOnRepair][google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.forceUpdateOnRepair] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.forceUpdateOnRepair]: <doc:InstanceGroupManagerInstanceLifecyclePolicy/ForceUpdateOnRepair>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ForceUpdateOnRepair: Codable, Equatable, Sendable {
       case no
       case yes
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -335,6 +359,12 @@
     /// The enumerated type for the [onFailedHealthCheck][google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.onFailedHealthCheck] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.onFailedHealthCheck]: <doc:InstanceGroupManagerInstanceLifecyclePolicy/OnFailedHealthCheck>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum OnFailedHealthCheck: Codable, Equatable, Sendable {
       /// (Default) MIG uses the same action configured for
       /// instanceLifecyclePolicy.defaultActionOnFailure field.
@@ -345,15 +375,21 @@
       case repair
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

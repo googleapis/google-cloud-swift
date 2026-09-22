@@ -102,21 +102,33 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The enumerated type for the [behavior][.ResponsePolicyRule.behavior] field.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum Behavior: Codable, Equatable, Sendable {
     case behaviorUnspecified
     /// Skip a less-specific Response Policy Rule and let the query logic continue. This mechanism, when used with wildcard selectors, lets you exempt specific subdomains from a broader Response Policy Rule and direct the queries to the public internet instead. For example, if the following rules exist: ``` *.example.com -> LocalData 1.2.3.4 foo.example.com -> Behavior 'passthrough' ``` A query for foo.example.com skips the wildcard rule. This functionality also facilitates allowlisting. Response Policy Zones (RPZs) can be applied at multiple levels within the hierarchy: for example, an organization, a folder, a project, or a VPC network. If an RPZ rule is applied at a higher level, adding a `passthrough` rule at a lower level will override it. Queries from affected virtual machines (VMs) to that domain bypass the RPZ and proceed with normal resolution.
     case bypassResponsePolicy
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

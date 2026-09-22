@@ -119,6 +119,12 @@
     /// The enumerated type for the [portPairRemoteLocation][google.cloud.compute.v1.InterconnectRemoteLocationConstraints.portPairRemoteLocation] field.
     ///
     /// [google.cloud.compute.v1.InterconnectRemoteLocationConstraints.portPairRemoteLocation]: <doc:InterconnectRemoteLocationConstraints/PortPairRemoteLocation>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum PortPairRemoteLocation: Codable, Equatable, Sendable {
       /// If PORT_PAIR_MATCHING_REMOTE_LOCATION, the remote cloud provider
       /// allocates ports in pairs, and the user should choose the same remote
@@ -130,15 +136,21 @@
       case portPairUnconstrainedRemoteLocation
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -225,6 +237,12 @@
     /// The enumerated type for the [portPairVlan][google.cloud.compute.v1.InterconnectRemoteLocationConstraints.portPairVlan] field.
     ///
     /// [google.cloud.compute.v1.InterconnectRemoteLocationConstraints.portPairVlan]: <doc:InterconnectRemoteLocationConstraints/PortPairVlan>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum PortPairVlan: Codable, Equatable, Sendable {
       /// If PORT_PAIR_MATCHING_VLAN, the Interconnect for this attachment is
       /// part of a pair of ports that should have matching VLAN allocations.
@@ -237,15 +255,21 @@
       case portPairUnconstrainedVlan
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

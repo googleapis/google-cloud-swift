@@ -107,6 +107,12 @@
     /// The enumerated type for the [bandwidthAllocation][google.cloud.compute.v1.WireProperties.bandwidthAllocation] field.
     ///
     /// [google.cloud.compute.v1.WireProperties.bandwidthAllocation]: <doc:WireProperties/BandwidthAllocation>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum BandwidthAllocation: Codable, Equatable, Sendable {
       /// Configures a separate unmetered bandwidth allocation (and associated
       /// charges) for each wire in the group.
@@ -119,15 +125,21 @@
       case sharedWithWireGroup
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -212,6 +224,12 @@
     /// The enumerated type for the [faultResponse][google.cloud.compute.v1.WireProperties.faultResponse] field.
     ///
     /// [google.cloud.compute.v1.WireProperties.faultResponse]: <doc:WireProperties/FaultResponse>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum FaultResponse: Codable, Equatable, Sendable {
       /// Set the port line protocol down when inline probes detect a fault. This
       /// setting is only permitted on port mode pseudowires.
@@ -220,15 +238,21 @@
       case `none`
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

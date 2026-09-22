@@ -356,6 +356,12 @@
     /// The enumerated type for the [quicOverride][google.cloud.compute.v1.TargetHttpsProxy.quicOverride] field.
     ///
     /// [google.cloud.compute.v1.TargetHttpsProxy.quicOverride]: <doc:TargetHttpsProxy/QuicOverride>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum QuicOverride: Codable, Equatable, Sendable {
       /// The load balancer will not attempt to negotiate QUIC with clients.
       case disable
@@ -366,15 +372,21 @@
       case `none`
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -464,6 +476,12 @@
     /// The enumerated type for the [tlsEarlyData][google.cloud.compute.v1.TargetHttpsProxy.tlsEarlyData] field.
     ///
     /// [google.cloud.compute.v1.TargetHttpsProxy.tlsEarlyData]: <doc:TargetHttpsProxy/TlsEarlyData>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum TlsEarlyData: Codable, Equatable, Sendable {
       /// TLS 1.3 Early Data is not advertised, and any (invalid) attempts to send
       /// Early Data will be rejected by closing the connection.
@@ -487,15 +505,21 @@
       case unrestricted
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

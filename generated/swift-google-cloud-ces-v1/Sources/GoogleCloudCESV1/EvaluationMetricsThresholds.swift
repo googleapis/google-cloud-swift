@@ -300,6 +300,12 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
 
       /// Semantic similarity channel to use.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum SemanticSimilarityChannel: Codable, Equatable, Sendable {
         /// Metric unspecified. Defaults to TEXT.
         case unspecified
@@ -309,15 +315,21 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         case audio
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -566,6 +578,12 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     /// Defines the behavior when an extra tool call is encountered. An extra
     /// tool call is a tool call that is present in the execution but does not
     /// match any tool call in the golden expectation.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ExtraToolCallBehavior: Codable, Equatable, Sendable {
       /// Unspecified behavior. Defaults to FAIL.
       case unspecified
@@ -575,15 +593,21 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       case allow
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -685,6 +709,12 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   /// The hallucination metric behavior. Regardless of the behavior, the metric
   /// will always be calculated. The difference is that when disabled, the
   /// metric is not used to calculate the overall evaluation score.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum HallucinationMetricBehavior: Codable, Equatable, Sendable {
     /// Unspecified hallucination metric behavior.
     case unspecified
@@ -694,15 +724,21 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     case enabled
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

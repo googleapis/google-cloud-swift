@@ -103,6 +103,12 @@
     /// The enumerated type for the [acceleratorTopologyMode][google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.acceleratorTopologyMode] field.
     ///
     /// [google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.acceleratorTopologyMode]: <doc:ResourcePolicyWorkloadPolicy/AcceleratorTopologyMode>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum AcceleratorTopologyMode: Codable, Equatable, Sendable {
       /// The interconnected chips are pre-configured at the time of VM creation.
       case autoConnect
@@ -111,15 +117,21 @@
       case provisionOnly
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -204,6 +216,12 @@
     /// The enumerated type for the [maxTopologyDistance][google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.maxTopologyDistance] field.
     ///
     /// [google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.maxTopologyDistance]: <doc:ResourcePolicyWorkloadPolicy/MaxTopologyDistance>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum MaxTopologyDistance: Codable, Equatable, Sendable {
       /// VMs must be provisioned in the same block.
       case block
@@ -213,15 +231,21 @@
       case subblock
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -311,6 +335,12 @@
     /// The enumerated type for the [type][google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.type] field.
     ///
     /// [google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.type]: <doc:ResourcePolicyWorkloadPolicy/Type_>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Type_: Codable, Equatable, Sendable {
       /// MIG spreads out the instances as much as possible for high availability.
       case highAvailability
@@ -319,15 +349,21 @@
       case highThroughput
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

@@ -616,6 +616,12 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// LocalSsdEncryptionMode specifies the method used for encrypting the Local
   /// SSDs attached to the node.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum LocalSsdEncryptionMode: Codable, Equatable, Sendable {
     /// The given node will be encrypted using keys managed by Google
     /// infrastructure and the keys will be deleted when the node is
@@ -632,15 +638,21 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case ephemeralKeyEncryption
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -728,6 +740,12 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible effective cgroup modes for the node.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum EffectiveCgroupMode: Codable, Equatable, Sendable {
     /// EFFECTIVE_CGROUP_MODE_UNSPECIFIED means the cgroup configuration for the
     /// node pool is unspecified, i.e. the node pool is a Windows node pool.
@@ -740,15 +758,21 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case v2
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

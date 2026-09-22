@@ -242,6 +242,12 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
 
     /// Risk explainability reasons for Account defense.
     /// Ensure that applications can handle values not explicitly listed.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum RiskReason: Codable, Equatable, Sendable {
       /// Default unspecified type.
       case unspecified
@@ -262,15 +268,21 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       case disposableEmailDomain
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -444,6 +456,12 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
 
     /// Trust explainability reasons for Account defense.
     /// Ensure that applications can handle values not explicitly listed.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum TrustReason: Codable, Equatable, Sendable {
       /// Default unspecified type.
       case unspecified
@@ -461,15 +479,21 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       case identityHistoryReputable
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -581,6 +605,12 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// Labels returned by Account defense for this request.
   /// Ensure that applications can handle values not explicitly listed.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum AccountDefenderLabel: Codable, Equatable, Sendable {
     /// Default unspecified type.
     case unspecified
@@ -598,15 +628,21 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     case relatedAccountsNumberHigh
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

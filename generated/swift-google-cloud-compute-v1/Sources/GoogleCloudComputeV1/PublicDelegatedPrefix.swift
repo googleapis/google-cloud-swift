@@ -261,6 +261,12 @@
     /// The enumerated type for the [byoipApiVersion][google.cloud.compute.v1.PublicDelegatedPrefix.byoipApiVersion] field.
     ///
     /// [google.cloud.compute.v1.PublicDelegatedPrefix.byoipApiVersion]: <doc:PublicDelegatedPrefix/ByoipApiVersion>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum ByoipApiVersion: Codable, Equatable, Sendable {
       /// This public delegated prefix usually takes 4 weeks to delete, and the BGP
       /// status cannot be changed. Announce and Withdraw APIs can not be used on
@@ -271,15 +277,21 @@
       case v2
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -364,6 +376,12 @@
     /// The enumerated type for the [ipv6AccessType][google.cloud.compute.v1.PublicDelegatedPrefix.ipv6AccessType] field.
     ///
     /// [google.cloud.compute.v1.PublicDelegatedPrefix.ipv6AccessType]: <doc:PublicDelegatedPrefix/Ipv6AccessType>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Ipv6AccessType: Codable, Equatable, Sendable {
       /// The parent public advertised prefix will be announced to the internet.
       /// All children public delegated prefixes will have IPv6 access type as
@@ -375,15 +393,21 @@
       case `internal`
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -468,6 +492,12 @@
     /// The enumerated type for the [mode][google.cloud.compute.v1.PublicDelegatedPrefix.mode] field.
     ///
     /// [google.cloud.compute.v1.PublicDelegatedPrefix.mode]: <doc:PublicDelegatedPrefix/Mode>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Mode: Codable, Equatable, Sendable {
       /// The public delegated prefix is used for further sub-delegation only. Such
       /// prefixes cannot set allocatablePrefixLength.
@@ -487,15 +517,21 @@
       case internalIpv6SubnetworkCreation
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -593,6 +629,12 @@
     /// The enumerated type for the [status][google.cloud.compute.v1.PublicDelegatedPrefix.status] field.
     ///
     /// [google.cloud.compute.v1.PublicDelegatedPrefix.status]: <doc:PublicDelegatedPrefix/Status>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum Status: Codable, Equatable, Sendable {
       /// The public delegated prefix is ready to use.
       case active
@@ -612,15 +654,21 @@
       case readyToAnnounce
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

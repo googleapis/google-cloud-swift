@@ -535,6 +535,12 @@
       }
 
       /// Represents different types of training phrases.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum Type_: Codable, Equatable, Sendable {
         /// Not specified. This value should never be used.
         case unspecified
@@ -551,15 +557,21 @@
         case template
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -2667,6 +2679,12 @@
         }
 
         /// Format of response media type.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
         public enum ResponseMediaType: Codable, Equatable, Sendable {
           /// Unspecified.
           case unspecified
@@ -2674,15 +2692,21 @@
           case audio
           /// Encodes an unknown integer value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownIntValue(Int)
           /// Encodes an unknown string value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownStringValue(String)
 
           public init() {
@@ -3018,6 +3042,12 @@
             }
 
             /// Type of the URI.
+            ///
+            /// - Note: Adding cases to this enumeration is not considered a breaking change.
+            ///   Always include an `@unknown default:` case when switching over this type.
+            ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+            ///   expecting specific values to remain unparsed; future releases may promote
+            ///   them to named cases.
             public enum UrlTypeHint: Codable, Equatable, Sendable {
               /// Unspecified
               case unspecified
@@ -3028,15 +3058,21 @@
               case ampContent
               /// Encodes an unknown integer value.
               ///
-              /// The most common cause for an unknown values is for the service to send
+              /// The most common cause for an unknown value is for the service to send
               /// a value unknown to the library. We recommend you update your library to
               /// the latest version.
+              ///
+              /// - Warning: Do not pattern-match specific integer values in this case;
+              ///   future releases may promote them to named enum cases.
               case unknownIntValue(Int)
               /// Encodes an unknown string value.
               ///
-              /// The most common cause for an unknown values is for the service to send
+              /// The most common cause for an unknown value is for the service to send
               /// a value unknown to the library. We recommend you update your library to
               /// the latest version.
+              ///
+              /// - Warning: Do not pattern-match specific string literals in this case;
+              ///   future releases may promote them to named enum cases.
               case unknownStringValue(String)
 
               public init() {
@@ -3151,6 +3187,12 @@
         /// Image display options for Actions on Google. This should be used for
         /// when the image's aspect ratio does not match the image container's
         /// aspect ratio.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
         public enum ImageDisplayOptions: Codable, Equatable, Sendable {
           /// Fill the gaps between the image and the image container with gray
           /// bars.
@@ -3173,15 +3215,21 @@
           case blurredBackground
           /// Encodes an unknown integer value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownIntValue(Int)
           /// Encodes an unknown string value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownStringValue(String)
 
           public init() {
@@ -3479,6 +3527,12 @@
         }
 
         /// Text alignments within a cell.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
         public enum HorizontalAlignment: Codable, Equatable, Sendable {
           /// Text is aligned to the leading edge of the column.
           case unspecified
@@ -3490,15 +3544,21 @@
           case trailing
           /// Encodes an unknown integer value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownIntValue(Int)
           /// Encodes an unknown string value.
           ///
-          /// The most common cause for an unknown values is for the service to send
+          /// The most common cause for an unknown value is for the service to send
           /// a value unknown to the library. We recommend you update your library to
           /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
           case unknownStringValue(String)
 
           public init() {
@@ -3755,6 +3815,12 @@
 
       /// The rich response message integration platform. See
       /// [Integrations](https://cloud.google.com/dialogflow/docs/integrations).
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
       public enum Platform: Codable, Equatable, Sendable {
         /// Default platform.
         case unspecified
@@ -3780,15 +3846,21 @@
         case googleHangouts
         /// Encodes an unknown integer value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownIntValue(Int)
         /// Encodes an unknown string value.
         ///
-        /// The most common cause for an unknown values is for the service to send
+        /// The most common cause for an unknown value is for the service to send
         /// a value unknown to the library. We recommend you update your library to
         /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
         case unknownStringValue(String)
 
         public init() {
@@ -4036,6 +4108,12 @@
     }
 
     /// Represents the different states that webhooks can be in.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum WebhookState: Codable, Equatable, Sendable {
       /// Webhook is disabled in the agent and in the intent.
       case unspecified
@@ -4046,15 +4124,21 @@
       case enabledForSlotFilling
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {

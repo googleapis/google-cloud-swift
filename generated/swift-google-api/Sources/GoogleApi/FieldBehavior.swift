@@ -22,6 +22,12 @@ import Foundation
 /// denotes the behavior and may affect how API tooling handles the field.
 ///
 /// Note: This enum **may** receive new values in the future.
+///
+/// - Note: Adding cases to this enumeration is not considered a breaking change.
+///   Always include an `@unknown default:` case when switching over this type.
+///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+///   expecting specific values to remain unparsed; future releases may promote
+///   them to named cases.
 public enum FieldBehavior: Codable, Equatable, Sendable {
   /// Conventional default for enums. Do not use this.
   case unspecified
@@ -71,15 +77,21 @@ public enum FieldBehavior: Codable, Equatable, Sendable {
   case identifier
   /// Encodes an unknown integer value.
   ///
-  /// The most common cause for an unknown values is for the service to send
+  /// The most common cause for an unknown value is for the service to send
   /// a value unknown to the library. We recommend you update your library to
   /// the latest version.
+  ///
+  /// - Warning: Do not pattern-match specific integer values in this case;
+  ///   future releases may promote them to named enum cases.
   case unknownIntValue(Int)
   /// Encodes an unknown string value.
   ///
-  /// The most common cause for an unknown values is for the service to send
+  /// The most common cause for an unknown value is for the service to send
   /// a value unknown to the library. We recommend you update your library to
   /// the latest version.
+  ///
+  /// - Warning: Do not pattern-match specific string literals in this case;
+  ///   future releases may promote them to named enum cases.
   case unknownStringValue(String)
 
   public init() {

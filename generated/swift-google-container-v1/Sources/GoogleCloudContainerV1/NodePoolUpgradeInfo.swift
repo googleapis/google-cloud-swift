@@ -142,6 +142,12 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// AutoUpgradeStatus indicates the status of auto upgrade.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum AutoUpgradeStatus: Codable, Equatable, Sendable {
     /// UNKNOWN indicates an unknown status.
     case unknown
@@ -154,15 +160,21 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     case upgradePaused
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {
@@ -256,6 +268,12 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// AutoUpgradePausedReason indicates the reason for auto upgrade paused
   /// status.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
   public enum AutoUpgradePausedReason: Codable, Equatable, Sendable {
     /// AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED indicates an unspecified reason.
     case unspecified
@@ -272,15 +290,21 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     case systemConfig
     /// Encodes an unknown integer value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
-    /// The most common cause for an unknown values is for the service to send
+    /// The most common cause for an unknown value is for the service to send
     /// a value unknown to the library. We recommend you update your library to
     /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
     case unknownStringValue(String)
 
     public init() {

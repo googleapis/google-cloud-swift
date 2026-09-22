@@ -92,6 +92,12 @@
     /// The enumerated type for the [state][google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.state] field.
     ///
     /// [google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.state]: <doc:VpnGatewayStatusHighAvailabilityRequirementState/State>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum State: Codable, Equatable, Sendable {
       /// VPN tunnels are configured with adequate redundancy from Cloud VPN
       /// gateway to the peer VPN gateway. For both GCP-to-non-GCP and GCP-to-GCP
@@ -105,15 +111,21 @@
       case connectionRedundancyNotMet
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
@@ -199,19 +211,31 @@
     /// The enumerated type for the [unsatisfiedReason][google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.unsatisfiedReason] field.
     ///
     /// [google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.unsatisfiedReason]: <doc:VpnGatewayStatusHighAvailabilityRequirementState/UnsatisfiedReason>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
     public enum UnsatisfiedReason: Codable, Equatable, Sendable {
       case incompleteTunnelsCoverage
       /// Encodes an unknown integer value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
-      /// The most common cause for an unknown values is for the service to send
+      /// The most common cause for an unknown value is for the service to send
       /// a value unknown to the library. We recommend you update your library to
       /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
       case unknownStringValue(String)
 
       public init() {
