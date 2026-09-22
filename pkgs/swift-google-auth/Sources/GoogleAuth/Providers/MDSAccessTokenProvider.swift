@@ -90,6 +90,58 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     return true
   }
 
+  /// Resolves the metadata server base URL.
+  ///
+  /// Precedence: the explicit `endpoint`, then `GCE_METADATA_HOST`, then `defaultEndpoint`.
+  ///
+  /// - Parameter hostEnv: The value of `GCE_METADATA_HOST`, if set.
+  /// - Returns: The base URL to use for metadata server requests.
+  private func resolveBaseEndpoint(hostEnv: String?) -> URL {
+    if let endpoint = self.endpoint {
+      return endpoint
+    }
+    if let hostEnv = hostEnv, !hostEnv.isEmpty {
+      let hostString = hostEnv.hasPrefix("http") ? hostEnv : "http://\(hostEnv)"
+      return URL(string: hostString)!
+    }
+    return URL(string: Self.defaultEndpoint)!
+  }
+
+  /// Explains a failure to fetch a token from the metadata server.
+  ///
+  /// - Parameters:
+  ///   - isADCFallback: Whether the credentials reached the metadata server as the last step of
+  ///     Application Default Credentials discovery, rather than by explicit configuration.
+  ///   - endpoint: The metadata server endpoint that was contacted.
+  /// - Returns: Diagnostics describing the failure and what to verify next.
+  private static func diagnostics(
+    isADCFallback: Bool,
+    endpoint: URL
+  ) -> CredentialsError.Diagnostics {
+    let summary =
+      "Could not fetch an access token from the metadata server at \(endpoint.absoluteString)."
+    if isADCFallback {
+      return CredentialsError.Diagnostics(
+        """
+        \(summary)
+        Application Default Credentials (ADC) did not find any other credentials and fell back to
+        the metadata server. The most common reason for this failure is that the application is not
+        running in a Google Cloud environment and no local credentials have been configured. To set
+        up local credentials, run `gcloud auth application-default login`. More information on how
+        to authenticate client libraries can be found at
+        https://cloud.google.com/docs/authentication/client-libraries
+        """
+      )
+    }
+    return CredentialsError.Diagnostics(
+      """
+      \(summary)
+      Verify that a metadata server is running and reachable at that endpoint. The default endpoint
+      (\(Self.defaultEndpoint)) can be overridden with the `GCE_METADATA_HOST` environment variable.
+      """
+    )
+  }
+
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
   ///
   /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
@@ -99,16 +151,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
-
-    let baseEndpoint: URL
-    if let endpoint = self.endpoint {
-      baseEndpoint = endpoint
-    } else if let hostEnv = hostEnv, !hostEnv.isEmpty {
-      let hostString = hostEnv.hasPrefix("http") ? hostEnv : "http://\(hostEnv)"
-      baseEndpoint = URL(string: hostString)!
-    } else {
-      baseEndpoint = URL(string: Self.defaultEndpoint)!
-    }
+    let baseEndpoint = self.resolveBaseEndpoint(hostEnv: hostEnv)
 
     var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false)!
     urlComponents.path = "/computeMetadata/v1/instance/service-accounts/default/token"
@@ -137,8 +180,12 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       return Token(accessToken: response.accessToken, expirationDate: expiration)
     }
 
+    // ADC falls back to the metadata server when it finds no other credentials. Outside Google
+    // Cloud that fallback cannot succeed, so fail fast instead of retrying.
+    let isADCFallback = self.fromADC && hostEnv == nil
+
     do {
-      if self.fromADC && hostEnv == nil {
+      if isADCFallback {
         return try await fetchOperation()
       } else {
         return try await RetryEngine.retry(
@@ -148,7 +195,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         )
       }
     } catch {
-      throw CredentialsError.cannotFetchToken(adc: self.fromADC, env: hostEnv, source: error)
+      throw CredentialsError.cannotFetchToken(
+        diagnostics: Self.diagnostics(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        source: error
+      )
     }
   }
 }

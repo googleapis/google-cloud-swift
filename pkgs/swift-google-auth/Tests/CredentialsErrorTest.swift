@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleAuth
+@testable import GoogleAuth
 
 @Suite struct CredentialsErrorTest {
   @Test func notSupported() {
@@ -33,24 +33,19 @@ import GoogleAuth
 
   @Test func cannotFetchTokenDetails() {
     let source = CredentialsError.notSupported("--inner--")
-    let got = CredentialsError.cannotFetchToken(adc: true, env: nil, source: source)
+    let got = CredentialsError.cannotFetchToken(
+      diagnostics: CredentialsError.Diagnostics("--diagnostics here--"), source: source)
+    #expect(
+      got.debugDescription.contains("--diagnostics here--"),
+      "\(got):\n\(got.debugDescription)")
     #expect(
       got.debugDescription.contains("\(source)"),
       "\(got):\n\(got.debugDescription)")
   }
 
-  @Test(arguments: [
-    (true, String?.none, "to use `.adc()`"),
-    (true, String?.none, "The GCE_METADATA_HOST environment variable is not set"),
-    (false, String?.none, "to use `.mds()`"),
-    (false, String?.none, "The GCE_METADATA_HOST environment variable is not set"),
-    (true, "--env-value--", "GCE_METADATA_HOST environment variable is set to '--env-value--'"),
-    (false, "--env-value--", "GCE_METADATA_HOST environment variable is set to '--env-value--'"),
-  ]) func cannotFetchToken(adc: Bool, env: String?, want: String) {
-    let source = CredentialsError.notSupported("--inner--")
-    let got = CredentialsError.cannotFetchToken(adc: adc, env: env, source: source)
-    #expect(
-      got.debugDescription.contains(want),
-      "expected `\(want)` in the localized message, got:\n\(got.debugDescription)")
+  @Test func diagnosticsRenderTheirMessage() {
+    let got = CredentialsError.Diagnostics("-- details here --")
+    #expect(got.description == "-- details here --")
+    #expect("\(got)" == "-- details here --")
   }
 }

@@ -81,18 +81,6 @@ public enum CredentialsConfiguration: Sendable {
     universeDomain: String? = nil
   )
 
-  /// Explicitly queries the local Compute Engine Metadata Server (MDS) with optional overrides.
-  ///
-  /// - Parameters:
-  ///   - endpoint: The metadata server base URL override (defaults to `http://metadata.google.internal`).
-  ///   - scopes: Optional scopes requested from the metadata server.
-  ///   - quotaProjectID: Optional project ID used for billing and quota.
-  case mds(
-    endpoint: URL? = nil,
-    scopes: [String]? = nil,
-    quotaProjectID: String? = nil
-  )
-
   /// Explicitly refreshes User OAuth2 tokens using a local JSON credentials file located at the specified URL.
   case userKeyFile(URL)
 

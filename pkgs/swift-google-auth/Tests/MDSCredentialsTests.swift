@@ -149,12 +149,20 @@ import Testing
     let provider = MDSCredentials(client: client, fromADC: true, environment: [:])
     let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
 
-    if case let .cannotFetchToken(adc, env, _) = error {
-      #expect(adc == true, "Error details: \(error)")
-      #expect(env == nil, "Error details: \(error)")
-    } else {
+    guard case let .cannotFetchToken(diagnostics, _) = error else {
       Issue.record("Unexpected error type: \(error)")
+      return
     }
+    let got = "\(diagnostics)"
+    #expect(
+      got.contains("Application Default Credentials"),
+      "expected the ADC fallback explanation, got:\n\(got)")
+    #expect(
+      got.contains(MDSAccessTokenProvider.defaultEndpoint),
+      "expected the default endpoint, got:\n\(got)")
+    #expect(
+      got.contains("gcloud auth application-default login"),
+      "expected local credentials setup instructions, got:\n\(got)")
   }
 
   @Test func adcOverriddenMDS() async throws {
@@ -171,7 +179,7 @@ import Testing
       _ = try await provider.headers()
     }
     let error = #expect(throws: AuthHTTPError.self) {
-      if case let .cannotFetchToken(_, _, source) = credentialsError {
+      if case let .cannotFetchToken(_, source) = credentialsError {
         throw source
       }
     }
@@ -179,6 +187,37 @@ import Testing
       #expect(
         urlError.code == .cannotConnectToHost, "Expected cannotConnectToHost, got \(urlError.code)")
     }
+  }
+
+  @Test func overriddenMDSDiagnostics() async throws {
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        throw URLError(.cannotConnectToHost)
+      }
+    ])
+    let client = AuthHTTPClient(mock: mock)
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 1, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig, client: client, fromADC: true,
+      environment: ["GCE_METADATA_HOST": "127.0.0.1:1"])
+    let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
+
+    guard case let .cannotFetchToken(diagnostics, _) = error else {
+      Issue.record("Unexpected error type: \(error)")
+      return
+    }
+    let got = "\(diagnostics)"
+    #expect(
+      got.contains("http://127.0.0.1:1"),
+      "expected the overridden endpoint, got:\n\(got)")
+    #expect(
+      !got.contains("gcloud auth application-default login"),
+      "expected no ADC fallback explanation for an explicit override, got:\n\(got)")
+    #expect(
+      !got.contains(".mds("),
+      "expected no reference to a `.mds()` configuration, got:\n\(got)")
   }
 
   @Test func retriesOnTransientFailures() async throws {
@@ -271,7 +310,7 @@ import Testing
     let error = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
-    guard case let .cannotFetchToken(_, _, source) = error else {
+    guard case let .cannotFetchToken(_, source) = error else {
       Issue.record("expected a .cannotFetchToken error, got=\(error)")
       return
     }
