@@ -17,7 +17,8 @@
 import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
-  .enableUpcomingFeature("InternalImportsByDefault")
+  .enableUpcomingFeature("InternalImportsByDefault"),
+  .strictMemorySafety(),
 ]
 
 let package = Package(

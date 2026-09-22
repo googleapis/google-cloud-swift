@@ -259,13 +259,13 @@ import Testing
     let firstPartCRC = _CRC32C.compute(firstPart)
     let firstPartBigEndian = firstPartCRC.bigEndian
     var firstPartBytes = [UInt8]()
-    withUnsafeBytes(of: firstPartBigEndian) { firstPartBytes = Array($0) }
+    unsafe withUnsafeBytes(of: firstPartBigEndian) { firstPartBytes = unsafe Array($0) }
     let runningHashHeader = "crc32c=" + Data(firstPartBytes).base64EncodedString()
 
     let fullCRC = _CRC32C.compute(fullData)
     let fullBigEndian = fullCRC.bigEndian
     var fullBytes = [UInt8]()
-    withUnsafeBytes(of: fullBigEndian) { fullBytes = Array($0) }
+    unsafe withUnsafeBytes(of: fullBigEndian) { fullBytes = unsafe Array($0) }
     let expectedFullHashHeader = "crc32c=" + Data(fullBytes).base64EncodedString()
 
     let source = BytesSource(data: fullData)

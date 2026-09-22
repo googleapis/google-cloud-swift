@@ -251,7 +251,7 @@ extension StorageW1R3 {
     // There is a lot going on here. Sometimes the benchmark is used with really large buffers,
     // 256MiB and 2GiB are not uncommon. To efficiently initialized the buffer with random data
     // we create an array of the desired size.
-    let bytes = [UInt8](unsafeUninitializedCapacity: size) { buffer, initializedCount in
+    let bytes = unsafe [UInt8](unsafeUninitializedCapacity: size) { buffer, initializedCount in
       var offset = 0
       while offset < size {
         // Fetch a full word at a time. We could use UInt8.random to make the code simpler, but
@@ -259,7 +259,7 @@ extension StorageW1R3 {
         var val = UInt64.random(in: .min ... .max)
         let count = min(8, size - offset)
         for i in 0..<count {
-          buffer[offset + i] = UInt8(truncatingIfNeeded: val)
+          unsafe buffer[offset + i] = UInt8(truncatingIfNeeded: val)
           val >>= 8
         }
         offset += count

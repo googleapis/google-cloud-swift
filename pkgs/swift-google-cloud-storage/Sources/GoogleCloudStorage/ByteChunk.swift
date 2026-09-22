@@ -49,8 +49,9 @@ public struct ByteChunk: Sendable, ContiguousBytes {
   }
 
   /// Creates a byte chunk from a contiguous raw buffer pointer.
+  @unsafe
   public init(_ bufferPointer: UnsafeRawBufferPointer) {
-    self.storage = .byteBuffer(NIOCore.ByteBuffer(bytes: bufferPointer))
+    self.storage = .byteBuffer(unsafe NIOCore.ByteBuffer(bytes: bufferPointer))
   }
 }
 
@@ -74,23 +75,25 @@ extension ByteChunk {
   }
 
   /// Calls a closure with a pointer to the contiguous bytes without copying.
+  @unsafe
   public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
     switch storage {
     case .data(let data):
-      return try data.withUnsafeBytes(body)
+      return try unsafe data.withUnsafeBytes(body)
     case .byteBuffer(let buffer):
-      return try buffer.withUnsafeReadableBytes(body)
+      return try unsafe buffer.withUnsafeReadableBytes(body)
     }
   }
 
   /// Executes a closure on the sequence's contiguous storage.
+  @unsafe
   @inlinable
   public func withContiguousStorageIfAvailable<R>(
     _ body: (UnsafeBufferPointer<UInt8>) throws -> R
   ) rethrows -> R? {
-    try withUnsafeBytes { rawBuffer in
-      try rawBuffer.withMemoryRebound(to: UInt8.self) { buffer in
-        try body(buffer)
+    try unsafe withUnsafeBytes { rawBuffer in
+      try unsafe rawBuffer.withMemoryRebound(to: UInt8.self) { buffer in
+        try unsafe body(buffer)
       }
     }
   }
@@ -104,7 +107,7 @@ extension ByteChunk {
     case .data(let data):
       return data
     case .byteBuffer(let buffer):
-      return buffer.withUnsafeReadableBytes { Data($0) }
+      return Data(buffer: buffer)
     }
   }
 
@@ -117,18 +120,14 @@ extension ByteChunk {
     case .byteBuffer(let buffer):
       return buffer
     case .data(let data):
-      return data.withUnsafeBytes { rawBuffer in
-        var buf = ByteBufferAllocator().buffer(capacity: rawBuffer.count)
-        buf.writeBytes(rawBuffer)
-        return buf
-      }
+      return NIOCore.ByteBuffer(data: data)
     }
   }
 
   /// Returns the bytes as a newly allocated `[UInt8]` array.
   @inlinable
   public var byteArray: [UInt8] {
-    withUnsafeBytes { Array($0) }
+    unsafe withUnsafeBytes { unsafe Array($0) }
   }
 
   /// Returns a zero-copy sub-chunk within the specified byte range.
@@ -178,12 +177,12 @@ extension ByteChunk: Equatable {
   public static func == (lhs: ByteChunk, rhs: ByteChunk) -> Bool {
     guard lhs.count == rhs.count else { return false }
     if lhs.isEmpty { return true }
-    return lhs.withUnsafeBytes { lhsBytes in
-      rhs.withUnsafeBytes { rhsBytes in
+    return unsafe lhs.withUnsafeBytes { lhsBytes in
+      unsafe rhs.withUnsafeBytes { rhsBytes in
         guard let lhsBase = lhsBytes.baseAddress, let rhsBase = rhsBytes.baseAddress else {
-          return lhsBytes.isEmpty && rhsBytes.isEmpty
+          return lhsBytes.count == 0 && rhsBytes.count == 0
         }
-        return memcmp(lhsBase, rhsBase, lhsBytes.count) == 0
+        return unsafe memcmp(lhsBase, rhsBase, lhsBytes.count) == 0
       }
     }
   }
@@ -192,7 +191,7 @@ extension ByteChunk: Equatable {
 extension ByteChunk: Hashable {
   @inlinable
   public func hash(into hasher: inout Hasher) {
-    withUnsafeBytes { hasher.combine(bytes: $0) }
+    unsafe withUnsafeBytes { unsafe hasher.combine(bytes: $0) }
   }
 }
 

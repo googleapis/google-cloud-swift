@@ -233,18 +233,22 @@ full request struct methods for complex calls with multiple optional fields.
 This section explains the rationale behind some of the major design choices in
 the libraries.
 
-### Swift 6 and strict concurrency
+### Swift 6, strict concurrency, and strict memory safety
 
-The entire codebase is written for Swift 6 with full structured concurrency:
+The entire codebase is written for Swift 6 with full structured concurrency and
+strict memory safety:
 
 - Every public type conforms to `Sendable`.
 - All asynchronous calls use `async`/`await` and structured concurrency (`Task`,
   `AsyncSequence`).
 - No public APIs expose legacy completion handlers, dispatch queues, or manual
   thread locks.
-- We want to compile all packages under Swift 6 with `-warnings-as-errors`
-  enforced in CI. We need to suppress some warnings about deprecated enum cases
-  and fields first.
+- Handcrafted packages opt into `-strict-memory-safety`
+  ([SE-0458](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0458-strict-memory-safety.md))
+  via `.strictMemorySafety()` in `Package.swift`. Any use of unsafe pointers or
+  memory-unsafe APIs must be explicitly annotated with `@unsafe` and `unsafe`.
+- We compile all packages under Swift 6 with `-warnings-as-errors` enforced in
+  CI.
 
 ### REST/JSON over gRPC for most services
 

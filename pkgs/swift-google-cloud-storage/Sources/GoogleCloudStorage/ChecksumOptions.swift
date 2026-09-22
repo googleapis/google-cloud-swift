@@ -60,7 +60,7 @@ public struct ChecksumOptions: Sendable, Hashable {
     /// Creates a `ChecksumValue` from a 32-bit unsigned integer CRC32C checksum value.
     public init(_ intValue: UInt32) {
       let bigEndian = intValue.bigEndian
-      let base64 = withUnsafeBytes(of: bigEndian) { Data($0).base64EncodedString() }
+      let base64 = unsafe withUnsafeBytes(of: bigEndian) { unsafe Data($0).base64EncodedString() }
       self = .value(base64)
     }
 

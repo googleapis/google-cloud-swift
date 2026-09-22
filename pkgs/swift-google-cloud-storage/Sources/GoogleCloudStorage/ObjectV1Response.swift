@@ -122,7 +122,7 @@ package struct ObjectV1Response: Decodable, Sendable {
         checksums.crc32C = val
         hasChecksums = true
       } else if let data = Data(base64Encoded: crc32c), data.count == 4 {
-        let val = data.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian }
+        let val = unsafe data.withUnsafeBytes { unsafe $0.loadUnaligned(as: UInt32.self).bigEndian }
         checksums.crc32C = val
         hasChecksums = true
       }

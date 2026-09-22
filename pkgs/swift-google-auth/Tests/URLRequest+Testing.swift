@@ -33,11 +33,11 @@ extension URLRequest {
     var data = Data()
     let bufferSize = 1024
     let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
-    defer { buffer.deallocate() }
+    defer { unsafe buffer.deallocate() }
     while true {
-      let read = stream.read(buffer, maxLength: bufferSize)
+      let read = unsafe stream.read(buffer, maxLength: bufferSize)
       if read > 0 {
-        data.append(buffer, count: read)
+        unsafe data.append(buffer, count: read)
       } else {
         break
       }

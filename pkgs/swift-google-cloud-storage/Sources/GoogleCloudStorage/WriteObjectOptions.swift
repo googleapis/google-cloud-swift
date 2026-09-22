@@ -90,12 +90,12 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
 
   /// The Base64-encoded string representation of the encryption key.
   public var keyBase64: String {
-    key.withUnsafeBytes { Data($0).base64EncodedString() }
+    unsafe key.withUnsafeBytes { unsafe Data($0).base64EncodedString() }
   }
 
   /// The Base64-encoded SHA-256 digest of the key material used for header validation.
   public var keyHashBase64: String {
-    let data = key.withUnsafeBytes { Data($0) }
+    let data = unsafe key.withUnsafeBytes { unsafe Data($0) }
     let hash = SHA256.hash(data: data)
     return Data(hash).base64EncodedString()
   }
@@ -112,7 +112,7 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
   ///
   /// For the default `.aes256` algorithm, the key must be exactly 32 bytes (256 bits).
   public init(key: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256) throws {
-    let count = key.withUnsafeBytes { $0.count }
+    let count = key.bitCount / 8
     if algorithm == .aes256 && count != 32 {
       throw CustomerEncryptionKeyError.invalidKeyLength(actual: count, expected: 32)
     }

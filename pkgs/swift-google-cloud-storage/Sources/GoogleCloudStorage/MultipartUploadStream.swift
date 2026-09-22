@@ -175,7 +175,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         let capacity = preamble.utf8.count + metadataJson.count + middle.utf8.count
         var buffer = ByteBufferAllocator().buffer(capacity: capacity)
         buffer.writeString(preamble)
-        _ = metadataJson.withUnsafeBytes { buffer.writeBytes($0) }
+        buffer.writeBytes(metadataJson)
         buffer.writeString(middle)
         return buffer
 

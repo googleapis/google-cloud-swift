@@ -37,7 +37,9 @@ import Testing
     let payload = Data("Checksum verification test payload for CRC32C".utf8)
 
     let computedCrc = _CRC32C.compute(payload)
-    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -70,8 +72,8 @@ import Testing
     let payload = Data("Checksum verification test payload for CRC32C".utf8)
 
     let computedCrc = _CRC32C.compute(payload)
-    let actualCrcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) {
-      Data($0).base64EncodedString()
+    let actualCrcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
     }
     let invalidExpectedCrc = "invalid_crc_base64"
 
@@ -240,7 +242,9 @@ import Testing
     let payload = Data("Dual hash verification test payload".utf8)
 
     let computedCrc = _CRC32C.compute(payload)
-    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
     let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
@@ -299,7 +303,9 @@ import Testing
     let payload = Data("User provided CRC32C test payload".utf8)
 
     let computedCrc = _CRC32C.compute(payload)
-    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -468,7 +474,9 @@ import Testing
     let rangePayload = Data("0123456789".utf8)
 
     let fullCrc = _CRC32C.compute(fullPayload)
-    let fullCrcBase64 = withUnsafeBytes(of: fullCrc.bigEndian) { Data($0).base64EncodedString() }
+    let fullCrcBase64 = unsafe withUnsafeBytes(of: fullCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -505,7 +513,9 @@ import Testing
     let rangePayload = Data("0123456789".utf8)
 
     let rangeCrc = _CRC32C.compute(rangePayload)
-    let rangeCrcBase64 = withUnsafeBytes(of: rangeCrc.bigEndian) { Data($0).base64EncodedString() }
+    let rangeCrcBase64 = unsafe withUnsafeBytes(of: rangeCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -600,7 +610,9 @@ import Testing
     let fullPayload = chunk1 + chunk2
 
     let computedCrc = _CRC32C.compute(fullPayload)
-    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     let resumeUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=999")
@@ -652,7 +664,9 @@ import Testing
     let payload = Data()
 
     let computedCrc = _CRC32C.compute(payload)  // 0 -> "AAAAAA=="
-    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
+      unsafe Data($0).base64EncodedString()
+    }
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(

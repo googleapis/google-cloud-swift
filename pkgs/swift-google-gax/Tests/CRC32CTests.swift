@@ -44,9 +44,9 @@ import Testing
     #expect(helloCRC32C == got)
 
     var swChecksum = _CRC32C()
-    Data("Hello".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
-    Data(" ".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
-    Data("World".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
+    unsafe Data("Hello".utf8).withUnsafeBytes { unsafe swChecksum.updateSoftware($0) }
+    unsafe Data(" ".utf8).withUnsafeBytes { unsafe swChecksum.updateSoftware($0) }
+    unsafe Data("World".utf8).withUnsafeBytes { unsafe swChecksum.updateSoftware($0) }
     let swGot = swChecksum.finalize()
     #expect(helloCRC32C == swGot)
   }
@@ -82,9 +82,9 @@ import Testing
     ]
     for len in lengths {
       let slice = Array(testData.prefix(len))
-      slice.withUnsafeBytes { buffer in
-        let hw = _CRC32C.compute(buffer)
-        let sw = _CRC32C.computeSoftware(buffer)
+      unsafe slice.withUnsafeBytes { buffer in
+        let hw = unsafe _CRC32C.compute(buffer)
+        let sw = unsafe _CRC32C.computeSoftware(buffer)
         #expect(hw == sw, "Mismatch for length \(len)")
       }
     }
@@ -96,16 +96,16 @@ import Testing
       testData.append(UInt8(i & 0xFF))
     }
 
-    testData.withUnsafeBytes { buffer in
+    unsafe testData.withUnsafeBytes { buffer in
       // Test slices starting at various unaligned offsets
       for offset in 1..<8 {
         for len in [1, 5, 8, 17, 33, 65, 100] {
           if offset + len <= buffer.count {
-            let slice = UnsafeRawBufferPointer(
+            let slice = unsafe UnsafeRawBufferPointer(
               rebasing: buffer[offset..<(offset + len)]
             )
-            let hw = _CRC32C.compute(slice)
-            let sw = _CRC32C.computeSoftware(slice)
+            let hw = unsafe _CRC32C.compute(slice)
+            let sw = unsafe _CRC32C.computeSoftware(slice)
             #expect(hw == sw, "Mismatch at offset \(offset), length \(len)")
           }
         }
@@ -120,14 +120,14 @@ import Testing
     }
 
     var full = _CRC32C()
-    testData.withUnsafeBytes { full.update($0) }
+    unsafe testData.withUnsafeBytes { unsafe full.update($0) }
 
     var chunked = _CRC32C()
     let chunks = [3, 7, 16, 1, 32, 64, 11, 8, 4, 2, 152]
     var start = 0
     for chunkLen in chunks {
       let sub = Array(testData[start..<(start + chunkLen)])
-      sub.withUnsafeBytes { chunked.update($0) }
+      unsafe sub.withUnsafeBytes { unsafe chunked.update($0) }
       start += chunkLen
     }
 
@@ -141,11 +141,11 @@ import Testing
     (Array(0..<32).reversed().map { UInt8($0) }, UInt32(0x113F_DB5C)),
   ])
   func rfc3720(bytes: [UInt8], want: UInt32) {
-    bytes.withUnsafeBytes { buffer in
-      let got = _CRC32C.compute(buffer)
+    unsafe bytes.withUnsafeBytes { buffer in
+      let got = unsafe _CRC32C.compute(buffer)
       #expect(want == got)
 
-      let swGot = _CRC32C.computeSoftware(buffer)
+      let swGot = unsafe _CRC32C.computeSoftware(buffer)
       #expect(want == swGot)
     }
   }
@@ -156,14 +156,14 @@ import Testing
       testData.append(UInt8((i * 31 + 17) & 0xFF))
     }
 
-    testData.withUnsafeBytes { buffer in
+    unsafe testData.withUnsafeBytes { buffer in
       for offset in 0..<8 {
         for len in 0...128 {
-          let slice = UnsafeRawBufferPointer(
+          let slice = unsafe UnsafeRawBufferPointer(
             rebasing: buffer[offset..<(offset + len)]
           )
-          let hw = _CRC32C.compute(slice)
-          let sw = _CRC32C.computeSoftware(slice)
+          let hw = unsafe _CRC32C.compute(slice)
+          let sw = unsafe _CRC32C.computeSoftware(slice)
           #expect(hw == sw, "Mismatch at offset \(offset), length \(len)")
         }
       }
@@ -182,17 +182,17 @@ import Testing
     #expect(fullCRC == checksum.finalize())
 
     var swChecksum = _CRC32C(seed: crc1)
-    data2.withUnsafeBytes { swChecksum.updateSoftware($0) }
+    unsafe data2.withUnsafeBytes { unsafe swChecksum.updateSoftware($0) }
     #expect(fullCRC == swChecksum.finalize())
   }
 
   @Test func emptyUnalignedBuffer() {
     let testData: [UInt8] = [1, 2, 3, 4, 5, 6, 7, 8]
-    testData.withUnsafeBytes { buffer in
+    unsafe testData.withUnsafeBytes { buffer in
       for offset in 0..<8 {
-        let slice = UnsafeRawBufferPointer(rebasing: buffer[offset..<offset])
-        #expect(_CRC32C.compute(slice) == 0)
-        #expect(_CRC32C.computeSoftware(slice) == 0)
+        let slice = unsafe UnsafeRawBufferPointer(rebasing: buffer[offset..<offset])
+        #expect(unsafe _CRC32C.compute(slice) == 0)
+        #expect(unsafe _CRC32C.computeSoftware(slice) == 0)
       }
     }
   }
@@ -205,15 +205,15 @@ import Testing
 
     let full = _CRC32C.compute(Data(testData))
 
-    testData.withUnsafeBytes { buffer in
+    unsafe testData.withUnsafeBytes { buffer in
       var chunked = _CRC32C()
       var swChunked = _CRC32C()
       let chunkSizes = [1, 3, 7, 15, 31, 33, 64, 5, 12, 128, 213]
       var offset = 0
       for size in chunkSizes {
-        let slice = UnsafeRawBufferPointer(rebasing: buffer[offset..<(offset + size)])
-        chunked.update(slice)
-        swChunked.updateSoftware(slice)
+        let slice = unsafe UnsafeRawBufferPointer(rebasing: buffer[offset..<(offset + size)])
+        unsafe chunked.update(slice)
+        unsafe swChunked.updateSoftware(slice)
         offset += size
       }
       #expect(full == chunked.finalize())
@@ -242,18 +242,18 @@ import Testing
 
     var swResult: UInt32 = 0
     let swDuration = clock.measure {
-      data.withUnsafeBytes { buffer in
+      unsafe data.withUnsafeBytes { buffer in
         for _ in 0..<iterations {
-          swResult = _CRC32C.computeSoftware(buffer)
+          swResult = unsafe _CRC32C.computeSoftware(buffer)
         }
       }
     }
 
     var hwResult: UInt32 = 0
     let hwDuration = clock.measure {
-      data.withUnsafeBytes { buffer in
+      unsafe data.withUnsafeBytes { buffer in
         for _ in 0..<iterations {
-          hwResult = _CRC32C.compute(buffer)
+          hwResult = unsafe _CRC32C.compute(buffer)
         }
       }
     }

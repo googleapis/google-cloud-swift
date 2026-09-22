@@ -48,7 +48,7 @@ import Testing
     #expect(UInt64(collected.readableBytes) == stream.bodyLength)
     #expect(collected.readableBytes == expectedFullString.utf8.count)
 
-    let actualString = collected.withUnsafeReadableBytes { String(decoding: $0, as: UTF8.self) }
+    let actualString = String(buffer: collected)
     #expect(actualString == expectedFullString)
   }
 
