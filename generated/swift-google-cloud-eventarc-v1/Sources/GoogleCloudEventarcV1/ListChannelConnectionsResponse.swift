@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListChannelConnections` method.
 public struct ListChannelConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested channel connections, up to the number specified in
@@ -108,7 +107,10 @@ public struct ListChannelConnectionsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListChannelConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ChannelConnection] {
     return self.channelConnections
   }

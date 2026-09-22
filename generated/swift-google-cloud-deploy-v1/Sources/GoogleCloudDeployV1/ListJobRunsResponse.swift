@@ -20,7 +20,6 @@ import Foundation
 
 /// ListJobRunsResponse is the response object returned by `ListJobRuns`.
 public struct ListJobRunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The `JobRun` objects.
@@ -104,7 +103,10 @@ public struct ListJobRunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListJobRunsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [JobRun] {
     return self.jobRuns
   }

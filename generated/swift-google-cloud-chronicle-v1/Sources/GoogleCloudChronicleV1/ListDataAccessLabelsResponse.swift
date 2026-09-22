@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListDataAccessLabels.
 public struct ListDataAccessLabelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of data access labels.
@@ -96,7 +95,10 @@ public struct ListDataAccessLabelsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataAccessLabelsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataAccessLabel] {
     return self.dataAccessLabels
   }

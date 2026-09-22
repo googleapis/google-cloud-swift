@@ -20,7 +20,6 @@ import Foundation
 
 /// ListReplicationsResponse is the result of ListReplicationsRequest.
 public struct ListReplicationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of replications in the project for the specified volume.
@@ -104,7 +103,10 @@ public struct ListReplicationsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReplicationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Replication] {
     return self.replications
   }

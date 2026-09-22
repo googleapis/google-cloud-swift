@@ -21,7 +21,6 @@
 
   /// Contains a list of UrlMap resources.
   public struct UrlMapList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -636,7 +635,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension UrlMapList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [UrlMap] {
       return self.items
     }

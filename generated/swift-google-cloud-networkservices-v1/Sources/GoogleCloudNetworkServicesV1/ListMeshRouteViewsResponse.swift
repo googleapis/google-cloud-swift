@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListMeshRouteViews method.
 public struct ListMeshRouteViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of MeshRouteView resources.
@@ -106,7 +105,10 @@ public struct ListMeshRouteViewsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMeshRouteViewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MeshRouteView] {
     return self.meshRouteViews
   }

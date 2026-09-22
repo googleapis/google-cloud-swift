@@ -21,7 +21,6 @@ import Foundation
 /// Response message for `AwsClusters.ListAwsClusters` method.
 @available(*, deprecated)
 public struct ListAwsClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
@@ -99,7 +98,11 @@ public struct ListAwsClustersResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension ListAwsClustersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AwsCluster] {
     return self.awsClusters
   }

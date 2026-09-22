@@ -21,7 +21,6 @@ import Foundation
 /// The response message for the google.showcase.v1beta1.Messaging\ListBlurbs
 /// method.
 public struct ListBlurbsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of blurbs.
@@ -98,7 +97,10 @@ public struct ListBlurbsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBlurbsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Blurb] {
     return self.blurbs
   }

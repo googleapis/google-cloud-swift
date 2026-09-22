@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a request for a list of reference lists.
 public struct ListReferenceListsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The reference lists.
@@ -96,7 +95,10 @@ public struct ListReferenceListsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReferenceListsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ReferenceList] {
     return self.referenceLists
   }

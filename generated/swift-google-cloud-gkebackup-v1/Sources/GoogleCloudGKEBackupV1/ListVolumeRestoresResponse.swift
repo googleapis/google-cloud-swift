@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListVolumeRestores.
 public struct ListVolumeRestoresResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of VolumeRestores matching the given criteria.
@@ -100,7 +99,10 @@ public struct ListVolumeRestoresResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVolumeRestoresResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VolumeRestore] {
     return self.volumeRestores
   }

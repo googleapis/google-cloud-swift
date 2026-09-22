@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message containing a list of git references.
 public struct FetchRefsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of git references.
@@ -94,7 +93,10 @@ public struct FetchRefsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchRefsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Ref] {
     return self.refs
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListVersions]: <doc:ApiHubClient/listVersions(request:options:)>
 public struct ListVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The versions corresponding to an API.
@@ -98,7 +97,10 @@ public struct ListVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Version] {
     return self.versions
   }

@@ -25,7 +25,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:options:)>
   public struct ListDataStoresResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// All the customer's [DataStore][google.cloud.discoveryengine.v1.DataStore]s.
@@ -106,7 +105,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListDataStoresResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [DataStore] {
       return self.dataStores
     }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs]: <doc:EnterpriseKnowledgeGraphServiceClient/listEntityReconciliationJobs(request:options:)>
 public struct ListEntityReconciliationJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of EntityReconciliationJobs that matches the specified filter in the
@@ -101,7 +100,10 @@ public struct ListEntityReconciliationJobsResponse: Codable, Equatable, GoogleWK
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEntityReconciliationJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EntityReconciliationJob] {
     return self.entityReconciliationJobs
   }

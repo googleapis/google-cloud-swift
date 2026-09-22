@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the `ListWasmPluginVersions` method.
 public struct ListWasmPluginVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of `WasmPluginVersion` resources.
@@ -110,7 +109,10 @@ public struct ListWasmPluginVersionsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWasmPluginVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [WasmPluginVersion] {
     return self.wasmPluginVersions
   }

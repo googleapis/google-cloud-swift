@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListDomains.
 public struct ListDomainsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The domains in the specified location.
@@ -95,7 +94,10 @@ public struct ListDomainsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDomainsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Domain] {
     return self.domains
   }

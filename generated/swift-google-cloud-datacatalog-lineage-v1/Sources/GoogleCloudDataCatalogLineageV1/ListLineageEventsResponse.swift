@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents]: <doc:LineageClient/listLineageEvents(request:options:)>
 public struct ListLineageEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Lineage events from the specified project and location.
@@ -98,7 +97,10 @@ public struct ListLineageEventsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLineageEventsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LineageEvent] {
     return self.lineageEvents
   }

@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The Cloud Quotas API is an infrastructure service for Google Cloud that lets
 /// service consumers list and manage their resource usage limits.

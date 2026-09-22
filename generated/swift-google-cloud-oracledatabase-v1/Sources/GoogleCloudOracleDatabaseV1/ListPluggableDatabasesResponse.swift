@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `PluggableDatabase.List`.
 public struct ListPluggableDatabasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of PluggableDatabases.
@@ -96,7 +95,10 @@ public struct ListPluggableDatabasesResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPluggableDatabasesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PluggableDatabase] {
     return self.pluggableDatabases
   }

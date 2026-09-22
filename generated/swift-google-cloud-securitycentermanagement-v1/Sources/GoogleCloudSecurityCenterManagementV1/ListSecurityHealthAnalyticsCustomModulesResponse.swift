@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules]: <doc:SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)>
 public struct ListSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Security Health Analytics custom modules.
@@ -104,7 +103,10 @@ public struct ListSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSecurityHealthAnalyticsCustomModulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SecurityHealthAnalyticsCustomModule] {
     return self.securityHealthAnalyticsCustomModules
   }

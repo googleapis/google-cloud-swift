@@ -21,7 +21,6 @@
 
   /// Response message for QueryDeployedModels method.
   public struct QueryDeployedModelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// DEPRECATED Use deployed_model_refs instead.
@@ -136,7 +135,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension QueryDeployedModelsResponse: GoogleGax._PaginatedResponse {
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif

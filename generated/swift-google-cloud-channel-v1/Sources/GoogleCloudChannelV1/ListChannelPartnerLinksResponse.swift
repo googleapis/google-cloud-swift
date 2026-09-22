@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]: <doc:CloudChannelServiceClient/listChannelPartnerLinks(request:options:)>
 public struct ListChannelPartnerLinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The Channel partner links for a reseller.
@@ -104,7 +103,10 @@ public struct ListChannelPartnerLinksResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListChannelPartnerLinksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ChannelPartnerLink] {
     return self.channelPartnerLinks
   }

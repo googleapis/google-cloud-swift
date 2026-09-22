@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListBackupChannels.
 public struct ListBackupChannelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of BackupChannels matching the given criteria.
@@ -109,7 +108,10 @@ public struct ListBackupChannelsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupChannelsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BackupChannel] {
     return self.backupChannels
   }

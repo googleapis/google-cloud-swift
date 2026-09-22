@@ -20,7 +20,6 @@ import Foundation
 
 /// `ListWorkflowConfigs` response message.
 public struct ListWorkflowConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of workflow configs.
@@ -104,7 +103,10 @@ public struct ListWorkflowConfigsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkflowConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [WorkflowConfig] {
     return self.workflowConfigs
   }

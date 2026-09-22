@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses]: <doc:LineageClient/batchSearchLinkProcesses(request:options:)>
 public struct BatchSearchLinkProcessesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// An array of processes associated with the specified links.
@@ -99,7 +98,10 @@ public struct BatchSearchLinkProcessesResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension BatchSearchLinkProcessesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProcessLinks] {
     return self.processLinks
   }

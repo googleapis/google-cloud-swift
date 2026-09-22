@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.longrunning.Operations.ListOperations]: <doc:OperationsClient/listOperations(request:options:)>
 public struct ListOperationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of operations that matches the specified filter in the request.
@@ -109,7 +108,10 @@ public struct ListOperationsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOperationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Operation] {
     return self.operations
   }

@@ -19,11 +19,11 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleApi
-  import GoogleLongRunning
-  import GoogleRpc
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleApi
+  @_spi(GoogleCloudInternal) import GoogleLongRunning
+  @_spi(GoogleCloudInternal) import GoogleRpc
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// Service for ingesting end user actions on a website to Discovery Engine API.
   ///

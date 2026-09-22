@@ -19,7 +19,6 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 public struct ResponsePoliciesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
@@ -91,7 +90,10 @@ public struct ResponsePoliciesListResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ResponsePoliciesListResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResponsePolicy] {
     return self.responsePolicies
   }

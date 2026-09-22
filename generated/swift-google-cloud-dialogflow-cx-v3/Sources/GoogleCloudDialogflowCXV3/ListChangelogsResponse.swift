@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Changelogs.ListChangelogs]: <doc:ChangelogsClient/listChangelogs(request:options:)>
   public struct ListChangelogsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of changelogs. There will be a maximum number of items returned
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListChangelogsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Changelog] {
       return self.changelogs
     }

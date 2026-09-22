@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message to list `MulticloudDataTransferConfig` resources.
 public struct ListMulticloudDataTransferConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of `MulticloudDataTransferConfig` resources to be listed.
@@ -107,7 +106,10 @@ public struct ListMulticloudDataTransferConfigsResponse: Codable, Equatable, Goo
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMulticloudDataTransferConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MulticloudDataTransferConfig] {
     return self.multicloudDataTransferConfigs
   }

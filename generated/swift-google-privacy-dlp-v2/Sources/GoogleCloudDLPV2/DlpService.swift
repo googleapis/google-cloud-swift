@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// Sensitive Data Protection provides access to a powerful sensitive data
 /// inspection, classification, and de-identification platform that works

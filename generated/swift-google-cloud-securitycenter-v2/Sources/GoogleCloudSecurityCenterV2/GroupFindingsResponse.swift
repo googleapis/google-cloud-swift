@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for group by findings.
 public struct GroupFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Group results. There exists an element for each existing unique
@@ -106,7 +105,10 @@ public struct GroupFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension GroupFindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GroupResult] {
     return self.groupByResults
   }

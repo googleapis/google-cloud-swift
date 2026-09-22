@@ -21,7 +21,6 @@ import Foundation
 /// A response message for listing inventory data for all VMs in a specified
 /// location.
 public struct ListInventoriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of inventory objects.
@@ -95,7 +94,10 @@ public struct ListInventoriesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInventoriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Inventory] {
     return self.inventories
   }

@@ -21,7 +21,6 @@ import Foundation
 /// Response to request for listing projects under an organization affected by an
 /// event.
 public struct ListOrganizationImpactsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. List of
@@ -112,7 +111,10 @@ public struct ListOrganizationImpactsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrganizationImpactsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OrganizationImpact] {
     return self.organizationImpacts
   }

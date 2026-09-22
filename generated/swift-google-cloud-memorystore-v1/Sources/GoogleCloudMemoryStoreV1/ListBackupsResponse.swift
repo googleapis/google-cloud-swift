@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for `ListBackups`.
 public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of backups in the project.
@@ -104,7 +103,10 @@ public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Backup] {
     return self.backups
   }

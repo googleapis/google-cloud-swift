@@ -21,7 +21,6 @@
 
   /// Contains a list of nodeGroups.
   public struct NodeGroupList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -638,7 +637,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension NodeGroupList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [NodeGroup] {
       return self.items
     }

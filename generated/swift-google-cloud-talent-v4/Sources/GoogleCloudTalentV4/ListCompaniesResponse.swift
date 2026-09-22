@@ -20,7 +20,6 @@ import Foundation
 
 /// The List companies response object.
 public struct ListCompaniesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Companies for the current client.
@@ -102,7 +101,10 @@ public struct ListCompaniesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCompaniesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Company] {
     return self.companies
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.EkmService.ListEkmConnections]: <doc:EkmServiceClient/listEkmConnections(request:options:)>
 public struct ListEkmConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [EkmConnections][google.cloud.kms.v1.EkmConnection].
@@ -120,7 +119,10 @@ public struct ListEkmConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEkmConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EkmConnection] {
     return self.ekmConnections
   }

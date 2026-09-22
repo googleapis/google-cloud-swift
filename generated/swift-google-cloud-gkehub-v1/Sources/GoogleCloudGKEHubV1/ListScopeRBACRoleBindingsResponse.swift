@@ -20,7 +20,6 @@ import Foundation
 
 /// List of Scope RBACRoleBindings.
 public struct ListScopeRBACRoleBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Scope RBACRoleBindings.
@@ -97,7 +96,10 @@ public struct ListScopeRBACRoleBindingsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListScopeRBACRoleBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RBACRoleBinding] {
     return self.rbacrolebindings
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:options:)>
 public struct ListTransferableSkusResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Information about existing SKUs for a customer that needs a transfer.
@@ -103,7 +102,10 @@ public struct ListTransferableSkusResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTransferableSkusResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TransferableSku] {
     return self.transferableSkus
   }

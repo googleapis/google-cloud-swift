@@ -20,7 +20,6 @@ import Foundation
 
 /// List assets response.
 public struct ListAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Asset under the given parent zone.
@@ -95,7 +94,10 @@ public struct ListAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAssetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Asset] {
     return self.assets
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.secretmanager.v1.SecretManagerService.ListSecrets]: <doc:SecretManagerServiceClient/listSecrets(request:options:)>
 public struct ListSecretsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in
@@ -119,7 +118,10 @@ public struct ListSecretsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSecretsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Secret] {
     return self.secrets
   }

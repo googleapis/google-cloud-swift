@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the ListDeploymentGroups method.
 public struct ListDeploymentGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The deployment groups from the specified collection.
@@ -105,7 +104,10 @@ public struct ListDeploymentGroupsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDeploymentGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DeploymentGroup] {
     return self.deploymentGroups
   }

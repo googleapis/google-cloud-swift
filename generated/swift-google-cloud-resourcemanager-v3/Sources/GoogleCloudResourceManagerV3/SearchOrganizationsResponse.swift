@@ -20,7 +20,6 @@ import Foundation
 
 /// The response returned from the `SearchOrganizations` method.
 public struct SearchOrganizationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Organizations that matched the search query, possibly
@@ -99,7 +98,10 @@ public struct SearchOrganizationsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchOrganizationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Organization] {
     return self.organizations
   }

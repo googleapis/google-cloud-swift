@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `AuthorizedCertificates.ListAuthorizedCertificates`.
 public struct ListAuthorizedCertificatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The SSL certificates the user is authorized to administer.
@@ -96,7 +95,10 @@ public struct ListAuthorizedCertificatesResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuthorizedCertificatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuthorizedCertificate] {
     return self.certificates
   }

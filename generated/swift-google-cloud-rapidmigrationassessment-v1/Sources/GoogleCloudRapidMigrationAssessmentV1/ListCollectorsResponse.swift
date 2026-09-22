@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing Collectors.
 public struct ListCollectorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Collectors.
@@ -103,7 +102,10 @@ public struct ListCollectorsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCollectorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Collector] {
     return self.collectors
   }

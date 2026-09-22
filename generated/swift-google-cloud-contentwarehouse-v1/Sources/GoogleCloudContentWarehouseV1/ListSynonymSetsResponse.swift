@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for SynonymSetService.ListSynonymSets.
 public struct ListSynonymSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The synonymSets from the specified parent.
@@ -95,7 +94,10 @@ public struct ListSynonymSetsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSynonymSetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SynonymSet] {
     return self.synonymSets
   }

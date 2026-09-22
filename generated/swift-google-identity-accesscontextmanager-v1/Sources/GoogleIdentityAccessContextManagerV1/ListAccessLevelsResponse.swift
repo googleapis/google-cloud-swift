@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to `ListAccessLevelsRequest`.
 public struct ListAccessLevelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of the [Access Level]
@@ -96,7 +95,10 @@ public struct ListAccessLevelsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAccessLevelsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AccessLevel] {
     return self.accessLevels
   }

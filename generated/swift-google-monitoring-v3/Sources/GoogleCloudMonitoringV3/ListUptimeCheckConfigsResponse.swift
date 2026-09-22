@@ -20,7 +20,6 @@ import Foundation
 
 /// The protocol for the `ListUptimeCheckConfigs` response.
 public struct ListUptimeCheckConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The returned Uptime check configurations.
@@ -110,7 +109,10 @@ public struct ListUptimeCheckConfigsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUptimeCheckConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [UptimeCheckConfig] {
     return self.uptimeCheckConfigs
   }

@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// BigLake Metastore is a serverless, highly available, multi-tenant runtime
 /// metastore for Google Cloud Data Analytics products.

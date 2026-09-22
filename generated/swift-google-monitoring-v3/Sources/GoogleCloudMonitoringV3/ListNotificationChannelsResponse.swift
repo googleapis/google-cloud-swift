@@ -20,7 +20,6 @@ import Foundation
 
 /// The `ListNotificationChannels` response.
 public struct ListNotificationChannelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The notification channels defined for the specified project.
@@ -109,7 +108,10 @@ public struct ListNotificationChannelsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNotificationChannelsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NotificationChannel] {
     return self.notificationChannels
   }

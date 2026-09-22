@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for "LivestreamService.ListClips".
 public struct ListClipsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Clip
@@ -103,7 +102,10 @@ public struct ListClipsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListClipsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Clip] {
     return self.clips
   }

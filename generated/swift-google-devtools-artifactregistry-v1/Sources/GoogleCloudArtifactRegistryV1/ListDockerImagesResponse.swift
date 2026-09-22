@@ -20,7 +20,6 @@ import Foundation
 
 /// The response from listing docker images.
 public struct ListDockerImagesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The docker images returned.
@@ -95,7 +94,10 @@ public struct ListDockerImagesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDockerImagesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DockerImage] {
     return self.dockerImages
   }

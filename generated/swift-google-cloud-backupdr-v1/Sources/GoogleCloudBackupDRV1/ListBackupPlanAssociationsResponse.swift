@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for List BackupPlanAssociation
 public struct ListBackupPlanAssociationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Backup Plan Associations in the project for the specified
@@ -112,7 +111,10 @@ public struct ListBackupPlanAssociationsResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupPlanAssociationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BackupPlanAssociation] {
     return self.backupPlanAssociations
   }

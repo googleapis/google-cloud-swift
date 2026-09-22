@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListAuthorizationPolicies method.
 public struct ListAuthorizationPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of AuthorizationPolicies resources.
@@ -98,7 +97,10 @@ public struct ListAuthorizationPoliciesResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuthorizationPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuthorizationPolicy] {
     return self.authorizationPolicies
   }

@@ -21,7 +21,6 @@
 
   /// Response message for [NotebookService.CreateNotebookExecutionJob]
   public struct ListNotebookExecutionJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of NotebookExecutionJobs in the requested page.
@@ -102,7 +101,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListNotebookExecutionJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [NotebookExecutionJob] {
       return self.notebookExecutionJobs
     }

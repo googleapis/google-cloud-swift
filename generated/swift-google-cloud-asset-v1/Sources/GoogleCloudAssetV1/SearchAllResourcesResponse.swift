@@ -20,7 +20,6 @@ import Foundation
 
 /// Search all resources response.
 public struct SearchAllResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of Resources that match the search query. It contains the resource
@@ -97,7 +96,10 @@ public struct SearchAllResourcesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchAllResourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceSearchResult] {
     return self.results
   }

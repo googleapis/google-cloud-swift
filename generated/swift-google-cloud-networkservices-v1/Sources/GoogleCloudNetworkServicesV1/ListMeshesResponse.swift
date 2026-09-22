@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListMeshes method.
 public struct ListMeshesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Mesh resources.
@@ -107,7 +106,10 @@ public struct ListMeshesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMeshesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Mesh] {
     return self.meshes
   }

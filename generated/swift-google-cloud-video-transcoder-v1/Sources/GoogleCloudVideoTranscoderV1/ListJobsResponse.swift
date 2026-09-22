@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `TranscoderService.ListJobs`.
 public struct ListJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of jobs in the specified region.
@@ -103,7 +102,10 @@ public struct ListJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Job] {
     return self.jobs
   }

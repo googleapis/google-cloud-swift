@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.ces.v1.AgentService.ListApps]: <doc:AgentServiceClient/listApps(request:options:)>
 public struct ListAppsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of apps.
@@ -111,7 +110,10 @@ public struct ListAppsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAppsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [App] {
     return self.apps
   }

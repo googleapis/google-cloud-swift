@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:SpeechClient/listRecognizers(request:options:)>
 public struct ListRecognizersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested Recognizers.
@@ -102,7 +101,10 @@ public struct ListRecognizersResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRecognizersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Recognizer] {
     return self.recognizers
   }

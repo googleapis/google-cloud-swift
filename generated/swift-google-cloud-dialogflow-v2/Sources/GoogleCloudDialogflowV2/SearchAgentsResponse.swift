@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Agents.SearchAgents]: <doc:AgentsClient/searchAgents(request:options:)>
   public struct SearchAgentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of agents. There will be a maximum number of items returned based
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension SearchAgentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Agent] {
       return self.agents
     }

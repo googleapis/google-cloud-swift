@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a 'ListRevisions' call. Contains a list of Revisions.
 public struct ListRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of [Revision][google.cloud.config.v1.Revision]s.
@@ -107,7 +106,10 @@ public struct ListRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRevisionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Revision] {
     return self.revisions
   }

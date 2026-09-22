@@ -25,7 +25,6 @@ import Foundation
 /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
 @available(*, deprecated)
 public struct FetchReportResultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The metadata for the report results (display name, columns, row count, and
@@ -113,7 +112,11 @@ public struct FetchReportResultsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension FetchReportResultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Row] {
     return self.rows
   }

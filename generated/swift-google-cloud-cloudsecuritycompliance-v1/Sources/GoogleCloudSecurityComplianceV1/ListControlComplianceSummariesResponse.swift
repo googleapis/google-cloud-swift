@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for [ListControlComplianceSummaries][].
 public struct ListControlComplianceSummariesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of control compliance details.
@@ -97,7 +96,10 @@ public struct ListControlComplianceSummariesResponse: Codable, Equatable, Google
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListControlComplianceSummariesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ControlComplianceSummary] {
     return self.controlComplianceSummaries
   }

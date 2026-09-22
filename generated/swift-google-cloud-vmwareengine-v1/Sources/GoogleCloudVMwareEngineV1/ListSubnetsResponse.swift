@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]: <doc:VmwareEngineClient/listSubnets(request:options:)>
 public struct ListSubnetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of subnets.
@@ -108,7 +107,10 @@ public struct ListSubnetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSubnetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Subnet] {
     return self.subnets
   }

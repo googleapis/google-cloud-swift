@@ -20,7 +20,6 @@ import Foundation
 
 /// The response from ListTunnelDestGroups.
 public struct ListTunnelDestGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// TunnelDestGroup existing in the project.
@@ -96,7 +95,10 @@ public struct ListTunnelDestGroupsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTunnelDestGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TunnelDestGroup] {
     return self.tunnelDestGroups
   }

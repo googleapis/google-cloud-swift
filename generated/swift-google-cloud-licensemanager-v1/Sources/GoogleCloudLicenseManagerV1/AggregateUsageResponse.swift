@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response for aggregating usage count
 public struct AggregateUsageResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The aggregated records of usage per configuration
@@ -103,7 +102,10 @@ public struct AggregateUsageResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension AggregateUsageResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Usage] {
     return self.usages
   }

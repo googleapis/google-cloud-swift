@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `Firewall.ListIngressRules`.
 public struct ListIngressRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The ingress FirewallRules for this application.
@@ -94,7 +93,10 @@ public struct ListIngressRulesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListIngressRulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FirewallRule] {
     return self.ingressRules
   }

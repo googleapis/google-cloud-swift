@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the list of provisioning quotas.
 public struct ListProvisioningQuotasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The provisioning quotas registered in this project.
@@ -97,7 +96,10 @@ public struct ListProvisioningQuotasResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProvisioningQuotasResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProvisioningQuota] {
     return self.provisioningQuotas
   }

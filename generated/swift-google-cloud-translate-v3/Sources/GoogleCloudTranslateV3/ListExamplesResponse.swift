@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListExamples.
 public struct ListExamplesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The sentence pairs.
@@ -96,7 +95,10 @@ public struct ListExamplesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExamplesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Example] {
     return self.examples
   }

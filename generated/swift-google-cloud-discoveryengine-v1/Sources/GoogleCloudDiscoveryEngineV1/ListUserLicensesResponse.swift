@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses]: <doc:UserLicenseServiceClient/listUserLicenses(request:options:)>
   public struct ListUserLicensesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// All the customer's
@@ -102,7 +101,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListUserLicensesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [UserLicense] {
       return self.userLicenses
     }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.ListTransitionRouteGroups]: <doc:TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)>
   public struct ListTransitionRouteGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of transition route groups. There will be a maximum number of
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTransitionRouteGroupsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TransitionRouteGroup] {
       return self.transitionRouteGroups
     }

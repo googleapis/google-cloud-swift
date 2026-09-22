@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct InstanceGroupsListInstances: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. [Output Only] Unique identifier for the resource; defined by the server.
@@ -640,7 +639,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension InstanceGroupsListInstances: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [InstanceWithNamedPorts] {
       return self.items
     }

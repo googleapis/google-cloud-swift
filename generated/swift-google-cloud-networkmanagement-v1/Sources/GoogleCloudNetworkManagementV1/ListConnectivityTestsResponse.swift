@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListConnectivityTests` method.
 public struct ListConnectivityTestsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Connectivity Tests.
@@ -103,7 +102,10 @@ public struct ListConnectivityTestsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectivityTestsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ConnectivityTest] {
     return self.resources
   }

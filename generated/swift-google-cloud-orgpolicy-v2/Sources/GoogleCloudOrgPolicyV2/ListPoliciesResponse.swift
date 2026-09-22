@@ -22,7 +22,6 @@ import Foundation
 /// [google.cloud.orgpolicy.v2.OrgPolicy.ListPolicies] method. It will be empty
 /// if no policies are set on the resource.
 public struct ListPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// All policies that exist on the resource. It will be empty if no
@@ -98,7 +97,10 @@ public struct ListPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Policy] {
     return self.policies
   }

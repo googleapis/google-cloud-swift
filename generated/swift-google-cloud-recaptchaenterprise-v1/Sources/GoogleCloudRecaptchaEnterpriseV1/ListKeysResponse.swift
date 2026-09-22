@@ -20,7 +20,6 @@ import Foundation
 
 /// Response to request to list keys in a project.
 public struct ListKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Key details.
@@ -95,7 +94,10 @@ public struct ListKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Key] {
     return self.keys
   }

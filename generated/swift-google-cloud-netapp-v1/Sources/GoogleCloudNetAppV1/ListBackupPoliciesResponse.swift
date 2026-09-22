@@ -20,7 +20,6 @@ import Foundation
 
 /// ListBackupPoliciesResponse contains all the backup policies requested.
 public struct ListBackupPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of backup policies.
@@ -103,7 +102,10 @@ public struct ListBackupPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BackupPolicy] {
     return self.backupPolicies
   }

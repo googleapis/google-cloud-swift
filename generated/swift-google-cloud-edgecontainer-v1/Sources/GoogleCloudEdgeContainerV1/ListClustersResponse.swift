@@ -20,7 +20,6 @@ import Foundation
 
 /// List of clusters in a location.
 public struct ListClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Clusters in the location.
@@ -103,7 +102,10 @@ public struct ListClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListClustersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Cluster] {
     return self.clusters
   }

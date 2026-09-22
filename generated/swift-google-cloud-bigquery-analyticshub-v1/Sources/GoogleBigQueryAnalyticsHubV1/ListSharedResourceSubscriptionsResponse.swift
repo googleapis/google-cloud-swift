@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to the listing of shared resource subscriptions.
 public struct ListSharedResourceSubscriptionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of subscriptions.
@@ -97,7 +96,10 @@ public struct ListSharedResourceSubscriptionsResponse: Codable, Equatable, Googl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSharedResourceSubscriptionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Subscription] {
     return self.sharedResourceSubscriptions
   }

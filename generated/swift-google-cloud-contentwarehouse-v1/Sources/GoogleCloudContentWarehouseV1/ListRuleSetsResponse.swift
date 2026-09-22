@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for RuleSetService.ListRuleSets.
 public struct ListRuleSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The rule sets from the specified parent.
@@ -95,7 +94,10 @@ public struct ListRuleSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuleSetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RuleSet] {
     return self.ruleSets
   }

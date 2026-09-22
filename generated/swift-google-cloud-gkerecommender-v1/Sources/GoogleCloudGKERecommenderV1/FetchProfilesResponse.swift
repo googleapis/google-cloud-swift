@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
 public struct FetchProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. List of profiles that match the given model server info and
@@ -119,7 +118,10 @@ public struct FetchProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchProfilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Profile] {
     return self.profile
   }

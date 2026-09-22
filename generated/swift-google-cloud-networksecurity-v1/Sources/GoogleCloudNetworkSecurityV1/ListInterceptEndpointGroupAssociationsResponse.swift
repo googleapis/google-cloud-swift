@@ -21,7 +21,6 @@ import Foundation
 /// Response message for ListInterceptEndpointGroupAssociations.
 public struct ListInterceptEndpointGroupAssociationsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The associations from the specified parent.
@@ -102,7 +101,10 @@ public struct ListInterceptEndpointGroupAssociationsResponse: Codable, Equatable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInterceptEndpointGroupAssociationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [InterceptEndpointGroupAssociation] {
     return self.interceptEndpointGroupAssociations
   }

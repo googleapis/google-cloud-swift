@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineServiceClient/listPipelineJobs(request:options:)>
   public struct ListPipelineJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of PipelineJobs in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListPipelineJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [PipelineJob] {
       return self.pipelineJobs
     }

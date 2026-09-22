@@ -21,7 +21,6 @@ import Foundation
 /// Response message to list `IntelligenceFindingRevision` resources associated
 /// with a project.
 public struct ListIntelligenceFindingRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The `IntelligenceFindingRevision` resources from the specified project.
@@ -98,7 +97,10 @@ public struct ListIntelligenceFindingRevisionsResponse: Codable, Equatable, Goog
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListIntelligenceFindingRevisionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [IntelligenceFindingRevision] {
     return self.intelligenceFindingRevisions
   }

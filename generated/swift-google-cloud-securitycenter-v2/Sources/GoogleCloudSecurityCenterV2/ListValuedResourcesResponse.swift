@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing the valued resources for a given simulation.
 public struct ListValuedResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The valued resources that the attack path simulation identified.
@@ -104,7 +103,10 @@ public struct ListValuedResourcesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListValuedResourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ValuedResource] {
     return self.valuedResources
   }

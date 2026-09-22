@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListServiceConnectionTokens.
 public struct ListServiceConnectionTokensResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// ServiceConnectionTokens to be returned.
@@ -107,7 +106,10 @@ public struct ListServiceConnectionTokensResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceConnectionTokensResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceConnectionToken] {
     return self.serviceConnectionTokens
   }

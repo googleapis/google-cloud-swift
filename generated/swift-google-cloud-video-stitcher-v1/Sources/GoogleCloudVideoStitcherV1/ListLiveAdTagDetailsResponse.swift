@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for VideoStitcherService.listLiveAdTagDetails.
 public struct ListLiveAdTagDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of live session ad tag details.
@@ -95,7 +94,10 @@ public struct ListLiveAdTagDetailsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLiveAdTagDetailsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LiveAdTagDetail] {
     return self.liveAdTagDetails
   }

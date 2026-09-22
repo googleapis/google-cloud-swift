@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the ListContacts method.
 public struct ListContactsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The contacts for the specified resource.
@@ -97,7 +96,10 @@ public struct ListContactsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListContactsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Contact] {
     return self.contacts
   }

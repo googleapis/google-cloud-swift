@@ -20,7 +20,6 @@ import Foundation
 
 /// Response including listed builds.
 public struct ListBuildsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Builds will be sorted by `create_time`, descending.
@@ -95,7 +94,10 @@ public struct ListBuildsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBuildsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Build] {
     return self.builds
   }

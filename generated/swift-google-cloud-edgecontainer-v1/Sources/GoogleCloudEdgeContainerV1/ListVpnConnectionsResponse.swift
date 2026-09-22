@@ -20,7 +20,6 @@ import Foundation
 
 /// List of VPN connections in a location.
 public struct ListVpnConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// VpnConnections in the location.
@@ -103,7 +102,10 @@ public struct ListVpnConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVpnConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VpnConnection] {
     return self.vpnConnections
   }

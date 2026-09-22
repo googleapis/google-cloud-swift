@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for listing occurrences.
 public struct ListOccurrencesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The occurrences requested.
@@ -108,7 +107,10 @@ public struct ListOccurrencesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOccurrencesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Occurrence] {
     return self.occurrences
   }

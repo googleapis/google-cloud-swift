@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for SearchTargetPolicyBindings method.
 public struct SearchTargetPolicyBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The policy bindings bound to the specified target.
@@ -95,7 +94,10 @@ public struct SearchTargetPolicyBindingsResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchTargetPolicyBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PolicyBinding] {
     return self.policyBindings
   }

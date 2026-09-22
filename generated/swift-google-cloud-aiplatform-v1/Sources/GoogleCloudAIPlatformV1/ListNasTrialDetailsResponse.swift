@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListNasTrialDetails]: <doc:JobServiceClient/listNasTrialDetails(request:options:)>
   public struct ListNasTrialDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of top NasTrials in the requested page.
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListNasTrialDetailsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [NasTrialDetail] {
       return self.nasTrialDetails
     }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for BigtableInstanceAdmin.ListHotTablets.
 public struct ListHotTabletsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of hot tablets in the tables of the requested cluster that fall
@@ -100,7 +99,10 @@ public struct ListHotTabletsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListHotTabletsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [HotTablet] {
     return self.hotTablets
   }

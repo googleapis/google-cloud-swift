@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListDiscoveredServices.
 public struct ListDiscoveredServicesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Discovered Services.
@@ -105,7 +104,10 @@ public struct ListDiscoveredServicesResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDiscoveredServicesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DiscoveredService] {
     return self.discoveredServices
   }

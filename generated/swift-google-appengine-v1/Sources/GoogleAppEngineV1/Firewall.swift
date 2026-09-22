@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleLongRunning
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// Firewall resources are used to define a collection of access control rules
 /// for an Application. Each rule is defined with a position which specifies

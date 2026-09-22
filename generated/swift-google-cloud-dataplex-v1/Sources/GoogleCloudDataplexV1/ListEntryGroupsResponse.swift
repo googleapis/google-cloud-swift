@@ -20,7 +20,6 @@ import Foundation
 
 /// List entry groups response.
 public struct ListEntryGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Entry groups under the given parent location.
@@ -105,7 +104,10 @@ public struct ListEntryGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEntryGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EntryGroup] {
     return self.entryGroups
   }

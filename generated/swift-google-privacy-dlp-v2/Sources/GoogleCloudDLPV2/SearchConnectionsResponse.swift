@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for SearchConnections.
 public struct SearchConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of connections that match the search query. Note that only a subset
@@ -97,7 +96,10 @@ public struct SearchConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Connection] {
     return self.connections
   }

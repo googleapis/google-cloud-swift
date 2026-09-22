@@ -18,12 +18,12 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudCommon
-import GoogleCloudLocation
-import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleCloudCommon
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// Configures and manages Filestore resources.
 ///

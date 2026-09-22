@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `CloudExadataInfrastructures.list`.
 public struct ListCloudExadataInfrastructuresResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Exadata Infrastructures.
@@ -107,7 +106,10 @@ public struct ListCloudExadataInfrastructuresResponse: Codable, Equatable, Googl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCloudExadataInfrastructuresResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CloudExadataInfrastructure] {
     return self.cloudExadataInfrastructures
   }

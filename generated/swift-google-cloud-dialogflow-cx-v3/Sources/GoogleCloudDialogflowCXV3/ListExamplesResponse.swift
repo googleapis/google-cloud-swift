@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Examples.ListExamples]: <doc:ExamplesClient/listExamples(request:options:)>
   public struct ListExamplesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of examples. There will be a maximum number of items returned
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListExamplesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Example] {
       return self.examples
     }

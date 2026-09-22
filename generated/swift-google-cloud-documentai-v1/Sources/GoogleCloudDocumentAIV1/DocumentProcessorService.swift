@@ -18,11 +18,11 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudLocation
-import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// Service to call Document AI to process documents according to the
 /// processor's definition. Processors are built using state-of-the-art Google

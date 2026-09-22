@@ -20,7 +20,6 @@ import Foundation
 
 /// Response of ListViolations endpoint.
 public struct ListViolationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Violations under a Workload.
@@ -94,7 +93,10 @@ public struct ListViolationsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListViolationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Violation] {
     return self.violations
   }

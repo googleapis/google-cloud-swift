@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a 'ListResources' call. Contains a list of Resources.
 public struct ListResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of [Resources][google.cloud.config.v1.Resource].
@@ -107,7 +106,10 @@ public struct ListResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Resource] {
     return self.resources
   }

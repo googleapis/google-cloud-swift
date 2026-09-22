@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleApi
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleApi
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The Group API lets you inspect and manage your
 /// [groups](#google.monitoring.v3.Group).

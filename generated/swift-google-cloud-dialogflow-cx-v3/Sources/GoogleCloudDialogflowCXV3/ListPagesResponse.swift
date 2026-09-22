@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Pages.ListPages]: <doc:PagesClient/listPages(request:options:)>
   public struct ListPagesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of pages. There will be a maximum number of items returned based
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListPagesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Page] {
       return self.pages
     }

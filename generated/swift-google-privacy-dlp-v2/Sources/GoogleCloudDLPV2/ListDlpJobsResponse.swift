@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for listing DLP jobs.
 public struct ListDlpJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of DlpJobs that matches the specified filter in the request.
@@ -94,7 +93,10 @@ public struct ListDlpJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDlpJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DlpJob] {
     return self.jobs
   }

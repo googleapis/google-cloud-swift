@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing ResourceBundles.
 public struct ListResourceBundlesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of ResourceBundle.
@@ -103,7 +102,10 @@ public struct ListResourceBundlesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourceBundlesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceBundle] {
     return self.resourceBundles
   }

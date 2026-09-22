@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the ListDatabases method.
 public struct ListDatabasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The databases from the specified catalog.
@@ -95,7 +94,10 @@ public struct ListDatabasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDatabasesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Database] {
     return self.databases
   }

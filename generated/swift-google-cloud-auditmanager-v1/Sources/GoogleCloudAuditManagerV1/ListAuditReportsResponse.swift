@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.auditmanager.v1.AuditManager.ListAuditReports]: <doc:AuditManagerClient/listAuditReports(request:options:)>
 public struct ListAuditReportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. Audit reports.
@@ -99,7 +98,10 @@ public struct ListAuditReportsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuditReportsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuditReport] {
     return self.auditReports
   }

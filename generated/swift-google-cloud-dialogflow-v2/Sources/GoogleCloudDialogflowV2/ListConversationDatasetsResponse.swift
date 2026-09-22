@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.ConversationDatasets.ListConversationDatasets]: <doc:ConversationDatasetsClient/listConversationDatasets(request:options:)>
   public struct ListConversationDatasetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of datasets to return.
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListConversationDatasetsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ConversationDataset] {
       return self.conversationDatasets
     }

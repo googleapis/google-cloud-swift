@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListImageImportJobs' call.
 public struct ListImageImportJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of target response.
@@ -104,7 +103,10 @@ public struct ListImageImportJobsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListImageImportJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ImageImportJob] {
     return self.imageImportJobs
   }

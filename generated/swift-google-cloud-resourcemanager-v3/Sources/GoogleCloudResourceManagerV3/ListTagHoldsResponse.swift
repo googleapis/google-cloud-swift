@@ -20,7 +20,6 @@ import Foundation
 
 /// The ListTagHolds response.
 public struct ListTagHoldsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated list of TagHolds.
@@ -104,7 +103,10 @@ public struct ListTagHoldsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTagHoldsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TagHold] {
     return self.tagHolds
   }

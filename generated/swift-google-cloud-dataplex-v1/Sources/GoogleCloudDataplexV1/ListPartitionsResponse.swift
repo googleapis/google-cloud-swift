@@ -20,7 +20,6 @@ import Foundation
 
 /// List metadata partitions response.
 public struct ListPartitionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Partitions under the specified parent entity.
@@ -95,7 +94,10 @@ public struct ListPartitionsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPartitionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Partition] {
     return self.partitions
   }

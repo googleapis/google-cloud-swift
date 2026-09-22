@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]: <doc:ApiHubDependenciesClient/listDependencies(request:options:)>
 public struct ListDependenciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The dependency resources present in the API hub.
@@ -99,7 +98,10 @@ public struct ListDependenciesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDependenciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Dependency] {
     return self.dependencies
   }

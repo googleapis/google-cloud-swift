@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]: <doc:VmwareEngineClient/listNetworkPolicies(request:options:)>
 public struct ListNetworkPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of network policies.
@@ -108,7 +107,10 @@ public struct ListNetworkPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNetworkPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NetworkPolicy] {
     return self.networkPolicies
   }

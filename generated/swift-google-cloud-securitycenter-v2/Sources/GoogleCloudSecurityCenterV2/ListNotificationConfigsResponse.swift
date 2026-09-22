@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing notification configs.
 public struct ListNotificationConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Notification configs belonging to the requested parent.
@@ -97,7 +96,10 @@ public struct ListNotificationConfigsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNotificationConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NotificationConfig] {
     return self.notificationConfigs
   }

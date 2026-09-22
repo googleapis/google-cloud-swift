@@ -18,8 +18,8 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The Quotas Adjuster Settings API is an infrastructure service for Google
 ///  Cloud that lets service consumers view and update their quota adjuster

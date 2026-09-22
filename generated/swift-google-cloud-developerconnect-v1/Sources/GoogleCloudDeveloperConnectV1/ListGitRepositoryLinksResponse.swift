@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing GitRepositoryLinks
 public struct ListGitRepositoryLinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of GitRepositoryLinks
@@ -105,7 +104,10 @@ public struct ListGitRepositoryLinksResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGitRepositoryLinksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GitRepositoryLink] {
     return self.gitRepositoryLinks
   }

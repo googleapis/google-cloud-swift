@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing `AuthzExtension` resources.
 public struct ListAuthzExtensionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of `AuthzExtension` resources.
@@ -103,7 +102,10 @@ public struct ListAuthzExtensionsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuthzExtensionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuthzExtension] {
     return self.authzExtensions
   }

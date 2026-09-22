@@ -21,7 +21,6 @@ import Foundation
 /// Response of [ListGcpUserAccessBindings]
 /// [google.identity.accesscontextmanager.v1.AccessContextManager.ListGcpUserAccessBindings].
 public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// [GcpUserAccessBinding]
@@ -99,7 +98,10 @@ public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGcpUserAccessBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GcpUserAccessBinding] {
     return self.gcpUserAccessBindings
   }

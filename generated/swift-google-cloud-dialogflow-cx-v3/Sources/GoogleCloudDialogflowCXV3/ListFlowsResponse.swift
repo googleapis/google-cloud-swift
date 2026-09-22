@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Flows.ListFlows]: <doc:FlowsClient/listFlows(request:options:)>
   public struct ListFlowsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of flows. There will be a maximum number of items returned based
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListFlowsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Flow] {
       return self.flows
     }

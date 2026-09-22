@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:options:)>
 public struct ListCustomClassesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested CustomClasses.
@@ -102,7 +101,10 @@ public struct ListCustomClassesResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCustomClassesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CustomClass] {
     return self.customClasses
   }

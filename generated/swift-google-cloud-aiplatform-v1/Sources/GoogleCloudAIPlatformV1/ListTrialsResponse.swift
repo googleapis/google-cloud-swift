@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.VizierService.ListTrials]: <doc:VizierServiceClient/listTrials(request:options:)>
   public struct ListTrialsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The Trials associated with the Study.
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTrialsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Trial] {
       return self.trials
     }

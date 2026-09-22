@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListIndexes.
 public struct ListIndexesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The indexes under the specified corpus.
@@ -95,7 +94,10 @@ public struct ListIndexesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListIndexesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Index] {
     return self.indexes
   }

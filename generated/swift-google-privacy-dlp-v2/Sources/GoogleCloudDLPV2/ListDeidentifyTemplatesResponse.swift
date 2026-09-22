@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListDeidentifyTemplates.
 public struct ListDeidentifyTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of deidentify templates, up to page_size in
@@ -98,7 +97,10 @@ public struct ListDeidentifyTemplatesResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDeidentifyTemplatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DeidentifyTemplate] {
     return self.deidentifyTemplates
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// The response object from `ListCustomTargetTypes.`
 public struct ListCustomTargetTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The `CustomTargetType` objects.
@@ -106,7 +105,10 @@ public struct ListCustomTargetTypesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCustomTargetTypesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CustomTargetType] {
     return self.customTargetTypes
   }

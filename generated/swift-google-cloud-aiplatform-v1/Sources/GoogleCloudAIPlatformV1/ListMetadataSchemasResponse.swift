@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas]: <doc:MetadataServiceClient/listMetadataSchemas(request:options:)>
   public struct ListMetadataSchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The MetadataSchemas found for the MetadataStore.
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListMetadataSchemasResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [MetadataSchema] {
       return self.metadataSchemas
     }

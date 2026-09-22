@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:options:)>
 public struct ListCustomersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The customers belonging to a reseller or distributor.
@@ -102,7 +101,10 @@ public struct ListCustomersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCustomersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Customer] {
     return self.customers
   }

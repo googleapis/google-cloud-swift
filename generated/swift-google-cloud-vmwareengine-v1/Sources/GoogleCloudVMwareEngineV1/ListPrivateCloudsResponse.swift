@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateClouds]: <doc:VmwareEngineClient/listPrivateClouds(request:options:)>
 public struct ListPrivateCloudsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of private clouds.
@@ -108,7 +107,10 @@ public struct ListPrivateCloudsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPrivateCloudsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PrivateCloud] {
     return self.privateClouds
   }

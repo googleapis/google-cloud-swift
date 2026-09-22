@@ -20,7 +20,6 @@ import Foundation
 
 /// The response containing permissions which can be tested on a resource.
 public struct QueryTestablePermissionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The Permissions testable on the requested resource.
@@ -95,7 +94,10 @@ public struct QueryTestablePermissionsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryTestablePermissionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Permission] {
     return self.permissions
   }

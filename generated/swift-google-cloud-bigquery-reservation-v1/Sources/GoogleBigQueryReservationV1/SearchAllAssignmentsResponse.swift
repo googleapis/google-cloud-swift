@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments]: <doc:ReservationServiceClient/searchAllAssignments(request:options:)>
 public struct SearchAllAssignmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of assignments visible to the user.
@@ -98,7 +97,10 @@ public struct SearchAllAssignmentsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchAllAssignmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Assignment] {
     return self.assignments
   }

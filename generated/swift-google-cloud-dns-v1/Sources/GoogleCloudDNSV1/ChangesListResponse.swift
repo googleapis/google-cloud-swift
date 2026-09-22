@@ -20,7 +20,6 @@ import Foundation
 
 /// The response to a request to enumerate Changes to a ResourceRecordSets collection.
 public struct ChangesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested changes.
@@ -99,7 +98,10 @@ public struct ChangesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ChangesListResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Change] {
     return self.changes
   }

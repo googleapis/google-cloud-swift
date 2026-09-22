@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.ces.v1.AgentService.ListAgents]: <doc:AgentServiceClient/listAgents(request:options:)>
 public struct ListAgentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of agents.
@@ -102,7 +101,10 @@ public struct ListAgentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAgentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Agent] {
     return self.agents
   }

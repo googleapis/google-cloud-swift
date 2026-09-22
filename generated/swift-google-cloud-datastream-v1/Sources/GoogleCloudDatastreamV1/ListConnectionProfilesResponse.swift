@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing connection profiles.
 public struct ListConnectionProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of connection profiles.
@@ -106,7 +105,10 @@ public struct ListConnectionProfilesResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectionProfilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ConnectionProfile] {
     return self.connectionProfiles
   }

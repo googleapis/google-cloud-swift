@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudLocation
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The Cloud API Registry service provides a central registry for managing API
 /// Data.

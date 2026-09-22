@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct OperationAggregatedList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] The unique identifier for the resource. This identifier is
@@ -652,7 +651,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension OperationAggregatedList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, OperationsScopedList)] {
       return self.items.map { ($0, $1) }
     }

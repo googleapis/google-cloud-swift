@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `DbServer.List`.
 public struct ListDbServersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of database servers.
@@ -94,7 +93,10 @@ public struct ListDbServersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDbServersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DbServer] {
     return self.dbServers
   }

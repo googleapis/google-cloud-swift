@@ -18,10 +18,10 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleIAMV1
-import GoogleLongRunning
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The SessionTemplateController provides methods to manage session templates.
 ///

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing data tables.
 public struct ListDataTablesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of the data tables returned.
@@ -95,7 +94,10 @@ public struct ListDataTablesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataTablesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataTable] {
     return self.dataTables
   }

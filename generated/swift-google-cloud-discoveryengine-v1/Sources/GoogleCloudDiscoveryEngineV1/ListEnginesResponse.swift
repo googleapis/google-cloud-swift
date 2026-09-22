@@ -25,7 +25,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
   public struct ListEnginesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// All the customer's [Engine][google.cloud.discoveryengine.v1.Engine]s.
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListEnginesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Engine] {
       return self.engines
     }

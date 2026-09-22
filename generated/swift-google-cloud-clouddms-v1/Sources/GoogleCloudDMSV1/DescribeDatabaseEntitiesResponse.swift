@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'DescribeDatabaseEntities' request.
 public struct DescribeDatabaseEntitiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of database entities for the conversion workspace.
@@ -95,7 +94,10 @@ public struct DescribeDatabaseEntitiesResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension DescribeDatabaseEntitiesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DatabaseEntity] {
     return self.databaseEntities
   }

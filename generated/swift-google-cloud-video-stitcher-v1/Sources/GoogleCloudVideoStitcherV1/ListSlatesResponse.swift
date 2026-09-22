@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for VideoStitcherService.listSlates.
 public struct ListSlatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of slates
@@ -103,7 +102,10 @@ public struct ListSlatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSlatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Slate] {
     return self.slates
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders]: <doc:ConsumerProcurementServiceClient/listOrders(request:options:)>
 public struct ListOrdersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of orders in this response.
@@ -97,7 +96,10 @@ public struct ListOrdersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrdersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Order] {
     return self.orders
   }

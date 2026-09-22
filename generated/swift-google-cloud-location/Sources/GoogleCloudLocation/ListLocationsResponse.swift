@@ -22,7 +22,6 @@ import Foundation
 ///
 /// [google.cloud.location.Locations.ListLocations]: <doc:LocationsClient/listLocations(request:options:)>
 public struct ListLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of locations that matches the specified filter in the request.
@@ -96,7 +95,10 @@ public struct ListLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLocationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Location] {
     return self.locations
   }

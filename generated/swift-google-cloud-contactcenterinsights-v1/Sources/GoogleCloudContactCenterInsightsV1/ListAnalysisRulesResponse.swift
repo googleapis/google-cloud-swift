@@ -20,7 +20,6 @@ import Foundation
 
 /// The response of listing views.
 public struct ListAnalysisRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The analysis_rule that match the request.
@@ -95,7 +94,10 @@ public struct ListAnalysisRulesResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAnalysisRulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AnalysisRule] {
     return self.analysisRules
   }

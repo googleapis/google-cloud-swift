@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for FetchLinkableGitRepositories.
 public struct FetchLinkableGitRepositoriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The git repositories that can be linked to the connection.
@@ -97,7 +96,10 @@ public struct FetchLinkableGitRepositoriesResponse: Codable, Equatable, GoogleWK
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchLinkableGitRepositoriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LinkableGitRepository] {
     return self.linkableGitRepositories
   }

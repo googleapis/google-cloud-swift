@@ -20,7 +20,6 @@ import Foundation
 
 /// `SearchTeamFolders` response message.
 public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of TeamFolders that match the search query.
@@ -190,7 +189,10 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchTeamFoldersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchTeamFoldersResponse.TeamFolderSearchResult] {
     return self.results
   }

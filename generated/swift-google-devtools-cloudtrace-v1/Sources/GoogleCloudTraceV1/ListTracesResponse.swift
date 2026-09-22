@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListTraces` method.
 public struct ListTracesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of trace records as specified by the view parameter.
@@ -96,7 +95,10 @@ public struct ListTracesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTracesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Trace] {
     return self.traces
   }

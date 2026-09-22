@@ -21,7 +21,6 @@ import Foundation
 /// Response message for ListAllFindingsRefinementDeployments method.
 public struct ListAllFindingsRefinementDeploymentsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of all findings refinement deployments.
@@ -101,7 +100,10 @@ public struct ListAllFindingsRefinementDeploymentsResponse: Codable, Equatable, 
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAllFindingsRefinementDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FindingsRefinementDeployment] {
     return self.allFindingsRefinementDeployments
   }

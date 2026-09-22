@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleLongRunning
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// FindingsRefinementService provides an interface for filtering out
 /// findings that are unlikely to be real threats to prevent them

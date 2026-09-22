@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message containing the list of NFS shares.
 public struct ListNfsSharesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of NFS shares.
@@ -103,7 +102,10 @@ public struct ListNfsSharesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNfsSharesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NfsShare] {
     return self.nfsShares
   }

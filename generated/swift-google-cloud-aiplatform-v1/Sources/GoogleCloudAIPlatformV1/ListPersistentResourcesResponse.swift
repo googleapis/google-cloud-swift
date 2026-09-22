@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources]: <doc:PersistentResourceServiceClient/listPersistentResources(request:options:)>
   public struct ListPersistentResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     public var persistentResources: [PersistentResource] = []
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListPersistentResourcesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [PersistentResource] {
       return self.persistentResources
     }

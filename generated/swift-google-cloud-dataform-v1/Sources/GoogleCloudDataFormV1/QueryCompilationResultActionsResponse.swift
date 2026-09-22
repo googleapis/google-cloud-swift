@@ -20,7 +20,6 @@ import Foundation
 
 /// `QueryCompilationResultActions` response message.
 public struct QueryCompilationResultActionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of compilation result actions.
@@ -97,7 +96,10 @@ public struct QueryCompilationResultActionsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryCompilationResultActionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CompilationResultAction] {
     return self.compilationResultActions
   }

@@ -21,7 +21,6 @@
 
   /// Response for the aggregated list of VM extension policies.
   public struct VmExtensionPolicyAggregatedListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     public var etag: Swift.String? = nil
@@ -659,7 +658,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension VmExtensionPolicyAggregatedListResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, VmExtensionPoliciesScopedList)] {
       return self.items.map { ($0, $1) }
     }

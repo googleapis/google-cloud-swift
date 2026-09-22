@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListCorpora.
 public struct ListCorporaResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The corpora in the project.
@@ -99,7 +98,10 @@ public struct ListCorporaResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCorporaResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Corpus] {
     return self.corpora
   }

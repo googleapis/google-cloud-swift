@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.servicedirectory.v1.RegistrationService.ListServices]: <doc:RegistrationServiceClient/listServices(request:options:)>
 public struct ListServicesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of services.
@@ -98,7 +97,10 @@ public struct ListServicesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServicesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Service] {
     return self.services
   }

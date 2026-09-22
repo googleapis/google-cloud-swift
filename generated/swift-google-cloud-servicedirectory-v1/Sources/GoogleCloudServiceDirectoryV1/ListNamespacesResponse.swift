@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces]: <doc:RegistrationServiceClient/listNamespaces(request:options:)>
 public struct ListNamespacesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of namespaces.
@@ -98,7 +97,10 @@ public struct ListNamespacesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNamespacesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Namespace] {
     return self.namespaces
   }

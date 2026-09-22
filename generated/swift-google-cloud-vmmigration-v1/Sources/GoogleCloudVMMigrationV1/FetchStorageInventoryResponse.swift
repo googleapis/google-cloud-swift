@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory]: <doc:VmMigrationClient/fetchStorageInventory(request:options:)>
 public struct FetchStorageInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of storage resources in the source.
@@ -106,7 +105,10 @@ public struct FetchStorageInventoryResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchStorageInventoryResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SourceStorageResource] {
     return self.resources
   }

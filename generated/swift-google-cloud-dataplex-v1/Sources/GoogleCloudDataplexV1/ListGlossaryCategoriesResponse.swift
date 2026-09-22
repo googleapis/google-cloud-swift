@@ -20,7 +20,6 @@ import Foundation
 
 /// List GlossaryCategories Response
 public struct ListGlossaryCategoriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Lists the GlossaryCategories in the specified parent.
@@ -105,7 +104,10 @@ public struct ListGlossaryCategoriesResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGlossaryCategoriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GlossaryCategory] {
     return self.categories
   }

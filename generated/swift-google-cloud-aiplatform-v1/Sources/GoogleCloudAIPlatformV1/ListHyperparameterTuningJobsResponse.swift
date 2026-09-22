@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobServiceClient/listHyperparameterTuningJobs(request:options:)>
   public struct ListHyperparameterTuningJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of HyperparameterTuningJobs in the requested page.
@@ -109,7 +108,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListHyperparameterTuningJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [HyperparameterTuningJob] {
       return self.hyperparameterTuningJobs
     }

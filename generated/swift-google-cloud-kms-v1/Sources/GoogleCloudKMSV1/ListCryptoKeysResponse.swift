@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeys]: <doc:KeyManagementServiceClient/listCryptoKeys(request:options:)>
 public struct ListCryptoKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
@@ -120,7 +119,10 @@ public struct ListCryptoKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCryptoKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CryptoKey] {
     return self.cryptoKeys
   }

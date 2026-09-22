@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListEndpointPolicies method.
 public struct ListEndpointPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of EndpointPolicy resources.
@@ -110,7 +109,10 @@ public struct ListEndpointPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEndpointPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EndpointPolicy] {
     return self.endpointPolicies
   }

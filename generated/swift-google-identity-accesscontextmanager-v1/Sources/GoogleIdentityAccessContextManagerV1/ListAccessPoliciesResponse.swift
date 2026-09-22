@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to `ListAccessPoliciesRequest`.
 public struct ListAccessPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of the AccessPolicy instances.
@@ -95,7 +94,10 @@ public struct ListAccessPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAccessPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AccessPolicy] {
     return self.accessPolicies
   }

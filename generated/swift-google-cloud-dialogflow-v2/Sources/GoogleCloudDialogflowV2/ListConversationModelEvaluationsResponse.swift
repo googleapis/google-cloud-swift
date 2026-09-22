@@ -25,7 +25,6 @@
   /// [google.cloud.dialogflow.v2.ConversationModels.ListConversationModelEvaluations]: <doc:ConversationModelsClient/listConversationModelEvaluations(request:options:)>
   public struct ListConversationModelEvaluationsResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of evaluations to return.
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListConversationModelEvaluationsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ConversationModelEvaluation] {
       return self.conversationModelEvaluations
     }

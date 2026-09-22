@@ -19,7 +19,6 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 public struct SearchEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The results matching the search query.
@@ -114,7 +113,10 @@ public struct SearchEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchEntriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchEntriesResult] {
     return self.results
   }

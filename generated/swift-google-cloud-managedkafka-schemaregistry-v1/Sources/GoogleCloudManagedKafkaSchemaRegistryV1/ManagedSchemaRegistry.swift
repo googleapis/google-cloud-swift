@@ -18,11 +18,11 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleApi
-import GoogleCloudLocation
-import GoogleLongRunning
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleApi
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// SchemaRegistry is a service that allows users to manage schemas for their
 /// Kafka clusters. It provides APIs to register, list, and delete schemas, as

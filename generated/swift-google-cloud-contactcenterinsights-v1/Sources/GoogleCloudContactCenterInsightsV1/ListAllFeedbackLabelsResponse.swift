@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for listing all feedback labels.
 public struct ListAllFeedbackLabelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The feedback labels that match the request.
@@ -95,7 +94,10 @@ public struct ListAllFeedbackLabelsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAllFeedbackLabelsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FeedbackLabel] {
     return self.feedbackLabels
   }

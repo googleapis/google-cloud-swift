@@ -18,11 +18,11 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudLocation
-import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// This service exposes methods used for collecting various types of data from
 /// different first party and third party sources and push it to Hub's collect

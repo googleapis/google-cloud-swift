@@ -18,12 +18,12 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudLocation
-import GoogleIAMV1
-import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleCloudLocation
+@_spi(GoogleCloudInternal) import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// The VPC Flow Logs service in the Google Cloud Network Management API provides
 /// configurations that generate Flow Logs. The service and the configuration

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListServiceRollouts method.
 public struct ListServiceRolloutsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of rollout resources.
@@ -94,7 +93,10 @@ public struct ListServiceRolloutsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceRolloutsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Rollout] {
     return self.rollouts
   }

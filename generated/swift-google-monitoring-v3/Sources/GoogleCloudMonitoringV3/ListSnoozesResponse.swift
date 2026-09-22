@@ -21,7 +21,6 @@ import Foundation
 /// The results of a successful `ListSnoozes` call, containing the matching
 /// `Snooze`s.
 public struct ListSnoozesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// `Snooze`s matching this list call.
@@ -96,7 +95,10 @@ public struct ListSnoozesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSnoozesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Snooze] {
     return self.snoozes
   }

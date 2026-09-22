@@ -20,7 +20,6 @@ import Foundation
 
 /// The returned list of pipelines in the project.
 public struct ListTransferConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The stored pipeline transfer configurations.
@@ -97,7 +96,10 @@ public struct ListTransferConfigsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTransferConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TransferConfig] {
     return self.transferConfigs
   }

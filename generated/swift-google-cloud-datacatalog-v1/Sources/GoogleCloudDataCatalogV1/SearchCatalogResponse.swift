@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
 public struct SearchCatalogResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Search results.
@@ -121,7 +120,10 @@ public struct SearchCatalogResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchCatalogResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchCatalogResult] {
     return self.results
   }

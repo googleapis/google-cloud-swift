@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListTcpRoutes method.
 public struct ListTcpRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of TcpRoute resources.
@@ -110,7 +109,10 @@ public struct ListTcpRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTcpRoutesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TcpRoute] {
     return self.tcpRoutes
   }

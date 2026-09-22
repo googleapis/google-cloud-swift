@@ -21,7 +21,6 @@
 
   /// Backup run list results.
   public struct BackupRunsListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// This is always `sql#backupRunsList`.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension BackupRunsListResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [BackupRun] {
       return self.items
     }

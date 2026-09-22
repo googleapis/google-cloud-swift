@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.SessionEntityTypes.ListSessionEntityTypes]: <doc:SessionEntityTypesClient/listSessionEntityTypes(request:options:)>
   public struct ListSessionEntityTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of session entity types. There will be a maximum number of items
@@ -102,7 +101,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListSessionEntityTypesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [SessionEntityType] {
       return self.sessionEntityTypes
     }

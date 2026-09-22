@@ -20,7 +20,6 @@ import Foundation
 
 /// The ListFolders response message.
 public struct ListFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated list of folders that are direct descendants of
@@ -96,7 +95,10 @@ public struct ListFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFoldersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Folder] {
     return self.folders
   }

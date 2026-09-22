@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for FetchLinkableRepositories.
 public struct FetchLinkableRepositoriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// repositories ready to be created.
@@ -94,7 +93,10 @@ public struct FetchLinkableRepositoriesResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchLinkableRepositoriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Repository] {
     return self.repositories
   }

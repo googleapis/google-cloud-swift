@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing blockchain nodes.
 public struct ListBlockchainNodesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of nodes
@@ -103,7 +102,10 @@ public struct ListBlockchainNodesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBlockchainNodesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BlockchainNode] {
     return self.blockchainNodes
   }

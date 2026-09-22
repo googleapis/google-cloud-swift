@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies]: <doc:AssetServiceClient/analyzeOrgPolicies(request:options:)>
 public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The organization policies under the
@@ -239,7 +238,10 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension AnalyzeOrgPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AnalyzeOrgPoliciesResponse.OrgPolicyResult] {
     return self.orgPolicyResults
   }

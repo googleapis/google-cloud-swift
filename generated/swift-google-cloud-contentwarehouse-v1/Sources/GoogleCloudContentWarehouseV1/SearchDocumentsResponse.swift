@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for DocumentService.SearchDocuments.
 public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The document entities that match the specified
@@ -265,7 +264,10 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchDocumentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchDocumentsResponse.MatchingDocument] {
     return self.matchingDocuments
   }

@@ -21,7 +21,6 @@ import GoogleApi
 
 /// The `ListMetricDescriptors` response.
 public struct ListMetricDescriptorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The metric descriptors that are available to the project
@@ -100,7 +99,10 @@ public struct ListMetricDescriptorsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMetricDescriptorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoogleApi.MetricDescriptor] {
     return self.metricDescriptors
   }

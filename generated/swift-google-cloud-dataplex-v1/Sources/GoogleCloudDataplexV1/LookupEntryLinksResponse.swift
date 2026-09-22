@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for LookupEntryLinks.
 public struct LookupEntryLinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of entry links that reference the specified entry.
@@ -95,7 +94,10 @@ public struct LookupEntryLinksResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension LookupEntryLinksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EntryLink] {
     return self.entryLinks
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// A response message for listing the instances details for a patch job.
 public struct ListPatchJobInstanceDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of instance status.
@@ -96,7 +95,10 @@ public struct ListPatchJobInstanceDetailsResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPatchJobInstanceDetailsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PatchJobInstanceDetails] {
     return self.patchJobInstanceDetails
   }

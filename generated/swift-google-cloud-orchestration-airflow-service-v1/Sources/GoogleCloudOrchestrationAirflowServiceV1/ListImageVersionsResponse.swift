@@ -20,7 +20,6 @@ import Foundation
 
 /// The ImageVersions in a project and location.
 public struct ListImageVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of supported ImageVersions in a location.
@@ -95,7 +94,10 @@ public struct ListImageVersionsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListImageVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ImageVersion] {
     return self.imageVersions
   }

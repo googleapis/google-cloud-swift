@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.metastore.v1.DataprocMetastore.ListBackups]: <doc:DataprocMetastoreClient/listBackups(request:options:)>
 public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The backups of the specified service.
@@ -107,7 +106,10 @@ public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Backup] {
     return self.backups
   }

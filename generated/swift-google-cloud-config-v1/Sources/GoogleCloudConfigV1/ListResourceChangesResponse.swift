@@ -21,7 +21,6 @@ import Foundation
 /// A response to a 'ListResourceChanges' call. Contains a list of
 /// ResourceChanges.
 public struct ListResourceChangesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of ResourceChanges.
@@ -106,7 +105,10 @@ public struct ListResourceChangesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourceChangesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceChange] {
     return self.resourceChanges
   }

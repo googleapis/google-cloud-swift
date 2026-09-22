@@ -21,7 +21,6 @@
 
   /// Response to the list request, and contains a list of interconnect locations.
   public struct InterconnectLocationList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -640,7 +639,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension InterconnectLocationList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [InterconnectLocation] {
       return self.items
     }

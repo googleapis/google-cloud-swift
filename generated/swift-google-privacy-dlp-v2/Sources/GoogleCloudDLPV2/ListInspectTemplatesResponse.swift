@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListInspectTemplates.
 public struct ListInspectTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
@@ -96,7 +95,10 @@ public struct ListInspectTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInspectTemplatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [InspectTemplate] {
     return self.inspectTemplates
   }

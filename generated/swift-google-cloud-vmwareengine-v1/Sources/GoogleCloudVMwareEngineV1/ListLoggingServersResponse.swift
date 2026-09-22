@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]: <doc:VmwareEngineClient/listLoggingServers(request:options:)>
 public struct ListLoggingServersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of Logging Servers.
@@ -108,7 +107,10 @@ public struct ListLoggingServersResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLoggingServersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LoggingServer] {
     return self.loggingServers
   }

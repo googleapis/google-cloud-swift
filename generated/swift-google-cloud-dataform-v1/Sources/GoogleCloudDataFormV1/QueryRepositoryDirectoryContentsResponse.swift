@@ -20,7 +20,6 @@ import Foundation
 
 /// `QueryRepositoryDirectoryContents` response message.
 public struct QueryRepositoryDirectoryContentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of entries in the directory.
@@ -95,7 +94,10 @@ public struct QueryRepositoryDirectoryContentsResponse: Codable, Equatable, Goog
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryRepositoryDirectoryContentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DirectoryEntry] {
     return self.directoryEntries
   }

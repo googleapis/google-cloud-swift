@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListServiceConnectionPolicies.
 public struct ListServiceConnectionPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// ServiceConnectionPolicies to be returned.
@@ -107,7 +106,10 @@ public struct ListServiceConnectionPoliciesResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceConnectionPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceConnectionPolicy] {
     return self.serviceConnectionPolicies
   }

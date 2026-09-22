@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListDataAccessScopes.
 public struct ListDataAccessScopesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of data access scopes.
@@ -106,7 +105,10 @@ public struct ListDataAccessScopesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataAccessScopesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataAccessScope] {
     return self.dataAccessScopes
   }

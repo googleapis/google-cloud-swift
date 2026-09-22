@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.workflows.executions.v1.Executions.ListExecutions]: <doc:ExecutionsClient/listExecutions(request:options:)>
 public struct ListExecutionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The executions which match the request.
@@ -99,7 +98,10 @@ public struct ListExecutionsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExecutionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Execution] {
     return self.executions
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListRapidCaches.
 public struct ListRapidCachesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of rapid caches.
@@ -95,7 +94,10 @@ public struct ListRapidCachesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRapidCachesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RapidCache] {
     return self.rapidCaches
   }

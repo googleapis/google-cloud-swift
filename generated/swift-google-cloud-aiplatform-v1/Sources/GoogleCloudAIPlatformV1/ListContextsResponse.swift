@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:options:)>
   public struct ListContextsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The Contexts retrieved from the MetadataStore.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListContextsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Context] {
       return self.contexts
     }

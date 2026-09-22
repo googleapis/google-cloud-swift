@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListCertificateIssuanceConfigs` method.
 public struct ListCertificateIssuanceConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of certificate configs for the parent resource.
@@ -108,7 +107,10 @@ public struct ListCertificateIssuanceConfigsResponse: Codable, Equatable, Google
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCertificateIssuanceConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CertificateIssuanceConfig] {
     return self.certificateIssuanceConfigs
   }

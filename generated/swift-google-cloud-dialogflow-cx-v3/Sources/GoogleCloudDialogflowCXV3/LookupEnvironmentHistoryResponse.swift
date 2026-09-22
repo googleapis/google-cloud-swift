@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Environments.LookupEnvironmentHistory]: <doc:EnvironmentsClient/lookupEnvironmentHistory(request:options:)>
   public struct LookupEnvironmentHistoryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Represents a list of snapshots for an environment. Time of the snapshots is
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension LookupEnvironmentHistoryResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Environment] {
       return self.environments
     }

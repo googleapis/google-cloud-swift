@@ -18,9 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleApi
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleApi
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 ///
 /// Lakehouse runtime catalog supports the following catalog management methods:

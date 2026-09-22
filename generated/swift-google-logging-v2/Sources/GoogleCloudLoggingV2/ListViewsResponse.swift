@@ -20,7 +20,6 @@ import Foundation
 
 /// The response from ListViews.
 public struct ListViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of views.
@@ -96,7 +95,10 @@ public struct ListViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListViewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogView] {
     return self.views
   }

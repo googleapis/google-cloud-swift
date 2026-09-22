@@ -20,7 +20,6 @@ import Foundation
 
 /// Search all IAM policies response.
 public struct SearchAllIamPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of IAM policies that match the search query. Related information
@@ -97,7 +96,10 @@ public struct SearchAllIamPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchAllIamPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [IamPolicySearchResult] {
     return self.results
   }

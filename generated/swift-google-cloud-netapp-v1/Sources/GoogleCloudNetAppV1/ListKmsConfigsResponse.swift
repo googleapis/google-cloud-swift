@@ -20,7 +20,6 @@ import Foundation
 
 /// ListKmsConfigsResponse is the response to a ListKmsConfigsRequest.
 public struct ListKmsConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of KmsConfigs
@@ -103,7 +102,10 @@ public struct ListKmsConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListKmsConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [KmsConfig] {
     return self.kmsConfigs
   }

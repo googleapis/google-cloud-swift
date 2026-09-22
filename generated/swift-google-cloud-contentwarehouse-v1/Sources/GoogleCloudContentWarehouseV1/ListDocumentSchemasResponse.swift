@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for DocumentSchemaService.ListDocumentSchemas.
 public struct ListDocumentSchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The document schemas from the specified parent.
@@ -95,7 +94,10 @@ public struct ListDocumentSchemasResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDocumentSchemasResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DocumentSchema] {
     return self.documentSchemas
   }

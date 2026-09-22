@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListWorkstationClusters.
 public struct ListWorkstationClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested workstation clusters.
@@ -106,7 +105,10 @@ public struct ListWorkstationClustersResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkstationClustersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [WorkstationCluster] {
     return self.workstationClusters
   }

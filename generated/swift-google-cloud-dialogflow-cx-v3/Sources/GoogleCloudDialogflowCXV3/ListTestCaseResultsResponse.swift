@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.TestCases.ListTestCaseResults]: <doc:TestCasesClient/listTestCaseResults(request:options:)>
   public struct ListTestCaseResultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of test case results.
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTestCaseResultsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TestCaseResult] {
       return self.testCaseResults
     }

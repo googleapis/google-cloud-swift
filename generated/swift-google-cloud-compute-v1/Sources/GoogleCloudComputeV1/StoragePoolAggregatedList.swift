@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct StoragePoolAggregatedList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     public var etag: Swift.String? = nil
@@ -657,7 +656,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension StoragePoolAggregatedList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, StoragePoolsScopedList)] {
       return self.items.map { ($0, $1) }
     }

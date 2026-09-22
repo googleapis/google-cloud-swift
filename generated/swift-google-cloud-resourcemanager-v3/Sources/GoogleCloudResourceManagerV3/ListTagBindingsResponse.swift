@@ -20,7 +20,6 @@ import Foundation
 
 /// The ListTagBindings response.
 public struct ListTagBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated list of TagBindings for the specified resource.
@@ -104,7 +103,10 @@ public struct ListTagBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTagBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TagBinding] {
     return self.tagBindings
   }

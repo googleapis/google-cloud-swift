@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing SupportedDatabaseFlags.
 public struct ListSupportedDatabaseFlagsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of SupportedDatabaseFlags.
@@ -96,7 +95,10 @@ public struct ListSupportedDatabaseFlagsResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSupportedDatabaseFlagsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SupportedDatabaseFlag] {
     return self.supportedDatabaseFlags
   }

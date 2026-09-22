@@ -21,7 +21,6 @@ import Foundation
 /// Response message for ListPrincipalAccessBoundaryPolicies method.
 public struct ListPrincipalAccessBoundaryPoliciesResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The principal access boundary policies from the specified parent.
@@ -100,7 +99,10 @@ public struct ListPrincipalAccessBoundaryPoliciesResponse: Codable, Equatable, G
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPrincipalAccessBoundaryPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PrincipalAccessBoundaryPolicy] {
     return self.principalAccessBoundaryPolicies
   }

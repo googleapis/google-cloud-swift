@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListEnrollments` method.
 public struct ListEnrollmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested Enrollments, up to the number specified in `page_size`.
@@ -104,7 +103,10 @@ public struct ListEnrollmentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEnrollmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Enrollment] {
     return self.enrollments
   }

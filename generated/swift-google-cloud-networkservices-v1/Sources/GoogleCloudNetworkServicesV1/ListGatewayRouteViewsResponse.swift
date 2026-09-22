@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListGatewayRouteViews method.
 public struct ListGatewayRouteViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of GatewayRouteView resources.
@@ -108,7 +107,10 @@ public struct ListGatewayRouteViewsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGatewayRouteViewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GatewayRouteView] {
     return self.gatewayRouteViews
   }

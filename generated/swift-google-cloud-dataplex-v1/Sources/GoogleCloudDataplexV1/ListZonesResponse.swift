@@ -20,7 +20,6 @@ import Foundation
 
 /// List zones response.
 public struct ListZonesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Zones under the given parent lake.
@@ -95,7 +94,10 @@ public struct ListZonesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListZonesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Zone] {
     return self.zones
   }

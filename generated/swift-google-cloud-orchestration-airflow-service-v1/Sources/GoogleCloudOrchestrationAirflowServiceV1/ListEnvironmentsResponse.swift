@@ -20,7 +20,6 @@ import Foundation
 
 /// The environments in a project and location.
 public struct ListEnvironmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of environments returned by a ListEnvironmentsRequest.
@@ -95,7 +94,10 @@ public struct ListEnvironmentsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEnvironmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Environment] {
     return self.environments
   }

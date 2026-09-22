@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListServiceBindings method.
 public struct ListServiceBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of ServiceBinding resources.
@@ -107,7 +106,10 @@ public struct ListServiceBindingsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceBinding] {
     return self.serviceBindings
   }

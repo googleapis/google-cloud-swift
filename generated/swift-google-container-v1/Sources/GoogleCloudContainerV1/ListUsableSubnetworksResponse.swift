@@ -21,7 +21,6 @@ import Foundation
 /// ListUsableSubnetworksResponse is the response of
 /// ListUsableSubnetworksRequest.
 public struct ListUsableSubnetworksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of usable subnetworks in the specified network project.
@@ -98,7 +97,10 @@ public struct ListUsableSubnetworksResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUsableSubnetworksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [UsableSubnetwork] {
     return self.subnetworks
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response object for `ListHydratedDeployments`.
 public struct ListHydratedDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of hydrated deployments.
@@ -97,7 +96,10 @@ public struct ListHydratedDeploymentsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListHydratedDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [HydratedDeployment] {
     return self.hydratedDeployments
   }

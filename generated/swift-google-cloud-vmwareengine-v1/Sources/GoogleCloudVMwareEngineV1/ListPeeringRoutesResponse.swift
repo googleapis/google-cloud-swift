@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]: <doc:VmwareEngineClient/listPeeringRoutes(request:options:)>
 public struct ListPeeringRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of peering routes.
@@ -98,7 +97,10 @@ public struct ListPeeringRoutesResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPeeringRoutesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PeeringRoute] {
     return self.peeringRoutes
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingServiceClient/searchProtectedResources(request:options:)>
 public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Protected resources for this page.
@@ -100,7 +99,10 @@ public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchProtectedResourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProtectedResource] {
     return self.protectedResources
   }

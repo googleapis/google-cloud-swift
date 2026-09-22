@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response of ListSSHKeys.
 public struct ListSSHKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The SSH keys registered in the project.
@@ -95,7 +94,10 @@ public struct ListSSHKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSSHKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SSHKey] {
     return self.sshKeys
   }

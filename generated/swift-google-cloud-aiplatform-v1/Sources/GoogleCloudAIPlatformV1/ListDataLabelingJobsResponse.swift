@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs]: <doc:JobServiceClient/listDataLabelingJobs(request:options:)>
   public struct ListDataLabelingJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of DataLabelingJobs that matches the specified filter in the
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListDataLabelingJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [DataLabelingJob] {
       return self.dataLabelingJobs
     }

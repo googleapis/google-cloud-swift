@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the ListEvaluations RPC.
 public struct ListEvaluationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of evaluations.
@@ -103,7 +102,10 @@ public struct ListEvaluationsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEvaluationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Evaluation] {
     return self.evaluations
   }

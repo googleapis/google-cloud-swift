@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListTerraformVersions` method.
 public struct ListTerraformVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of [TerraformVersion][google.cloud.config.v1.TerraformVersion]s.
@@ -108,7 +107,10 @@ public struct ListTerraformVersionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTerraformVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TerraformVersion] {
     return self.terraformVersions
   }

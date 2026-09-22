@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for DirectAccessService.ListDeviceSessions.
 public struct ListDeviceSessionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The sessions matching the specified filter in the given cloud project.
@@ -95,7 +94,10 @@ public struct ListDeviceSessionsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDeviceSessionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DeviceSession] {
     return self.deviceSessions
   }

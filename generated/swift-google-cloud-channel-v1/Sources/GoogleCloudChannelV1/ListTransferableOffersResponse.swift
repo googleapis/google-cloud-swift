@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:options:)>
 public struct ListTransferableOffersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Information about Offers for a customer that can be used for
@@ -105,7 +104,10 @@ public struct ListTransferableOffersResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTransferableOffersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TransferableOffer] {
     return self.transferableOffers
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// List DataAttributeBindings response.
 public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// DataAttributeBindings under the given parent Location.
@@ -116,7 +115,10 @@ public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataAttributeBindingsResponse: GoogleGax._PaginatedResponse {
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif

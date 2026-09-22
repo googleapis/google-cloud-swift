@@ -20,7 +20,6 @@ import Foundation
 
 /// Result returned from ListLogMetrics.
 public struct ListLogMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of logs-based metrics.
@@ -96,7 +95,10 @@ public struct ListLogMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLogMetricsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogMetric] {
     return self.metrics
   }

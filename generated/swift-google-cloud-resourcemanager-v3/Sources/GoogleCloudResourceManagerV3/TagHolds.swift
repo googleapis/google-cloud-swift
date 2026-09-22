@@ -18,10 +18,10 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleLongRunning
-import GoogleRpc
-import GoogleWKT
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleGax
 
 /// Allow users to create and manage TagHolds for TagValues. TagHolds represent
 /// the use of a Tag Value that is not captured by TagBindings but

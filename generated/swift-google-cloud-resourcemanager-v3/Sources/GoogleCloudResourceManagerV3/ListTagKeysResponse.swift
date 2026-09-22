@@ -20,7 +20,6 @@ import Foundation
 
 /// The ListTagKeys response message.
 public struct ListTagKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of TagKeys that live under the specified parent in the request.
@@ -95,7 +94,10 @@ public struct ListTagKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTagKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TagKey] {
     return self.tagKeys
   }

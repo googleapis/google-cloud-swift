@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListTopics.
 public struct ListTopicsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of topics in the requested parent. The order of the topics is
@@ -96,7 +95,10 @@ public struct ListTopicsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTopicsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Topic] {
     return self.topics
   }

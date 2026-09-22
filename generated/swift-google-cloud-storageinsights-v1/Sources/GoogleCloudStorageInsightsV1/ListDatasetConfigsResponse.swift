@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]: <doc:StorageInsightsClient/listDatasetConfigs(request:options:)>
 public struct ListDatasetConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of `DatasetConfigs`
@@ -106,7 +105,10 @@ public struct ListDatasetConfigsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDatasetConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DatasetConfig] {
     return self.datasetConfigs
   }

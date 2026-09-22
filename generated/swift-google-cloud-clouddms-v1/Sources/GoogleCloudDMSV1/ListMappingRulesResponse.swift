@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListMappingRulesRequest' request.
 public struct ListMappingRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of conversion workspace mapping rules.
@@ -95,7 +94,10 @@ public struct ListMappingRulesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMappingRulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MappingRule] {
     return self.mappingRules
   }

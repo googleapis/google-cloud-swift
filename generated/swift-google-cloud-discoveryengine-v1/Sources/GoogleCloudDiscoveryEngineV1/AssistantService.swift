@@ -19,9 +19,9 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleLongRunning
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleLongRunning
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// Service for managing Assistant configuration and assisting users.
   ///

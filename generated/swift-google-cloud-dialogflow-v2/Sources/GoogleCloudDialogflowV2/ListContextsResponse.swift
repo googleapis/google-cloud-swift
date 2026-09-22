@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Contexts.ListContexts]: <doc:ContextsClient/listContexts(request:options:)>
   public struct ListContextsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of contexts. There will be a maximum number of items
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListContextsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Context] {
       return self.contexts
     }

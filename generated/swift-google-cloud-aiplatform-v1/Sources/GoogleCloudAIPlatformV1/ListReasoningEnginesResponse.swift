@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.ReasoningEngineService.ListReasoningEngines]: <doc:ReasoningEngineServiceClient/listReasoningEngines(request:options:)>
   public struct ListReasoningEnginesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of ReasoningEngines in the requested page.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListReasoningEnginesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ReasoningEngine] {
       return self.reasoningEngines
     }

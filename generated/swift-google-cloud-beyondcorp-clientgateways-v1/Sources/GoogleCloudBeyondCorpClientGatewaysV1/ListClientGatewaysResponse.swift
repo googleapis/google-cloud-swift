@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing ClientGateways.
 public struct ListClientGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of ClientGateway.
@@ -104,7 +103,10 @@ public struct ListClientGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListClientGatewaysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ClientGateway] {
     return self.clientGateways
   }

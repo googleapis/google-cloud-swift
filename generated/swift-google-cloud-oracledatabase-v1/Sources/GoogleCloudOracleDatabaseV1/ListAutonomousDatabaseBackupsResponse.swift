@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `AutonomousDatabaseBackup.List`.
 public struct ListAutonomousDatabaseBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Autonomous Database Backups.
@@ -97,7 +96,10 @@ public struct ListAutonomousDatabaseBackupsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAutonomousDatabaseBackupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AutonomousDatabaseBackup] {
     return self.autonomousDatabaseBackups
   }

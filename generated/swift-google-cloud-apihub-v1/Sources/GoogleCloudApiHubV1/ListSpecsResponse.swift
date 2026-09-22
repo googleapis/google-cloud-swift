@@ -22,7 +22,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListSpecs]: <doc:ApiHubClient/listSpecs(request:options:)>
 public struct ListSpecsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The specs corresponding to an API Version.
@@ -97,7 +96,10 @@ public struct ListSpecsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSpecsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Spec] {
     return self.specs
   }

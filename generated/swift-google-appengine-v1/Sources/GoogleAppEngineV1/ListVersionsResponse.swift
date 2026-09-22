@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `Versions.ListVersions`.
 public struct ListVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The versions belonging to the requested service.
@@ -94,7 +93,10 @@ public struct ListVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Version] {
     return self.versions
   }

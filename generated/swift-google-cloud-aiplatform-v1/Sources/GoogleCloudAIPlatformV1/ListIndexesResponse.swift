@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.IndexService.ListIndexes]: <doc:IndexServiceClient/listIndexes(request:options:)>
   public struct ListIndexesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of indexes in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListIndexesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Index] {
       return self.indexes
     }

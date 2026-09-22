@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListRestorePlanBindings.
 public struct ListRestorePlanBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of RestorePlanBindings matching the given criteria.
@@ -111,7 +110,10 @@ public struct ListRestorePlanBindingsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRestorePlanBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RestorePlanBinding] {
     return self.restorePlanBindings
   }

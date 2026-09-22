@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.DatasetService.ListDatasets]: <doc:DatasetServiceClient/listDatasets(request:options:)>
   public struct ListDatasetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of Datasets that matches the specified filter in the request.
@@ -98,7 +97,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListDatasetsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Dataset] {
       return self.datasets
     }

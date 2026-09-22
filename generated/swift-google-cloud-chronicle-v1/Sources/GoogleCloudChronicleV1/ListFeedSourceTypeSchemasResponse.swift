@@ -20,7 +20,6 @@ import Foundation
 
 /// ListFeedSourceTypeSchemas response message.
 public struct ListFeedSourceTypeSchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Schemas describing each FeedSourceType.
@@ -97,7 +96,10 @@ public struct ListFeedSourceTypeSchemasResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFeedSourceTypeSchemasResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FeedSourceTypeSchema] {
     return self.feedSourceTypeSchemas
   }

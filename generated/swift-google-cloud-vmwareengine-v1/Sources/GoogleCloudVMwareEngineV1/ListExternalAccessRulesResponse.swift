@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]: <doc:VmwareEngineClient/listExternalAccessRules(request:options:)>
 public struct ListExternalAccessRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of external access firewall rules.
@@ -110,7 +109,10 @@ public struct ListExternalAccessRulesResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExternalAccessRulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ExternalAccessRule] {
     return self.externalAccessRules
   }

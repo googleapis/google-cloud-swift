@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing McpServers
 public struct ListMcpServersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of McpServer
@@ -103,7 +102,10 @@ public struct ListMcpServersResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMcpServersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [McpServer] {
     return self.mcpServers
   }

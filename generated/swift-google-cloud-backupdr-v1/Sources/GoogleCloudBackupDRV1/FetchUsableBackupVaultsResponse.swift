@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for fetching usable BackupVaults.
 public struct FetchUsableBackupVaultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of BackupVault instances in the project for the specified
@@ -110,7 +109,10 @@ public struct FetchUsableBackupVaultsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchUsableBackupVaultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BackupVault] {
     return self.backupVaults
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListRegistrations` method.
 public struct ListRegistrationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of `Registration`s.
@@ -95,7 +94,10 @@ public struct ListRegistrationsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRegistrationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Registration] {
     return self.registrations
   }

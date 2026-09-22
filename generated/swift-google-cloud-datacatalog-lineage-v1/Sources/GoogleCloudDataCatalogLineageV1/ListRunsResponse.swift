@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.ListRuns]: <doc:LineageClient/listRuns(request:options:)>
 public struct ListRunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The runs from the specified project and location.
@@ -98,7 +97,10 @@ public struct ListRunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRunsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Run] {
     return self.runs
   }

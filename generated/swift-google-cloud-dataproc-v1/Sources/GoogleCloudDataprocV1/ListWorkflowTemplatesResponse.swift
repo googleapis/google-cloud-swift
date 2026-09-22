@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a request to list workflow templates in a project.
 public struct ListWorkflowTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. WorkflowTemplates list.
@@ -107,7 +106,10 @@ public struct ListWorkflowTemplatesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkflowTemplatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [WorkflowTemplate] {
     return self.templates
   }

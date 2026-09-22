@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `DomainMappings.ListDomainMappings`.
 public struct ListDomainMappingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The domain mappings for the application.
@@ -94,7 +93,10 @@ public struct ListDomainMappingsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDomainMappingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DomainMapping] {
     return self.domainMappings
   }

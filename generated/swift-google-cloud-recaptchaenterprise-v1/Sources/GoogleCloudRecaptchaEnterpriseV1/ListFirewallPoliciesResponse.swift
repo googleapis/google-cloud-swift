@@ -20,7 +20,6 @@ import Foundation
 
 /// Response to request to list firewall policies belonging to a project.
 public struct ListFirewallPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Policy details.
@@ -95,7 +94,10 @@ public struct ListFirewallPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFirewallPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FirewallPolicy] {
     return self.firewallPolicies
   }

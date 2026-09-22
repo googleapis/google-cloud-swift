@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListDeployments]: <doc:ApiHubClient/listDeployments(request:options:)>
 public struct ListDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The deployment resources present in the API hub.
@@ -98,7 +97,10 @@ public struct ListDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Deployment] {
     return self.deployments
   }

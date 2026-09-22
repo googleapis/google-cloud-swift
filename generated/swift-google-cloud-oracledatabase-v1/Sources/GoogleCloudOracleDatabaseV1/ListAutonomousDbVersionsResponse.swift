@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `AutonomousDbVersion.List`.
 public struct ListAutonomousDbVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Autonomous Database versions.
@@ -96,7 +95,10 @@ public struct ListAutonomousDbVersionsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAutonomousDbVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AutonomousDbVersion] {
     return self.autonomousDbVersions
   }

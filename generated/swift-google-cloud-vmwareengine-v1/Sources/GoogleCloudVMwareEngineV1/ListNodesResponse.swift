@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListNodes]: <doc:VmwareEngineClient/listNodes(request:options:)>
 public struct ListNodesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The nodes.
@@ -98,7 +97,10 @@ public struct ListNodesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNodesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Node] {
     return self.nodes
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListMigratingVms' request.
 public struct ListMigratingVmsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of Migrating VMs response.
@@ -104,7 +103,10 @@ public struct ListMigratingVmsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMigratingVmsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MigratingVm] {
     return self.migratingVms
   }

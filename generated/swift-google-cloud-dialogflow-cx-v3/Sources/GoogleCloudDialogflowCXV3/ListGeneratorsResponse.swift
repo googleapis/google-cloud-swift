@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Generators.ListGenerators]: <doc:GeneratorsClient/listGenerators(request:options:)>
   public struct ListGeneratorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of generators. There will be a maximum number of items returned
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListGeneratorsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Generator] {
       return self.generators
     }

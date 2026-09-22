@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for InternalRange.ListInternalRanges
 public struct ListInternalRangesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Internal ranges to be returned.
@@ -104,7 +103,10 @@ public struct ListInternalRangesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInternalRangesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [InternalRange] {
     return self.internalRanges
   }

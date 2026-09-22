@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListMirroringDeploymentGroups.
 public struct ListMirroringDeploymentGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The deployment groups from the specified parent.
@@ -99,7 +98,10 @@ public struct ListMirroringDeploymentGroupsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMirroringDeploymentGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MirroringDeploymentGroup] {
     return self.mirroringDeploymentGroups
   }

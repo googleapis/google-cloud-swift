@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `DbSystemInitialStorageSizes.List`.
 public struct ListDbSystemInitialStorageSizesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of DbSystemInitialStorageSizes.
@@ -97,7 +96,10 @@ public struct ListDbSystemInitialStorageSizesResponse: Codable, Equatable, Googl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDbSystemInitialStorageSizesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DbSystemInitialStorageSize] {
     return self.dbSystemInitialStorageSizes
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]: <doc:VmwareEngineClient/listHcxActivationKeys(request:options:)>
 public struct ListHcxActivationKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of HCX activation keys.
@@ -110,7 +109,10 @@ public struct ListHcxActivationKeysResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListHcxActivationKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [HcxActivationKey] {
     return self.hcxActivationKeys
   }

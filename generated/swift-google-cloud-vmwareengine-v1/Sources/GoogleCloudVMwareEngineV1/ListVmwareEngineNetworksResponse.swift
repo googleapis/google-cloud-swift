@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]: <doc:VmwareEngineClient/listVmwareEngineNetworks(request:options:)>
 public struct ListVmwareEngineNetworksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of VMware Engine networks.
@@ -109,7 +108,10 @@ public struct ListVmwareEngineNetworksResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVmwareEngineNetworksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VmwareEngineNetwork] {
     return self.vmwareEngineNetworks
   }

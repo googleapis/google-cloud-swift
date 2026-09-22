@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.networkconnectivity.v1.HubService.ListRoutes]: <doc:HubServiceClient/listRoutes(request:options:)>
 public struct ListRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested routes.
@@ -109,7 +108,10 @@ public struct ListRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRoutesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Route] {
     return self.routes
   }

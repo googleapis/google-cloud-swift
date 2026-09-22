@@ -20,7 +20,6 @@ import Foundation
 
 /// Response object for `ListPublicBlueprints`.
 public struct ListPublicBlueprintsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of public blueprints to return.
@@ -96,7 +95,10 @@ public struct ListPublicBlueprintsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPublicBlueprintsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PublicBlueprint] {
     return self.publicBlueprints
   }

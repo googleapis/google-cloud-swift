@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobServiceClient/listNasJobs(request:options:)>
   public struct ListNasJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of NasJobs in the requested page.
@@ -107,7 +106,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListNasJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [NasJob] {
       return self.nasJobs
     }

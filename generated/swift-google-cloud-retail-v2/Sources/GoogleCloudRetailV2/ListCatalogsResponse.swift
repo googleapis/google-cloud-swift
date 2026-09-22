@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:options:)>
 public struct ListCatalogsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// All the customer's [Catalog][google.cloud.retail.v2.Catalog]s.
@@ -105,7 +104,10 @@ public struct ListCatalogsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCatalogsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Catalog] {
     return self.catalogs
   }

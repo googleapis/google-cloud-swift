@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the SearchCases endpoint.
 public struct SearchCasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of cases associated with the parent after any
@@ -97,7 +96,10 @@ public struct SearchCasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchCasesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Case] {
     return self.cases
   }

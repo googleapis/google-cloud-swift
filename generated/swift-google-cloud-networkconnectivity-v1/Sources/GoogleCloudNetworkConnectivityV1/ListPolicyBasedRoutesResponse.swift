@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.ListPolicyBasedRoutes]: <doc:PolicyBasedRoutingServiceClient/listPolicyBasedRoutes(request:options:)>
 public struct ListPolicyBasedRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Policy-based routes to be returned.
@@ -110,7 +109,10 @@ public struct ListPolicyBasedRoutesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPolicyBasedRoutesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PolicyBasedRoute] {
     return self.policyBasedRoutes
   }

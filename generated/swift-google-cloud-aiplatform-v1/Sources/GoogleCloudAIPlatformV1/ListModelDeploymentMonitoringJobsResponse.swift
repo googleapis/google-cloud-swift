@@ -25,7 +25,6 @@
   /// [google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs]: <doc:JobServiceClient/listModelDeploymentMonitoringJobs(request:options:)>
   public struct ListModelDeploymentMonitoringJobsResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of ModelDeploymentMonitoringJobs that matches the specified filter
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListModelDeploymentMonitoringJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ModelDeploymentMonitoringJob] {
       return self.modelDeploymentMonitoringJobs
     }

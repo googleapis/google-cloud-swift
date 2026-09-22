@@ -21,7 +21,6 @@
 
   /// Contains a list of usable BackendService resources.
   public struct BackendServiceListUsable: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -640,7 +639,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension BackendServiceListUsable: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [BackendService] {
       return self.items
     }

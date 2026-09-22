@@ -19,7 +19,6 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 public struct PoliciesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Type of resource.
@@ -98,7 +97,10 @@ public struct PoliciesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension PoliciesListResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Policy] {
     return self.policies
   }

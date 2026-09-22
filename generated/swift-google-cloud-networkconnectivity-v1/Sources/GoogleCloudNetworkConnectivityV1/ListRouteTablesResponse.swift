@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.networkconnectivity.v1.HubService.ListRouteTables]: <doc:HubServiceClient/listRouteTables(request:options:)>
 public struct ListRouteTablesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested route tables.
@@ -109,7 +108,10 @@ public struct ListRouteTablesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRouteTablesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RouteTable] {
     return self.routeTables
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListVpcFlowLogsConfigs` method.
 public struct ListVpcFlowLogsConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of VPC Flow Log configurations.
@@ -105,7 +104,10 @@ public struct ListVpcFlowLogsConfigsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVpcFlowLogsConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VpcFlowLogsConfig] {
     return self.vpcFlowLogsConfigs
   }

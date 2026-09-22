@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListVolumeBackups.
 public struct ListVolumeBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of VolumeBackups matching the given criteria.
@@ -100,7 +99,10 @@ public struct ListVolumeBackupsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVolumeBackupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VolumeBackup] {
     return self.volumeBackups
   }

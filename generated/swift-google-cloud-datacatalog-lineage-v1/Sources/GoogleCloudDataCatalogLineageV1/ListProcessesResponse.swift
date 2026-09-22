@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.ListProcesses]: <doc:LineageClient/listProcesses(request:options:)>
 public struct ListProcessesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The processes from the specified project and location.
@@ -98,7 +97,10 @@ public struct ListProcessesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProcessesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Process] {
     return self.processes
   }

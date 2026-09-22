@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]: <doc:VmwareEngineClient/listManagementDnsZoneBindings(request:options:)>
 public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of management DNS zone bindings.
@@ -110,7 +109,10 @@ public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListManagementDnsZoneBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ManagementDnsZoneBinding] {
     return self.managementDnsZoneBindings
   }

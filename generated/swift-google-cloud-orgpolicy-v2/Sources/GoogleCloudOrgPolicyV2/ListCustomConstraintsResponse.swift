@@ -23,7 +23,6 @@ import Foundation
 /// be empty if no custom or managed constraints are set on the organization
 /// resource.
 public struct ListCustomConstraintsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// All custom and managed constraints that exist on the organization resource.
@@ -101,7 +100,10 @@ public struct ListCustomConstraintsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCustomConstraintsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CustomConstraint] {
     return self.customConstraints
   }

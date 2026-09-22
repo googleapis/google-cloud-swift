@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for list customer workloads requests.
 public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of customer workloads
@@ -104,7 +103,10 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkloadsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Workload] {
     return self.workloads
   }

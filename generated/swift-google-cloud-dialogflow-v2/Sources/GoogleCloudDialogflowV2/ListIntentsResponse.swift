@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Intents.ListIntents]: <doc:IntentsClient/listIntents(request:options:)>
   public struct ListIntentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of agent intents. There will be a maximum number of items
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListIntentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Intent] {
       return self.intents
     }

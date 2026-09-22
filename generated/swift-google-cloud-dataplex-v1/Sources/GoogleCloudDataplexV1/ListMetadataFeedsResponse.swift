@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListMetadataFeeds.
 public struct ListMetadataFeedsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of metadata feeds under the specified parent location.
@@ -104,7 +103,10 @@ public struct ListMetadataFeedsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMetadataFeedsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MetadataFeed] {
     return self.metadataFeeds
   }

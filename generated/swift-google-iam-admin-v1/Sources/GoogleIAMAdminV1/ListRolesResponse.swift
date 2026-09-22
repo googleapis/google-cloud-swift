@@ -20,7 +20,6 @@ import Foundation
 
 /// The response containing the roles defined under a resource.
 public struct ListRolesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The Roles defined on this resource.
@@ -95,7 +94,10 @@ public struct ListRolesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRolesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Role] {
     return self.roles
   }

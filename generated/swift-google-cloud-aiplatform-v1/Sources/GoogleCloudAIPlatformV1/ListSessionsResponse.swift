@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:options:)>
   public struct ListSessionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of sessions matching the request.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListSessionsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Session] {
       return self.sessions
     }

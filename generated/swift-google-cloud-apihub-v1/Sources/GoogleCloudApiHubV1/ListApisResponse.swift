@@ -22,7 +22,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListApis]: <doc:ApiHubClient/listApis(request:options:)>
 public struct ListApisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The API resources present in the API hub.
@@ -97,7 +96,10 @@ public struct ListApisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListApisResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Api] {
     return self.apis
   }

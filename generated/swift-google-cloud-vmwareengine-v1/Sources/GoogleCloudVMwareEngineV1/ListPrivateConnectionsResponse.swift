@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]: <doc:VmwareEngineClient/listPrivateConnections(request:options:)>
 public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of private connections.
@@ -109,7 +108,10 @@ public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPrivateConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PrivateConnection] {
     return self.privateConnections
   }

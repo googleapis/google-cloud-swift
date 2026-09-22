@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `DbSystemShape.List`.
 public struct ListDbSystemShapesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Database System shapes.
@@ -94,7 +93,10 @@ public struct ListDbSystemShapesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDbSystemShapesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DbSystemShape] {
     return self.dbSystemShapes
   }

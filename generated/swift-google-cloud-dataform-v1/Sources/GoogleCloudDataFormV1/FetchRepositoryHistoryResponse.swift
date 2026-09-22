@@ -20,7 +20,6 @@ import Foundation
 
 /// `FetchRepositoryHistory` response message.
 public struct FetchRepositoryHistoryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of commit logs, ordered by 'git log' default order.
@@ -95,7 +94,10 @@ public struct FetchRepositoryHistoryResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchRepositoryHistoryResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CommitLogEntry] {
     return self.commits
   }

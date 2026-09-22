@@ -21,7 +21,6 @@ import Foundation
 /// Response message to summarize the intelligence findings for a specified
 /// scope (organization, folder or project).
 public struct SummarizeIntelligenceFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of `FindingSummary` summaries.
@@ -97,7 +96,10 @@ public struct SummarizeIntelligenceFindingsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SummarizeIntelligenceFindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FindingSummary] {
     return self.findingSummaries
   }

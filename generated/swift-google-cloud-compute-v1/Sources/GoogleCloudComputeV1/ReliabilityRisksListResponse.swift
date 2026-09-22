@@ -21,7 +21,6 @@
 
   /// Response message for the List method of ReliabilityRisksService.
   public struct ReliabilityRisksListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] An ETag of the resource.
@@ -650,7 +649,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ReliabilityRisksListResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ReliabilityRisk] {
       return self.items
     }

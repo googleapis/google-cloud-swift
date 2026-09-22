@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for DocumentLinkService.ListLinkedSources.
 public struct ListLinkedSourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Source document-links.
@@ -95,7 +94,10 @@ public struct ListLinkedSourcesResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLinkedSourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DocumentLink] {
     return self.documentLinks
   }

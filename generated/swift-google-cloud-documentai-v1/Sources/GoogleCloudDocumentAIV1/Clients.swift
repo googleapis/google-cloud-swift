@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 
 // Defines concrete implementations of the client protocols.
 public enum Clients {

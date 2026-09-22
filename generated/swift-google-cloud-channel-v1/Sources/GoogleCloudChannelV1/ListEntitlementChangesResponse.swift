@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]: <doc:CloudChannelServiceClient/listEntitlementChanges(request:options:)>
 public struct ListEntitlementChangesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of entitlement changes.
@@ -99,7 +98,10 @@ public struct ListEntitlementChangesResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEntitlementChangesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EntitlementChange] {
     return self.entitlementChanges
   }

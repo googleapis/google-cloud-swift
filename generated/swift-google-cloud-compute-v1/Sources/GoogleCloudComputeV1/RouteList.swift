@@ -21,7 +21,6 @@
 
   /// Contains a list of Route resources.
   public struct RouteList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -635,7 +634,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension RouteList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Route] {
       return self.items
     }

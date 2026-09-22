@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)>
 public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of the analyzed governed containers.
@@ -276,7 +275,10 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension AnalyzeOrgPolicyGovernedContainersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]
   {
     return self.governedContainers

@@ -19,8 +19,8 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// Service that exposes Cloud SQL region information. This service is only used
   /// internally and does not follow the same patterns as the other v1 RPCs.

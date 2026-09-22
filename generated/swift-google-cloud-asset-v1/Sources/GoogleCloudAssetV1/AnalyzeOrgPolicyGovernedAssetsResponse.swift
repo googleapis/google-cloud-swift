@@ -24,7 +24,6 @@ import GoogleIAMV1
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)>
 public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of the analyzed governed assets.
@@ -541,7 +540,10 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension AnalyzeOrgPolicyGovernedAssetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset] {
     return self.governedAssets
   }

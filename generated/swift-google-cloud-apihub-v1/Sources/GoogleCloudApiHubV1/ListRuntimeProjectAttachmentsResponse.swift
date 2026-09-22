@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.ListRuntimeProjectAttachments]: <doc:RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)>
 public struct ListRuntimeProjectAttachmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of runtime project attachments.
@@ -101,7 +100,10 @@ public struct ListRuntimeProjectAttachmentsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuntimeProjectAttachmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RuntimeProjectAttachment] {
     return self.runtimeProjectAttachments
   }

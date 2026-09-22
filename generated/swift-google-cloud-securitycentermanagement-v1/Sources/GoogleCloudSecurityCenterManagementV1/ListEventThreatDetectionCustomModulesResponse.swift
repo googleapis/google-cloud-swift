@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEventThreatDetectionCustomModules]: <doc:SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)>
 public struct ListEventThreatDetectionCustomModulesResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of custom modules.
@@ -104,7 +103,10 @@ public struct ListEventThreatDetectionCustomModulesResponse: Codable, Equatable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEventThreatDetectionCustomModulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EventThreatDetectionCustomModule] {
     return self.eventThreatDetectionCustomModules
   }

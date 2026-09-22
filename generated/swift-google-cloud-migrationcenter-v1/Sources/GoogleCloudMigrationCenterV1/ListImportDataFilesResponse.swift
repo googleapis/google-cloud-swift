@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for listing payload files of an import job.
 public struct ListImportDataFilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of import data files.
@@ -104,7 +103,10 @@ public struct ListImportDataFilesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListImportDataFilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ImportDataFile] {
     return self.importDataFiles
   }

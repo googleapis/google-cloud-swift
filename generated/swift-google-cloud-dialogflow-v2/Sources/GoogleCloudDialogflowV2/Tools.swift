@@ -19,10 +19,10 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudLocation
-  import GoogleLongRunning
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) import GoogleLongRunning
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// Tool Service for LLM powered Agent Assist. Tools can be used to interact with
   /// remote APIs (e.g. fetching orders) to retrieve additional information as

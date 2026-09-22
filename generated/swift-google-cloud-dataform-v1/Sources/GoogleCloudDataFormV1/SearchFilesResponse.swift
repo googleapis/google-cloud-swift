@@ -20,7 +20,6 @@ import Foundation
 
 /// Client-facing representation of a file search response.
 public struct SearchFilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of matched results.
@@ -95,7 +94,10 @@ public struct SearchFilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchFilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchResult] {
     return self.searchResults
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Request for getting all available OS images.
 public struct ListOSImagesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The OS images available.
@@ -95,7 +94,10 @@ public struct ListOSImagesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOSImagesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OSImage] {
     return self.osImages
   }

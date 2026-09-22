@@ -20,7 +20,6 @@ import Foundation
 
 /// Result returned from `ListLogEntries`.
 public struct ListLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of log entries.  If `entries` is empty, `nextPageToken` may still be
@@ -105,7 +104,10 @@ public struct ListLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLogEntriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogEntry] {
     return self.entries
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.KnowledgeBases.ListKnowledgeBases]: <doc:KnowledgeBasesClient/listKnowledgeBases(request:options:)>
   public struct ListKnowledgeBasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of knowledge bases.
@@ -99,7 +98,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListKnowledgeBasesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [KnowledgeBase] {
       return self.knowledgeBases
     }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListServiceConnectionMaps.
 public struct ListServiceConnectionMapsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// ServiceConnectionMaps to be returned.
@@ -107,7 +106,10 @@ public struct ListServiceConnectionMapsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceConnectionMapsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceConnectionMap] {
     return self.serviceConnectionMaps
   }

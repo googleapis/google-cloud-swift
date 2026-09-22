@@ -20,7 +20,6 @@ import Foundation
 
 /// The user workloads ConfigMaps for a given environment.
 public struct ListUserWorkloadsConfigMapsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.
@@ -97,7 +96,10 @@ public struct ListUserWorkloadsConfigMapsResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUserWorkloadsConfigMapsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [UserWorkloadsConfigMap] {
     return self.userWorkloadsConfigMaps
   }

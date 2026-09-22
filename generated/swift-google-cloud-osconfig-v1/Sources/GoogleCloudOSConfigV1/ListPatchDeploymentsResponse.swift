@@ -20,7 +20,6 @@ import Foundation
 
 /// A response message for listing patch deployments.
 public struct ListPatchDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of patch deployments.
@@ -96,7 +95,10 @@ public struct ListPatchDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPatchDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PatchDeployment] {
     return self.patchDeployments
   }

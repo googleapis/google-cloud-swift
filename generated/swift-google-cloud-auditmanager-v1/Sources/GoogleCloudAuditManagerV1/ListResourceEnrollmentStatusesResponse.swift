@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses]: <doc:AuditManagerClient/listResourceEnrollmentStatuses(request:options:)>
 public struct ListResourceEnrollmentStatusesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Resources with their enrollment status.
@@ -101,7 +100,10 @@ public struct ListResourceEnrollmentStatusesResponse: Codable, Equatable, Google
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourceEnrollmentStatusesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceEnrollmentStatus] {
     return self.resourceEnrollmentStatuses
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing `LbRouteExtension` resources.
 public struct ListLbRouteExtensionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of `LbRouteExtension` resources.
@@ -105,7 +104,10 @@ public struct ListLbRouteExtensionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLbRouteExtensionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LbRouteExtension] {
     return self.lbRouteExtensions
   }

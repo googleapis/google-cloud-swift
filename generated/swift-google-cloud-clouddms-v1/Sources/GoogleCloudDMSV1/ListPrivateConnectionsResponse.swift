@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListPrivateConnections' request.
 public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of private connections.
@@ -106,7 +105,10 @@ public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPrivateConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PrivateConnection] {
     return self.privateConnections
   }

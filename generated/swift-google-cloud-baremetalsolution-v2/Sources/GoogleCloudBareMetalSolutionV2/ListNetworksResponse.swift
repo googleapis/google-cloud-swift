@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message containing the list of networks.
 public struct ListNetworksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of networks.
@@ -103,7 +102,10 @@ public struct ListNetworksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNetworksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Network] {
     return self.networks
   }

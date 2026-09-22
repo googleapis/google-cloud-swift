@@ -21,7 +21,6 @@ import Foundation
 /// Response message for `AwsClusters.ListAwsNodePools` method.
 @available(*, deprecated)
 public struct ListAwsNodePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
@@ -99,7 +98,11 @@ public struct ListAwsNodePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension ListAwsNodePoolsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AwsNodePool] {
     return self.awsNodePools
   }

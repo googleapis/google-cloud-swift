@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ApiGatewayService.ListApiConfigs
 public struct ListApiConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// API Configs.
@@ -104,7 +103,10 @@ public struct ListApiConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListApiConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ApiConfig] {
     return self.apiConfigs
   }

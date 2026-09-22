@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListApplications.
 public struct ListApplicationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Applications.
@@ -103,7 +102,10 @@ public struct ListApplicationsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListApplicationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Application] {
     return self.applications
   }

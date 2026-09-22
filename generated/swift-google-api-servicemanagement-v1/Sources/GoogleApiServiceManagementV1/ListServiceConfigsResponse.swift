@@ -21,7 +21,6 @@ import GoogleApi
 
 /// Response message for ListServiceConfigs method.
 public struct ListServiceConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of service configuration resources.
@@ -96,7 +95,10 @@ public struct ListServiceConfigsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoogleApi.Service] {
     return self.serviceConfigs
   }

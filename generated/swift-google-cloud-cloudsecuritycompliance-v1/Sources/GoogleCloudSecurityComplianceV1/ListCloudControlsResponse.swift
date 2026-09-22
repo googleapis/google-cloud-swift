@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for [ListCloudControls][].
 public struct ListCloudControlsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of CloudControl resources.
@@ -95,7 +94,10 @@ public struct ListCloudControlsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCloudControlsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CloudControl] {
     return self.cloudControls
   }

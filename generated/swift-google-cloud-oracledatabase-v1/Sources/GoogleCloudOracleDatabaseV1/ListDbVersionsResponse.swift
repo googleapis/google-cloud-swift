@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `DbVersions.List`.
 public struct ListDbVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of DbVersions.
@@ -94,7 +93,10 @@ public struct ListDbVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDbVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DbVersion] {
     return self.dbVersions
   }

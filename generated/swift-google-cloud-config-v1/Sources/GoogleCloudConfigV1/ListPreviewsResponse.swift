@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a `ListPreviews` call. Contains a list of Previews.
 public struct ListPreviewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of [Previews][google.cloud.config.v1.Preview].
@@ -106,7 +105,10 @@ public struct ListPreviewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPreviewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Preview] {
     return self.previews
   }

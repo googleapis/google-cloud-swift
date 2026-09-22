@@ -20,7 +20,6 @@ import Foundation
 
 /// List of profiles generated for a given organization or project.
 public struct ListProjectDataProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of data profiles.
@@ -96,7 +95,10 @@ public struct ListProjectDataProfilesResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProjectDataProfilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProjectDataProfile] {
     return self.projectDataProfiles
   }

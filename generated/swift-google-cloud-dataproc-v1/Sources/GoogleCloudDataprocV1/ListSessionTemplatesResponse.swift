@@ -20,7 +20,6 @@ import Foundation
 
 /// A list of session templates.
 public struct ListSessionTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. Session template list
@@ -96,7 +95,10 @@ public struct ListSessionTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSessionTemplatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SessionTemplate] {
     return self.sessionTemplates
   }

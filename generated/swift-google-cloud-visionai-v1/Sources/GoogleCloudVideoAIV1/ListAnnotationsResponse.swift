@@ -20,7 +20,6 @@ import Foundation
 
 /// Request message for ListAnnotations API.
 public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The annotations from the specified asset.
@@ -95,7 +94,10 @@ public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAnnotationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Annotation] {
     return self.annotations
   }

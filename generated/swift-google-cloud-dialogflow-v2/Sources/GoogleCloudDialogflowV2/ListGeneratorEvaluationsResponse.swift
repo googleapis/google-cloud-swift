@@ -21,7 +21,6 @@
 
   /// Response of ListGeneratorEvaluations.
   public struct ListGeneratorEvaluationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of evaluations to return.
@@ -98,7 +97,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListGeneratorEvaluationsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [GeneratorEvaluation] {
       return self.generatorEvaluations
     }

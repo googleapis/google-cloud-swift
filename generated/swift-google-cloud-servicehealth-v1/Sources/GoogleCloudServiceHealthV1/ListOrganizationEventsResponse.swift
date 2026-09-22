@@ -20,7 +20,6 @@ import Foundation
 
 /// Response to request for listing organization events.
 public struct ListOrganizationEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. List of organization events affecting an organization.
@@ -109,7 +108,10 @@ public struct ListOrganizationEventsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrganizationEventsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OrganizationEvent] {
     return self.organizationEvents
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// List AdaptiveMt sentences response.
 public struct ListAdaptiveMtSentencesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of AdaptiveMtSentences.
@@ -96,7 +95,10 @@ public struct ListAdaptiveMtSentencesResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAdaptiveMtSentencesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AdaptiveMtSentence] {
     return self.adaptiveMtSentences
   }

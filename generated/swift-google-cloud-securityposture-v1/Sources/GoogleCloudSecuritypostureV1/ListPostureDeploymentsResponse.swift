@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing PostureDeployments.
 public struct ListPostureDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of PostureDeployment.
@@ -105,7 +104,10 @@ public struct ListPostureDeploymentsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPostureDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PostureDeployment] {
     return self.postureDeployments
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/exportTensorboardTimeSeriesData(request:options:)>
   public struct ExportTensorboardTimeSeriesDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The returned time series data points.
@@ -106,7 +105,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ExportTensorboardTimeSeriesDataResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TimeSeriesDataPoint] {
       return self.timeSeriesDataPoints
     }

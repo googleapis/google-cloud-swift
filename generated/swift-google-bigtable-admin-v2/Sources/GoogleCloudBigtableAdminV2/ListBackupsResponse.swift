@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdminClient/listBackups(request:options:)>
 public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of matching backups.
@@ -101,7 +100,10 @@ public struct ListBackupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Backup] {
     return self.backups
   }

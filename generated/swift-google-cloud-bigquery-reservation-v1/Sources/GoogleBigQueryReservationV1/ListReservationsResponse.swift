@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.bigquery.reservation.v1.ReservationService.ListReservations]: <doc:ReservationServiceClient/listReservations(request:options:)>
 public struct ListReservationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of reservations visible to the user.
@@ -98,7 +97,10 @@ public struct ListReservationsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReservationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Reservation] {
     return self.reservations
   }

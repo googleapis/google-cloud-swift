@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct ProjectsGetXpnResources: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. [Output Only] Type of resource. Alwayscompute#projectsGetXpnResources for lists of service resources
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ProjectsGetXpnResources: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [XpnResourceId] {
       return self.resources
     }

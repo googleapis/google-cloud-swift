@@ -20,7 +20,6 @@ import Foundation
 
 /// Response object for a `ListMigrationWorkflows` call.
 public struct ListMigrationWorkflowsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The migration workflows for the specified project / location.
@@ -97,7 +96,10 @@ public struct ListMigrationWorkflowsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMigrationWorkflowsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MigrationWorkflow] {
     return self.migrationWorkflows
   }

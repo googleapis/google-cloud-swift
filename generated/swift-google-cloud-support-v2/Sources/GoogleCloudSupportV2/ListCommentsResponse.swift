@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the ListComments endpoint.
 public struct ListCommentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of the comments associated with the case.
@@ -96,7 +95,10 @@ public struct ListCommentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCommentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Comment] {
     return self.comments
   }

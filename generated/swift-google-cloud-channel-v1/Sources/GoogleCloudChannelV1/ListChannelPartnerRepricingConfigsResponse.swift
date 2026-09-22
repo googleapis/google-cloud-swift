@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs]: <doc:CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)>
 public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The repricing configs for this channel partner.
@@ -107,7 +106,10 @@ public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, Go
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListChannelPartnerRepricingConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ChannelPartnerRepricingConfig] {
     return self.channelPartnerRepricingConfigs
   }

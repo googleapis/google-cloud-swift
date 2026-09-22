@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for SearchIndexEndpoint.
 public struct SearchIndexEndpointResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Returned search results.
@@ -97,7 +96,10 @@ public struct SearchIndexEndpointResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchIndexEndpointResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchResultItem] {
     return self.searchResultItems
   }

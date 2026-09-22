@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListSecurityProfiles method.
 public struct ListSecurityProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of SecurityProfile resources.
@@ -97,7 +96,10 @@ public struct ListSecurityProfilesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSecurityProfilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SecurityProfile] {
     return self.securityProfiles
   }

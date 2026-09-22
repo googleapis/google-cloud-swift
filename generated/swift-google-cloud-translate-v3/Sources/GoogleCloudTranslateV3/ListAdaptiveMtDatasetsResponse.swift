@@ -20,7 +20,6 @@ import Foundation
 
 /// A list of AdaptiveMtDatasets.
 public struct ListAdaptiveMtDatasetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. A list of Adaptive MT datasets.
@@ -98,7 +97,10 @@ public struct ListAdaptiveMtDatasetsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAdaptiveMtDatasetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AdaptiveMtDataset] {
     return self.adaptiveMtDatasets
   }

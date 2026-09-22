@@ -20,7 +20,6 @@ import Foundation
 
 /// List of fleet namespaces.
 public struct ListScopeNamespacesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of fleet namespaces
@@ -96,7 +95,10 @@ public struct ListScopeNamespacesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListScopeNamespacesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Namespace] {
     return self.scopeNamespaces
   }

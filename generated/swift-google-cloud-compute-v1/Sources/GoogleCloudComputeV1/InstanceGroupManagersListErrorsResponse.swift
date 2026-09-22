@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct InstanceGroupManagersListErrorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. The list of errors of the managed instance group.
@@ -98,7 +97,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension InstanceGroupManagersListErrorsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [InstanceManagedByIgmError] {
       return self.items
     }

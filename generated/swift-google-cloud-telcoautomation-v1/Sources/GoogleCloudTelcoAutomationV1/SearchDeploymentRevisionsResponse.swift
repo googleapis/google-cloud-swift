@@ -20,7 +20,6 @@ import Foundation
 
 /// Response object for `SearchDeploymentRevisions`.
 public struct SearchDeploymentRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested deployment revisions.
@@ -95,7 +94,10 @@ public struct SearchDeploymentRevisionsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchDeploymentRevisionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Deployment] {
     return self.deployments
   }

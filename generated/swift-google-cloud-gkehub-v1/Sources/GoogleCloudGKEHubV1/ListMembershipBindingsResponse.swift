@@ -20,7 +20,6 @@ import Foundation
 
 /// List of MembershipBindings.
 public struct ListMembershipBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of membership_bindings
@@ -107,7 +106,10 @@ public struct ListMembershipBindingsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMembershipBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MembershipBinding] {
     return self.membershipBindings
   }

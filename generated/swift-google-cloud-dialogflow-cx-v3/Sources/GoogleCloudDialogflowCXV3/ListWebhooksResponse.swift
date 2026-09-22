@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Webhooks.ListWebhooks]: <doc:WebhooksClient/listWebhooks(request:options:)>
   public struct ListWebhooksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of webhooks. There will be a maximum number of items returned
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListWebhooksResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Webhook] {
       return self.webhooks
     }

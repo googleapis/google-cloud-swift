@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListSources' request.
 public struct ListSourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of sources response.
@@ -104,7 +103,10 @@ public struct ListSourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Source] {
     return self.sources
   }

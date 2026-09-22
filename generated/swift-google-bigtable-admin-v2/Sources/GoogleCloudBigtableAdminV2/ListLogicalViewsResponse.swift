@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for BigtableInstanceAdmin.ListLogicalViews.
 public struct ListLogicalViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested logical views.
@@ -95,7 +94,10 @@ public struct ListLogicalViewsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLogicalViewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogicalView] {
     return self.logicalViews
   }

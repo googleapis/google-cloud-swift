@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing cloud locations.
 public struct ListCloudLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. List of cloud locations.
@@ -97,7 +96,10 @@ public struct ListCloudLocationsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCloudLocationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CloudLocation] {
     return self.cloudLocations
   }

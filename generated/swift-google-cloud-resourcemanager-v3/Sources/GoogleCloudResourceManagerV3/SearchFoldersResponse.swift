@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for searching folders.
 public struct SearchFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated folder search results.
@@ -96,7 +95,10 @@ public struct SearchFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchFoldersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Folder] {
     return self.folders
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:options:)>
 public struct QueryDataObjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of dataObjects that match the query.
@@ -99,7 +98,10 @@ public struct QueryDataObjectsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryDataObjectsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataObject] {
     return self.dataObjects
   }

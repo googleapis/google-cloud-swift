@@ -20,7 +20,6 @@ import Foundation
 
 /// List AspectTypes response.
 public struct ListAspectTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// AspectTypes under the given parent location.
@@ -105,7 +104,10 @@ public struct ListAspectTypesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAspectTypesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AspectType] {
     return self.aspectTypes
   }

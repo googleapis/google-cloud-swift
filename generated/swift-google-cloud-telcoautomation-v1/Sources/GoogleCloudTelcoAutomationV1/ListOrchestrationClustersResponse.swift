@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing OrchestrationClusters.
 public struct ListOrchestrationClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of OrchestrationCluster
@@ -105,7 +104,10 @@ public struct ListOrchestrationClustersResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrchestrationClustersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OrchestrationCluster] {
     return self.orchestrationClusters
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.Autokey.ListKeyHandles]: <doc:AutokeyClient/listKeyHandles(request:options:)>
 public struct ListKeyHandlesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Resulting [KeyHandles][google.cloud.kms.v1.KeyHandle].
@@ -103,7 +102,10 @@ public struct ListKeyHandlesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListKeyHandlesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [KeyHandle] {
     return self.keyHandles
   }

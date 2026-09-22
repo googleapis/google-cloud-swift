@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureViewSyncs(request:options:)>
   public struct ListFeatureViewSyncsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The FeatureViewSyncs matching the request.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListFeatureViewSyncsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [FeatureViewSync] {
       return self.featureViewSyncs
     }

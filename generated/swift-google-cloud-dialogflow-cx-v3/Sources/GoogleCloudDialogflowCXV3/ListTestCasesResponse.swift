@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.TestCases.ListTestCases]: <doc:TestCasesClient/listTestCases(request:options:)>
   public struct ListTestCasesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of test cases. There will be a maximum number of items returned
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTestCasesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TestCase] {
       return self.testCases
     }

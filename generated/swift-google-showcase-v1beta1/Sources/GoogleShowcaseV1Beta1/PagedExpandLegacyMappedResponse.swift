@@ -19,7 +19,6 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 public struct PagedExpandLegacyMappedResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The words that were expanded, indexed by their initial character.
@@ -97,7 +96,10 @@ public struct PagedExpandLegacyMappedResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension PagedExpandLegacyMappedResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [(Swift.String, PagedExpandResponseList)] {
     return self.alphabetized.map { ($0, $1) }
   }

@@ -25,7 +25,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]: <doc:SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:options:)>
   public struct FetchDomainVerificationStatusResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of TargetSites containing the site verification status.
@@ -111,7 +110,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension FetchDomainVerificationStatusResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TargetSite] {
       return self.targetSites
     }

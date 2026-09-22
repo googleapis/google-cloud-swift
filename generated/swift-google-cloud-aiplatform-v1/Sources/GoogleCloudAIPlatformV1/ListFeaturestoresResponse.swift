@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]: <doc:FeaturestoreServiceClient/listFeaturestores(request:options:)>
   public struct ListFeaturestoresResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The Featurestores matching the request.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListFeaturestoresResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Featurestore] {
       return self.featurestores
     }

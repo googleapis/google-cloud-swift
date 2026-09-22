@@ -20,7 +20,6 @@ import Foundation
 
 /// Response of the ListAddressGroupReferences method.
 public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of references that matches the specified filter in the request.
@@ -186,7 +185,10 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAddressGroupReferencesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ListAddressGroupReferencesResponse.AddressGroupReference] {
     return self.addressGroupReferences
   }

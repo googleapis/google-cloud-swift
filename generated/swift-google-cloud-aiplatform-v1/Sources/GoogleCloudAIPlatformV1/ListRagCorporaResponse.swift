@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataServiceClient/listRagCorpora(request:options:)>
   public struct ListRagCorporaResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of RagCorpora in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListRagCorporaResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [RagCorpus] {
       return self.ragCorpora
     }

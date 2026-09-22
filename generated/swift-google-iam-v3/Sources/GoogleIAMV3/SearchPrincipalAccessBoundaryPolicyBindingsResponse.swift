@@ -21,7 +21,6 @@ import Foundation
 /// Response message for SearchPrincipalAccessBoundaryPolicyBindings rpc.
 public struct SearchPrincipalAccessBoundaryPolicyBindingsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The policy bindings that reference the specified policy.
@@ -96,7 +95,10 @@ public struct SearchPrincipalAccessBoundaryPolicyBindingsResponse: Codable, Equa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchPrincipalAccessBoundaryPolicyBindingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PolicyBinding] {
     return self.policyBindings
   }

@@ -21,7 +21,6 @@
 
   /// Contains a list of resourcePolicies.
   public struct ResourcePolicyAggregatedList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     public var etag: Swift.String? = nil
@@ -657,7 +656,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ResourcePolicyAggregatedList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, ResourcePoliciesScopedList)] {
       return self.items.map { ($0, $1) }
     }

@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct TargetHttpProxyAggregatedList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -129,7 +128,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension TargetHttpProxyAggregatedList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, TargetHttpProxiesScopedList)] {
       return self.items.map { ($0, $1) }
     }

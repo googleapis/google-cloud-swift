@@ -21,7 +21,6 @@ import Foundation
 /// The response message for the google.showcase.v1beta1.Identity\ListUsers
 /// method.
 public struct ListUsersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of users.
@@ -98,7 +97,10 @@ public struct ListUsersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUsersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [User] {
     return self.users
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetServiceClient/listAnnotations(request:options:)>
   public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of Annotations that matches the specified filter in the request.
@@ -98,7 +97,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListAnnotationsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Annotation] {
       return self.annotations
     }

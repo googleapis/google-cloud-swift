@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineServiceClient/listTrainingPipelines(request:options:)>
   public struct ListTrainingPipelinesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of TrainingPipelines in the requested page.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTrainingPipelinesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TrainingPipeline] {
       return self.trainingPipelines
     }

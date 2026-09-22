@@ -20,7 +20,6 @@ import Foundation
 
 /// ListLogTypeSchemas response message.
 public struct ListLogTypeSchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// LogTypeSchemas.
@@ -95,7 +94,10 @@ public struct ListLogTypeSchemasResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLogTypeSchemasResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogTypeSchema] {
     return self.logTypeSchemas
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:options:)>
   public struct ListModelVersionCheckpointsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of Model Version checkpoints.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListModelVersionCheckpointsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ModelVersionCheckpoint] {
       return self.checkpoints
     }

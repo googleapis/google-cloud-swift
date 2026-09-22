@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]: <doc:ApiHubPluginClient/listPluginInstances(request:options:)>
 public struct ListPluginInstancesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The plugin instances from the specified parent resource.
@@ -99,7 +98,10 @@ public struct ListPluginInstancesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPluginInstancesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PluginInstance] {
     return self.pluginInstances
   }

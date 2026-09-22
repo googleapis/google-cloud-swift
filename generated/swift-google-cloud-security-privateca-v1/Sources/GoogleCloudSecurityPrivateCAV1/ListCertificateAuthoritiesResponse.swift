@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificateAuthorities]: <doc:CertificateAuthorityServiceClient/listCertificateAuthorities(request:options:)>
 public struct ListCertificateAuthoritiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of
@@ -116,7 +115,10 @@ public struct ListCertificateAuthoritiesResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCertificateAuthoritiesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CertificateAuthority] {
     return self.certificateAuthorities
   }

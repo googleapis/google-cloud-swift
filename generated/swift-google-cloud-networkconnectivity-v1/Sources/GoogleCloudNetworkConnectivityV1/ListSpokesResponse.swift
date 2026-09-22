@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.networkconnectivity.v1.HubService.ListSpokes]: <doc:HubServiceClient/listSpokes(request:options:)>
 public struct ListSpokesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested spokes.
@@ -108,7 +107,10 @@ public struct ListSpokesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSpokesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Spoke] {
     return self.spokes
   }

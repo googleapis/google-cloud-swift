@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing entitlements.
 public struct ListEntitlementsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of entitlements.
@@ -103,7 +102,10 @@ public struct ListEntitlementsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEntitlementsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Entitlement] {
     return self.entitlements
   }

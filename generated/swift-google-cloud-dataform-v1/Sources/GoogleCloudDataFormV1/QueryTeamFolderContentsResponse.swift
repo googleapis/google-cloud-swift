@@ -20,7 +20,6 @@ import Foundation
 
 /// `QueryTeamFolderContents` response message.
 public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of entries in the TeamFolder.
@@ -199,7 +198,10 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryTeamFolderContentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [QueryTeamFolderContentsResponse.TeamFolderContentsEntry] {
     return self.entries
   }

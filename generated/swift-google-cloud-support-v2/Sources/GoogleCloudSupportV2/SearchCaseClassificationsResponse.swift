@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for SearchCaseClassifications endpoint.
 public struct SearchCaseClassificationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The classifications retrieved.
@@ -98,7 +97,10 @@ public struct SearchCaseClassificationsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchCaseClassificationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CaseClassification] {
     return self.caseClassifications
   }

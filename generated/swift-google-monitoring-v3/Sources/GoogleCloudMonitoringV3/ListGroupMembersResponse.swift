@@ -21,7 +21,6 @@ import GoogleApi
 
 /// The `ListGroupMembers` response.
 public struct ListGroupMembersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A set of monitored resources in the group.
@@ -108,7 +107,10 @@ public struct ListGroupMembersResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGroupMembersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoogleApi.MonitoredResource] {
     return self.members
   }

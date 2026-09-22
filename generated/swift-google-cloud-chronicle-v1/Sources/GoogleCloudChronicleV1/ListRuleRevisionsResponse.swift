@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListRuleRevisions method.
 public struct ListRuleRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The revisions of the rule.
@@ -95,7 +94,10 @@ public struct ListRuleRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuleRevisionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Rule] {
     return self.rules
   }

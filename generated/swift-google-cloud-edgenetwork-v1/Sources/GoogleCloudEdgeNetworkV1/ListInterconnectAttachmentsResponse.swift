@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing InterconnectAttachments
 public struct ListInterconnectAttachmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of InterconnectAttachment
@@ -105,7 +104,10 @@ public struct ListInterconnectAttachmentsResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInterconnectAttachmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [InterconnectAttachment] {
     return self.interconnectAttachments
   }

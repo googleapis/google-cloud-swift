@@ -21,7 +21,6 @@
 
   /// Response to the list request that contains a list of cross-site networks.
   public struct CrossSiteNetworkList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     public var etag: Swift.String? = nil
@@ -655,7 +654,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension CrossSiteNetworkList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [CrossSiteNetwork] {
       return self.items
     }

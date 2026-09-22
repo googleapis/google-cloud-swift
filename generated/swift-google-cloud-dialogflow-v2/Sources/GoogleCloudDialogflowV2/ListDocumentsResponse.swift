@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Documents.ListDocuments]: <doc:DocumentsClient/listDocuments(request:options:)>
   public struct ListDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of documents.
@@ -99,7 +98,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListDocumentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Document] {
       return self.documents
     }

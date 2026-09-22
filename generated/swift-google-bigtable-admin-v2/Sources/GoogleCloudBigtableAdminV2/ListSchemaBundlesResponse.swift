@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListSchemaBundles]: <doc:BigtableTableAdminClient/listSchemaBundles(request:options:)>
 public struct ListSchemaBundlesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The schema bundles from the specified table.
@@ -98,7 +97,10 @@ public struct ListSchemaBundlesResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSchemaBundlesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SchemaBundle] {
     return self.schemaBundles
   }

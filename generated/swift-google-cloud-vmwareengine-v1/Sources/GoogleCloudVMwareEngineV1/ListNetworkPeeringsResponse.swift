@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]: <doc:VmwareEngineClient/listNetworkPeerings(request:options:)>
 public struct ListNetworkPeeringsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of network peerings.
@@ -107,7 +106,10 @@ public struct ListNetworkPeeringsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNetworkPeeringsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NetworkPeering] {
     return self.networkPeerings
   }

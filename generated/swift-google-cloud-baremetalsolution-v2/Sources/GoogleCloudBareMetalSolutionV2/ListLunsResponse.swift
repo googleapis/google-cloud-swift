@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message containing the list of storage volume luns.
 public struct ListLunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of luns.
@@ -103,7 +102,10 @@ public struct ListLunsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListLunsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Lun] {
     return self.luns
   }

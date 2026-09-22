@@ -21,7 +21,6 @@ import Foundation
 /// The response for
 /// [ListConnections][Management.ListConnections].
 public struct ListConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of clients.
@@ -96,7 +95,10 @@ public struct ListConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Connection] {
     return self.connections
   }

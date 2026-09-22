@@ -21,7 +21,6 @@
 
   /// Contains a list of reservations.
   public struct ReservationAggregatedList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -651,7 +650,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ReservationAggregatedList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [(Swift.String, ReservationsScopedList)] {
       return self.items.map { ($0, $1) }
     }

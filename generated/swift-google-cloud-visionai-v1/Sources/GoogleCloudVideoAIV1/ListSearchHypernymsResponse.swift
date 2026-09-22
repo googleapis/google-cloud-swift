@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing SearchHypernyms.
 public struct ListSearchHypernymsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The SearchHypernyms from the specified corpus.
@@ -95,7 +94,10 @@ public struct ListSearchHypernymsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSearchHypernymsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchHypernym] {
     return self.searchHypernyms
   }

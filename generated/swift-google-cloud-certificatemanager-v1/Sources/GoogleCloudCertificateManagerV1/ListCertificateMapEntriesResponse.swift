@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListCertificateMapEntries` method.
 public struct ListCertificateMapEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of certificate map entries for the parent resource.
@@ -108,7 +107,10 @@ public struct ListCertificateMapEntriesResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCertificateMapEntriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CertificateMapEntry] {
     return self.certificateMapEntries
   }

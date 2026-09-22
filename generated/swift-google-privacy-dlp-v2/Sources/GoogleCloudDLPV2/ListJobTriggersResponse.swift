@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListJobTriggers.
 public struct ListJobTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of triggeredJobs, up to page_size in ListJobTriggersRequest.
@@ -95,7 +94,10 @@ public struct ListJobTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListJobTriggersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [JobTrigger] {
     return self.jobTriggers
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.ces.v1.AgentService.ListToolsets]: <doc:AgentServiceClient/listToolsets(request:options:)>
 public struct ListToolsetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of toolsets.
@@ -102,7 +101,10 @@ public struct ListToolsetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListToolsetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Toolset] {
     return self.toolsets
   }

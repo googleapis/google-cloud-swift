@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.VizierService.ListStudies]: <doc:VizierServiceClient/listStudies(request:options:)>
   public struct ListStudiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The studies associated with the project.
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListStudiesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Study] {
       return self.studies
     }

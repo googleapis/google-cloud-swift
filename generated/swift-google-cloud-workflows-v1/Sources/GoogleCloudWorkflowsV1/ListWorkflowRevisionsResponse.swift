@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.workflows.v1.Workflows.ListWorkflowRevisions]: <doc:WorkflowsClient/listWorkflowRevisions(request:options:)>
 public struct ListWorkflowRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The revisions of the workflow, ordered in reverse chronological order.
@@ -99,7 +98,10 @@ public struct ListWorkflowRevisionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkflowRevisionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Workflow] {
     return self.workflows
   }

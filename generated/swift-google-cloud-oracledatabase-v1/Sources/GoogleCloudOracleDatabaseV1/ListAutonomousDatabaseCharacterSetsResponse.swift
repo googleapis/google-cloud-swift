@@ -21,7 +21,6 @@ import Foundation
 /// The response for `AutonomousDatabaseCharacterSet.List`.
 public struct ListAutonomousDatabaseCharacterSetsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Autonomous Database Character Sets.
@@ -100,7 +99,10 @@ public struct ListAutonomousDatabaseCharacterSetsResponse: Codable, Equatable, G
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAutonomousDatabaseCharacterSetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AutonomousDatabaseCharacterSet] {
     return self.autonomousDatabaseCharacterSets
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// ListTasks Response.
 public struct ListTasksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Tasks.
@@ -103,7 +102,10 @@ public struct ListTasksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTasksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Task] {
     return self.tasks
   }

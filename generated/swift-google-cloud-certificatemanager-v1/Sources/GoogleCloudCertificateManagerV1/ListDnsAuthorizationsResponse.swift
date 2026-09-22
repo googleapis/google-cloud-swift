@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListDnsAuthorizations` method.
 public struct ListDnsAuthorizationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of dns authorizations for the parent resource.
@@ -107,7 +106,10 @@ public struct ListDnsAuthorizationsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDnsAuthorizationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DnsAuthorization] {
     return self.dnsAuthorizations
   }

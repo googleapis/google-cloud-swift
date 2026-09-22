@@ -20,7 +20,6 @@ import Foundation
 
 /// List dataScans response.
 public struct ListDataScansResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// DataScans (`BASIC` view only) under the given parent location.
@@ -104,7 +103,10 @@ public struct ListDataScansResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataScansResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataScan] {
     return self.dataScans
   }

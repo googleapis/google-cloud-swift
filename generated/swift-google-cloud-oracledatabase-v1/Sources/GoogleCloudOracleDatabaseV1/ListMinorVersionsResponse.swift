@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `MinorVersion.List`.
 public struct ListMinorVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of MinorVersions.
@@ -94,7 +93,10 @@ public struct ListMinorVersionsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMinorVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MinorVersion] {
     return self.minorVersions
   }

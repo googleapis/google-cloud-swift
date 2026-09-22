@@ -21,7 +21,6 @@
 
   /// A list of reservation subBlocks under a single reservation.
   public struct ReservationSubBlocksListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Unique identifier for the resource; defined by the server.
@@ -642,7 +641,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ReservationSubBlocksListResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ReservationSubBlock] {
       return self.items
     }

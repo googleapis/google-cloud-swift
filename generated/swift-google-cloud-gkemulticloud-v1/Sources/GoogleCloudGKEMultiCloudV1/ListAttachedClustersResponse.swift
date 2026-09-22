@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `AttachedClusters.ListAttachedClusters` method.
 public struct ListAttachedClustersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
@@ -99,7 +98,10 @@ public struct ListAttachedClustersResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAttachedClustersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AttachedCluster] {
     return self.attachedClusters
   }

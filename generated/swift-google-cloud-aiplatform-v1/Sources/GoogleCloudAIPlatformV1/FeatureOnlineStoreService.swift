@@ -19,11 +19,11 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudLocation
-  import GoogleIAMV1
-  import GoogleLongRunning
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) import GoogleIAMV1
+  @_spi(GoogleCloudInternal) import GoogleLongRunning
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// A service for fetching feature values from the online store.
   ///

@@ -20,7 +20,6 @@ import Foundation
 
 /// The response of listing conversations.
 public struct ListConversationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The conversations that match the request.
@@ -96,7 +95,10 @@ public struct ListConversationsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConversationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Conversation] {
     return self.conversations
   }

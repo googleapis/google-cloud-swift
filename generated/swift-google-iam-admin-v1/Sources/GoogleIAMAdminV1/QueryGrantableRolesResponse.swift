@@ -20,7 +20,6 @@ import Foundation
 
 /// The grantable role query response.
 public struct QueryGrantableRolesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of matching roles.
@@ -95,7 +94,10 @@ public struct QueryGrantableRolesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension QueryGrantableRolesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Role] {
     return self.roles
   }

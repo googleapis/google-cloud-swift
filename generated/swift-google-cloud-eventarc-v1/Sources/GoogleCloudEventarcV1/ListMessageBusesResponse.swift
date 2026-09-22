@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListMessageBuses` method.
 public struct ListMessageBusesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested message buses, up to the number specified in `page_size`.
@@ -104,7 +103,10 @@ public struct ListMessageBusesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMessageBusesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MessageBus] {
     return self.messageBuses
   }

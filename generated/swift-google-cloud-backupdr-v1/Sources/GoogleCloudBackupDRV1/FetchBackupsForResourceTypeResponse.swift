@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the FetchBackupsForResourceType method.
 public struct FetchBackupsForResourceTypeResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The Backups from the specified parent.
@@ -95,7 +94,10 @@ public struct FetchBackupsForResourceTypeResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchBackupsForResourceTypeResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Backup] {
     return self.backups
   }

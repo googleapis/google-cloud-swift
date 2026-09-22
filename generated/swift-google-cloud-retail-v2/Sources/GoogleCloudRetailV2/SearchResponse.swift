@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
 public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of matched items. The order represents the ranking.
@@ -1138,7 +1137,10 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchResponse.SearchResult] {
     return self.results
   }

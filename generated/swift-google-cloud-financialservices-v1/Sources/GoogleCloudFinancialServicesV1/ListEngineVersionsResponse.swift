@@ -20,7 +20,6 @@ import Foundation
 
 /// The response to a list call containing the list of engine versions.
 public struct ListEngineVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of EngineVersion resources
@@ -104,7 +103,10 @@ public struct ListEngineVersionsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEngineVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EngineVersion] {
     return self.engineVersions
   }

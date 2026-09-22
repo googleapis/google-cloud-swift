@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardServiceClient/listTensorboardTimeSeries(request:options:)>
   public struct ListTensorboardTimeSeriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The TensorboardTimeSeries mathching the request.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTensorboardTimeSeriesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TensorboardTimeSeries] {
       return self.tensorboardTimeSeries
     }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags]: <doc:PolicyTagManagerClient/listPolicyTags(request:options:)>
 public struct ListPolicyTagsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The policy tags that belong to the taxonomy.
@@ -98,7 +97,10 @@ public struct ListPolicyTagsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPolicyTagsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PolicyTag] {
     return self.policyTags
   }

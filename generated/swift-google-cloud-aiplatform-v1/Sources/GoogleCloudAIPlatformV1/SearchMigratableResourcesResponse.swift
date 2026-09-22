@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.MigrationService.SearchMigratableResources]: <doc:MigrationServiceClient/searchMigratableResources(request:options:)>
   public struct SearchMigratableResourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// All migratable resources that can be migrated to the
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension SearchMigratableResourcesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [MigratableResource] {
       return self.migratableResources
     }

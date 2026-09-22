@@ -20,7 +20,6 @@ import Foundation
 
 /// The response for `ExascaleDbStorageVault.List`.
 public struct ListExascaleDbStorageVaultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The ExascaleDbStorageVaults.
@@ -109,7 +108,10 @@ public struct ListExascaleDbStorageVaultsResponse: Codable, Equatable, GoogleWKT
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExascaleDbStorageVaultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ExascaleDbStorageVault] {
     return self.exascaleDbStorageVaults
   }

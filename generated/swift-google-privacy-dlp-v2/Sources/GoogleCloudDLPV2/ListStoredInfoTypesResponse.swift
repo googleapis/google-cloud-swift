@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListStoredInfoTypes.
 public struct ListStoredInfoTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
@@ -95,7 +94,10 @@ public struct ListStoredInfoTypesResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListStoredInfoTypesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [StoredInfoType] {
     return self.storedInfoTypes
   }

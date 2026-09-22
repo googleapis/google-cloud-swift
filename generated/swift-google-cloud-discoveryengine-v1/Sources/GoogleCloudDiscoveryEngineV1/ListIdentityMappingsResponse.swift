@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappings]: <doc:IdentityMappingStoreServiceClient/listIdentityMappings(request:options:)>
   public struct ListIdentityMappingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The Identity Mapping Entries.
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListIdentityMappingsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [IdentityMappingEntry] {
       return self.identityMappingEntries
     }

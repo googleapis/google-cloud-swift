@@ -21,7 +21,6 @@
 
   public struct RegionInstanceGroupManagersListInstancesResponse: Codable, Equatable, GoogleWKT
       ._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of managed instances.
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension RegionInstanceGroupManagersListInstancesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ManagedInstance] {
       return self.managedInstances
     }

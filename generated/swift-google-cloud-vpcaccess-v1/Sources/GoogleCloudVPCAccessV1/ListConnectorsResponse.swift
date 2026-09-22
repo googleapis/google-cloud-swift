@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for listing Serverless VPC Access connectors.
 public struct ListConnectorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of Serverless VPC Access connectors.
@@ -94,7 +93,10 @@ public struct ListConnectorsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Connector] {
     return self.connectors
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.ListAttestors]: <doc:BinauthzManagementServiceV1Client/listAttestors(request:options:)>
 public struct ListAttestorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [attestors][google.cloud.binaryauthorization.v1.Attestor].
@@ -104,7 +103,10 @@ public struct ListAttestorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAttestorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Attestor] {
     return self.attestors
   }

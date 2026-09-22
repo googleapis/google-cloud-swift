@@ -20,7 +20,6 @@ import Foundation
 
 /// The ListTagValues response.
 public struct ListTagValuesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated list of TagValues that are direct descendants of
@@ -97,7 +96,10 @@ public struct ListTagValuesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTagValuesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TagValue] {
     return self.tagValues
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListServingConfigs method.
 public struct ListServingConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// All the ServingConfigs for a given catalog.
@@ -94,7 +93,10 @@ public struct ListServingConfigsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServingConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServingConfig] {
     return self.servingConfigs
   }

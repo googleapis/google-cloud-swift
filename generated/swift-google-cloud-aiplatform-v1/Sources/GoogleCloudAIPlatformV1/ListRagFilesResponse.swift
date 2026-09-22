@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:options:)>
   public struct ListRagFilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of RagFiles in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListRagFilesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [RagFile] {
       return self.ragFiles
     }

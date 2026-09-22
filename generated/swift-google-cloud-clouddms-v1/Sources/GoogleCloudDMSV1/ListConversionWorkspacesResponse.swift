@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListConversionWorkspaces' request.
 public struct ListConversionWorkspacesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of conversion workspace objects.
@@ -106,7 +105,10 @@ public struct ListConversionWorkspacesResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConversionWorkspacesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ConversionWorkspace] {
     return self.conversionWorkspaces
   }

@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstanceProposals]: <doc:HsmManagementClient/listSingleTenantHsmInstanceProposals(request:options:)>
 public struct ListSingleTenantHsmInstanceProposalsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of
@@ -127,7 +126,10 @@ public struct ListSingleTenantHsmInstanceProposalsResponse: Codable, Equatable, 
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSingleTenantHsmInstanceProposalsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SingleTenantHsmInstanceProposal] {
     return self.singleTenantHsmInstanceProposals
   }

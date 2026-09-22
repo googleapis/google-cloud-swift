@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreServiceClient/listEntityTypes(request:options:)>
   public struct ListEntityTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The EntityTypes matching the request.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListEntityTypesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [EntityType] {
       return self.entityTypes
     }

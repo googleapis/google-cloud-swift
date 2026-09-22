@@ -20,7 +20,6 @@ import Foundation
 
 /// ListBackupVaultsResponse is the result of ListBackupVaultsRequest.
 public struct ListBackupVaultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of backupVaults in the project for the specified location.
@@ -104,7 +103,10 @@ public struct ListBackupVaultsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBackupVaultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BackupVault] {
     return self.backupVaults
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message of ListPublicOperators API.
 public struct ListPublicOperatorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Operator
@@ -94,7 +93,10 @@ public struct ListPublicOperatorsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPublicOperatorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Operator] {
     return self.operators
   }

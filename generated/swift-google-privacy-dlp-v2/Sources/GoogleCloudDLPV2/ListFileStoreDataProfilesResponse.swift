@@ -21,7 +21,6 @@ import Foundation
 /// List of file store data profiles generated for a given organization or
 /// project.
 public struct ListFileStoreDataProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of data profiles.
@@ -97,7 +96,10 @@ public struct ListFileStoreDataProfilesResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFileStoreDataProfilesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FileStoreDataProfile] {
     return self.fileStoreDataProfiles
   }

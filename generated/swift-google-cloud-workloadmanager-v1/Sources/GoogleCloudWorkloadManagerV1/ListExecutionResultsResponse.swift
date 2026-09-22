@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the ListExecutionResults RPC.
 public struct ListExecutionResultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The versions from the specified publisher.
@@ -96,7 +95,10 @@ public struct ListExecutionResultsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExecutionResultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ExecutionResult] {
     return self.executionResults
   }

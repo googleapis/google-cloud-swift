@@ -20,7 +20,6 @@ import Foundation
 
 /// Request message for `ListProjectBillingInfoResponse`.
 public struct ListProjectBillingInfoResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of `ProjectBillingInfo` resources representing the projects
@@ -99,7 +98,10 @@ public struct ListProjectBillingInfoResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProjectBillingInfoResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProjectBillingInfo] {
     return self.projectBillingInfo
   }

@@ -19,7 +19,6 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
 public struct ListEndpointsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of endpoints response.
@@ -103,7 +102,10 @@ public struct ListEndpointsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEndpointsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Endpoint] {
     return self.endpoints
   }

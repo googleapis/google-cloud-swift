@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]: <doc:VmwareEngineClient/fetchNetworkPolicyExternalAddresses(request:options:)>
 public struct FetchNetworkPolicyExternalAddressesResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of external IP addresses assigned to VMware workload VMs within the
@@ -102,7 +101,10 @@ public struct FetchNetworkPolicyExternalAddressesResponse: Codable, Equatable, G
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchNetworkPolicyExternalAddressesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ExternalAddress] {
     return self.externalAddresses
   }

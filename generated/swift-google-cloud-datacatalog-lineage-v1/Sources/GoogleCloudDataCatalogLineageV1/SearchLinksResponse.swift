@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:options:)>
 public struct SearchLinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of links for a given asset. Can be empty if the asset has no
@@ -99,7 +98,10 @@ public struct SearchLinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchLinksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Link] {
     return self.links
   }

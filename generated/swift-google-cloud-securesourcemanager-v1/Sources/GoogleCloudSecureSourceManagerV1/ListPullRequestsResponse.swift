@@ -20,7 +20,6 @@ import Foundation
 
 /// ListPullRequestsResponse is the response to list pull requests.
 public struct ListPullRequestsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of pull requests.
@@ -94,7 +93,10 @@ public struct ListPullRequestsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPullRequestsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PullRequest] {
     return self.pullRequests
   }

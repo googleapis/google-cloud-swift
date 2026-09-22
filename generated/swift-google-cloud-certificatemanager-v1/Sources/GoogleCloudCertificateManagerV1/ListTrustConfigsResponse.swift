@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the `ListTrustConfigs` method.
 public struct ListTrustConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of TrustConfigs for the parent resource.
@@ -105,7 +104,10 @@ public struct ListTrustConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTrustConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TrustConfig] {
     return self.trustConfigs
   }

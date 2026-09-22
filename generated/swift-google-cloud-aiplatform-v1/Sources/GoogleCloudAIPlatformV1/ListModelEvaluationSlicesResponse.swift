@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]: <doc:ModelServiceClient/listModelEvaluationSlices(request:options:)>
   public struct ListModelEvaluationSlicesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of ModelEvaluations in the requested page.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListModelEvaluationSlicesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ModelEvaluationSlice] {
       return self.modelEvaluationSlices
     }

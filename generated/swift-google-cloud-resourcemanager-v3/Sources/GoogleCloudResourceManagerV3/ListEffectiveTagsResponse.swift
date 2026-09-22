@@ -20,7 +20,6 @@ import Foundation
 
 /// The response of ListEffectiveTags.
 public struct ListEffectiveTagsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A possibly paginated list of effective tags for the specified resource.
@@ -104,7 +103,10 @@ public struct ListEffectiveTagsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEffectiveTagsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EffectiveTag] {
     return self.effectiveTags
   }

@@ -21,7 +21,6 @@
 
   public struct RegionInstanceGroupManagersListInstanceConfigsResp: Codable, Equatable, GoogleWKT
       ._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. [Output Only] The list of PerInstanceConfig.
@@ -621,7 +620,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension RegionInstanceGroupManagersListInstanceConfigsResp: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [PerInstanceConfig] {
       return self.items
     }

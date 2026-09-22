@@ -21,7 +21,6 @@
 
   /// Response message for ListDeploymentResourcePools method.
   public struct ListDeploymentResourcePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The DeploymentResourcePools from the specified location.
@@ -98,7 +97,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListDeploymentResourcePoolsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [DeploymentResourcePool] {
       return self.deploymentResourcePools
     }

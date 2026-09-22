@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for listing notes.
 public struct ListNotesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The notes requested.
@@ -108,7 +107,10 @@ public struct ListNotesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNotesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Note] {
     return self.notes
   }

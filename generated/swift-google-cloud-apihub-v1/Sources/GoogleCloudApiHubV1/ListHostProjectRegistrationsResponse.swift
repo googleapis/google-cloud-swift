@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.HostProjectRegistrationService.ListHostProjectRegistrations]: <doc:HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)>
 public struct ListHostProjectRegistrationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of host project registrations.
@@ -101,7 +100,10 @@ public struct ListHostProjectRegistrationsResponse: Codable, Equatable, GoogleWK
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListHostProjectRegistrationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [HostProjectRegistration] {
     return self.hostProjectRegistrations
   }

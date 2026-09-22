@@ -20,7 +20,6 @@ import Foundation
 
 /// ListBranchRulesResponse is the response to listing branchRules.
 public struct ListBranchRulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of branch rules.
@@ -94,7 +93,10 @@ public struct ListBranchRulesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBranchRulesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BranchRule] {
     return self.branchRules
   }

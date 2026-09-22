@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]: <doc:VmwareEngineClient/listExternalAddresses(request:options:)>
 public struct ListExternalAddressesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of external IP addresses.
@@ -109,7 +108,10 @@ public struct ListExternalAddressesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListExternalAddressesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ExternalAddress] {
     return self.externalAddresses
   }

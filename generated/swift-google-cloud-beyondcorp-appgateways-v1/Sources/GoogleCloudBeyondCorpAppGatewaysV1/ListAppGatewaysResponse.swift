@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for BeyondCorp.ListAppGateways.
 public struct ListAppGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of BeyondCorp AppGateways in the project.
@@ -104,7 +103,10 @@ public struct ListAppGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAppGatewaysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AppGateway] {
     return self.appGateways
   }

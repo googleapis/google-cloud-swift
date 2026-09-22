@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.tpu.v2.Tpu.ListAcceleratorTypes]: <doc:TpuClient/listAcceleratorTypes(request:options:)>
 public struct ListAcceleratorTypesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The listed nodes.
@@ -107,7 +106,10 @@ public struct ListAcceleratorTypesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAcceleratorTypesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AcceleratorType] {
     return self.acceleratorTypes
   }

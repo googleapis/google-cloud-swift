@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:SimulatorClient/listReplayResults(request:options:)>
 public struct ListReplayResultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The results of running a [Replay][google.cloud.policysimulator.v1.Replay].
@@ -103,7 +102,10 @@ public struct ListReplayResultsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReplayResultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ReplayResult] {
     return self.replayResults
   }

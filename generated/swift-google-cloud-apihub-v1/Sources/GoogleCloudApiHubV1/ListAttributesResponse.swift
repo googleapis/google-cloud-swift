@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:options:)>
 public struct ListAttributesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of all attributes.
@@ -98,7 +97,10 @@ public struct ListAttributesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAttributesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Attribute] {
     return self.attributes
   }

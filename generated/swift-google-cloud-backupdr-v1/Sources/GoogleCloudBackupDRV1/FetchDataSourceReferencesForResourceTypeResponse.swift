@@ -21,7 +21,6 @@ import Foundation
 /// Response for the FetchDataSourceReferencesForResourceType method.
 public struct FetchDataSourceReferencesForResourceTypeResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The DataSourceReferences from the specified parent.
@@ -99,7 +98,10 @@ public struct FetchDataSourceReferencesForResourceTypeResponse: Codable, Equatab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension FetchDataSourceReferencesForResourceTypeResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataSourceReference] {
     return self.dataSourceReferences
   }

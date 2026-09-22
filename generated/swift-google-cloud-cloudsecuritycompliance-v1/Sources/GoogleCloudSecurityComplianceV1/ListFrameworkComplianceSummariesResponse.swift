@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.cloudsecuritycompliance.v1.ListFrameworkComplianceSummariesResponse]: <doc:ListFrameworkComplianceSummariesResponse>
 public struct ListFrameworkComplianceSummariesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of framework compliance summaries.
@@ -101,7 +100,10 @@ public struct ListFrameworkComplianceSummariesResponse: Codable, Equatable, Goog
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFrameworkComplianceSummariesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FrameworkComplianceSummary] {
     return self.frameworkComplianceSummaries
   }

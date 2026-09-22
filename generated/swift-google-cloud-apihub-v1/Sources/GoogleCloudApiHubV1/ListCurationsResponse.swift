@@ -20,7 +20,6 @@ import Foundation
 
 /// The [ListCurations][ApiHub.ListCurations] method's response.
 public struct ListCurationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The curation resources present in the API hub.
@@ -95,7 +94,10 @@ public struct ListCurationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCurationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Curation] {
     return self.curations
   }

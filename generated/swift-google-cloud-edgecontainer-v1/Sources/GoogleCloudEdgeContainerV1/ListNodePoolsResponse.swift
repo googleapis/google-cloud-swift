@@ -20,7 +20,6 @@ import Foundation
 
 /// List of node pools in a cluster.
 public struct ListNodePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Node pools in the cluster.
@@ -103,7 +102,10 @@ public struct ListNodePoolsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNodePoolsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NodePool] {
     return self.nodePools
   }

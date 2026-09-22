@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for list access requests.
 public struct ListAccessApprovalRequestsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of access approval requests
@@ -107,7 +106,10 @@ public struct ListAccessApprovalRequestsResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAccessApprovalRequestsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AccessApprovalRequest] {
     return self.accessApprovalRequests
   }

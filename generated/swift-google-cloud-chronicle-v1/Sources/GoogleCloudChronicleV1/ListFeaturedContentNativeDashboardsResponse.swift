@@ -21,7 +21,6 @@ import Foundation
 /// Response message for listing FeaturedContentNativeDashboards.
 public struct ListFeaturedContentNativeDashboardsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of FeaturedContentNativeDashboards.
@@ -102,7 +101,10 @@ public struct ListFeaturedContentNativeDashboardsResponse: Codable, Equatable, G
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFeaturedContentNativeDashboardsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FeaturedContentNativeDashboard] {
     return self.featuredContentNativeDashboards
   }

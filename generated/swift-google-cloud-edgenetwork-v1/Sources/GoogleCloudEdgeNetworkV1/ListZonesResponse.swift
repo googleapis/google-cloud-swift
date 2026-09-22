@@ -22,7 +22,6 @@ import Foundation
 /// Message for response to listing Zones
 @available(*, deprecated)
 public struct ListZonesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Zone
@@ -105,7 +104,11 @@ public struct ListZonesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension ListZonesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Zone] {
     return self.zones
   }

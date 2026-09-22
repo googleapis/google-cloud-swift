@@ -25,7 +25,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]: <doc:SiteSearchEngineServiceClient/listTargetSites(request:options:)>
   public struct ListTargetSitesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of TargetSites.
@@ -110,7 +109,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTargetSitesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TargetSite] {
       return self.targetSites
     }

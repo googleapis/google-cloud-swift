@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments]: <doc:ReservationServiceClient/listCapacityCommitments(request:options:)>
 public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of capacity commitments visible to the user.
@@ -101,7 +100,10 @@ public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCapacityCommitmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CapacityCommitment] {
     return self.capacityCommitments
   }

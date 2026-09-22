@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListCloneJobs' request.
 public struct ListCloneJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of clone jobs response.
@@ -104,7 +103,10 @@ public struct ListCloneJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCloneJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CloneJob] {
     return self.cloneJobs
   }

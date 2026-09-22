@@ -21,7 +21,6 @@
 
   /// Contains a list of region resources.
   public struct RegionList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// [Output Only] Unique identifier for the resource; defined by the server.
@@ -637,7 +636,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension RegionList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Region] {
       return self.items
     }

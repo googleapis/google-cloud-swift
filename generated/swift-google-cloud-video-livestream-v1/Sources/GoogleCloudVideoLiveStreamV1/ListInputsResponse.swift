@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for "LivestreamService.ListInputs".
 public struct ListInputsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of inputs.
@@ -104,7 +103,10 @@ public struct ListInputsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInputsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Input] {
     return self.inputs
   }

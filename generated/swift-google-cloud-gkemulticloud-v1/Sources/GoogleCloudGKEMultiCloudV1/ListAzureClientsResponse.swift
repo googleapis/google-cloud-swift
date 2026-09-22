@@ -21,7 +21,6 @@ import Foundation
 /// Response message for `AzureClusters.ListAzureClients` method.
 @available(*, deprecated)
 public struct ListAzureClientsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
@@ -99,7 +98,11 @@ public struct ListAzureClientsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension ListAzureClientsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AzureClient] {
     return self.azureClients
   }

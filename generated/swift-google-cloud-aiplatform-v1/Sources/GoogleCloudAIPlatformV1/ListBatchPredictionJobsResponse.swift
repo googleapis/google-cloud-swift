@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobServiceClient/listBatchPredictionJobs(request:options:)>
   public struct ListBatchPredictionJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of BatchPredictionJobs in the requested page.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListBatchPredictionJobsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [BatchPredictionJob] {
       return self.batchPredictionJobs
     }

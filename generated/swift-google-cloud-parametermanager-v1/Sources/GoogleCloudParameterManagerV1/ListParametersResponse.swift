@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing Parameters
 public struct ListParametersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Parameters
@@ -103,7 +102,10 @@ public struct ListParametersResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListParametersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Parameter] {
     return self.parameters
   }

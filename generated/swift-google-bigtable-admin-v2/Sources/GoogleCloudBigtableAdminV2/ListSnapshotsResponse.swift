@@ -28,7 +28,6 @@ import Foundation
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots]: <doc:BigtableTableAdminClient/listSnapshots(request:options:)>
 public struct ListSnapshotsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The snapshots present in the requested cluster.
@@ -104,7 +103,10 @@ public struct ListSnapshotsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSnapshotsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Snapshot] {
     return self.snapshots
   }

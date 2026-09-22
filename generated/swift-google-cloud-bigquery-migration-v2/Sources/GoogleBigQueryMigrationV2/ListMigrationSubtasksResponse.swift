@@ -20,7 +20,6 @@ import Foundation
 
 /// Response object for a `ListMigrationSubtasks` call.
 public struct ListMigrationSubtasksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The migration subtasks for the specified task.
@@ -97,7 +96,10 @@ public struct ListMigrationSubtasksResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMigrationSubtasksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MigrationSubtask] {
     return self.migrationSubtasks
   }

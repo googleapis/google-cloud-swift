@@ -20,7 +20,6 @@ import Foundation
 
 /// The protocol for the `ListUptimeCheckIps` response.
 public struct ListUptimeCheckIpsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The returned list of IP addresses (including region and location) that the
@@ -100,7 +99,10 @@ public struct ListUptimeCheckIpsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUptimeCheckIpsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [UptimeCheckIp] {
     return self.uptimeCheckIps
   }

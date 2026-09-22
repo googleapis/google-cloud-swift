@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.bigquery.connection.v1.ConnectionService.ListConnections]: <doc:ConnectionServiceClient/listConnections(request:options:)>
 public struct ListConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Next page token.
@@ -97,7 +96,10 @@ public struct ListConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Connection] {
     return self.connections
   }

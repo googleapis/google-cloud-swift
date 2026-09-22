@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleServiceClient/listSchedules(request:options:)>
   public struct ListSchedulesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of Schedules in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListSchedulesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Schedule] {
       return self.schedules
     }

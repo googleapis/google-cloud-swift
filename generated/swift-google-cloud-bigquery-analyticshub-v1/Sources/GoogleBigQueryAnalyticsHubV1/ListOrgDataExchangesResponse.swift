@@ -21,7 +21,6 @@ import Foundation
 /// Message for response to listing data exchanges in an organization and
 /// location.
 public struct ListOrgDataExchangesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of data exchanges.
@@ -95,7 +94,10 @@ public struct ListOrgDataExchangesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrgDataExchangesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataExchange] {
     return self.dataExchanges
   }

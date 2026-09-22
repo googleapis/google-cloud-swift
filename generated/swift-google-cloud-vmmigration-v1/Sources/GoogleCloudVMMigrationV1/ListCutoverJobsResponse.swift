@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListCutoverJobs' request.
 public struct ListCutoverJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of cutover jobs response.
@@ -104,7 +103,10 @@ public struct ListCutoverJobsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCutoverJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [CutoverJob] {
     return self.cutoverJobs
   }

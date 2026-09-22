@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ApiGatewayService.ListGateways
 public struct ListGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Gateways.
@@ -104,7 +103,10 @@ public struct ListGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGatewaysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Gateway] {
     return self.gateways
   }

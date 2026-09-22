@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Versions.ListVersions]: <doc:VersionsClient/listVersions(request:options:)>
   public struct ListVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of agent versions. There will be a maximum number of items
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListVersionsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Version] {
       return self.versions
     }

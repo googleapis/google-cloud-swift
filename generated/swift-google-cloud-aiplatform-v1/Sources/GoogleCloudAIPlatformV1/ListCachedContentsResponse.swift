@@ -21,7 +21,6 @@
 
   /// Response with a list of CachedContents.
   public struct ListCachedContentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of cached contents.
@@ -96,7 +95,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListCachedContentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [CachedContent] {
       return self.cachedContents
     }

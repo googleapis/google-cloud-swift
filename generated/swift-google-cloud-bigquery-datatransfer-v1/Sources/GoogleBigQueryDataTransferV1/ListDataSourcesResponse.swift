@@ -20,7 +20,6 @@ import Foundation
 
 /// Returns list of supported data sources and their metadata.
 public struct ListDataSourcesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of supported data sources and their transfer settings.
@@ -97,7 +96,10 @@ public struct ListDataSourcesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDataSourcesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DataSource] {
     return self.dataSources
   }

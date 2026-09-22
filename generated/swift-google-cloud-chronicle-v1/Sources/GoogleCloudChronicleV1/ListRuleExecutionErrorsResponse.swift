@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListRuleExecutionErrors.
 public struct ListRuleExecutionErrorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of rule execution errors.
@@ -97,7 +96,10 @@ public struct ListRuleExecutionErrorsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuleExecutionErrorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RuleExecutionError] {
     return self.ruleExecutionErrors
   }

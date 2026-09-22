@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookServiceClient/listNotebookRuntimes(request:options:)>
   public struct ListNotebookRuntimesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of NotebookRuntimes in the requested page.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListNotebookRuntimesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [NotebookRuntime] {
       return self.notebookRuntimes
     }

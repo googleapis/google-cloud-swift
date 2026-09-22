@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports]: <doc:DataprocMetastoreClient/listMetadataImports(request:options:)>
 public struct ListMetadataImportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The imports in the specified service.
@@ -107,7 +106,10 @@ public struct ListMetadataImportsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMetadataImportsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MetadataImport] {
     return self.metadataImports
   }

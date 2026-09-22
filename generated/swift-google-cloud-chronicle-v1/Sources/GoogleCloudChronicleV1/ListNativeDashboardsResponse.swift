@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing dashboards.
 public struct ListNativeDashboardsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The dashboards from the specified chronicle instance.
@@ -96,7 +95,10 @@ public struct ListNativeDashboardsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListNativeDashboardsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [NativeDashboard] {
     return self.nativeDashboards
   }

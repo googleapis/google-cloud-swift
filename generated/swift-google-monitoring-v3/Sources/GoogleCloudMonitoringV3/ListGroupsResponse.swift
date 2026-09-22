@@ -20,7 +20,6 @@ import Foundation
 
 /// The `ListGroups` response.
 public struct ListGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The groups that match the specified filters.
@@ -96,7 +95,10 @@ public struct ListGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Group] {
     return self.group
   }

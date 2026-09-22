@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListUtilizationReports' request.
 public struct ListUtilizationReportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of reports.
@@ -106,7 +105,10 @@ public struct ListUtilizationReportsResponse: Codable, Equatable, GoogleWKT._Any
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListUtilizationReportsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [UtilizationReport] {
     return self.utilizationReports
   }

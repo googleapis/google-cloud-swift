@@ -20,7 +20,6 @@ import Foundation
 
 /// The response from listing maven artifacts.
 public struct ListMavenArtifactsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The maven artifacts returned.
@@ -95,7 +94,10 @@ public struct ListMavenArtifactsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMavenArtifactsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MavenArtifact] {
     return self.mavenArtifacts
   }

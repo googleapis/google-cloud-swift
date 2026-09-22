@@ -20,7 +20,6 @@ import Foundation
 
 /// `ListReleaseConfigs` response message.
 public struct ListReleaseConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of release configs.
@@ -104,7 +103,10 @@ public struct ListReleaseConfigsResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReleaseConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ReleaseConfig] {
     return self.releaseConfigs
   }

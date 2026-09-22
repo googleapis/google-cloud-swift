@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles]: <doc:ConversationProfilesClient/listConversationProfiles(request:options:)>
   public struct ListConversationProfilesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of project conversation profiles. There is a maximum number
@@ -102,7 +101,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListConversationProfilesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ConversationProfile] {
       return self.conversationProfiles
     }

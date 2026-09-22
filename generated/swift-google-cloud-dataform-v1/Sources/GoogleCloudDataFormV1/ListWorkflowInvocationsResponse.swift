@@ -20,7 +20,6 @@ import Foundation
 
 /// `ListWorkflowInvocations` response message.
 public struct ListWorkflowInvocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of workflow invocations.
@@ -106,7 +105,10 @@ public struct ListWorkflowInvocationsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkflowInvocationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [WorkflowInvocation] {
     return self.workflowInvocations
   }

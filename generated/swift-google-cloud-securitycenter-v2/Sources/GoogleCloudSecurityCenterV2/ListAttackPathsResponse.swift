@@ -21,7 +21,6 @@ import Foundation
 /// Response message for listing the attack paths for a given simulation or
 /// valued resource.
 public struct ListAttackPathsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The attack paths that the attack path simulation identified.
@@ -96,7 +95,10 @@ public struct ListAttackPathsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAttackPathsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AttackPath] {
     return self.attackPaths
   }

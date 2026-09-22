@@ -19,10 +19,10 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudLocation
-  import GoogleLongRunning
-  import GoogleWKT
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleCloudLocation
+  @_spi(GoogleCloudInternal) import GoogleLongRunning
+  @_spi(GoogleCloudInternal) import GoogleWKT
+  @_spi(GoogleCloudInternal) import GoogleGax
 
   /// Service for managing [Contexts][google.cloud.dialogflow.v2.Context].
   ///

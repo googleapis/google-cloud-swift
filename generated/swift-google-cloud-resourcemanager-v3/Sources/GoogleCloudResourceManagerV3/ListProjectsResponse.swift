@@ -31,7 +31,6 @@ import Foundation
 ///
 /// [google.cloud.resourcemanager.v3.Projects.ListProjects]: <doc:ProjectsClient/listProjects(request:options:)>
 public struct ListProjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Projects under the parent. This list can be paginated.
@@ -115,7 +114,10 @@ public struct ListProjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProjectsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Project] {
     return self.projects
   }

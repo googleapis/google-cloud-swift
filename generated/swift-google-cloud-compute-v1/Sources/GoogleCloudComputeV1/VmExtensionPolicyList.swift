@@ -20,7 +20,6 @@
   @_spi(GoogleCloudInternal) import GoogleWKT
 
   public struct VmExtensionPolicyList: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. [Output Only] Fingerprint of this resource. A hash of the contents stored
@@ -660,7 +659,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension VmExtensionPolicyList: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [VmExtensionPolicy] {
       return self.items
     }

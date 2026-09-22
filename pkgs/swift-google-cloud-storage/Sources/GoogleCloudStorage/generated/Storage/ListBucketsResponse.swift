@@ -22,7 +22,6 @@ import Foundation
 ///
 /// [google.storage.v2.Storage.ListBuckets]: <doc:StorageControlClient/listBuckets(request:options:)>
 public struct ListBucketsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of items.
@@ -115,7 +114,10 @@ public struct ListBucketsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBucketsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Bucket] {
     return self.buckets
   }

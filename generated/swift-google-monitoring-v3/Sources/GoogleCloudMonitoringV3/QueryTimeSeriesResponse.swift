@@ -24,7 +24,6 @@ import GoogleRpc
 /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
 @available(*, deprecated)
 public struct QueryTimeSeriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The descriptor for the time series data.
@@ -119,7 +118,11 @@ public struct QueryTimeSeriesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension QueryTimeSeriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TimeSeriesData] {
     return self.timeSeriesData
   }

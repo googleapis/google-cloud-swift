@@ -20,7 +20,6 @@ import Foundation
 
 /// The response to a `ListRelatedAccountGroups` call.
 public struct ListRelatedAccountGroupsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The groups of related accounts listed by the query.
@@ -98,7 +97,10 @@ public struct ListRelatedAccountGroupsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRelatedAccountGroupsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RelatedAccountGroup] {
     return self.relatedAccountGroups
   }

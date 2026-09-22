@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to the list of QueryTemplates.
 public struct ListQueryTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of QueryTemplates.
@@ -94,7 +93,10 @@ public struct ListQueryTemplatesResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListQueryTemplatesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [QueryTemplate] {
     return self.queryTemplates
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing management servers.
 public struct ListManagementServersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of ManagementServer instances in the project for the specified
@@ -112,7 +111,10 @@ public struct ListManagementServersResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListManagementServersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ManagementServer] {
     return self.managementServers
   }

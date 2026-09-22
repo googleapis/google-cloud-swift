@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListDiscoveryConfigs.
 public struct ListDiscoveryConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of configs, up to page_size in ListDiscoveryConfigsRequest.
@@ -96,7 +95,10 @@ public struct ListDiscoveryConfigsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDiscoveryConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DiscoveryConfig] {
     return self.discoveryConfigs
   }

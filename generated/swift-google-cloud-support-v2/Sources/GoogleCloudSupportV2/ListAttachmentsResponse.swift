@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the ListAttachments endpoint.
 public struct ListAttachmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of attachments associated with a case.
@@ -96,7 +95,10 @@ public struct ListAttachmentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAttachmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Attachment] {
     return self.attachments
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:EnvironmentsClient/getEnvironmentHistory(request:options:)>
   public struct EnvironmentHistory: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// Output only. The name of the environment this history is for.
@@ -203,7 +202,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension EnvironmentHistory: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [EnvironmentHistory.Entry] {
       return self.entries
     }

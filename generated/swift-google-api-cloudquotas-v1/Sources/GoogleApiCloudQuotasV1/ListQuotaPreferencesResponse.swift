@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing QuotaPreferences
 public struct ListQuotaPreferencesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of QuotaPreference
@@ -105,7 +104,10 @@ public struct ListQuotaPreferencesResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListQuotaPreferencesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [QuotaPreference] {
     return self.quotaPreferences
   }

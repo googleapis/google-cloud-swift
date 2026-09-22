@@ -21,7 +21,6 @@ import GoogleApi
 
 /// Result returned from ListMonitoredResourceDescriptors.
 public struct ListMonitoredResourceDescriptorsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of resource descriptors.
@@ -99,7 +98,10 @@ public struct ListMonitoredResourceDescriptorsResponse: Codable, Equatable, Goog
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMonitoredResourceDescriptorsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoogleApi.MonitoredResourceDescriptor] {
     return self.resourceDescriptors
   }

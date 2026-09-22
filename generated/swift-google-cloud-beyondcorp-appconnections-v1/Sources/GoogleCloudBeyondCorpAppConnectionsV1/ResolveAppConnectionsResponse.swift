@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for BeyondCorp.ResolveAppConnections.
 public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of BeyondCorp AppConnections with details in the project.
@@ -184,7 +183,10 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ResolveAppConnectionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResolveAppConnectionsResponse.AppConnectionDetails] {
     return self.appConnectionDetails
   }

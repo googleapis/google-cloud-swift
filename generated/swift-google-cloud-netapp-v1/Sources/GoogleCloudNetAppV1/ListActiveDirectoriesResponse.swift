@@ -20,7 +20,6 @@ import Foundation
 
 /// ListActiveDirectoriesResponse contains all the active directories requested.
 public struct ListActiveDirectoriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of active directories.
@@ -104,7 +103,10 @@ public struct ListActiveDirectoriesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListActiveDirectoriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ActiveDirectory] {
     return self.activeDirectories
   }

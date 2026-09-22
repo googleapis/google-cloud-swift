@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for VideoStitcher.ListVodConfig.
 public struct ListVodConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of VOD configs.
@@ -103,7 +102,10 @@ public struct ListVodConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListVodConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [VodConfig] {
     return self.vodConfigs
   }

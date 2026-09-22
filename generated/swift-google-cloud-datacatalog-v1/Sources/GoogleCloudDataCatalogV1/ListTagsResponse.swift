@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:options:)>
 public struct ListTagsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// [Tag][google.cloud.datacatalog.v1.Tag] details.
@@ -100,7 +99,10 @@ public struct ListTagsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTagsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Tag] {
     return self.tags
   }

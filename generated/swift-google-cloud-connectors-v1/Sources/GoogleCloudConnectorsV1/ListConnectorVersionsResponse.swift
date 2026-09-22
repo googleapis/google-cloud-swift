@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for Connectors.ListConnectorVersions.
 public struct ListConnectorVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of connector versions.
@@ -105,7 +104,10 @@ public struct ListConnectorVersionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConnectorVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ConnectorVersion] {
     return self.connectorVersions
   }

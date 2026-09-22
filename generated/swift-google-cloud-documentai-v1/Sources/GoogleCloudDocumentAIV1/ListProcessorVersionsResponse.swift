@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorVersions]: <doc:DocumentProcessorServiceClient/listProcessorVersions(request:options:)>
 public struct ListProcessorVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of processors.
@@ -100,7 +99,10 @@ public struct ListProcessorVersionsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListProcessorVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ProcessorVersion] {
     return self.processorVersions
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the `GkeHub.ListFeatures` method.
 public struct ListFeaturesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of matching Features
@@ -96,7 +95,10 @@ public struct ListFeaturesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFeaturesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Feature] {
     return self.resources
   }

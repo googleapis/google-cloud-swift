@@ -20,7 +20,6 @@ import Foundation
 
 /// Response of listing saved queries.
 public struct ListSavedQueriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of savedQueries.
@@ -95,7 +94,10 @@ public struct ListSavedQueriesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSavedQueriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SavedQuery] {
     return self.savedQueries
   }

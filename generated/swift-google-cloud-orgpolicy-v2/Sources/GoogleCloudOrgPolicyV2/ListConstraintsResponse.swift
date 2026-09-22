@@ -21,7 +21,6 @@ import Foundation
 /// The response returned from the [ListConstraints]
 /// [google.cloud.orgpolicy.v2.OrgPolicy.ListConstraints] method.
 public struct ListConstraintsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The collection of constraints that are available on the targeted resource.
@@ -95,7 +94,10 @@ public struct ListConstraintsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListConstraintsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Constraint] {
     return self.constraints
   }

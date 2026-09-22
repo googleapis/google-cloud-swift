@@ -20,7 +20,6 @@ import Foundation
 
 /// Response containing the objects for a stream.
 public struct ListStreamObjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of stream objects.
@@ -94,7 +93,10 @@ public struct ListStreamObjectsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListStreamObjectsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [StreamObject] {
     return self.streamObjects
   }

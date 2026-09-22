@@ -24,7 +24,6 @@ import Foundation
 /// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:options:)>
 @available(*, deprecated)
 public struct ListReportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The reports available to the partner.
@@ -102,7 +101,11 @@ public struct ListReportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@available(*, deprecated)
+@_spi(GoogleCloudInternal)
+extension ListReportsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Report] {
     return self.reports
   }

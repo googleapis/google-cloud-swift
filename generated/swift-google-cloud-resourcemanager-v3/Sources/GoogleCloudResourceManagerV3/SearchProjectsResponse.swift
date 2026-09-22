@@ -28,7 +28,6 @@ import Foundation
 ///
 /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:options:)>
 public struct SearchProjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Projects that matched the list filter query. This list can
@@ -113,7 +112,10 @@ public struct SearchProjectsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchProjectsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Project] {
     return self.projects
   }

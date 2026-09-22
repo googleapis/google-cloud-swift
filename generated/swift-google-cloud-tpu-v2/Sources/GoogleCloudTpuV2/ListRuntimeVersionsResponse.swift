@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.tpu.v2.Tpu.ListRuntimeVersions]: <doc:TpuClient/listRuntimeVersions(request:options:)>
 public struct ListRuntimeVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The listed nodes.
@@ -106,7 +105,10 @@ public struct ListRuntimeVersionsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuntimeVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RuntimeVersion] {
     return self.runtimeVersions
   }

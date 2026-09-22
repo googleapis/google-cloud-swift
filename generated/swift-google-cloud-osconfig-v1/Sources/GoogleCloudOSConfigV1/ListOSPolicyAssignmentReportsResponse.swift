@@ -21,7 +21,6 @@ import Foundation
 /// A response message for listing OS Policy assignment reports including the
 /// page of results and page token.
 public struct ListOSPolicyAssignmentReportsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of OS policy assignment reports.
@@ -98,7 +97,10 @@ public struct ListOSPolicyAssignmentReportsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOSPolicyAssignmentReportsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OSPolicyAssignmentReport] {
     return self.osPolicyAssignmentReports
   }

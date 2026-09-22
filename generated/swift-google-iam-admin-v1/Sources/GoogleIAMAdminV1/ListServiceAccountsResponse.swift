@@ -20,7 +20,6 @@ import Foundation
 
 /// The service account list response.
 public struct ListServiceAccountsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of matching service accounts.
@@ -98,7 +97,10 @@ public struct ListServiceAccountsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceAccountsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceAccount] {
     return self.accounts
   }

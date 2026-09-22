@@ -21,7 +21,6 @@ import Foundation
 /// The response to a `SearchRelatedAccountGroupMemberships` call.
 public struct SearchRelatedAccountGroupMembershipsResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The queried memberships.
@@ -101,7 +100,10 @@ public struct SearchRelatedAccountGroupMembershipsResponse: Codable, Equatable, 
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension SearchRelatedAccountGroupMembershipsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RelatedAccountGroupMembership] {
     return self.relatedAccountGroupMemberships
   }

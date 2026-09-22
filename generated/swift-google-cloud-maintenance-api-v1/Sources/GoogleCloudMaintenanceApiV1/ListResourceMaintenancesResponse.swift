@@ -20,7 +20,6 @@ import Foundation
 
 /// The response structure for the ListResourceMaintenances method.
 public struct ListResourceMaintenancesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The resulting resource maintenances.
@@ -107,7 +106,10 @@ public struct ListResourceMaintenancesResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourceMaintenancesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceMaintenance] {
     return self.resourceMaintenances
   }

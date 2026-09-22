@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListSearchConfigs.
 public struct ListSearchConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The search configurations from the specified corpus.
@@ -95,7 +94,10 @@ public struct ListSearchConfigsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSearchConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [SearchConfig] {
     return self.searchConfigs
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing GoldengateDeploymentVersions
 public struct ListGoldengateDeploymentVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of GoldengateDeploymentVersion
@@ -108,7 +107,10 @@ public struct ListGoldengateDeploymentVersionsResponse: Codable, Equatable, Goog
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListGoldengateDeploymentVersionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoldengateDeploymentVersion] {
     return self.goldengateDeploymentVersions
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Tools.ListToolVersions]: <doc:ToolsClient/listToolVersions(request:options:)>
   public struct ListToolVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of tool versions. There will be a maximum number of items
@@ -100,7 +99,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListToolVersionsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [ToolVersion] {
       return self.toolVersions
     }

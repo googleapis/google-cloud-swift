@@ -20,7 +20,6 @@ import Foundation
 
 /// The `ListServiceLevelObjectives` response.
 public struct ListServiceLevelObjectivesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The `ServiceLevelObjective`s matching the specified filter.
@@ -98,7 +97,10 @@ public struct ListServiceLevelObjectivesResponse: Codable, Equatable, GoogleWKT.
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServiceLevelObjectivesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServiceLevelObjective] {
     return self.serviceLevelObjectives
   }

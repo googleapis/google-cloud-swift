@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for the list instance request.
 public struct ListInstancesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Represents a list of Data Fusion instances.
@@ -104,7 +103,10 @@ public struct ListInstancesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListInstancesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Instance] {
     return self.instances
   }

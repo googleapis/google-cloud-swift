@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ConnectorsService.ListRuntimeEntitySchemas.
 public struct ListRuntimeEntitySchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Runtime entity schemas.
@@ -96,7 +95,10 @@ public struct ListRuntimeEntitySchemasResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListRuntimeEntitySchemasResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [RuntimeEntitySchema] {
     return self.runtimeEntitySchemas
   }

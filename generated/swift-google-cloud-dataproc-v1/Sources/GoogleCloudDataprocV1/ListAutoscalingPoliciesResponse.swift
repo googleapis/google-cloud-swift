@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to a request to list autoscaling policies in a project.
 public struct ListAutoscalingPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. Autoscaling policies list.
@@ -95,7 +94,10 @@ public struct ListAutoscalingPoliciesResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAutoscalingPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AutoscalingPolicy] {
     return self.policies
   }

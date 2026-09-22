@@ -24,7 +24,6 @@ import Foundation
 ///
 /// [google.cloud.workflows.v1.Workflows.ListWorkflows]: <doc:WorkflowsClient/listWorkflows(request:options:)>
 public struct ListWorkflowsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The workflows that match the request.
@@ -108,7 +107,10 @@ public struct ListWorkflowsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWorkflowsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Workflow] {
     return self.workflows
   }

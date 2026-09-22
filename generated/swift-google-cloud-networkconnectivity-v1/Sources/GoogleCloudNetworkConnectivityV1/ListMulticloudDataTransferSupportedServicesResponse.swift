@@ -22,7 +22,6 @@ import Foundation
 /// eligible for Data Transfer Essentials configuration.
 public struct ListMulticloudDataTransferSupportedServicesResponse: Codable, Equatable, GoogleWKT
     ._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of supported services.
@@ -103,7 +102,10 @@ public struct ListMulticloudDataTransferSupportedServicesResponse: Codable, Equa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMulticloudDataTransferSupportedServicesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MulticloudDataTransferSupportedService] {
     return self.multicloudDataTransferSupportedServices
   }

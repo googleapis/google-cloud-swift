@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.KeyManagementService.ListImportJobs]: <doc:KeyManagementServiceClient/listImportJobs(request:options:)>
 public struct ListImportJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
@@ -120,7 +119,10 @@ public struct ListImportJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListImportJobsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ImportJob] {
     return self.importJobs
   }

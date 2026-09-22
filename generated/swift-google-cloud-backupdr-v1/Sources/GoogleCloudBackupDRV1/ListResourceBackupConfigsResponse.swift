@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListResourceBackupConfigs.
 public struct ListResourceBackupConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of ResourceBackupConfigs for the specified scope.
@@ -96,7 +95,10 @@ public struct ListResourceBackupConfigsResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListResourceBackupConfigsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ResourceBackupConfig] {
     return self.resourceBackupConfigs
   }

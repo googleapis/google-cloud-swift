@@ -21,7 +21,6 @@ import Foundation
 /// ListPullRequestFileDiffsResponse is the response containing file diffs
 /// returned from ListPullRequestFileDiffs.
 public struct ListPullRequestFileDiffsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of pull request file diffs.
@@ -96,7 +95,10 @@ public struct ListPullRequestFileDiffsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPullRequestFileDiffsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FileDiff] {
     return self.fileDiffs
   }

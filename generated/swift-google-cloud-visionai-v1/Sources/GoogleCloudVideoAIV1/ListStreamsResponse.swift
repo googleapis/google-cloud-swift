@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing Streams.
 public struct ListStreamsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Stream.
@@ -103,7 +102,10 @@ public struct ListStreamsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListStreamsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Stream] {
     return self.streams
   }

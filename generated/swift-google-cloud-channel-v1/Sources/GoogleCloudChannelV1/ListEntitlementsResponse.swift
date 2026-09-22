@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:options:)>
 public struct ListEntitlementsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The reseller customer's entitlements.
@@ -102,7 +101,10 @@ public struct ListEntitlementsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEntitlementsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Entitlement] {
     return self.entitlements
   }

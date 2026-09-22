@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing BucketOperations
 public struct ListBucketOperationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of storage batch bucket operations.
@@ -104,7 +103,10 @@ public struct ListBucketOperationsResponse: Codable, Equatable, GoogleWKT._AnyPa
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBucketOperationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BucketOperation] {
     return self.bucketOperations
   }

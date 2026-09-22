@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `ListAuthTokens`.
 public struct ListAuthTokensResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of auth tokens in the project.
@@ -104,7 +103,10 @@ public struct ListAuthTokensResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuthTokensResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuthToken] {
     return self.authTokens
   }

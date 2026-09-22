@@ -21,7 +21,6 @@ import GoogleRpc
 
 /// The `ListTimeSeries` response.
 public struct ListTimeSeriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// One or more time series that match the filter included in the request.
@@ -122,7 +121,10 @@ public struct ListTimeSeriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTimeSeriesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TimeSeries] {
     return self.timeSeries
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the `ListTriggers` method.
 public struct ListTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested triggers, up to the number specified in `page_size`.
@@ -104,7 +103,10 @@ public struct ListTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTriggersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Trigger] {
     return self.triggers
   }

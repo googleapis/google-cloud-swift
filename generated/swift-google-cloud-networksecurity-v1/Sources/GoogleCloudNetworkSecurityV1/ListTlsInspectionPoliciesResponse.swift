@@ -20,7 +20,6 @@ import Foundation
 
 /// Response returned by the ListTlsInspectionPolicies method.
 public struct ListTlsInspectionPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of TlsInspectionPolicies resources.
@@ -107,7 +106,10 @@ public struct ListTlsInspectionPoliciesResponse: Codable, Equatable, GoogleWKT._
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListTlsInspectionPoliciesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [TlsInspectionPolicy] {
     return self.tlsInspectionPolicies
   }

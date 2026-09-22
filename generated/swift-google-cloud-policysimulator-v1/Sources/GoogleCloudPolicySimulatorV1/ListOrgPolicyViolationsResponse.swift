@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolations]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolations(request:options:)>
 public struct ListOrgPolicyViolationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of OrgPolicyViolations
@@ -100,7 +99,10 @@ public struct ListOrgPolicyViolationsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOrgPolicyViolationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OrgPolicyViolation] {
     return self.orgPolicyViolations
   }

@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for the ListPipelines method.
 public struct ListPipelinesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested pipelines, up to the number specified in `page_size`.
@@ -104,7 +103,10 @@ public struct ListPipelinesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPipelinesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Pipeline] {
     return self.pipelines
   }

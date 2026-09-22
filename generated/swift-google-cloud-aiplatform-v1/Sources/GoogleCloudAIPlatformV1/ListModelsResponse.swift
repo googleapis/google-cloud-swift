@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.ModelService.ListModels]: <doc:ModelServiceClient/listModels(request:options:)>
   public struct ListModelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// List of Models in the requested page.
@@ -103,7 +102,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListModelsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Model] {
       return self.models
     }

@@ -20,7 +20,6 @@ import Foundation
 
 /// A response to `ListServicePerimetersRequest`.
 public struct ListServicePerimetersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of the [Service Perimeter]
@@ -99,7 +98,10 @@ public struct ListServicePerimetersResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListServicePerimetersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ServicePerimeter] {
     return self.servicePerimeters
   }

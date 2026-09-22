@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for listing watchlists.
 public struct ListWatchlistsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Optional. The watchlists from the specified instance.
@@ -95,7 +94,10 @@ public struct ListWatchlistsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListWatchlistsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Watchlist] {
     return self.watchlists
   }

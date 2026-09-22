@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:ExperimentsClient/listExperiments(request:options:)>
   public struct ListExperimentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of experiments. There will be a maximum number of items
@@ -102,7 +101,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListExperimentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Experiment] {
       return self.experiments
     }

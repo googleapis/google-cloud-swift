@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for retrieving a list of BacktestResults
 public struct ListBacktestResultsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// List of BacktestResult resources
@@ -105,7 +104,10 @@ public struct ListBacktestResultsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBacktestResultsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BacktestResult] {
     return self.backtestResults
   }

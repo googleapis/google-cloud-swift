@@ -20,7 +20,6 @@ import Foundation
 
 /// A response message for listing all assignments under given parent.
 public struct ListOSPolicyAssignmentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of assignments
@@ -96,7 +95,10 @@ public struct ListOSPolicyAssignmentsResponse: Codable, Equatable, GoogleWKT._An
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListOSPolicyAssignmentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [OSPolicyAssignment] {
     return self.osPolicyAssignments
   }

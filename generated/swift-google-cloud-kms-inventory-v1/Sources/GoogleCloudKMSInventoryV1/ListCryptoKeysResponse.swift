@@ -24,7 +24,6 @@ import GoogleCloudKMSV1
 ///
 /// [google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys]: <doc:KeyDashboardServiceClient/listCryptoKeys(request:options:)>
 public struct ListCryptoKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
@@ -103,7 +102,10 @@ public struct ListCryptoKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListCryptoKeysResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [GoogleCloudKMSV1.CryptoKey] {
     return self.cryptoKeys
   }

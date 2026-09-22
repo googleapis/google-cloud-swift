@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for 'ListReplicationCycles' request.
 public struct ListReplicationCyclesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The list of replication cycles response.
@@ -106,7 +105,10 @@ public struct ListReplicationCyclesResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListReplicationCyclesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [ReplicationCycle] {
     return self.replicationCycles
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:options:)>
 public struct ListPhraseSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested PhraseSets.
@@ -102,7 +101,10 @@ public struct ListPhraseSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPhraseSetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PhraseSet] {
     return self.phraseSets
   }

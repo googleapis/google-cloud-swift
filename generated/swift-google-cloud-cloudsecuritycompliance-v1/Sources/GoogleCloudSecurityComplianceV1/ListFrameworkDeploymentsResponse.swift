@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for [ListFrameworkDeployments][].
 public struct ListFrameworkDeploymentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of framework deployments.
@@ -98,7 +97,10 @@ public struct ListFrameworkDeploymentsResponse: Codable, Equatable, GoogleWKT._A
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFrameworkDeploymentsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FrameworkDeployment] {
     return self.frameworkDeployments
   }

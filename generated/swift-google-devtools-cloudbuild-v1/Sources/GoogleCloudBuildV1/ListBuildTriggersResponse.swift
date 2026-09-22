@@ -20,7 +20,6 @@ import Foundation
 
 /// Response containing existing `BuildTriggers`.
 public struct ListBuildTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// `BuildTriggers` for the project, sorted by `create_time` descending.
@@ -94,7 +93,10 @@ public struct ListBuildTriggersResponse: Codable, Equatable, GoogleWKT._AnyPacka
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBuildTriggersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [BuildTrigger] {
     return self.triggers
   }

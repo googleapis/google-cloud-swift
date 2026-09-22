@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords]: <doc:AnswerRecordsClient/listAnswerRecords(request:options:)>
   public struct ListAnswerRecordsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of answer records.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListAnswerRecordsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [AnswerRecord] {
       return self.answerRecords
     }

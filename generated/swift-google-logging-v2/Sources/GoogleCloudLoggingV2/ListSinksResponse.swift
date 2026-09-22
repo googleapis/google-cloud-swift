@@ -20,7 +20,6 @@ import Foundation
 
 /// Result returned from `ListSinks`.
 public struct ListSinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// A list of sinks.
@@ -96,7 +95,10 @@ public struct ListSinksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSinksResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [LogSink] {
     return self.sinks
   }

@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]: <doc:TensorboardServiceClient/listTensorboardExperiments(request:options:)>
   public struct ListTensorboardExperimentsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The TensorboardExperiments mathching the request.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListTensorboardExperimentsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [TensorboardExperiment] {
       return self.tensorboardExperiments
     }

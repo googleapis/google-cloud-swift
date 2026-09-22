@@ -25,7 +25,6 @@
   ///
   /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:options:)>
   public struct ListSchemasResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The [Schema][google.cloud.discoveryengine.v1.Schema]s.
@@ -106,7 +105,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListSchemasResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Schema] {
       return self.schemas
     }

@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for `AuthorizedDomains.ListAuthorizedDomains`.
 public struct ListAuthorizedDomainsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The authorized domains belonging to the user.
@@ -94,7 +93,10 @@ public struct ListAuthorizedDomainsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAuthorizedDomainsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [AuthorizedDomain] {
     return self.domains
   }

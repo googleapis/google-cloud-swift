@@ -21,7 +21,6 @@
 
   /// Operations list response.
   public struct OperationsListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// This is always `sql#operationsList`.
@@ -105,7 +104,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension OperationsListResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Operation] {
       return self.items
     }

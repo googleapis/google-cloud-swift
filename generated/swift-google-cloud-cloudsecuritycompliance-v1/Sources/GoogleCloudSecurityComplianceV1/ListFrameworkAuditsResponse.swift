@@ -20,7 +20,6 @@ import Foundation
 
 /// The response message for [ListFrameworkAudits][].
 public struct ListFrameworkAuditsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The framework audits.
@@ -95,7 +94,10 @@ public struct ListFrameworkAuditsResponse: Codable, Equatable, GoogleWKT._AnyPac
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListFrameworkAuditsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [FrameworkAudit] {
     return self.frameworkAudits
   }

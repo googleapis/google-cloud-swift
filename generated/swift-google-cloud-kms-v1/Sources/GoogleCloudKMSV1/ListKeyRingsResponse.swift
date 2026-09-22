@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.KeyManagementService.ListKeyRings]: <doc:KeyManagementServiceClient/listKeyRings(request:options:)>
 public struct ListKeyRingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -120,7 +119,10 @@ public struct ListKeyRingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListKeyRingsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [KeyRing] {
     return self.keyRings
   }

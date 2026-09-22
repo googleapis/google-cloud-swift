@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListPurchasableOffers.
 public struct ListPurchasableOffersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of Offers requested.
@@ -96,7 +95,10 @@ public struct ListPurchasableOffersResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListPurchasableOffersResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [PurchasableOffer] {
     return self.purchasableOffers
   }

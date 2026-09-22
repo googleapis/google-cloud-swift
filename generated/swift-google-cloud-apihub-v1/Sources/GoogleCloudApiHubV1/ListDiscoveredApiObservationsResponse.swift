@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing DiscoveredApiObservations
 public struct ListDiscoveredApiObservationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The DiscoveredApiObservation from the specified project and location.
@@ -97,7 +96,10 @@ public struct ListDiscoveredApiObservationsResponse: Codable, Equatable, GoogleW
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDiscoveredApiObservationsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DiscoveredApiObservation] {
     return self.discoveredApiObservations
   }

@@ -23,7 +23,6 @@ import Foundation
 ///
 /// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:options:)>
 public struct ListChangelogsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of changelogs.
@@ -102,7 +101,10 @@ public struct ListChangelogsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListChangelogsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Changelog] {
     return self.changelogs
   }

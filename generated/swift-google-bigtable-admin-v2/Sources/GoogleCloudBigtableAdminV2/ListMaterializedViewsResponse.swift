@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for BigtableInstanceAdmin.ListMaterializedViews.
 public struct ListMaterializedViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of requested materialized views.
@@ -97,7 +96,10 @@ public struct ListMaterializedViewsResponse: Codable, Equatable, GoogleWKT._AnyP
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListMaterializedViewsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [MaterializedView] {
     return self.materializedViews
   }

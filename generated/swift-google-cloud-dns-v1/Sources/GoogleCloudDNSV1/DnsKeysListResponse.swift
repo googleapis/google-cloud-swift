@@ -20,7 +20,6 @@ import Foundation
 
 /// The response to a request to enumerate DnsKeys in a ManagedZone.
 public struct DnsKeysListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The requested resources.
@@ -99,7 +98,10 @@ public struct DnsKeysListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension DnsKeysListResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [DnsKey] {
     return self.dnsKeys
   }

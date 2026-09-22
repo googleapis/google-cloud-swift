@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
   public struct ListMessagesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// The list of messages. There will be a maximum number of items
@@ -101,7 +100,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListMessagesResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [Message] {
       return self.messages
     }

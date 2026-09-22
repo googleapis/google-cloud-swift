@@ -20,7 +20,6 @@ import Foundation
 
 /// Response message for ListDatasets.
 public struct ListDatasetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The datasets read.
@@ -96,7 +95,10 @@ public struct ListDatasetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListDatasetsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Dataset] {
     return self.datasets
   }

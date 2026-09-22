@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for the ListSessions method.
 public struct ListSessionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The sessions being returned.
@@ -95,7 +94,10 @@ public struct ListSessionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListSessionsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Session] {
     return self.sessions
   }

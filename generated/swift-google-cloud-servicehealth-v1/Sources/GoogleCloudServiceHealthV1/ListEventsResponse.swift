@@ -20,7 +20,6 @@ import Foundation
 
 /// Response to request for listing events.
 public struct ListEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. List of events.
@@ -107,7 +106,10 @@ public struct ListEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEventsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Event] {
     return self.events
   }

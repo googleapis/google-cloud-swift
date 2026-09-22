@@ -20,7 +20,6 @@ import Foundation
 
 /// Message for response to listing EdgeSlms.
 public struct ListEdgeSlmsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of EdgeSlm
@@ -103,7 +102,10 @@ public struct ListEdgeSlmsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListEdgeSlmsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [EdgeSlm] {
     return self.edgeSlms
   }

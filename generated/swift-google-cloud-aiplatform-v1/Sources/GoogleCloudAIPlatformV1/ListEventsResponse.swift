@@ -24,7 +24,6 @@
   ///
   /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionServiceClient/listEvents(request:options:)>
   public struct ListEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-    GoogleGax._PaginatedResponse,
     Sendable
   {
     /// A list of events matching the request. Ordered by timestamp in ascending
@@ -104,7 +103,10 @@
     public func _pack() throws -> GoogleWKT.Struct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
+  }
 
+  @_spi(GoogleCloudInternal)
+  extension ListEventsResponse: GoogleGax._PaginatedResponse {
     public func _getPaginatedItems() -> [SessionEvent] {
       return self.sessionEvents
     }

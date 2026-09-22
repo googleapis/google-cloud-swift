@@ -20,7 +20,6 @@ import Foundation
 
 /// Response for ListAcls.
 public struct ListAclsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// The list of acls in the requested parent. The order of the acls is
@@ -96,7 +95,10 @@ public struct ListAclsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListAclsResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Acl] {
     return self.acls
   }

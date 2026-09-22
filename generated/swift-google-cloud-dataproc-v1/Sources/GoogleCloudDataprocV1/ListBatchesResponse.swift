@@ -20,7 +20,6 @@ import Foundation
 
 /// A list of batch workloads.
 public struct ListBatchesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
-  GoogleGax._PaginatedResponse,
   Sendable
 {
   /// Output only. The batches from the specified collection.
@@ -106,7 +105,10 @@ public struct ListBatchesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
+}
 
+@_spi(GoogleCloudInternal)
+extension ListBatchesResponse: GoogleGax._PaginatedResponse {
   public func _getPaginatedItems() -> [Batch] {
     return self.batches
   }
