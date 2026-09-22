@@ -24,7 +24,7 @@ import Foundation
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum RequestError: Error {
+public enum RequestError: Error, Sendable {
   /// Cannot construct the URL path to send the request.
   ///
   /// ## Troubleshooting

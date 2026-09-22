@@ -19,7 +19,7 @@ import Foundation
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum RetryThrottlerError: Error {
+public enum RetryThrottlerError: Error, Sendable {
   /// The scaling factor is out of range (must be >= 0.0).
   case scalingOutOfRange(Double)
   /// The minimum tokens must be less than or equal to the initial tokens.
