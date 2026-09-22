@@ -183,7 +183,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
         throw WriteObjectError.fromSourceError(error)
       }
       guard let chunk, !chunk.isEmpty else {
-        throw WriteObjectError.localSourceTooSmall(localSize: currentSeekOffset, gcsOffset: offset)
+        throw WriteObjectError.sourceError(
+          WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: currentSeekOffset))
       }
       updateChecksums(data: chunk, startOffset: currentSeekOffset)
       currentSeekOffset += UInt64(chunk.count)

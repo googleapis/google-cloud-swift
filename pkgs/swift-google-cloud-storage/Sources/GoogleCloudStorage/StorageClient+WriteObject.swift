@@ -523,8 +523,8 @@ extension StorageClient {
         return object
       case .inprogress(let committedBytes):
         if let total = totalSize, committedBytes > total {
-          throw WriteObjectError.localSourceTooSmall(
-            localSize: total, gcsOffset: committedBytes)
+          throw WriteObjectError.sourceError(
+            WriteObjectSourceError.offsetOutOfBounds(offset: committedBytes, size: total))
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
           options.checksums.md5 = nil
@@ -763,8 +763,8 @@ extension StorageClient {
         return object
       case .inprogress(let committedBytes):
         if let total = totalSize, committedBytes > total {
-          throw WriteObjectError.localSourceTooSmall(
-            localSize: total, gcsOffset: committedBytes)
+          throw WriteObjectError.sourceError(
+            WriteObjectSourceError.offsetOutOfBounds(offset: committedBytes, size: total))
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
           options.checksums.md5 = nil

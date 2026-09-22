@@ -514,7 +514,7 @@ import Testing
     }
   }
 
-  /// Tests resuming an upload where GCS reports an offset larger than the local source size, throwing WriteObjectError.localSourceTooSmall.
+  /// Tests resuming an upload where GCS reports an offset larger than the local source size, throwing WriteObjectError.sourceError(.offsetOutOfBounds).
   @Test func resumeLocalSourceTooSmall() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -534,11 +534,14 @@ import Testing
     let error = await expectUploadError {
       try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
     }
-    if case .localSourceTooSmall(let localSize, let gcsOffset) = error {
-      #expect(localSize == 100)
-      #expect(gcsOffset == 5000)
+    if case .sourceError(let sourceError) = error,
+      case WriteObjectSourceError.offsetOutOfBounds(let offset, let size) = sourceError
+    {
+      #expect(size == 100)
+      #expect(offset == 5000)
     } else {
-      Issue.record("Expected .localSourceTooSmall, got \(String(describing: error))")
+      Issue.record(
+        "Expected .sourceError(.offsetOutOfBounds), got \(String(describing: error))")
     }
   }
 
@@ -2803,7 +2806,7 @@ private struct SeekableComputationSource: SeekableWriteObjectSource {
 
   mutating func seek(to offset: UInt64) async throws {
     guard let total = totalSize, offset <= total else {
-      throw WriteObjectError.localSourceTooSmall(localSize: totalSize ?? 0, gcsOffset: offset)
+      throw WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: totalSize ?? 0)
     }
     self.currentOffset = offset
   }

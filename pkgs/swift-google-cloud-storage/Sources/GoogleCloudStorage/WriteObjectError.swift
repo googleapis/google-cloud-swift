@@ -20,10 +20,6 @@ public import GoogleGax
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WriteObjectError: Error, Sendable {
-  /// The local source is smaller than the offset reported by GCS.
-  /// Indicates the source was modified or truncated.
-  case localSourceTooSmall(localSize: UInt64, gcsOffset: UInt64)
-
   /// The resumable session has expired (usually after 7 days) or was not found.
   case sessionExpired(uploadId: String, underlyingError: Error?)
 
@@ -51,9 +47,6 @@ public enum WriteObjectError: Error, Sendable {
   package static func fromSourceError(_ error: any Error) -> WriteObjectError {
     if let writeError = error as? WriteObjectError {
       return writeError
-    }
-    if case WriteObjectSourceError.offsetOutOfBounds(let offset, let size) = error {
-      return .localSourceTooSmall(localSize: size, gcsOffset: offset)
     }
     return .sourceError(error)
   }
