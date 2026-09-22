@@ -89,13 +89,11 @@ import Testing
     #expect(visited == ["a=1", "b=2"])
   }
 
-  @Test func supportsIndexedAccess() {
+  @Test func supportsSequenceMethods() {
     let headers: AuthHeaders = [("a", "1"), ("b", "2"), ("c", "3")]
 
-    #expect(headers.first?.name == "a")
-    #expect(headers.last?.value == "3")
-    #expect(headers[1] == ("b", "2"))
     #expect(headers.contains { $0.name == "c" })
+    #expect(headers.map(\.name) == ["a", "b", "c"])
   }
 
   @Test func lookupIgnoresNameCase() {
@@ -134,29 +132,5 @@ import Testing
     // letter case, so they must not be folded together either.
     let dashed: AuthHeaders = [("x-a", "1")]
     #expect(dashed["x\ra"] == nil)
-  }
-
-  @Test func conformsToHashable() {
-    let a: AuthHeaders = [("Authorization", "Bearer token"), ("x-goog-user-project", "proj")]
-    let b: AuthHeaders = [("Authorization", "Bearer token"), ("x-goog-user-project", "proj")]
-    let c: AuthHeaders = [("Authorization", "Bearer other")]
-
-    let set: Set<AuthHeaders> = [a, b, c]
-    #expect(set.count == 2)
-    #expect(set.contains(a))
-    #expect(set.contains(c))
-  }
-
-  @Test func rangeReplaceableCollectionOperations() {
-    var headers = AuthHeaders()
-    headers.append(("Authorization", "Bearer token"))
-    headers.append(contentsOf: [("x-goog-user-project", "proj"), ("x-goog-ext", "extra")])
-    #expect(headers.count == 3)
-
-    headers.remove(at: 1)
-    #expect(headers == [("Authorization", "Bearer token"), ("x-goog-ext", "extra")])
-
-    headers.removeAll()
-    #expect(headers.isEmpty)
   }
 }

@@ -84,8 +84,7 @@ struct ServiceAccountTests {
     let headers = try await credentials.headers()
 
     #expect(headers.count == 1)
-    #expect(headers[0].name == "Authorization")
-    #expect(headers[0].value.hasPrefix("Bearer "))
+    #expect(headers["Authorization"]?.hasPrefix("Bearer ") == true)
   }
 
   @Test("Service Account Credentials injects custom billing quota project header")

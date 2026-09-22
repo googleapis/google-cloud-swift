@@ -31,13 +31,19 @@
 ///
 /// Two collections are equal when they hold the same fields in the same order, comparing names
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
-/// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)->String?``,
+/// the value carries the exact bytes that will be written to the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
-public struct AuthHeaders: Sendable, Equatable, Hashable, ExpressibleByArrayLiteral {
+public struct AuthHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
   private var storage: [Element]
+
+  /// The number of header fields in the collection.
+  public var count: Int { self.storage.count }
+
+  /// A Boolean value indicating whether the collection is empty.
+  public var isEmpty: Bool { self.storage.isEmpty }
 
   /// Creates an empty collection of headers.
   public init() {
@@ -65,15 +71,6 @@ public struct AuthHeaders: Sendable, Equatable, Hashable, ExpressibleByArrayLite
   ///   - value: The header field value.
   public mutating func append(name: String, value: String) {
     self.storage.append((name: name, value: value))
-  }
-
-  /// Appends the elements of a sequence of name-value pairs to the collection.
-  ///
-  /// - Parameter elements: The header fields to append.
-  public mutating func append(contentsOf elements: some Sequence<(String, String)>) {
-    for (name, value) in elements {
-      self.storage.append((name: name, value: value))
-    }
   }
 
   /// The value of the first field whose name matches `name`, ignoring case.
@@ -121,27 +118,10 @@ public struct AuthHeaders: Sendable, Equatable, Hashable, ExpressibleByArrayLite
     guard lhs.storage.count == rhs.storage.count else { return false }
     return lhs.storage.elementsEqual(rhs.storage, by: ==)
   }
-
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(self.storage.count)
-    for (name, value) in self.storage {
-      hasher.combine(name)
-      hasher.combine(value)
-    }
-  }
 }
 
-extension AuthHeaders: RandomAccessCollection {
-  public var startIndex: Int { self.storage.startIndex }
-
-  public var endIndex: Int { self.storage.endIndex }
-
-  public subscript(position: Int) -> Element { self.storage[position] }
-}
-
-extension AuthHeaders: RangeReplaceableCollection {
-  public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C)
-  where C: Collection, C.Element == Element {
-    self.storage.replaceSubrange(subrange, with: newElements)
+extension AuthHeaders: Sequence {
+  public func makeIterator() -> IndexingIterator<[Element]> {
+    self.storage.makeIterator()
   }
 }
