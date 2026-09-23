@@ -149,11 +149,10 @@ import Testing
     let provider = MDSCredentials(client: client, fromADC: true, environment: [:])
     let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
 
-    guard case let .cannotFetchToken(diagnostics, _) = error else {
+    guard case let .cannotFetchToken(got, _) = error else {
       Issue.record("Unexpected error type: \(error)")
       return
     }
-    let got = "\(diagnostics)"
     #expect(
       got.contains("Application Default Credentials"),
       "expected the ADC fallback explanation, got:\n\(got)")
@@ -189,7 +188,7 @@ import Testing
     }
   }
 
-  @Test func overriddenMDSDiagnostics() async throws {
+  @Test func overriddenMDSErrorMessage() async throws {
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
         Self.checkRequest(request)
@@ -204,11 +203,10 @@ import Testing
       environment: ["GCE_METADATA_HOST": "127.0.0.1:1"])
     let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
 
-    guard case let .cannotFetchToken(diagnostics, _) = error else {
+    guard case let .cannotFetchToken(got, _) = error else {
       Issue.record("Unexpected error type: \(error)")
       return
     }
-    let got = "\(diagnostics)"
     #expect(
       got.contains("http://127.0.0.1:1"),
       "expected the overridden endpoint, got:\n\(got)")

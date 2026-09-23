@@ -37,9 +37,9 @@ public enum CredentialsError: Error, Sendable {
   ///
   /// ## Troubleshooting
   ///
-  /// The `diagnostics` value renders a human-readable explanation of how the credentials were
-  /// configured and what to verify next. The `source` value is the underlying failure, such as a
-  /// transport error or an unsuccessful response from the token endpoint.
+  /// The `message` value explains how the credentials were configured and what to verify next. The
+  /// `source` value is the underlying failure, such as a transport error or an unsuccessful
+  /// response from the token endpoint.
   ///
   /// Credentials may be configured to use a metadata server implicitly: Application Default
   /// Credentials fall back to the metadata server when no other credentials are found. In most
@@ -50,26 +50,10 @@ public enum CredentialsError: Error, Sendable {
   /// To set up local credentials, run `gcloud auth application-default login`. More information
   /// on how to authenticate client libraries can be found at
   /// https://cloud.google.com/docs/authentication/client-libraries
-  case cannotFetchToken(diagnostics: Diagnostics, source: any Error)
-}
-
-extension CredentialsError {
-  /// A human-readable explanation of why a token could not be fetched.
   ///
-  /// Print this value, or interpolate it into a log message, to report how the credentials were
-  /// configured and what to check next.
-  ///
-  /// - Important: The wording is intended for humans and may change between releases. Do not
-  ///   parse it or branch on its contents.
-  public struct Diagnostics: Sendable, CustomStringConvertible {
-    private let message: String
-
-    init(_ message: String) {
-      self.message = message
-    }
-
-    public var description: String { self.message }
-  }
+  /// - Important: The `message` wording is intended for humans and may change between releases.
+  ///   Do not parse it or branch on its contents.
+  case cannotFetchToken(message: String, source: any Error)
 }
 
 extension CredentialsError: CustomDebugStringConvertible {
@@ -79,10 +63,10 @@ extension CredentialsError: CustomDebugStringConvertible {
       return "Operation not supported: \(detail)"
     case .parseError(let detail):
       return "Configuration parse error: \(detail)"
-    case .cannotFetchToken(let diagnostics, let error):
+    case .cannotFetchToken(let message, let error):
       return
         """
-        \(diagnostics)
+        \(message)
         Underlying error: \(error)
         """
     }

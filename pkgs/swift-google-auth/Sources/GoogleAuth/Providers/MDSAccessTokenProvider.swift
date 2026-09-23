@@ -113,16 +113,12 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   ///   - isADCFallback: Whether the credentials reached the metadata server as the last step of
   ///     Application Default Credentials discovery, rather than by explicit configuration.
   ///   - endpoint: The metadata server endpoint that was contacted.
-  /// - Returns: Diagnostics describing the failure and what to verify next.
-  private static func diagnostics(
-    isADCFallback: Bool,
-    endpoint: URL
-  ) -> CredentialsError.Diagnostics {
+  /// - Returns: A human-readable message describing the failure and what to verify next.
+  private static func errorMessage(isADCFallback: Bool, endpoint: URL) -> String {
     let summary =
       "Could not fetch an access token from the metadata server at \(endpoint.absoluteString)."
     if isADCFallback {
-      return CredentialsError.Diagnostics(
-        """
+      return """
         \(summary)
         Application Default Credentials (ADC) did not find any other credentials and fell back to
         the metadata server. The most common reason for this failure is that the application is not
@@ -131,15 +127,12 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         to authenticate client libraries can be found at
         https://cloud.google.com/docs/authentication/client-libraries
         """
-      )
     }
-    return CredentialsError.Diagnostics(
-      """
+    return """
       \(summary)
       Verify that a metadata server is running and reachable at that endpoint. The default endpoint
       (\(Self.defaultEndpoint)) can be overridden with the `GCE_METADATA_HOST` environment variable.
       """
-    )
   }
 
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
@@ -196,7 +189,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       }
     } catch {
       throw CredentialsError.cannotFetchToken(
-        diagnostics: Self.diagnostics(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
         source: error
       )
     }
