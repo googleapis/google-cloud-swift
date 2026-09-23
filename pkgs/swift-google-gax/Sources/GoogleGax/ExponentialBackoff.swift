@@ -115,8 +115,8 @@ public final class ExponentialBackoff: BackoffPolicy, Sendable {
   }
 
   /// Internal method to calculate the delay without jitter.
-  func delay(attemptCount: UInt32) -> Duration {
-    let exp = max(0, Int(attemptCount) - 1)
+  func delay(attemptCount: Int) -> Duration {
+    let exp = max(0, attemptCount - 1)
     let s = pow(scaling, Double(exp))
     // Avoid overflow or extremely large values before multiplying by initialDelay.
     if s >= (maximumDelay / initialDelay) {

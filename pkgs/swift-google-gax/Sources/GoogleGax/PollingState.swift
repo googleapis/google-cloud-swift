@@ -27,7 +27,7 @@ public struct PollingState: Sendable {
   public var start: ContinuousClock.Instant
 
   /// The number of times the request has been attempted.
-  public var attemptCount: UInt32
+  public var attemptCount: Int
 
   /// Create a new instance.
   public init() {

@@ -27,10 +27,16 @@ import Foundation
 /// [.retry](``RetryResult/retry(_:)``) result with [.exhausted](``RetryResult/exhausted(_:)``).
 public struct LimitedAttemptCount<P: Sendable>: Sendable {
   let inner: P
-  let maximumAttempts: UInt32
+  let maximumAttempts: Int
 
-  public init(inner: P, maximumAttempts: UInt32) {
+  /// Creates a new `LimitedAttemptCount` decorator.
+  ///
+  /// - Parameters:
+  ///   - inner: The inner policy to decorate.
+  ///   - maximumAttempts: The maximum number of attempts allowed by the policy.
+  ///     Clamped to be non-negative (`max(0, maximumAttempts)`).
+  public init(inner: P, maximumAttempts: Int) {
     self.inner = inner
-    self.maximumAttempts = maximumAttempts
+    self.maximumAttempts = max(0, maximumAttempts)
   }
 }

@@ -23,7 +23,9 @@ public enum RetryThrottlerError: Error, Sendable {
   /// The scaling factor is out of range (must be >= 0.0).
   case scalingOutOfRange(Double)
   /// The minimum tokens must be less than or equal to the initial tokens.
-  case tooFewMinTokens(min: UInt64, initial: UInt64)
+  case tooFewMinTokens(min: Int, initial: Int)
+  /// The token counts and error costs must be non-negative.
+  case tokensOutOfRange(tokens: Int, minTokens: Int, errorCost: Int)
 }
 
 extension RetryThrottlerError: Equatable {
@@ -32,6 +34,8 @@ extension RetryThrottlerError: Equatable {
     case (.scalingOutOfRange(let l), .scalingOutOfRange(let r)): return l == r
     case (.tooFewMinTokens(let lm, let li), .tooFewMinTokens(let rm, let ri)):
       return lm == rm && li == ri
+    case (.tokensOutOfRange(let lt, let lm, let le), .tokensOutOfRange(let rt, let rm, let re)):
+      return lt == rt && lm == rm && le == re
     default: return false
     }
   }

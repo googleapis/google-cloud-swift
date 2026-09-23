@@ -41,8 +41,9 @@ extension PollingErrorPolicy {
   /// Decorate a `PollingPolicy` to limit the number of retry attempts.
   ///
   /// - Parameter maximumAttempts: The maximum number of attempts allowed by the policy.
+  ///   Clamped to be non-negative (`max(0, maximumAttempts)`).
   /// - Returns: A decorated retry policy.
-  public func withAttemptLimit(_ maximumAttempts: UInt32) -> LimitedAttemptCount<Self> {
+  public func withAttemptLimit(_ maximumAttempts: Int) -> LimitedAttemptCount<Self> {
     LimitedAttemptCount(inner: self, maximumAttempts: maximumAttempts)
   }
 }

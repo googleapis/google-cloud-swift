@@ -142,7 +142,7 @@ public enum PolicyExhaustedError: Error, Sendable, CustomStringConvertible {
   case elapsedTime(maximumDuration: Duration, source: RequestError? = nil)
 
   /// The retry or polling policy exceeded its maximum attempt count.
-  case attemptCount(maximumAttempts: UInt32)
+  case attemptCount(maximumAttempts: Int)
 
   /// The last error before the policy was exhausted, if any.
   public var source: RequestError? {

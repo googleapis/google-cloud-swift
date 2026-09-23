@@ -22,8 +22,11 @@ public final class LinearBackoffPolicy: BackoffPolicy, Sendable {
   public let delay: Duration
 
   /// Create a new linear backoff policy with the specified constant delay.
+  ///
+  /// - Parameter delay: The constant delay between retry attempts.
+  ///   Clamped to be non-negative (`max(.zero, delay)`).
   public init(delay: Duration = .seconds(5)) {
-    self.delay = delay
+    self.delay = max(.zero, delay)
   }
 
   public func backoffDelayFor(_ state: RetryState) -> Duration {

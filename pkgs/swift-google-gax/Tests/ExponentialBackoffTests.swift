@@ -45,6 +45,7 @@ import Testing
     }
     let backoff = try ExponentialBackoff(config: config)
 
+    #expect(backoff.delay(attemptCount: -1) == .seconds(1))
     #expect(backoff.delay(attemptCount: 0) == .seconds(1))
     #expect(backoff.delay(attemptCount: 1) == .seconds(1))
     #expect(backoff.delay(attemptCount: 2) == .seconds(2))

@@ -84,7 +84,7 @@ import Foundation
     sleep: (Duration) async throws -> Void
   ) async throws -> Response {
     let loopStart = ContinuousClock.now
-    var attemptCount: UInt32 = 0
+    var attemptCount: Int = 0
     var lastError: RequestError? = nil
     var nextDelay: Duration = .zero
 

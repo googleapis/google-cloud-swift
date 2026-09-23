@@ -33,16 +33,16 @@ import Synchronization
 /// [gRPC throttler]: https://github.com/grpc/proposal/blob/master/A6-client-retries.md
 public final class CircuitBreaker: RetryThrottler, Sendable {
   private struct State {
-    var curTokens: UInt64
+    var curTokens: Int
 
-    mutating func onSuccess(_ maxTokens: UInt64) {
+    mutating func onSuccess(_ maxTokens: Int) {
       self.curTokens = min(maxTokens, self.curTokens.addingReportingOverflow(1).partialValue)
     }
   }
 
-  private let maxTokens: UInt64
-  private let minTokens: UInt64
-  private let errorCost: UInt64
+  private let maxTokens: Int
+  private let minTokens: Int
+  private let errorCost: Int
   private let state: Mutex<State>
 
   /// Creates a new instance with the default configuration.
@@ -62,8 +62,14 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
   ///   - tokens: The initial number of tokens.
   ///   - minTokens: Stops accepting retry attempts when the number of tokens is at or below this value.
   ///   - errorCost: Decrease the token count by this value on failed request attempts.
-  /// - Throws: ``RetryThrottlerError/tooFewMinTokens(min:initial:)`` if `minTokens` > `tokens`.
-  public init(tokens: UInt64, minTokens: UInt64, errorCost: UInt64) throws {
+  /// - Throws:
+  ///   - ``RetryThrottlerError/tokensOutOfRange(tokens:minTokens:errorCost:)`` if any parameter is negative.
+  ///   - ``RetryThrottlerError/tooFewMinTokens(min:initial:)`` if `minTokens` > `tokens`.
+  public init(tokens: Int, minTokens: Int, errorCost: Int) throws {
+    if tokens < 0 || minTokens < 0 || errorCost < 0 {
+      throw RetryThrottlerError.tokensOutOfRange(
+        tokens: tokens, minTokens: minTokens, errorCost: errorCost)
+    }
     if minTokens > tokens {
       throw RetryThrottlerError.tooFewMinTokens(min: minTokens, initial: tokens)
     }
@@ -73,18 +79,20 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
     self.state = Mutex(State(curTokens: tokens))
   }
 
-  /// Creates a new instance, adjusting `minTokens` if needed.
+  /// Creates a new instance, adjusting `tokens`, `minTokens`, and `errorCost` to valid non-negative ranges if needed.
   ///
   /// - Parameters:
-  ///   - tokens: The initial number of tokens.
+  ///   - tokens: The initial number of tokens. Clamped to be non-negative (`max(0, tokens)`).
   ///   - minTokens: Stops accepting retry attempts when the number of tokens is at or below this
   ///     value. Clamped to be in the `[0, tokens]` range.
-  ///   - errorCost: Decrease the token count by this value on failed request attempts.
-  public init(clampingTokens tokens: UInt64, minTokens: UInt64, errorCost: UInt64) {
-    self.maxTokens = tokens
-    self.minTokens = min(minTokens, tokens)
-    self.errorCost = errorCost
-    self.state = Mutex(State(curTokens: tokens))
+  ///   - errorCost: Decrease the token count by this value on failed request attempts. Clamped to be
+  ///     non-negative (`max(0, errorCost)`).
+  public init(clampingTokens tokens: Int, minTokens: Int, errorCost: Int) {
+    let clampedTokens = max(0, tokens)
+    self.maxTokens = clampedTokens
+    self.minTokens = min(max(0, minTokens), clampedTokens)
+    self.errorCost = max(0, errorCost)
+    self.state = Mutex(State(curTokens: clampedTokens))
   }
 
   public func throttleRetryAttempt() -> Bool {

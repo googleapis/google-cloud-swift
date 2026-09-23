@@ -81,6 +81,15 @@ import Testing
     }
   }
 
+  @Test func testLimitedAttemptCountOnInProgressNegativeLimit() throws {
+    let mock = MockPollingPolicy()
+    let policy = mock.withAttemptLimit(-5)
+
+    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 0))) {
+      try policy.onInProgress(state: PollingState())
+    }
+  }
+
   @Test func testLimitedAttemptCountOnInProgressInnerThrows() throws {
     struct CustomError: Error, Equatable {}
     let mock = MockPollingPolicy(onInProgress: { _ in throw CustomError() })

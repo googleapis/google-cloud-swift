@@ -33,6 +33,20 @@ import Testing
         == .exhausted(error))
   }
 
+  @Test func testLimitedAttemptCountNegativeAndZeroLimit() {
+    let mock = MockPolicy(onError: { _, e in .retry(e) })
+    let policyZero = mock.withAttemptLimit(0)
+    let policyNegative = mock.withAttemptLimit(-5)
+    let error = transient()
+
+    #expect(
+      policyZero.onError(state: idempotentState().with { $0.attemptCount = 1 }, error: error)
+        == .exhausted(error))
+    #expect(
+      policyNegative.onError(state: idempotentState().with { $0.attemptCount = 1 }, error: error)
+        == .exhausted(error))
+  }
+
   @Test func testLimitedAttemptCountOnThrottleContinue() {
     let mock = MockPolicy(onThrottle: { _, e in .retry(e) })
     let policy = mock.withAttemptLimit(3)

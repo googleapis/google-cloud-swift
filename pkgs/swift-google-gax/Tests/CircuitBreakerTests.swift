@@ -22,7 +22,29 @@ import GoogleGax
     #expect(throws: RetryThrottlerError.tooFewMinTokens(min: 200, initial: 100)) {
       try CircuitBreaker(tokens: 100, minTokens: 200, errorCost: 1)
     }
+    #expect(throws: RetryThrottlerError.tokensOutOfRange(tokens: -1, minTokens: 10, errorCost: 5)) {
+      try CircuitBreaker(tokens: -1, minTokens: 10, errorCost: 5)
+    }
+    #expect(throws: RetryThrottlerError.tokensOutOfRange(tokens: 100, minTokens: -5, errorCost: 5))
+    {
+      try CircuitBreaker(tokens: 100, minTokens: -5, errorCost: 5)
+    }
+    #expect(throws: RetryThrottlerError.tokensOutOfRange(tokens: 100, minTokens: 50, errorCost: -1))
+    {
+      try CircuitBreaker(tokens: 100, minTokens: 50, errorCost: -1)
+    }
     let _ = CircuitBreaker()
+  }
+
+  @Test func clamping() {
+    let c1 = CircuitBreaker(clampingTokens: -10, minTokens: -5, errorCost: -1)
+    #expect(c1.throttleRetryAttempt())
+
+    let c2 = CircuitBreaker(clampingTokens: 100, minTokens: 200, errorCost: 10)
+    #expect(c2.throttleRetryAttempt())
+
+    let c3 = CircuitBreaker(clampingTokens: 100, minTokens: -10, errorCost: 10)
+    #expect(!c3.throttleRetryAttempt())
   }
 
   @Test func basics() throws {
