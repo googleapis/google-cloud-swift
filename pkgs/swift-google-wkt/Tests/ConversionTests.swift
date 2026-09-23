@@ -23,13 +23,13 @@ import Testing
     proto.seconds = 1234
     proto.nanos = 567800000
 
-    let native = try GoogleWKT.Duration(proto: proto)
+    let native = try GoogleWKT.WKTDuration(proto: proto)
     #expect(native.seconds == 1234)
     #expect(native.nanos == 567800000)
   }
 
   @Test func durationNativeToProto() throws {
-    let native = try GoogleWKT.Duration(seconds: 1234, nanos: 567800000)
+    let native = try GoogleWKT.WKTDuration(seconds: 1234, nanos: 567800000)
     let proto = try native.toProto()
 
     #expect(proto.seconds == 1234)
@@ -38,12 +38,12 @@ import Testing
 
   @Test func emptyProtoToNative() throws {
     let proto = SwiftProtobuf.Google_Protobuf_Empty()
-    let _ = try GoogleWKT.Empty(proto: proto)
+    let _ = try GoogleWKT.WKTEmpty(proto: proto)
     // Just verifying it compiles and initializes without throwing
   }
 
   @Test func emptyNativeToProto() throws {
-    let native = GoogleWKT.Empty()
+    let native = GoogleWKT.WKTEmpty()
     let proto = try native.toProto()
     #expect(proto == SwiftProtobuf.Google_Protobuf_Empty())
   }
@@ -52,12 +52,12 @@ import Testing
     var proto = SwiftProtobuf.Google_Protobuf_FieldMask()
     proto.paths = ["a.b", "c.d"]
 
-    let native = try GoogleWKT.FieldMask(proto: proto)
+    let native = try GoogleWKT.WKTFieldMask(proto: proto)
     #expect(native.paths == ["a.b", "c.d"])
   }
 
   @Test func fieldMaskNativeToProto() throws {
-    let native = GoogleWKT.FieldMask(paths: ["a.b", "c.d"])
+    let native = GoogleWKT.WKTFieldMask(paths: ["a.b", "c.d"])
     let proto = try native.toProto()
     #expect(proto.paths == ["a.b", "c.d"])
   }
@@ -67,13 +67,13 @@ import Testing
     proto.seconds = 987654321
     proto.nanos = 123456789
 
-    let native = try GoogleWKT.Timestamp(proto: proto)
+    let native = try GoogleWKT.WKTTimestamp(proto: proto)
     #expect(native.seconds == 987654321)
     #expect(native.nanos == 123456789)
   }
 
   @Test func timestampNativeToProto() throws {
-    let native = try GoogleWKT.Timestamp(seconds: 987654321, nanos: 123456789)
+    let native = try GoogleWKT.WKTTimestamp(seconds: 987654321, nanos: 123456789)
     let proto = try native.toProto()
 
     #expect(proto.seconds == 987654321)
@@ -86,17 +86,17 @@ import Testing
     durationProto.nanos = 450000000
     let proto = try SwiftProtobuf.Google_Protobuf_Any(message: durationProto)
 
-    let native = try GoogleWKT.Any(proto: proto)
+    let native = try GoogleWKT.WKTAny(proto: proto)
     #expect(native.typeUrl == "type.googleapis.com/google.protobuf.Duration")
 
-    let unpackedDuration = try GoogleWKT.Duration(fromAny: native)
+    let unpackedDuration = try GoogleWKT.WKTDuration(fromAny: native)
     #expect(unpackedDuration.seconds == 123)
     #expect(unpackedDuration.nanos == 450000000)
   }
 
   @Test func anyNativeToProto() throws {
-    let nativeDuration = try GoogleWKT.Duration(seconds: 123, nanos: 450000000)
-    let native = try GoogleWKT.Any(fromMessage: nativeDuration)
+    let nativeDuration = try GoogleWKT.WKTDuration(seconds: 123, nanos: 450000000)
+    let native = try GoogleWKT.WKTAny(fromMessage: nativeDuration)
 
     let proto = try native.toProto()
     #expect(proto.typeURL == "type.googleapis.com/google.protobuf.Duration")

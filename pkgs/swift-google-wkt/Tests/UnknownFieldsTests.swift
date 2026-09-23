@@ -44,7 +44,7 @@ import Testing
       let dynamicContainer = try decoder.container(keyedBy: _DynamicCodingKey.self)
       for key in dynamicContainer.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try dynamicContainer.decode(
-          Value.self,
+          WKTValue.self,
           forKey: key
         )
       }
@@ -136,7 +136,7 @@ import Testing
     #expect(message._unknownFields.json["unknownString"] == .string("hello"))
     #expect(message._unknownFields.json["unknownNumber"] == .number(42.5))
     #expect(message._unknownFields.json["unknownBool"] == .bool(true))
-    #expect(message._unknownFields.json["unknownNull"] == .null(NullValue()))
+    #expect(message._unknownFields.json["unknownNull"] == .null(WKTNullValue()))
     #expect(
       message._unknownFields.json["unknownArray"]
         == .array([.number(1), .string("two")])

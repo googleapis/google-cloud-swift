@@ -21,13 +21,13 @@ public import Foundation
 @_spi(GoogleCloudInternal)
 public struct _UnknownFields: Equatable, Sendable {
   /// Unknown fields encountered during JSON decoding, keyed by JSON field name.
-  public var json: [String: Value]
+  public var json: [String: WKTValue]
 
   /// Unknown fields encountered during Protobuf decoding, stored as raw wire-format bytes.
   public var proto: Data
 
   /// Initialize a new instance of `_UnknownFields`.
-  public init(json: [String: Value] = [:], proto: Data = Data()) {
+  public init(json: [String: WKTValue] = [:], proto: Data = Data()) {
     self.json = json
     self.proto = proto
   }

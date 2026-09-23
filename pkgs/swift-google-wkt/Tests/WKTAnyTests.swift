@@ -1,0 +1,72 @@
+// Copyright 2026 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import Foundation
+@_spi(GoogleCloudInternal) import GoogleWKT
+import Testing
+
+@Suite struct WKTAnyTests {
+  struct WrappedAny: Codable {
+    let content: GoogleWKT.WKTAny
+  }
+
+  // Storing an Any into an Any is probably a bad idea, but that won't stop them.
+  @Test("Decoding Any")
+  func testDecodingAny() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Any")
+
+    let innerAny = try WKTAny(fromAny: any)
+    #expect(innerAny.typeUrl == "type.googleapis.com/google.protobuf.Duration")
+
+    let got = try WKTDuration(fromAny: innerAny)
+    let want = try WKTDuration(seconds: 123, nanos: 450_000_000)
+    #expect(got == want)
+  }
+
+  @Test func testDecodingAnyMismatchedUrl() throws {
+    let jsonString =
+      #"{"content":{"@type":"bad","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WrappedAny.self, from: data)
+    let any = wrapped.content
+    let error = #expect(throws: WKTAnyError.mismatchedTypeUrl) {
+      let _ = try WKTAny(fromAny: any)
+    }
+    #expect(error == .mismatchedTypeUrl)
+  }
+
+  // Storing an Any into an Any is probably a bad idea, but that won't stop them.
+  @Test("Encoding Any")
+  func testEncodingAny() throws {
+    let input = try WKTDuration(seconds: 123, nanos: 450_000_000)
+    let innerAny = try WKTAny(fromMessage: input)
+    let any = try WKTAny(fromMessage: innerAny)
+    let wrapped = WrappedAny(content: any)
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(wrapped)
+    let got = String(data: data, encoding: .utf8)!
+
+    let want =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
+    #expect(got == want)
+  }
+}

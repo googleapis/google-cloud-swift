@@ -16,7 +16,7 @@ import Foundation
 import Testing
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-extension AnyTests {
+extension WKTAnyTests {
   struct BasicMessage: Codable, Equatable, Sendable {
     let field0: String
     let field1: String
@@ -42,7 +42,7 @@ extension AnyTests {
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
-    let error = #expect(throws: AnyError.self) {
+    let error = #expect(throws: WKTAnyError.self) {
       let _ = try BasicMessage(fromAny: any)
     }
     #expect(error == .mismatchedTypeUrl)
@@ -62,16 +62,16 @@ extension AnyTests {
   }
 }
 
-extension AnyTests.BasicMessage: _AnyPackable {
+extension WKTAnyTests.BasicMessage: _AnyPackable {
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/test.BasicMessage"
   }
 
-  public init(fromAny any: `Any`) throws {
+  public init(fromAny any: WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
 
-  public func _pack() throws -> Struct {
+  public func _pack() throws -> WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

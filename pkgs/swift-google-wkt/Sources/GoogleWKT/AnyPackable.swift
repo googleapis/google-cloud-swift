@@ -14,26 +14,26 @@
 
 import Foundation
 
-/// A type conforming to the `_AnyPackable` protocol can be packed into and unpacked from ``Any``.
+/// A type conforming to the `_AnyPackable` protocol can be packed into and unpacked from ``WKTAny``.
 ///
 /// This protocol is an implementation detail of the Google Cloud client libraries for Swift.
 /// Do not use it directly.
 ///
 /// For `google-cloud-swift` developers: while it would be desirable to make this type `@_spi()` we
-/// cannot because then normal types like ``Api`` cannot use it.
+/// cannot because then normal types like ``WKTApi`` cannot use it.
 public protocol _AnyPackable {
   static var _anyTypeUrl: String { get }
-  init(fromAny any: `Any`) throws
-  func _pack() throws -> Struct
+  init(fromAny any: WKTAny) throws
+  func _pack() throws -> WKTStruct
 }
 
-// Deserializes a message of type `M` from an `Any`.
+// Deserializes a message of type `M` from a `WKTAny`.
 @_spi(GoogleCloudInternal)
 public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
-  _ type: M.Type, from: `Any`
+  _ type: M.Type, from: WKTAny
 ) throws -> M {
   if M._anyTypeUrl != from._type {
-    throw AnyError.mismatchedTypeUrl
+    throw WKTAnyError.mismatchedTypeUrl
   }
   let encoder = _ProtoJSONEncoder()
   let data = try encoder.encode(from.fields)
@@ -41,11 +41,11 @@ public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
   return try decoder.decode(M.self, from: data)
 }
 
-// Serializes a message of type `M` into an `Any`.
+// Serializes a message of type `M` into a `WKTAny`.
 @_spi(GoogleCloudInternal)
-public func _slowAnySerialize<M: Encodable>(message: M) throws -> Struct {
+public func _slowAnySerialize<M: Encodable>(message: M) throws -> WKTStruct {
   let encoder = _ProtoJSONEncoder()
   let data = try encoder.encode(message)
   let decoder = _ProtoJSONDecoder()
-  return try decoder.decode(Struct.self, from: data)
+  return try decoder.decode(WKTStruct.self, from: data)
 }
