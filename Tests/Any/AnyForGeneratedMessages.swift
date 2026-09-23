@@ -23,7 +23,7 @@ import Testing
 // `GoogleCloudSecretManagerV1` was chosen since it has a simple structure, so it's easy to construct test data for it.
 
 struct WrappedAny: Codable {
-  let value: GoogleWKT.`Any`
+  let value: GoogleWKT.WKTAny
 }
 
 @Test("Any decoding GetSecretRequest")
@@ -43,7 +43,7 @@ func testDecodingGetSecretRequestMessage() throws {
 @Test("Any encoding GetSecretRequest")
 func testEncodingGetSecretRequestMessage() throws {
   let input = GetSecretRequest().with { $0.name = "projects/test-project/secrets/my-secret" }
-  let any = try `Any`(fromMessage: input)
+  let any = try WKTAny(fromMessage: input)
   let wrapped = WrappedAny(value: any)
   let encoder = _ProtoJSONEncoder()
   encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
@@ -83,7 +83,7 @@ func testEncodingListSecretVersionsRequestMessage() throws {
     $0.pageToken = "token123"
     $0.filter = "state:ENABLED"
   }
-  let any = try `Any`(fromMessage: input)
+  let any = try WKTAny(fromMessage: input)
   let wrapped = WrappedAny(value: any)
   let encoder = _ProtoJSONEncoder()
   encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]

@@ -79,7 +79,7 @@ public enum GlobalEndpoint {
     do {
       update = try await client.updateSecret(
         request: .init().with {
-          $0.updateMask = GoogleWKT.FieldMask(paths: [
+          $0.updateMask = GoogleWKT.WKTFieldMask(paths: [
             "annotations", "labels", "versionAliases",
           ])
           $0.secret = Secret().with { secret in

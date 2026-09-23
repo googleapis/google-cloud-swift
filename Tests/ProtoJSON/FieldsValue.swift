@@ -32,13 +32,13 @@ import Testing
       (#"{"singular": []           }"#, T().with { $0.singular = .array([]) }),
       (#"{"optional": 42           }"#, T().with { $0.optional = .number(42) }),
       (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [null]       }"#, T().with { $0.repeated = [.null(NullValue())] }),
+      (#"{"repeated": [null]       }"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
       (
         #"{"repeated": [42, "hello"]}"#, T().with { $0.repeated = [.number(42), .string("hello")] }
       ),
       (#"{"map":      {}           }"#, T()),
       (#"{"map":      {"a": 42}    }"#, T().with { $0.map = ["a": .number(42)] }),
-      (#"{"map":      {"a": null}  }"#, T().with { $0.map = ["a": .null(NullValue())] }),
+      (#"{"map":      {"a": null}  }"#, T().with { $0.map = ["a": .null(WKTNullValue())] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -76,7 +76,7 @@ import Testing
       ),
       (
         #"{"map":{},"repeated":[null]}"#,
-        T().with { $0.repeated = [.null(NullValue())] }
+        T().with { $0.repeated = [.null(WKTNullValue())] }
       ),
       (
         #"{"map":{},"repeated":[42,"hello"]}"#,
@@ -88,7 +88,7 @@ import Testing
       ),
       (
         #"{"map":{"a":null},"repeated":[]}"#,
-        T().with { $0.map = ["a": .null(NullValue())] }
+        T().with { $0.map = ["a": .null(WKTNullValue())] }
       ),
     ]
   )

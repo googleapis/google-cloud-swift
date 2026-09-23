@@ -28,7 +28,7 @@ public func setObjectRetentionPolicy(
     }
   )
 
-  let retainUntilTime = try GoogleWKT.Timestamp(
+  let retainUntilTime = try GoogleWKT.WKTTimestamp(
     seconds: Int64(Date().timeIntervalSince1970) + 24 * 60 * 60,
     nanos: 0
   )

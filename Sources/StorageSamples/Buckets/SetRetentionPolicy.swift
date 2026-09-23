@@ -24,7 +24,7 @@ public func setRetentionPolicy(
       $0.name = "projects/_/buckets/\(bucketId)"
     }
   )
-  let retentionDuration = try Duration(seconds: retentionPeriod, nanos: 0)
+  let retentionDuration = try WKTDuration(seconds: retentionPeriod, nanos: 0)
   let updated = try await client.updateBucket(
     request: .init().with {
       $0.bucket = bucket.with { bucket in

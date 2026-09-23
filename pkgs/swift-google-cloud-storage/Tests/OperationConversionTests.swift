@@ -142,7 +142,7 @@ import Testing
     #expect(try #require(native.metadata).typeUrl == typeUrl)
   }
 
-  // An `Any` with no type URL has nothing to resolve, and `GoogleWKT.Any`
+  // An `Any` with no type URL has nothing to resolve, and `GoogleWKT.WKTAny`
   // has no empty representation to map it to, so it is reported too. The Rust
   // codec maps this case to a default `Any`; Swift deliberately does not.
   @Test func operationRejectsAnyWithNoTypeUrl() throws {

@@ -227,7 +227,7 @@ public enum PredefinedAcl: String, Sendable, Equatable {
 /// Object retention policy configuration for a GCS Object.
 public struct ObjectRetention: Sendable, Codable, Equatable {
   public var mode: String?
-  public var retainUntilTime: GoogleWKT.Timestamp?
+  public var retainUntilTime: GoogleWKT.WKTTimestamp?
 
   public init() {}
 
@@ -256,8 +256,8 @@ public struct ObjectOwner: Sendable, Codable, Equatable {
 extension ObjectCustomContextPayload: ExpressibleByStringLiteral {
   public init(
     value: String? = nil,
-    createTime: GoogleWKT.Timestamp? = nil,
-    updateTime: GoogleWKT.Timestamp? = nil
+    createTime: GoogleWKT.WKTTimestamp? = nil,
+    updateTime: GoogleWKT.WKTTimestamp? = nil
   ) {
     self.init()
     if let value = value { self.value = value }
@@ -311,7 +311,7 @@ public struct WriteObjectMetadata: Sendable, Codable, Equatable {
   public var storageClass: String?
 
   /// Custom time set by user for the object.
-  public var customTime: GoogleWKT.Timestamp?
+  public var customTime: GoogleWKT.WKTTimestamp?
 
   /// Event-based hold status for the object.
   public var eventBasedHold: Bool?

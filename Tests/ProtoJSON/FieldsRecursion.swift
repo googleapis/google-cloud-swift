@@ -40,13 +40,13 @@ import Testing
         }
         """,
         MessageWithRecursion().with {
-          $0.singular = Recursive(
+          $0.singular = WKTRecursive(
             value: MessageWithRecursion.Level0().with {
-              $0.level1 = Recursive(
+              $0.level1 = WKTRecursive(
                 value: MessageWithRecursion.Level1().with {
-                  $0.recurse = Recursive(
+                  $0.recurse = WKTRecursive(
                     value: MessageWithRecursion().with {
-                      $0.singular = Recursive(
+                      $0.singular = WKTRecursive(
                         value: MessageWithRecursion.Level0().with {
                           $0.side = MessageWithRecursion.NonRecursive().with {
                             $0.value = "depth-3"
@@ -61,7 +61,7 @@ import Testing
       (
         #"{"optional": {"side": {"value": "optional-side"}}}"#,
         MessageWithRecursion().with {
-          $0.optional = Recursive(
+          $0.optional = WKTRecursive(
             value: MessageWithRecursion.Level0().with {
               $0.side = MessageWithRecursion.NonRecursive().with { $0.value = "optional-side" }
             })
@@ -104,20 +104,20 @@ import Testing
 
   @Test func testRoundtripSerialization() throws {
     let input = MessageWithRecursion().with {
-      $0.singular = Recursive(
+      $0.singular = WKTRecursive(
         value: MessageWithRecursion.Level0().with {
-          $0.level1 = Recursive(
+          $0.level1 = WKTRecursive(
             value: MessageWithRecursion.Level1().with {
-              $0.recurse = Recursive(
+              $0.recurse = WKTRecursive(
                 value: MessageWithRecursion().with {
-                  $0.singular = Recursive(
+                  $0.singular = WKTRecursive(
                     value: MessageWithRecursion.Level0().with {
                       $0.side = MessageWithRecursion.NonRecursive().with { $0.value = "roundtrip" }
                     })
                 })
             })
         })
-      $0.optional = Recursive(
+      $0.optional = WKTRecursive(
         value: MessageWithRecursion.Level0().with {
           $0.side = MessageWithRecursion.NonRecursive().with { $0.value = "optional-roundtrip" }
         })

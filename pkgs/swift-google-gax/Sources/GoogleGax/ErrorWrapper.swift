@@ -42,7 +42,7 @@ import GoogleRpc
     /// The sequence of error details, wrapped as anys.
     ///
     /// Always use `_ProtoJSONDecoder` as the ProtoJSON encoding  may omit this field when empty.
-    let details: [GoogleWKT.`Any`]
+    let details: [GoogleWKT.WKTAny]
   }
 }
 

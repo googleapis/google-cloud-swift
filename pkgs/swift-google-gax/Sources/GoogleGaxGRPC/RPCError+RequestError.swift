@@ -122,10 +122,10 @@ extension StatusDetail {
       var item = GoogleRpc.RetryInfo()
       let seconds = retryInfo.delay.components.seconds
       let nanos = Int64(retryInfo.delay.components.attoseconds / 1_000_000_000)
-      item.retryDelay = try? GoogleWKT.Duration(seconds: seconds, nanos: nanos)
+      item.retryDelay = try? GoogleWKT.WKTDuration(seconds: seconds, nanos: nanos)
       self = .retryInfo(item)
     } else if let protoAny = detail.any {
-      if let wktAny = try? GoogleWKT.Any(proto: protoAny) {
+      if let wktAny = try? GoogleWKT.WKTAny(proto: protoAny) {
         self = .other(wktAny)
       } else {
         self = .other(fallbackAny(typeUrl: protoAny.typeURL))
@@ -136,15 +136,15 @@ extension StatusDetail {
   }
 }
 
-private func fallbackAny(typeUrl: String = "") -> GoogleWKT.`Any` {
+private func fallbackAny(typeUrl: String = "") -> GoogleWKT.WKTAny {
   let json = "{\"@type\":\"\(typeUrl)\"}".data(using: .utf8) ?? Data()
-  if let any = try? _ProtoJSONDecoder().decode(GoogleWKT.`Any`.self, from: json) {
+  if let any = try? _ProtoJSONDecoder().decode(GoogleWKT.WKTAny.self, from: json) {
     return any
   }
   do {
-    return try GoogleWKT.`Any`(fromMessage: GoogleWKT.Empty())
+    return try GoogleWKT.WKTAny(fromMessage: GoogleWKT.WKTEmpty())
   } catch {
-    fatalError("Failed to construct fallback GoogleWKT.Any: \(error)")
+    fatalError("Failed to construct fallback GoogleWKT.WKTAny: \(error)")
   }
 }
 

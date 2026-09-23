@@ -18,8 +18,8 @@ import Testing
 
 @Suite struct FieldsFieldMask {
   typealias T = MessageWithFieldMask
-  static func mask(_ paths: [String]) -> GoogleWKT.FieldMask {
-    GoogleWKT.FieldMask(paths: paths)
+  static func mask(_ paths: [String]) -> GoogleWKT.WKTFieldMask {
+    GoogleWKT.WKTFieldMask(paths: paths)
   }
 
   @Test(

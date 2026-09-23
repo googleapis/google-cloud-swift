@@ -36,7 +36,7 @@
           GoogleGax.ServiceError(
             code: GoogleRpc.Code(intValue: Int(self.httpErrorStatusCode ?? 0)),
             message: self.httpErrorMessage ?? "Operation failed",
-            details: self.error?.errors.compactMap { try? GoogleWKT.Any(fromMessage: $0) }.map {
+            details: self.error?.errors.compactMap { try? GoogleWKT.WKTAny(fromMessage: $0) }.map {
               .other($0)
             } ?? []
           )
@@ -50,7 +50,7 @@
           GoogleGax.ServiceError(
             code: .unknown,
             message: "Instances bulk insert operation failed",
-            details: [.other(try! GoogleWKT.Any(fromMessage: metadata))]
+            details: [.other(try! GoogleWKT.WKTAny(fromMessage: metadata))]
           )
         )
       }
@@ -62,7 +62,7 @@
           GoogleGax.ServiceError(
             code: .unknown,
             message: "Set common instance metadata operation failed",
-            details: [.other(try! GoogleWKT.Any(fromMessage: metadata))]
+            details: [.other(try! GoogleWKT.WKTAny(fromMessage: metadata))]
           )
         )
       }

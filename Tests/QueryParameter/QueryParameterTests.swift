@@ -19,15 +19,15 @@ import GoogleCloudSecurityPublicCAV1
 @_spi(GoogleCloudInternal) import GoogleGax
 
 struct WellKnown: Encodable {
-  let duration: GoogleWKT.Duration?
-  let durationMany: [GoogleWKT.Duration]
-  let mask: GoogleWKT.FieldMask?
-  let maskMany: [GoogleWKT.FieldMask]
+  let duration: GoogleWKT.WKTDuration?
+  let durationMany: [GoogleWKT.WKTDuration]
+  let mask: GoogleWKT.WKTFieldMask?
+  let maskMany: [GoogleWKT.WKTFieldMask]
 }
 
 @Test func wellKnownSerialization() throws {
-  let duration = try GoogleWKT.Duration(seconds: 123, nanos: 450_000_000)
-  let mask = GoogleWKT.FieldMask(paths: ["user_id", "foo_bar"])
+  let duration = try GoogleWKT.WKTDuration(seconds: 123, nanos: 450_000_000)
+  let mask = GoogleWKT.WKTFieldMask(paths: ["user_id", "foo_bar"])
   let value = WellKnown(
     duration: duration,
     durationMany: [duration],
@@ -49,7 +49,7 @@ struct WellKnown: Encodable {
 }
 
 @Test func wellKnownDurationOnlySerialization() throws {
-  let duration = try GoogleWKT.Duration(seconds: 123, nanos: 450_000_000)
+  let duration = try GoogleWKT.WKTDuration(seconds: 123, nanos: 450_000_000)
   let value = WellKnown(
     duration: duration,
     durationMany: [],
@@ -63,7 +63,7 @@ struct WellKnown: Encodable {
 }
 
 @Test func wellKnownMaskOnlySerialization() throws {
-  let mask = GoogleWKT.FieldMask(paths: ["user_id"])
+  let mask = GoogleWKT.WKTFieldMask(paths: ["user_id"])
   let value = WellKnown(
     duration: nil,
     durationMany: [],
@@ -114,7 +114,7 @@ struct WellKnown: Encodable {
 
 @Test func testPrefixSerialization() throws {
   let encoder = _QueryParameterEncoder()
-  let duration = try GoogleWKT.Duration(seconds: 123, nanos: 450_000_000)
+  let duration = try GoogleWKT.WKTDuration(seconds: 123, nanos: 450_000_000)
 
   let items = try encoder.encode(duration, prefix: "myPrefix")
   #expect(items == [URLQueryItem(name: "myPrefix", value: "123.450s")])

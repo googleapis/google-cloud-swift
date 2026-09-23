@@ -31,8 +31,8 @@ import Testing
   }
 
   @Test func storageObjectWithHelperAllFields() throws {
-    let timeCreated = try GoogleWKT.Timestamp(seconds: 12345, nanos: 6789)
-    let updated = try GoogleWKT.Timestamp(seconds: 67890, nanos: 1234)
+    let timeCreated = try GoogleWKT.WKTTimestamp(seconds: 12345, nanos: 6789)
+    let updated = try GoogleWKT.WKTTimestamp(seconds: 67890, nanos: 1234)
 
     let object = Object().with {
       $0.bucket = "my-bucket"
@@ -85,7 +85,7 @@ import Testing
     #expect(object.createTime != nil)
     #expect(object.updateTime != nil)
 
-    let expectedTime = try GoogleWKT.Timestamp(seconds: 1, nanos: 2)
+    let expectedTime = try GoogleWKT.WKTTimestamp(seconds: 1, nanos: 2)
     #expect(object.createTime == expectedTime)
     #expect(object.updateTime == expectedTime)
   }
@@ -162,7 +162,7 @@ import Testing
     #expect(object.retentionExpireTime != nil)
     #expect(object.checksums != nil)
 
-    let expectedTime = try GoogleWKT.Timestamp(seconds: 1, nanos: 2)
+    let expectedTime = try GoogleWKT.WKTTimestamp(seconds: 1, nanos: 2)
     #expect(object.createTime == expectedTime)
     #expect(object.updateTime == expectedTime)
   }

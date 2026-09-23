@@ -31,7 +31,7 @@ import Testing
   }
 
   @Test func writeObjectMetadataEncodingAndDecoding() throws {
-    let customTime = try GoogleWKT.Timestamp(seconds: 1_700_000_000, nanos: 0)
+    let customTime = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 0)
     let aclEntry = ObjectAccessControl().with {
       $0.entity = "user-test@example.com"
       $0.role = "READER"
@@ -290,8 +290,8 @@ import Testing
   }
 
   @Test func writeObjectMetadataWithObjectContextsEncodingAndDecoding() throws {
-    let createTime = try GoogleWKT.Timestamp(seconds: 1_700_000_000, nanos: 0)
-    let updateTime = try GoogleWKT.Timestamp(seconds: 1_700_000_100, nanos: 0)
+    let createTime = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 0)
+    let updateTime = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_100, nanos: 0)
 
     let contexts = ObjectContexts(custom: [
       "customer_id": ObjectCustomContextPayload(

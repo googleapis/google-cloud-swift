@@ -77,11 +77,11 @@ public enum StatusDetail: Equatable, Sendable {
   ///
   /// - Warning: Future releases may promote specific payload types out of `.other` into dedicated
   ///   enum cases. Do not rely on specific error details matching this case.
-  case other(GoogleWKT.`Any`)
+  case other(GoogleWKT.WKTAny)
 }
 
 extension StatusDetail {
-  init(from: GoogleWKT.`Any`) {
+  init(from: GoogleWKT.WKTAny) {
     if let v = try? GoogleRpc.BadRequest(fromAny: from) {
       self = .badRequest(v)
     } else if let v = try? GoogleRpc.DebugInfo(fromAny: from) {

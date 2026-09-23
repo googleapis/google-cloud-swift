@@ -47,7 +47,7 @@ import Testing
       (#"{"string":"test"}"#, MessageWithOneOf().with { $0.mixed = .string("test") }),
       (
         #"{"duration":"10s"}"#,
-        MessageWithOneOf().with { $0.mixed = .duration(try! Duration(seconds: 10, nanos: 0)) }
+        MessageWithOneOf().with { $0.mixed = .duration(try! WKTDuration(seconds: 10, nanos: 0)) }
       ),
     ]
   )
@@ -89,7 +89,7 @@ import Testing
       (
         #"{"duration":"10s"}"#,
         MessageWithComplexOneOf().with {
-          $0.complex = .duration(try! Duration(seconds: 10, nanos: 0))
+          $0.complex = .duration(try! WKTDuration(seconds: 10, nanos: 0))
         }
       ),
       (
@@ -116,7 +116,7 @@ import Testing
 
   // TODO(https://github.com/googleapis/librarian/issues/5260) - review if this is right.
   @Test func complexOneOfSerialization_null() throws {
-    let input = MessageWithComplexOneOf().with { $0.complex = .null(NullValue()) }
+    let input = MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
     let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)

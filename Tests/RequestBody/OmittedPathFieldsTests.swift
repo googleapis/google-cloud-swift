@@ -61,7 +61,7 @@ import Testing
         request: .init().with {
           $0.resource = "projects/my-project/secrets/my-secret"
           $0.policy = Policy().with { $0.version = 3 }
-          $0.updateMask = FieldMask(paths: ["bindings"])
+          $0.updateMask = WKTFieldMask(paths: ["bindings"])
         })
 
       let request = try #require(server.requests.first)
