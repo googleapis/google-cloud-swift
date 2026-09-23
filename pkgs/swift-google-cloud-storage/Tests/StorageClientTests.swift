@@ -37,6 +37,70 @@ import Testing
     Self.assertSendable(StorageClient.self)
   }
 
+  @Test func protocolIsSendable() {
+    Self.assertSendable((any StorageProtocol).self)
+  }
+
+  struct SendableStorageHolder: Sendable {
+    let storage: any StorageProtocol
+  }
+
+  @Test func protocolCanBeStoredInSendableType() {
+    let holder = SendableStorageHolder(storage: MockStorage())
+    Self.assertSendable(type(of: holder))
+  }
+
+  final class MockStorage: StorageProtocol, @unchecked Sendable {
+    var writeDataHandler: ((Data, String, String, WriteObjectOptions) async throws -> Object)?
+
+    func writeObject(
+      _ data: Data,
+      to bucket: String,
+      as objectName: String,
+      options: WriteObjectOptions
+    ) async throws -> Object {
+      if let handler = writeDataHandler {
+        return try await handler(data, bucket, objectName, options)
+      }
+      throw GoogleGax.RequestError.unimplemented
+    }
+  }
+
+  @Test func mockStorageDefaultImplementationsThrowUnimplemented() async throws {
+    let mock = MockStorage()
+    let client: any StorageProtocol = mock
+    let source = BytesSource(data: Data("test".utf8))
+
+    await #expect(throws: GoogleGax.RequestError.self) {
+      try await client.writeObject(source, to: "bucket", as: "object", options: .default)
+    }
+
+    await #expect(throws: GoogleGax.RequestError.self) {
+      try await client.resumeWriteObject(source, uploadId: "session-id", options: .default)
+    }
+
+    let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString)
+    await #expect(throws: GoogleGax.RequestError.self) {
+      try await client.writeObject(tempFileURL, to: "bucket", as: "object", options: .default)
+    }
+  }
+
+  @Test func mockStorageConvenienceOverloadDelegation() async throws {
+    let mock = MockStorage()
+    mock.writeDataHandler = { data, bucket, objectName, options in
+      #expect(data == Data("hello".utf8))
+      #expect(bucket == "test-bucket")
+      #expect(objectName == "test-object")
+      return Object()
+    }
+
+    let client: any StorageProtocol = mock
+    let result = try await client.writeObject(
+      Data("hello".utf8), to: "test-bucket", as: "test-object")
+    #expect(result.name.isEmpty)
+  }
+
   @Test(arguments: [
     ("https://private.googleapis.com", "storage.googleapis.com"),
     ("https://my-psc.p.googleapis.com", "storage.googleapis.com"),

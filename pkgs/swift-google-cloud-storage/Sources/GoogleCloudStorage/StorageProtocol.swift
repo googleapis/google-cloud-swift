@@ -13,9 +13,10 @@
 // limitations under the License.
 
 public import Foundation
+import GoogleGax
 
 /// Protocol defining the high-level object data-plane operations.
-public protocol StorageProtocol {
+public protocol StorageProtocol: Sendable {
   /// Core write method accepting any write object source.
   func writeObject(
     _ source: some WriteObjectSource,
@@ -55,10 +56,122 @@ public protocol StorageProtocol {
     options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteBuffer chunks.
+  /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
   func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions
   ) -> ReadObjectTask
+}
+
+extension StorageProtocol {
+  /// Core write method accepting any write object source.
+  public func writeObject(
+    _ source: some WriteObjectSource,
+    to bucket: String,
+    as objectName: String,
+    options: WriteObjectOptions
+  ) async throws -> Object {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  /// Write method specialized for seekable write object sources.
+  public func writeObject(
+    _ source: some SeekableWriteObjectSource,
+    to bucket: String,
+    as objectName: String,
+    options: WriteObjectOptions
+  ) async throws -> Object {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
+  public func resumeWriteObject(
+    _ source: some SeekableWriteObjectSource,
+    uploadId: String,
+    options: WriteObjectOptions
+  ) async throws -> Object {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  /// Convenience write method for a local file URL.
+  public func writeObject(
+    _ fileURL: URL,
+    to bucket: String,
+    as objectName: String,
+    options: WriteObjectOptions
+  ) async throws -> Object {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  /// Convenience write method for in-memory Data.
+  public func writeObject(
+    _ data: Data,
+    to bucket: String,
+    as objectName: String,
+    options: WriteObjectOptions
+  ) async throws -> Object {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
+  public func readObject(
+    from bucket: String,
+    object: String,
+    options: ReadObjectOptions
+  ) -> ReadObjectTask {
+    fatalError("readObject(from:object:options:) has not been implemented")
+  }
+
+  /// Core write method accepting any write object source with default options.
+  public func writeObject(
+    _ source: some WriteObjectSource,
+    to bucket: String,
+    as objectName: String
+  ) async throws -> Object {
+    try await self.writeObject(source, to: bucket, as: objectName, options: .default)
+  }
+
+  /// Write method specialized for seekable write object sources with default options.
+  public func writeObject(
+    _ source: some SeekableWriteObjectSource,
+    to bucket: String,
+    as objectName: String
+  ) async throws -> Object {
+    try await self.writeObject(source, to: bucket, as: objectName, options: .default)
+  }
+
+  /// Resumes a previously interrupted file upload using a saved upload ID with default options.
+  public func resumeWriteObject(
+    _ source: some SeekableWriteObjectSource,
+    uploadId: String
+  ) async throws -> Object {
+    try await self.resumeWriteObject(source, uploadId: uploadId, options: .default)
+  }
+
+  /// Convenience write method for a local file URL with default options.
+  public func writeObject(
+    _ fileURL: URL,
+    to bucket: String,
+    as objectName: String
+  ) async throws -> Object {
+    try await self.writeObject(fileURL, to: bucket, as: objectName, options: .default)
+  }
+
+  /// Convenience write method for in-memory Data with default options.
+  public func writeObject(
+    _ data: Data,
+    to bucket: String,
+    as objectName: String
+  ) async throws -> Object {
+    try await self.writeObject(data, to: bucket, as: objectName, options: .default)
+  }
+
+  /// Reads (downloads) an object from Cloud Storage with default options.
+  public func readObject(
+    from bucket: String,
+    object: String
+  ) -> ReadObjectTask {
+    self.readObject(from: bucket, object: object, options: .init())
+  }
 }
