@@ -2,7 +2,7 @@
     "api_description": "Creates and manages Redis instances on the Google Cloud Platform.",
     "api_id": "redis.googleapis.com",
     "api_shortname": "redis",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-redis-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-redis-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-redis-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1288776\u0026template=1161103",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Backup and DR Service is a managed service that provides backup and recovery of workloads running in Google Cloud.",
     "api_id": "backupdr.googleapis.com",
     "api_shortname": "backupdr",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-backupdr-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-backupdr-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-backupdr-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=966572",
     "language": "swift",

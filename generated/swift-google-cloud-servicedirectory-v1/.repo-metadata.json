@@ -2,7 +2,7 @@
     "api_description": "Service Directory is a platform for discovering, publishing, and connecting\nservices.",
     "api_id": "servicedirectory.googleapis.com",
     "api_shortname": "servicedirectory",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-servicedirectory-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-servicedirectory-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-servicedirectory-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

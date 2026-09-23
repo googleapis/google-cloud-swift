@@ -2,7 +2,7 @@
     "api_description": "Google Cloud Managed Lustre delivers a high-performance, fully managed parallel file system optimized for AI and HPC applications.",
     "api_id": "lustre.googleapis.com",
     "api_shortname": "lustre",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-lustre-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-lustre-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-lustre-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1625664",
     "language": "swift",

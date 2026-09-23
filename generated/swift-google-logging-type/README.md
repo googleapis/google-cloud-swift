@@ -18,7 +18,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-logging-type` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-logging-type.git --from 0.2.0
+swift package add-dependency https://github.com/googleapis/swift-google-logging-type.git --from 0.3.0
 ```
 
 Then add `GoogleCloudLoggingType` to your target's dependencies:

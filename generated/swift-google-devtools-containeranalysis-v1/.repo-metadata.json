@@ -2,7 +2,7 @@
     "api_description": "This API is a prerequisite for leveraging Artifact Analysis\nscanning capabilities in both Artifact Registry and with Advanced\nVulnerability Insights (runtime scanning) in GKE.\n\nIn addition, the Container Analysis API is an implementation of the\nGrafeas API, which enables storing, querying, and retrieval of critical\nmetadata\nabout all of your software artifacts.",
     "api_id": "containeranalysis.googleapis.com",
     "api_shortname": "containeranalysis",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-containeranalysis-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-devtools-containeranalysis-v1/0.3.0/documentation",
     "distribution_name": "swift-google-devtools-containeranalysis-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559777",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Cloud Optimization API provides a portfolio of solvers to address common\noptimization use cases starting with optimal route planning for vehicle\nfleets.",
     "api_id": "cloudoptimization.googleapis.com",
     "api_shortname": "cloudoptimization",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-optimization-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-optimization-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-optimization-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

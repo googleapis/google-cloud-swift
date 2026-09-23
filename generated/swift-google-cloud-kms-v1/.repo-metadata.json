@@ -2,7 +2,7 @@
     "api_description": "Manages keys and performs cryptographic operations in a central cloud\nservice, for direct use by other cloud resources and applications.",
     "api_id": "cloudkms.googleapis.com",
     "api_shortname": "cloudkms",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-kms-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-kms-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-kms-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/5264932",
     "language": "swift",

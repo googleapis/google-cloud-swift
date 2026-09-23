@@ -12,7 +12,7 @@ The following traits are enabled by default:
 To enable additional traits alongside the defaults, specify them in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/googleapis/swift-google-cloud-discoveryengine-v1.git", from: "0.2.0", traits: [".defaults", "<TraitName>"])
+.package(url: "https://github.com/googleapis/swift-google-cloud-discoveryengine-v1.git", from: "0.3.0", traits: [".defaults", "<TraitName>"])
 ```
 
 | Trait | Default | Enabled Client |

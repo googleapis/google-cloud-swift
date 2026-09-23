@@ -2,7 +2,7 @@
     "api_description": "Manages Hadoop-based clusters and jobs on Google Cloud Platform.",
     "api_id": "dataproc.googleapis.com",
     "api_shortname": "dataproc",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataproc-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-dataproc-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-dataproc-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559745",
     "language": "swift",

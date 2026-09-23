@@ -2,7 +2,7 @@
     "api_description": "Compliance Manager uses software-defined controls that let you assess support for multiple compliance programs and security requirements within a Google Cloud organization.",
     "api_id": "cloudsecuritycompliance.googleapis.com",
     "api_shortname": "cloudsecuritycompliance",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-cloudsecuritycompliance-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-cloudsecuritycompliance-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-cloudsecuritycompliance-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1761967\u0026template=0",
     "language": "swift",

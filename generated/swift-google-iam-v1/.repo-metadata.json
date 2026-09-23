@@ -2,7 +2,7 @@
     "api_description": "Manages access control for Google Cloud Platform resources.",
     "api_id": "iam-meta-api.googleapis.com",
     "api_shortname": "iam-meta-api",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-iam-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-iam-v1/0.3.0/documentation",
     "distribution_name": "swift-google-iam-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559761",
     "language": "swift",

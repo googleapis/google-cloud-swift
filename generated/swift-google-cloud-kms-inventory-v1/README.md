@@ -23,7 +23,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-kms-inventory-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-kms-inventory-v1.git --from 0.2.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-kms-inventory-v1.git --from 0.3.0
 ```
 
 Then add `GoogleCloudKMSInventoryV1` to your target's dependencies:

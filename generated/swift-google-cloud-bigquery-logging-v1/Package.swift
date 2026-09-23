@@ -27,17 +27,17 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-iam-v1",
       path: "generated/swift-google-iam-v1",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
   ],
   targets: [

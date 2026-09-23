@@ -2,7 +2,7 @@
     "api_description": "Discover and protect your sensitive data. A fully managed service designed\nto help you discover, classify, and protect your valuable data assets with\nease.",
     "api_id": "dlp.googleapis.com",
     "api_shortname": "dlp",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-privacy-dlp-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-privacy-dlp-v2/0.3.0/documentation",
     "distribution_name": "swift-google-privacy-dlp-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

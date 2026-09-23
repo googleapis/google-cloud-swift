@@ -18,7 +18,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-apps-script-type-slides` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-slides.git --from 0.2.0
+swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-slides.git --from 0.3.0
 ```
 
 Then add `GoogleAppsScriptTypeSlides` to your target's dependencies:

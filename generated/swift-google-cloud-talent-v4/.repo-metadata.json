@@ -2,7 +2,7 @@
     "api_description": "Cloud Talent Solution provides the capability to create, read, update, and\ndelete job postings, as well as search jobs based on keywords and filters.",
     "api_id": "jobs.googleapis.com",
     "api_shortname": "jobs",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-talent-v4/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-talent-v4/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-talent-v4",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559664",
     "language": "swift",

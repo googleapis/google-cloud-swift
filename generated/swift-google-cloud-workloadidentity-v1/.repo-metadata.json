@@ -1,7 +1,7 @@
 {
     "api_id": "workloadidentity.googleapis.com",
     "api_shortname": "workloadidentity",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadidentity-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-workloadidentity-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-workloadidentity-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=943104\u0026template=2144157",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Administer your Cloud Bigtable tables and instances.",
     "api_id": "bigtableadmin.googleapis.com",
     "api_shortname": "bigtableadmin",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-bigtable-admin-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-bigtable-admin-v2/0.3.0/documentation",
     "distribution_name": "swift-google-bigtable-admin-v2",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=127971",
     "language": "swift",

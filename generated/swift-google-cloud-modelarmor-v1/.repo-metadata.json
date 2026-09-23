@@ -2,7 +2,7 @@
     "api_description": "Model Armor helps you protect against risks like prompt injection, harmful\ncontent, and data leakage in generative AI applications by letting you\ndefine policies that filter user prompts and model responses.",
     "api_id": "modelarmor.googleapis.com",
     "api_shortname": "modelarmor",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-modelarmor-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-modelarmor-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-modelarmor-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1514910\u0026template=0",
     "language": "swift",

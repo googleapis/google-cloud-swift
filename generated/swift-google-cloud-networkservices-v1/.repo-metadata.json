@@ -1,7 +1,7 @@
 {
     "api_id": "networkservices.googleapis.com",
     "api_shortname": "networkservices",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkservices-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkservices-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-networkservices-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1132189\u0026template=1639113",
     "language": "swift",

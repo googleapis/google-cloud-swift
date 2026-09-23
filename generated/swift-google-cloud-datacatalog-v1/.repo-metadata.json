@@ -2,7 +2,7 @@
     "api_description": "A fully managed and highly scalable data discovery and metadata management\nservice.",
     "api_id": "datacatalog.googleapis.com",
     "api_shortname": "datacatalog",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datacatalog-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-datacatalog-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=655468\u0026template=1284353",
     "language": "swift",

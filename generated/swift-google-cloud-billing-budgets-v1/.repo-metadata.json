@@ -2,7 +2,7 @@
     "api_description": "The Cloud Billing Budget API stores Cloud Billing budgets, which define a\nbudget plan and the rules to execute as spend is tracked against that\nplan.",
     "api_id": "billingbudgets.googleapis.com",
     "api_shortname": "billingbudgets",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-budgets-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-billing-budgets-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-billing-budgets-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559770",
     "language": "swift",

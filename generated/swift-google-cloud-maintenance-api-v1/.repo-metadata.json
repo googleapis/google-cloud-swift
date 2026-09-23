@@ -2,7 +2,7 @@
     "api_description": "The Maintenance API provides a centralized view of planned disruptive\nmaintenance events across supported Google Cloud products. It offers users\nvisibility into upcoming, ongoing, and completed maintenance, along with\ncontrols to manage certain maintenance activities, such as maintenance\nwindows, rescheduling, and on-demand updates.",
     "api_id": "maintenance.googleapis.com",
     "api_shortname": "maintenance",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-maintenance-api-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-maintenance-api-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-maintenance-api-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1673988\u0026template=1161103",
     "language": "swift",

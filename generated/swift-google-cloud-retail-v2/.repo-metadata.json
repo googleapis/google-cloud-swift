@@ -2,7 +2,7 @@
     "api_description": "AI Commerce Search API is made up of Search, Browse and\nRecommendations. These discovery AI solutions help you implement\npersonalized search, browse and recommendations, based on machine learning\nmodels, across your websites and mobile applications.",
     "api_id": "retail.googleapis.com",
     "api_shortname": "retail",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-retail-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-retail-v2/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-retail-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

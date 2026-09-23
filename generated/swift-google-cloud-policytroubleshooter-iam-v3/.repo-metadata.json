@@ -2,7 +2,7 @@
     "api_description": "Policy Troubleshooter helps you understand whether a principal can access a resource. Given a principal, a resource, and a permission, Policy Troubleshooter examines the allow policies, deny policies, and principal access boundary (PAB) policies that impact the principal's access.",
     "api_id": "policytroubleshooter.googleapis.com",
     "api_shortname": "policytroubleshooter",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-policytroubleshooter-iam-v3/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-policytroubleshooter-iam-v3/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-policytroubleshooter-iam-v3",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=690790\u0026template=1814512",
     "language": "swift",

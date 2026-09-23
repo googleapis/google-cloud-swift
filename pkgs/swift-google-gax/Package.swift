@@ -33,17 +33,17 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),

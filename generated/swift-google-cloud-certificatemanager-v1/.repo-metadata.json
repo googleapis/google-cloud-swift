@@ -2,7 +2,7 @@
     "api_description": "Certificate Manager simplifies the acquisition, deployment, and management of Transport Layer Security (TLS) certificates.",
     "api_id": "certificatemanager.googleapis.com",
     "api_shortname": "certificatemanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-certificatemanager-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-certificatemanager-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-certificatemanager-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

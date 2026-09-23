@@ -2,7 +2,7 @@
     "api_description": "Converts audio to text by applying powerful neural network models.",
     "api_id": "speech.googleapis.com",
     "api_shortname": "speech",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-speech-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-speech-v2/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-speech-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559758",
     "language": "swift",

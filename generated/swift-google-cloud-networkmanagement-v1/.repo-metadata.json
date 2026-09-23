@@ -2,7 +2,7 @@
     "api_description": "The Network Management API provides a collection of network performance\nmonitoring and diagnostic capabilities.",
     "api_id": "networkmanagement.googleapis.com",
     "api_shortname": "networkmanagement",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkmanagement-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-networkmanagement-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-networkmanagement-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

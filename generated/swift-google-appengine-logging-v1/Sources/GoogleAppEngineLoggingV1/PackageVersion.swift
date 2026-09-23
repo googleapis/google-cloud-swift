@@ -15,5 +15,5 @@
 // limitations under the License.
 
 enum PackageVersion {
-  static let version: Swift.String = "0.2.0"
+  static let version: Swift.String = "0.3.0"
 }

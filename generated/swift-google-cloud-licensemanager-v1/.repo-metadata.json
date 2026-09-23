@@ -2,7 +2,7 @@
     "api_description": "License Manager is a tool to manage and track third-party licenses on\nGoogle Cloud.",
     "api_id": "licensemanager.googleapis.com",
     "api_shortname": "licensemanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-licensemanager-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-licensemanager-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-licensemanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1659587",
     "language": "swift",

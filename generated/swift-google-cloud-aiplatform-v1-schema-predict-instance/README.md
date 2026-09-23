@@ -21,7 +21,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-aiplatform-v1-schema-predict-instance` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-instance.git --from 0.2.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-instance.git --from 0.3.0
 ```
 
 Then add `GoogleCloudAIPlatformV1SchemaPredictInstance` to your target's dependencies:

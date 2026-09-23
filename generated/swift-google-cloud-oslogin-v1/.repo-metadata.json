@@ -2,7 +2,7 @@
     "api_description": "You can use OS Login to manage access to your VM instances using IAM roles.",
     "api_id": "oslogin.googleapis.com",
     "api_shortname": "oslogin",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-oslogin-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-oslogin-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-oslogin-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559755",
     "language": "swift",

@@ -2,7 +2,7 @@
     "api_description": "Stores sensitive data such as API keys, passwords, and certificates.\nProvides convenience while improving security.",
     "api_id": "secretmanager.googleapis.com",
     "api_shortname": "secretmanager",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-secretmanager-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-secretmanager-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-secretmanager-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=784854\u0026template=1380926",
     "language": "swift",

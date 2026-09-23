@@ -2,7 +2,7 @@
     "api_description": "API Gateway enables you to provide secure access to your backend services through a well-defined REST API that is consistent across all of your services, regardless of the service implementation.",
     "api_id": "apigateway.googleapis.com",
     "api_shortname": "apigateway",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apigateway-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-apigateway-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-apigateway-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

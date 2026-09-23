@@ -2,7 +2,7 @@
     "api_description": "Contact Center Insights provides out-of-the-box and custom modeling techniques to make it easier for contact center teams to better understand customer interaction data.",
     "api_id": "contactcenterinsights.googleapis.com",
     "api_shortname": "contactcenterinsights",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-contactcenterinsights-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-contactcenterinsights-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-contactcenterinsights-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

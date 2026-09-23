@@ -2,7 +2,7 @@
     "api_description": "This API converts video files into formats suitable for consumer\ndistribution. For more information, see the \u003ca\nhref=\"https://cloud.google.com/transcoder/docs/concepts/overview\"\u003eTranscoder\nAPI overview\u003c/a\u003e.",
     "api_id": "transcoder.googleapis.com",
     "api_shortname": "transcoder",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-video-transcoder-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-video-transcoder-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-video-transcoder-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

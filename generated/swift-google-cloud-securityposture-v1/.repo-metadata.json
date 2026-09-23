@@ -2,7 +2,7 @@
     "api_description": "Security Posture is a comprehensive framework of policy sets that empowers organizations to define, assess early, deploy, and monitor their security measures in a unified way and helps simplify governance and reduces administrative toil.",
     "api_id": "securityposture.googleapis.com",
     "api_shortname": "securityposture",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securityposture-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-securityposture-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-securityposture-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=936838\u0026template=1502786",
     "language": "swift",

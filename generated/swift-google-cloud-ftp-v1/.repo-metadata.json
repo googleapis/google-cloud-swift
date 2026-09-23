@@ -2,7 +2,7 @@
     "api_description": "A managed, cloud-native solution to move data in and out of Google Cloud by\nusing SSH File Transfer Protocol (SFTP).",
     "api_id": "ftp.googleapis.com",
     "api_shortname": "ftp",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-ftp-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-ftp-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-ftp-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1088719",
     "language": "swift",

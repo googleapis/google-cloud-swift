@@ -2,7 +2,7 @@
     "api_description": "Transfers data from external data sources to a Google Cloud Storage bucket\nor between Google Cloud Storage buckets.",
     "api_id": "storagetransfer.googleapis.com",
     "api_shortname": "storagetransfer",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-storagetransfer-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-storagetransfer-v1/0.3.0/documentation",
     "distribution_name": "swift-google-storagetransfer-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

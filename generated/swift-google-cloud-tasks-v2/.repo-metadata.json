@@ -2,7 +2,7 @@
     "api_description": "Manages the execution of large numbers of distributed requests.",
     "api_id": "cloudtasks.googleapis.com",
     "api_shortname": "cloudtasks",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tasks-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-tasks-v2/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-tasks-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/5433985",
     "language": "swift",

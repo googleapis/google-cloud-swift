@@ -2,7 +2,7 @@
     "api_description": "Deploy and manage user provided container images that scale automatically\nbased on incoming requests. The Cloud Run Admin API v1 follows the Knative\nServing API specification, while v2 is aligned with Google Cloud AIP-based\nAPI standards, as described in https://google.aip.dev/.",
     "api_id": "run.googleapis.com",
     "api_shortname": "run",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-run-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-run-v2/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-run-v2",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

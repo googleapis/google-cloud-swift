@@ -2,7 +2,7 @@
     "api_description": "Help protect your website from fraudulent activity, spam, and abuse without\ncreating friction.",
     "api_id": "recaptchaenterprise.googleapis.com",
     "api_shortname": "recaptchaenterprise",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-recaptchaenterprise-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-recaptchaenterprise-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-recaptchaenterprise-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

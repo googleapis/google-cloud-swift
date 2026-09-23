@@ -2,7 +2,7 @@
     "api_description": "The GKE Hub service handles the registration of many Kubernetes clusters to Google Cloud, and the management of multi-cluster features over those clusters.",
     "api_id": "gkehub.googleapis.com",
     "api_shortname": "gkehub",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkehub-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-gkehub-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-gkehub-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",

@@ -2,7 +2,7 @@
     "api_description": "Provides insights capability on Google Cloud Storage",
     "api_id": "storageinsights.googleapis.com",
     "api_shortname": "storageinsights",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storageinsights-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-storageinsights-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-storageinsights-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1156610",
     "language": "swift",

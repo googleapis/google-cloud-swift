@@ -2,7 +2,7 @@
     "api_description": "Writes log entries and manages your Cloud Logging configuration.",
     "api_id": "logging.googleapis.com",
     "api_shortname": "logging",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-logging-v2/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-logging-v2/0.3.0/documentation",
     "distribution_name": "swift-google-logging-v2",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559764",
     "language": "swift",

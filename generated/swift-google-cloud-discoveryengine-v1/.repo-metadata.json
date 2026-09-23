@@ -2,7 +2,7 @@
     "api_description": "Discovery Engine API.",
     "api_id": "discoveryengine.googleapis.com",
     "api_shortname": "discoveryengine",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-discoveryengine-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-discoveryengine-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-discoveryengine-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=911831\u0026template=1480251",
     "language": "swift",

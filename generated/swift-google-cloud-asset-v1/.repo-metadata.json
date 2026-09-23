@@ -2,7 +2,7 @@
     "api_description": "The Cloud Asset API manages the history and inventory of Google Cloud\nresources.",
     "api_id": "cloudasset.googleapis.com",
     "api_shortname": "cloudasset",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-asset-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-asset-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-asset-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559757",
     "language": "swift",

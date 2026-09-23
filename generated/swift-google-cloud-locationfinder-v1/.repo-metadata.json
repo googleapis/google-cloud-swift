@@ -2,7 +2,7 @@
     "api_description": "Cloud Location Finder is a public API that offers a repository of all Google Cloud and Google Distributed Cloud locations, as well as cloud locations for other cloud providers.",
     "api_id": "cloudlocationfinder.googleapis.com",
     "api_shortname": "locationfinder",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-locationfinder-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-locationfinder-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-locationfinder-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1569265\u0026template=1988535",
     "language": "swift",

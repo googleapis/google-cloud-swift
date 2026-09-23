@@ -28,32 +28,32 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-secretmanager-v1",
       path: "generated/swift-google-cloud-secretmanager-v1",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-language-v2",
       path: "generated/swift-google-cloud-language-v2",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-workflows-v1",
       path: "generated/swift-google-cloud-workflows-v1",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       path: "generated/swift-google-cloud-aiplatform-v1",
-      from: "0.2.0"
+      from: "0.3.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],

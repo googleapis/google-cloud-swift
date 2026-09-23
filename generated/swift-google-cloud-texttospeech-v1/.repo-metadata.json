@@ -2,7 +2,7 @@
     "api_description": "Synthesizes natural-sounding speech by applying powerful neural network\nmodels.",
     "api_id": "texttospeech.googleapis.com",
     "api_shortname": "texttospeech",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-texttospeech-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-texttospeech-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-texttospeech-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/5235428",
     "language": "swift",

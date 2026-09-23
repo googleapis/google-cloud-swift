@@ -2,7 +2,7 @@
     "api_description": "Builds and manages container-based applications, powered by the open source\nKubernetes technology.",
     "api_id": "container.googleapis.com",
     "api_shortname": "container",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-container-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-container-v1/0.3.0/documentation",
     "distribution_name": "swift-google-container-v1",
     "issue_tracker": "https://issuetracker.google.com/savedsearches/559746",
     "language": "swift",

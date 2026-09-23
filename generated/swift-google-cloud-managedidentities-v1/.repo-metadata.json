@@ -2,7 +2,7 @@
     "api_description": "The Managed Service for Microsoft Active Directory API is used for managing\na highly available, hardened service running Microsoft Active Directory\n(AD).",
     "api_id": "managedidentities.googleapis.com",
     "api_shortname": "managedidentities",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-managedidentities-v1/0.2.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-managedidentities-v1/0.3.0/documentation",
     "distribution_name": "swift-google-cloud-managedidentities-v1",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
