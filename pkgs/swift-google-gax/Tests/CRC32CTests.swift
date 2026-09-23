@@ -270,13 +270,17 @@ import Testing
     let hwGBs = hwSeconds > 0 ? totalGB / hwSeconds : 0.0
     let speedup = hwSeconds > 0 ? swSeconds / hwSeconds : 1.0
 
+    let oneDecimalStyle = FloatingPointFormatStyle<Double>.number.precision(.fractionLength(1))
+    let twoDecimalsStyle = FloatingPointFormatStyle<Double>.number.precision(.fractionLength(2))
+    let fourDecimalsStyle = FloatingPointFormatStyle<Double>.number.precision(.fractionLength(4))
+
     print(
       """
       --- CRC32C Throughput Benchmark ---
-      Buffer size: \(sizeMB) MiB, Iterations: \(iterations) (Total: \(String(format: "%.1f", totalGB * 1024)) MiB)
-      Software: \(String(format: "%.4f", swSeconds))s (\(String(format: "%.2f", swGBs)) GB/s) -> result: 0x\(String(swResult, radix: 16))
-      Hardware: \(String(format: "%.4f", hwSeconds))s (\(String(format: "%.2f", hwGBs)) GB/s) -> result: 0x\(String(hwResult, radix: 16))
-      Speedup:  \(String(format: "%.1f", speedup))x
+      Buffer size: \(sizeMB) MiB, Iterations: \(iterations) (Total: \((totalGB * 1024).formatted(oneDecimalStyle)) MiB)
+      Software: \(swSeconds.formatted(fourDecimalsStyle))s (\(swGBs.formatted(twoDecimalsStyle)) GB/s) -> result: 0x\(String(swResult, radix: 16))
+      Hardware: \(hwSeconds.formatted(fourDecimalsStyle))s (\(hwGBs.formatted(twoDecimalsStyle)) GB/s) -> result: 0x\(String(hwResult, radix: 16))
+      Speedup:  \(speedup.formatted(oneDecimalStyle))x
       -----------------------------------
       """
     )
