@@ -257,16 +257,10 @@ import Testing
     let firstPart = Data(repeating: 42, count: 8)
 
     let firstPartCRC = _CRC32C.compute(firstPart)
-    let firstPartBigEndian = firstPartCRC.bigEndian
-    var firstPartBytes = [UInt8]()
-    unsafe withUnsafeBytes(of: firstPartBigEndian) { firstPartBytes = unsafe Array($0) }
-    let runningHashHeader = "crc32c=" + Data(firstPartBytes).base64EncodedString()
+    let runningHashHeader = "crc32c=" + crc32cBase64(firstPartCRC)
 
     let fullCRC = _CRC32C.compute(fullData)
-    let fullBigEndian = fullCRC.bigEndian
-    var fullBytes = [UInt8]()
-    unsafe withUnsafeBytes(of: fullBigEndian) { fullBytes = unsafe Array($0) }
-    let expectedFullHashHeader = "crc32c=" + Data(fullBytes).base64EncodedString()
+    let expectedFullHashHeader = "crc32c=" + crc32cBase64(fullCRC)
 
     let source = BytesSource(data: fullData)
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=running-hash-id")

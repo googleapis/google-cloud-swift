@@ -55,9 +55,7 @@ import Testing
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     let computedCrc = _CRC32C.compute(payload)
-    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
-      unsafe Data($0).base64EncodedString()
-    }
+    let crcBase64 = crc32cBase64(computedCrc)
     let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
 
     let headers = [
@@ -735,9 +733,7 @@ import Testing
     let chunk3 = Data("Chunk-3".utf8)
     let fullPayload = chunk1 + chunk2 + chunk3
     let computedCrc = _CRC32C.compute(fullPayload)
-    let crcBase64 = unsafe withUnsafeBytes(of: computedCrc.bigEndian) {
-      unsafe Data($0).base64EncodedString()
-    }
+    let crcBase64 = crc32cBase64(computedCrc)
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     let headers = [

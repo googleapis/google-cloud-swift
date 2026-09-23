@@ -59,9 +59,7 @@ public struct ChecksumOptions: Sendable, Hashable {
 
     /// Creates a `ChecksumValue` from a 32-bit unsigned integer CRC32C checksum value.
     public init(_ intValue: UInt32) {
-      let bigEndian = intValue.bigEndian
-      let base64 = unsafe withUnsafeBytes(of: bigEndian) { unsafe Data($0).base64EncodedString() }
-      self = .value(base64)
+      self = .value(crc32cBase64(intValue))
     }
 
     /// Creates a `ChecksumValue` from an integer literal containing a CRC32C checksum value.
@@ -91,4 +89,13 @@ public struct ChecksumOptions: Sendable, Hashable {
   public static var none: ChecksumOptions {
     ChecksumOptions(crc32c: nil, md5: nil)
   }
+}
+
+func crc32cBase64(_ value: UInt32) -> String {
+  Data([
+    UInt8((value >> 24) & 0xFF),
+    UInt8((value >> 16) & 0xFF),
+    UInt8((value >> 8) & 0xFF),
+    UInt8(value & 0xFF),
+  ]).base64EncodedString()
 }

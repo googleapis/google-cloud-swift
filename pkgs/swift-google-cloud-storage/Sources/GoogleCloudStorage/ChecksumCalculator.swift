@@ -62,8 +62,7 @@ struct CRC32CCalculator: ChecksumCalculator {
   }
 
   func finalize() -> String {
-    let bigEndian = crc32c.finalize().bigEndian
-    return unsafe withUnsafeBytes(of: bigEndian) { unsafe Data($0).base64EncodedString() }
+    crc32cBase64(crc32c.finalize())
   }
 }
 
