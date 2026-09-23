@@ -308,15 +308,15 @@ public protocol StorageControlProtocol: Sendable {
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
-  func renameFolder(withPolling: RenameFolderRequest) async throws -> any GoogleGax
+  func renameFolderPollingUntilDone(request: RenameFolderRequest) async throws -> any GoogleGax
     .PollableOperation<Folder>
 
   /// Renames a source folder to a destination folder. This operation is only
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
-  func renameFolder(
-    withPolling: RenameFolderRequest, options: GoogleGax.RequestOptions
+  func renameFolderPollingUntilDone(
+    request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder>
 
   /// Deletes a folder recursively. This operation is only applicable to a
@@ -327,13 +327,13 @@ public protocol StorageControlProtocol: Sendable {
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
-  func deleteFolderRecursive(withPolling: DeleteFolderRecursiveRequest) async throws
+  func deleteFolderRecursivePollingUntilDone(request: DeleteFolderRecursiveRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
-  func deleteFolderRecursive(
-    withPolling: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
+  func deleteFolderRecursivePollingUntilDone(
+    request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
   /// Returns the storage layout configuration for a given bucket.
@@ -373,12 +373,12 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Creates an Anywhere Cache instance.
-  func createAnywhereCache(withPolling: CreateAnywhereCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<AnywhereCache>
+  func createAnywhereCachePollingUntilDone(request: CreateAnywhereCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<AnywhereCache>
 
   /// Creates an Anywhere Cache instance.
-  func createAnywhereCache(
-    withPolling: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
+  func createAnywhereCachePollingUntilDone(
+    request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache>
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
@@ -389,13 +389,13 @@ public protocol StorageControlProtocol: Sendable {
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
-  func updateAnywhereCache(withPolling: UpdateAnywhereCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<AnywhereCache>
+  func updateAnywhereCachePollingUntilDone(request: UpdateAnywhereCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<AnywhereCache>
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
-  func updateAnywhereCache(
-    withPolling: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
+  func updateAnywhereCachePollingUntilDone(
+    request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache>
 
   /// Disables an Anywhere Cache instance. A disabled instance is read-only. The
@@ -432,12 +432,12 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Creates a Rapid Cache instance.
-  func createRapidCache(withPolling: CreateRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  func createRapidCachePollingUntilDone(request: CreateRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Creates a Rapid Cache instance.
-  func createRapidCache(
-    withPolling: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
+  func createRapidCachePollingUntilDone(
+    request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Updates a Rapid Cache instance.
@@ -446,12 +446,12 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Updates a Rapid Cache instance.
-  func updateRapidCache(withPolling: UpdateRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  func updateRapidCachePollingUntilDone(request: UpdateRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Updates a Rapid Cache instance.
-  func updateRapidCache(
-    withPolling: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
+  func updateRapidCachePollingUntilDone(
+    request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Disables a Rapid Cache instance.
@@ -460,12 +460,12 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Disables a Rapid Cache instance.
-  func disableRapidCache(withPolling: DisableRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  func disableRapidCachePollingUntilDone(request: DisableRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Disables a Rapid Cache instance.
-  func disableRapidCache(
-    withPolling: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
+  func disableRapidCachePollingUntilDone(
+    request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Gets a Rapid Cache instance.
@@ -831,14 +831,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func renameFolder(withPolling: RenameFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
+  public func renameFolderPollingUntilDone(request: RenameFolderRequest) async throws
+    -> any GoogleGax.PollableOperation<Folder>
   {
-    try await self.renameFolder(withPolling: withPolling, options: .init())
+    try await self.renameFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func renameFolder(
-    withPolling: RenameFolderRequest, options: GoogleGax.RequestOptions
+  public func renameFolderPollingUntilDone(
+    request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -859,14 +859,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFolderRecursive(withPolling: DeleteFolderRecursiveRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteFolderRecursivePollingUntilDone(request: DeleteFolderRecursiveRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteFolderRecursive(withPolling: withPolling, options: .init())
+    try await self.deleteFolderRecursivePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFolderRecursive(
-    withPolling: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
+  public func deleteFolderRecursivePollingUntilDone(
+    request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -968,14 +968,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createAnywhereCache(withPolling: CreateAnywhereCacheRequest) async throws
+  public func createAnywhereCachePollingUntilDone(request: CreateAnywhereCacheRequest) async throws
     -> any GoogleGax.PollableOperation<AnywhereCache>
   {
-    try await self.createAnywhereCache(withPolling: withPolling, options: .init())
+    try await self.createAnywhereCachePollingUntilDone(request: request, options: .init())
   }
 
-  public func createAnywhereCache(
-    withPolling: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
+  public func createAnywhereCachePollingUntilDone(
+    request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -996,14 +996,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateAnywhereCache(withPolling: UpdateAnywhereCacheRequest) async throws
+  public func updateAnywhereCachePollingUntilDone(request: UpdateAnywhereCacheRequest) async throws
     -> any GoogleGax.PollableOperation<AnywhereCache>
   {
-    try await self.updateAnywhereCache(withPolling: withPolling, options: .init())
+    try await self.updateAnywhereCachePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateAnywhereCache(
-    withPolling: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
+  public func updateAnywhereCachePollingUntilDone(
+    request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1096,14 +1096,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createRapidCache(withPolling: CreateRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  public func createRapidCachePollingUntilDone(request: CreateRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
   {
-    try await self.createRapidCache(withPolling: withPolling, options: .init())
+    try await self.createRapidCachePollingUntilDone(request: request, options: .init())
   }
 
-  public func createRapidCache(
-    withPolling: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
+  public func createRapidCachePollingUntilDone(
+    request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1124,14 +1124,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateRapidCache(withPolling: UpdateRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  public func updateRapidCachePollingUntilDone(request: UpdateRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
   {
-    try await self.updateRapidCache(withPolling: withPolling, options: .init())
+    try await self.updateRapidCachePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateRapidCache(
-    withPolling: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
+  public func updateRapidCachePollingUntilDone(
+    request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1152,14 +1152,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func disableRapidCache(withPolling: DisableRapidCacheRequest) async throws -> any GoogleGax
-    .PollableOperation<RapidCache>
+  public func disableRapidCachePollingUntilDone(request: DisableRapidCacheRequest) async throws
+    -> any GoogleGax.PollableOperation<RapidCache>
   {
-    try await self.disableRapidCache(withPolling: withPolling, options: .init())
+    try await self.disableRapidCachePollingUntilDone(request: request, options: .init())
   }
 
-  public func disableRapidCache(
-    withPolling: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
+  public func disableRapidCachePollingUntilDone(
+    request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       throw GoogleGax.RequestError.unimplemented

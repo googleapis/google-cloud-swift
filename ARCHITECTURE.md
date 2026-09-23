@@ -174,12 +174,12 @@ Generated clients provide two interfaces for long-running operations:
   issues the initial RPC and immediately returns the unpolled `Operation` token.
   Callers managing custom state machines or external scheduling can inspect the
   initial metadata and poll manually.
-- **Pollable Operation:** Calling `createFunction(withPolling:options:) async throws -> any PollableOperation<Function>`
+- **Pollable Operation:** Calling `createFunctionPollingUntilDone(request:options:) async throws -> any PollableOperation<Function>`
   initiates the operation and returns a `PollableOperation` handle.
 
 ```swift
 // Initiate the operation and await completion
-let operation = try await client.createFunction(withPolling: request)
+let operation = try await client.createFunctionPollingUntilDone(request: request)
 let function = try await operation.wait()
 ```
 

@@ -38,7 +38,7 @@ func sample(projectId: String, location: String, workflowId: String) async throw
       """
     )
   }
-  let operation = try await client.createWorkflow(
+  let operation = try await client.createWorkflowPollingUntilDone(
     parent: "projects/\(projectId)/locations/\(location)",
     workflow: workflow,
     workflowId: workflowId

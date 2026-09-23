@@ -19,8 +19,8 @@ import GoogleWKT
 public func updateAnywhereCache(
   client: StorageControlClient, bucketId: String, cacheId: String
 ) async throws {
-  let poller = try await client.updateAnywhereCache(
-    withPolling: .init().with {
+  let poller = try await client.updateAnywhereCachePollingUntilDone(
+    request: .init().with {
       $0.anywhereCache = .init().with { cache in
         cache.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
         cache.admissionPolicy = "admit-on-second-miss"

@@ -26,8 +26,8 @@ extension InstanceSamples {
     logger: Logger
   ) async throws {
     logger.info("Calling Instances::delete()")
-    let operation = try await client.delete(
-      withPolling: .init().with {
+    let operation = try await client.deletePollingUntilDone(
+      request: .init().with {
         $0.project = projectId
         $0.zone = zoneId
         $0.instance = name
