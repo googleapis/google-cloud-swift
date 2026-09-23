@@ -81,7 +81,7 @@ import Testing
       0, 1, 2, 3, 4, 7, 8, 9, 15, 16, 31, 32, 33, 63, 64, 65, 127, 128, 255, 256, 512, 1024,
     ]
     for len in lengths {
-      let slice = Array(testData.prefix(len))
+      let slice = Data(testData.prefix(len))
       unsafe slice.withUnsafeBytes { buffer in
         let hw = unsafe _CRC32C.compute(buffer)
         let sw = unsafe _CRC32C.computeSoftware(buffer)
@@ -91,7 +91,7 @@ import Testing
   }
 
   @Test func unalignedSlices() {
-    var testData = [UInt8]()
+    var testData = Data()
     for i in 0..<256 {
       testData.append(UInt8(i & 0xFF))
     }
@@ -114,7 +114,7 @@ import Testing
   }
 
   @Test func chunkedEquivalence() {
-    var testData = [UInt8]()
+    var testData = Data()
     for i in 0..<300 {
       testData.append(UInt8((i * 13 + 7) & 0xFF))
     }
@@ -126,7 +126,7 @@ import Testing
     let chunks = [3, 7, 16, 1, 32, 64, 11, 8, 4, 2, 152]
     var start = 0
     for chunkLen in chunks {
-      let sub = Array(testData[start..<(start + chunkLen)])
+      let sub = Data(testData[start..<(start + chunkLen)])
       unsafe sub.withUnsafeBytes { unsafe chunked.update($0) }
       start += chunkLen
     }
@@ -141,7 +141,8 @@ import Testing
     (Array(0..<32).reversed().map { UInt8($0) }, UInt32(0x113F_DB5C)),
   ])
   func rfc3720(bytes: [UInt8], want: UInt32) {
-    unsafe bytes.withUnsafeBytes { buffer in
+    let data = Data(bytes)
+    unsafe data.withUnsafeBytes { buffer in
       let got = unsafe _CRC32C.compute(buffer)
       #expect(want == got)
 
@@ -151,7 +152,7 @@ import Testing
   }
 
   @Test func exhaustiveOffsetAndLengthEquivalence() {
-    var testData = [UInt8]()
+    var testData = Data()
     for i in 0..<256 {
       testData.append(UInt8((i * 31 + 17) & 0xFF))
     }
@@ -187,7 +188,7 @@ import Testing
   }
 
   @Test func emptyUnalignedBuffer() {
-    let testData: [UInt8] = [1, 2, 3, 4, 5, 6, 7, 8]
+    let testData = Data([1, 2, 3, 4, 5, 6, 7, 8])
     unsafe testData.withUnsafeBytes { buffer in
       for offset in 0..<8 {
         let slice = unsafe UnsafeRawBufferPointer(rebasing: buffer[offset..<offset])
@@ -198,12 +199,12 @@ import Testing
   }
 
   @Test func unalignedChunkedEquivalence() {
-    var testData = [UInt8]()
+    var testData = Data()
     for i in 0..<512 {
       testData.append(UInt8((i * 43 + 23) & 0xFF))
     }
 
-    let full = _CRC32C.compute(Data(testData))
+    let full = _CRC32C.compute(testData)
 
     unsafe testData.withUnsafeBytes { buffer in
       var chunked = _CRC32C()
@@ -236,7 +237,7 @@ import Testing
 
   private func runBenchmark(sizeMB: Int, iterations: Int) {
     let size = sizeMB * 1024 * 1024
-    let data = [UInt8](repeating: 0xAB, count: size)
+    let data = Data(repeating: 0xAB, count: size)
 
     let clock = ContinuousClock()
 

@@ -62,7 +62,7 @@ import Testing
 
   @Test func initWithRawBufferPointer() {
     let bytes: [UInt8] = [10, 20, 30]
-    unsafe bytes.withUnsafeBytes { rawBuffer in
+    unsafe Data(bytes).withUnsafeBytes { rawBuffer in
       let storage = unsafe ByteChunk(rawBuffer)
       #expect(storage.count == 3)
       #expect(storage.byteArray == bytes)
