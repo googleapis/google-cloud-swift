@@ -1,5 +1,5 @@
 {
-  "originHash" : "451476982f76048cf10182ba948280e4ad2d8f807762c645299bd296b5151fb1",
+  "originHash" : "43d18a7a521a4c42d55663ed0d2d4eb44a00db797d1d49ae787853626736b574",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-api",
       "state" : {
-        "revision" : "6ba3c6732da3a5f86beb4f978be9272cd78979f0",
-        "version" : "0.2.0"
+        "revision" : "4fa0442edec2e73da81c6a9e9dd26d69f2af00c7",
+        "version" : "0.3.0"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-auth",
       "state" : {
-        "revision" : "b2d3be8b14234e34b818b83b24d4e0cb27b66d89",
-        "version" : "0.2.0"
+        "revision" : "5d9f6e6489af13870fb58fdfb7bc324b713c625e",
+        "version" : "0.3.0"
       }
     },
     {
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       "state" : {
-        "revision" : "ad77e53148f62a02eb6ec045ac346477c8ebcaee",
-        "version" : "0.2.0"
+        "revision" : "68493ddfd6c4e1b3fd0794083d323c64dc20fe8d",
+        "version" : "0.3.0"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-language-v2",
       "state" : {
-        "revision" : "0bef318ec080c19fb5cca2afa2ffbd1a09437d4c",
-        "version" : "0.2.0"
+        "revision" : "b4733a77c3ffa9e681ef3a7ade72fbc5f11b633e",
+        "version" : "0.3.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax",
       "state" : {
-        "revision" : "dd7a778b5c6c6f3778bbf5b518581b279de29592",
-        "version" : "0.2.0"
+        "revision" : "c3ac9bea6f4d66ec5852890bee208499a3fd3dbb",
+        "version" : "0.3.0"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-rpc",
       "state" : {
-        "revision" : "a6b80e579c12f9747119a410d509190097681e80",
-        "version" : "0.2.0"
+        "revision" : "b47f955c9384079c2970ce5d2012b0f789cd22be",
+        "version" : "0.3.0"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt",
       "state" : {
-        "revision" : "3b72eda70b7af4897e7e7d7c77891de604d95306",
-        "version" : "0.2.0"
+        "revision" : "a7cf94e9996e30072c9c0aa0dcab11e11b4512dc",
+        "version" : "0.3.0"
       }
     },
     {
