@@ -95,7 +95,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum EffectiveSla: Codable, Equatable, Sendable {
@@ -103,15 +103,6 @@
       case noSla
       case productionCritical
       case productionNonCritical
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -120,36 +111,15 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .unspecified
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .unspecified: return 0
-        case .noSla: return 1
-        case .productionCritical: return 2
-        case .productionNonCritical: return 3
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .unspecified: return "EFFECTIVE_SLA_UNSPECIFIED"
         case .noSla: return "NO_SLA"
         case .productionCritical: return "PRODUCTION_CRITICAL"
         case .productionNonCritical: return "PRODUCTION_NON_CRITICAL"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -167,35 +137,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EffectiveSla/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .unspecified
-        case 1: self = .noSla
-        case 2: self = .productionCritical
-        case 3: self = .productionNonCritical
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -205,7 +150,6 @@
         case .noSla: return try container.encode("NO_SLA")
         case .productionCritical: return try container.encode("PRODUCTION_CRITICAL")
         case .productionNonCritical: return try container.encode("PRODUCTION_NON_CRITICAL")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

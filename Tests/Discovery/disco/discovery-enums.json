@@ -1,0 +1,29 @@
+{
+  "basePath": "",
+  "baseUrl": "https://discovery.googleapis.com/",
+  "schemas": {
+    "DiscoveryWithEnums": {
+      "description": "A message with enum data.",
+      "id": "DiscoveryWithEnums",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The status of the resource.",
+          "enum": [
+            "ACTIVE",
+            "DELETING",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Configuration is active.",
+            "Configuration is being deleted.",
+            "Configuration has errors.",
+            "Configuration is pending."
+          ],
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -113,7 +113,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum AvailabilitySloStatus: Codable, Equatable, Sendable {
@@ -125,15 +125,6 @@
       case sloUnknown
       /// Unspecified availability SLO status.
       case unspecified
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -142,36 +133,15 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .inSlo
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .inSlo: return 0
-        case .outOfSlo: return 1
-        case .sloUnknown: return 2
-        case .unspecified: return 3
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .inSlo: return "AVAILABILITY_SLO_STATUS_IN_SLO"
         case .outOfSlo: return "AVAILABILITY_SLO_STATUS_OUT_OF_SLO"
         case .sloUnknown: return "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
         case .unspecified: return "AVAILABILITY_SLO_STATUS_UNSPECIFIED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -189,35 +159,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AvailabilitySloStatus/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .inSlo
-        case 1: self = .outOfSlo
-        case 2: self = .sloUnknown
-        case 3: self = .unspecified
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -227,7 +172,6 @@
         case .outOfSlo: return try container.encode("AVAILABILITY_SLO_STATUS_OUT_OF_SLO")
         case .sloUnknown: return try container.encode("AVAILABILITY_SLO_STATUS_SLO_UNKNOWN")
         case .unspecified: return try container.encode("AVAILABILITY_SLO_STATUS_UNSPECIFIED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -239,7 +183,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum HealthStatus: Codable, Equatable, Sendable {
@@ -249,15 +193,6 @@
       case unhealthy
       /// Unspecified health status.
       case unspecified
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -266,34 +201,14 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .healthy
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .healthy: return 0
-        case .unhealthy: return 1
-        case .unspecified: return 2
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .healthy: return "HEALTH_STATUS_HEALTHY"
         case .unhealthy: return "HEALTH_STATUS_UNHEALTHY"
         case .unspecified: return "HEALTH_STATUS_UNSPECIFIED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -310,34 +225,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HealthStatus/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .healthy
-        case 1: self = .unhealthy
-        case 2: self = .unspecified
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -346,7 +237,6 @@
         case .healthy: return try container.encode("HEALTH_STATUS_HEALTHY")
         case .unhealthy: return try container.encode("HEALTH_STATUS_UNHEALTHY")
         case .unspecified: return try container.encode("HEALTH_STATUS_UNSPECIFIED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -358,7 +248,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum RepairCategory: Codable, Equatable, Sendable {
@@ -373,15 +263,6 @@
       case unspecified
       /// The repair is because of a user reported fault
       case userReportedFault
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -390,30 +271,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .criticalFailure
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .criticalFailure: return 0
-        case .emergentMaintenance: return 1
-        case .plannedMaintenance: return 2
-        case .unspecified: return 3
-        case .userReportedFault: return 4
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .criticalFailure: return "REPAIR_CATEGORY_CRITICAL_FAILURE"
@@ -421,7 +281,6 @@
         case .plannedMaintenance: return "REPAIR_CATEGORY_PLANNED_MAINTENANCE"
         case .unspecified: return "REPAIR_CATEGORY_UNSPECIFIED"
         case .userReportedFault: return "REPAIR_CATEGORY_USER_REPORTED_FAULT"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -440,36 +299,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RepairCategory/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .criticalFailure
-        case 1: self = .emergentMaintenance
-        case 2: self = .plannedMaintenance
-        case 3: self = .unspecified
-        case 4: self = .userReportedFault
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -481,7 +314,6 @@
         case .plannedMaintenance: return try container.encode("REPAIR_CATEGORY_PLANNED_MAINTENANCE")
         case .unspecified: return try container.encode("REPAIR_CATEGORY_UNSPECIFIED")
         case .userReportedFault: return try container.encode("REPAIR_CATEGORY_USER_REPORTED_FAULT")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -493,7 +325,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum UnhealthyReason: Codable, Equatable, Sendable {
@@ -507,15 +339,6 @@
       case unschedulable
       /// Unspecified unhealthy reason.
       case unspecified
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -524,36 +347,15 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .pendingUserApproval
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .pendingUserApproval: return 0
-        case .repairing: return 1
-        case .unschedulable: return 2
-        case .unspecified: return 3
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .pendingUserApproval: return "UNHEALTHY_REASON_PENDING_USER_APPROVAL"
         case .repairing: return "UNHEALTHY_REASON_REPAIRING"
         case .unschedulable: return "UNHEALTHY_REASON_UNSCHEDULABLE"
         case .unspecified: return "UNHEALTHY_REASON_UNSPECIFIED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -571,35 +373,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UnhealthyReason/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .pendingUserApproval
-        case 1: self = .repairing
-        case 2: self = .unschedulable
-        case 3: self = .unspecified
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -610,7 +387,6 @@
         case .repairing: return try container.encode("UNHEALTHY_REASON_REPAIRING")
         case .unschedulable: return try container.encode("UNHEALTHY_REASON_UNSCHEDULABLE")
         case .unspecified: return try container.encode("UNHEALTHY_REASON_UNSPECIFIED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

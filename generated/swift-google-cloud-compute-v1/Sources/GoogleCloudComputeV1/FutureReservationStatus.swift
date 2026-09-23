@@ -171,7 +171,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum AmendmentStatus: Codable, Equatable, Sendable {
@@ -185,15 +185,6 @@
       /// reviewd by GCP.
       case amendmentInReview
       case unspecified
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -202,36 +193,15 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .amendmentApproved
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .amendmentApproved: return 0
-        case .amendmentDeclined: return 1
-        case .amendmentInReview: return 2
-        case .unspecified: return 3
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .amendmentApproved: return "AMENDMENT_APPROVED"
         case .amendmentDeclined: return "AMENDMENT_DECLINED"
         case .amendmentInReview: return "AMENDMENT_IN_REVIEW"
         case .unspecified: return "AMENDMENT_STATUS_UNSPECIFIED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -249,35 +219,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AmendmentStatus/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .amendmentApproved
-        case 1: self = .amendmentDeclined
-        case 2: self = .amendmentInReview
-        case 3: self = .unspecified
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -287,7 +232,6 @@
         case .amendmentDeclined: return try container.encode("AMENDMENT_DECLINED")
         case .amendmentInReview: return try container.encode("AMENDMENT_IN_REVIEW")
         case .unspecified: return try container.encode("AMENDMENT_STATUS_UNSPECIFIED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -299,7 +243,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum ProcurementStatus: Codable, Equatable, Sendable {
@@ -336,15 +280,6 @@
       /// provide total_count reserved instance slots. This state will not
       /// persist past start_time + 24h.
       case provisioning
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -353,38 +288,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .approved
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .approved: return 0
-        case .cancelled: return 1
-        case .committed: return 2
-        case .declined: return 3
-        case .drafting: return 4
-        case .failed: return 5
-        case .failedPartiallyFulfilled: return 6
-        case .fulfilled: return 7
-        case .pendingAmendmentApproval: return 8
-        case .pendingApproval: return 9
-        case .unspecified: return 10
-        case .procuring: return 11
-        case .provisioning: return 12
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .approved: return "APPROVED"
@@ -400,7 +306,6 @@
         case .unspecified: return "PROCUREMENT_STATUS_UNSPECIFIED"
         case .procuring: return "PROCURING"
         case .provisioning: return "PROVISIONING"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -427,44 +332,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProcurementStatus/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .approved
-        case 1: self = .cancelled
-        case 2: self = .committed
-        case 3: self = .declined
-        case 4: self = .drafting
-        case 5: self = .failed
-        case 6: self = .failedPartiallyFulfilled
-        case 7: self = .fulfilled
-        case 8: self = .pendingAmendmentApproval
-        case 9: self = .pendingApproval
-        case 10: self = .unspecified
-        case 11: self = .procuring
-        case 12: self = .provisioning
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -483,7 +354,6 @@
         case .unspecified: return try container.encode("PROCUREMENT_STATUS_UNSPECIFIED")
         case .procuring: return try container.encode("PROCURING")
         case .provisioning: return try container.encode("PROVISIONING")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

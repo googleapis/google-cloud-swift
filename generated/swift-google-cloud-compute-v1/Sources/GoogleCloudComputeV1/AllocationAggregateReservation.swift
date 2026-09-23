@@ -113,7 +113,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum VmFamily: Codable, Equatable, Sendable {
@@ -125,15 +125,6 @@
       case cloudTpuPodSliceCt4P
       case cloudTpuPodSliceCt5P
       case cloudTpuPodSliceTpu7X
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -142,33 +133,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .cloudTpuDeviceCt3
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .cloudTpuDeviceCt3: return 0
-        case .cloudTpuLiteDeviceCt5L: return 1
-        case .cloudTpuLitePodSliceCt5Lp: return 2
-        case .cloudTpuLitePodSliceCt6E: return 3
-        case .cloudTpuPodSliceCt3P: return 4
-        case .cloudTpuPodSliceCt4P: return 5
-        case .cloudTpuPodSliceCt5P: return 6
-        case .cloudTpuPodSliceTpu7X: return 7
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .cloudTpuDeviceCt3: return "VM_FAMILY_CLOUD_TPU_DEVICE_CT3"
@@ -179,7 +146,6 @@
         case .cloudTpuPodSliceCt4P: return "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P"
         case .cloudTpuPodSliceCt5P: return "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P"
         case .cloudTpuPodSliceTpu7X: return "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -201,39 +167,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VmFamily/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .cloudTpuDeviceCt3
-        case 1: self = .cloudTpuLiteDeviceCt5L
-        case 2: self = .cloudTpuLitePodSliceCt5Lp
-        case 3: self = .cloudTpuLitePodSliceCt6E
-        case 4: self = .cloudTpuPodSliceCt3P
-        case 5: self = .cloudTpuPodSliceCt4P
-        case 6: self = .cloudTpuPodSliceCt5P
-        case 7: self = .cloudTpuPodSliceTpu7X
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -254,7 +191,6 @@
           return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P")
         case .cloudTpuPodSliceTpu7X:
           return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -266,7 +202,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum WorkloadType: Codable, Equatable, Sendable {
@@ -277,15 +213,6 @@
       /// inference.
       case serving
       case unspecified
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -294,34 +221,14 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .batch
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .batch: return 0
-        case .serving: return 1
-        case .unspecified: return 2
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .batch: return "BATCH"
         case .serving: return "SERVING"
         case .unspecified: return "UNSPECIFIED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -338,34 +245,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WorkloadType/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .batch
-        case 1: self = .serving
-        case 2: self = .unspecified
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -374,7 +257,6 @@
         case .batch: return try container.encode("BATCH")
         case .serving: return try container.encode("SERVING")
         case .unspecified: return try container.encode("UNSPECIFIED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

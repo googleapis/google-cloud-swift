@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.45.1-0.20260923161238-49d5f703d3e0
+version: v0.45.1-0.20260923174025-7bc8b6d5ac3e
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -1421,6 +1421,8 @@ libraries:
       modules:
         - output: Tests/Discovery/generated
           api_path: Tests/Discovery/disco/discovery-bytes.json
+        - output: Tests/Discovery/generated
+          api_path: Tests/Discovery/disco/discovery-enums.json
   - name: tests-protojson
     copyright_year: "2026"
     output: Tests/ProtoJSON/generated

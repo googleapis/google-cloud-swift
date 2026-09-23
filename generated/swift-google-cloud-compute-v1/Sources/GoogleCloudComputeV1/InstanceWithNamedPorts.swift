@@ -95,7 +95,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum Status: Codable, Equatable, Sendable {
@@ -127,15 +127,6 @@
       /// The instance has stopped (either by explicit action or underlying
       /// failure).
       case terminated
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -144,37 +135,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .deprovisioning
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .deprovisioning: return 0
-        case .pending: return 1
-        case .pendingStop: return 2
-        case .provisioning: return 3
-        case .repairing: return 4
-        case .running: return 5
-        case .staging: return 6
-        case .stopped: return 7
-        case .stopping: return 8
-        case .suspended: return 9
-        case .suspending: return 10
-        case .terminated: return 11
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .deprovisioning: return "DEPROVISIONING"
@@ -189,7 +152,6 @@
         case .suspended: return "SUSPENDED"
         case .suspending: return "SUSPENDING"
         case .terminated: return "TERMINATED"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -215,43 +177,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .deprovisioning
-        case 1: self = .pending
-        case 2: self = .pendingStop
-        case 3: self = .provisioning
-        case 4: self = .repairing
-        case 5: self = .running
-        case 6: self = .staging
-        case 7: self = .stopped
-        case 8: self = .stopping
-        case 9: self = .suspended
-        case 10: self = .suspending
-        case 11: self = .terminated
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -269,7 +198,6 @@
         case .suspended: return try container.encode("SUSPENDED")
         case .suspending: return try container.encode("SUSPENDING")
         case .terminated: return try container.encode("TERMINATED")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

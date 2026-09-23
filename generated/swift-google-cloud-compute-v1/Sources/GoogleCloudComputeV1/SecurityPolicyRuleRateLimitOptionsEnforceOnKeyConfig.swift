@@ -133,7 +133,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum EnforceOnKeyType: Codable, Equatable, Sendable {
@@ -149,15 +149,6 @@
       case tlsJa4Fingerprint
       case userIp
       case xffIp
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -166,37 +157,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .all
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .all: return 0
-        case .asn: return 1
-        case .httpCookie: return 2
-        case .httpHeader: return 3
-        case .httpPath: return 4
-        case .ip: return 5
-        case .regionCode: return 6
-        case .sni: return 7
-        case .tlsJa3Fingerprint: return 8
-        case .tlsJa4Fingerprint: return 9
-        case .userIp: return 10
-        case .xffIp: return 11
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .all: return "ALL"
@@ -211,7 +174,6 @@
         case .tlsJa4Fingerprint: return "TLS_JA4_FINGERPRINT"
         case .userIp: return "USER_IP"
         case .xffIp: return "XFF_IP"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -237,43 +199,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EnforceOnKeyType/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .all
-        case 1: self = .asn
-        case 2: self = .httpCookie
-        case 3: self = .httpHeader
-        case 4: self = .httpPath
-        case 5: self = .ip
-        case 6: self = .regionCode
-        case 7: self = .sni
-        case 8: self = .tlsJa3Fingerprint
-        case 9: self = .tlsJa4Fingerprint
-        case 10: self = .userIp
-        case 11: self = .xffIp
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -291,7 +220,6 @@
         case .tlsJa4Fingerprint: return try container.encode("TLS_JA4_FINGERPRINT")
         case .userIp: return try container.encode("USER_IP")
         case .xffIp: return try container.encode("XFF_IP")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

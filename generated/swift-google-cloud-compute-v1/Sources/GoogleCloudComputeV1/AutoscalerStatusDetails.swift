@@ -138,7 +138,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum Type_: Codable, Equatable, Sendable {
@@ -200,15 +200,6 @@
       /// For regional autoscalers: in at least one of the zones you're using there
       /// is a resource stockout.
       case zoneResourceStockout
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -217,45 +208,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .allInstancesUnhealthy
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .allInstancesUnhealthy: return 0
-        case .backendServiceDoesNotExist: return 1
-        case .cappedAtMaxNumReplicas: return 2
-        case .customMetricDataPointsTooSparse: return 3
-        case .customMetricInvalid: return 4
-        case .minEqualsMax: return 5
-        case .missingCustomMetricDataPoints: return 6
-        case .missingLoadBalancingDataPoints: return 7
-        case .modeOff: return 8
-        case .modeOnlyScaleOut: return 9
-        case .modeOnlyUp: return 10
-        case .moreThanOneBackendService: return 11
-        case .notEnoughQuotaAvailable: return 12
-        case .regionResourceStockout: return 13
-        case .scalingTargetDoesNotExist: return 14
-        case .scheduledInstancesGreaterThanAutoscalerMax: return 15
-        case .scheduledInstancesLessThanAutoscalerMin: return 16
-        case .unknown: return 17
-        case .unsupportedMaxRateLoadBalancingConfiguration: return 18
-        case .zoneResourceStockout: return 19
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .allInstancesUnhealthy: return "ALL_INSTANCES_UNHEALTHY"
@@ -281,7 +236,6 @@
         case .unsupportedMaxRateLoadBalancingConfiguration:
           return "UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION"
         case .zoneResourceStockout: return "ZONE_RESOURCE_STOCKOUT"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -318,51 +272,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .allInstancesUnhealthy
-        case 1: self = .backendServiceDoesNotExist
-        case 2: self = .cappedAtMaxNumReplicas
-        case 3: self = .customMetricDataPointsTooSparse
-        case 4: self = .customMetricInvalid
-        case 5: self = .minEqualsMax
-        case 6: self = .missingCustomMetricDataPoints
-        case 7: self = .missingLoadBalancingDataPoints
-        case 8: self = .modeOff
-        case 9: self = .modeOnlyScaleOut
-        case 10: self = .modeOnlyUp
-        case 11: self = .moreThanOneBackendService
-        case 12: self = .notEnoughQuotaAvailable
-        case 13: self = .regionResourceStockout
-        case 14: self = .scalingTargetDoesNotExist
-        case 15: self = .scheduledInstancesGreaterThanAutoscalerMax
-        case 16: self = .scheduledInstancesLessThanAutoscalerMin
-        case 17: self = .unknown
-        case 18: self = .unsupportedMaxRateLoadBalancingConfiguration
-        case 19: self = .zoneResourceStockout
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -397,7 +310,6 @@
         case .unsupportedMaxRateLoadBalancingConfiguration:
           return try container.encode("UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION")
         case .zoneResourceStockout: return try container.encode("ZONE_RESOURCE_STOCKOUT")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

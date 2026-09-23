@@ -105,22 +105,13 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// - Note: Adding cases to this enumeration is not considered a breaking change.
   ///   Always include an `@unknown default:` case when switching over this type.
-  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
   public enum Behavior: Codable, Equatable, Sendable {
     case behaviorUnspecified
     /// Skip a less-specific Response Policy Rule and let the query logic continue. This mechanism, when used with wildcard selectors, lets you exempt specific subdomains from a broader Response Policy Rule and direct the queries to the public internet instead. For example, if the following rules exist: ``` *.example.com -> LocalData 1.2.3.4 foo.example.com -> Behavior 'passthrough' ``` A query for foo.example.com skips the wildcard rule. This functionality also facilitates allowlisting. Response Policy Zones (RPZs) can be applied at multiple levels within the hierarchy: for example, an organization, a folder, a project, or a VPC network. If an RPZ rule is applied at a higher level, adding a `passthrough` rule at a lower level will override it. Queries from affected virtual machines (VMs) to that domain bypass the RPZ and proceed with normal resolution.
     case bypassResponsePolicy
-    /// Encodes an unknown integer value.
-    ///
-    /// The most common cause for an unknown value is for the service to send
-    /// a value unknown to the library. We recommend you update your library to
-    /// the latest version.
-    ///
-    /// - Warning: Do not pattern-match specific integer values in this case;
-    ///   future releases may promote them to named enum cases.
-    case unknownIntValue(Int)
     /// Encodes an unknown string value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -129,32 +120,13 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// - Warning: Do not pattern-match specific string literals in this case;
     ///   future releases may promote them to named enum cases.
-    case unknownStringValue(String)
-
-    public init() {
-      self = .behaviorUnspecified
-    }
-
-    /// Returns the integer value associated with the enumeration.
-    ///
-    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-    public var intValue: Int? {
-      switch self {
-      case .behaviorUnspecified: return 0
-      case .bypassResponsePolicy: return 1
-      case .unknownIntValue(let v): return v
-      case .unknownStringValue: return nil
-      }
-    }
+    case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    ///
-    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
     public var stringValue: Swift.String? {
       switch self {
       case .behaviorUnspecified: return "behaviorUnspecified"
       case .bypassResponsePolicy: return "bypassResponsePolicy"
-      case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
     }
@@ -170,33 +142,10 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    /// Initialize from an integer value.
-    ///
-    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Behavior/unknownIntValue(_:)).
-    public init(intValue: Int) {
-      switch intValue {
-      case 0: self = .behaviorUnspecified
-      case 1: self = .bypassResponsePolicy
-      default: self = .unknownIntValue(intValue)
-      }
-    }
-
     public init(from decoder: Decoder) throws {
       let container = try decoder.singleValueContainer()
-      if let v = try? container.decode(Int.self) {
-        self.init(intValue: v)
-        return
-      }
-      if let s = try? container.decode(String.self) {
-        if let v = Int(s) {
-          self.init(intValue: v)
-        } else {
-          self.init(stringValue: s)
-        }
-        return
-      }
-      throw DecodingError.dataCorruptedError(
-        in: container, debugDescription: "Expected enum value, must be integer or string.")
+      let s = try container.decode(Swift.String.self)
+      self.init(stringValue: s)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -204,7 +153,6 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .behaviorUnspecified: return try container.encode("behaviorUnspecified")
       case .bypassResponsePolicy: return try container.encode("bypassResponsePolicy")
-      case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
     }

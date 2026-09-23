@@ -101,7 +101,7 @@
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
     ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum Metric: Codable, Equatable, Sendable {
@@ -271,15 +271,6 @@
       case vpnGateways
       case vpnTunnels
       case xpnServiceProjects
-      /// Encodes an unknown integer value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific integer values in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownIntValue(Int)
       /// Encodes an unknown string value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -288,189 +279,9 @@
       ///
       /// - Warning: Do not pattern-match specific string literals in this case;
       ///   future releases may promote them to named enum cases.
-      case unknownStringValue(String)
-
-      public init() {
-        self = .a2Cpus
-      }
-
-      /// Returns the integer value associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
-      public var intValue: Int? {
-        switch self {
-        case .a2Cpus: return 0
-        case .affinityGroups: return 1
-        case .autoscalers: return 2
-        case .backendBuckets: return 3
-        case .backendServices: return 4
-        case .c2DCpus: return 5
-        case .c2Cpus: return 6
-        case .c3Cpus: return 7
-        case .commitments: return 8
-        case .committedA2Cpus: return 9
-        case .committedC2DCpus: return 10
-        case .committedC2Cpus: return 11
-        case .committedC3Cpus: return 12
-        case .committedCpus: return 13
-        case .committedE2Cpus: return 14
-        case .committedLicenses: return 15
-        case .committedLocalSsdTotalGb: return 16
-        case .committedM3Cpus: return 17
-        case .committedMemoryOptimizedCpus: return 18
-        case .committedN2ACpus: return 19
-        case .committedN2DCpus: return 20
-        case .committedN2Cpus: return 21
-        case .committedNvidiaA10080GbGpus: return 22
-        case .committedNvidiaA100Gpus: return 23
-        case .committedNvidiaH100Gpus: return 24
-        case .committedNvidiaK80Gpus: return 25
-        case .committedNvidiaL4Gpus: return 26
-        case .committedNvidiaP100Gpus: return 27
-        case .committedNvidiaP4Gpus: return 28
-        case .committedNvidiaT4Gpus: return 29
-        case .committedNvidiaV100Gpus: return 30
-        case .committedT2ACpus: return 31
-        case .committedT2DCpus: return 32
-        case .committedZ3Cpus: return 33
-        case .cpus: return 34
-        case .cpusAllRegions: return 35
-        case .disksTotalGb: return 36
-        case .e2Cpus: return 37
-        case .externalManagedForwardingRules: return 38
-        case .externalNetworkLbForwardingRules: return 39
-        case .externalProtocolForwardingRules: return 40
-        case .externalVpnGateways: return 41
-        case .firewalls: return 42
-        case .forwardingRules: return 43
-        case .globalExternalManagedBackendServices: return 44
-        case .globalExternalManagedForwardingRules: return 45
-        case .globalExternalProxyLbBackendServices: return 46
-        case .globalInternalAddresses: return 47
-        case .globalInternalManagedBackendServices: return 48
-        case .globalInternalTrafficDirectorBackendServices: return 49
-        case .gpusAllRegions: return 50
-        case .hdbTotalGb: return 51
-        case .hdbTotalIops: return 52
-        case .hdbTotalThroughput: return 53
-        case .healthChecks: return 54
-        case .images: return 55
-        case .instances: return 56
-        case .instanceGroups: return 57
-        case .instanceGroupManagers: return 58
-        case .instanceTemplates: return 59
-        case .interconnects: return 60
-        case .interconnectAttachmentsPerRegion: return 61
-        case .interconnectAttachmentsTotalMbps: return 62
-        case .interconnectTotalGbps: return 63
-        case .internalAddresses: return 64
-        case .internalTrafficDirectorForwardingRules: return 65
-        case .inPlaceSnapshots: return 66
-        case .inUseAddresses: return 67
-        case .inUseBackupSchedules: return 68
-        case .inUseSnapshotSchedules: return 69
-        case .localSsdTotalGb: return 70
-        case .m1Cpus: return 71
-        case .m2Cpus: return 72
-        case .m3Cpus: return 73
-        case .machineImages: return 74
-        case .n2ACpus: return 75
-        case .n2DCpus: return 76
-        case .n2Cpus: return 77
-        case .networks: return 78
-        case .networkAttachments: return 79
-        case .networkEndpointGroups: return 80
-        case .networkFirewallPolicies: return 81
-        case .netLbSecurityPoliciesPerRegion: return 82
-        case .netLbSecurityPolicyRulesPerRegion: return 83
-        case .netLbSecurityPolicyRuleAttributesPerRegion: return 84
-        case .nodeGroups: return 85
-        case .nodeTemplates: return 86
-        case .nvidiaA10080GbGpus: return 87
-        case .nvidiaA100Gpus: return 88
-        case .nvidiaK80Gpus: return 89
-        case .nvidiaL4Gpus: return 90
-        case .nvidiaP100Gpus: return 91
-        case .nvidiaP100VwsGpus: return 92
-        case .nvidiaP4Gpus: return 93
-        case .nvidiaP4VwsGpus: return 94
-        case .nvidiaT4Gpus: return 95
-        case .nvidiaT4VwsGpus: return 96
-        case .nvidiaV100Gpus: return 97
-        case .packetMirrorings: return 98
-        case .pdExtremeTotalProvisionedIops: return 99
-        case .preemptibleCpus: return 100
-        case .preemptibleLocalSsdGb: return 101
-        case .preemptibleNvidiaA10080GbGpus: return 102
-        case .preemptibleNvidiaA100Gpus: return 103
-        case .preemptibleNvidiaH100Gpus: return 104
-        case .preemptibleNvidiaK80Gpus: return 105
-        case .preemptibleNvidiaL4Gpus: return 106
-        case .preemptibleNvidiaP100Gpus: return 107
-        case .preemptibleNvidiaP100VwsGpus: return 108
-        case .preemptibleNvidiaP4Gpus: return 109
-        case .preemptibleNvidiaP4VwsGpus: return 110
-        case .preemptibleNvidiaT4Gpus: return 111
-        case .preemptibleNvidiaT4VwsGpus: return 112
-        case .preemptibleNvidiaV100Gpus: return 113
-        case .preemptibleTpuLiteDeviceV5: return 114
-        case .preemptibleTpuLitePodsliceV5: return 115
-        case .preemptibleTpuPodsliceV4: return 116
-        case .pscIlbConsumerForwardingRulesPerProducerNetwork: return 117
-        case .pscInternalLbForwardingRules: return 118
-        case .publicAdvertisedPrefixes: return 119
-        case .publicDelegatedPrefixes: return 120
-        case .regionalAutoscalers: return 121
-        case .regionalExternalManagedBackendServices: return 122
-        case .regionalExternalNetworkLbBackendServices: return 123
-        case .regionalInstanceGroupManagers: return 124
-        case .regionalInternalLbBackendServices: return 125
-        case .regionalInternalManagedBackendServices: return 126
-        case .regionalInternalTrafficDirectorBackendServices: return 127
-        case .reservations: return 128
-        case .resourcePolicies: return 129
-        case .routers: return 130
-        case .routes: return 131
-        case .securityPolicies: return 132
-        case .securityPoliciesPerRegion: return 133
-        case .securityPolicyAdvancedRulesPerRegion: return 134
-        case .securityPolicyCevalRules: return 135
-        case .securityPolicyRules: return 136
-        case .securityPolicyRulesPerRegion: return 137
-        case .serviceAttachments: return 138
-        case .snapshots: return 139
-        case .ssdTotalGb: return 140
-        case .sslCertificates: return 141
-        case .sslPolicies: return 142
-        case .staticAddresses: return 143
-        case .staticByoipAddresses: return 144
-        case .staticExternalIpv6AddressRanges: return 145
-        case .subnetworks: return 146
-        case .t2ACpus: return 147
-        case .t2DCpus: return 148
-        case .targetHttpsProxies: return 149
-        case .targetHttpProxies: return 150
-        case .targetInstances: return 151
-        case .targetPools: return 152
-        case .targetSslProxies: return 153
-        case .targetTcpProxies: return 154
-        case .targetVpnGateways: return 155
-        case .tpuLiteDeviceV5: return 156
-        case .tpuLitePodsliceV5: return 157
-        case .tpuPodsliceV4: return 158
-        case .urlMaps: return 159
-        case .variableIpv6PublicDelegatedPrefixes: return 160
-        case .vpnGateways: return 161
-        case .vpnTunnels: return 162
-        case .xpnServiceProjects: return 163
-        case .unknownIntValue(let v): return v
-        case .unknownStringValue: return nil
-        }
-      }
+      case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      ///
-      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
         case .a2Cpus: return "A2_CPUS"
@@ -650,7 +461,6 @@
         case .vpnGateways: return "VPN_GATEWAYS"
         case .vpnTunnels: return "VPN_TUNNELS"
         case .xpnServiceProjects: return "XPN_SERVICE_PROJECTS"
-        case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
       }
@@ -841,195 +651,10 @@
         }
       }
 
-      /// Initialize from an integer value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Metric/unknownIntValue(_:)).
-      public init(intValue: Int) {
-        switch intValue {
-        case 0: self = .a2Cpus
-        case 1: self = .affinityGroups
-        case 2: self = .autoscalers
-        case 3: self = .backendBuckets
-        case 4: self = .backendServices
-        case 5: self = .c2DCpus
-        case 6: self = .c2Cpus
-        case 7: self = .c3Cpus
-        case 8: self = .commitments
-        case 9: self = .committedA2Cpus
-        case 10: self = .committedC2DCpus
-        case 11: self = .committedC2Cpus
-        case 12: self = .committedC3Cpus
-        case 13: self = .committedCpus
-        case 14: self = .committedE2Cpus
-        case 15: self = .committedLicenses
-        case 16: self = .committedLocalSsdTotalGb
-        case 17: self = .committedM3Cpus
-        case 18: self = .committedMemoryOptimizedCpus
-        case 19: self = .committedN2ACpus
-        case 20: self = .committedN2DCpus
-        case 21: self = .committedN2Cpus
-        case 22: self = .committedNvidiaA10080GbGpus
-        case 23: self = .committedNvidiaA100Gpus
-        case 24: self = .committedNvidiaH100Gpus
-        case 25: self = .committedNvidiaK80Gpus
-        case 26: self = .committedNvidiaL4Gpus
-        case 27: self = .committedNvidiaP100Gpus
-        case 28: self = .committedNvidiaP4Gpus
-        case 29: self = .committedNvidiaT4Gpus
-        case 30: self = .committedNvidiaV100Gpus
-        case 31: self = .committedT2ACpus
-        case 32: self = .committedT2DCpus
-        case 33: self = .committedZ3Cpus
-        case 34: self = .cpus
-        case 35: self = .cpusAllRegions
-        case 36: self = .disksTotalGb
-        case 37: self = .e2Cpus
-        case 38: self = .externalManagedForwardingRules
-        case 39: self = .externalNetworkLbForwardingRules
-        case 40: self = .externalProtocolForwardingRules
-        case 41: self = .externalVpnGateways
-        case 42: self = .firewalls
-        case 43: self = .forwardingRules
-        case 44: self = .globalExternalManagedBackendServices
-        case 45: self = .globalExternalManagedForwardingRules
-        case 46: self = .globalExternalProxyLbBackendServices
-        case 47: self = .globalInternalAddresses
-        case 48: self = .globalInternalManagedBackendServices
-        case 49: self = .globalInternalTrafficDirectorBackendServices
-        case 50: self = .gpusAllRegions
-        case 51: self = .hdbTotalGb
-        case 52: self = .hdbTotalIops
-        case 53: self = .hdbTotalThroughput
-        case 54: self = .healthChecks
-        case 55: self = .images
-        case 56: self = .instances
-        case 57: self = .instanceGroups
-        case 58: self = .instanceGroupManagers
-        case 59: self = .instanceTemplates
-        case 60: self = .interconnects
-        case 61: self = .interconnectAttachmentsPerRegion
-        case 62: self = .interconnectAttachmentsTotalMbps
-        case 63: self = .interconnectTotalGbps
-        case 64: self = .internalAddresses
-        case 65: self = .internalTrafficDirectorForwardingRules
-        case 66: self = .inPlaceSnapshots
-        case 67: self = .inUseAddresses
-        case 68: self = .inUseBackupSchedules
-        case 69: self = .inUseSnapshotSchedules
-        case 70: self = .localSsdTotalGb
-        case 71: self = .m1Cpus
-        case 72: self = .m2Cpus
-        case 73: self = .m3Cpus
-        case 74: self = .machineImages
-        case 75: self = .n2ACpus
-        case 76: self = .n2DCpus
-        case 77: self = .n2Cpus
-        case 78: self = .networks
-        case 79: self = .networkAttachments
-        case 80: self = .networkEndpointGroups
-        case 81: self = .networkFirewallPolicies
-        case 82: self = .netLbSecurityPoliciesPerRegion
-        case 83: self = .netLbSecurityPolicyRulesPerRegion
-        case 84: self = .netLbSecurityPolicyRuleAttributesPerRegion
-        case 85: self = .nodeGroups
-        case 86: self = .nodeTemplates
-        case 87: self = .nvidiaA10080GbGpus
-        case 88: self = .nvidiaA100Gpus
-        case 89: self = .nvidiaK80Gpus
-        case 90: self = .nvidiaL4Gpus
-        case 91: self = .nvidiaP100Gpus
-        case 92: self = .nvidiaP100VwsGpus
-        case 93: self = .nvidiaP4Gpus
-        case 94: self = .nvidiaP4VwsGpus
-        case 95: self = .nvidiaT4Gpus
-        case 96: self = .nvidiaT4VwsGpus
-        case 97: self = .nvidiaV100Gpus
-        case 98: self = .packetMirrorings
-        case 99: self = .pdExtremeTotalProvisionedIops
-        case 100: self = .preemptibleCpus
-        case 101: self = .preemptibleLocalSsdGb
-        case 102: self = .preemptibleNvidiaA10080GbGpus
-        case 103: self = .preemptibleNvidiaA100Gpus
-        case 104: self = .preemptibleNvidiaH100Gpus
-        case 105: self = .preemptibleNvidiaK80Gpus
-        case 106: self = .preemptibleNvidiaL4Gpus
-        case 107: self = .preemptibleNvidiaP100Gpus
-        case 108: self = .preemptibleNvidiaP100VwsGpus
-        case 109: self = .preemptibleNvidiaP4Gpus
-        case 110: self = .preemptibleNvidiaP4VwsGpus
-        case 111: self = .preemptibleNvidiaT4Gpus
-        case 112: self = .preemptibleNvidiaT4VwsGpus
-        case 113: self = .preemptibleNvidiaV100Gpus
-        case 114: self = .preemptibleTpuLiteDeviceV5
-        case 115: self = .preemptibleTpuLitePodsliceV5
-        case 116: self = .preemptibleTpuPodsliceV4
-        case 117: self = .pscIlbConsumerForwardingRulesPerProducerNetwork
-        case 118: self = .pscInternalLbForwardingRules
-        case 119: self = .publicAdvertisedPrefixes
-        case 120: self = .publicDelegatedPrefixes
-        case 121: self = .regionalAutoscalers
-        case 122: self = .regionalExternalManagedBackendServices
-        case 123: self = .regionalExternalNetworkLbBackendServices
-        case 124: self = .regionalInstanceGroupManagers
-        case 125: self = .regionalInternalLbBackendServices
-        case 126: self = .regionalInternalManagedBackendServices
-        case 127: self = .regionalInternalTrafficDirectorBackendServices
-        case 128: self = .reservations
-        case 129: self = .resourcePolicies
-        case 130: self = .routers
-        case 131: self = .routes
-        case 132: self = .securityPolicies
-        case 133: self = .securityPoliciesPerRegion
-        case 134: self = .securityPolicyAdvancedRulesPerRegion
-        case 135: self = .securityPolicyCevalRules
-        case 136: self = .securityPolicyRules
-        case 137: self = .securityPolicyRulesPerRegion
-        case 138: self = .serviceAttachments
-        case 139: self = .snapshots
-        case 140: self = .ssdTotalGb
-        case 141: self = .sslCertificates
-        case 142: self = .sslPolicies
-        case 143: self = .staticAddresses
-        case 144: self = .staticByoipAddresses
-        case 145: self = .staticExternalIpv6AddressRanges
-        case 146: self = .subnetworks
-        case 147: self = .t2ACpus
-        case 148: self = .t2DCpus
-        case 149: self = .targetHttpsProxies
-        case 150: self = .targetHttpProxies
-        case 151: self = .targetInstances
-        case 152: self = .targetPools
-        case 153: self = .targetSslProxies
-        case 154: self = .targetTcpProxies
-        case 155: self = .targetVpnGateways
-        case 156: self = .tpuLiteDeviceV5
-        case 157: self = .tpuLitePodsliceV5
-        case 158: self = .tpuPodsliceV4
-        case 159: self = .urlMaps
-        case 160: self = .variableIpv6PublicDelegatedPrefixes
-        case 161: self = .vpnGateways
-        case 162: self = .vpnTunnels
-        case 163: self = .xpnServiceProjects
-        default: self = .unknownIntValue(intValue)
-        }
-      }
-
       public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let v = try? container.decode(Int.self) {
-          self.init(intValue: v)
-          return
-        }
-        if let s = try? container.decode(String.self) {
-          if let v = Int(s) {
-            self.init(intValue: v)
-          } else {
-            self.init(stringValue: s)
-          }
-          return
-        }
-        throw DecodingError.dataCorruptedError(
-          in: container, debugDescription: "Expected enum value, must be integer or string.")
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -1234,7 +859,6 @@
         case .vpnGateways: return try container.encode("VPN_GATEWAYS")
         case .vpnTunnels: return try container.encode("VPN_TUNNELS")
         case .xpnServiceProjects: return try container.encode("XPN_SERVICE_PROJECTS")
-        case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
