@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
@@ -865,30 +865,6 @@ extension StorageClient {
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
-  }
-
-  // --- Convenience Overloads ---
-
-  /// Convenience write method for a local file URL.
-  public func writeObject(
-    _ fileURL: URL,
-    to bucket: String,
-    as objectName: String,
-    options: WriteObjectOptions = .default
-  ) async throws -> Object {
-    return try await self.writeObject(
-      FileSource(fileURL: fileURL), to: bucket, as: objectName, options: options)
-  }
-
-  /// Convenience write method for in-memory Data.
-  public func writeObject(
-    _ data: Data,
-    to bucket: String,
-    as objectName: String,
-    options: WriteObjectOptions = .default
-  ) async throws -> Object {
-    return try await self.writeObject(
-      BytesSource(data: data), to: bucket, as: objectName, options: options)
   }
 }
 

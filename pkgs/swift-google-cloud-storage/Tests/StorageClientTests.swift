@@ -51,16 +51,17 @@ import Testing
   }
 
   final class MockStorage: StorageProtocol, @unchecked Sendable {
-    var writeDataHandler: ((Data, String, String, WriteObjectOptions) async throws -> Object)?
+    var writeSeekableHandler:
+      ((any SeekableWriteObjectSource, String, String, WriteObjectOptions) async throws -> Object)?
 
     func writeObject(
-      _ data: Data,
+      _ source: some SeekableWriteObjectSource,
       to bucket: String,
       as objectName: String,
       options: WriteObjectOptions
     ) async throws -> Object {
-      if let handler = writeDataHandler {
-        return try await handler(data, bucket, objectName, options)
+      if let handler = writeSeekableHandler {
+        return try await handler(source, bucket, objectName, options)
       }
       throw GoogleGax.RequestError.unimplemented
     }
@@ -84,21 +85,85 @@ import Testing
     await #expect(throws: GoogleGax.RequestError.self) {
       try await client.writeObject(tempFileURL, to: "bucket", as: "object", options: .default)
     }
+
+    await #expect(throws: GoogleGax.RequestError.self) {
+      try await client.writeObject(
+        Data("test".utf8), to: "bucket", as: "object", options: .default)
+    }
   }
 
   @Test func mockStorageConvenienceOverloadDelegation() async throws {
     let mock = MockStorage()
-    mock.writeDataHandler = { data, bucket, objectName, options in
-      #expect(data == Data("hello".utf8))
-      #expect(bucket == "test-bucket")
-      #expect(objectName == "test-object")
-      return Object()
+    mock.writeSeekableHandler = { source, bucket, objectName, options in
+      if let bytesSource = source as? BytesSource {
+        #expect(Data(bytesSource.buffer) == Data("hello".utf8))
+        #expect(bucket == "test-bucket")
+        #expect(objectName == "test-object")
+      } else if let fileSource = source as? FileSource {
+        #expect(fileSource.fileURL.lastPathComponent == "test-upload.txt")
+        #expect(bucket == "test-bucket")
+        #expect(objectName == "test-file-object")
+      } else {
+        Issue.record("Unexpected source type: \(type(of: source))")
+      }
+      var obj = Object()
+      obj.name = objectName
+      return obj
+    }
+
+    let client: any StorageProtocol = mock
+    let dataResult = try await client.writeObject(
+      Data("hello".utf8), to: "test-bucket", as: "test-object")
+    #expect(dataResult.name == "test-object")
+
+    let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "test-upload.txt")
+    let urlResult = try await client.writeObject(
+      tempFileURL, to: "test-bucket", as: "test-file-object")
+    #expect(urlResult.name == "test-file-object")
+
+    func uploadGeneric<S: StorageProtocol>(_ storage: S) async throws {
+      let r1 = try await storage.writeObject(
+        Data("hello".utf8), to: "test-bucket", as: "test-object")
+      #expect(r1.name == "test-object")
+      let r2 = try await storage.writeObject(
+        tempFileURL, to: "test-bucket", as: "test-file-object")
+      #expect(r2.name == "test-file-object")
+    }
+    try await uploadGeneric(mock)
+  }
+
+  final class UnseekableMockStorage: StorageProtocol, @unchecked Sendable {
+    var writeHandler:
+      ((any WriteObjectSource, String, String, WriteObjectOptions) async throws -> Object)?
+
+    func writeObject(
+      _ source: some WriteObjectSource,
+      to bucket: String,
+      as objectName: String,
+      options: WriteObjectOptions
+    ) async throws -> Object {
+      if let handler = writeHandler {
+        return try await handler(source, bucket, objectName, options)
+      }
+      throw GoogleGax.RequestError.unimplemented
+    }
+  }
+
+  @Test func mockStorageSeekableDelegatesToWriteObjectSourceByDefault() async throws {
+    let mock = UnseekableMockStorage()
+    mock.writeHandler = { _, bucket, objectName, _ in
+      var obj = Object()
+      obj.bucket = bucket
+      obj.name = objectName
+      return obj
     }
 
     let client: any StorageProtocol = mock
     let result = try await client.writeObject(
-      Data("hello".utf8), to: "test-bucket", as: "test-object")
-    #expect(result.name.isEmpty)
+      Data("hello".utf8), to: "fallback-bucket", as: "fallback-object")
+    #expect(result.bucket == "fallback-bucket")
+    #expect(result.name == "fallback-object")
   }
 
   @Test(arguments: [

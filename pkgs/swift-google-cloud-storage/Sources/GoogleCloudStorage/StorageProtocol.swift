@@ -40,22 +40,6 @@ public protocol StorageProtocol: Sendable {
     options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Convenience write method for a local file URL.
-  func writeObject(
-    _ fileURL: URL,
-    to bucket: String,
-    as objectName: String,
-    options: WriteObjectOptions
-  ) async throws -> Object
-
-  /// Convenience write method for in-memory Data.
-  func writeObject(
-    _ data: Data,
-    to bucket: String,
-    as objectName: String,
-    options: WriteObjectOptions
-  ) async throws -> Object
-
   /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
   func readObject(
     from bucket: String,
@@ -82,33 +66,15 @@ extension StorageProtocol {
     as objectName: String,
     options: WriteObjectOptions
   ) async throws -> Object {
-    throw GoogleGax.RequestError.unimplemented
+    let unseekableSource: any WriteObjectSource = source
+    return try await self.writeObject(
+      unseekableSource, to: bucket, as: objectName, options: options)
   }
 
   /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
   public func resumeWriteObject(
     _ source: some SeekableWriteObjectSource,
     uploadId: String,
-    options: WriteObjectOptions
-  ) async throws -> Object {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  /// Convenience write method for a local file URL.
-  public func writeObject(
-    _ fileURL: URL,
-    to bucket: String,
-    as objectName: String,
-    options: WriteObjectOptions
-  ) async throws -> Object {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  /// Convenience write method for in-memory Data.
-  public func writeObject(
-    _ data: Data,
-    to bucket: String,
-    as objectName: String,
     options: WriteObjectOptions
   ) async throws -> Object {
     throw GoogleGax.RequestError.unimplemented
@@ -149,22 +115,26 @@ extension StorageProtocol {
     try await self.resumeWriteObject(source, uploadId: uploadId, options: .default)
   }
 
-  /// Convenience write method for a local file URL with default options.
+  /// Convenience write method for a local file URL.
   public func writeObject(
     _ fileURL: URL,
     to bucket: String,
-    as objectName: String
+    as objectName: String,
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    try await self.writeObject(fileURL, to: bucket, as: objectName, options: .default)
+    try await self.writeObject(
+      FileSource(fileURL: fileURL), to: bucket, as: objectName, options: options)
   }
 
-  /// Convenience write method for in-memory Data with default options.
+  /// Convenience write method for in-memory Data.
   public func writeObject(
     _ data: Data,
     to bucket: String,
-    as objectName: String
+    as objectName: String,
+    options: WriteObjectOptions = .default
   ) async throws -> Object {
-    try await self.writeObject(data, to: bucket, as: objectName, options: .default)
+    try await self.writeObject(
+      BytesSource(data: data), to: bucket, as: objectName, options: options)
   }
 
   /// Reads (downloads) an object from Cloud Storage with default options.
