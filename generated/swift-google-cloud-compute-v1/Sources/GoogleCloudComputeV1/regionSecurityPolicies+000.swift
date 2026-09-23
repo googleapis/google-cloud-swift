@@ -226,7 +226,7 @@
     /// @Snippet(path: "regionSecurityPolicies_list")
     public func list(
       byItem: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         var request = byItem
@@ -504,13 +504,13 @@
       /// See `RegionSecurityPoliciesClient.list`.
       func list(
         byItem: RegionSecurityPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `RegionSecurityPoliciesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `RegionSecurityPoliciesClient.patch`.
       func patch(request: RegionSecurityPoliciesClient.PatchRequest) async throws
@@ -561,7 +561,7 @@
       /// See `RegionSecurityPoliciesClient.list`.
       func list(
         byItem: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `RegionSecurityPoliciesClient.patch`.
       func patch(
@@ -779,13 +779,13 @@
 
     public func list(
       byItem: RegionSecurityPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -796,12 +796,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let request = RegionSecurityPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionSecurityPoliciesClient.PatchRequest) async throws

@@ -87,7 +87,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisV1.ListInstancesResponse in
       var request = byItem
@@ -473,7 +473,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -510,7 +510,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -568,12 +568,12 @@ extension Clients {
     /// See `CloudRedisClient.listInstances`.
     func listInstances(
       byItem: ListInstancesRequest
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `CloudRedisClient.listInstances`.
     func listInstances(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `CloudRedisClient.getInstance`.
     func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudRedisV1.Instance
@@ -707,7 +707,7 @@ extension Clients {
     /// See `CloudRedisClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudRedisClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -720,13 +720,13 @@ extension Clients {
     /// See `CloudRedisClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudRedisClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudRedisClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -752,7 +752,7 @@ extension Clients {
     /// See `CloudRedisClient.listInstances`.
     func listInstances(
       byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `CloudRedisClient.getInstance`.
     func getInstance(
@@ -852,7 +852,7 @@ extension Clients {
     /// See `CloudRedisClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudRedisClient.getLocation`.
     func getLocation(
@@ -867,7 +867,7 @@ extension Clients {
     /// See `CloudRedisClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudRedisClient.deleteOperation`.
     func deleteOperation(
@@ -897,13 +897,13 @@ extension Clients.CloudRedisProtocol {
 
   public func listInstances(
     byItem: ListInstancesRequest
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
-    try self.listInstances(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Instance, Swift.Error> {
+    self.listInstances(byItem: byItem, options: .init())
   }
 
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisV1.ListInstancesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -913,11 +913,11 @@ extension Clients.CloudRedisProtocol {
 
   public func listInstances(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
-    return try self.listInstances(byItem: request)
+    return self.listInstances(byItem: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudRedisV1.Instance {
@@ -1288,13 +1288,13 @@ extension Clients.CloudRedisProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1328,13 +1328,13 @@ extension Clients.CloudRedisProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1345,12 +1345,12 @@ extension Clients.CloudRedisProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

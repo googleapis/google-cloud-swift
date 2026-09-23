@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudRecommenderV1.RecommenderClient()
-  let items = try client.listInsights(
+  let items = client.listInsights(
     byItem: ListInsightsRequest()
       .with {
         $0.parent = "\(parent)"

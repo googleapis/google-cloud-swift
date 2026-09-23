@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: BusinessGlossaryServiceClient, projectId: String, locationId: String, glossaryId: String
 ) async throws {
-  let items = try client.listGlossaryCategories(
+  let items = client.listGlossaryCategories(
     byItem: ListGlossaryCategoriesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/glossaries/\(glossaryId)"

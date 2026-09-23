@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let items = try client.listNfsShares(
+  let items = client.listNfsShares(
     byItem: ListNfsSharesRequest()
       .with {
         $0.parent = "\(parent)"

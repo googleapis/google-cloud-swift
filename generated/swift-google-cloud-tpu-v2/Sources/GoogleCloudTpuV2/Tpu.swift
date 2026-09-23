@@ -59,7 +59,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListNodes")
   public func listNodes(
     byItem: ListNodesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTpuV2.ListNodesResponse in
       var request = byItem
       request.pageToken = token
@@ -262,7 +262,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListQueuedResources")
   public func listQueuedResources(
     byItem: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<QueuedResource, Swift.Error> {
+  ) -> any AsyncSequence<QueuedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse in
       var request = byItem
@@ -409,7 +409,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListAcceleratorTypes")
   public func listAcceleratorTypes(
     byItem: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+  ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse in
       var request = byItem
@@ -442,7 +442,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListRuntimeVersions")
   public func listRuntimeVersions(
     byItem: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error> {
+  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse in
       var request = byItem
@@ -484,7 +484,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -521,7 +521,7 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// @Snippet(path: "Tpu_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -578,12 +578,12 @@ extension Clients {
     /// See `TpuClient.listNodes`.
     func listNodes(
       byItem: ListNodesRequest
-    ) throws -> any AsyncSequence<Node, Swift.Error>
+    ) -> any AsyncSequence<Node, Swift.Error>
 
     /// See `TpuClient.listNodes`.
     func listNodes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Node, Swift.Error>
+    ) -> any AsyncSequence<Node, Swift.Error>
 
     /// See `TpuClient.getNode`.
     func getNode(request: GetNodeRequest) async throws -> GoogleCloudTpuV2.Node
@@ -658,12 +658,12 @@ extension Clients {
     /// See `TpuClient.listQueuedResources`.
     func listQueuedResources(
       byItem: ListQueuedResourcesRequest
-    ) throws -> any AsyncSequence<QueuedResource, Swift.Error>
+    ) -> any AsyncSequence<QueuedResource, Swift.Error>
 
     /// See `TpuClient.listQueuedResources`.
     func listQueuedResources(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<QueuedResource, Swift.Error>
+    ) -> any AsyncSequence<QueuedResource, Swift.Error>
 
     /// See `TpuClient.getQueuedResource`.
     func getQueuedResource(request: GetQueuedResourceRequest) async throws
@@ -726,12 +726,12 @@ extension Clients {
     /// See `TpuClient.listAcceleratorTypes`.
     func listAcceleratorTypes(
       byItem: ListAcceleratorTypesRequest
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error>
 
     /// See `TpuClient.listAcceleratorTypes`.
     func listAcceleratorTypes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error>
 
     /// See `TpuClient.getAcceleratorType`.
     func getAcceleratorType(request: GetAcceleratorTypeRequest) async throws
@@ -749,12 +749,12 @@ extension Clients {
     /// See `TpuClient.listRuntimeVersions`.
     func listRuntimeVersions(
       byItem: ListRuntimeVersionsRequest
-    ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error>
+    ) -> any AsyncSequence<RuntimeVersion, Swift.Error>
 
     /// See `TpuClient.listRuntimeVersions`.
     func listRuntimeVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error>
+    ) -> any AsyncSequence<RuntimeVersion, Swift.Error>
 
     /// See `TpuClient.getRuntimeVersion`.
     func getRuntimeVersion(request: GetRuntimeVersionRequest) async throws
@@ -776,7 +776,7 @@ extension Clients {
     /// See `TpuClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `TpuClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -789,13 +789,13 @@ extension Clients {
     /// See `TpuClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TpuClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TpuClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -821,7 +821,7 @@ extension Clients {
     /// See `TpuClient.listNodes`.
     func listNodes(
       byItem: ListNodesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Node, Swift.Error>
+    ) -> any AsyncSequence<Node, Swift.Error>
 
     /// See `TpuClient.getNode`.
     func getNode(
@@ -886,7 +886,7 @@ extension Clients {
     /// See `TpuClient.listQueuedResources`.
     func listQueuedResources(
       byItem: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<QueuedResource, Swift.Error>
+    ) -> any AsyncSequence<QueuedResource, Swift.Error>
 
     /// See `TpuClient.getQueuedResource`.
     func getQueuedResource(
@@ -936,7 +936,7 @@ extension Clients {
     /// See `TpuClient.listAcceleratorTypes`.
     func listAcceleratorTypes(
       byItem: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error>
 
     /// See `TpuClient.getAcceleratorType`.
     func getAcceleratorType(
@@ -951,7 +951,7 @@ extension Clients {
     /// See `TpuClient.listRuntimeVersions`.
     func listRuntimeVersions(
       byItem: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error>
+    ) -> any AsyncSequence<RuntimeVersion, Swift.Error>
 
     /// See `TpuClient.getRuntimeVersion`.
     func getRuntimeVersion(
@@ -971,7 +971,7 @@ extension Clients {
     /// See `TpuClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `TpuClient.getLocation`.
     func getLocation(
@@ -986,7 +986,7 @@ extension Clients {
     /// See `TpuClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TpuClient.deleteOperation`.
     func deleteOperation(
@@ -1016,13 +1016,13 @@ extension Clients.TpuProtocol {
 
   public func listNodes(
     byItem: ListNodesRequest
-  ) throws -> any AsyncSequence<Node, Swift.Error> {
-    try self.listNodes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Node, Swift.Error> {
+    self.listNodes(byItem: byItem, options: .init())
   }
 
   public func listNodes(
     byItem: ListNodesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTpuV2.ListNodesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1031,11 +1031,11 @@ extension Clients.TpuProtocol {
 
   public func listNodes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> {
     let request = ListNodesRequest().with {
       $0.parent = parent
     }
-    return try self.listNodes(byItem: request)
+    return self.listNodes(byItem: request)
   }
 
   public func getNode(request: GetNodeRequest) async throws -> GoogleCloudTpuV2.Node {
@@ -1234,13 +1234,13 @@ extension Clients.TpuProtocol {
 
   public func listQueuedResources(
     byItem: ListQueuedResourcesRequest
-  ) throws -> any AsyncSequence<QueuedResource, Swift.Error> {
-    try self.listQueuedResources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<QueuedResource, Swift.Error> {
+    self.listQueuedResources(byItem: byItem, options: .init())
   }
 
   public func listQueuedResources(
     byItem: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<QueuedResource, Swift.Error> {
+  ) -> any AsyncSequence<QueuedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1250,11 +1250,11 @@ extension Clients.TpuProtocol {
 
   public func listQueuedResources(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<QueuedResource, Swift.Error> {
+  ) -> any AsyncSequence<QueuedResource, Swift.Error> {
     let request = ListQueuedResourcesRequest().with {
       $0.parent = parent
     }
-    return try self.listQueuedResources(byItem: request)
+    return self.listQueuedResources(byItem: request)
   }
 
   public func getQueuedResource(request: GetQueuedResourceRequest) async throws
@@ -1419,13 +1419,13 @@ extension Clients.TpuProtocol {
 
   public func listAcceleratorTypes(
     byItem: ListAcceleratorTypesRequest
-  ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
-    try self.listAcceleratorTypes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    self.listAcceleratorTypes(byItem: byItem, options: .init())
   }
 
   public func listAcceleratorTypes(
     byItem: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+  ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1435,11 +1435,11 @@ extension Clients.TpuProtocol {
 
   public func listAcceleratorTypes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+  ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
     let request = ListAcceleratorTypesRequest().with {
       $0.parent = parent
     }
-    return try self.listAcceleratorTypes(byItem: request)
+    return self.listAcceleratorTypes(byItem: request)
   }
 
   public func getAcceleratorType(request: GetAcceleratorTypeRequest) async throws
@@ -1477,13 +1477,13 @@ extension Clients.TpuProtocol {
 
   public func listRuntimeVersions(
     byItem: ListRuntimeVersionsRequest
-  ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error> {
-    try self.listRuntimeVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> {
+    self.listRuntimeVersions(byItem: byItem, options: .init())
   }
 
   public func listRuntimeVersions(
     byItem: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error> {
+  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1493,11 +1493,11 @@ extension Clients.TpuProtocol {
 
   public func listRuntimeVersions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<RuntimeVersion, Swift.Error> {
+  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> {
     let request = ListRuntimeVersionsRequest().with {
       $0.parent = parent
     }
-    return try self.listRuntimeVersions(byItem: request)
+    return self.listRuntimeVersions(byItem: request)
   }
 
   public func getRuntimeVersion(request: GetRuntimeVersionRequest) async throws
@@ -1547,13 +1547,13 @@ extension Clients.TpuProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1587,13 +1587,13 @@ extension Clients.TpuProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1604,12 +1604,12 @@ extension Clients.TpuProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

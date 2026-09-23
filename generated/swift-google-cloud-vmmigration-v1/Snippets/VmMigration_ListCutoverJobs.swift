@@ -26,7 +26,7 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let items = try client.listCutoverJobs(
+  let items = client.listCutoverJobs(
     byItem: ListCutoverJobsRequest()
       .with {
         $0.parent =

@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: OrganizationsClient) async throws {
-  let items = try client.searchOrganizations(
+  let items = client.searchOrganizations(
     byItem: SearchOrganizationsRequest()
       /* set fields using .with { $0... } */
   )

@@ -22,7 +22,7 @@ import GoogleApi
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudMonitoringV3.GroupServiceClient()
-  let items = try client.listGroups(
+  let items = client.listGroups(
     byItem: ListGroupsRequest()
       .with {
         $0.name = "projects/\(projectId)"

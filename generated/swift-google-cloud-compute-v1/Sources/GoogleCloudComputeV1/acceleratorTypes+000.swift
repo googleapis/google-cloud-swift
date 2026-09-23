@@ -57,7 +57,7 @@
     /// @Snippet(path: "acceleratorTypes_aggregatedList")
     public func aggregatedList(
       byItem: AcceleratorTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeAggregatedList in
         var request = byItem
@@ -92,7 +92,7 @@
     /// @Snippet(path: "acceleratorTypes_list")
     public func list(
       byItem: AcceleratorTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeList in
         var request = byItem
@@ -117,12 +117,12 @@
       /// See `AcceleratorTypesClient.aggregatedList`.
       func aggregatedList(
         byItem: AcceleratorTypesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
 
       /// See `AcceleratorTypesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
 
       /// See `AcceleratorTypesClient.`get``.
       func `get`(request: AcceleratorTypesClient.GetRequest) async throws
@@ -142,13 +142,13 @@
       /// See `AcceleratorTypesClient.list`.
       func list(
         byItem: AcceleratorTypesClient.ListRequest
-      ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+      ) -> any AsyncSequence<AcceleratorType, Swift.Error>
 
       /// See `AcceleratorTypesClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+      ) -> any AsyncSequence<AcceleratorType, Swift.Error>
 
       /// See `AcceleratorTypesClient.aggregatedList`.
       func aggregatedList(
@@ -158,7 +158,7 @@
       /// See `AcceleratorTypesClient.aggregatedList`.
       func aggregatedList(
         byItem: AcceleratorTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error>
 
       /// See `AcceleratorTypesClient.`get``.
       func `get`(
@@ -173,7 +173,7 @@
       /// See `AcceleratorTypesClient.list`.
       func list(
         byItem: AcceleratorTypesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<AcceleratorType, Swift.Error>
+      ) -> any AsyncSequence<AcceleratorType, Swift.Error>
     }
   }
 
@@ -193,13 +193,13 @@
 
     public func aggregatedList(
       byItem: AcceleratorTypesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: AcceleratorTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -209,11 +209,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
       let request = AcceleratorTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func `get`(request: AcceleratorTypesClient.GetRequest) async throws
@@ -255,13 +255,13 @@
 
     public func list(
       byItem: AcceleratorTypesClient.ListRequest
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: AcceleratorTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeList in
         throw GoogleGax.RequestError.unimplemented
@@ -272,12 +272,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
       let request = AcceleratorTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

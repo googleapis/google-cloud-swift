@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentGroupId: String)
   async throws
 {
-  let items = try client.listDeploymentGroupRevisions(
+  let items = client.listDeploymentGroupRevisions(
     byItem: ListDeploymentGroupRevisionsRequest()
       .with {
         $0.parent =

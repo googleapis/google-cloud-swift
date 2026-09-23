@@ -21,7 +21,7 @@ import GoogleCloudRunV2
 import GoogleLongRunning
 
 func sample(client: InstancesClient, projectId: String, locationId: String) async throws {
-  let items = try client.listInstances(
+  let items = client.listInstances(
     byItem: ListInstancesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

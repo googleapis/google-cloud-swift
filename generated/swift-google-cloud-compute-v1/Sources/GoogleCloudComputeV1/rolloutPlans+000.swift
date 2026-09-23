@@ -160,7 +160,7 @@
     /// @Snippet(path: "rolloutPlans_list")
     public func list(
       byItem: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutPlansListResponse in
         var request = byItem
@@ -212,12 +212,12 @@
       /// See `RolloutPlansClient.list`.
       func list(
         byItem: RolloutPlansClient.ListRequest
-      ) throws -> any AsyncSequence<RolloutPlan, Swift.Error>
+      ) -> any AsyncSequence<RolloutPlan, Swift.Error>
 
       /// See `RolloutPlansClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<RolloutPlan, Swift.Error>
+      ) -> any AsyncSequence<RolloutPlan, Swift.Error>
 
       /// See `RolloutPlansClient.delete`.
       func delete(
@@ -242,7 +242,7 @@
       /// See `RolloutPlansClient.list`.
       func list(
         byItem: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<RolloutPlan, Swift.Error>
+      ) -> any AsyncSequence<RolloutPlan, Swift.Error>
     }
   }
 
@@ -365,13 +365,13 @@
 
     public func list(
       byItem: RolloutPlansClient.ListRequest
-    ) throws -> any AsyncSequence<RolloutPlan, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutPlansListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -381,11 +381,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
       let request = RolloutPlansClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

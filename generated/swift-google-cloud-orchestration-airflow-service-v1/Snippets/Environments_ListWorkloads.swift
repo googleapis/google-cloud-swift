@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EnvironmentsClient) async throws {
-  let items = try client.listWorkloads(
+  let items = client.listWorkloads(
     byItem: ListWorkloadsRequest()
       /* set fields using .with { $0... } */
   )

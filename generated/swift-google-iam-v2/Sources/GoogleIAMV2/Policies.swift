@@ -63,7 +63,7 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// @Snippet(path: "Policies_ListPolicies")
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
       var request = byItem
       request.pageToken = token
@@ -232,12 +232,12 @@ extension Clients {
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
       byItem: ListPoliciesRequest
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.getPolicy`.
     func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy
@@ -288,7 +288,7 @@ extension Clients {
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
       byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.getPolicy`.
     func getPolicy(
@@ -343,13 +343,13 @@ extension Clients.PoliciesProtocol {
 
   public func listPolicies(
     byItem: ListPoliciesRequest
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
-    try self.listPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Policy, Swift.Error> {
+    self.listPolicies(byItem: byItem, options: .init())
   }
 
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -358,11 +358,11 @@ extension Clients.PoliciesProtocol {
 
   public func listPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let request = ListPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listPolicies(byItem: request)
+    return self.listPolicies(byItem: request)
   }
 
   public func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy {

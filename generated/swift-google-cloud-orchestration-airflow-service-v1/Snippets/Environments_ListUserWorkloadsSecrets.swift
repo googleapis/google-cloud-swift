@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: EnvironmentsClient, projectId: String, locationId: String, environmentId: String
 ) async throws {
-  let items = try client.listUserWorkloadsSecrets(
+  let items = client.listUserWorkloadsSecrets(
     byItem: ListUserWorkloadsSecretsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/environments/\(environmentId)"

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AttachedClustersClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAttachedClusters(
+  let items = client.listAttachedClusters(
     byItem: ListAttachedClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

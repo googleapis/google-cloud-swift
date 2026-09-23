@@ -52,7 +52,7 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// @Snippet(path: "ModelArmor_ListTemplates")
   public func listTemplates(
     byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Template, Swift.Error> {
+  ) -> any AsyncSequence<Template, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse in
       var request = byItem
@@ -148,7 +148,7 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// @Snippet(path: "ModelArmor_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -182,12 +182,12 @@ extension Clients {
     /// See `ModelArmorClient.listTemplates`.
     func listTemplates(
       byItem: ListTemplatesRequest
-    ) throws -> any AsyncSequence<Template, Swift.Error>
+    ) -> any AsyncSequence<Template, Swift.Error>
 
     /// See `ModelArmorClient.listTemplates`.
     func listTemplates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Template, Swift.Error>
+    ) -> any AsyncSequence<Template, Swift.Error>
 
     /// See `ModelArmorClient.getTemplate`.
     func getTemplate(request: GetTemplateRequest) async throws -> GoogleCloudModelArmorV1.Template
@@ -260,7 +260,7 @@ extension Clients {
     /// See `ModelArmorClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ModelArmorClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -274,7 +274,7 @@ extension Clients {
     /// See `ModelArmorClient.listTemplates`.
     func listTemplates(
       byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Template, Swift.Error>
+    ) -> any AsyncSequence<Template, Swift.Error>
 
     /// See `ModelArmorClient.getTemplate`.
     func getTemplate(
@@ -324,7 +324,7 @@ extension Clients {
     /// See `ModelArmorClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ModelArmorClient.getLocation`.
     func getLocation(
@@ -349,13 +349,13 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplates(
     byItem: ListTemplatesRequest
-  ) throws -> any AsyncSequence<Template, Swift.Error> {
-    try self.listTemplates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Template, Swift.Error> {
+    self.listTemplates(byItem: byItem, options: .init())
   }
 
   public func listTemplates(
     byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Template, Swift.Error> {
+  ) -> any AsyncSequence<Template, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -365,11 +365,11 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplates(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Template, Swift.Error> {
+  ) -> any AsyncSequence<Template, Swift.Error> {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
-    return try self.listTemplates(byItem: request)
+    return self.listTemplates(byItem: request)
   }
 
   public func getTemplate(request: GetTemplateRequest) async throws
@@ -542,13 +542,13 @@ extension Clients.ModelArmorProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

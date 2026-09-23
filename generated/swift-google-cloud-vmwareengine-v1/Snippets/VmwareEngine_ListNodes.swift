@@ -27,7 +27,7 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   clusterId: String
 ) async throws {
-  let items = try client.listNodes(
+  let items = client.listNodes(
     byItem: ListNodesRequest()
       .with {
         $0.parent =

@@ -26,7 +26,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataCatalogClient, projectId: String, locationId: String) async throws {
-  let items = try client.listEntryGroups(
+  let items = client.listEntryGroups(
     byItem: ListEntryGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

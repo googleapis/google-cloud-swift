@@ -26,7 +26,7 @@
     client: ConversationalSearchServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let items = try client.listConversations(
+    let items = client.listConversations(
       byItem: ListConversationsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"

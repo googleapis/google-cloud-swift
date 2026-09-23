@@ -26,7 +26,7 @@ func sample(
   client: MetadataServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String, entityId: String
 ) async throws {
-  let items = try client.listPartitions(
+  let items = client.listPartitions(
     byItem: ListPartitionsRequest()
       .with {
         $0.parent =

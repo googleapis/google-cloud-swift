@@ -176,7 +176,7 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   @available(*, deprecated)
   public func listDataTaxonomies(
     byItem: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error> {
+  ) -> any AsyncSequence<DataTaxonomy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataTaxonomiesResponse in
       var request = byItem
@@ -327,7 +327,7 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   @available(*, deprecated)
   public func listDataAttributeBindings(
     byItem: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
+  ) -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataAttributeBindingsResponse
       in
@@ -475,7 +475,7 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   @available(*, deprecated)
   public func listDataAttributes(
     byItem: ListDataAttributesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataAttribute, Swift.Error> {
+  ) -> any AsyncSequence<DataAttribute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataAttributesResponse in
       var request = byItem
@@ -543,7 +543,7 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// @Snippet(path: "DataTaxonomyService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -618,7 +618,7 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// @Snippet(path: "DataTaxonomyService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -730,13 +730,13 @@ extension Clients {
     @available(*, deprecated)
     func listDataTaxonomies(
       byItem: ListDataTaxonomiesRequest
-    ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error>
+    ) -> any AsyncSequence<DataTaxonomy, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.listDataTaxonomies`.
     @available(*, deprecated)
     func listDataTaxonomies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error>
+    ) -> any AsyncSequence<DataTaxonomy, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataTaxonomy`.
     @available(*, deprecated)
@@ -809,13 +809,13 @@ extension Clients {
     @available(*, deprecated)
     func listDataAttributeBindings(
       byItem: ListDataAttributeBindingsRequest
-    ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error>
+    ) -> any AsyncSequence<DataAttributeBinding, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.listDataAttributeBindings`.
     @available(*, deprecated)
     func listDataAttributeBindings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error>
+    ) -> any AsyncSequence<DataAttributeBinding, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataAttributeBinding`.
     @available(*, deprecated)
@@ -888,13 +888,13 @@ extension Clients {
     @available(*, deprecated)
     func listDataAttributes(
       byItem: ListDataAttributesRequest
-    ) throws -> any AsyncSequence<DataAttribute, Swift.Error>
+    ) -> any AsyncSequence<DataAttribute, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.listDataAttributes`.
     @available(*, deprecated)
     func listDataAttributes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataAttribute, Swift.Error>
+    ) -> any AsyncSequence<DataAttribute, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataAttribute`.
     @available(*, deprecated)
@@ -914,7 +914,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -937,13 +937,13 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1007,7 +1007,7 @@ extension Clients {
     @available(*, deprecated)
     func listDataTaxonomies(
       byItem: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error>
+    ) -> any AsyncSequence<DataTaxonomy, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataTaxonomy`.
     @available(*, deprecated)
@@ -1061,7 +1061,7 @@ extension Clients {
     @available(*, deprecated)
     func listDataAttributeBindings(
       byItem: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error>
+    ) -> any AsyncSequence<DataAttributeBinding, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataAttributeBinding`.
     @available(*, deprecated)
@@ -1115,7 +1115,7 @@ extension Clients {
     @available(*, deprecated)
     func listDataAttributes(
       byItem: ListDataAttributesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataAttribute, Swift.Error>
+    ) -> any AsyncSequence<DataAttribute, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getDataAttribute`.
     @available(*, deprecated)
@@ -1131,7 +1131,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.getLocation`.
     func getLocation(
@@ -1161,7 +1161,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1327,14 +1327,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataTaxonomies(
     byItem: ListDataTaxonomiesRequest
-  ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error> {
-    try self.listDataTaxonomies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataTaxonomy, Swift.Error> {
+    self.listDataTaxonomies(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listDataTaxonomies(
     byItem: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error> {
+  ) -> any AsyncSequence<DataTaxonomy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataTaxonomiesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1345,11 +1345,11 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataTaxonomies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataTaxonomy, Swift.Error> {
+  ) -> any AsyncSequence<DataTaxonomy, Swift.Error> {
     let request = ListDataTaxonomiesRequest().with {
       $0.parent = parent
     }
-    return try self.listDataTaxonomies(byItem: request)
+    return self.listDataTaxonomies(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1525,14 +1525,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributeBindings(
     byItem: ListDataAttributeBindingsRequest
-  ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
-    try self.listDataAttributeBindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
+    self.listDataAttributeBindings(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listDataAttributeBindings(
     byItem: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
+  ) -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataAttributeBindingsResponse
       in
@@ -1544,11 +1544,11 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributeBindings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
+  ) -> any AsyncSequence<DataAttributeBinding, Swift.Error> {
     let request = ListDataAttributeBindingsRequest().with {
       $0.parent = parent
     }
-    return try self.listDataAttributeBindings(byItem: request)
+    return self.listDataAttributeBindings(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1724,14 +1724,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributes(
     byItem: ListDataAttributesRequest
-  ) throws -> any AsyncSequence<DataAttribute, Swift.Error> {
-    try self.listDataAttributes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataAttribute, Swift.Error> {
+    self.listDataAttributes(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listDataAttributes(
     byItem: ListDataAttributesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataAttribute, Swift.Error> {
+  ) -> any AsyncSequence<DataAttribute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataAttributesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1742,11 +1742,11 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataAttribute, Swift.Error> {
+  ) -> any AsyncSequence<DataAttribute, Swift.Error> {
     let request = ListDataAttributesRequest().with {
       $0.parent = parent
     }
-    return try self.listDataAttributes(byItem: request)
+    return self.listDataAttributes(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1787,13 +1787,13 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1863,13 +1863,13 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1880,12 +1880,12 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

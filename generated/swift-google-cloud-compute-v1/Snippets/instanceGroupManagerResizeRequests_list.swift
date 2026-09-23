@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupManagerResizeRequestsClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: InstanceGroupManagerResizeRequestsClient.ListRequest()
         /* set fields using .with { $0... } */
     )

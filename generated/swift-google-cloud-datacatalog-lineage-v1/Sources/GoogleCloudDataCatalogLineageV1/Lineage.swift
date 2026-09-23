@@ -102,7 +102,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_ListProcesses")
   public func listProcesses(
     byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.ListProcessesResponse in
       var request = byItem
@@ -190,7 +190,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_ListRuns")
   public func listRuns(
     byItem: ListRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Run, Swift.Error> {
+  ) -> any AsyncSequence<Run, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.ListRunsResponse in
       var request = byItem
@@ -269,7 +269,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_ListLineageEvents")
   public func listLineageEvents(
     byItem: ListLineageEventsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LineageEvent, Swift.Error> {
+  ) -> any AsyncSequence<LineageEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.ListLineageEventsResponse in
@@ -319,7 +319,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_SearchLinks")
   public func searchLinks(
     byItem: SearchLinksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Link, Swift.Error> {
+  ) -> any AsyncSequence<Link, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.SearchLinksResponse in
       var request = byItem
@@ -373,7 +373,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcesses(
     byItem: BatchSearchLinkProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProcessLinks, Swift.Error> {
+  ) -> any AsyncSequence<ProcessLinks, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.BatchSearchLinkProcessesResponse in
@@ -435,7 +435,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -532,12 +532,12 @@ extension Clients {
     /// See `LineageClient.listProcesses`.
     func listProcesses(
       byItem: ListProcessesRequest
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LineageClient.listProcesses`.
     func listProcesses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LineageClient.deleteProcess`.
     func deleteProcess(request: DeleteProcessRequest) async throws -> GoogleLongRunning.Operation
@@ -584,12 +584,12 @@ extension Clients {
     /// See `LineageClient.listRuns`.
     func listRuns(
       byItem: ListRunsRequest
-    ) throws -> any AsyncSequence<Run, Swift.Error>
+    ) -> any AsyncSequence<Run, Swift.Error>
 
     /// See `LineageClient.listRuns`.
     func listRuns(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Run, Swift.Error>
+    ) -> any AsyncSequence<Run, Swift.Error>
 
     /// See `LineageClient.deleteRun`.
     func deleteRun(request: DeleteRunRequest) async throws -> GoogleLongRunning.Operation
@@ -630,12 +630,12 @@ extension Clients {
     /// See `LineageClient.listLineageEvents`.
     func listLineageEvents(
       byItem: ListLineageEventsRequest
-    ) throws -> any AsyncSequence<LineageEvent, Swift.Error>
+    ) -> any AsyncSequence<LineageEvent, Swift.Error>
 
     /// See `LineageClient.listLineageEvents`.
     func listLineageEvents(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<LineageEvent, Swift.Error>
+    ) -> any AsyncSequence<LineageEvent, Swift.Error>
 
     /// See `LineageClient.deleteLineageEvent`.
     func deleteLineageEvent(request: DeleteLineageEventRequest) async throws
@@ -652,7 +652,7 @@ extension Clients {
     /// See `LineageClient.searchLinks`.
     func searchLinks(
       byItem: SearchLinksRequest
-    ) throws -> any AsyncSequence<Link, Swift.Error>
+    ) -> any AsyncSequence<Link, Swift.Error>
 
     /// See `LineageClient.batchSearchLinkProcesses`.
     func batchSearchLinkProcesses(request: BatchSearchLinkProcessesRequest) async throws
@@ -661,7 +661,7 @@ extension Clients {
     /// See `LineageClient.batchSearchLinkProcesses`.
     func batchSearchLinkProcesses(
       byItem: BatchSearchLinkProcessesRequest
-    ) throws -> any AsyncSequence<ProcessLinks, Swift.Error>
+    ) -> any AsyncSequence<ProcessLinks, Swift.Error>
 
     /// See `LineageClient.searchLineageStreaming`.
     func searchLineageStreaming(request: SearchLineageStreamingRequest) async throws
@@ -674,13 +674,13 @@ extension Clients {
     /// See `LineageClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LineageClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LineageClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -726,7 +726,7 @@ extension Clients {
     /// See `LineageClient.listProcesses`.
     func listProcesses(
       byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LineageClient.deleteProcess`.
     func deleteProcess(
@@ -761,7 +761,7 @@ extension Clients {
     /// See `LineageClient.listRuns`.
     func listRuns(
       byItem: ListRunsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Run, Swift.Error>
+    ) -> any AsyncSequence<Run, Swift.Error>
 
     /// See `LineageClient.deleteRun`.
     func deleteRun(
@@ -791,7 +791,7 @@ extension Clients {
     /// See `LineageClient.listLineageEvents`.
     func listLineageEvents(
       byItem: ListLineageEventsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<LineageEvent, Swift.Error>
+    ) -> any AsyncSequence<LineageEvent, Swift.Error>
 
     /// See `LineageClient.deleteLineageEvent`.
     func deleteLineageEvent(
@@ -806,7 +806,7 @@ extension Clients {
     /// See `LineageClient.searchLinks`.
     func searchLinks(
       byItem: SearchLinksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Link, Swift.Error>
+    ) -> any AsyncSequence<Link, Swift.Error>
 
     /// See `LineageClient.batchSearchLinkProcesses`.
     func batchSearchLinkProcesses(
@@ -816,7 +816,7 @@ extension Clients {
     /// See `LineageClient.batchSearchLinkProcesses`.
     func batchSearchLinkProcesses(
       byItem: BatchSearchLinkProcessesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ProcessLinks, Swift.Error>
+    ) -> any AsyncSequence<ProcessLinks, Swift.Error>
 
     /// See `LineageClient.searchLineageStreaming`.
     func searchLineageStreaming(
@@ -831,7 +831,7 @@ extension Clients {
     /// See `LineageClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LineageClient.deleteOperation`.
     func deleteOperation(
@@ -951,13 +951,13 @@ extension Clients.LineageProtocol {
 
   public func listProcesses(
     byItem: ListProcessesRequest
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
-    try self.listProcesses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Process, Swift.Error> {
+    self.listProcesses(byItem: byItem, options: .init())
   }
 
   public func listProcesses(
     byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.ListProcessesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -967,11 +967,11 @@ extension Clients.LineageProtocol {
 
   public func listProcesses(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let request = ListProcessesRequest().with {
       $0.parent = parent
     }
-    return try self.listProcesses(byItem: request)
+    return self.listProcesses(byItem: request)
   }
 
   public func deleteProcess(request: DeleteProcessRequest) async throws
@@ -1090,13 +1090,13 @@ extension Clients.LineageProtocol {
 
   public func listRuns(
     byItem: ListRunsRequest
-  ) throws -> any AsyncSequence<Run, Swift.Error> {
-    try self.listRuns(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Run, Swift.Error> {
+    self.listRuns(byItem: byItem, options: .init())
   }
 
   public func listRuns(
     byItem: ListRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Run, Swift.Error> {
+  ) -> any AsyncSequence<Run, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.ListRunsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1106,11 +1106,11 @@ extension Clients.LineageProtocol {
 
   public func listRuns(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Run, Swift.Error> {
+  ) -> any AsyncSequence<Run, Swift.Error> {
     let request = ListRunsRequest().with {
       $0.parent = parent
     }
-    return try self.listRuns(byItem: request)
+    return self.listRuns(byItem: request)
   }
 
   public func deleteRun(request: DeleteRunRequest) async throws -> GoogleLongRunning.Operation {
@@ -1206,13 +1206,13 @@ extension Clients.LineageProtocol {
 
   public func listLineageEvents(
     byItem: ListLineageEventsRequest
-  ) throws -> any AsyncSequence<LineageEvent, Swift.Error> {
-    try self.listLineageEvents(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<LineageEvent, Swift.Error> {
+    self.listLineageEvents(byItem: byItem, options: .init())
   }
 
   public func listLineageEvents(
     byItem: ListLineageEventsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LineageEvent, Swift.Error> {
+  ) -> any AsyncSequence<LineageEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.ListLineageEventsResponse in
@@ -1223,11 +1223,11 @@ extension Clients.LineageProtocol {
 
   public func listLineageEvents(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<LineageEvent, Swift.Error> {
+  ) -> any AsyncSequence<LineageEvent, Swift.Error> {
     let request = ListLineageEventsRequest().with {
       $0.parent = parent
     }
-    return try self.listLineageEvents(byItem: request)
+    return self.listLineageEvents(byItem: request)
   }
 
   public func deleteLineageEvent(request: DeleteLineageEventRequest) async throws {
@@ -1263,13 +1263,13 @@ extension Clients.LineageProtocol {
 
   public func searchLinks(
     byItem: SearchLinksRequest
-  ) throws -> any AsyncSequence<Link, Swift.Error> {
-    try self.searchLinks(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Link, Swift.Error> {
+    self.searchLinks(byItem: byItem, options: .init())
   }
 
   public func searchLinks(
     byItem: SearchLinksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Link, Swift.Error> {
+  ) -> any AsyncSequence<Link, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogLineageV1.SearchLinksResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1291,13 +1291,13 @@ extension Clients.LineageProtocol {
 
   public func batchSearchLinkProcesses(
     byItem: BatchSearchLinkProcessesRequest
-  ) throws -> any AsyncSequence<ProcessLinks, Swift.Error> {
-    try self.batchSearchLinkProcesses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ProcessLinks, Swift.Error> {
+    self.batchSearchLinkProcesses(byItem: byItem, options: .init())
   }
 
   public func batchSearchLinkProcesses(
     byItem: BatchSearchLinkProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProcessLinks, Swift.Error> {
+  ) -> any AsyncSequence<ProcessLinks, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.BatchSearchLinkProcessesResponse in
@@ -1332,13 +1332,13 @@ extension Clients.LineageProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1349,12 +1349,12 @@ extension Clients.LineageProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

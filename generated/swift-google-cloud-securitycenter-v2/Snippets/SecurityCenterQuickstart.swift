@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(organizationId: String, simulationId: String, valuedResourceId: String, ) async throws {
   let client = try GoogleCloudSecurityCenterV2.SecurityCenterClient()
-  let items = try client.listAttackPaths(
+  let items = client.listAttackPaths(
     byItem: ListAttackPathsRequest()
       .with {
         $0.parent =

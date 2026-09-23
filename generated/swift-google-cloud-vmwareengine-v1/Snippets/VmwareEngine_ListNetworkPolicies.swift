@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, projectId: String, locationId: String) async throws {
-  let items = try client.listNetworkPolicies(
+  let items = client.listNetworkPolicies(
     byItem: ListNetworkPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

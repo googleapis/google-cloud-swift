@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigZonalServiceClient, parent: String) async throws {
-  let items = try client.listOspolicyAssignmentReports(
+  let items = client.listOspolicyAssignmentReports(
     byItem: ListOSPolicyAssignmentReportsRequest()
       .with {
         $0.parent = "\(parent)"

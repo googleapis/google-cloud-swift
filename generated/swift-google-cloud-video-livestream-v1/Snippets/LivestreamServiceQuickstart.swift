@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudVideoLiveStreamV1.LivestreamServiceClient()
-  let items = try client.listChannels(
+  let items = client.listChannels(
     byItem: ListChannelsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

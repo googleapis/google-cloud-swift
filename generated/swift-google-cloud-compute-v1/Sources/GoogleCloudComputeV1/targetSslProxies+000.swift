@@ -164,7 +164,7 @@
     /// @Snippet(path: "targetSslProxies_list")
     public func list(
       byItem: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetSslProxyList in
         var request = byItem
@@ -474,12 +474,12 @@
       /// See `TargetSslProxiesClient.list`.
       func list(
         byItem: TargetSslProxiesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetSslProxy, Swift.Error>
 
       /// See `TargetSslProxiesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetSslProxy, Swift.Error>
 
       /// See `TargetSslProxiesClient.setBackendService`.
       func setBackendService(request: TargetSslProxiesClient.SetBackendServiceRequest) async throws
@@ -535,7 +535,7 @@
       /// See `TargetSslProxiesClient.list`.
       func list(
         byItem: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetSslProxy, Swift.Error>
 
       /// See `TargetSslProxiesClient.setBackendService`.
       func setBackendService(
@@ -688,13 +688,13 @@
 
     public func list(
       byItem: TargetSslProxiesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetSslProxyList in
         throw GoogleGax.RequestError.unimplemented
@@ -704,11 +704,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<TargetSslProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
       let request = TargetSslProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setBackendService(request: TargetSslProxiesClient.SetBackendServiceRequest)

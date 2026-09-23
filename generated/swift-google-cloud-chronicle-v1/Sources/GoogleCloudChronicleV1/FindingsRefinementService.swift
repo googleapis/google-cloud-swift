@@ -66,7 +66,7 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
   public func listFindingsRefinements(
     byItem: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse
       in
@@ -127,7 +127,7 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
   public func listAllFindingsRefinementDeployments(
     byItem: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse in
@@ -174,7 +174,7 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// @Snippet(path: "FindingsRefinementService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -241,12 +241,12 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listFindingsRefinements`.
     func listFindingsRefinements(
       byItem: ListFindingsRefinementsRequest
-    ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinement, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.listFindingsRefinements`.
     func listFindingsRefinements(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinement, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.createFindingsRefinement`.
     func createFindingsRefinement(request: CreateFindingsRefinementRequest) async throws
@@ -294,12 +294,12 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listAllFindingsRefinementDeployments`.
     func listAllFindingsRefinementDeployments(
       byItem: ListAllFindingsRefinementDeploymentsRequest
-    ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.listAllFindingsRefinementDeployments`.
     func listAllFindingsRefinementDeployments(
       instance: Swift.String,
-    ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.computeFindingsRefinementActivity`.
     func computeFindingsRefinementActivity(request: ComputeFindingsRefinementActivityRequest)
@@ -327,13 +327,13 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -364,7 +364,7 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listFindingsRefinements`.
     func listFindingsRefinements(
       byItem: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinement, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.createFindingsRefinement`.
     func createFindingsRefinement(
@@ -394,7 +394,7 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listAllFindingsRefinementDeployments`.
     func listAllFindingsRefinementDeployments(
       byItem: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
+    ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.computeFindingsRefinementActivity`.
     func computeFindingsRefinementActivity(
@@ -414,7 +414,7 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FindingsRefinementServiceClient.deleteOperation`.
     func deleteOperation(
@@ -465,13 +465,13 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func listFindingsRefinements(
     byItem: ListFindingsRefinementsRequest
-  ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error> {
-    try self.listFindingsRefinements(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FindingsRefinement, Swift.Error> {
+    self.listFindingsRefinements(byItem: byItem, options: .init())
   }
 
   public func listFindingsRefinements(
     byItem: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse
       in
@@ -482,11 +482,11 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func listFindingsRefinements(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FindingsRefinement, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinement, Swift.Error> {
     let request = ListFindingsRefinementsRequest().with {
       $0.parent = parent
     }
-    return try self.listFindingsRefinements(byItem: request)
+    return self.listFindingsRefinements(byItem: request)
   }
 
   public func createFindingsRefinement(request: CreateFindingsRefinementRequest) async throws
@@ -593,13 +593,13 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func listAllFindingsRefinementDeployments(
     byItem: ListAllFindingsRefinementDeploymentsRequest
-  ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
-    try self.listAllFindingsRefinementDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
+    self.listAllFindingsRefinementDeployments(byItem: byItem, options: .init())
   }
 
   public func listAllFindingsRefinementDeployments(
     byItem: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse in
@@ -610,11 +610,11 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func listAllFindingsRefinementDeployments(
     instance: Swift.String,
-  ) throws -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
+  ) -> any AsyncSequence<FindingsRefinementDeployment, Swift.Error> {
     let request = ListAllFindingsRefinementDeploymentsRequest().with {
       $0.instance = instance
     }
-    return try self.listAllFindingsRefinementDeployments(byItem: request)
+    return self.listAllFindingsRefinementDeployments(byItem: request)
   }
 
   public func computeFindingsRefinementActivity(request: ComputeFindingsRefinementActivityRequest)
@@ -673,13 +673,13 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -690,12 +690,12 @@ extension Clients.FindingsRefinementServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

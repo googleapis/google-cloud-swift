@@ -24,7 +24,7 @@ func sample(
   client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String,
   customerId: String
 ) async throws {
-  let items = try client.listWorkloads(
+  let items = client.listWorkloads(
     byItem: ListWorkloadsRequest()
       .with {
         $0.parent =

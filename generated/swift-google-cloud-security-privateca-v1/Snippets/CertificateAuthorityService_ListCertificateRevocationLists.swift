@@ -27,7 +27,7 @@ func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String,
   caPoolId: String, certificateAuthorityId: String
 ) async throws {
-  let items = try client.listCertificateRevocationLists(
+  let items = client.listCertificateRevocationLists(
     byItem: ListCertificateRevocationListsRequest()
       .with {
         $0.parent =

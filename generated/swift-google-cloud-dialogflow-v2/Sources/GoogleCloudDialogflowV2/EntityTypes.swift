@@ -59,7 +59,7 @@
     /// @Snippet(path: "EntityTypes_ListEntityTypes")
     public func listEntityTypes(
       byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EntityType, Swift.Error> {
+    ) -> any AsyncSequence<EntityType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse in
         var request = byItem
@@ -481,7 +481,7 @@
     /// @Snippet(path: "EntityTypes_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -518,7 +518,7 @@
     /// @Snippet(path: "EntityTypes_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -565,18 +565,18 @@
       /// See `EntityTypesClient.listEntityTypes`.
       func listEntityTypes(
         byItem: ListEntityTypesRequest
-      ) throws -> any AsyncSequence<EntityType, Swift.Error>
+      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `EntityTypesClient.listEntityTypes`.
       func listEntityTypes(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<EntityType, Swift.Error>
+      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `EntityTypesClient.listEntityTypes`.
       func listEntityTypes(
         parent: Swift.String,
         languageCode: Swift.String,
-      ) throws -> any AsyncSequence<EntityType, Swift.Error>
+      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `EntityTypesClient.getEntityType`.
       func getEntityType(request: GetEntityTypeRequest) async throws
@@ -725,7 +725,7 @@
       /// See `EntityTypesClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `EntityTypesClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -738,13 +738,13 @@
       /// See `EntityTypesClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EntityTypesClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EntityTypesClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -762,7 +762,7 @@
       /// See `EntityTypesClient.listEntityTypes`.
       func listEntityTypes(
         byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<EntityType, Swift.Error>
+      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `EntityTypesClient.getEntityType`.
       func getEntityType(
@@ -842,7 +842,7 @@
       /// See `EntityTypesClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `EntityTypesClient.getLocation`.
       func getLocation(
@@ -857,7 +857,7 @@
       /// See `EntityTypesClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EntityTypesClient.cancelOperation`.
       func cancelOperation(
@@ -882,13 +882,13 @@
 
     public func listEntityTypes(
       byItem: ListEntityTypesRequest
-    ) throws -> any AsyncSequence<EntityType, Swift.Error> {
-      try self.listEntityTypes(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<EntityType, Swift.Error> {
+      self.listEntityTypes(byItem: byItem, options: .init())
     }
 
     public func listEntityTypes(
       byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EntityType, Swift.Error> {
+    ) -> any AsyncSequence<EntityType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -898,22 +898,22 @@
 
     public func listEntityTypes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EntityType, Swift.Error> {
+    ) -> any AsyncSequence<EntityType, Swift.Error> {
       let request = ListEntityTypesRequest().with {
         $0.parent = parent
       }
-      return try self.listEntityTypes(byItem: request)
+      return self.listEntityTypes(byItem: request)
     }
 
     public func listEntityTypes(
       parent: Swift.String,
       languageCode: Swift.String,
-    ) throws -> any AsyncSequence<EntityType, Swift.Error> {
+    ) -> any AsyncSequence<EntityType, Swift.Error> {
       let request = ListEntityTypesRequest().with {
         $0.parent = parent
         $0.languageCode = languageCode
       }
-      return try self.listEntityTypes(byItem: request)
+      return self.listEntityTypes(byItem: request)
     }
 
     public func getEntityType(request: GetEntityTypeRequest) async throws
@@ -1273,13 +1273,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1313,13 +1313,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1330,12 +1330,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

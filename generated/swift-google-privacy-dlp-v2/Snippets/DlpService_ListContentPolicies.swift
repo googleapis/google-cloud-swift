@@ -21,7 +21,7 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, projectId: String, locationId: String) async throws {
-  let items = try client.listContentPolicies(
+  let items = client.listContentPolicies(
     byItem: ListContentPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

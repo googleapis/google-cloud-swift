@@ -63,7 +63,7 @@
     /// @Snippet(path: "instanceTemplates_aggregatedList")
     public func aggregatedList(
       byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
         var request = byItem
@@ -216,7 +216,7 @@
     /// @Snippet(path: "instanceTemplates_list")
     public func list(
       byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = byItem
@@ -269,12 +269,12 @@
       /// See `InstanceTemplatesClient.aggregatedList`.
       func aggregatedList(
         byItem: InstanceTemplatesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
 
       /// See `InstanceTemplatesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
 
       /// See `InstanceTemplatesClient.delete`.
       func delete(request: InstanceTemplatesClient.DeleteRequest) async throws
@@ -311,12 +311,12 @@
       /// See `InstanceTemplatesClient.list`.
       func list(
         byItem: InstanceTemplatesClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `InstanceTemplatesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `InstanceTemplatesClient.setIamPolicy`.
       func setIamPolicy(request: InstanceTemplatesClient.SetIamPolicyRequest) async throws
@@ -348,7 +348,7 @@
       /// See `InstanceTemplatesClient.aggregatedList`.
       func aggregatedList(
         byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
 
       /// See `InstanceTemplatesClient.delete`.
       func delete(
@@ -378,7 +378,7 @@
       /// See `InstanceTemplatesClient.list`.
       func list(
         byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `InstanceTemplatesClient.setIamPolicy`.
       func setIamPolicy(
@@ -409,13 +409,13 @@
 
     public func aggregatedList(
       byItem: InstanceTemplatesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -425,11 +425,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let request = InstanceTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: InstanceTemplatesClient.DeleteRequest) async throws
@@ -572,13 +572,13 @@
 
     public func list(
       byItem: InstanceTemplatesClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         throw GoogleGax.RequestError.unimplemented
@@ -588,11 +588,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let request = InstanceTemplatesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: InstanceTemplatesClient.SetIamPolicyRequest) async throws

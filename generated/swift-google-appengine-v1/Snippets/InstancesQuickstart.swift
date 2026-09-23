@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleAppEngineV1.InstancesClient()
-  let items = try client.listInstances(
+  let items = client.listInstances(
     byItem: ListInstancesRequest()
       .with {
         $0.parent = "\(parent)"

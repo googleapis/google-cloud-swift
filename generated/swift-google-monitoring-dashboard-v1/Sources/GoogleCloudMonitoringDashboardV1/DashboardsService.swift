@@ -73,7 +73,7 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// @Snippet(path: "DashboardsService_ListDashboards")
   public func listDashboards(
     byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Dashboard, Swift.Error> {
+  ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
       in
@@ -148,12 +148,12 @@ extension Clients {
     /// See `DashboardsServiceClient.listDashboards`.
     func listDashboards(
       byItem: ListDashboardsRequest
-    ) throws -> any AsyncSequence<Dashboard, Swift.Error>
+    ) -> any AsyncSequence<Dashboard, Swift.Error>
 
     /// See `DashboardsServiceClient.listDashboards`.
     func listDashboards(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Dashboard, Swift.Error>
+    ) -> any AsyncSequence<Dashboard, Swift.Error>
 
     /// See `DashboardsServiceClient.getDashboard`.
     func getDashboard(request: GetDashboardRequest) async throws
@@ -189,7 +189,7 @@ extension Clients {
     /// See `DashboardsServiceClient.listDashboards`.
     func listDashboards(
       byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Dashboard, Swift.Error>
+    ) -> any AsyncSequence<Dashboard, Swift.Error>
 
     /// See `DashboardsServiceClient.getDashboard`.
     func getDashboard(
@@ -247,13 +247,13 @@ extension Clients.DashboardsServiceProtocol {
 
   public func listDashboards(
     byItem: ListDashboardsRequest
-  ) throws -> any AsyncSequence<Dashboard, Swift.Error> {
-    try self.listDashboards(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Dashboard, Swift.Error> {
+    self.listDashboards(byItem: byItem, options: .init())
   }
 
   public func listDashboards(
     byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Dashboard, Swift.Error> {
+  ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
       in
@@ -264,11 +264,11 @@ extension Clients.DashboardsServiceProtocol {
 
   public func listDashboards(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Dashboard, Swift.Error> {
+  ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let request = ListDashboardsRequest().with {
       $0.parent = parent
     }
-    return try self.listDashboards(byItem: request)
+    return self.listDashboards(byItem: request)
   }
 
   public func getDashboard(request: GetDashboardRequest) async throws

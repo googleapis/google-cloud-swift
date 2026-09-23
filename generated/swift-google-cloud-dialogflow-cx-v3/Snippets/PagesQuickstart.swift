@@ -26,7 +26,7 @@
   func sample(projectId: String, locationId: String, agentId: String, flowId: String, ) async throws
   {
     let client = try GoogleCloudDialogflowCXV3.PagesClient()
-    let items = try client.listPages(
+    let items = client.listPages(
       byItem: ListPagesRequest()
         .with {
           $0.parent =

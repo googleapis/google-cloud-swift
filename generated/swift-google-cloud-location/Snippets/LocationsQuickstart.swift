@@ -21,7 +21,7 @@ import GoogleCloudLocation
 
 func sample() async throws {
   let client = try GoogleCloudLocation.LocationsClient()
-  let items = try client.listLocations(
+  let items = client.listLocations(
     byItem: ListLocationsRequest()
       /* set fields using .with { $0... } */
   )

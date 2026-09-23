@@ -194,7 +194,7 @@
     /// @Snippet(path: "snapshots_list")
     public func list(
       byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
         var request = byItem
         request.pageToken = token
@@ -373,12 +373,12 @@
       /// See `SnapshotsClient.list`.
       func list(
         byItem: SnapshotsClient.ListRequest
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `SnapshotsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `SnapshotsClient.setIamPolicy`.
       func setIamPolicy(request: SnapshotsClient.SetIamPolicyRequest) async throws
@@ -438,7 +438,7 @@
       /// See `SnapshotsClient.list`.
       func list(
         byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `SnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -604,13 +604,13 @@
 
     public func list(
       byItem: SnapshotsClient.ListRequest
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -619,11 +619,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let request = SnapshotsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: SnapshotsClient.SetIamPolicyRequest) async throws

@@ -22,7 +22,7 @@ import GoogleCloudLocation
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudLocationFinderV1.CloudLocationFinderClient()
-  let items = try client.listCloudLocations(
+  let items = client.listCloudLocations(
     byItem: ListCloudLocationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

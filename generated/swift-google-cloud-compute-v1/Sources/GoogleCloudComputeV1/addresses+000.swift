@@ -61,7 +61,7 @@
     /// @Snippet(path: "addresses_aggregatedList")
     public func aggregatedList(
       byItem: AddressesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "addresses_list")
     public func list(
       byItem: AddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         var request = byItem
         request.pageToken = token
@@ -338,12 +338,12 @@
       /// See `AddressesClient.aggregatedList`.
       func aggregatedList(
         byItem: AddressesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
 
       /// See `AddressesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
 
       /// See `AddressesClient.delete`.
       func delete(request: AddressesClient.DeleteRequest) async throws
@@ -370,13 +370,13 @@
       /// See `AddressesClient.list`.
       func list(
         byItem: AddressesClient.ListRequest
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `AddressesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `AddressesClient.move`.
       func move(request: AddressesClient.MoveRequest) async throws -> GoogleCloudComputeV1.Operation
@@ -405,7 +405,7 @@
       /// See `AddressesClient.aggregatedList`.
       func aggregatedList(
         byItem: AddressesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error>
 
       /// See `AddressesClient.delete`.
       func delete(
@@ -430,7 +430,7 @@
       /// See `AddressesClient.list`.
       func list(
         byItem: AddressesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `AddressesClient.move`.
       func move(
@@ -465,13 +465,13 @@
 
     public func aggregatedList(
       byItem: AddressesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: AddressesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -481,11 +481,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> {
       let request = AddressesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: AddressesClient.DeleteRequest) async throws
@@ -611,13 +611,13 @@
 
     public func list(
       byItem: AddressesClient.ListRequest
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Address, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: AddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -627,12 +627,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let request = AddressesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func move(request: AddressesClient.MoveRequest) async throws

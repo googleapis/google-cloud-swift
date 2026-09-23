@@ -130,7 +130,7 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// @Snippet(path: "TagHolds_ListTagHolds")
   public func listTagHolds(
     byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
       var request = byItem
@@ -191,12 +191,12 @@ extension Clients {
     /// See `TagHoldsClient.listTagHolds`.
     func listTagHolds(
       byItem: ListTagHoldsRequest
-    ) throws -> any AsyncSequence<TagHold, Swift.Error>
+    ) -> any AsyncSequence<TagHold, Swift.Error>
 
     /// See `TagHoldsClient.listTagHolds`.
     func listTagHolds(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TagHold, Swift.Error>
+    ) -> any AsyncSequence<TagHold, Swift.Error>
 
     /// See `TagHoldsClient.createTagHold`.
     func createTagHold(
@@ -226,7 +226,7 @@ extension Clients {
     /// See `TagHoldsClient.listTagHolds`.
     func listTagHolds(
       byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TagHold, Swift.Error>
+    ) -> any AsyncSequence<TagHold, Swift.Error>
   }
 }
 
@@ -322,13 +322,13 @@ extension Clients.TagHoldsProtocol {
 
   public func listTagHolds(
     byItem: ListTagHoldsRequest
-  ) throws -> any AsyncSequence<TagHold, Swift.Error> {
-    try self.listTagHolds(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TagHold, Swift.Error> {
+    self.listTagHolds(byItem: byItem, options: .init())
   }
 
   public func listTagHolds(
     byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -338,11 +338,11 @@ extension Clients.TagHoldsProtocol {
 
   public func listTagHolds(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> {
     let request = ListTagHoldsRequest().with {
       $0.parent = parent
     }
-    return try self.listTagHolds(byItem: request)
+    return self.listTagHolds(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -96,7 +96,7 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// @Snippet(path: "Speech_ListRecognizers")
   public func listRecognizers(
     byItem: ListRecognizersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Recognizer, Swift.Error> {
+  ) -> any AsyncSequence<Recognizer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListRecognizersResponse in
       var request = byItem
@@ -362,7 +362,7 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// @Snippet(path: "Speech_ListCustomClasses")
   public func listCustomClasses(
     byItem: ListCustomClassesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomClass, Swift.Error> {
+  ) -> any AsyncSequence<CustomClass, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListCustomClassesResponse in
       var request = byItem
@@ -554,7 +554,7 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// @Snippet(path: "Speech_ListPhraseSets")
   public func listPhraseSets(
     byItem: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PhraseSet, Swift.Error> {
+  ) -> any AsyncSequence<PhraseSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListPhraseSetsResponse in
       var request = byItem
@@ -721,7 +721,7 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// @Snippet(path: "Speech_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -758,7 +758,7 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// @Snippet(path: "Speech_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -831,12 +831,12 @@ extension Clients {
     /// See `SpeechClient.listRecognizers`.
     func listRecognizers(
       byItem: ListRecognizersRequest
-    ) throws -> any AsyncSequence<Recognizer, Swift.Error>
+    ) -> any AsyncSequence<Recognizer, Swift.Error>
 
     /// See `SpeechClient.listRecognizers`.
     func listRecognizers(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Recognizer, Swift.Error>
+    ) -> any AsyncSequence<Recognizer, Swift.Error>
 
     /// See `SpeechClient.getRecognizer`.
     func getRecognizer(request: GetRecognizerRequest) async throws -> GoogleCloudSpeechV2.Recognizer
@@ -959,12 +959,12 @@ extension Clients {
     /// See `SpeechClient.listCustomClasses`.
     func listCustomClasses(
       byItem: ListCustomClassesRequest
-    ) throws -> any AsyncSequence<CustomClass, Swift.Error>
+    ) -> any AsyncSequence<CustomClass, Swift.Error>
 
     /// See `SpeechClient.listCustomClasses`.
     func listCustomClasses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CustomClass, Swift.Error>
+    ) -> any AsyncSequence<CustomClass, Swift.Error>
 
     /// See `SpeechClient.getCustomClass`.
     func getCustomClass(request: GetCustomClassRequest) async throws
@@ -1037,12 +1037,12 @@ extension Clients {
     /// See `SpeechClient.listPhraseSets`.
     func listPhraseSets(
       byItem: ListPhraseSetsRequest
-    ) throws -> any AsyncSequence<PhraseSet, Swift.Error>
+    ) -> any AsyncSequence<PhraseSet, Swift.Error>
 
     /// See `SpeechClient.listPhraseSets`.
     func listPhraseSets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PhraseSet, Swift.Error>
+    ) -> any AsyncSequence<PhraseSet, Swift.Error>
 
     /// See `SpeechClient.getPhraseSet`.
     func getPhraseSet(request: GetPhraseSetRequest) async throws -> GoogleCloudSpeechV2.PhraseSet
@@ -1099,7 +1099,7 @@ extension Clients {
     /// See `SpeechClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `SpeechClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1112,13 +1112,13 @@ extension Clients {
     /// See `SpeechClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SpeechClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SpeechClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1154,7 +1154,7 @@ extension Clients {
     /// See `SpeechClient.listRecognizers`.
     func listRecognizers(
       byItem: ListRecognizersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Recognizer, Swift.Error>
+    ) -> any AsyncSequence<Recognizer, Swift.Error>
 
     /// See `SpeechClient.getRecognizer`.
     func getRecognizer(
@@ -1234,7 +1234,7 @@ extension Clients {
     /// See `SpeechClient.listCustomClasses`.
     func listCustomClasses(
       byItem: ListCustomClassesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CustomClass, Swift.Error>
+    ) -> any AsyncSequence<CustomClass, Swift.Error>
 
     /// See `SpeechClient.getCustomClass`.
     func getCustomClass(
@@ -1289,7 +1289,7 @@ extension Clients {
     /// See `SpeechClient.listPhraseSets`.
     func listPhraseSets(
       byItem: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PhraseSet, Swift.Error>
+    ) -> any AsyncSequence<PhraseSet, Swift.Error>
 
     /// See `SpeechClient.getPhraseSet`.
     func getPhraseSet(
@@ -1334,7 +1334,7 @@ extension Clients {
     /// See `SpeechClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `SpeechClient.getLocation`.
     func getLocation(
@@ -1349,7 +1349,7 @@ extension Clients {
     /// See `SpeechClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SpeechClient.deleteOperation`.
     func deleteOperation(
@@ -1420,13 +1420,13 @@ extension Clients.SpeechProtocol {
 
   public func listRecognizers(
     byItem: ListRecognizersRequest
-  ) throws -> any AsyncSequence<Recognizer, Swift.Error> {
-    try self.listRecognizers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Recognizer, Swift.Error> {
+    self.listRecognizers(byItem: byItem, options: .init())
   }
 
   public func listRecognizers(
     byItem: ListRecognizersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Recognizer, Swift.Error> {
+  ) -> any AsyncSequence<Recognizer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListRecognizersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1436,11 +1436,11 @@ extension Clients.SpeechProtocol {
 
   public func listRecognizers(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Recognizer, Swift.Error> {
+  ) -> any AsyncSequence<Recognizer, Swift.Error> {
     let request = ListRecognizersRequest().with {
       $0.parent = parent
     }
-    return try self.listRecognizers(byItem: request)
+    return self.listRecognizers(byItem: request)
   }
 
   public func getRecognizer(request: GetRecognizerRequest) async throws
@@ -1759,13 +1759,13 @@ extension Clients.SpeechProtocol {
 
   public func listCustomClasses(
     byItem: ListCustomClassesRequest
-  ) throws -> any AsyncSequence<CustomClass, Swift.Error> {
-    try self.listCustomClasses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CustomClass, Swift.Error> {
+    self.listCustomClasses(byItem: byItem, options: .init())
   }
 
   public func listCustomClasses(
     byItem: ListCustomClassesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomClass, Swift.Error> {
+  ) -> any AsyncSequence<CustomClass, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListCustomClassesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1775,11 +1775,11 @@ extension Clients.SpeechProtocol {
 
   public func listCustomClasses(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CustomClass, Swift.Error> {
+  ) -> any AsyncSequence<CustomClass, Swift.Error> {
     let request = ListCustomClassesRequest().with {
       $0.parent = parent
     }
-    return try self.listCustomClasses(byItem: request)
+    return self.listCustomClasses(byItem: request)
   }
 
   public func getCustomClass(request: GetCustomClassRequest) async throws
@@ -1971,13 +1971,13 @@ extension Clients.SpeechProtocol {
 
   public func listPhraseSets(
     byItem: ListPhraseSetsRequest
-  ) throws -> any AsyncSequence<PhraseSet, Swift.Error> {
-    try self.listPhraseSets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PhraseSet, Swift.Error> {
+    self.listPhraseSets(byItem: byItem, options: .init())
   }
 
   public func listPhraseSets(
     byItem: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PhraseSet, Swift.Error> {
+  ) -> any AsyncSequence<PhraseSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListPhraseSetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1987,11 +1987,11 @@ extension Clients.SpeechProtocol {
 
   public func listPhraseSets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PhraseSet, Swift.Error> {
+  ) -> any AsyncSequence<PhraseSet, Swift.Error> {
     let request = ListPhraseSetsRequest().with {
       $0.parent = parent
     }
-    return try self.listPhraseSets(byItem: request)
+    return self.listPhraseSets(byItem: request)
   }
 
   public func getPhraseSet(request: GetPhraseSetRequest) async throws
@@ -2142,13 +2142,13 @@ extension Clients.SpeechProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2182,13 +2182,13 @@ extension Clients.SpeechProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2199,12 +2199,12 @@ extension Clients.SpeechProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

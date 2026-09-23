@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDataFormV1.DataformClient()
-  let items = try client.listRepositories(
+  let items = client.listRepositories(
     byItem: ListRepositoriesRequest()
       .with {
         $0.parent = "\(parent)"

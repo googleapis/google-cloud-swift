@@ -145,7 +145,7 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
   public func listOrders(
     byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
@@ -281,12 +281,12 @@ extension Clients {
     /// See `ConsumerProcurementServiceClient.listOrders`.
     func listOrders(
       byItem: ListOrdersRequest
-    ) throws -> any AsyncSequence<Order, Swift.Error>
+    ) -> any AsyncSequence<Order, Swift.Error>
 
     /// See `ConsumerProcurementServiceClient.listOrders`.
     func listOrders(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Order, Swift.Error>
+    ) -> any AsyncSequence<Order, Swift.Error>
 
     /// See `ConsumerProcurementServiceClient.modifyOrder`.
     func modifyOrder(request: ModifyOrderRequest) async throws -> GoogleLongRunning.Operation
@@ -325,7 +325,7 @@ extension Clients {
     /// See `ConsumerProcurementServiceClient.listOrders`.
     func listOrders(
       byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Order, Swift.Error>
+    ) -> any AsyncSequence<Order, Swift.Error>
 
     /// See `ConsumerProcurementServiceClient.modifyOrder`.
     func modifyOrder(
@@ -412,13 +412,13 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrders(
     byItem: ListOrdersRequest
-  ) throws -> any AsyncSequence<Order, Swift.Error> {
-    try self.listOrders(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Order, Swift.Error> {
+    self.listOrders(byItem: byItem, options: .init())
   }
 
   public func listOrders(
     byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
@@ -429,11 +429,11 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrders(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> {
     let request = ListOrdersRequest().with {
       $0.parent = parent
     }
-    return try self.listOrders(byItem: request)
+    return self.listOrders(byItem: request)
   }
 
   public func modifyOrder(request: ModifyOrderRequest) async throws -> GoogleLongRunning.Operation {

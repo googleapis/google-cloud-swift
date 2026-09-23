@@ -24,7 +24,7 @@ func sample(
   client: CloudApiRegistryClient, projectId: String, locationId: String, apiNamespaceId: String,
   mcpServerId: String
 ) async throws {
-  let items = try client.listMcpTools(
+  let items = client.listMcpTools(
     byItem: ListMcpToolsRequest()
       .with {
         $0.parent =

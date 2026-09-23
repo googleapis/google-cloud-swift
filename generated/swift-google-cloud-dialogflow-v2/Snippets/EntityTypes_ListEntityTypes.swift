@@ -24,7 +24,7 @@
   import GoogleWKT
 
   func sample(client: EntityTypesClient, projectId: String) async throws {
-    let items = try client.listEntityTypes(
+    let items = client.listEntityTypes(
       byItem: ListEntityTypesRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent"

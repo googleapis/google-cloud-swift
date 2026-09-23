@@ -23,7 +23,7 @@ import GoogleLongRunning
 func sample(
   client: TasksClient, projectId: String, locationId: String, jobId: String, executionId: String
 ) async throws {
-  let items = try client.listTasks(
+  let items = client.listTasks(
     byItem: ListTasksRequest()
       .with {
         $0.parent =

@@ -56,7 +56,7 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// @Snippet(path: "Recommender_ListInsights")
   public func listInsights(
     byItem: ListInsightsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse in
       var request = byItem
@@ -106,7 +106,7 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// @Snippet(path: "Recommender_ListRecommendations")
   public func listRecommendations(
     byItem: ListRecommendationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
       var request = byItem
@@ -254,12 +254,12 @@ extension Clients {
     /// See `RecommenderClient.listInsights`.
     func listInsights(
       byItem: ListInsightsRequest
-    ) throws -> any AsyncSequence<Insight, Swift.Error>
+    ) -> any AsyncSequence<Insight, Swift.Error>
 
     /// See `RecommenderClient.listInsights`.
     func listInsights(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Insight, Swift.Error>
+    ) -> any AsyncSequence<Insight, Swift.Error>
 
     /// See `RecommenderClient.getInsight`.
     func getInsight(request: GetInsightRequest) async throws -> GoogleCloudRecommenderV1.Insight
@@ -287,18 +287,18 @@ extension Clients {
     /// See `RecommenderClient.listRecommendations`.
     func listRecommendations(
       byItem: ListRecommendationsRequest
-    ) throws -> any AsyncSequence<Recommendation, Swift.Error>
+    ) -> any AsyncSequence<Recommendation, Swift.Error>
 
     /// See `RecommenderClient.listRecommendations`.
     func listRecommendations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Recommendation, Swift.Error>
+    ) -> any AsyncSequence<Recommendation, Swift.Error>
 
     /// See `RecommenderClient.listRecommendations`.
     func listRecommendations(
       parent: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Recommendation, Swift.Error>
+    ) -> any AsyncSequence<Recommendation, Swift.Error>
 
     /// See `RecommenderClient.getRecommendation`.
     func getRecommendation(request: GetRecommendationRequest) async throws
@@ -392,7 +392,7 @@ extension Clients {
     /// See `RecommenderClient.listInsights`.
     func listInsights(
       byItem: ListInsightsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Insight, Swift.Error>
+    ) -> any AsyncSequence<Insight, Swift.Error>
 
     /// See `RecommenderClient.getInsight`.
     func getInsight(
@@ -412,7 +412,7 @@ extension Clients {
     /// See `RecommenderClient.listRecommendations`.
     func listRecommendations(
       byItem: ListRecommendationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Recommendation, Swift.Error>
+    ) -> any AsyncSequence<Recommendation, Swift.Error>
 
     /// See `RecommenderClient.getRecommendation`.
     func getRecommendation(
@@ -477,13 +477,13 @@ extension Clients.RecommenderProtocol {
 
   public func listInsights(
     byItem: ListInsightsRequest
-  ) throws -> any AsyncSequence<Insight, Swift.Error> {
-    try self.listInsights(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Insight, Swift.Error> {
+    self.listInsights(byItem: byItem, options: .init())
   }
 
   public func listInsights(
     byItem: ListInsightsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -493,11 +493,11 @@ extension Clients.RecommenderProtocol {
 
   public func listInsights(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> {
     let request = ListInsightsRequest().with {
       $0.parent = parent
     }
-    return try self.listInsights(byItem: request)
+    return self.listInsights(byItem: request)
   }
 
   public func getInsight(request: GetInsightRequest) async throws
@@ -560,13 +560,13 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendations(
     byItem: ListRecommendationsRequest
-  ) throws -> any AsyncSequence<Recommendation, Swift.Error> {
-    try self.listRecommendations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Recommendation, Swift.Error> {
+    self.listRecommendations(byItem: byItem, options: .init())
   }
 
   public func listRecommendations(
     byItem: ListRecommendationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -576,22 +576,22 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
     }
-    return try self.listRecommendations(byItem: request)
+    return self.listRecommendations(byItem: request)
   }
 
   public func listRecommendations(
     parent: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
       $0.filter = filter
     }
-    return try self.listRecommendations(byItem: request)
+    return self.listRecommendations(byItem: request)
   }
 
   public func getRecommendation(request: GetRecommendationRequest) async throws

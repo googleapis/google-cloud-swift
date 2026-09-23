@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: AnalyticsHubServiceClient, projectId: String, locationId: String, dataExchangeId: String
 ) async throws {
-  let items = try client.listQueryTemplates(
+  let items = client.listQueryTemplates(
     byItem: ListQueryTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataExchanges/\(dataExchangeId)"

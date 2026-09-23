@@ -61,7 +61,7 @@
     /// @Snippet(path: "vpnGateways_aggregatedList")
     public func aggregatedList(
       byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
         var request = byItem
@@ -205,7 +205,7 @@
     /// @Snippet(path: "vpnGateways_list")
     public func list(
       byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
         var request = byItem
         request.pageToken = token
@@ -298,12 +298,12 @@
       /// See `VpnGatewaysClient.aggregatedList`.
       func aggregatedList(
         byItem: VpnGatewaysClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
 
       /// See `VpnGatewaysClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
 
       /// See `VpnGatewaysClient.delete`.
       func delete(request: VpnGatewaysClient.DeleteRequest) async throws
@@ -342,13 +342,13 @@
       /// See `VpnGatewaysClient.list`.
       func list(
         byItem: VpnGatewaysClient.ListRequest
-      ) throws -> any AsyncSequence<VpnGateway, Swift.Error>
+      ) -> any AsyncSequence<VpnGateway, Swift.Error>
 
       /// See `VpnGatewaysClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<VpnGateway, Swift.Error>
+      ) -> any AsyncSequence<VpnGateway, Swift.Error>
 
       /// See `VpnGatewaysClient.setLabels`.
       func setLabels(request: VpnGatewaysClient.SetLabelsRequest) async throws
@@ -374,7 +374,7 @@
       /// See `VpnGatewaysClient.aggregatedList`.
       func aggregatedList(
         byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
 
       /// See `VpnGatewaysClient.delete`.
       func delete(
@@ -404,7 +404,7 @@
       /// See `VpnGatewaysClient.list`.
       func list(
         byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<VpnGateway, Swift.Error>
+      ) -> any AsyncSequence<VpnGateway, Swift.Error>
 
       /// See `VpnGatewaysClient.setLabels`.
       func setLabels(
@@ -434,13 +434,13 @@
 
     public func aggregatedList(
       byItem: VpnGatewaysClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -450,11 +450,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
       let request = VpnGatewaysClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: VpnGatewaysClient.DeleteRequest) async throws
@@ -605,13 +605,13 @@
 
     public func list(
       byItem: VpnGatewaysClient.ListRequest
-    ) throws -> any AsyncSequence<VpnGateway, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -621,12 +621,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<VpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
       let request = VpnGatewaysClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setLabels(request: VpnGatewaysClient.SetLabelsRequest) async throws

@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: InternalRangeServiceClient, parent: String) async throws {
-  let items = try client.listInternalRanges(
+  let items = client.listInternalRanges(
     byItem: ListInternalRangesRequest()
       .with {
         $0.parent = "\(parent)"

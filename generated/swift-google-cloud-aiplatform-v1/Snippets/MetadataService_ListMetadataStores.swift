@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: MetadataServiceClient, parent: String) async throws {
-    let items = try client.listMetadataStores(
+    let items = client.listMetadataStores(
       byItem: ListMetadataStoresRequest()
         .with {
           $0.parent = "\(parent)"

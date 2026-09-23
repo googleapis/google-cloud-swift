@@ -27,7 +27,7 @@ import GoogleWKT
 #endif
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataCatalogV1.DataCatalogClient()
-  let items = try client.listEntryGroups(
+  let items = client.listEntryGroups(
     byItem: ListEntryGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

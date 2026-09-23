@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudGKEHubV1.GkeHubClient()
-  let items = try client.listMemberships(
+  let items = client.listMemberships(
     byItem: ListMembershipsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

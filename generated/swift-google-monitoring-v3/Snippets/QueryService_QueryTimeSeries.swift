@@ -23,7 +23,7 @@ import GoogleCloudMonitoringV3
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: QueryServiceClient) async throws {
-  let items = try client.queryTimeSeries(
+  let items = client.queryTimeSeries(
     byItem: QueryTimeSeriesRequest()
       /* set fields using .with { $0... } */
   )

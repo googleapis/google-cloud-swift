@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: DataTransferServiceClient, projectId: String, transferConfigId: String)
   async throws
 {
-  let items = try client.listTransferRuns(
+  let items = client.listTransferRuns(
     byItem: ListTransferRunsRequest()
       .with {
         $0.parent = "projects/\(projectId)/transferConfigs/\(transferConfigId)"

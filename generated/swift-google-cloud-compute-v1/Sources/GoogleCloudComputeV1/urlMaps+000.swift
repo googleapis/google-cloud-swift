@@ -63,7 +63,7 @@
     /// @Snippet(path: "urlMaps_aggregatedList")
     public func aggregatedList(
       byItem: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList in
         var request = byItem
@@ -252,7 +252,7 @@
     /// @Snippet(path: "urlMaps_list")
     public func list(
       byItem: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = byItem
         request.pageToken = token
@@ -409,12 +409,12 @@
       /// See `UrlMapsClient.aggregatedList`.
       func aggregatedList(
         byItem: UrlMapsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
 
       /// See `UrlMapsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
 
       /// See `UrlMapsClient.delete`.
       func delete(request: UrlMapsClient.DeleteRequest) async throws
@@ -443,12 +443,12 @@
       /// See `UrlMapsClient.list`.
       func list(
         byItem: UrlMapsClient.ListRequest
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `UrlMapsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `UrlMapsClient.patch`.
       func patch(request: UrlMapsClient.PatchRequest) async throws -> GoogleCloudComputeV1.Operation
@@ -487,7 +487,7 @@
       /// See `UrlMapsClient.aggregatedList`.
       func aggregatedList(
         byItem: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error>
 
       /// See `UrlMapsClient.delete`.
       func delete(
@@ -517,7 +517,7 @@
       /// See `UrlMapsClient.list`.
       func list(
         byItem: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `UrlMapsClient.patch`.
       func patch(
@@ -557,13 +557,13 @@
 
     public func aggregatedList(
       byItem: UrlMapsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -573,11 +573,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
       let request = UrlMapsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: UrlMapsClient.DeleteRequest) async throws
@@ -738,13 +738,13 @@
 
     public func list(
       byItem: UrlMapsClient.ListRequest
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -753,11 +753,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let request = UrlMapsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: UrlMapsClient.PatchRequest) async throws

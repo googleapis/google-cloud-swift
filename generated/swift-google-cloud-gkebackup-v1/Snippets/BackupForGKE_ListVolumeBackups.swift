@@ -27,7 +27,7 @@ func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, backupPlanId: String,
   backupId: String
 ) async throws {
-  let items = try client.listVolumeBackups(
+  let items = client.listVolumeBackups(
     byItem: ListVolumeBackupsRequest()
       .with {
         $0.parent =

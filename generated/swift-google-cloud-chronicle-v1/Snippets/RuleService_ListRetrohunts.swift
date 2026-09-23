@@ -25,7 +25,7 @@ func sample(
   client: RuleServiceClient, projectId: String, locationId: String, instanceId: String,
   ruleId: String
 ) async throws {
-  let items = try client.listRetrohunts(
+  let items = client.listRetrohunts(
     byItem: ListRetrohuntsRequest()
       .with {
         $0.parent =

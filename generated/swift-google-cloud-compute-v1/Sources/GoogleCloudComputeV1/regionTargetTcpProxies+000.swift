@@ -168,7 +168,7 @@
     /// @Snippet(path: "regionTargetTcpProxies_list")
     public func list(
       byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         var request = byItem
@@ -221,13 +221,13 @@
       /// See `RegionTargetTcpProxiesClient.list`.
       func list(
         byItem: RegionTargetTcpProxiesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
 
       /// See `RegionTargetTcpProxiesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
 
       /// See `RegionTargetTcpProxiesClient.delete`.
       func delete(
@@ -252,7 +252,7 @@
       /// See `RegionTargetTcpProxiesClient.list`.
       func list(
         byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
     }
   }
 
@@ -381,13 +381,13 @@
 
     public func list(
       byItem: RegionTargetTcpProxiesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         throw GoogleGax.RequestError.unimplemented
@@ -398,12 +398,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let request = RegionTargetTcpProxiesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

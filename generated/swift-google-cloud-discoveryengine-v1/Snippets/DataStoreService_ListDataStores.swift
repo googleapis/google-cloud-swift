@@ -23,7 +23,7 @@
   import GoogleWKT
 
   func sample(client: DataStoreServiceClient, parent: String) async throws {
-    let items = try client.listDataStores(
+    let items = client.listDataStores(
       byItem: ListDataStoresRequest()
         .with {
           $0.parent = "\(parent)"

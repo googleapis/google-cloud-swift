@@ -25,7 +25,7 @@
   func sample(
     client: ControlServiceClient, projectId: String, locationId: String, dataStoreId: String
   ) async throws {
-    let items = try client.listControls(
+    let items = client.listControls(
       byItem: ListControlsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"

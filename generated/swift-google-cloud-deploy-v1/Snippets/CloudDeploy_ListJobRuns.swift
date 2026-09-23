@@ -27,7 +27,7 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   releaseId: String, rolloutId: String
 ) async throws {
-  let items = try client.listJobRuns(
+  let items = client.listJobRuns(
     byItem: ListJobRunsRequest()
       .with {
         $0.parent =

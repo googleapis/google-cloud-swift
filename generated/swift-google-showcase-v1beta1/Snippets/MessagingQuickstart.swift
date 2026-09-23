@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleShowcaseV1Beta1.MessagingClient()
-  let items = try client.listBlurbs(
+  let items = client.listBlurbs(
     byItem: ListBlurbsRequest()
       .with {
         $0.parent = "\(parent)"

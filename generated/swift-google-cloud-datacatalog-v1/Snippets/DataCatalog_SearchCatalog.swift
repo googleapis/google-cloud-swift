@@ -26,7 +26,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataCatalogClient) async throws {
-  let items = try client.searchCatalog(
+  let items = client.searchCatalog(
     byItem: SearchCatalogRequest()
       /* set fields using .with { $0... } */
   )

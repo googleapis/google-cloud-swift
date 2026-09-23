@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudSpeechV2.SpeechClient()
-  let items = try client.listRecognizers(
+  let items = client.listRecognizers(
     byItem: ListRecognizersRequest()
       .with {
         $0.parent = "\(parent)"

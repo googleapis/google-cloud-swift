@@ -27,7 +27,7 @@ func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupvaultId: String,
   datasourceId: String
 ) async throws {
-  let items = try client.listBackups(
+  let items = client.listBackups(
     byItem: ListBackupsRequest()
       .with {
         $0.parent =

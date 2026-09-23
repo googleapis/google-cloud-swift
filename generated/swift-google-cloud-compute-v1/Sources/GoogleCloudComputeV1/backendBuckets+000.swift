@@ -113,7 +113,7 @@
     /// @Snippet(path: "backendBuckets_aggregatedList")
     public func aggregatedList(
       byItem: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketAggregatedList in
         var request = byItem
@@ -306,7 +306,7 @@
     /// @Snippet(path: "backendBuckets_list")
     public func list(
       byItem: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = byItem
@@ -330,7 +330,7 @@
     /// @Snippet(path: "backendBuckets_listUsable")
     public func listUsable(
       byItem: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
         var request = byItem
@@ -540,12 +540,12 @@
       /// See `BackendBucketsClient.aggregatedList`.
       func aggregatedList(
         byItem: BackendBucketsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
 
       /// See `BackendBucketsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
 
       /// See `BackendBucketsClient.delete`.
       func delete(request: BackendBucketsClient.DeleteRequest) async throws
@@ -586,12 +586,12 @@
       /// See `BackendBucketsClient.list`.
       func list(
         byItem: BackendBucketsClient.ListRequest
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.listUsable`.
       func listUsable(request: BackendBucketsClient.ListUsableRequest) async throws
@@ -600,12 +600,12 @@
       /// See `BackendBucketsClient.listUsable`.
       func listUsable(
         byItem: BackendBucketsClient.ListUsableRequest
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.listUsable`.
       func listUsable(
         project: Swift.String,
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.patch`.
       func patch(request: BackendBucketsClient.PatchRequest) async throws
@@ -654,7 +654,7 @@
       /// See `BackendBucketsClient.aggregatedList`.
       func aggregatedList(
         byItem: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error>
 
       /// See `BackendBucketsClient.delete`.
       func delete(
@@ -689,7 +689,7 @@
       /// See `BackendBucketsClient.list`.
       func list(
         byItem: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.listUsable`.
       func listUsable(
@@ -699,7 +699,7 @@
       /// See `BackendBucketsClient.listUsable`.
       func listUsable(
         byItem: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `BackendBucketsClient.patch`.
       func patch(
@@ -787,13 +787,13 @@
 
     public func aggregatedList(
       byItem: BackendBucketsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -803,11 +803,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
       let request = BackendBucketsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: BackendBucketsClient.DeleteRequest) async throws
@@ -992,13 +992,13 @@
 
     public func list(
       byItem: BackendBucketsClient.ListRequest
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         throw GoogleGax.RequestError.unimplemented
@@ -1008,11 +1008,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let request = BackendBucketsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listUsable(request: BackendBucketsClient.ListUsableRequest) async throws
@@ -1029,13 +1029,13 @@
 
     public func listUsable(
       byItem: BackendBucketsClient.ListUsableRequest
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
-      try self.listUsable(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+      self.listUsable(byItem: byItem, options: .init())
     }
 
     public func listUsable(
       byItem: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
         throw GoogleGax.RequestError.unimplemented
@@ -1045,11 +1045,11 @@
 
     public func listUsable(
       project: Swift.String,
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let request = BackendBucketsClient.ListUsableRequest().with {
         $0.project = project
       }
-      return try self.listUsable(byItem: request)
+      return self.listUsable(byItem: request)
     }
 
     public func patch(request: BackendBucketsClient.PatchRequest) async throws

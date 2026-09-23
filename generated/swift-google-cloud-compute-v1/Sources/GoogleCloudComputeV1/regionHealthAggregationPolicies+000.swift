@@ -68,8 +68,7 @@
     public func aggregatedList(
       byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
-    {
+    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthAggregationPolicyAggregatedList in
@@ -207,7 +206,7 @@
     /// @Snippet(path: "regionHealthAggregationPolicies_list")
     public func list(
       byItem: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
+    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthAggregationPolicyList in
         var request = byItem
@@ -307,16 +306,12 @@
       /// See `RegionHealthAggregationPoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<
-        (Swift.String, HealthAggregationPoliciesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<
-        (Swift.String, HealthAggregationPoliciesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.delete`.
       func delete(request: RegionHealthAggregationPoliciesClient.DeleteRequest) async throws
@@ -344,13 +339,13 @@
       /// See `RegionHealthAggregationPoliciesClient.list`.
       func list(
         byItem: RegionHealthAggregationPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
+      ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
+      ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.patch`.
       func patch(request: RegionHealthAggregationPoliciesClient.PatchRequest) async throws
@@ -379,9 +374,7 @@
       func aggregatedList(
         byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<
-        (Swift.String, HealthAggregationPoliciesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.delete`.
       func delete(
@@ -409,7 +402,7 @@
       /// See `RegionHealthAggregationPoliciesClient.list`.
       func list(
         byItem: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
+      ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error>
 
       /// See `RegionHealthAggregationPoliciesClient.patch`.
       func patch(
@@ -442,16 +435,14 @@
 
     public func aggregatedList(
       byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
-    {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
-    {
+    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthAggregationPolicyAggregatedList in
@@ -462,12 +453,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
-    {
+    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error> {
       let request = RegionHealthAggregationPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: RegionHealthAggregationPoliciesClient.DeleteRequest) async throws
@@ -597,13 +587,13 @@
 
     public func list(
       byItem: RegionHealthAggregationPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
+    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthAggregationPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -614,12 +604,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
+    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> {
       let request = RegionHealthAggregationPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionHealthAggregationPoliciesClient.PatchRequest) async throws

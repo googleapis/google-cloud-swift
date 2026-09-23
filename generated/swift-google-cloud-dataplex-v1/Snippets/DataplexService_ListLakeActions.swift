@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient) async throws {
-  let items = try client.listLakeActions(
+  let items = client.listLakeActions(
     byItem: ListLakeActionsRequest()
       /* set fields using .with { $0... } */
   )

@@ -27,7 +27,7 @@
   func sample(client: JobServiceClient, projectId: String, locationId: String, nasJobId: String)
     async throws
   {
-    let items = try client.listNasTrialDetails(
+    let items = client.listNasTrialDetails(
       byItem: ListNasTrialDetailsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/nasJobs/\(nasJobId)"

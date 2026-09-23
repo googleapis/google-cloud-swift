@@ -25,7 +25,7 @@ func sample(
   client: InsightsConfigServiceClient, projectId: String, locationId: String,
   insightsConfigId: String
 ) async throws {
-  let items = try client.listDeploymentEvents(
+  let items = client.listDeploymentEvents(
     byItem: ListDeploymentEventsRequest()
       .with {
         $0.parent =

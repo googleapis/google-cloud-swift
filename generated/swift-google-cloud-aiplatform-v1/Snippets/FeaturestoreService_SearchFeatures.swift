@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: FeaturestoreServiceClient) async throws {
-    let items = try client.searchFeatures(
+    let items = client.searchFeatures(
       byItem: SearchFeaturesRequest()
         /* set fields using .with { $0... } */
     )

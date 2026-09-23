@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudFilestoreV1.CloudFilestoreManagerClient()
-  let items = try client.listInstances(
+  let items = client.listInstances(
     byItem: ListInstancesRequest()
       .with {
         $0.parent = "\(parent)"

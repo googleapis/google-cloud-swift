@@ -24,7 +24,7 @@
   import GoogleWKT
 
   func sample(client: ContextsClient, projectId: String, sessionId: String) async throws {
-    let items = try client.listContexts(
+    let items = client.listContexts(
       byItem: ListContextsRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent/sessions/\(sessionId)"

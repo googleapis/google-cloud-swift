@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: TensorboardServiceClient) async throws {
-    let items = try client.exportTensorboardTimeSeriesData(
+    let items = client.exportTensorboardTimeSeriesData(
       byItem: ExportTensorboardTimeSeriesDataRequest()
         /* set fields using .with { $0... } */
     )

@@ -83,7 +83,7 @@
     /// @Snippet(path: "SqlBackupRunsService_List")
     public func list(
       byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupRun, Swift.Error> {
+    ) -> any AsyncSequence<BackupRun, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.BackupRunsListResponse in
         var request = byItem
@@ -117,7 +117,7 @@
       /// See `SqlBackupRunsServiceClient.list`.
       func list(
         byItem: SqlBackupRunsListRequest
-      ) throws -> any AsyncSequence<BackupRun, Swift.Error>
+      ) -> any AsyncSequence<BackupRun, Swift.Error>
 
       /// See `SqlBackupRunsServiceClient.delete`.
       func delete(
@@ -142,7 +142,7 @@
       /// See `SqlBackupRunsServiceClient.list`.
       func list(
         byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<BackupRun, Swift.Error>
+      ) -> any AsyncSequence<BackupRun, Swift.Error>
     }
   }
 
@@ -196,13 +196,13 @@
 
     public func list(
       byItem: SqlBackupRunsListRequest
-    ) throws -> any AsyncSequence<BackupRun, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<BackupRun, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupRun, Swift.Error> {
+    ) -> any AsyncSequence<BackupRun, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.BackupRunsListResponse in
         throw GoogleGax.RequestError.unimplemented

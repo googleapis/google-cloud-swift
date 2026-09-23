@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: FeedsServiceClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = try client.listFeeds(
+  let items = client.listFeeds(
     byItem: ListFeedsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

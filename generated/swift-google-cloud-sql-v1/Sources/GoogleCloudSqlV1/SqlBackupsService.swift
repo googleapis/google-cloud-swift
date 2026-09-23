@@ -70,7 +70,7 @@
     /// @Snippet(path: "SqlBackupsService_ListBackups")
     public func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error> {
+    ) -> any AsyncSequence<Backup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
         var request = byItem
         request.pageToken = token
@@ -130,12 +130,12 @@
       /// See `SqlBackupsServiceClient.listBackups`.
       func listBackups(
         byItem: ListBackupsRequest
-      ) throws -> any AsyncSequence<Backup, Swift.Error>
+      ) -> any AsyncSequence<Backup, Swift.Error>
 
       /// See `SqlBackupsServiceClient.listBackups`.
       func listBackups(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Backup, Swift.Error>
+      ) -> any AsyncSequence<Backup, Swift.Error>
 
       /// See `SqlBackupsServiceClient.updateBackup`.
       func updateBackup(request: UpdateBackupRequest) async throws -> GoogleCloudSqlV1.Operation
@@ -172,7 +172,7 @@
       /// See `SqlBackupsServiceClient.listBackups`.
       func listBackups(
         byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Backup, Swift.Error>
+      ) -> any AsyncSequence<Backup, Swift.Error>
 
       /// See `SqlBackupsServiceClient.updateBackup`.
       func updateBackup(
@@ -244,13 +244,13 @@
 
     public func listBackups(
       byItem: ListBackupsRequest
-    ) throws -> any AsyncSequence<Backup, Swift.Error> {
-      try self.listBackups(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Backup, Swift.Error> {
+      self.listBackups(byItem: byItem, options: .init())
     }
 
     public func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error> {
+    ) -> any AsyncSequence<Backup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -259,11 +259,11 @@
 
     public func listBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Backup, Swift.Error> {
+    ) -> any AsyncSequence<Backup, Swift.Error> {
       let request = ListBackupsRequest().with {
         $0.parent = parent
       }
-      return try self.listBackups(byItem: request)
+      return self.listBackups(byItem: request)
     }
 
     public func updateBackup(request: UpdateBackupRequest) async throws

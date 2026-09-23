@@ -58,7 +58,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_ListCatalogs")
   public func listCatalogs(
     byItem: ListCatalogsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListCatalogsResponse in
       var request = byItem
@@ -262,7 +262,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -298,12 +298,12 @@ extension Clients {
     /// See `CatalogServiceClient.listCatalogs`.
     func listCatalogs(
       byItem: ListCatalogsRequest
-    ) throws -> any AsyncSequence<Catalog, Swift.Error>
+    ) -> any AsyncSequence<Catalog, Swift.Error>
 
     /// See `CatalogServiceClient.listCatalogs`.
     func listCatalogs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Catalog, Swift.Error>
+    ) -> any AsyncSequence<Catalog, Swift.Error>
 
     /// See `CatalogServiceClient.updateCatalog`.
     func updateCatalog(request: UpdateCatalogRequest) async throws -> GoogleCloudRetailV2.Catalog
@@ -388,13 +388,13 @@ extension Clients {
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CatalogServiceClient.listCatalogs`.
     func listCatalogs(
@@ -404,7 +404,7 @@ extension Clients {
     /// See `CatalogServiceClient.listCatalogs`.
     func listCatalogs(
       byItem: ListCatalogsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Catalog, Swift.Error>
+    ) -> any AsyncSequence<Catalog, Swift.Error>
 
     /// See `CatalogServiceClient.updateCatalog`.
     func updateCatalog(
@@ -464,7 +464,7 @@ extension Clients {
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -484,13 +484,13 @@ extension Clients.CatalogServiceProtocol {
 
   public func listCatalogs(
     byItem: ListCatalogsRequest
-  ) throws -> any AsyncSequence<Catalog, Swift.Error> {
-    try self.listCatalogs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Catalog, Swift.Error> {
+    self.listCatalogs(byItem: byItem, options: .init())
   }
 
   public func listCatalogs(
     byItem: ListCatalogsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListCatalogsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -500,11 +500,11 @@ extension Clients.CatalogServiceProtocol {
 
   public func listCatalogs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> {
     let request = ListCatalogsRequest().with {
       $0.parent = parent
     }
-    return try self.listCatalogs(byItem: request)
+    return self.listCatalogs(byItem: request)
   }
 
   public func updateCatalog(request: UpdateCatalogRequest) async throws
@@ -708,13 +708,13 @@ extension Clients.CatalogServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -725,12 +725,12 @@ extension Clients.CatalogServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

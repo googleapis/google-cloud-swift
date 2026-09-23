@@ -28,7 +28,7 @@ func sample(
   client: MonitoringClient, projectId: String, locationId: String,
   frameworkComplianceReportId: String
 ) async throws {
-  let items = try client.listControlComplianceSummaries(
+  let items = client.listControlComplianceSummaries(
     byItem: ListControlComplianceSummariesRequest()
       .with {
         $0.parent =

@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let items = try client.listMetadataFeeds(
+  let items = client.listMetadataFeeds(
     byItem: ListMetadataFeedsRequest()
       .with {
         $0.parent = "\(parent)"

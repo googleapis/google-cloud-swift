@@ -25,7 +25,7 @@
 
   func sample(projectId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.KnowledgeBasesClient()
-    let items = try client.listKnowledgeBases(
+    let items = client.listKnowledgeBases(
       byItem: ListKnowledgeBasesRequest()
         .with {
           $0.parent = "projects/\(projectId)"

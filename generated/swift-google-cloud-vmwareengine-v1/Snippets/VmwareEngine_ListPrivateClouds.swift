@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, parent: String) async throws {
-  let items = try client.listPrivateClouds(
+  let items = client.listPrivateClouds(
     byItem: ListPrivateCloudsRequest()
       .with {
         $0.parent = "\(parent)"

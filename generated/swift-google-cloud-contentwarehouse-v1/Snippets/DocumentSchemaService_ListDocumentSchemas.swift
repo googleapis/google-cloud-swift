@@ -21,7 +21,7 @@ import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
 
 func sample(client: DocumentSchemaServiceClient, parent: String) async throws {
-  let items = try client.listDocumentSchemas(
+  let items = client.listDocumentSchemas(
     byItem: ListDocumentSchemasRequest()
       .with {
         $0.parent = "\(parent)"

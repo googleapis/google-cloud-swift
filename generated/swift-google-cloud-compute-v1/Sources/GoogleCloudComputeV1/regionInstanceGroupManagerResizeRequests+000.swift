@@ -237,7 +237,7 @@
     public func list(
       byItem: RegionInstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagerResizeRequestsListResponse in
@@ -296,14 +296,14 @@
       /// See `RegionInstanceGroupManagerResizeRequestsClient.list`.
       func list(
         byItem: RegionInstanceGroupManagerResizeRequestsClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
 
       /// See `RegionInstanceGroupManagerResizeRequestsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
         instanceGroupManager: Swift.String,
-      ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
 
       /// See `RegionInstanceGroupManagerResizeRequestsClient.cancel`.
       func cancel(
@@ -339,7 +339,7 @@
       func list(
         byItem: RegionInstanceGroupManagerResizeRequestsClient.ListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
     }
   }
 
@@ -526,14 +526,14 @@
 
     public func list(
       byItem: RegionInstanceGroupManagerResizeRequestsClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionInstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagerResizeRequestsListResponse in
@@ -546,13 +546,13 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) throws -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
       let request = RegionInstanceGroupManagerResizeRequestsClient.ListRequest().with {
         $0.project = project
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

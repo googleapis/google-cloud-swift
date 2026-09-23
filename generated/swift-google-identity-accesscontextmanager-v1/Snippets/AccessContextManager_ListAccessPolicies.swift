@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, parent: String) async throws {
-  let items = try client.listAccessPolicies(
+  let items = client.listAccessPolicies(
     byItem: ListAccessPoliciesRequest()
       .with {
         $0.parent = "\(parent)"

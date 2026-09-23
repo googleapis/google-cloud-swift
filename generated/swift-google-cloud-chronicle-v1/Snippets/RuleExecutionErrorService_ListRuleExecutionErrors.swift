@@ -23,7 +23,7 @@ import GoogleLongRunning
 func sample(
   client: RuleExecutionErrorServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = try client.listRuleExecutionErrors(
+  let items = client.listRuleExecutionErrors(
     byItem: ListRuleExecutionErrorsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

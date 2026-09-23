@@ -21,7 +21,7 @@ import GoogleGrafeasV1
 import GoogleWKT
 
 func sample(client: GrafeasClient) async throws {
-  let items = try client.listNoteOccurrences(
+  let items = client.listNoteOccurrences(
     byItem: ListNoteOccurrencesRequest()
       /* set fields using .with { $0... } */
   )

@@ -26,7 +26,7 @@
     client: DeploymentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let items = try client.listDeployments(
+    let items = client.listDeployments(
       byItem: ListDeploymentsRequest()
         .with {
           $0.parent =

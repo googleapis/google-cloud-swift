@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: ParameterManagerClient, projectId: String, locationId: String, parameterId: String
 ) async throws {
-  let items = try client.listParameterVersions(
+  let items = client.listParameterVersions(
     byItem: ListParameterVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/parameters/\(parameterId)"

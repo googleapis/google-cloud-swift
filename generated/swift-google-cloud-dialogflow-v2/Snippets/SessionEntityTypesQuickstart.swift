@@ -25,7 +25,7 @@
 
   func sample(projectId: String, sessionId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.SessionEntityTypesClient()
-    let items = try client.listSessionEntityTypes(
+    let items = client.listSessionEntityTypes(
       byItem: ListSessionEntityTypesRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent/sessions/\(sessionId)"

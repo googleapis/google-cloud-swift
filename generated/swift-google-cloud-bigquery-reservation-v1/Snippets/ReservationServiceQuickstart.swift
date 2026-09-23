@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleBigQueryReservationV1.ReservationServiceClient()
-  let items = try client.listReservations(
+  let items = client.listReservations(
     byItem: ListReservationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

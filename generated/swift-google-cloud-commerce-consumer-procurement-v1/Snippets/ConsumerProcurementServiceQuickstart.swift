@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudCommerceConsumerProcurementV1.ConsumerProcurementServiceClient()
-  let items = try client.listOrders(
+  let items = client.listOrders(
     byItem: ListOrdersRequest()
       .with {
         $0.parent = "\(parent)"

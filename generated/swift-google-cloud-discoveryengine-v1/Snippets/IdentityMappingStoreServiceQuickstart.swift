@@ -23,7 +23,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.IdentityMappingStoreServiceClient()
-    let items = try client.listIdentityMappingStores(
+    let items = client.listIdentityMappingStores(
       byItem: ListIdentityMappingStoresRequest()
         .with {
           $0.parent = "\(parent)"

@@ -104,7 +104,7 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// @Snippet(path: "ApiKeys_ListKeys")
   public func listKeys(
     byItem: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Key, Swift.Error> {
+  ) -> any AsyncSequence<Key, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
       var request = byItem
       request.pageToken = token
@@ -315,12 +315,12 @@ extension Clients {
     /// See `ApiKeysClient.listKeys`.
     func listKeys(
       byItem: ListKeysRequest
-    ) throws -> any AsyncSequence<Key, Swift.Error>
+    ) -> any AsyncSequence<Key, Swift.Error>
 
     /// See `ApiKeysClient.listKeys`.
     func listKeys(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Key, Swift.Error>
+    ) -> any AsyncSequence<Key, Swift.Error>
 
     /// See `ApiKeysClient.getKey`.
     func getKey(request: GetKeyRequest) async throws -> GoogleApiApiKeysV1.Key
@@ -394,7 +394,7 @@ extension Clients {
     /// See `ApiKeysClient.listKeys`.
     func listKeys(
       byItem: ListKeysRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Key, Swift.Error>
+    ) -> any AsyncSequence<Key, Swift.Error>
 
     /// See `ApiKeysClient.getKey`.
     func getKey(
@@ -497,13 +497,13 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeys(
     byItem: ListKeysRequest
-  ) throws -> any AsyncSequence<Key, Swift.Error> {
-    try self.listKeys(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Key, Swift.Error> {
+    self.listKeys(byItem: byItem, options: .init())
   }
 
   public func listKeys(
     byItem: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Key, Swift.Error> {
+  ) -> any AsyncSequence<Key, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -512,11 +512,11 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeys(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Key, Swift.Error> {
+  ) -> any AsyncSequence<Key, Swift.Error> {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }
-    return try self.listKeys(byItem: request)
+    return self.listKeys(byItem: request)
   }
 
   public func getKey(request: GetKeyRequest) async throws -> GoogleApiApiKeysV1.Key {

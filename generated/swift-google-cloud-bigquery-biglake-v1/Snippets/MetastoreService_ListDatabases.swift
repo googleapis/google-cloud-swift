@@ -23,7 +23,7 @@ import GoogleWKT
 func sample(
   client: MetastoreServiceClient, projectId: String, locationId: String, catalogId: String
 ) async throws {
-  let items = try client.listDatabases(
+  let items = client.listDatabases(
     byItem: ListDatabasesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"

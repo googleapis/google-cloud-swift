@@ -86,7 +86,7 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   /// @Snippet(path: "AutoscalingPolicyService_ListAutoscalingPolicies")
   public func listAutoscalingPolicies(
     byItem: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListAutoscalingPoliciesResponse in
       var request = byItem
@@ -162,7 +162,7 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   /// @Snippet(path: "AutoscalingPolicyService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -248,12 +248,12 @@ extension Clients {
     /// See `AutoscalingPolicyServiceClient.listAutoscalingPolicies`.
     func listAutoscalingPolicies(
       byItem: ListAutoscalingPoliciesRequest
-    ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
+    ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.listAutoscalingPolicies`.
     func listAutoscalingPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
+    ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.deleteAutoscalingPolicy`.
     func deleteAutoscalingPolicy(request: DeleteAutoscalingPolicyRequest) async throws
@@ -280,13 +280,13 @@ extension Clients {
     /// See `AutoscalingPolicyServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -327,7 +327,7 @@ extension Clients {
     /// See `AutoscalingPolicyServiceClient.listAutoscalingPolicies`.
     func listAutoscalingPolicies(
       byItem: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
+    ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.deleteAutoscalingPolicy`.
     func deleteAutoscalingPolicy(
@@ -357,7 +357,7 @@ extension Clients {
     /// See `AutoscalingPolicyServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AutoscalingPolicyServiceClient.deleteOperation`.
     func deleteOperation(
@@ -452,13 +452,13 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listAutoscalingPolicies(
     byItem: ListAutoscalingPoliciesRequest
-  ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
-    try self.listAutoscalingPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
+    self.listAutoscalingPolicies(byItem: byItem, options: .init())
   }
 
   public func listAutoscalingPolicies(
     byItem: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListAutoscalingPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -468,11 +468,11 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listAutoscalingPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
     let request = ListAutoscalingPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listAutoscalingPolicies(byItem: request)
+    return self.listAutoscalingPolicies(byItem: request)
   }
 
   public func deleteAutoscalingPolicy(request: DeleteAutoscalingPolicyRequest) async throws {
@@ -544,13 +544,13 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -561,12 +561,12 @@ extension Clients.AutoscalingPolicyServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

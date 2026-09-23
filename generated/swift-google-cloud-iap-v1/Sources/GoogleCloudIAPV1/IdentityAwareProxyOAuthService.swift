@@ -100,7 +100,7 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
   public func listIdentityAwareProxyClients(
     byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
+  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
       in
@@ -170,7 +170,7 @@ extension Clients {
     /// See `IdentityAwareProxyOAuthServiceClient.listIdentityAwareProxyClients`.
     func listIdentityAwareProxyClients(
       byItem: ListIdentityAwareProxyClientsRequest
-    ) throws -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
+    ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
 
     /// See `IdentityAwareProxyOAuthServiceClient.getIdentityAwareProxyClient`.
     func getIdentityAwareProxyClient(request: GetIdentityAwareProxyClientRequest) async throws
@@ -211,7 +211,7 @@ extension Clients {
     /// See `IdentityAwareProxyOAuthServiceClient.listIdentityAwareProxyClients`.
     func listIdentityAwareProxyClients(
       byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
+    ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
 
     /// See `IdentityAwareProxyOAuthServiceClient.getIdentityAwareProxyClient`.
     func getIdentityAwareProxyClient(
@@ -290,13 +290,13 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
 
   public func listIdentityAwareProxyClients(
     byItem: ListIdentityAwareProxyClientsRequest
-  ) throws -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
-    try self.listIdentityAwareProxyClients(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
+    self.listIdentityAwareProxyClients(byItem: byItem, options: .init())
   }
 
   public func listIdentityAwareProxyClients(
     byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
+  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
       in

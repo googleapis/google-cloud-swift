@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient, parent: String) async throws {
-  let items = try client.listAssets(
+  let items = client.listAssets(
     byItem: ListAssetsRequest()
       .with {
         $0.parent = "\(parent)"

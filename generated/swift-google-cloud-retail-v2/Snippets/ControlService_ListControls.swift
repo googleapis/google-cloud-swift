@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: ControlServiceClient, projectId: String, locationId: String, catalogId: String)
   async throws
 {
-  let items = try client.listControls(
+  let items = client.listControls(
     byItem: ListControlsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"

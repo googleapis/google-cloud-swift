@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkflowsClient) async throws {
-  let items = try client.listWorkflowRevisions(
+  let items = client.listWorkflowRevisions(
     byItem: ListWorkflowRevisionsRequest()
       /* set fields using .with { $0... } */
   )

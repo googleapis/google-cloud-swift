@@ -269,7 +269,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
   public func listWorkflowTemplates(
     byItem: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse in
       var request = byItem
@@ -344,7 +344,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -463,12 +463,12 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.listWorkflowTemplates`.
     func listWorkflowTemplates(
       byItem: ListWorkflowTemplatesRequest
-    ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error>
+    ) -> any AsyncSequence<WorkflowTemplate, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.listWorkflowTemplates`.
     func listWorkflowTemplates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error>
+    ) -> any AsyncSequence<WorkflowTemplate, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.deleteWorkflowTemplate`.
     func deleteWorkflowTemplate(request: DeleteWorkflowTemplateRequest) async throws
@@ -495,13 +495,13 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -562,7 +562,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.listWorkflowTemplates`.
     func listWorkflowTemplates(
       byItem: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error>
+    ) -> any AsyncSequence<WorkflowTemplate, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.deleteWorkflowTemplate`.
     func deleteWorkflowTemplate(
@@ -592,7 +592,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowTemplateServiceClient.deleteOperation`.
     func deleteOperation(
@@ -774,13 +774,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listWorkflowTemplates(
     byItem: ListWorkflowTemplatesRequest
-  ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
-    try self.listWorkflowTemplates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+    self.listWorkflowTemplates(byItem: byItem, options: .init())
   }
 
   public func listWorkflowTemplates(
     byItem: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -790,11 +790,11 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listWorkflowTemplates(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
     let request = ListWorkflowTemplatesRequest().with {
       $0.parent = parent
     }
-    return try self.listWorkflowTemplates(byItem: request)
+    return self.listWorkflowTemplates(byItem: request)
   }
 
   public func deleteWorkflowTemplate(request: DeleteWorkflowTemplateRequest) async throws {
@@ -866,13 +866,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -883,12 +883,12 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

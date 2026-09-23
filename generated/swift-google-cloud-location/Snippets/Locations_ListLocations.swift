@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudLocation
 
 func sample(client: LocationsClient) async throws {
-  let items = try client.listLocations(
+  let items = client.listLocations(
     byItem: ListLocationsRequest()
       /* set fields using .with { $0... } */
   )

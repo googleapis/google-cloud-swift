@@ -24,7 +24,7 @@ import GoogleLongRunning
 func sample(client: SessionTemplateControllerClient, projectId: String, locationId: String)
   async throws
 {
-  let items = try client.listSessionTemplates(
+  let items = client.listSessionTemplates(
     byItem: ListSessionTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -114,7 +114,7 @@
     /// @Snippet(path: "disks_aggregatedList")
     public func aggregatedList(
       byItem: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskAggregatedList in
         var request = byItem
@@ -428,7 +428,7 @@
     /// @Snippet(path: "disks_list")
     public func list(
       byItem: DisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Disk, Swift.Error> {
+    ) -> any AsyncSequence<Disk, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
         var request = byItem
         request.pageToken = token
@@ -892,12 +892,12 @@
       /// See `DisksClient.aggregatedList`.
       func aggregatedList(
         byItem: DisksClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
 
       /// See `DisksClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
 
       /// See `DisksClient.bulkInsert`.
       func bulkInsert(request: DisksClient.BulkInsertRequest) async throws
@@ -944,13 +944,13 @@
       /// See `DisksClient.list`.
       func list(
         byItem: DisksClient.ListRequest
-      ) throws -> any AsyncSequence<Disk, Swift.Error>
+      ) -> any AsyncSequence<Disk, Swift.Error>
 
       /// See `DisksClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<Disk, Swift.Error>
+      ) -> any AsyncSequence<Disk, Swift.Error>
 
       /// See `DisksClient.removeResourcePolicies`.
       func removeResourcePolicies(request: DisksClient.RemoveResourcePoliciesRequest) async throws
@@ -1019,7 +1019,7 @@
       /// See `DisksClient.aggregatedList`.
       func aggregatedList(
         byItem: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error>
 
       /// See `DisksClient.bulkInsert`.
       func bulkInsert(
@@ -1064,7 +1064,7 @@
       /// See `DisksClient.list`.
       func list(
         byItem: DisksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Disk, Swift.Error>
+      ) -> any AsyncSequence<Disk, Swift.Error>
 
       /// See `DisksClient.removeResourcePolicies`.
       func removeResourcePolicies(
@@ -1178,13 +1178,13 @@
 
     public func aggregatedList(
       byItem: DisksClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -1194,11 +1194,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
       let request = DisksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func bulkInsert(request: DisksClient.BulkInsertRequest) async throws
@@ -1474,13 +1474,13 @@
 
     public func list(
       byItem: DisksClient.ListRequest
-    ) throws -> any AsyncSequence<Disk, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Disk, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: DisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Disk, Swift.Error> {
+    ) -> any AsyncSequence<Disk, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -1490,12 +1490,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<Disk, Swift.Error> {
+    ) -> any AsyncSequence<Disk, Swift.Error> {
       let request = DisksClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func removeResourcePolicies(request: DisksClient.RemoveResourcePoliciesRequest)

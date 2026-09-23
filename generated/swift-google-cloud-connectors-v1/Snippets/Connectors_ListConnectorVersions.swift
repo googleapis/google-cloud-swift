@@ -27,7 +27,7 @@ func sample(
   client: ConnectorsClient, projectId: String, locationId: String, providerId: String,
   connectorId: String
 ) async throws {
-  let items = try client.listConnectorVersions(
+  let items = client.listConnectorVersions(
     byItem: ListConnectorVersionsRequest()
       .with {
         $0.parent =

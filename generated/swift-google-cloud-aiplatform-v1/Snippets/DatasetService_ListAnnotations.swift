@@ -28,7 +28,7 @@
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String,
     dataItemId: String
   ) async throws {
-    let items = try client.listAnnotations(
+    let items = client.listAnnotations(
       byItem: ListAnnotationsRequest()
         .with {
           $0.parent =

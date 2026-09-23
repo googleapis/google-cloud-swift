@@ -57,7 +57,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListStoragePools")
   public func listStoragePools(
     byItem: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+  ) -> any AsyncSequence<StoragePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse in
       var request = byItem
@@ -269,7 +269,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListVolumes")
   public func listVolumes(
     byItem: ListVolumesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Volume, Swift.Error> {
+  ) -> any AsyncSequence<Volume, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListVolumesResponse in
       var request = byItem
       request.pageToken = token
@@ -478,7 +478,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListSnapshots")
   public func listSnapshots(
     byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListSnapshotsResponse in
       var request = byItem
@@ -616,7 +616,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListActiveDirectories")
   public func listActiveDirectories(
     byItem: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error> {
+  ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse in
       var request = byItem
@@ -756,7 +756,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListKmsConfigs")
   public func listKmsConfigs(
     byItem: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KmsConfig, Swift.Error> {
+  ) -> any AsyncSequence<KmsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListKmsConfigsResponse in
       var request = byItem
@@ -940,7 +940,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListReplications")
   public func listReplications(
     byItem: ListReplicationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Replication, Swift.Error> {
+  ) -> any AsyncSequence<Replication, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListReplicationsResponse in
       var request = byItem
@@ -1301,7 +1301,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListBackupVaults")
   public func listBackupVaults(
     byItem: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupVaultsResponse in
       var request = byItem
@@ -1444,7 +1444,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupsResponse in
       var request = byItem
       request.pageToken = token
@@ -1580,7 +1580,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListBackupPolicies")
   public func listBackupPolicies(
     byItem: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPolicy, Swift.Error> {
+  ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupPoliciesResponse in
       var request = byItem
@@ -1674,7 +1674,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListQuotaRules")
   public func listQuotaRules(
     byItem: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<QuotaRule, Swift.Error> {
+  ) -> any AsyncSequence<QuotaRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListQuotaRulesResponse in
       var request = byItem
@@ -1850,7 +1850,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListHostGroups")
   public func listHostGroups(
     byItem: ListHostGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<HostGroup, Swift.Error> {
+  ) -> any AsyncSequence<HostGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListHostGroupsResponse in
       var request = byItem
@@ -2062,7 +2062,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -2099,7 +2099,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -2157,12 +2157,12 @@ extension Clients {
     /// See `NetAppClient.listStoragePools`.
     func listStoragePools(
       byItem: ListStoragePoolsRequest
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+    ) -> any AsyncSequence<StoragePool, Swift.Error>
 
     /// See `NetAppClient.listStoragePools`.
     func listStoragePools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+    ) -> any AsyncSequence<StoragePool, Swift.Error>
 
     /// See `NetAppClient.createStoragePool`.
     func createStoragePool(request: CreateStoragePoolRequest) async throws
@@ -2238,12 +2238,12 @@ extension Clients {
     /// See `NetAppClient.listVolumes`.
     func listVolumes(
       byItem: ListVolumesRequest
-    ) throws -> any AsyncSequence<Volume, Swift.Error>
+    ) -> any AsyncSequence<Volume, Swift.Error>
 
     /// See `NetAppClient.listVolumes`.
     func listVolumes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Volume, Swift.Error>
+    ) -> any AsyncSequence<Volume, Swift.Error>
 
     /// See `NetAppClient.getVolume`.
     func getVolume(request: GetVolumeRequest) async throws -> GoogleCloudNetAppV1.Volume
@@ -2314,12 +2314,12 @@ extension Clients {
     /// See `NetAppClient.listSnapshots`.
     func listSnapshots(
       byItem: ListSnapshotsRequest
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `NetAppClient.listSnapshots`.
     func listSnapshots(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `NetAppClient.getSnapshot`.
     func getSnapshot(request: GetSnapshotRequest) async throws -> GoogleCloudNetAppV1.Snapshot
@@ -2375,12 +2375,12 @@ extension Clients {
     /// See `NetAppClient.listActiveDirectories`.
     func listActiveDirectories(
       byItem: ListActiveDirectoriesRequest
-    ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error>
+    ) -> any AsyncSequence<ActiveDirectory, Swift.Error>
 
     /// See `NetAppClient.listActiveDirectories`.
     func listActiveDirectories(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error>
+    ) -> any AsyncSequence<ActiveDirectory, Swift.Error>
 
     /// See `NetAppClient.getActiveDirectory`.
     func getActiveDirectory(request: GetActiveDirectoryRequest) async throws
@@ -2440,12 +2440,12 @@ extension Clients {
     /// See `NetAppClient.listKmsConfigs`.
     func listKmsConfigs(
       byItem: ListKmsConfigsRequest
-    ) throws -> any AsyncSequence<KmsConfig, Swift.Error>
+    ) -> any AsyncSequence<KmsConfig, Swift.Error>
 
     /// See `NetAppClient.listKmsConfigs`.
     func listKmsConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<KmsConfig, Swift.Error>
+    ) -> any AsyncSequence<KmsConfig, Swift.Error>
 
     /// See `NetAppClient.createKmsConfig`.
     func createKmsConfig(request: CreateKmsConfigRequest) async throws
@@ -2515,12 +2515,12 @@ extension Clients {
     /// See `NetAppClient.listReplications`.
     func listReplications(
       byItem: ListReplicationsRequest
-    ) throws -> any AsyncSequence<Replication, Swift.Error>
+    ) -> any AsyncSequence<Replication, Swift.Error>
 
     /// See `NetAppClient.listReplications`.
     func listReplications(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Replication, Swift.Error>
+    ) -> any AsyncSequence<Replication, Swift.Error>
 
     /// See `NetAppClient.getReplication`.
     func getReplication(request: GetReplicationRequest) async throws
@@ -2644,12 +2644,12 @@ extension Clients {
     /// See `NetAppClient.listBackupVaults`.
     func listBackupVaults(
       byItem: ListBackupVaultsRequest
-    ) throws -> any AsyncSequence<BackupVault, Swift.Error>
+    ) -> any AsyncSequence<BackupVault, Swift.Error>
 
     /// See `NetAppClient.listBackupVaults`.
     func listBackupVaults(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BackupVault, Swift.Error>
+    ) -> any AsyncSequence<BackupVault, Swift.Error>
 
     /// See `NetAppClient.updateBackupVault`.
     func updateBackupVault(request: UpdateBackupVaultRequest) async throws
@@ -2707,12 +2707,12 @@ extension Clients {
     /// See `NetAppClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `NetAppClient.listBackups`.
     func listBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `NetAppClient.deleteBackup`.
     func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -2770,12 +2770,12 @@ extension Clients {
     /// See `NetAppClient.listBackupPolicies`.
     func listBackupPolicies(
       byItem: ListBackupPoliciesRequest
-    ) throws -> any AsyncSequence<BackupPolicy, Swift.Error>
+    ) -> any AsyncSequence<BackupPolicy, Swift.Error>
 
     /// See `NetAppClient.listBackupPolicies`.
     func listBackupPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BackupPolicy, Swift.Error>
+    ) -> any AsyncSequence<BackupPolicy, Swift.Error>
 
     /// See `NetAppClient.updateBackupPolicy`.
     func updateBackupPolicy(request: UpdateBackupPolicyRequest) async throws
@@ -2811,12 +2811,12 @@ extension Clients {
     /// See `NetAppClient.listQuotaRules`.
     func listQuotaRules(
       byItem: ListQuotaRulesRequest
-    ) throws -> any AsyncSequence<QuotaRule, Swift.Error>
+    ) -> any AsyncSequence<QuotaRule, Swift.Error>
 
     /// See `NetAppClient.listQuotaRules`.
     func listQuotaRules(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<QuotaRule, Swift.Error>
+    ) -> any AsyncSequence<QuotaRule, Swift.Error>
 
     /// See `NetAppClient.getQuotaRule`.
     func getQuotaRule(request: GetQuotaRuleRequest) async throws -> GoogleCloudNetAppV1.QuotaRule
@@ -2883,12 +2883,12 @@ extension Clients {
     /// See `NetAppClient.listHostGroups`.
     func listHostGroups(
       byItem: ListHostGroupsRequest
-    ) throws -> any AsyncSequence<HostGroup, Swift.Error>
+    ) -> any AsyncSequence<HostGroup, Swift.Error>
 
     /// See `NetAppClient.listHostGroups`.
     func listHostGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<HostGroup, Swift.Error>
+    ) -> any AsyncSequence<HostGroup, Swift.Error>
 
     /// See `NetAppClient.getHostGroup`.
     func getHostGroup(request: GetHostGroupRequest) async throws -> GoogleCloudNetAppV1.HostGroup
@@ -2963,7 +2963,7 @@ extension Clients {
     /// See `NetAppClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `NetAppClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2976,13 +2976,13 @@ extension Clients {
     /// See `NetAppClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NetAppClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NetAppClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -3008,7 +3008,7 @@ extension Clients {
     /// See `NetAppClient.listStoragePools`.
     func listStoragePools(
       byItem: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+    ) -> any AsyncSequence<StoragePool, Swift.Error>
 
     /// See `NetAppClient.createStoragePool`.
     func createStoragePool(
@@ -3073,7 +3073,7 @@ extension Clients {
     /// See `NetAppClient.listVolumes`.
     func listVolumes(
       byItem: ListVolumesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Volume, Swift.Error>
+    ) -> any AsyncSequence<Volume, Swift.Error>
 
     /// See `NetAppClient.getVolume`.
     func getVolume(
@@ -3138,7 +3138,7 @@ extension Clients {
     /// See `NetAppClient.listSnapshots`.
     func listSnapshots(
       byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `NetAppClient.getSnapshot`.
     func getSnapshot(
@@ -3183,7 +3183,7 @@ extension Clients {
     /// See `NetAppClient.listActiveDirectories`.
     func listActiveDirectories(
       byItem: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error>
+    ) -> any AsyncSequence<ActiveDirectory, Swift.Error>
 
     /// See `NetAppClient.getActiveDirectory`.
     func getActiveDirectory(
@@ -3228,7 +3228,7 @@ extension Clients {
     /// See `NetAppClient.listKmsConfigs`.
     func listKmsConfigs(
       byItem: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<KmsConfig, Swift.Error>
+    ) -> any AsyncSequence<KmsConfig, Swift.Error>
 
     /// See `NetAppClient.createKmsConfig`.
     func createKmsConfig(
@@ -3288,7 +3288,7 @@ extension Clients {
     /// See `NetAppClient.listReplications`.
     func listReplications(
       byItem: ListReplicationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Replication, Swift.Error>
+    ) -> any AsyncSequence<Replication, Swift.Error>
 
     /// See `NetAppClient.getReplication`.
     func getReplication(
@@ -3398,7 +3398,7 @@ extension Clients {
     /// See `NetAppClient.listBackupVaults`.
     func listBackupVaults(
       byItem: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupVault, Swift.Error>
+    ) -> any AsyncSequence<BackupVault, Swift.Error>
 
     /// See `NetAppClient.updateBackupVault`.
     func updateBackupVault(
@@ -3443,7 +3443,7 @@ extension Clients {
     /// See `NetAppClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `NetAppClient.deleteBackup`.
     func deleteBackup(
@@ -3488,7 +3488,7 @@ extension Clients {
     /// See `NetAppClient.listBackupPolicies`.
     func listBackupPolicies(
       byItem: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupPolicy, Swift.Error>
+    ) -> any AsyncSequence<BackupPolicy, Swift.Error>
 
     /// See `NetAppClient.updateBackupPolicy`.
     func updateBackupPolicy(
@@ -3518,7 +3518,7 @@ extension Clients {
     /// See `NetAppClient.listQuotaRules`.
     func listQuotaRules(
       byItem: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<QuotaRule, Swift.Error>
+    ) -> any AsyncSequence<QuotaRule, Swift.Error>
 
     /// See `NetAppClient.getQuotaRule`.
     func getQuotaRule(
@@ -3573,7 +3573,7 @@ extension Clients {
     /// See `NetAppClient.listHostGroups`.
     func listHostGroups(
       byItem: ListHostGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HostGroup, Swift.Error>
+    ) -> any AsyncSequence<HostGroup, Swift.Error>
 
     /// See `NetAppClient.getHostGroup`.
     func getHostGroup(
@@ -3638,7 +3638,7 @@ extension Clients {
     /// See `NetAppClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `NetAppClient.getLocation`.
     func getLocation(
@@ -3653,7 +3653,7 @@ extension Clients {
     /// See `NetAppClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NetAppClient.deleteOperation`.
     func deleteOperation(
@@ -3683,13 +3683,13 @@ extension Clients.NetAppProtocol {
 
   public func listStoragePools(
     byItem: ListStoragePoolsRequest
-  ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
-    try self.listStoragePools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<StoragePool, Swift.Error> {
+    self.listStoragePools(byItem: byItem, options: .init())
   }
 
   public func listStoragePools(
     byItem: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+  ) -> any AsyncSequence<StoragePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3699,11 +3699,11 @@ extension Clients.NetAppProtocol {
 
   public func listStoragePools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+  ) -> any AsyncSequence<StoragePool, Swift.Error> {
     let request = ListStoragePoolsRequest().with {
       $0.parent = parent
     }
-    return try self.listStoragePools(byItem: request)
+    return self.listStoragePools(byItem: request)
   }
 
   public func createStoragePool(request: CreateStoragePoolRequest) async throws
@@ -3914,13 +3914,13 @@ extension Clients.NetAppProtocol {
 
   public func listVolumes(
     byItem: ListVolumesRequest
-  ) throws -> any AsyncSequence<Volume, Swift.Error> {
-    try self.listVolumes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Volume, Swift.Error> {
+    self.listVolumes(byItem: byItem, options: .init())
   }
 
   public func listVolumes(
     byItem: ListVolumesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Volume, Swift.Error> {
+  ) -> any AsyncSequence<Volume, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListVolumesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -3929,11 +3929,11 @@ extension Clients.NetAppProtocol {
 
   public func listVolumes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Volume, Swift.Error> {
+  ) -> any AsyncSequence<Volume, Swift.Error> {
     let request = ListVolumesRequest().with {
       $0.parent = parent
     }
-    return try self.listVolumes(byItem: request)
+    return self.listVolumes(byItem: request)
   }
 
   public func getVolume(request: GetVolumeRequest) async throws -> GoogleCloudNetAppV1.Volume {
@@ -4138,13 +4138,13 @@ extension Clients.NetAppProtocol {
 
   public func listSnapshots(
     byItem: ListSnapshotsRequest
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
-    try self.listSnapshots(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
+    self.listSnapshots(byItem: byItem, options: .init())
   }
 
   public func listSnapshots(
     byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListSnapshotsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4154,11 +4154,11 @@ extension Clients.NetAppProtocol {
 
   public func listSnapshots(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let request = ListSnapshotsRequest().with {
       $0.parent = parent
     }
-    return try self.listSnapshots(byItem: request)
+    return self.listSnapshots(byItem: request)
   }
 
   public func getSnapshot(request: GetSnapshotRequest) async throws -> GoogleCloudNetAppV1.Snapshot
@@ -4312,13 +4312,13 @@ extension Clients.NetAppProtocol {
 
   public func listActiveDirectories(
     byItem: ListActiveDirectoriesRequest
-  ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error> {
-    try self.listActiveDirectories(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
+    self.listActiveDirectories(byItem: byItem, options: .init())
   }
 
   public func listActiveDirectories(
     byItem: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error> {
+  ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4328,11 +4328,11 @@ extension Clients.NetAppProtocol {
 
   public func listActiveDirectories(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ActiveDirectory, Swift.Error> {
+  ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
     let request = ListActiveDirectoriesRequest().with {
       $0.parent = parent
     }
-    return try self.listActiveDirectories(byItem: request)
+    return self.listActiveDirectories(byItem: request)
   }
 
   public func getActiveDirectory(request: GetActiveDirectoryRequest) async throws
@@ -4487,13 +4487,13 @@ extension Clients.NetAppProtocol {
 
   public func listKmsConfigs(
     byItem: ListKmsConfigsRequest
-  ) throws -> any AsyncSequence<KmsConfig, Swift.Error> {
-    try self.listKmsConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<KmsConfig, Swift.Error> {
+    self.listKmsConfigs(byItem: byItem, options: .init())
   }
 
   public func listKmsConfigs(
     byItem: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KmsConfig, Swift.Error> {
+  ) -> any AsyncSequence<KmsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListKmsConfigsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4503,11 +4503,11 @@ extension Clients.NetAppProtocol {
 
   public func listKmsConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<KmsConfig, Swift.Error> {
+  ) -> any AsyncSequence<KmsConfig, Swift.Error> {
     let request = ListKmsConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listKmsConfigs(byItem: request)
+    return self.listKmsConfigs(byItem: request)
   }
 
   public func createKmsConfig(request: CreateKmsConfigRequest) async throws
@@ -4702,13 +4702,13 @@ extension Clients.NetAppProtocol {
 
   public func listReplications(
     byItem: ListReplicationsRequest
-  ) throws -> any AsyncSequence<Replication, Swift.Error> {
-    try self.listReplications(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Replication, Swift.Error> {
+    self.listReplications(byItem: byItem, options: .init())
   }
 
   public func listReplications(
     byItem: ListReplicationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Replication, Swift.Error> {
+  ) -> any AsyncSequence<Replication, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListReplicationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4718,11 +4718,11 @@ extension Clients.NetAppProtocol {
 
   public func listReplications(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Replication, Swift.Error> {
+  ) -> any AsyncSequence<Replication, Swift.Error> {
     let request = ListReplicationsRequest().with {
       $0.parent = parent
     }
-    return try self.listReplications(byItem: request)
+    return self.listReplications(byItem: request)
   }
 
   public func getReplication(request: GetReplicationRequest) async throws
@@ -5079,13 +5079,13 @@ extension Clients.NetAppProtocol {
 
   public func listBackupVaults(
     byItem: ListBackupVaultsRequest
-  ) throws -> any AsyncSequence<BackupVault, Swift.Error> {
-    try self.listBackupVaults(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+    self.listBackupVaults(byItem: byItem, options: .init())
   }
 
   public func listBackupVaults(
     byItem: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupVaultsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -5095,11 +5095,11 @@ extension Clients.NetAppProtocol {
 
   public func listBackupVaults(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> {
     let request = ListBackupVaultsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackupVaults(byItem: request)
+    return self.listBackupVaults(byItem: request)
   }
 
   public func updateBackupVault(request: UpdateBackupVaultRequest) async throws
@@ -5251,13 +5251,13 @@ extension Clients.NetAppProtocol {
 
   public func listBackups(
     byItem: ListBackupsRequest
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
-    try self.listBackups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Backup, Swift.Error> {
+    self.listBackups(byItem: byItem, options: .init())
   }
 
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -5266,11 +5266,11 @@ extension Clients.NetAppProtocol {
 
   public func listBackups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackups(byItem: request)
+    return self.listBackups(byItem: request)
   }
 
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -5423,13 +5423,13 @@ extension Clients.NetAppProtocol {
 
   public func listBackupPolicies(
     byItem: ListBackupPoliciesRequest
-  ) throws -> any AsyncSequence<BackupPolicy, Swift.Error> {
-    try self.listBackupPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
+    self.listBackupPolicies(byItem: byItem, options: .init())
   }
 
   public func listBackupPolicies(
     byItem: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPolicy, Swift.Error> {
+  ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -5439,11 +5439,11 @@ extension Clients.NetAppProtocol {
 
   public func listBackupPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BackupPolicy, Swift.Error> {
+  ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
     let request = ListBackupPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listBackupPolicies(byItem: request)
+    return self.listBackupPolicies(byItem: request)
   }
 
   public func updateBackupPolicy(request: UpdateBackupPolicyRequest) async throws
@@ -5536,13 +5536,13 @@ extension Clients.NetAppProtocol {
 
   public func listQuotaRules(
     byItem: ListQuotaRulesRequest
-  ) throws -> any AsyncSequence<QuotaRule, Swift.Error> {
-    try self.listQuotaRules(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<QuotaRule, Swift.Error> {
+    self.listQuotaRules(byItem: byItem, options: .init())
   }
 
   public func listQuotaRules(
     byItem: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<QuotaRule, Swift.Error> {
+  ) -> any AsyncSequence<QuotaRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListQuotaRulesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -5552,11 +5552,11 @@ extension Clients.NetAppProtocol {
 
   public func listQuotaRules(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<QuotaRule, Swift.Error> {
+  ) -> any AsyncSequence<QuotaRule, Swift.Error> {
     let request = ListQuotaRulesRequest().with {
       $0.parent = parent
     }
-    return try self.listQuotaRules(byItem: request)
+    return self.listQuotaRules(byItem: request)
   }
 
   public func getQuotaRule(request: GetQuotaRuleRequest) async throws
@@ -5740,13 +5740,13 @@ extension Clients.NetAppProtocol {
 
   public func listHostGroups(
     byItem: ListHostGroupsRequest
-  ) throws -> any AsyncSequence<HostGroup, Swift.Error> {
-    try self.listHostGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<HostGroup, Swift.Error> {
+    self.listHostGroups(byItem: byItem, options: .init())
   }
 
   public func listHostGroups(
     byItem: ListHostGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<HostGroup, Swift.Error> {
+  ) -> any AsyncSequence<HostGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListHostGroupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -5756,11 +5756,11 @@ extension Clients.NetAppProtocol {
 
   public func listHostGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<HostGroup, Swift.Error> {
+  ) -> any AsyncSequence<HostGroup, Swift.Error> {
     let request = ListHostGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listHostGroups(byItem: request)
+    return self.listHostGroups(byItem: request)
   }
 
   public func getHostGroup(request: GetHostGroupRequest) async throws
@@ -5963,13 +5963,13 @@ extension Clients.NetAppProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -6003,13 +6003,13 @@ extension Clients.NetAppProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -6020,12 +6020,12 @@ extension Clients.NetAppProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

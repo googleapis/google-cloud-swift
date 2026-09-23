@@ -21,7 +21,7 @@ import GoogleCloudSupportV2
 import GoogleWKT
 
 func sample(client: CaseServiceClient, organizationId: String) async throws {
-  let items = try client.listCases(
+  let items = client.listCases(
     byItem: ListCasesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"

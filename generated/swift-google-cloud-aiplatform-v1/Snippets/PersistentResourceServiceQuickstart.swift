@@ -26,7 +26,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.PersistentResourceServiceClient()
-    let items = try client.listPersistentResources(
+    let items = client.listPersistentResources(
       byItem: ListPersistentResourcesRequest()
         .with {
           $0.parent = "\(parent)"

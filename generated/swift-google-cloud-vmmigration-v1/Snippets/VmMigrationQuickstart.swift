@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudVMMigrationV1.VmMigrationClient()
-  let items = try client.listSources(
+  let items = client.listSources(
     byItem: ListSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

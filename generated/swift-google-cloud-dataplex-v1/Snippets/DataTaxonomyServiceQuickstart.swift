@@ -28,7 +28,7 @@ import GoogleWKT
 #endif
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDataplexV1.DataTaxonomyServiceClient()
-  let items = try client.listDataTaxonomies(
+  let items = client.listDataTaxonomies(
     byItem: ListDataTaxonomiesRequest()
       .with {
         $0.parent = "\(parent)"

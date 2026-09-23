@@ -108,7 +108,7 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// @Snippet(path: "FeedsService_ListFeeds")
   public func listFeeds(
     byItem: ListFeedsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Feed, Swift.Error> {
+  ) -> any AsyncSequence<Feed, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedsResponse in
       var request = byItem
@@ -132,7 +132,7 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// @Snippet(path: "FeedsService_ListFeedPacks")
   public func listFeedPacks(
     byItem: ListFeedPacksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeedPack, Swift.Error> {
+  ) -> any AsyncSequence<FeedPack, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse in
       var request = byItem
@@ -174,7 +174,7 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
   public func listFeedSourceTypeSchemas(
     byItem: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse
       in
@@ -201,7 +201,7 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
   public func listLogTypeSchemas(
     byItem: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse in
       var request = byItem
@@ -253,7 +253,7 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// @Snippet(path: "FeedsService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -361,12 +361,12 @@ extension Clients {
     /// See `FeedsServiceClient.listFeeds`.
     func listFeeds(
       byItem: ListFeedsRequest
-    ) throws -> any AsyncSequence<Feed, Swift.Error>
+    ) -> any AsyncSequence<Feed, Swift.Error>
 
     /// See `FeedsServiceClient.listFeeds`.
     func listFeeds(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Feed, Swift.Error>
+    ) -> any AsyncSequence<Feed, Swift.Error>
 
     /// See `FeedsServiceClient.listFeedPacks`.
     func listFeedPacks(request: ListFeedPacksRequest) async throws
@@ -375,12 +375,12 @@ extension Clients {
     /// See `FeedsServiceClient.listFeedPacks`.
     func listFeedPacks(
       byItem: ListFeedPacksRequest
-    ) throws -> any AsyncSequence<FeedPack, Swift.Error>
+    ) -> any AsyncSequence<FeedPack, Swift.Error>
 
     /// See `FeedsServiceClient.listFeedPacks`.
     func listFeedPacks(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FeedPack, Swift.Error>
+    ) -> any AsyncSequence<FeedPack, Swift.Error>
 
     /// See `FeedsServiceClient.getFeedPack`.
     func getFeedPack(request: GetFeedPackRequest) async throws -> GoogleCloudChronicleV1.FeedPack
@@ -406,12 +406,12 @@ extension Clients {
     /// See `FeedsServiceClient.listFeedSourceTypeSchemas`.
     func listFeedSourceTypeSchemas(
       byItem: ListFeedSourceTypeSchemasRequest
-    ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.listFeedSourceTypeSchemas`.
     func listFeedSourceTypeSchemas(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.listLogTypeSchemas`.
     func listLogTypeSchemas(request: ListLogTypeSchemasRequest) async throws
@@ -420,12 +420,12 @@ extension Clients {
     /// See `FeedsServiceClient.listLogTypeSchemas`.
     func listLogTypeSchemas(
       byItem: ListLogTypeSchemasRequest
-    ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<LogTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.listLogTypeSchemas`.
     func listLogTypeSchemas(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<LogTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.importPushLogs`.
     func importPushLogs(request: ImportPushLogsRequest) async throws -> GoogleApi.HttpBody
@@ -451,13 +451,13 @@ extension Clients {
     /// See `FeedsServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeedsServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeedsServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -513,7 +513,7 @@ extension Clients {
     /// See `FeedsServiceClient.listFeeds`.
     func listFeeds(
       byItem: ListFeedsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Feed, Swift.Error>
+    ) -> any AsyncSequence<Feed, Swift.Error>
 
     /// See `FeedsServiceClient.listFeedPacks`.
     func listFeedPacks(
@@ -523,7 +523,7 @@ extension Clients {
     /// See `FeedsServiceClient.listFeedPacks`.
     func listFeedPacks(
       byItem: ListFeedPacksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FeedPack, Swift.Error>
+    ) -> any AsyncSequence<FeedPack, Swift.Error>
 
     /// See `FeedsServiceClient.getFeedPack`.
     func getFeedPack(
@@ -543,7 +543,7 @@ extension Clients {
     /// See `FeedsServiceClient.listFeedSourceTypeSchemas`.
     func listFeedSourceTypeSchemas(
       byItem: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.listLogTypeSchemas`.
     func listLogTypeSchemas(
@@ -553,7 +553,7 @@ extension Clients {
     /// See `FeedsServiceClient.listLogTypeSchemas`.
     func listLogTypeSchemas(
       byItem: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error>
+    ) -> any AsyncSequence<LogTypeSchema, Swift.Error>
 
     /// See `FeedsServiceClient.importPushLogs`.
     func importPushLogs(
@@ -573,7 +573,7 @@ extension Clients {
     /// See `FeedsServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeedsServiceClient.deleteOperation`.
     func deleteOperation(
@@ -721,13 +721,13 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeeds(
     byItem: ListFeedsRequest
-  ) throws -> any AsyncSequence<Feed, Swift.Error> {
-    try self.listFeeds(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Feed, Swift.Error> {
+    self.listFeeds(byItem: byItem, options: .init())
   }
 
   public func listFeeds(
     byItem: ListFeedsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Feed, Swift.Error> {
+  ) -> any AsyncSequence<Feed, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -737,11 +737,11 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeeds(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Feed, Swift.Error> {
+  ) -> any AsyncSequence<Feed, Swift.Error> {
     let request = ListFeedsRequest().with {
       $0.parent = parent
     }
-    return try self.listFeeds(byItem: request)
+    return self.listFeeds(byItem: request)
   }
 
   public func listFeedPacks(request: ListFeedPacksRequest) async throws
@@ -758,13 +758,13 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedPacks(
     byItem: ListFeedPacksRequest
-  ) throws -> any AsyncSequence<FeedPack, Swift.Error> {
-    try self.listFeedPacks(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FeedPack, Swift.Error> {
+    self.listFeedPacks(byItem: byItem, options: .init())
   }
 
   public func listFeedPacks(
     byItem: ListFeedPacksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeedPack, Swift.Error> {
+  ) -> any AsyncSequence<FeedPack, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -774,11 +774,11 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedPacks(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FeedPack, Swift.Error> {
+  ) -> any AsyncSequence<FeedPack, Swift.Error> {
     let request = ListFeedPacksRequest().with {
       $0.parent = parent
     }
-    return try self.listFeedPacks(byItem: request)
+    return self.listFeedPacks(byItem: request)
   }
 
   public func getFeedPack(request: GetFeedPackRequest) async throws
@@ -837,13 +837,13 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedSourceTypeSchemas(
     byItem: ListFeedSourceTypeSchemasRequest
-  ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
-    try self.listFeedSourceTypeSchemas(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
+    self.listFeedSourceTypeSchemas(byItem: byItem, options: .init())
   }
 
   public func listFeedSourceTypeSchemas(
     byItem: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse
       in
@@ -854,11 +854,11 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedSourceTypeSchemas(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> {
     let request = ListFeedSourceTypeSchemasRequest().with {
       $0.parent = parent
     }
-    return try self.listFeedSourceTypeSchemas(byItem: request)
+    return self.listFeedSourceTypeSchemas(byItem: request)
   }
 
   public func listLogTypeSchemas(request: ListLogTypeSchemasRequest) async throws
@@ -875,13 +875,13 @@ extension Clients.FeedsServiceProtocol {
 
   public func listLogTypeSchemas(
     byItem: ListLogTypeSchemasRequest
-  ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error> {
-    try self.listLogTypeSchemas(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> {
+    self.listLogTypeSchemas(byItem: byItem, options: .init())
   }
 
   public func listLogTypeSchemas(
     byItem: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -891,11 +891,11 @@ extension Clients.FeedsServiceProtocol {
 
   public func listLogTypeSchemas(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<LogTypeSchema, Swift.Error> {
+  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> {
     let request = ListLogTypeSchemasRequest().with {
       $0.parent = parent
     }
-    return try self.listLogTypeSchemas(byItem: request)
+    return self.listLogTypeSchemas(byItem: request)
   }
 
   public func importPushLogs(request: ImportPushLogsRequest) async throws -> GoogleApi.HttpBody {
@@ -952,13 +952,13 @@ extension Clients.FeedsServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -969,12 +969,12 @@ extension Clients.FeedsServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

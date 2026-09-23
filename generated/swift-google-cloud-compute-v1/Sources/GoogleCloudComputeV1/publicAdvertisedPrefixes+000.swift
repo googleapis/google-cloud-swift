@@ -213,7 +213,7 @@
     /// @Snippet(path: "publicAdvertisedPrefixes_list")
     public func list(
       byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList in
         var request = byItem
@@ -371,12 +371,12 @@
       /// See `PublicAdvertisedPrefixesClient.list`.
       func list(
         byItem: PublicAdvertisedPrefixesClient.ListRequest
-      ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
 
       /// See `PublicAdvertisedPrefixesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
 
       /// See `PublicAdvertisedPrefixesClient.patch`.
       func patch(request: PublicAdvertisedPrefixesClient.PatchRequest) async throws
@@ -414,7 +414,7 @@
       /// See `PublicAdvertisedPrefixesClient.list`.
       func list(
         byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
 
       /// See `PublicAdvertisedPrefixesClient.patch`.
       func patch(
@@ -587,13 +587,13 @@
 
     public func list(
       byItem: PublicAdvertisedPrefixesClient.ListRequest
-    ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList in
         throw GoogleGax.RequestError.unimplemented
@@ -603,11 +603,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
       let request = PublicAdvertisedPrefixesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: PublicAdvertisedPrefixesClient.PatchRequest) async throws

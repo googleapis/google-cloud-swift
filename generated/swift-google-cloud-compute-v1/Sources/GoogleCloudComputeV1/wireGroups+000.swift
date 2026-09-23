@@ -162,7 +162,7 @@
     /// @Snippet(path: "wireGroups_list")
     public func list(
       byItem: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<WireGroup, Swift.Error> {
+    ) -> any AsyncSequence<WireGroup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.WireGroupList in
         var request = byItem
         request.pageToken = token
@@ -268,13 +268,13 @@
       /// See `WireGroupsClient.list`.
       func list(
         byItem: WireGroupsClient.ListRequest
-      ) throws -> any AsyncSequence<WireGroup, Swift.Error>
+      ) -> any AsyncSequence<WireGroup, Swift.Error>
 
       /// See `WireGroupsClient.list`.
       func list(
         project: Swift.String,
         crossSiteNetwork: Swift.String,
-      ) throws -> any AsyncSequence<WireGroup, Swift.Error>
+      ) -> any AsyncSequence<WireGroup, Swift.Error>
 
       /// See `WireGroupsClient.patch`.
       func patch(request: WireGroupsClient.PatchRequest) async throws
@@ -303,7 +303,7 @@
       /// See `WireGroupsClient.list`.
       func list(
         byItem: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<WireGroup, Swift.Error>
+      ) -> any AsyncSequence<WireGroup, Swift.Error>
 
       /// See `WireGroupsClient.patch`.
       func patch(
@@ -437,13 +437,13 @@
 
     public func list(
       byItem: WireGroupsClient.ListRequest
-    ) throws -> any AsyncSequence<WireGroup, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<WireGroup, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<WireGroup, Swift.Error> {
+    ) -> any AsyncSequence<WireGroup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.WireGroupList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -453,12 +453,12 @@
     public func list(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
-    ) throws -> any AsyncSequence<WireGroup, Swift.Error> {
+    ) -> any AsyncSequence<WireGroup, Swift.Error> {
       let request = WireGroupsClient.ListRequest().with {
         $0.project = project
         $0.crossSiteNetwork = crossSiteNetwork
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: WireGroupsClient.PatchRequest) async throws

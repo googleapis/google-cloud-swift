@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkProfilesClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: NetworkProfilesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

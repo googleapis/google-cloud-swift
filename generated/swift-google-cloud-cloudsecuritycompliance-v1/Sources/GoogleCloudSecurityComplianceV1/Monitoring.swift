@@ -52,7 +52,7 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
   public func listFrameworkComplianceSummaries(
     byItem: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse in
@@ -80,7 +80,7 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   #endif
   public func listFindingSummaries(
     byItem: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse in
@@ -117,7 +117,7 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   #endif
   public func listControlComplianceSummaries(
     byItem: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse in
@@ -185,7 +185,7 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// @Snippet(path: "Monitoring_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -222,7 +222,7 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// @Snippet(path: "Monitoring_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -280,12 +280,12 @@ extension Clients {
     /// See `MonitoringClient.listFrameworkComplianceSummaries`.
     func listFrameworkComplianceSummaries(
       byItem: ListFrameworkComplianceSummariesRequest
-    ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.listFrameworkComplianceSummaries`.
     func listFrameworkComplianceSummaries(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.listFindingSummaries`.
     func listFindingSummaries(request: ListFindingSummariesRequest) async throws
@@ -294,7 +294,7 @@ extension Clients {
     /// See `MonitoringClient.listFindingSummaries`.
     func listFindingSummaries(
       byItem: ListFindingSummariesRequest
-    ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+    ) -> any AsyncSequence<FindingSummary, Swift.Error>
 
     /// See `MonitoringClient.listFindingSummaries`.
     #if hasAttribute(diagnose)
@@ -302,7 +302,7 @@ extension Clients {
     #endif
     func listFindingSummaries(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+    ) -> any AsyncSequence<FindingSummary, Swift.Error>
 
     /// See `MonitoringClient.fetchFrameworkComplianceReport`.
     func fetchFrameworkComplianceReport(request: FetchFrameworkComplianceReportRequest) async throws
@@ -320,7 +320,7 @@ extension Clients {
     /// See `MonitoringClient.listControlComplianceSummaries`.
     func listControlComplianceSummaries(
       byItem: ListControlComplianceSummariesRequest
-    ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.listControlComplianceSummaries`.
     #if hasAttribute(diagnose)
@@ -328,7 +328,7 @@ extension Clients {
     #endif
     func listControlComplianceSummaries(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.aggregateFrameworkComplianceReport`.
     func aggregateFrameworkComplianceReport(request: AggregateFrameworkComplianceReportRequest)
@@ -346,7 +346,7 @@ extension Clients {
     /// See `MonitoringClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MonitoringClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -359,13 +359,13 @@ extension Clients {
     /// See `MonitoringClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MonitoringClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MonitoringClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -391,7 +391,7 @@ extension Clients {
     /// See `MonitoringClient.listFrameworkComplianceSummaries`.
     func listFrameworkComplianceSummaries(
       byItem: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.listFindingSummaries`.
     func listFindingSummaries(
@@ -401,7 +401,7 @@ extension Clients {
     /// See `MonitoringClient.listFindingSummaries`.
     func listFindingSummaries(
       byItem: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+    ) -> any AsyncSequence<FindingSummary, Swift.Error>
 
     /// See `MonitoringClient.fetchFrameworkComplianceReport`.
     func fetchFrameworkComplianceReport(
@@ -416,7 +416,7 @@ extension Clients {
     /// See `MonitoringClient.listControlComplianceSummaries`.
     func listControlComplianceSummaries(
       byItem: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
+    ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error>
 
     /// See `MonitoringClient.aggregateFrameworkComplianceReport`.
     func aggregateFrameworkComplianceReport(
@@ -431,7 +431,7 @@ extension Clients {
     /// See `MonitoringClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MonitoringClient.getLocation`.
     func getLocation(
@@ -446,7 +446,7 @@ extension Clients {
     /// See `MonitoringClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MonitoringClient.deleteOperation`.
     func deleteOperation(
@@ -476,13 +476,13 @@ extension Clients.MonitoringProtocol {
 
   public func listFrameworkComplianceSummaries(
     byItem: ListFrameworkComplianceSummariesRequest
-  ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
-    try self.listFrameworkComplianceSummaries(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
+    self.listFrameworkComplianceSummaries(byItem: byItem, options: .init())
   }
 
   public func listFrameworkComplianceSummaries(
     byItem: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse in
@@ -493,11 +493,11 @@ extension Clients.MonitoringProtocol {
 
   public func listFrameworkComplianceSummaries(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkComplianceSummary, Swift.Error> {
     let request = ListFrameworkComplianceSummariesRequest().with {
       $0.parent = parent
     }
-    return try self.listFrameworkComplianceSummaries(byItem: request)
+    return self.listFrameworkComplianceSummaries(byItem: request)
   }
 
   public func listFindingSummaries(request: ListFindingSummariesRequest) async throws
@@ -514,13 +514,13 @@ extension Clients.MonitoringProtocol {
 
   public func listFindingSummaries(
     byItem: ListFindingSummariesRequest
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
-    try self.listFindingSummaries(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
+    self.listFindingSummaries(byItem: byItem, options: .init())
   }
 
   public func listFindingSummaries(
     byItem: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse in
@@ -534,11 +534,11 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listFindingSummaries(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let request = ListFindingSummariesRequest().with {
       $0.parent = parent
     }
-    return try self.listFindingSummaries(byItem: request)
+    return self.listFindingSummaries(byItem: request)
   }
 
   public func fetchFrameworkComplianceReport(request: FetchFrameworkComplianceReportRequest)
@@ -576,13 +576,13 @@ extension Clients.MonitoringProtocol {
 
   public func listControlComplianceSummaries(
     byItem: ListControlComplianceSummariesRequest
-  ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
-    try self.listControlComplianceSummaries(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
+    self.listControlComplianceSummaries(byItem: byItem, options: .init())
   }
 
   public func listControlComplianceSummaries(
     byItem: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse in
@@ -596,11 +596,11 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listControlComplianceSummaries(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
+  ) -> any AsyncSequence<ControlComplianceSummary, Swift.Error> {
     let request = ListControlComplianceSummariesRequest().with {
       $0.parent = parent
     }
-    return try self.listControlComplianceSummaries(byItem: request)
+    return self.listControlComplianceSummaries(byItem: request)
   }
 
   public func aggregateFrameworkComplianceReport(request: AggregateFrameworkComplianceReportRequest)
@@ -638,13 +638,13 @@ extension Clients.MonitoringProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -678,13 +678,13 @@ extension Clients.MonitoringProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -695,12 +695,12 @@ extension Clients.MonitoringProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

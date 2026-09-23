@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EkmServiceClient, parent: String) async throws {
-  let items = try client.listEkmConnections(
+  let items = client.listEkmConnections(
     byItem: ListEkmConnectionsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -27,7 +27,7 @@
     client: TransitionRouteGroupsClient, projectId: String, locationId: String, agentId: String,
     flowId: String
   ) async throws {
-    let items = try client.listTransitionRouteGroups(
+    let items = client.listTransitionRouteGroups(
       byItem: ListTransitionRouteGroupsRequest()
         .with {
           $0.parent =

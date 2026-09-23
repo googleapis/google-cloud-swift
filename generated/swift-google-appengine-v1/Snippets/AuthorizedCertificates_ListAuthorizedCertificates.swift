@@ -21,7 +21,7 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: AuthorizedCertificatesClient) async throws {
-  let items = try client.listAuthorizedCertificates(
+  let items = client.listAuthorizedCertificates(
     byItem: ListAuthorizedCertificatesRequest()
       /* set fields using .with { $0... } */
   )

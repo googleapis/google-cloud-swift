@@ -27,7 +27,7 @@
     async throws
   {
     let client = try GoogleCloudDialogflowCXV3.ExamplesClient()
-    let items = try client.listExamples(
+    let items = client.listExamples(
       byItem: ListExamplesRequest()
         .with {
           $0.parent =

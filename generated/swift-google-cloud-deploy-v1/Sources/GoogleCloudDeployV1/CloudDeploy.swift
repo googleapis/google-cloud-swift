@@ -59,7 +59,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListDeliveryPipelines")
   public func listDeliveryPipelines(
     byItem: ListDeliveryPipelinesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
+  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListDeliveryPipelinesResponse in
       var request = byItem
@@ -197,7 +197,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListTargets")
   public func listTargets(
     byItem: ListTargetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Target, Swift.Error> {
+  ) -> any AsyncSequence<Target, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDeployV1.ListTargetsResponse in
       var request = byItem
       request.pageToken = token
@@ -341,7 +341,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListCustomTargetTypes")
   public func listCustomTargetTypes(
     byItem: ListCustomTargetTypesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomTargetType, Swift.Error> {
+  ) -> any AsyncSequence<CustomTargetType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListCustomTargetTypesResponse in
       var request = byItem
@@ -479,7 +479,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListReleases")
   public func listReleases(
     byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Release, Swift.Error> {
+  ) -> any AsyncSequence<Release, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListReleasesResponse in
       var request = byItem
@@ -660,7 +660,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListDeployPolicies")
   public func listDeployPolicies(
     byItem: ListDeployPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeployPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DeployPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListDeployPoliciesResponse in
       var request = byItem
@@ -720,7 +720,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListRollouts")
   public func listRollouts(
     byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListRolloutsResponse in
       var request = byItem
@@ -805,7 +805,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListJobRuns")
   public func listJobRuns(
     byItem: ListJobRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<JobRun, Swift.Error> {
+  ) -> any AsyncSequence<JobRun, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDeployV1.ListJobRunsResponse in
       var request = byItem
       request.pageToken = token
@@ -969,7 +969,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListAutomations")
   public func listAutomations(
     byItem: ListAutomationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Automation, Swift.Error> {
+  ) -> any AsyncSequence<Automation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationsResponse in
       var request = byItem
@@ -1002,7 +1002,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListAutomationRuns")
   public func listAutomationRuns(
     byItem: ListAutomationRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AutomationRun, Swift.Error> {
+  ) -> any AsyncSequence<AutomationRun, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationRunsResponse in
       var request = byItem
@@ -1038,7 +1038,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -1113,7 +1113,7 @@ public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   /// @Snippet(path: "CloudDeploy_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -1171,12 +1171,12 @@ extension Clients {
     /// See `CloudDeployClient.listDeliveryPipelines`.
     func listDeliveryPipelines(
       byItem: ListDeliveryPipelinesRequest
-    ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error>
+    ) -> any AsyncSequence<DeliveryPipeline, Swift.Error>
 
     /// See `CloudDeployClient.listDeliveryPipelines`.
     func listDeliveryPipelines(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error>
+    ) -> any AsyncSequence<DeliveryPipeline, Swift.Error>
 
     /// See `CloudDeployClient.getDeliveryPipeline`.
     func getDeliveryPipeline(request: GetDeliveryPipelineRequest) async throws
@@ -1236,12 +1236,12 @@ extension Clients {
     /// See `CloudDeployClient.listTargets`.
     func listTargets(
       byItem: ListTargetsRequest
-    ) throws -> any AsyncSequence<Target, Swift.Error>
+    ) -> any AsyncSequence<Target, Swift.Error>
 
     /// See `CloudDeployClient.listTargets`.
     func listTargets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Target, Swift.Error>
+    ) -> any AsyncSequence<Target, Swift.Error>
 
     /// See `CloudDeployClient.rollbackTarget`.
     func rollbackTarget(request: RollbackTargetRequest) async throws
@@ -1308,12 +1308,12 @@ extension Clients {
     /// See `CloudDeployClient.listCustomTargetTypes`.
     func listCustomTargetTypes(
       byItem: ListCustomTargetTypesRequest
-    ) throws -> any AsyncSequence<CustomTargetType, Swift.Error>
+    ) -> any AsyncSequence<CustomTargetType, Swift.Error>
 
     /// See `CloudDeployClient.listCustomTargetTypes`.
     func listCustomTargetTypes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CustomTargetType, Swift.Error>
+    ) -> any AsyncSequence<CustomTargetType, Swift.Error>
 
     /// See `CloudDeployClient.getCustomTargetType`.
     func getCustomTargetType(request: GetCustomTargetTypeRequest) async throws
@@ -1373,12 +1373,12 @@ extension Clients {
     /// See `CloudDeployClient.listReleases`.
     func listReleases(
       byItem: ListReleasesRequest
-    ) throws -> any AsyncSequence<Release, Swift.Error>
+    ) -> any AsyncSequence<Release, Swift.Error>
 
     /// See `CloudDeployClient.listReleases`.
     func listReleases(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Release, Swift.Error>
+    ) -> any AsyncSequence<Release, Swift.Error>
 
     /// See `CloudDeployClient.getRelease`.
     func getRelease(request: GetReleaseRequest) async throws -> GoogleCloudDeployV1.Release
@@ -1460,12 +1460,12 @@ extension Clients {
     /// See `CloudDeployClient.listDeployPolicies`.
     func listDeployPolicies(
       byItem: ListDeployPoliciesRequest
-    ) throws -> any AsyncSequence<DeployPolicy, Swift.Error>
+    ) -> any AsyncSequence<DeployPolicy, Swift.Error>
 
     /// See `CloudDeployClient.listDeployPolicies`.
     func listDeployPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DeployPolicy, Swift.Error>
+    ) -> any AsyncSequence<DeployPolicy, Swift.Error>
 
     /// See `CloudDeployClient.getDeployPolicy`.
     func getDeployPolicy(request: GetDeployPolicyRequest) async throws
@@ -1511,12 +1511,12 @@ extension Clients {
     /// See `CloudDeployClient.listRollouts`.
     func listRollouts(
       byItem: ListRolloutsRequest
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `CloudDeployClient.listRollouts`.
     func listRollouts(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `CloudDeployClient.getRollout`.
     func getRollout(request: GetRolloutRequest) async throws -> GoogleCloudDeployV1.Rollout
@@ -1567,12 +1567,12 @@ extension Clients {
     /// See `CloudDeployClient.listJobRuns`.
     func listJobRuns(
       byItem: ListJobRunsRequest
-    ) throws -> any AsyncSequence<JobRun, Swift.Error>
+    ) -> any AsyncSequence<JobRun, Swift.Error>
 
     /// See `CloudDeployClient.listJobRuns`.
     func listJobRuns(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<JobRun, Swift.Error>
+    ) -> any AsyncSequence<JobRun, Swift.Error>
 
     /// See `CloudDeployClient.getJobRun`.
     func getJobRun(request: GetJobRunRequest) async throws -> GoogleCloudDeployV1.JobRun
@@ -1656,12 +1656,12 @@ extension Clients {
     /// See `CloudDeployClient.listAutomations`.
     func listAutomations(
       byItem: ListAutomationsRequest
-    ) throws -> any AsyncSequence<Automation, Swift.Error>
+    ) -> any AsyncSequence<Automation, Swift.Error>
 
     /// See `CloudDeployClient.listAutomations`.
     func listAutomations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Automation, Swift.Error>
+    ) -> any AsyncSequence<Automation, Swift.Error>
 
     /// See `CloudDeployClient.getAutomationRun`.
     func getAutomationRun(request: GetAutomationRunRequest) async throws
@@ -1679,12 +1679,12 @@ extension Clients {
     /// See `CloudDeployClient.listAutomationRuns`.
     func listAutomationRuns(
       byItem: ListAutomationRunsRequest
-    ) throws -> any AsyncSequence<AutomationRun, Swift.Error>
+    ) -> any AsyncSequence<AutomationRun, Swift.Error>
 
     /// See `CloudDeployClient.listAutomationRuns`.
     func listAutomationRuns(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AutomationRun, Swift.Error>
+    ) -> any AsyncSequence<AutomationRun, Swift.Error>
 
     /// See `CloudDeployClient.cancelAutomationRun`.
     func cancelAutomationRun(request: CancelAutomationRunRequest) async throws
@@ -1702,7 +1702,7 @@ extension Clients {
     /// See `CloudDeployClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudDeployClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1725,13 +1725,13 @@ extension Clients {
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1757,7 +1757,7 @@ extension Clients {
     /// See `CloudDeployClient.listDeliveryPipelines`.
     func listDeliveryPipelines(
       byItem: ListDeliveryPipelinesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error>
+    ) -> any AsyncSequence<DeliveryPipeline, Swift.Error>
 
     /// See `CloudDeployClient.getDeliveryPipeline`.
     func getDeliveryPipeline(
@@ -1802,7 +1802,7 @@ extension Clients {
     /// See `CloudDeployClient.listTargets`.
     func listTargets(
       byItem: ListTargetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Target, Swift.Error>
+    ) -> any AsyncSequence<Target, Swift.Error>
 
     /// See `CloudDeployClient.rollbackTarget`.
     func rollbackTarget(
@@ -1852,7 +1852,7 @@ extension Clients {
     /// See `CloudDeployClient.listCustomTargetTypes`.
     func listCustomTargetTypes(
       byItem: ListCustomTargetTypesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CustomTargetType, Swift.Error>
+    ) -> any AsyncSequence<CustomTargetType, Swift.Error>
 
     /// See `CloudDeployClient.getCustomTargetType`.
     func getCustomTargetType(
@@ -1897,7 +1897,7 @@ extension Clients {
     /// See `CloudDeployClient.listReleases`.
     func listReleases(
       byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Release, Swift.Error>
+    ) -> any AsyncSequence<Release, Swift.Error>
 
     /// See `CloudDeployClient.getRelease`.
     func getRelease(
@@ -1957,7 +1957,7 @@ extension Clients {
     /// See `CloudDeployClient.listDeployPolicies`.
     func listDeployPolicies(
       byItem: ListDeployPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DeployPolicy, Swift.Error>
+    ) -> any AsyncSequence<DeployPolicy, Swift.Error>
 
     /// See `CloudDeployClient.getDeployPolicy`.
     func getDeployPolicy(
@@ -1987,7 +1987,7 @@ extension Clients {
     /// See `CloudDeployClient.listRollouts`.
     func listRollouts(
       byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `CloudDeployClient.getRollout`.
     func getRollout(
@@ -2022,7 +2022,7 @@ extension Clients {
     /// See `CloudDeployClient.listJobRuns`.
     func listJobRuns(
       byItem: ListJobRunsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<JobRun, Swift.Error>
+    ) -> any AsyncSequence<JobRun, Swift.Error>
 
     /// See `CloudDeployClient.getJobRun`.
     func getJobRun(
@@ -2082,7 +2082,7 @@ extension Clients {
     /// See `CloudDeployClient.listAutomations`.
     func listAutomations(
       byItem: ListAutomationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Automation, Swift.Error>
+    ) -> any AsyncSequence<Automation, Swift.Error>
 
     /// See `CloudDeployClient.getAutomationRun`.
     func getAutomationRun(
@@ -2097,7 +2097,7 @@ extension Clients {
     /// See `CloudDeployClient.listAutomationRuns`.
     func listAutomationRuns(
       byItem: ListAutomationRunsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AutomationRun, Swift.Error>
+    ) -> any AsyncSequence<AutomationRun, Swift.Error>
 
     /// See `CloudDeployClient.cancelAutomationRun`.
     func cancelAutomationRun(
@@ -2112,7 +2112,7 @@ extension Clients {
     /// See `CloudDeployClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudDeployClient.getLocation`.
     func getLocation(
@@ -2142,7 +2142,7 @@ extension Clients {
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.deleteOperation`.
     func deleteOperation(
@@ -2172,13 +2172,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeliveryPipelines(
     byItem: ListDeliveryPipelinesRequest
-  ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
-    try self.listDeliveryPipelines(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
+    self.listDeliveryPipelines(byItem: byItem, options: .init())
   }
 
   public func listDeliveryPipelines(
     byItem: ListDeliveryPipelinesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
+  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListDeliveryPipelinesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2188,11 +2188,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeliveryPipelines(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
+  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> {
     let request = ListDeliveryPipelinesRequest().with {
       $0.parent = parent
     }
-    return try self.listDeliveryPipelines(byItem: request)
+    return self.listDeliveryPipelines(byItem: request)
   }
 
   public func getDeliveryPipeline(request: GetDeliveryPipelineRequest) async throws
@@ -2347,13 +2347,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listTargets(
     byItem: ListTargetsRequest
-  ) throws -> any AsyncSequence<Target, Swift.Error> {
-    try self.listTargets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Target, Swift.Error> {
+    self.listTargets(byItem: byItem, options: .init())
   }
 
   public func listTargets(
     byItem: ListTargetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Target, Swift.Error> {
+  ) -> any AsyncSequence<Target, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDeployV1.ListTargetsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2362,11 +2362,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listTargets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Target, Swift.Error> {
+  ) -> any AsyncSequence<Target, Swift.Error> {
     let request = ListTargetsRequest().with {
       $0.parent = parent
     }
-    return try self.listTargets(byItem: request)
+    return self.listTargets(byItem: request)
   }
 
   public func rollbackTarget(request: RollbackTargetRequest) async throws
@@ -2541,13 +2541,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listCustomTargetTypes(
     byItem: ListCustomTargetTypesRequest
-  ) throws -> any AsyncSequence<CustomTargetType, Swift.Error> {
-    try self.listCustomTargetTypes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CustomTargetType, Swift.Error> {
+    self.listCustomTargetTypes(byItem: byItem, options: .init())
   }
 
   public func listCustomTargetTypes(
     byItem: ListCustomTargetTypesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomTargetType, Swift.Error> {
+  ) -> any AsyncSequence<CustomTargetType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListCustomTargetTypesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2557,11 +2557,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listCustomTargetTypes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CustomTargetType, Swift.Error> {
+  ) -> any AsyncSequence<CustomTargetType, Swift.Error> {
     let request = ListCustomTargetTypesRequest().with {
       $0.parent = parent
     }
-    return try self.listCustomTargetTypes(byItem: request)
+    return self.listCustomTargetTypes(byItem: request)
   }
 
   public func getCustomTargetType(request: GetCustomTargetTypeRequest) async throws
@@ -2716,13 +2716,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listReleases(
     byItem: ListReleasesRequest
-  ) throws -> any AsyncSequence<Release, Swift.Error> {
-    try self.listReleases(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Release, Swift.Error> {
+    self.listReleases(byItem: byItem, options: .init())
   }
 
   public func listReleases(
     byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Release, Swift.Error> {
+  ) -> any AsyncSequence<Release, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListReleasesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2732,11 +2732,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listReleases(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Release, Swift.Error> {
+  ) -> any AsyncSequence<Release, Swift.Error> {
     let request = ListReleasesRequest().with {
       $0.parent = parent
     }
-    return try self.listReleases(byItem: request)
+    return self.listReleases(byItem: request)
   }
 
   public func getRelease(request: GetReleaseRequest) async throws -> GoogleCloudDeployV1.Release {
@@ -2951,13 +2951,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeployPolicies(
     byItem: ListDeployPoliciesRequest
-  ) throws -> any AsyncSequence<DeployPolicy, Swift.Error> {
-    try self.listDeployPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DeployPolicy, Swift.Error> {
+    self.listDeployPolicies(byItem: byItem, options: .init())
   }
 
   public func listDeployPolicies(
     byItem: ListDeployPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeployPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DeployPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListDeployPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2967,11 +2967,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeployPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DeployPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DeployPolicy, Swift.Error> {
     let request = ListDeployPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listDeployPolicies(byItem: request)
+    return self.listDeployPolicies(byItem: request)
   }
 
   public func getDeployPolicy(request: GetDeployPolicyRequest) async throws
@@ -3074,13 +3074,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listRollouts(
     byItem: ListRolloutsRequest
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
-    try self.listRollouts(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
+    self.listRollouts(byItem: byItem, options: .init())
   }
 
   public func listRollouts(
     byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListRolloutsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3090,11 +3090,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listRollouts(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let request = ListRolloutsRequest().with {
       $0.parent = parent
     }
-    return try self.listRollouts(byItem: request)
+    return self.listRollouts(byItem: request)
   }
 
   public func getRollout(request: GetRolloutRequest) async throws -> GoogleCloudDeployV1.Rollout {
@@ -3221,13 +3221,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listJobRuns(
     byItem: ListJobRunsRequest
-  ) throws -> any AsyncSequence<JobRun, Swift.Error> {
-    try self.listJobRuns(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<JobRun, Swift.Error> {
+    self.listJobRuns(byItem: byItem, options: .init())
   }
 
   public func listJobRuns(
     byItem: ListJobRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<JobRun, Swift.Error> {
+  ) -> any AsyncSequence<JobRun, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDeployV1.ListJobRunsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -3236,11 +3236,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listJobRuns(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<JobRun, Swift.Error> {
+  ) -> any AsyncSequence<JobRun, Swift.Error> {
     let request = ListJobRunsRequest().with {
       $0.parent = parent
     }
-    return try self.listJobRuns(byItem: request)
+    return self.listJobRuns(byItem: request)
   }
 
   public func getJobRun(request: GetJobRunRequest) async throws -> GoogleCloudDeployV1.JobRun {
@@ -3454,13 +3454,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomations(
     byItem: ListAutomationsRequest
-  ) throws -> any AsyncSequence<Automation, Swift.Error> {
-    try self.listAutomations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Automation, Swift.Error> {
+    self.listAutomations(byItem: byItem, options: .init())
   }
 
   public func listAutomations(
     byItem: ListAutomationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Automation, Swift.Error> {
+  ) -> any AsyncSequence<Automation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3470,11 +3470,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Automation, Swift.Error> {
+  ) -> any AsyncSequence<Automation, Swift.Error> {
     let request = ListAutomationsRequest().with {
       $0.parent = parent
     }
-    return try self.listAutomations(byItem: request)
+    return self.listAutomations(byItem: request)
   }
 
   public func getAutomationRun(request: GetAutomationRunRequest) async throws
@@ -3512,13 +3512,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationRuns(
     byItem: ListAutomationRunsRequest
-  ) throws -> any AsyncSequence<AutomationRun, Swift.Error> {
-    try self.listAutomationRuns(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AutomationRun, Swift.Error> {
+    self.listAutomationRuns(byItem: byItem, options: .init())
   }
 
   public func listAutomationRuns(
     byItem: ListAutomationRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AutomationRun, Swift.Error> {
+  ) -> any AsyncSequence<AutomationRun, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationRunsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3528,11 +3528,11 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationRuns(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AutomationRun, Swift.Error> {
+  ) -> any AsyncSequence<AutomationRun, Swift.Error> {
     let request = ListAutomationRunsRequest().with {
       $0.parent = parent
     }
-    return try self.listAutomationRuns(byItem: request)
+    return self.listAutomationRuns(byItem: request)
   }
 
   public func cancelAutomationRun(request: CancelAutomationRunRequest) async throws
@@ -3570,13 +3570,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3646,13 +3646,13 @@ extension Clients.CloudDeployProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3663,12 +3663,12 @@ extension Clients.CloudDeployProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

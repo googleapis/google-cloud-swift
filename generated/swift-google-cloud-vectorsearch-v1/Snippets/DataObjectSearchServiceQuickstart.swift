@@ -23,7 +23,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudVectorSearchV1.DataObjectSearchServiceClient()
-  let items = try client.searchDataObjects(
+  let items = client.searchDataObjects(
     byItem: SearchDataObjectsRequest()
       /* set fields using .with { $0... } */
   )

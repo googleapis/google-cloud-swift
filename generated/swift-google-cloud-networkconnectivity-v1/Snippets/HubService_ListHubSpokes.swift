@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient) async throws {
-  let items = try client.listHubSpokes(
+  let items = client.listHubSpokes(
     byItem: ListHubSpokesRequest()
       /* set fields using .with { $0... } */
   )

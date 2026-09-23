@@ -25,7 +25,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AwsClustersClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAwsClusters(
+  let items = client.listAwsClusters(
     byItem: ListAwsClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

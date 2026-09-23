@@ -68,7 +68,7 @@
     public func aggregatedList(
       byItem: RegionHealthCheckServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckServiceAggregatedList
         in
@@ -204,7 +204,7 @@
     /// @Snippet(path: "regionHealthCheckServices_list")
     public func list(
       byItem: RegionHealthCheckServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthCheckService, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheckService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckServicesList in
         var request = byItem
@@ -303,12 +303,12 @@
       /// See `RegionHealthCheckServicesClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionHealthCheckServicesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.delete`.
       func delete(request: RegionHealthCheckServicesClient.DeleteRequest) async throws
@@ -336,13 +336,13 @@
       /// See `RegionHealthCheckServicesClient.list`.
       func list(
         byItem: RegionHealthCheckServicesClient.ListRequest
-      ) throws -> any AsyncSequence<HealthCheckService, Swift.Error>
+      ) -> any AsyncSequence<HealthCheckService, Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<HealthCheckService, Swift.Error>
+      ) -> any AsyncSequence<HealthCheckService, Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.patch`.
       func patch(request: RegionHealthCheckServicesClient.PatchRequest) async throws
@@ -370,7 +370,7 @@
       func aggregatedList(
         byItem: RegionHealthCheckServicesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.delete`.
       func delete(
@@ -395,7 +395,7 @@
       /// See `RegionHealthCheckServicesClient.list`.
       func list(
         byItem: RegionHealthCheckServicesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<HealthCheckService, Swift.Error>
+      ) -> any AsyncSequence<HealthCheckService, Swift.Error>
 
       /// See `RegionHealthCheckServicesClient.patch`.
       func patch(
@@ -427,14 +427,14 @@
 
     public func aggregatedList(
       byItem: RegionHealthCheckServicesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionHealthCheckServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckServiceAggregatedList
         in
@@ -445,11 +445,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthCheckServicesScopedList), Swift.Error> {
       let request = RegionHealthCheckServicesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: RegionHealthCheckServicesClient.DeleteRequest) async throws
@@ -575,13 +575,13 @@
 
     public func list(
       byItem: RegionHealthCheckServicesClient.ListRequest
-    ) throws -> any AsyncSequence<HealthCheckService, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<HealthCheckService, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionHealthCheckServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthCheckService, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheckService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckServicesList in
         throw GoogleGax.RequestError.unimplemented
@@ -592,12 +592,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<HealthCheckService, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheckService, Swift.Error> {
       let request = RegionHealthCheckServicesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionHealthCheckServicesClient.PatchRequest) async throws

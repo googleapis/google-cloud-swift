@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: IndexServiceClient, parent: String) async throws {
-    let items = try client.listIndexes(
+    let items = client.listIndexes(
       byItem: ListIndexesRequest()
         .with {
           $0.parent = "\(parent)"

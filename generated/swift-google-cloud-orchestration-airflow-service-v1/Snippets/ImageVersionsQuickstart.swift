@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudOrchestrationAirflowServiceV1.ImageVersionsClient()
-  let items = try client.listImageVersions(
+  let items = client.listImageVersions(
     byItem: ListImageVersionsRequest()
       /* set fields using .with { $0... } */
   )

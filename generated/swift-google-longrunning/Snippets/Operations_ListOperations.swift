@@ -20,7 +20,7 @@ import Foundation
 import GoogleLongRunning
 
 func sample(client: OperationsClient) async throws {
-  let items = try client.listOperations(
+  let items = client.listOperations(
     byItem: ListOperationsRequest()
       /* set fields using .with { $0... } */
   )

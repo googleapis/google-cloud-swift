@@ -77,7 +77,7 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// @Snippet(path: "policies_list")
   public func list(
     byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> PoliciesListResponse in
       var request = byItem
       request.pageToken = token
@@ -145,12 +145,12 @@ extension Clients {
     /// See `PoliciesClient.list`.
     func list(
       byItem: PoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.list`.
     func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.patch`.
     func patch(request: PoliciesClient.PatchRequest) async throws -> PoliciesPatchResponse
@@ -195,7 +195,7 @@ extension Clients {
     /// See `PoliciesClient.list`.
     func list(
       byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Policy, Swift.Error>
+    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.patch`.
     func patch(
@@ -286,13 +286,13 @@ extension Clients.PoliciesProtocol {
 
   public func list(
     byItem: PoliciesClient.ListRequest
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Policy, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> PoliciesListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -301,11 +301,11 @@ extension Clients.PoliciesProtocol {
 
   public func list(
     project: Swift.String,
-  ) throws -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> {
     let request = PoliciesClient.ListRequest().with {
       $0.project = project
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 
   public func patch(request: PoliciesClient.PatchRequest) async throws -> PoliciesPatchResponse {

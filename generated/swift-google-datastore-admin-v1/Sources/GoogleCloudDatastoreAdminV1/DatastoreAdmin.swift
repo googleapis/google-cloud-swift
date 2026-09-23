@@ -335,7 +335,7 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
       var request = byItem
@@ -363,7 +363,7 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -468,7 +468,7 @@ extension Clients {
     /// See `DatastoreAdminClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -477,13 +477,13 @@ extension Clients {
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -554,7 +554,7 @@ extension Clients {
     /// See `DatastoreAdminClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
@@ -564,7 +564,7 @@ extension Clients {
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.deleteOperation`.
     func deleteOperation(
@@ -743,13 +743,13 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listIndexes(
     byItem: ListIndexesRequest
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
-    try self.listIndexes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Index, Swift.Error> {
+    self.listIndexes(byItem: byItem, options: .init())
   }
 
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -771,13 +771,13 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -788,12 +788,12 @@ extension Clients.DatastoreAdminProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

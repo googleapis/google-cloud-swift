@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient, projectId: String, locationId: String) async throws {
-  let items = try client.listBackupCollections(
+  let items = client.listBackupCollections(
     byItem: ListBackupCollectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

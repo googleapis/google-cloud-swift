@@ -27,7 +27,7 @@
     client: EnvironmentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let items = try client.listContinuousTestResults(
+    let items = client.listContinuousTestResults(
       byItem: ListContinuousTestResultsRequest()
         .with {
           $0.parent =

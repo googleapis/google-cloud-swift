@@ -28,7 +28,7 @@
     client: ModelServiceClient, projectId: String, locationId: String, modelId: String,
     evaluationId: String
   ) async throws {
-    let items = try client.listModelEvaluationSlices(
+    let items = client.listModelEvaluationSlices(
       byItem: ListModelEvaluationSlicesRequest()
         .with {
           $0.parent =

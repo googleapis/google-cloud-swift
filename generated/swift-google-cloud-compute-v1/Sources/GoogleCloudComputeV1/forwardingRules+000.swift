@@ -61,7 +61,7 @@
     /// @Snippet(path: "forwardingRules_aggregatedList")
     public func aggregatedList(
       byItem: ForwardingRulesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "forwardingRules_list")
     public func list(
       byItem: ForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         var request = byItem
@@ -391,12 +391,12 @@
       /// See `ForwardingRulesClient.aggregatedList`.
       func aggregatedList(
         byItem: ForwardingRulesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
 
       /// See `ForwardingRulesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
 
       /// See `ForwardingRulesClient.delete`.
       func delete(request: ForwardingRulesClient.DeleteRequest) async throws
@@ -424,13 +424,13 @@
       /// See `ForwardingRulesClient.list`.
       func list(
         byItem: ForwardingRulesClient.ListRequest
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `ForwardingRulesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `ForwardingRulesClient.patch`.
       func patch(request: ForwardingRulesClient.PatchRequest) async throws
@@ -452,7 +452,7 @@
       /// See `ForwardingRulesClient.aggregatedList`.
       func aggregatedList(
         byItem: ForwardingRulesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error>
 
       /// See `ForwardingRulesClient.delete`.
       func delete(
@@ -477,7 +477,7 @@
       /// See `ForwardingRulesClient.list`.
       func list(
         byItem: ForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `ForwardingRulesClient.patch`.
       func patch(
@@ -512,13 +512,13 @@
 
     public func aggregatedList(
       byItem: ForwardingRulesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: ForwardingRulesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -528,11 +528,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ForwardingRulesScopedList), Swift.Error> {
       let request = ForwardingRulesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: ForwardingRulesClient.DeleteRequest) async throws
@@ -658,13 +658,13 @@
 
     public func list(
       byItem: ForwardingRulesClient.ListRequest
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         throw GoogleGax.RequestError.unimplemented
@@ -675,12 +675,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let request = ForwardingRulesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: ForwardingRulesClient.PatchRequest) async throws

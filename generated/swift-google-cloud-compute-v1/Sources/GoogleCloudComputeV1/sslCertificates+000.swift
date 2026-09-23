@@ -63,7 +63,7 @@
     /// @Snippet(path: "sslCertificates_aggregatedList")
     public func aggregatedList(
       byItem: SslCertificatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "sslCertificates_list")
     public func list(
       byItem: SslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         var request = byItem
@@ -230,12 +230,12 @@
       /// See `SslCertificatesClient.aggregatedList`.
       func aggregatedList(
         byItem: SslCertificatesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
 
       /// See `SslCertificatesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
 
       /// See `SslCertificatesClient.delete`.
       func delete(request: SslCertificatesClient.DeleteRequest) async throws
@@ -262,12 +262,12 @@
       /// See `SslCertificatesClient.list`.
       func list(
         byItem: SslCertificatesClient.ListRequest
-      ) throws -> any AsyncSequence<SslCertificate, Swift.Error>
+      ) -> any AsyncSequence<SslCertificate, Swift.Error>
 
       /// See `SslCertificatesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<SslCertificate, Swift.Error>
+      ) -> any AsyncSequence<SslCertificate, Swift.Error>
 
       /// See `SslCertificatesClient.aggregatedList`.
       func aggregatedList(
@@ -277,7 +277,7 @@
       /// See `SslCertificatesClient.aggregatedList`.
       func aggregatedList(
         byItem: SslCertificatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error>
 
       /// See `SslCertificatesClient.delete`.
       func delete(
@@ -302,7 +302,7 @@
       /// See `SslCertificatesClient.list`.
       func list(
         byItem: SslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<SslCertificate, Swift.Error>
+      ) -> any AsyncSequence<SslCertificate, Swift.Error>
     }
   }
 
@@ -322,13 +322,13 @@
 
     public func aggregatedList(
       byItem: SslCertificatesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: SslCertificatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -338,11 +338,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
       let request = SslCertificatesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: SslCertificatesClient.DeleteRequest) async throws
@@ -462,13 +462,13 @@
 
     public func list(
       byItem: SslCertificatesClient.ListRequest
-    ) throws -> any AsyncSequence<SslCertificate, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         throw GoogleGax.RequestError.unimplemented
@@ -478,11 +478,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
       let request = SslCertificatesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

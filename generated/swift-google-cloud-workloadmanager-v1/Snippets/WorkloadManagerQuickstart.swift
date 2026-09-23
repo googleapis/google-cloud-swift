@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudWorkloadManagerV1.WorkloadManagerClient()
-  let items = try client.listEvaluations(
+  let items = client.listEvaluations(
     byItem: ListEvaluationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

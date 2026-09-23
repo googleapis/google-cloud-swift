@@ -79,7 +79,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListKeyRings")
   public func listKeyRings(
     byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KeyRing, Swift.Error> {
+  ) -> any AsyncSequence<KeyRing, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse in
       var request = byItem
       request.pageToken = token
@@ -106,7 +106,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListCryptoKeys")
   public func listCryptoKeys(
     byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CryptoKey, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKey, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse in
       var request = byItem
       request.pageToken = token
@@ -133,7 +133,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListCryptoKeyVersions")
   public func listCryptoKeyVersions(
     byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse in
       var request = byItem
@@ -161,7 +161,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListImportJobs")
   public func listImportJobs(
     byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ImportJob, Swift.Error> {
+  ) -> any AsyncSequence<ImportJob, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListImportJobsResponse in
       var request = byItem
       request.pageToken = token
@@ -194,7 +194,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListRetiredResources")
   public func listRetiredResources(
     byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RetiredResource, Swift.Error> {
+  ) -> any AsyncSequence<RetiredResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse in
       var request = byItem
@@ -852,7 +852,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -935,12 +935,12 @@ extension Clients {
     /// See `KeyManagementServiceClient.listKeyRings`.
     func listKeyRings(
       byItem: ListKeyRingsRequest
-    ) throws -> any AsyncSequence<KeyRing, Swift.Error>
+    ) -> any AsyncSequence<KeyRing, Swift.Error>
 
     /// See `KeyManagementServiceClient.listKeyRings`.
     func listKeyRings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<KeyRing, Swift.Error>
+    ) -> any AsyncSequence<KeyRing, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(request: ListCryptoKeysRequest) async throws
@@ -949,12 +949,12 @@ extension Clients {
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(
       byItem: ListCryptoKeysRequest
-    ) throws -> any AsyncSequence<CryptoKey, Swift.Error>
+    ) -> any AsyncSequence<CryptoKey, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CryptoKey, Swift.Error>
+    ) -> any AsyncSequence<CryptoKey, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(request: ListCryptoKeyVersionsRequest) async throws
@@ -963,12 +963,12 @@ extension Clients {
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(
       byItem: ListCryptoKeyVersionsRequest
-    ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
+    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
+    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
 
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(request: ListImportJobsRequest) async throws
@@ -977,12 +977,12 @@ extension Clients {
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(
       byItem: ListImportJobsRequest
-    ) throws -> any AsyncSequence<ImportJob, Swift.Error>
+    ) -> any AsyncSequence<ImportJob, Swift.Error>
 
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ImportJob, Swift.Error>
+    ) -> any AsyncSequence<ImportJob, Swift.Error>
 
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(request: ListRetiredResourcesRequest) async throws
@@ -991,12 +991,12 @@ extension Clients {
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(
       byItem: ListRetiredResourcesRequest
-    ) throws -> any AsyncSequence<RetiredResource, Swift.Error>
+    ) -> any AsyncSequence<RetiredResource, Swift.Error>
 
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<RetiredResource, Swift.Error>
+    ) -> any AsyncSequence<RetiredResource, Swift.Error>
 
     /// See `KeyManagementServiceClient.getKeyRing`.
     func getKeyRing(request: GetKeyRingRequest) async throws -> GoogleCloudKMSV1.KeyRing
@@ -1260,7 +1260,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `KeyManagementServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1284,7 +1284,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listKeyRings`.
     func listKeyRings(
       byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<KeyRing, Swift.Error>
+    ) -> any AsyncSequence<KeyRing, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(
@@ -1294,7 +1294,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(
       byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CryptoKey, Swift.Error>
+    ) -> any AsyncSequence<CryptoKey, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(
@@ -1304,7 +1304,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(
       byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
+    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
 
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(
@@ -1314,7 +1314,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(
       byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ImportJob, Swift.Error>
+    ) -> any AsyncSequence<ImportJob, Swift.Error>
 
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(
@@ -1324,7 +1324,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(
       byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RetiredResource, Swift.Error>
+    ) -> any AsyncSequence<RetiredResource, Swift.Error>
 
     /// See `KeyManagementServiceClient.getKeyRing`.
     func getKeyRing(
@@ -1494,7 +1494,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `KeyManagementServiceClient.getLocation`.
     func getLocation(
@@ -1534,13 +1534,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listKeyRings(
     byItem: ListKeyRingsRequest
-  ) throws -> any AsyncSequence<KeyRing, Swift.Error> {
-    try self.listKeyRings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<KeyRing, Swift.Error> {
+    self.listKeyRings(byItem: byItem, options: .init())
   }
 
   public func listKeyRings(
     byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KeyRing, Swift.Error> {
+  ) -> any AsyncSequence<KeyRing, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1549,11 +1549,11 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listKeyRings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<KeyRing, Swift.Error> {
+  ) -> any AsyncSequence<KeyRing, Swift.Error> {
     let request = ListKeyRingsRequest().with {
       $0.parent = parent
     }
-    return try self.listKeyRings(byItem: request)
+    return self.listKeyRings(byItem: request)
   }
 
   public func listCryptoKeys(request: ListCryptoKeysRequest) async throws
@@ -1570,13 +1570,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listCryptoKeys(
     byItem: ListCryptoKeysRequest
-  ) throws -> any AsyncSequence<CryptoKey, Swift.Error> {
-    try self.listCryptoKeys(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CryptoKey, Swift.Error> {
+    self.listCryptoKeys(byItem: byItem, options: .init())
   }
 
   public func listCryptoKeys(
     byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CryptoKey, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKey, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1585,11 +1585,11 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listCryptoKeys(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CryptoKey, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKey, Swift.Error> {
     let request = ListCryptoKeysRequest().with {
       $0.parent = parent
     }
-    return try self.listCryptoKeys(byItem: request)
+    return self.listCryptoKeys(byItem: request)
   }
 
   public func listCryptoKeyVersions(request: ListCryptoKeyVersionsRequest) async throws
@@ -1606,13 +1606,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listCryptoKeyVersions(
     byItem: ListCryptoKeyVersionsRequest
-  ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
-    try self.listCryptoKeyVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
+    self.listCryptoKeyVersions(byItem: byItem, options: .init())
   }
 
   public func listCryptoKeyVersions(
     byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1622,11 +1622,11 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listCryptoKeyVersions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
+  ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
     let request = ListCryptoKeyVersionsRequest().with {
       $0.parent = parent
     }
-    return try self.listCryptoKeyVersions(byItem: request)
+    return self.listCryptoKeyVersions(byItem: request)
   }
 
   public func listImportJobs(request: ListImportJobsRequest) async throws
@@ -1643,13 +1643,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listImportJobs(
     byItem: ListImportJobsRequest
-  ) throws -> any AsyncSequence<ImportJob, Swift.Error> {
-    try self.listImportJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ImportJob, Swift.Error> {
+    self.listImportJobs(byItem: byItem, options: .init())
   }
 
   public func listImportJobs(
     byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ImportJob, Swift.Error> {
+  ) -> any AsyncSequence<ImportJob, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListImportJobsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1658,11 +1658,11 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listImportJobs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ImportJob, Swift.Error> {
+  ) -> any AsyncSequence<ImportJob, Swift.Error> {
     let request = ListImportJobsRequest().with {
       $0.parent = parent
     }
-    return try self.listImportJobs(byItem: request)
+    return self.listImportJobs(byItem: request)
   }
 
   public func listRetiredResources(request: ListRetiredResourcesRequest) async throws
@@ -1679,13 +1679,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listRetiredResources(
     byItem: ListRetiredResourcesRequest
-  ) throws -> any AsyncSequence<RetiredResource, Swift.Error> {
-    try self.listRetiredResources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RetiredResource, Swift.Error> {
+    self.listRetiredResources(byItem: byItem, options: .init())
   }
 
   public func listRetiredResources(
     byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RetiredResource, Swift.Error> {
+  ) -> any AsyncSequence<RetiredResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1695,11 +1695,11 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listRetiredResources(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<RetiredResource, Swift.Error> {
+  ) -> any AsyncSequence<RetiredResource, Swift.Error> {
     let request = ListRetiredResourcesRequest().with {
       $0.parent = parent
     }
-    return try self.listRetiredResources(byItem: request)
+    return self.listRetiredResources(byItem: request)
   }
 
   public func getKeyRing(request: GetKeyRingRequest) async throws -> GoogleCloudKMSV1.KeyRing {
@@ -2350,13 +2350,13 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

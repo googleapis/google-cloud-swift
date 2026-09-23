@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudTimeseriesInsightsV1
 
 func sample(client: TimeseriesInsightsControllerClient, parent: String) async throws {
-  let items = try client.listDataSets(
+  let items = client.listDataSets(
     byItem: ListDataSetsRequest()
       .with {
         $0.parent = "\(parent)"

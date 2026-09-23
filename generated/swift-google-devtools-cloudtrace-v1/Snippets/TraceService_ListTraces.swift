@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudTraceV1
 
 func sample(client: TraceServiceClient) async throws {
-  let items = try client.listTraces(
+  let items = client.listTraces(
     byItem: ListTracesRequest()
       /* set fields using .with { $0... } */
   )

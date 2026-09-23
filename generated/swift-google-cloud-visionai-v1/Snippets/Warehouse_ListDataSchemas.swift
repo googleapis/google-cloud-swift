@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String)
   async throws
 {
-  let items = try client.listDataSchemas(
+  let items = client.listDataSchemas(
     byItem: ListDataSchemasRequest()
       .with {
         $0.parent = "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)"

@@ -77,7 +77,7 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   /// @Snippet(path: "responsePolicies_list")
   public func list(
     byItem: ResponsePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error> {
+  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ResponsePoliciesListResponse in
       var request = byItem
       request.pageToken = token
@@ -146,12 +146,12 @@ extension Clients {
     /// See `ResponsePoliciesClient.list`.
     func list(
       byItem: ResponsePoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error>
+    ) -> any AsyncSequence<ResponsePolicy, Swift.Error>
 
     /// See `ResponsePoliciesClient.list`.
     func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error>
+    ) -> any AsyncSequence<ResponsePolicy, Swift.Error>
 
     /// See `ResponsePoliciesClient.patch`.
     func patch(request: ResponsePoliciesClient.PatchRequest) async throws
@@ -198,7 +198,7 @@ extension Clients {
     /// See `ResponsePoliciesClient.list`.
     func list(
       byItem: ResponsePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error>
+    ) -> any AsyncSequence<ResponsePolicy, Swift.Error>
 
     /// See `ResponsePoliciesClient.patch`.
     func patch(
@@ -291,13 +291,13 @@ extension Clients.ResponsePoliciesProtocol {
 
   public func list(
     byItem: ResponsePoliciesClient.ListRequest
-  ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: ResponsePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error> {
+  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ResponsePoliciesListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -306,11 +306,11 @@ extension Clients.ResponsePoliciesProtocol {
 
   public func list(
     project: Swift.String,
-  ) throws -> any AsyncSequence<ResponsePolicy, Swift.Error> {
+  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> {
     let request = ResponsePoliciesClient.ListRequest().with {
       $0.project = project
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 
   public func patch(request: ResponsePoliciesClient.PatchRequest) async throws

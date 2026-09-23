@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient) async throws {
-  let items = try client.listAssetActions(
+  let items = client.listAssetActions(
     byItem: ListAssetActionsRequest()
       /* set fields using .with { $0... } */
   )

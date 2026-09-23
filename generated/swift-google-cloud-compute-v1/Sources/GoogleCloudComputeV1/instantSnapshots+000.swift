@@ -61,7 +61,7 @@
     /// @Snippet(path: "instantSnapshots_aggregatedList")
     public func aggregatedList(
       byItem: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
         var request = byItem
@@ -218,7 +218,7 @@
     /// @Snippet(path: "instantSnapshots_list")
     public func list(
       byItem: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         var request = byItem
@@ -324,12 +324,12 @@
       /// See `InstantSnapshotsClient.aggregatedList`.
       func aggregatedList(
         byItem: InstantSnapshotsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
 
       /// See `InstantSnapshotsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
 
       /// See `InstantSnapshotsClient.delete`.
       func delete(request: InstantSnapshotsClient.DeleteRequest) async throws
@@ -368,13 +368,13 @@
       /// See `InstantSnapshotsClient.list`.
       func list(
         byItem: InstantSnapshotsClient.ListRequest
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `InstantSnapshotsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `InstantSnapshotsClient.setIamPolicy`.
       func setIamPolicy(request: InstantSnapshotsClient.SetIamPolicyRequest) async throws
@@ -412,7 +412,7 @@
       /// See `InstantSnapshotsClient.aggregatedList`.
       func aggregatedList(
         byItem: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error>
 
       /// See `InstantSnapshotsClient.delete`.
       func delete(
@@ -442,7 +442,7 @@
       /// See `InstantSnapshotsClient.list`.
       func list(
         byItem: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `InstantSnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -477,13 +477,13 @@
 
     public func aggregatedList(
       byItem: InstantSnapshotsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -493,11 +493,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
       let request = InstantSnapshotsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: InstantSnapshotsClient.DeleteRequest) async throws
@@ -648,13 +648,13 @@
 
     public func list(
       byItem: InstantSnapshotsClient.ListRequest
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         throw GoogleGax.RequestError.unimplemented
@@ -665,12 +665,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let request = InstantSnapshotsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: InstantSnapshotsClient.SetIamPolicyRequest) async throws

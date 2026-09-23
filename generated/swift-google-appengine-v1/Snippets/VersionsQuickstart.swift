@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.VersionsClient()
-  let items = try client.listVersions(
+  let items = client.listVersions(
     byItem: ListVersionsRequest()
       /* set fields using .with { $0... } */
   )

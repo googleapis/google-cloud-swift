@@ -23,7 +23,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSecurityComplianceV1.AuditClient()
-  let items = try client.listFrameworkAudits(
+  let items = client.listFrameworkAudits(
     byItem: ListFrameworkAuditsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

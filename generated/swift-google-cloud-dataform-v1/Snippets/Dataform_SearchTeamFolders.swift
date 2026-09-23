@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let items = try client.searchTeamFolders(
+  let items = client.searchTeamFolders(
     byItem: SearchTeamFoldersRequest()
       /* set fields using .with { $0... } */
   )

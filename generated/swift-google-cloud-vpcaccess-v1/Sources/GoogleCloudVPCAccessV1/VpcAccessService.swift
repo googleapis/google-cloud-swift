@@ -103,7 +103,7 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// @Snippet(path: "VpcAccessService_ListConnectors")
   public func listConnectors(
     byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connector, Swift.Error> {
+  ) -> any AsyncSequence<Connector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse in
       var request = byItem
@@ -164,7 +164,7 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// @Snippet(path: "VpcAccessService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -192,7 +192,7 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// @Snippet(path: "VpcAccessService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -251,12 +251,12 @@ extension Clients {
     /// See `VpcAccessServiceClient.listConnectors`.
     func listConnectors(
       byItem: ListConnectorsRequest
-    ) throws -> any AsyncSequence<Connector, Swift.Error>
+    ) -> any AsyncSequence<Connector, Swift.Error>
 
     /// See `VpcAccessServiceClient.listConnectors`.
     func listConnectors(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Connector, Swift.Error>
+    ) -> any AsyncSequence<Connector, Swift.Error>
 
     /// See `VpcAccessServiceClient.deleteConnector`.
     func deleteConnector(request: DeleteConnectorRequest) async throws
@@ -278,7 +278,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -287,13 +287,13 @@ extension Clients {
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VpcAccessServiceClient.createConnector`.
     func createConnector(
@@ -318,7 +318,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.listConnectors`.
     func listConnectors(
       byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Connector, Swift.Error>
+    ) -> any AsyncSequence<Connector, Swift.Error>
 
     /// See `VpcAccessServiceClient.deleteConnector`.
     func deleteConnector(
@@ -338,7 +338,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(
@@ -348,7 +348,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -430,13 +430,13 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listConnectors(
     byItem: ListConnectorsRequest
-  ) throws -> any AsyncSequence<Connector, Swift.Error> {
-    try self.listConnectors(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Connector, Swift.Error> {
+    self.listConnectors(byItem: byItem, options: .init())
   }
 
   public func listConnectors(
     byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connector, Swift.Error> {
+  ) -> any AsyncSequence<Connector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -446,11 +446,11 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listConnectors(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Connector, Swift.Error> {
+  ) -> any AsyncSequence<Connector, Swift.Error> {
     let request = ListConnectorsRequest().with {
       $0.parent = parent
     }
-    return try self.listConnectors(byItem: request)
+    return self.listConnectors(byItem: request)
   }
 
   public func deleteConnector(request: DeleteConnectorRequest) async throws
@@ -504,13 +504,13 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -532,13 +532,13 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -549,12 +549,12 @@ extension Clients.VpcAccessServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

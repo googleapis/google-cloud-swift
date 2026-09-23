@@ -21,7 +21,7 @@ import GoogleBigQueryMigrationV2
 
 func sample(parent: String, ) async throws {
   let client = try GoogleBigQueryMigrationV2.MigrationServiceClient()
-  let items = try client.listMigrationWorkflows(
+  let items = client.listMigrationWorkflows(
     byItem: ListMigrationWorkflowsRequest()
       .with {
         $0.parent = "\(parent)"

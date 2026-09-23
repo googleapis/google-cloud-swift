@@ -116,7 +116,7 @@
     /// @Snippet(path: "instanceGroups_aggregatedList")
     public func aggregatedList(
       byItem: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
         var request = byItem
@@ -270,7 +270,7 @@
     /// @Snippet(path: "instanceGroups_list")
     public func list(
       byItem: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
         var request = byItem
@@ -300,7 +300,7 @@
     /// @Snippet(path: "instanceGroups_listInstances")
     public func listInstances(
       byItem: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances in
         var request = byItem
@@ -457,12 +457,12 @@
       /// See `InstanceGroupsClient.aggregatedList`.
       func aggregatedList(
         byItem: InstanceGroupsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
 
       /// See `InstanceGroupsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
 
       /// See `InstanceGroupsClient.delete`.
       func delete(request: InstanceGroupsClient.DeleteRequest) async throws
@@ -490,13 +490,13 @@
       /// See `InstanceGroupsClient.list`.
       func list(
         byItem: InstanceGroupsClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `InstanceGroupsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `InstanceGroupsClient.listInstances`.
       func listInstances(request: InstanceGroupsClient.ListInstancesRequest) async throws
@@ -505,7 +505,7 @@
       /// See `InstanceGroupsClient.listInstances`.
       func listInstances(
         byItem: InstanceGroupsClient.ListInstancesRequest
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `InstanceGroupsClient.listInstances`.
       func listInstances(
@@ -513,7 +513,7 @@
         zone: Swift.String,
         instanceGroup: Swift.String,
         body: InstanceGroupsListInstancesRequest?,
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `InstanceGroupsClient.removeInstances`.
       func removeInstances(request: InstanceGroupsClient.RemoveInstancesRequest) async throws
@@ -548,7 +548,7 @@
       /// See `InstanceGroupsClient.aggregatedList`.
       func aggregatedList(
         byItem: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error>
 
       /// See `InstanceGroupsClient.delete`.
       func delete(
@@ -573,7 +573,7 @@
       /// See `InstanceGroupsClient.list`.
       func list(
         byItem: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `InstanceGroupsClient.listInstances`.
       func listInstances(
@@ -583,7 +583,7 @@
       /// See `InstanceGroupsClient.listInstances`.
       func listInstances(
         byItem: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `InstanceGroupsClient.removeInstances`.
       func removeInstances(
@@ -662,13 +662,13 @@
 
     public func aggregatedList(
       byItem: InstanceGroupsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -678,11 +678,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
       let request = InstanceGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: InstanceGroupsClient.DeleteRequest) async throws
@@ -808,13 +808,13 @@
 
     public func list(
       byItem: InstanceGroupsClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
         throw GoogleGax.RequestError.unimplemented
@@ -825,12 +825,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let request = InstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listInstances(request: InstanceGroupsClient.ListInstancesRequest) async throws
@@ -847,13 +847,13 @@
 
     public func listInstances(
       byItem: InstanceGroupsClient.ListInstancesRequest
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
-      try self.listInstances(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+      self.listInstances(byItem: byItem, options: .init())
     }
 
     public func listInstances(
       byItem: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances in
         throw GoogleGax.RequestError.unimplemented
@@ -866,14 +866,14 @@
       zone: Swift.String,
       instanceGroup: Swift.String,
       body: InstanceGroupsListInstancesRequest?,
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let request = InstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.zone = zone
         $0.instanceGroup = instanceGroup
         $0.body = body
       }
-      return try self.listInstances(byItem: request)
+      return self.listInstances(byItem: request)
     }
 
     public func removeInstances(request: InstanceGroupsClient.RemoveInstancesRequest) async throws

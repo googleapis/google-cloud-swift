@@ -57,7 +57,7 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
   public func listNotificationChannelDescriptors(
     byItem: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse in
@@ -96,7 +96,7 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
   public func listNotificationChannels(
     byItem: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationChannel, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse
       in
@@ -229,12 +229,12 @@ extension Clients {
     /// See `NotificationChannelServiceClient.listNotificationChannelDescriptors`.
     func listNotificationChannelDescriptors(
       byItem: ListNotificationChannelDescriptorsRequest
-    ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
 
     /// See `NotificationChannelServiceClient.listNotificationChannelDescriptors`.
     func listNotificationChannelDescriptors(
       name: Swift.String,
-    ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
 
     /// See `NotificationChannelServiceClient.getNotificationChannelDescriptor`.
     func getNotificationChannelDescriptor(request: GetNotificationChannelDescriptorRequest)
@@ -252,12 +252,12 @@ extension Clients {
     /// See `NotificationChannelServiceClient.listNotificationChannels`.
     func listNotificationChannels(
       byItem: ListNotificationChannelsRequest
-    ) throws -> any AsyncSequence<NotificationChannel, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannel, Swift.Error>
 
     /// See `NotificationChannelServiceClient.listNotificationChannels`.
     func listNotificationChannels(
       name: Swift.String,
-    ) throws -> any AsyncSequence<NotificationChannel, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannel, Swift.Error>
 
     /// See `NotificationChannelServiceClient.getNotificationChannel`.
     func getNotificationChannel(request: GetNotificationChannelRequest) async throws
@@ -334,7 +334,7 @@ extension Clients {
     /// See `NotificationChannelServiceClient.listNotificationChannelDescriptors`.
     func listNotificationChannelDescriptors(
       byItem: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error>
 
     /// See `NotificationChannelServiceClient.getNotificationChannelDescriptor`.
     func getNotificationChannelDescriptor(
@@ -349,7 +349,7 @@ extension Clients {
     /// See `NotificationChannelServiceClient.listNotificationChannels`.
     func listNotificationChannels(
       byItem: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotificationChannel, Swift.Error>
+    ) -> any AsyncSequence<NotificationChannel, Swift.Error>
 
     /// See `NotificationChannelServiceClient.getNotificationChannel`.
     func getNotificationChannel(
@@ -404,13 +404,13 @@ extension Clients.NotificationChannelServiceProtocol {
 
   public func listNotificationChannelDescriptors(
     byItem: ListNotificationChannelDescriptorsRequest
-  ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
-    try self.listNotificationChannelDescriptors(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
+    self.listNotificationChannelDescriptors(byItem: byItem, options: .init())
   }
 
   public func listNotificationChannelDescriptors(
     byItem: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse in
@@ -421,11 +421,11 @@ extension Clients.NotificationChannelServiceProtocol {
 
   public func listNotificationChannelDescriptors(
     name: Swift.String,
-  ) throws -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannelDescriptor, Swift.Error> {
     let request = ListNotificationChannelDescriptorsRequest().with {
       $0.name = name
     }
-    return try self.listNotificationChannelDescriptors(byItem: request)
+    return self.listNotificationChannelDescriptors(byItem: request)
   }
 
   public func getNotificationChannelDescriptor(request: GetNotificationChannelDescriptorRequest)
@@ -463,13 +463,13 @@ extension Clients.NotificationChannelServiceProtocol {
 
   public func listNotificationChannels(
     byItem: ListNotificationChannelsRequest
-  ) throws -> any AsyncSequence<NotificationChannel, Swift.Error> {
-    try self.listNotificationChannels(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<NotificationChannel, Swift.Error> {
+    self.listNotificationChannels(byItem: byItem, options: .init())
   }
 
   public func listNotificationChannels(
     byItem: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationChannel, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse
       in
@@ -480,11 +480,11 @@ extension Clients.NotificationChannelServiceProtocol {
 
   public func listNotificationChannels(
     name: Swift.String,
-  ) throws -> any AsyncSequence<NotificationChannel, Swift.Error> {
+  ) -> any AsyncSequence<NotificationChannel, Swift.Error> {
     let request = ListNotificationChannelsRequest().with {
       $0.name = name
     }
-    return try self.listNotificationChannels(byItem: request)
+    return self.listNotificationChannels(byItem: request)
   }
 
   public func getNotificationChannel(request: GetNotificationChannelRequest) async throws

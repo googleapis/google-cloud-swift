@@ -73,7 +73,7 @@
     /// @Snippet(path: "SchemaService_ListSchemas")
     public func listSchemas(
       byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Schema, Swift.Error> {
+    ) -> any AsyncSequence<Schema, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse in
         var request = byItem
@@ -218,7 +218,7 @@
     /// @Snippet(path: "SchemaService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -273,12 +273,12 @@
       /// See `SchemaServiceClient.listSchemas`.
       func listSchemas(
         byItem: ListSchemasRequest
-      ) throws -> any AsyncSequence<Schema, Swift.Error>
+      ) -> any AsyncSequence<Schema, Swift.Error>
 
       /// See `SchemaServiceClient.listSchemas`.
       func listSchemas(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Schema, Swift.Error>
+      ) -> any AsyncSequence<Schema, Swift.Error>
 
       /// See `SchemaServiceClient.createSchema`.
       func createSchema(request: CreateSchemaRequest) async throws -> GoogleLongRunning.Operation
@@ -320,13 +320,13 @@
       /// See `SchemaServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SchemaServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SchemaServiceClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -349,7 +349,7 @@
       /// See `SchemaServiceClient.listSchemas`.
       func listSchemas(
         byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Schema, Swift.Error>
+      ) -> any AsyncSequence<Schema, Swift.Error>
 
       /// See `SchemaServiceClient.createSchema`.
       func createSchema(
@@ -389,7 +389,7 @@
       /// See `SchemaServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SchemaServiceClient.cancelOperation`.
       func cancelOperation(
@@ -435,13 +435,13 @@
 
     public func listSchemas(
       byItem: ListSchemasRequest
-    ) throws -> any AsyncSequence<Schema, Swift.Error> {
-      try self.listSchemas(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Schema, Swift.Error> {
+      self.listSchemas(byItem: byItem, options: .init())
     }
 
     public func listSchemas(
       byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Schema, Swift.Error> {
+    ) -> any AsyncSequence<Schema, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -451,11 +451,11 @@
 
     public func listSchemas(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Schema, Swift.Error> {
+    ) -> any AsyncSequence<Schema, Swift.Error> {
       let request = ListSchemasRequest().with {
         $0.parent = parent
       }
-      return try self.listSchemas(byItem: request)
+      return self.listSchemas(byItem: request)
     }
 
     public func createSchema(request: CreateSchemaRequest) async throws
@@ -578,13 +578,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -595,12 +595,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

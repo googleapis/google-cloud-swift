@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: SpecialistPoolServiceClient, parent: String) async throws {
-    let items = try client.listSpecialistPools(
+    let items = client.listSpecialistPools(
       byItem: ListSpecialistPoolsRequest()
         .with {
           $0.parent = "\(parent)"

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: ManagedKafkaConnectClient, projectId: String, locationId: String, connectClusterId: String
 ) async throws {
-  let items = try client.listConnectors(
+  let items = client.listConnectors(
     byItem: ListConnectorsRequest()
       .with {
         $0.parent =

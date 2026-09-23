@@ -109,7 +109,7 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
   public func fetchProfiles(
     byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Profile, Swift.Error> {
+  ) -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
       var request = byItem
@@ -171,7 +171,7 @@ extension Clients {
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(
       byItem: FetchProfilesRequest
-    ) throws -> any AsyncSequence<Profile, Swift.Error>
+    ) -> any AsyncSequence<Profile, Swift.Error>
 
     /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
     func generateOptimizedManifest(request: GenerateOptimizedManifestRequest) async throws
@@ -204,7 +204,7 @@ extension Clients {
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(
       byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Profile, Swift.Error>
+    ) -> any AsyncSequence<Profile, Swift.Error>
 
     /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
     func generateOptimizedManifest(
@@ -270,13 +270,13 @@ extension Clients.GkeInferenceQuickstartProtocol {
 
   public func fetchProfiles(
     byItem: FetchProfilesRequest
-  ) throws -> any AsyncSequence<Profile, Swift.Error> {
-    try self.fetchProfiles(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Profile, Swift.Error> {
+    self.fetchProfiles(byItem: byItem, options: .init())
   }
 
   public func fetchProfiles(
     byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Profile, Swift.Error> {
+  ) -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
       throw GoogleGax.RequestError.unimplemented

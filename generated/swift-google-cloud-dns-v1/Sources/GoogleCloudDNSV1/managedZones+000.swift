@@ -90,7 +90,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// @Snippet(path: "managedZones_list")
   public func list(
     byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedZone, Swift.Error> {
+  ) -> any AsyncSequence<ManagedZone, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ManagedZonesListResponse in
       var request = byItem
       request.pageToken = token
@@ -271,12 +271,12 @@ extension Clients {
     /// See `ManagedZonesClient.list`.
     func list(
       byItem: ManagedZonesClient.ListRequest
-    ) throws -> any AsyncSequence<ManagedZone, Swift.Error>
+    ) -> any AsyncSequence<ManagedZone, Swift.Error>
 
     /// See `ManagedZonesClient.list`.
     func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<ManagedZone, Swift.Error>
+    ) -> any AsyncSequence<ManagedZone, Swift.Error>
 
     /// See `ManagedZonesClient.patch`.
     func patch(request: ManagedZonesClient.PatchRequest) async throws -> Operation
@@ -332,7 +332,7 @@ extension Clients {
     /// See `ManagedZonesClient.list`.
     func list(
       byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ManagedZone, Swift.Error>
+    ) -> any AsyncSequence<ManagedZone, Swift.Error>
 
     /// See `ManagedZonesClient.patch`.
     func patch(
@@ -457,13 +457,13 @@ extension Clients.ManagedZonesProtocol {
 
   public func list(
     byItem: ManagedZonesClient.ListRequest
-  ) throws -> any AsyncSequence<ManagedZone, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ManagedZone, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedZone, Swift.Error> {
+  ) -> any AsyncSequence<ManagedZone, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ManagedZonesListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -472,11 +472,11 @@ extension Clients.ManagedZonesProtocol {
 
   public func list(
     project: Swift.String,
-  ) throws -> any AsyncSequence<ManagedZone, Swift.Error> {
+  ) -> any AsyncSequence<ManagedZone, Swift.Error> {
     let request = ManagedZonesClient.ListRequest().with {
       $0.project = project
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 
   public func patch(request: ManagedZonesClient.PatchRequest) async throws -> Operation {

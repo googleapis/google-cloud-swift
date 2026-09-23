@@ -26,7 +26,7 @@ func sample(
   client: PrivilegedAccessManagerClient, projectId: String, locationId: String,
   entitlementId: String
 ) async throws {
-  let items = try client.listGrants(
+  let items = client.listGrants(
     byItem: ListGrantsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/entitlements/\(entitlementId)"

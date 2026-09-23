@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: BackupDRClient, projectId: String, locationId: String, backupvaultId: String)
   async throws
 {
-  let items = try client.listDataSources(
+  let items = client.listDataSources(
     byItem: ListDataSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/backupVaults/\(backupvaultId)"

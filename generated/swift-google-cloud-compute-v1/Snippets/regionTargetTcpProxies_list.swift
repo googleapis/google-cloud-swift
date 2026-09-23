@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionTargetTcpProxiesClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionTargetTcpProxiesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

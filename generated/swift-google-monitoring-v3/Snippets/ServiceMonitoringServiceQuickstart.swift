@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudMonitoringV3.ServiceMonitoringServiceClient()
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       .with {
         $0.parent = "projects/\(projectId)"

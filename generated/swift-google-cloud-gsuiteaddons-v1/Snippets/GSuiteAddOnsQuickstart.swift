@@ -21,7 +21,7 @@ import GoogleCloudGSuiteAddOnsV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudGSuiteAddOnsV1.GSuiteAddOnsClient()
-  let items = try client.listDeployments(
+  let items = client.listDeployments(
     byItem: ListDeploymentsRequest()
       .with {
         $0.parent = "\(parent)"

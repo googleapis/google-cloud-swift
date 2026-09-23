@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: CloudBillingClient, parent: String) async throws {
-  let items = try client.listBillingAccounts(
+  let items = client.listBillingAccounts(
     byItem: ListBillingAccountsRequest()
       .with {
         $0.parent = "\(parent)"

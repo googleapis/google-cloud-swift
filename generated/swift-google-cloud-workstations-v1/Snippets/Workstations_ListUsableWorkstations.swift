@@ -26,7 +26,7 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String
 ) async throws {
-  let items = try client.listUsableWorkstations(
+  let items = client.listUsableWorkstations(
     byItem: ListUsableWorkstationsRequest()
       .with {
         $0.parent =

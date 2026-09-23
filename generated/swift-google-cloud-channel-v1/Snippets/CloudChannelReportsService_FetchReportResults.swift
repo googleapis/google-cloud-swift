@@ -24,7 +24,7 @@ import GoogleLongRunning
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: CloudChannelReportsServiceClient) async throws {
-  let items = try client.fetchReportResults(
+  let items = client.fetchReportResults(
     byItem: FetchReportResultsRequest()
       /* set fields using .with { $0... } */
   )

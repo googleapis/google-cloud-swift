@@ -84,7 +84,7 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// @Snippet(path: "Folders_ListFolders")
   public func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
       var request = byItem
@@ -118,7 +118,7 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// @Snippet(path: "Folders_SearchFolders")
   public func searchFolders(
     byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
       var request = byItem
@@ -547,12 +547,12 @@ extension Clients {
     /// See `FoldersClient.listFolders`.
     func listFolders(
       byItem: ListFoldersRequest
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.listFolders`.
     func listFolders(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.searchFolders`.
     func searchFolders(request: SearchFoldersRequest) async throws
@@ -561,12 +561,12 @@ extension Clients {
     /// See `FoldersClient.searchFolders`.
     func searchFolders(
       byItem: SearchFoldersRequest
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.searchFolders`.
     func searchFolders(
       query: Swift.String,
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.createFolder`.
     func createFolder(request: CreateFolderRequest) async throws -> GoogleLongRunning.Operation
@@ -671,7 +671,7 @@ extension Clients {
     /// See `FoldersClient.listFolders`.
     func listFolders(
       byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.searchFolders`.
     func searchFolders(
@@ -681,7 +681,7 @@ extension Clients {
     /// See `FoldersClient.searchFolders`.
     func searchFolders(
       byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Folder, Swift.Error>
+    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.createFolder`.
     func createFolder(
@@ -787,13 +787,13 @@ extension Clients.FoldersProtocol {
 
   public func listFolders(
     byItem: ListFoldersRequest
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
-    try self.listFolders(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Folder, Swift.Error> {
+    self.listFolders(byItem: byItem, options: .init())
   }
 
   public func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -803,11 +803,11 @@ extension Clients.FoldersProtocol {
 
   public func listFolders(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let request = ListFoldersRequest().with {
       $0.parent = parent
     }
-    return try self.listFolders(byItem: request)
+    return self.listFolders(byItem: request)
   }
 
   public func searchFolders(request: SearchFoldersRequest) async throws
@@ -824,13 +824,13 @@ extension Clients.FoldersProtocol {
 
   public func searchFolders(
     byItem: SearchFoldersRequest
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
-    try self.searchFolders(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Folder, Swift.Error> {
+    self.searchFolders(byItem: byItem, options: .init())
   }
 
   public func searchFolders(
     byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -840,11 +840,11 @@ extension Clients.FoldersProtocol {
 
   public func searchFolders(
     query: Swift.String,
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let request = SearchFoldersRequest().with {
       $0.query = query
     }
-    return try self.searchFolders(byItem: request)
+    return self.searchFolders(byItem: request)
   }
 
   public func createFolder(request: CreateFolderRequest) async throws -> GoogleLongRunning.Operation

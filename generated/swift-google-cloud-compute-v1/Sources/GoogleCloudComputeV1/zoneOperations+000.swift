@@ -71,7 +71,7 @@
     /// @Snippet(path: "zoneOperations_list")
     public func list(
       byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = byItem
         request.pageToken = token
@@ -139,13 +139,13 @@
       /// See `ZoneOperationsClient.list`.
       func list(
         byItem: ZoneOperationsClient.ListRequest
-      ) throws -> any AsyncSequence<Operation, Swift.Error>
+      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `ZoneOperationsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<Operation, Swift.Error>
+      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `ZoneOperationsClient.wait`.
       func wait(request: ZoneOperationsClient.WaitRequest) async throws
@@ -176,7 +176,7 @@
       /// See `ZoneOperationsClient.list`.
       func list(
         byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Operation, Swift.Error>
+      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `ZoneOperationsClient.wait`.
       func wait(
@@ -249,13 +249,13 @@
 
     public func list(
       byItem: ZoneOperationsClient.ListRequest
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Operation, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -265,12 +265,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> {
       let request = ZoneOperationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func wait(request: ZoneOperationsClient.WaitRequest) async throws

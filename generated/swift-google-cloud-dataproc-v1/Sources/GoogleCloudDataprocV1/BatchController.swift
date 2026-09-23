@@ -99,7 +99,7 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// @Snippet(path: "BatchController_ListBatches")
   public func listBatches(
     byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Batch, Swift.Error> {
+  ) -> any AsyncSequence<Batch, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListBatchesResponse in
       var request = byItem
@@ -179,7 +179,7 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// @Snippet(path: "BatchController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -259,12 +259,12 @@ extension Clients {
     /// See `BatchControllerClient.listBatches`.
     func listBatches(
       byItem: ListBatchesRequest
-    ) throws -> any AsyncSequence<Batch, Swift.Error>
+    ) -> any AsyncSequence<Batch, Swift.Error>
 
     /// See `BatchControllerClient.listBatches`.
     func listBatches(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Batch, Swift.Error>
+    ) -> any AsyncSequence<Batch, Swift.Error>
 
     /// See `BatchControllerClient.deleteBatch`.
     func deleteBatch(request: DeleteBatchRequest) async throws
@@ -291,13 +291,13 @@ extension Clients {
     /// See `BatchControllerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BatchControllerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BatchControllerClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -338,7 +338,7 @@ extension Clients {
     /// See `BatchControllerClient.listBatches`.
     func listBatches(
       byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Batch, Swift.Error>
+    ) -> any AsyncSequence<Batch, Swift.Error>
 
     /// See `BatchControllerClient.deleteBatch`.
     func deleteBatch(
@@ -368,7 +368,7 @@ extension Clients {
     /// See `BatchControllerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BatchControllerClient.deleteOperation`.
     func deleteOperation(
@@ -456,13 +456,13 @@ extension Clients.BatchControllerProtocol {
 
   public func listBatches(
     byItem: ListBatchesRequest
-  ) throws -> any AsyncSequence<Batch, Swift.Error> {
-    try self.listBatches(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Batch, Swift.Error> {
+    self.listBatches(byItem: byItem, options: .init())
   }
 
   public func listBatches(
     byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Batch, Swift.Error> {
+  ) -> any AsyncSequence<Batch, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListBatchesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -472,11 +472,11 @@ extension Clients.BatchControllerProtocol {
 
   public func listBatches(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Batch, Swift.Error> {
+  ) -> any AsyncSequence<Batch, Swift.Error> {
     let request = ListBatchesRequest().with {
       $0.parent = parent
     }
-    return try self.listBatches(byItem: request)
+    return self.listBatches(byItem: request)
   }
 
   public func deleteBatch(request: DeleteBatchRequest) async throws {
@@ -548,13 +548,13 @@ extension Clients.BatchControllerProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -565,12 +565,12 @@ extension Clients.BatchControllerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

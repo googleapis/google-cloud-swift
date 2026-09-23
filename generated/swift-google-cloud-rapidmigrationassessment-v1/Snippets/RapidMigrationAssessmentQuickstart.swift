@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudRapidMigrationAssessmentV1.RapidMigrationAssessmentClient()
-  let items = try client.listCollectors(
+  let items = client.listCollectors(
     byItem: ListCollectorsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -26,7 +26,7 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let items = try client.listVariants(
+  let items = client.listVariants(
     byItem: ListVariantsRequest()
       .with {
         $0.parent =

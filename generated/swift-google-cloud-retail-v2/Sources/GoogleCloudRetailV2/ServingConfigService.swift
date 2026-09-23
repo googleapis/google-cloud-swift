@@ -100,7 +100,7 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// @Snippet(path: "ServingConfigService_ListServingConfigs")
   public func listServingConfigs(
     byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ServingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ServingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse in
       var request = byItem
@@ -155,7 +155,7 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// @Snippet(path: "ServingConfigService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -229,12 +229,12 @@ extension Clients {
     /// See `ServingConfigServiceClient.listServingConfigs`.
     func listServingConfigs(
       byItem: ListServingConfigsRequest
-    ) throws -> any AsyncSequence<ServingConfig, Swift.Error>
+    ) -> any AsyncSequence<ServingConfig, Swift.Error>
 
     /// See `ServingConfigServiceClient.listServingConfigs`.
     func listServingConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ServingConfig, Swift.Error>
+    ) -> any AsyncSequence<ServingConfig, Swift.Error>
 
     /// See `ServingConfigServiceClient.addControl`.
     func addControl(request: AddControlRequest) async throws -> GoogleCloudRetailV2.ServingConfig
@@ -260,13 +260,13 @@ extension Clients {
     /// See `ServingConfigServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServingConfigServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServingConfigServiceClient.createServingConfig`.
     func createServingConfig(
@@ -296,7 +296,7 @@ extension Clients {
     /// See `ServingConfigServiceClient.listServingConfigs`.
     func listServingConfigs(
       byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ServingConfig, Swift.Error>
+    ) -> any AsyncSequence<ServingConfig, Swift.Error>
 
     /// See `ServingConfigServiceClient.addControl`.
     func addControl(
@@ -316,7 +316,7 @@ extension Clients {
     /// See `ServingConfigServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -424,13 +424,13 @@ extension Clients.ServingConfigServiceProtocol {
 
   public func listServingConfigs(
     byItem: ListServingConfigsRequest
-  ) throws -> any AsyncSequence<ServingConfig, Swift.Error> {
-    try self.listServingConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ServingConfig, Swift.Error> {
+    self.listServingConfigs(byItem: byItem, options: .init())
   }
 
   public func listServingConfigs(
     byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ServingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ServingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -440,11 +440,11 @@ extension Clients.ServingConfigServiceProtocol {
 
   public func listServingConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ServingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ServingConfig, Swift.Error> {
     let request = ListServingConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listServingConfigs(byItem: request)
+    return self.listServingConfigs(byItem: request)
   }
 
   public func addControl(request: AddControlRequest) async throws
@@ -503,13 +503,13 @@ extension Clients.ServingConfigServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -520,12 +520,12 @@ extension Clients.ServingConfigServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

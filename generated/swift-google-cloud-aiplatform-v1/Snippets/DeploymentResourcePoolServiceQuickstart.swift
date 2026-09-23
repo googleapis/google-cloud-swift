@@ -26,7 +26,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.DeploymentResourcePoolServiceClient()
-    let items = try client.listDeploymentResourcePools(
+    let items = client.listDeploymentResourcePools(
       byItem: ListDeploymentResourcePoolsRequest()
         .with {
           $0.parent = "\(parent)"

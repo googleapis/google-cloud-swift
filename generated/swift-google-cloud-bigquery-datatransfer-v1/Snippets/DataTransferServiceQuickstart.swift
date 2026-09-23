@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleBigQueryDataTransferV1.DataTransferServiceClient()
-  let items = try client.listDataSources(
+  let items = client.listDataSources(
     byItem: ListDataSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)"

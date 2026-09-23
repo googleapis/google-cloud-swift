@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: MemorystoreClient, projectId: String, locationId: String, backupCollectionId: String
 ) async throws {
-  let items = try client.listBackups(
+  let items = client.listBackups(
     byItem: ListBackupsRequest()
       .with {
         $0.parent =

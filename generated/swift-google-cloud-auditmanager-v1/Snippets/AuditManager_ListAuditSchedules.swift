@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AuditManagerClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAuditSchedules(
+  let items = client.listAuditSchedules(
     byItem: ListAuditSchedulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

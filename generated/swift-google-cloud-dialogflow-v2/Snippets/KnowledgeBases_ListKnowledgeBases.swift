@@ -24,7 +24,7 @@
   import GoogleWKT
 
   func sample(client: KnowledgeBasesClient, projectId: String) async throws {
-    let items = try client.listKnowledgeBases(
+    let items = client.listKnowledgeBases(
       byItem: ListKnowledgeBasesRequest()
         .with {
           $0.parent = "projects/\(projectId)"

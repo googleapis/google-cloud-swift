@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let items = try client.getXpnResources(
+    let items = client.getXpnResources(
       byItem: ProjectsClient.GetXpnResourcesRequest()
         /* set fields using .with { $0... } */
     )

@@ -101,7 +101,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_ListConnections")
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
       var request = byItem
@@ -275,7 +275,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_ListRepositories")
   public func listRepositories(
     byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
+  ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
       var request = byItem
@@ -354,7 +354,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_FetchLinkableRepositories")
   public func fetchLinkableRepositories(
     byItem: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
+  ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in
       var request = byItem
@@ -471,12 +471,12 @@ extension Clients {
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
       byItem: ListConnectionsRequest
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `RepositoryManagerClient.updateConnection`.
     func updateConnection(request: UpdateConnectionRequest) async throws
@@ -549,12 +549,12 @@ extension Clients {
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
       byItem: ListRepositoriesRequest
-    ) throws -> any AsyncSequence<Repository, Swift.Error>
+    ) -> any AsyncSequence<Repository, Swift.Error>
 
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Repository, Swift.Error>
+    ) -> any AsyncSequence<Repository, Swift.Error>
 
     /// See `RepositoryManagerClient.deleteRepository`.
     func deleteRepository(request: DeleteRepositoryRequest) async throws
@@ -594,7 +594,7 @@ extension Clients {
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(
       byItem: FetchLinkableRepositoriesRequest
-    ) throws -> any AsyncSequence<Repository, Swift.Error>
+    ) -> any AsyncSequence<Repository, Swift.Error>
 
     /// See `RepositoryManagerClient.fetchGitRefs`.
     func fetchGitRefs(request: FetchGitRefsRequest) async throws
@@ -646,7 +646,7 @@ extension Clients {
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
       byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `RepositoryManagerClient.updateConnection`.
     func updateConnection(
@@ -701,7 +701,7 @@ extension Clients {
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
       byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Repository, Swift.Error>
+    ) -> any AsyncSequence<Repository, Swift.Error>
 
     /// See `RepositoryManagerClient.deleteRepository`.
     func deleteRepository(
@@ -731,7 +731,7 @@ extension Clients {
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(
       byItem: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Repository, Swift.Error>
+    ) -> any AsyncSequence<Repository, Swift.Error>
 
     /// See `RepositoryManagerClient.fetchGitRefs`.
     func fetchGitRefs(
@@ -838,13 +838,13 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listConnections(
     byItem: ListConnectionsRequest
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
-    try self.listConnections(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Connection, Swift.Error> {
+    self.listConnections(byItem: byItem, options: .init())
   }
 
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -854,11 +854,11 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listConnections(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
-    return try self.listConnections(byItem: request)
+    return self.listConnections(byItem: request)
   }
 
   public func updateConnection(request: UpdateConnectionRequest) async throws
@@ -1053,13 +1053,13 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listRepositories(
     byItem: ListRepositoriesRequest
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
-    try self.listRepositories(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Repository, Swift.Error> {
+    self.listRepositories(byItem: byItem, options: .init())
   }
 
   public func listRepositories(
     byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
+  ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1069,11 +1069,11 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listRepositories(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
+  ) -> any AsyncSequence<Repository, Swift.Error> {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
-    return try self.listRepositories(byItem: request)
+    return self.listRepositories(byItem: request)
   }
 
   public func deleteRepository(request: DeleteRepositoryRequest) async throws
@@ -1169,13 +1169,13 @@ extension Clients.RepositoryManagerProtocol {
 
   public func fetchLinkableRepositories(
     byItem: FetchLinkableRepositoriesRequest
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
-    try self.fetchLinkableRepositories(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Repository, Swift.Error> {
+    self.fetchLinkableRepositories(byItem: byItem, options: .init())
   }
 
   public func fetchLinkableRepositories(
     byItem: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Repository, Swift.Error> {
+  ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in
       throw GoogleGax.RequestError.unimplemented

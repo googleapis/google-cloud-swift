@@ -96,7 +96,7 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// @Snippet(path: "Messaging_ListRooms")
   public func listRooms(
     byItem: ListRoomsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Room, Swift.Error> {
+  ) -> any AsyncSequence<Room, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListRoomsResponse in
       var request = byItem
       request.pageToken = token
@@ -159,7 +159,7 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// @Snippet(path: "Messaging_ListBlurbs")
   public func listBlurbs(
     byItem: ListBlurbsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blurb, Swift.Error> {
+  ) -> any AsyncSequence<Blurb, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListBlurbsResponse in
       var request = byItem
@@ -246,7 +246,7 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// @Snippet(path: "Messaging_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -318,7 +318,7 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// @Snippet(path: "Messaging_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -398,7 +398,7 @@ extension Clients {
     /// See `MessagingClient.listRooms`.
     func listRooms(
       byItem: ListRoomsRequest
-    ) throws -> any AsyncSequence<Room, Swift.Error>
+    ) -> any AsyncSequence<Room, Swift.Error>
 
     /// See `MessagingClient.createBlurb`.
     func createBlurb(request: CreateBlurbRequest) async throws -> GoogleShowcaseV1Beta1.Blurb
@@ -429,12 +429,12 @@ extension Clients {
     /// See `MessagingClient.listBlurbs`.
     func listBlurbs(
       byItem: ListBlurbsRequest
-    ) throws -> any AsyncSequence<Blurb, Swift.Error>
+    ) -> any AsyncSequence<Blurb, Swift.Error>
 
     /// See `MessagingClient.listBlurbs`.
     func listBlurbs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Blurb, Swift.Error>
+    ) -> any AsyncSequence<Blurb, Swift.Error>
 
     /// See `MessagingClient.searchBlurbs`.
     func searchBlurbs(request: SearchBlurbsRequest) async throws -> GoogleLongRunning.Operation
@@ -464,7 +464,7 @@ extension Clients {
     /// See `MessagingClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MessagingClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -487,13 +487,13 @@ extension Clients {
     /// See `MessagingClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MessagingClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MessagingClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -539,7 +539,7 @@ extension Clients {
     /// See `MessagingClient.listRooms`.
     func listRooms(
       byItem: ListRoomsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Room, Swift.Error>
+    ) -> any AsyncSequence<Room, Swift.Error>
 
     /// See `MessagingClient.createBlurb`.
     func createBlurb(
@@ -569,7 +569,7 @@ extension Clients {
     /// See `MessagingClient.listBlurbs`.
     func listBlurbs(
       byItem: ListBlurbsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Blurb, Swift.Error>
+    ) -> any AsyncSequence<Blurb, Swift.Error>
 
     /// See `MessagingClient.searchBlurbs`.
     func searchBlurbs(
@@ -599,7 +599,7 @@ extension Clients {
     /// See `MessagingClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MessagingClient.getLocation`.
     func getLocation(
@@ -629,7 +629,7 @@ extension Clients {
     /// See `MessagingClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MessagingClient.deleteOperation`.
     func deleteOperation(
@@ -717,13 +717,13 @@ extension Clients.MessagingProtocol {
 
   public func listRooms(
     byItem: ListRoomsRequest
-  ) throws -> any AsyncSequence<Room, Swift.Error> {
-    try self.listRooms(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Room, Swift.Error> {
+    self.listRooms(byItem: byItem, options: .init())
   }
 
   public func listRooms(
     byItem: ListRoomsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Room, Swift.Error> {
+  ) -> any AsyncSequence<Room, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListRoomsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -802,13 +802,13 @@ extension Clients.MessagingProtocol {
 
   public func listBlurbs(
     byItem: ListBlurbsRequest
-  ) throws -> any AsyncSequence<Blurb, Swift.Error> {
-    try self.listBlurbs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Blurb, Swift.Error> {
+    self.listBlurbs(byItem: byItem, options: .init())
   }
 
   public func listBlurbs(
     byItem: ListBlurbsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blurb, Swift.Error> {
+  ) -> any AsyncSequence<Blurb, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListBlurbsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -818,11 +818,11 @@ extension Clients.MessagingProtocol {
 
   public func listBlurbs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Blurb, Swift.Error> {
+  ) -> any AsyncSequence<Blurb, Swift.Error> {
     let request = ListBlurbsRequest().with {
       $0.parent = parent
     }
-    return try self.listBlurbs(byItem: request)
+    return self.listBlurbs(byItem: request)
   }
 
   public func searchBlurbs(request: SearchBlurbsRequest) async throws -> GoogleLongRunning.Operation
@@ -901,13 +901,13 @@ extension Clients.MessagingProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -977,13 +977,13 @@ extension Clients.MessagingProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -994,12 +994,12 @@ extension Clients.MessagingProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

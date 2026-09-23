@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleIdentityAccessContextManagerV1.AccessContextManagerClient()
-  let items = try client.listAccessPolicies(
+  let items = client.listAccessPolicies(
     byItem: ListAccessPoliciesRequest()
       .with {
         $0.parent = "\(parent)"

@@ -21,7 +21,7 @@ import GoogleCloudMonitoringV3
 import GoogleWKT
 
 func sample(client: ServiceMonitoringServiceClient, projectId: String) async throws {
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       .with {
         $0.parent = "projects/\(projectId)"

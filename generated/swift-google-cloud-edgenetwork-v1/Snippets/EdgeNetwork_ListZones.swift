@@ -26,7 +26,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String) async throws {
-  let items = try client.listZones(
+  let items = client.listZones(
     byItem: ListZonesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

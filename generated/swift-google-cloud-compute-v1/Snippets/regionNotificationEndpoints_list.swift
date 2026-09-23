@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionNotificationEndpointsClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionNotificationEndpointsClient.ListRequest()
         /* set fields using .with { $0... } */
     )

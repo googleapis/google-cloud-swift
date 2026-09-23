@@ -159,7 +159,7 @@
     /// @Snippet(path: "targetPools_aggregatedList")
     public func aggregatedList(
       byItem: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList in
         var request = byItem
@@ -304,7 +304,7 @@
     /// @Snippet(path: "targetPools_list")
     public func list(
       byItem: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetPool, Swift.Error> {
+    ) -> any AsyncSequence<TargetPool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
         var request = byItem
         request.pageToken = token
@@ -554,12 +554,12 @@
       /// See `TargetPoolsClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetPoolsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
 
       /// See `TargetPoolsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
 
       /// See `TargetPoolsClient.delete`.
       func delete(request: TargetPoolsClient.DeleteRequest) async throws
@@ -599,13 +599,13 @@
       /// See `TargetPoolsClient.list`.
       func list(
         byItem: TargetPoolsClient.ListRequest
-      ) throws -> any AsyncSequence<TargetPool, Swift.Error>
+      ) -> any AsyncSequence<TargetPool, Swift.Error>
 
       /// See `TargetPoolsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<TargetPool, Swift.Error>
+      ) -> any AsyncSequence<TargetPool, Swift.Error>
 
       /// See `TargetPoolsClient.removeHealthCheck`.
       func removeHealthCheck(request: TargetPoolsClient.RemoveHealthCheckRequest) async throws
@@ -653,7 +653,7 @@
       /// See `TargetPoolsClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error>
 
       /// See `TargetPoolsClient.delete`.
       func delete(
@@ -683,7 +683,7 @@
       /// See `TargetPoolsClient.list`.
       func list(
         byItem: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetPool, Swift.Error>
+      ) -> any AsyncSequence<TargetPool, Swift.Error>
 
       /// See `TargetPoolsClient.removeHealthCheck`.
       func removeHealthCheck(
@@ -816,13 +816,13 @@
 
     public func aggregatedList(
       byItem: TargetPoolsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -832,11 +832,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
       let request = TargetPoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: TargetPoolsClient.DeleteRequest) async throws
@@ -989,13 +989,13 @@
 
     public func list(
       byItem: TargetPoolsClient.ListRequest
-    ) throws -> any AsyncSequence<TargetPool, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetPool, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetPool, Swift.Error> {
+    ) -> any AsyncSequence<TargetPool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -1005,12 +1005,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<TargetPool, Swift.Error> {
+    ) -> any AsyncSequence<TargetPool, Swift.Error> {
       let request = TargetPoolsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func removeHealthCheck(request: TargetPoolsClient.RemoveHealthCheckRequest) async throws

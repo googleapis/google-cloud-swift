@@ -26,7 +26,7 @@
   func sample(client: PlaybooksClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let items = try client.listPlaybooks(
+    let items = client.listPlaybooks(
       byItem: ListPlaybooksRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"

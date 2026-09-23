@@ -63,7 +63,7 @@
     /// @Snippet(path: "SqlOperationsService_List")
     public func list(
       byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
         var request = byItem
@@ -100,7 +100,7 @@
       /// See `SqlOperationsServiceClient.list`.
       func list(
         byItem: SqlOperationsListRequest
-      ) throws -> any AsyncSequence<Operation, Swift.Error>
+      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `SqlOperationsServiceClient.cancel`.
       func cancel(request: SqlOperationsCancelRequest) async throws
@@ -118,7 +118,7 @@
       /// See `SqlOperationsServiceClient.list`.
       func list(
         byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Operation, Swift.Error>
+      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `SqlOperationsServiceClient.cancel`.
       func cancel(
@@ -153,13 +153,13 @@
 
     public func list(
       byItem: SqlOperationsListRequest
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Operation, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
         throw GoogleGax.RequestError.unimplemented

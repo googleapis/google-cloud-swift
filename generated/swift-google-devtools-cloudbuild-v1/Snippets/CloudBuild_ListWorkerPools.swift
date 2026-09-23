@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient, parent: String) async throws {
-  let items = try client.listWorkerPools(
+  let items = client.listWorkerPools(
     byItem: ListWorkerPoolsRequest()
       .with {
         $0.parent = "\(parent)"

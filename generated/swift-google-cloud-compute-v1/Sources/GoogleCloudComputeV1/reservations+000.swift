@@ -61,7 +61,7 @@
     /// @Snippet(path: "reservations_aggregatedList")
     public func aggregatedList(
       byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationAggregatedList in
         var request = byItem
@@ -206,7 +206,7 @@
     /// @Snippet(path: "reservations_list")
     public func list(
       byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Reservation, Swift.Error> {
+    ) -> any AsyncSequence<Reservation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationList in
         var request = byItem
         request.pageToken = token
@@ -409,12 +409,12 @@
       /// See `ReservationsClient.aggregatedList`.
       func aggregatedList(
         byItem: ReservationsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
 
       /// See `ReservationsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
 
       /// See `ReservationsClient.delete`.
       func delete(request: ReservationsClient.DeleteRequest) async throws
@@ -453,13 +453,13 @@
       /// See `ReservationsClient.list`.
       func list(
         byItem: ReservationsClient.ListRequest
-      ) throws -> any AsyncSequence<Reservation, Swift.Error>
+      ) -> any AsyncSequence<Reservation, Swift.Error>
 
       /// See `ReservationsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<Reservation, Swift.Error>
+      ) -> any AsyncSequence<Reservation, Swift.Error>
 
       /// See `ReservationsClient.performMaintenance`.
       func performMaintenance(request: ReservationsClient.PerformMaintenanceRequest) async throws
@@ -505,7 +505,7 @@
       /// See `ReservationsClient.aggregatedList`.
       func aggregatedList(
         byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
 
       /// See `ReservationsClient.delete`.
       func delete(
@@ -535,7 +535,7 @@
       /// See `ReservationsClient.list`.
       func list(
         byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Reservation, Swift.Error>
+      ) -> any AsyncSequence<Reservation, Swift.Error>
 
       /// See `ReservationsClient.performMaintenance`.
       func performMaintenance(
@@ -580,13 +580,13 @@
 
     public func aggregatedList(
       byItem: ReservationsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -596,11 +596,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
       let request = ReservationsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: ReservationsClient.DeleteRequest) async throws
@@ -751,13 +751,13 @@
 
     public func list(
       byItem: ReservationsClient.ListRequest
-    ) throws -> any AsyncSequence<Reservation, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Reservation, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Reservation, Swift.Error> {
+    ) -> any AsyncSequence<Reservation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -767,12 +767,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<Reservation, Swift.Error> {
+    ) -> any AsyncSequence<Reservation, Swift.Error> {
       let request = ReservationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func performMaintenance(request: ReservationsClient.PerformMaintenanceRequest)

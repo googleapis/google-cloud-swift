@@ -61,7 +61,7 @@
     /// @Snippet(path: "packetMirrorings_aggregatedList")
     public func aggregatedList(
       byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "packetMirrorings_list")
     public func list(
       byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PacketMirroring, Swift.Error> {
+    ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
         var request = byItem
@@ -294,12 +294,12 @@
       /// See `PacketMirroringsClient.aggregatedList`.
       func aggregatedList(
         byItem: PacketMirroringsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
 
       /// See `PacketMirroringsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
 
       /// See `PacketMirroringsClient.delete`.
       func delete(request: PacketMirroringsClient.DeleteRequest) async throws
@@ -327,13 +327,13 @@
       /// See `PacketMirroringsClient.list`.
       func list(
         byItem: PacketMirroringsClient.ListRequest
-      ) throws -> any AsyncSequence<PacketMirroring, Swift.Error>
+      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
 
       /// See `PacketMirroringsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<PacketMirroring, Swift.Error>
+      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
 
       /// See `PacketMirroringsClient.patch`.
       func patch(request: PacketMirroringsClient.PatchRequest) async throws
@@ -359,7 +359,7 @@
       /// See `PacketMirroringsClient.aggregatedList`.
       func aggregatedList(
         byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
 
       /// See `PacketMirroringsClient.delete`.
       func delete(
@@ -384,7 +384,7 @@
       /// See `PacketMirroringsClient.list`.
       func list(
         byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PacketMirroring, Swift.Error>
+      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
 
       /// See `PacketMirroringsClient.patch`.
       func patch(
@@ -414,13 +414,13 @@
 
     public func aggregatedList(
       byItem: PacketMirroringsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -430,11 +430,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
       let request = PacketMirroringsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: PacketMirroringsClient.DeleteRequest) async throws
@@ -560,13 +560,13 @@
 
     public func list(
       byItem: PacketMirroringsClient.ListRequest
-    ) throws -> any AsyncSequence<PacketMirroring, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PacketMirroring, Swift.Error> {
+    ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
         throw GoogleGax.RequestError.unimplemented
@@ -577,12 +577,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<PacketMirroring, Swift.Error> {
+    ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
       let request = PacketMirroringsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: PacketMirroringsClient.PatchRequest) async throws

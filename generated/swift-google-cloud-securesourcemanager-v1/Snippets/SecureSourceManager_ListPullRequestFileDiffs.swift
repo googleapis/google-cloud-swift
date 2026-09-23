@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let items = try client.listPullRequestFileDiffs(
+  let items = client.listPullRequestFileDiffs(
     byItem: ListPullRequestFileDiffsRequest()
       /* set fields using .with { $0... } */
   )

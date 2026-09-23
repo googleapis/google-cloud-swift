@@ -23,7 +23,7 @@ func sample(organizationId: String, locationId: String, customerId: String, work
   async throws
 {
   let client = try GoogleCloudControlsPartnerV1.CloudControlsPartnerMonitoringClient()
-  let items = try client.listViolations(
+  let items = client.listViolations(
     byItem: ListViolationsRequest()
       .with {
         $0.parent =

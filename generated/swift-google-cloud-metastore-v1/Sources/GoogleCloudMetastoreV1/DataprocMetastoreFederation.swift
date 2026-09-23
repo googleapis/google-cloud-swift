@@ -73,7 +73,7 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// @Snippet(path: "DataprocMetastoreFederation_ListFederations")
   public func listFederations(
     byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse in
       var request = byItem
@@ -211,7 +211,7 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// @Snippet(path: "DataprocMetastoreFederation_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -286,7 +286,7 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// @Snippet(path: "DataprocMetastoreFederation_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -344,12 +344,12 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listFederations`.
     func listFederations(
       byItem: ListFederationsRequest
-    ) throws -> any AsyncSequence<Federation, Swift.Error>
+    ) -> any AsyncSequence<Federation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.listFederations`.
     func listFederations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Federation, Swift.Error>
+    ) -> any AsyncSequence<Federation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.getFederation`.
     func getFederation(request: GetFederationRequest) async throws
@@ -409,7 +409,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -432,13 +432,13 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -464,7 +464,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listFederations`.
     func listFederations(
       byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Federation, Swift.Error>
+    ) -> any AsyncSequence<Federation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.getFederation`.
     func getFederation(
@@ -509,7 +509,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.getLocation`.
     func getLocation(
@@ -539,7 +539,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.deleteOperation`.
     func deleteOperation(
@@ -569,13 +569,13 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederations(
     byItem: ListFederationsRequest
-  ) throws -> any AsyncSequence<Federation, Swift.Error> {
-    try self.listFederations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Federation, Swift.Error> {
+    self.listFederations(byItem: byItem, options: .init())
   }
 
   public func listFederations(
     byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -585,11 +585,11 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> {
     let request = ListFederationsRequest().with {
       $0.parent = parent
     }
-    return try self.listFederations(byItem: request)
+    return self.listFederations(byItem: request)
   }
 
   public func getFederation(request: GetFederationRequest) async throws
@@ -744,13 +744,13 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -820,13 +820,13 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -837,12 +837,12 @@ extension Clients.DataprocMetastoreFederationProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigServiceClient) async throws {
-  let items = try client.listPatchJobInstanceDetails(
+  let items = client.listPatchJobInstanceDetails(
     byItem: ListPatchJobInstanceDetailsRequest()
       /* set fields using .with { $0... } */
   )

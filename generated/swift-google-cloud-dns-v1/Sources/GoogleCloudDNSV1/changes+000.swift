@@ -68,7 +68,7 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   /// @Snippet(path: "changes_list")
   public func list(
     byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Change, Swift.Error> {
+  ) -> any AsyncSequence<Change, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ChangesListResponse in
       var request = byItem
       request.pageToken = token
@@ -111,13 +111,13 @@ extension Clients {
     /// See `ChangesClient.list`.
     func list(
       byItem: ChangesClient.ListRequest
-    ) throws -> any AsyncSequence<Change, Swift.Error>
+    ) -> any AsyncSequence<Change, Swift.Error>
 
     /// See `ChangesClient.list`.
     func list(
       project: Swift.String,
       managedZone: Swift.String,
-    ) throws -> any AsyncSequence<Change, Swift.Error>
+    ) -> any AsyncSequence<Change, Swift.Error>
 
     /// See `ChangesClient.create`.
     func create(
@@ -137,7 +137,7 @@ extension Clients {
     /// See `ChangesClient.list`.
     func list(
       byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Change, Swift.Error>
+    ) -> any AsyncSequence<Change, Swift.Error>
   }
 }
 
@@ -201,13 +201,13 @@ extension Clients.ChangesProtocol {
 
   public func list(
     byItem: ChangesClient.ListRequest
-  ) throws -> any AsyncSequence<Change, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Change, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Change, Swift.Error> {
+  ) -> any AsyncSequence<Change, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ChangesListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -217,11 +217,11 @@ extension Clients.ChangesProtocol {
   public func list(
     project: Swift.String,
     managedZone: Swift.String,
-  ) throws -> any AsyncSequence<Change, Swift.Error> {
+  ) -> any AsyncSequence<Change, Swift.Error> {
     let request = ChangesClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 }

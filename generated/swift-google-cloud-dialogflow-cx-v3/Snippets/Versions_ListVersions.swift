@@ -26,7 +26,7 @@
   func sample(
     client: VersionsClient, projectId: String, locationId: String, agentId: String, flowId: String
   ) async throws {
-    let items = try client.listVersions(
+    let items = client.listVersions(
       byItem: ListVersionsRequest()
         .with {
           $0.parent =

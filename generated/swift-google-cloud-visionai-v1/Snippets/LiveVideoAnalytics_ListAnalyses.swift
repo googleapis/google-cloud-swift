@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String
 ) async throws {
-  let items = try client.listAnalyses(
+  let items = client.listAnalyses(
     byItem: ListAnalysesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"

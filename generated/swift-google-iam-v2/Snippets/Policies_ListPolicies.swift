@@ -21,7 +21,7 @@ import GoogleIAMV2
 import GoogleLongRunning
 
 func sample(client: PoliciesClient) async throws {
-  let items = try client.listPolicies(
+  let items = client.listPolicies(
     byItem: ListPoliciesRequest()
       /* set fields using .with { $0... } */
   )

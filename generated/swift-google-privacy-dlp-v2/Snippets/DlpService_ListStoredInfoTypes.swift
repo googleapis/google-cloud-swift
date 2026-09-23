@@ -21,7 +21,7 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, organizationId: String) async throws {
-  let items = try client.listStoredInfoTypes(
+  let items = client.listStoredInfoTypes(
     byItem: ListStoredInfoTypesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"

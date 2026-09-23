@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DataObjectSearchServiceClient) async throws {
-  let items = try client.queryDataObjects(
+  let items = client.queryDataObjects(
     byItem: QueryDataObjectsRequest()
       /* set fields using .with { $0... } */
   )

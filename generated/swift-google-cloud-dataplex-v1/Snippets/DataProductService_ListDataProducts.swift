@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataProductServiceClient, parent: String) async throws {
-  let items = try client.listDataProducts(
+  let items = client.listDataProducts(
     byItem: ListDataProductsRequest()
       .with {
         $0.parent = "\(parent)"

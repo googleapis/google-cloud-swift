@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PolicyBindingsClient) async throws {
-  let items = try client.searchTargetPolicyBindings(
+  let items = client.searchTargetPolicyBindings(
     byItem: SearchTargetPolicyBindingsRequest()
       /* set fields using .with { $0... } */
   )

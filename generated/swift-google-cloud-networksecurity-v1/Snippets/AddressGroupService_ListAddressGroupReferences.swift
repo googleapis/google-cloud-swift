@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AddressGroupServiceClient) async throws {
-  let items = try client.listAddressGroupReferences(
+  let items = client.listAddressGroupReferences(
     byItem: ListAddressGroupReferencesRequest()
       /* set fields using .with { $0... } */
   )

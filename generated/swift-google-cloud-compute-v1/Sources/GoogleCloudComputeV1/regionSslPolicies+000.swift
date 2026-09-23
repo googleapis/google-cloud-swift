@@ -170,7 +170,7 @@
     /// @Snippet(path: "regionSslPolicies_list")
     public func list(
       byItem: RegionSslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SslPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         var request = byItem
         request.pageToken = token
@@ -282,13 +282,13 @@
       /// See `RegionSslPoliciesClient.list`.
       func list(
         byItem: RegionSslPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<SslPolicy, Swift.Error>
+      ) -> any AsyncSequence<SslPolicy, Swift.Error>
 
       /// See `RegionSslPoliciesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<SslPolicy, Swift.Error>
+      ) -> any AsyncSequence<SslPolicy, Swift.Error>
 
       /// See `RegionSslPoliciesClient.listAvailableFeatures`.
       func listAvailableFeatures(request: RegionSslPoliciesClient.ListAvailableFeaturesRequest)
@@ -327,7 +327,7 @@
       /// See `RegionSslPoliciesClient.list`.
       func list(
         byItem: RegionSslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<SslPolicy, Swift.Error>
+      ) -> any AsyncSequence<SslPolicy, Swift.Error>
 
       /// See `RegionSslPoliciesClient.listAvailableFeatures`.
       func listAvailableFeatures(
@@ -467,13 +467,13 @@
 
     public func list(
       byItem: RegionSslPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<SslPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionSslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SslPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -483,12 +483,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<SslPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
       let request = RegionSslPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listAvailableFeatures(request: RegionSslPoliciesClient.ListAvailableFeaturesRequest)

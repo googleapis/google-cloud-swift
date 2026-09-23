@@ -23,7 +23,7 @@ import GoogleWKT
 func sample(client: ServiceMonitoringServiceClient, projectId: String, serviceId: String)
   async throws
 {
-  let items = try client.listServiceLevelObjectives(
+  let items = client.listServiceLevelObjectives(
     byItem: ListServiceLevelObjectivesRequest()
       .with {
         $0.parent = "projects/\(projectId)/services/\(serviceId)"

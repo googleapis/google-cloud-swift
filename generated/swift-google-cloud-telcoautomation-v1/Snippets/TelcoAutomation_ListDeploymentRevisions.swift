@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient) async throws {
-  let items = try client.listDeploymentRevisions(
+  let items = client.listDeploymentRevisions(
     byItem: ListDeploymentRevisionsRequest()
       /* set fields using .with { $0... } */
   )

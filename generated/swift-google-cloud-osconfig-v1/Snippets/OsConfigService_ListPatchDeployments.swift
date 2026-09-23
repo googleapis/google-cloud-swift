@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigServiceClient, parent: String) async throws {
-  let items = try client.listPatchDeployments(
+  let items = client.listPatchDeployments(
     byItem: ListPatchDeploymentsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -64,7 +64,7 @@
     /// @Snippet(path: "previewFeatures_list")
     public func list(
       byItem: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PreviewFeature, Swift.Error> {
+    ) -> any AsyncSequence<PreviewFeature, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PreviewFeatureList in
         var request = byItem
@@ -158,12 +158,12 @@
       /// See `PreviewFeaturesClient.list`.
       func list(
         byItem: PreviewFeaturesClient.ListRequest
-      ) throws -> any AsyncSequence<PreviewFeature, Swift.Error>
+      ) -> any AsyncSequence<PreviewFeature, Swift.Error>
 
       /// See `PreviewFeaturesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<PreviewFeature, Swift.Error>
+      ) -> any AsyncSequence<PreviewFeature, Swift.Error>
 
       /// See `PreviewFeaturesClient.update`.
       func update(request: PreviewFeaturesClient.UpdateRequest) async throws
@@ -182,7 +182,7 @@
       /// See `PreviewFeaturesClient.list`.
       func list(
         byItem: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PreviewFeature, Swift.Error>
+      ) -> any AsyncSequence<PreviewFeature, Swift.Error>
 
       /// See `PreviewFeaturesClient.update`.
       func update(
@@ -230,13 +230,13 @@
 
     public func list(
       byItem: PreviewFeaturesClient.ListRequest
-    ) throws -> any AsyncSequence<PreviewFeature, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PreviewFeature, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PreviewFeature, Swift.Error> {
+    ) -> any AsyncSequence<PreviewFeature, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PreviewFeatureList in
         throw GoogleGax.RequestError.unimplemented
@@ -246,11 +246,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<PreviewFeature, Swift.Error> {
+    ) -> any AsyncSequence<PreviewFeature, Swift.Error> {
       let request = PreviewFeaturesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func update(request: PreviewFeaturesClient.UpdateRequest) async throws

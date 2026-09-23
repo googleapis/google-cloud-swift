@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigZonalServiceClient) async throws {
-  let items = try client.listOspolicyAssignmentRevisions(
+  let items = client.listOspolicyAssignmentRevisions(
     byItem: ListOSPolicyAssignmentRevisionsRequest()
       /* set fields using .with { $0... } */
   )

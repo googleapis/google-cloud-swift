@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: CloudBillingClient) async throws {
-  let items = try client.listProjectBillingInfo(
+  let items = client.listProjectBillingInfo(
     byItem: ListProjectBillingInfoRequest()
       /* set fields using .with { $0... } */
   )

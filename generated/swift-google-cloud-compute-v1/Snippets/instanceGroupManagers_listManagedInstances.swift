@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupManagersClient) async throws {
-    let items = try client.listManagedInstances(
+    let items = client.listManagedInstances(
       byItem: InstanceGroupManagersClient.ListManagedInstancesRequest()
         /* set fields using .with { $0... } */
     )

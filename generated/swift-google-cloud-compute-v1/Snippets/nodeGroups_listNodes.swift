@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: NodeGroupsClient) async throws {
-    let items = try client.listNodes(
+    let items = client.listNodes(
       byItem: NodeGroupsClient.ListNodesRequest()
         /* set fields using .with { $0... } */
     )

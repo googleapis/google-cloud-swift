@@ -162,7 +162,7 @@
     /// @Snippet(path: "globalAddresses_list")
     public func list(
       byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         var request = byItem
         request.pageToken = token
@@ -320,12 +320,12 @@
       /// See `GlobalAddressesClient.list`.
       func list(
         byItem: GlobalAddressesClient.ListRequest
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `GlobalAddressesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `GlobalAddressesClient.move`.
       func move(request: GlobalAddressesClient.MoveRequest) async throws
@@ -369,7 +369,7 @@
       /// See `GlobalAddressesClient.list`.
       func list(
         byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Address, Swift.Error>
+      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `GlobalAddressesClient.move`.
       func move(
@@ -507,13 +507,13 @@
 
     public func list(
       byItem: GlobalAddressesClient.ListRequest
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Address, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -522,11 +522,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Address, Swift.Error> {
+    ) -> any AsyncSequence<Address, Swift.Error> {
       let request = GlobalAddressesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func move(request: GlobalAddressesClient.MoveRequest) async throws

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: DatastreamClient, projectId: String, locationId: String, privateConnectionId: String
 ) async throws {
-  let items = try client.listRoutes(
+  let items = client.listRoutes(
     byItem: ListRoutesRequest()
       .with {
         $0.parent =

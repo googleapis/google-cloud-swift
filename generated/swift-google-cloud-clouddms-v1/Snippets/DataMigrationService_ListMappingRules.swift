@@ -27,7 +27,7 @@ func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String,
   conversionWorkspaceId: String
 ) async throws {
-  let items = try client.listMappingRules(
+  let items = client.listMappingRules(
     byItem: ListMappingRulesRequest()
       .with {
         $0.parent =

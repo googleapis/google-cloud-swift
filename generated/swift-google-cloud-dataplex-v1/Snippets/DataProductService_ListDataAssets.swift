@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String
 ) async throws {
-  let items = try client.listDataAssets(
+  let items = client.listDataAssets(
     byItem: ListDataAssetsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataProducts/\(dataProductId)"

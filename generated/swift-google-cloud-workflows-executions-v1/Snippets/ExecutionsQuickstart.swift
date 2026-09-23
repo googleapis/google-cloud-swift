@@ -21,7 +21,7 @@ import GoogleCloudWorkflowsExecutionsV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudWorkflowsExecutionsV1.ExecutionsClient()
-  let items = try client.listExecutions(
+  let items = client.listExecutions(
     byItem: ListExecutionsRequest()
       .with {
         $0.parent = "\(parent)"

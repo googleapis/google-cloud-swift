@@ -26,7 +26,7 @@
   func sample(client: FlowsClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let items = try client.listFlows(
+    let items = client.listFlows(
       byItem: ListFlowsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"

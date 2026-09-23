@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, parent: String) async throws {
-  let items = try client.listSpokes(
+  let items = client.listSpokes(
     byItem: ListSpokesRequest()
       .with {
         $0.parent = "\(parent)"

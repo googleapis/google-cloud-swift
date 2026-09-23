@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityCenterClient, organizationId: String) async throws {
-  let items = try client.listResourceValueConfigs(
+  let items = client.listResourceValueConfigs(
     byItem: ListResourceValueConfigsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"

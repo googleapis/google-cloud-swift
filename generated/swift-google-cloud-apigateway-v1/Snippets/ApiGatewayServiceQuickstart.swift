@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudApiGatewayV1.ApiGatewayServiceClient()
-  let items = try client.listGateways(
+  let items = client.listGateways(
     byItem: ListGatewaysRequest()
       .with {
         $0.parent = "\(parent)"

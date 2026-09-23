@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigDeliveryClient, projectId: String, locationId: String) async throws {
-  let items = try client.listFleetPackages(
+  let items = client.listFleetPackages(
     byItem: ListFleetPackagesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

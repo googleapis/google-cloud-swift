@@ -73,7 +73,7 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// @Snippet(path: "Grafeas_ListOccurrences")
   public func listOccurrences(
     byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
       var request = byItem
       request.pageToken = token
@@ -153,7 +153,7 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// @Snippet(path: "Grafeas_ListNotes")
   public func listNotes(
     byItem: ListNotesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Note, Swift.Error> {
+  ) -> any AsyncSequence<Note, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
       var request = byItem
       request.pageToken = token
@@ -216,7 +216,7 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// @Snippet(path: "Grafeas_ListNoteOccurrences")
   public func listNoteOccurrences(
     byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
       var request = byItem
@@ -249,13 +249,13 @@ extension Clients {
     /// See `GrafeasClient.listOccurrences`.
     func listOccurrences(
       byItem: ListOccurrencesRequest
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.listOccurrences`.
     func listOccurrences(
       parent: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.deleteOccurrence`.
     func deleteOccurrence(request: DeleteOccurrenceRequest) async throws
@@ -318,13 +318,13 @@ extension Clients {
     /// See `GrafeasClient.listNotes`.
     func listNotes(
       byItem: ListNotesRequest
-    ) throws -> any AsyncSequence<Note, Swift.Error>
+    ) -> any AsyncSequence<Note, Swift.Error>
 
     /// See `GrafeasClient.listNotes`.
     func listNotes(
       parent: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Note, Swift.Error>
+    ) -> any AsyncSequence<Note, Swift.Error>
 
     /// See `GrafeasClient.deleteNote`.
     func deleteNote(request: DeleteNoteRequest) async throws
@@ -371,13 +371,13 @@ extension Clients {
     /// See `GrafeasClient.listNoteOccurrences`.
     func listNoteOccurrences(
       byItem: ListNoteOccurrencesRequest
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.listNoteOccurrences`.
     func listNoteOccurrences(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.getOccurrence`.
     func getOccurrence(
@@ -392,7 +392,7 @@ extension Clients {
     /// See `GrafeasClient.listOccurrences`.
     func listOccurrences(
       byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.deleteOccurrence`.
     func deleteOccurrence(
@@ -432,7 +432,7 @@ extension Clients {
     /// See `GrafeasClient.listNotes`.
     func listNotes(
       byItem: ListNotesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Note, Swift.Error>
+    ) -> any AsyncSequence<Note, Swift.Error>
 
     /// See `GrafeasClient.deleteNote`.
     func deleteNote(
@@ -462,7 +462,7 @@ extension Clients {
     /// See `GrafeasClient.listNoteOccurrences`.
     func listNoteOccurrences(
       byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Occurrence, Swift.Error>
+    ) -> any AsyncSequence<Occurrence, Swift.Error>
   }
 }
 
@@ -503,13 +503,13 @@ extension Clients.GrafeasProtocol {
 
   public func listOccurrences(
     byItem: ListOccurrencesRequest
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
-    try self.listOccurrences(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+    self.listOccurrences(byItem: byItem, options: .init())
   }
 
   public func listOccurrences(
     byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -519,12 +519,12 @@ extension Clients.GrafeasProtocol {
   public func listOccurrences(
     parent: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let request = ListOccurrencesRequest().with {
       $0.parent = parent
       $0.filter = filter
     }
-    return try self.listOccurrences(byItem: request)
+    return self.listOccurrences(byItem: request)
   }
 
   public func deleteOccurrence(request: DeleteOccurrenceRequest) async throws {
@@ -670,13 +670,13 @@ extension Clients.GrafeasProtocol {
 
   public func listNotes(
     byItem: ListNotesRequest
-  ) throws -> any AsyncSequence<Note, Swift.Error> {
-    try self.listNotes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Note, Swift.Error> {
+    self.listNotes(byItem: byItem, options: .init())
   }
 
   public func listNotes(
     byItem: ListNotesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Note, Swift.Error> {
+  ) -> any AsyncSequence<Note, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -686,12 +686,12 @@ extension Clients.GrafeasProtocol {
   public func listNotes(
     parent: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Note, Swift.Error> {
+  ) -> any AsyncSequence<Note, Swift.Error> {
     let request = ListNotesRequest().with {
       $0.parent = parent
       $0.filter = filter
     }
-    return try self.listNotes(byItem: request)
+    return self.listNotes(byItem: request)
   }
 
   public func deleteNote(request: DeleteNoteRequest) async throws {
@@ -796,13 +796,13 @@ extension Clients.GrafeasProtocol {
 
   public func listNoteOccurrences(
     byItem: ListNoteOccurrencesRequest
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
-    try self.listNoteOccurrences(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+    self.listNoteOccurrences(byItem: byItem, options: .init())
   }
 
   public func listNoteOccurrences(
     byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -813,11 +813,11 @@ extension Clients.GrafeasProtocol {
   public func listNoteOccurrences(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let request = ListNoteOccurrencesRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listNoteOccurrences(byItem: request)
+    return self.listNoteOccurrences(byItem: request)
   }
 }

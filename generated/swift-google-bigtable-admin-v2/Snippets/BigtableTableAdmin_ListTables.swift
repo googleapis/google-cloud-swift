@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BigtableTableAdminClient, projectId: String, instanceId: String) async throws {
-  let items = try client.listTables(
+  let items = client.listTables(
     byItem: ListTablesRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"

@@ -191,7 +191,7 @@
     /// @Snippet(path: "interconnects_list")
     public func list(
       byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Interconnect, Swift.Error> {
+    ) -> any AsyncSequence<Interconnect, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectList in
         var request = byItem
         request.pageToken = token
@@ -368,12 +368,12 @@
       /// See `InterconnectsClient.list`.
       func list(
         byItem: InterconnectsClient.ListRequest
-      ) throws -> any AsyncSequence<Interconnect, Swift.Error>
+      ) -> any AsyncSequence<Interconnect, Swift.Error>
 
       /// See `InterconnectsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Interconnect, Swift.Error>
+      ) -> any AsyncSequence<Interconnect, Swift.Error>
 
       /// See `InterconnectsClient.patch`.
       func patch(request: InterconnectsClient.PatchRequest) async throws
@@ -416,7 +416,7 @@
       /// See `InterconnectsClient.list`.
       func list(
         byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Interconnect, Swift.Error>
+      ) -> any AsyncSequence<Interconnect, Swift.Error>
 
       /// See `InterconnectsClient.patch`.
       func patch(
@@ -595,13 +595,13 @@
 
     public func list(
       byItem: InterconnectsClient.ListRequest
-    ) throws -> any AsyncSequence<Interconnect, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Interconnect, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Interconnect, Swift.Error> {
+    ) -> any AsyncSequence<Interconnect, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -610,11 +610,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Interconnect, Swift.Error> {
+    ) -> any AsyncSequence<Interconnect, Swift.Error> {
       let request = InterconnectsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: InterconnectsClient.PatchRequest) async throws

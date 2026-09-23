@@ -24,7 +24,7 @@ func sample(projectId: String, locationId: String, jobId: String, executionId: S
   async throws
 {
   let client = try GoogleCloudRunV2.TasksClient()
-  let items = try client.listTasks(
+  let items = client.listTasks(
     byItem: ListTasksRequest()
       .with {
         $0.parent =

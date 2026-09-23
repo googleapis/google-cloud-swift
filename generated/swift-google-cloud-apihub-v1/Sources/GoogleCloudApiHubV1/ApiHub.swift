@@ -72,7 +72,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListApis")
   public func listApis(
     byItem: ListApisRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Api, Swift.Error> {
+  ) -> any AsyncSequence<Api, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListApisResponse in
       var request = byItem
       request.pageToken = token
@@ -166,7 +166,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListVersions")
   public func listVersions(
     byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
+  ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListVersionsResponse in
       var request = byItem
@@ -290,7 +290,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListSpecs")
   public func listSpecs(
     byItem: ListSpecsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Spec, Swift.Error> {
+  ) -> any AsyncSequence<Spec, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListSpecsResponse in
       var request = byItem
       request.pageToken = token
@@ -383,7 +383,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListApiOperations")
   public func listApiOperations(
     byItem: ListApiOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<ApiOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListApiOperationsResponse in
       var request = byItem
@@ -479,7 +479,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListDeploymentsResponse in
       var request = byItem
@@ -633,7 +633,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListAttributes")
   public func listAttributes(
     byItem: ListAttributesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Attribute, Swift.Error> {
+  ) -> any AsyncSequence<Attribute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListAttributesResponse in
       var request = byItem
@@ -657,7 +657,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_SearchResources")
   public func searchResources(
     byItem: SearchResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.SearchResourcesResponse in
       var request = byItem
@@ -735,7 +735,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListExternalApis")
   public func listExternalApis(
     byItem: ListExternalApisRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ExternalApi, Swift.Error> {
+  ) -> any AsyncSequence<ExternalApi, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListExternalApisResponse in
       var request = byItem
@@ -759,7 +759,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -796,7 +796,7 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// @Snippet(path: "ApiHub_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -871,12 +871,12 @@ extension Clients {
     /// See `ApiHubClient.listApis`.
     func listApis(
       byItem: ListApisRequest
-    ) throws -> any AsyncSequence<Api, Swift.Error>
+    ) -> any AsyncSequence<Api, Swift.Error>
 
     /// See `ApiHubClient.listApis`.
     func listApis(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Api, Swift.Error>
+    ) -> any AsyncSequence<Api, Swift.Error>
 
     /// See `ApiHubClient.updateApi`.
     func updateApi(request: UpdateApiRequest) async throws -> GoogleCloudApiHubV1.Api
@@ -920,12 +920,12 @@ extension Clients {
     /// See `ApiHubClient.listVersions`.
     func listVersions(
       byItem: ListVersionsRequest
-    ) throws -> any AsyncSequence<Version, Swift.Error>
+    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `ApiHubClient.listVersions`.
     func listVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Version, Swift.Error>
+    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `ApiHubClient.updateVersion`.
     func updateVersion(request: UpdateVersionRequest) async throws -> GoogleCloudApiHubV1.Version
@@ -977,12 +977,12 @@ extension Clients {
     /// See `ApiHubClient.listSpecs`.
     func listSpecs(
       byItem: ListSpecsRequest
-    ) throws -> any AsyncSequence<Spec, Swift.Error>
+    ) -> any AsyncSequence<Spec, Swift.Error>
 
     /// See `ApiHubClient.listSpecs`.
     func listSpecs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Spec, Swift.Error>
+    ) -> any AsyncSequence<Spec, Swift.Error>
 
     /// See `ApiHubClient.updateSpec`.
     func updateSpec(request: UpdateSpecRequest) async throws -> GoogleCloudApiHubV1.Spec
@@ -1028,12 +1028,12 @@ extension Clients {
     /// See `ApiHubClient.listApiOperations`.
     func listApiOperations(
       byItem: ListApiOperationsRequest
-    ) throws -> any AsyncSequence<ApiOperation, Swift.Error>
+    ) -> any AsyncSequence<ApiOperation, Swift.Error>
 
     /// See `ApiHubClient.listApiOperations`.
     func listApiOperations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ApiOperation, Swift.Error>
+    ) -> any AsyncSequence<ApiOperation, Swift.Error>
 
     /// See `ApiHubClient.updateApiOperation`.
     func updateApiOperation(request: UpdateApiOperationRequest) async throws
@@ -1087,12 +1087,12 @@ extension Clients {
     /// See `ApiHubClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `ApiHubClient.listDeployments`.
     func listDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `ApiHubClient.updateDeployment`.
     func updateDeployment(request: UpdateDeploymentRequest) async throws
@@ -1156,12 +1156,12 @@ extension Clients {
     /// See `ApiHubClient.listAttributes`.
     func listAttributes(
       byItem: ListAttributesRequest
-    ) throws -> any AsyncSequence<Attribute, Swift.Error>
+    ) -> any AsyncSequence<Attribute, Swift.Error>
 
     /// See `ApiHubClient.listAttributes`.
     func listAttributes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Attribute, Swift.Error>
+    ) -> any AsyncSequence<Attribute, Swift.Error>
 
     /// See `ApiHubClient.searchResources`.
     func searchResources(request: SearchResourcesRequest) async throws
@@ -1170,13 +1170,13 @@ extension Clients {
     /// See `ApiHubClient.searchResources`.
     func searchResources(
       byItem: SearchResourcesRequest
-    ) throws -> any AsyncSequence<SearchResult, Swift.Error>
+    ) -> any AsyncSequence<SearchResult, Swift.Error>
 
     /// See `ApiHubClient.searchResources`.
     func searchResources(
       location: Swift.String,
       query: Swift.String,
-    ) throws -> any AsyncSequence<SearchResult, Swift.Error>
+    ) -> any AsyncSequence<SearchResult, Swift.Error>
 
     /// See `ApiHubClient.createExternalApi`.
     func createExternalApi(request: CreateExternalApiRequest) async throws
@@ -1223,12 +1223,12 @@ extension Clients {
     /// See `ApiHubClient.listExternalApis`.
     func listExternalApis(
       byItem: ListExternalApisRequest
-    ) throws -> any AsyncSequence<ExternalApi, Swift.Error>
+    ) -> any AsyncSequence<ExternalApi, Swift.Error>
 
     /// See `ApiHubClient.listExternalApis`.
     func listExternalApis(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ExternalApi, Swift.Error>
+    ) -> any AsyncSequence<ExternalApi, Swift.Error>
 
     /// See `ApiHubClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -1237,7 +1237,7 @@ extension Clients {
     /// See `ApiHubClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1250,13 +1250,13 @@ extension Clients {
     /// See `ApiHubClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1292,7 +1292,7 @@ extension Clients {
     /// See `ApiHubClient.listApis`.
     func listApis(
       byItem: ListApisRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Api, Swift.Error>
+    ) -> any AsyncSequence<Api, Swift.Error>
 
     /// See `ApiHubClient.updateApi`.
     func updateApi(
@@ -1322,7 +1322,7 @@ extension Clients {
     /// See `ApiHubClient.listVersions`.
     func listVersions(
       byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Version, Swift.Error>
+    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `ApiHubClient.updateVersion`.
     func updateVersion(
@@ -1357,7 +1357,7 @@ extension Clients {
     /// See `ApiHubClient.listSpecs`.
     func listSpecs(
       byItem: ListSpecsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Spec, Swift.Error>
+    ) -> any AsyncSequence<Spec, Swift.Error>
 
     /// See `ApiHubClient.updateSpec`.
     func updateSpec(
@@ -1387,7 +1387,7 @@ extension Clients {
     /// See `ApiHubClient.listApiOperations`.
     func listApiOperations(
       byItem: ListApiOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ApiOperation, Swift.Error>
+    ) -> any AsyncSequence<ApiOperation, Swift.Error>
 
     /// See `ApiHubClient.updateApiOperation`.
     func updateApiOperation(
@@ -1422,7 +1422,7 @@ extension Clients {
     /// See `ApiHubClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `ApiHubClient.updateDeployment`.
     func updateDeployment(
@@ -1462,7 +1462,7 @@ extension Clients {
     /// See `ApiHubClient.listAttributes`.
     func listAttributes(
       byItem: ListAttributesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Attribute, Swift.Error>
+    ) -> any AsyncSequence<Attribute, Swift.Error>
 
     /// See `ApiHubClient.searchResources`.
     func searchResources(
@@ -1472,7 +1472,7 @@ extension Clients {
     /// See `ApiHubClient.searchResources`.
     func searchResources(
       byItem: SearchResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchResult, Swift.Error>
+    ) -> any AsyncSequence<SearchResult, Swift.Error>
 
     /// See `ApiHubClient.createExternalApi`.
     func createExternalApi(
@@ -1502,7 +1502,7 @@ extension Clients {
     /// See `ApiHubClient.listExternalApis`.
     func listExternalApis(
       byItem: ListExternalApisRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ExternalApi, Swift.Error>
+    ) -> any AsyncSequence<ExternalApi, Swift.Error>
 
     /// See `ApiHubClient.listLocations`.
     func listLocations(
@@ -1512,7 +1512,7 @@ extension Clients {
     /// See `ApiHubClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubClient.getLocation`.
     func getLocation(
@@ -1527,7 +1527,7 @@ extension Clients {
     /// See `ApiHubClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubClient.deleteOperation`.
     func deleteOperation(
@@ -1599,13 +1599,13 @@ extension Clients.ApiHubProtocol {
 
   public func listApis(
     byItem: ListApisRequest
-  ) throws -> any AsyncSequence<Api, Swift.Error> {
-    try self.listApis(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Api, Swift.Error> {
+    self.listApis(byItem: byItem, options: .init())
   }
 
   public func listApis(
     byItem: ListApisRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Api, Swift.Error> {
+  ) -> any AsyncSequence<Api, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListApisResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1614,11 +1614,11 @@ extension Clients.ApiHubProtocol {
 
   public func listApis(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Api, Swift.Error> {
+  ) -> any AsyncSequence<Api, Swift.Error> {
     let request = ListApisRequest().with {
       $0.parent = parent
     }
-    return try self.listApis(byItem: request)
+    return self.listApis(byItem: request)
   }
 
   public func updateApi(request: UpdateApiRequest) async throws -> GoogleCloudApiHubV1.Api {
@@ -1719,13 +1719,13 @@ extension Clients.ApiHubProtocol {
 
   public func listVersions(
     byItem: ListVersionsRequest
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
-    try self.listVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Version, Swift.Error> {
+    self.listVersions(byItem: byItem, options: .init())
   }
 
   public func listVersions(
     byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
+  ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListVersionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1735,11 +1735,11 @@ extension Clients.ApiHubProtocol {
 
   public func listVersions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
+  ) -> any AsyncSequence<Version, Swift.Error> {
     let request = ListVersionsRequest().with {
       $0.parent = parent
     }
-    return try self.listVersions(byItem: request)
+    return self.listVersions(byItem: request)
   }
 
   public func updateVersion(request: UpdateVersionRequest) async throws
@@ -1861,13 +1861,13 @@ extension Clients.ApiHubProtocol {
 
   public func listSpecs(
     byItem: ListSpecsRequest
-  ) throws -> any AsyncSequence<Spec, Swift.Error> {
-    try self.listSpecs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Spec, Swift.Error> {
+    self.listSpecs(byItem: byItem, options: .init())
   }
 
   public func listSpecs(
     byItem: ListSpecsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Spec, Swift.Error> {
+  ) -> any AsyncSequence<Spec, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListSpecsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1876,11 +1876,11 @@ extension Clients.ApiHubProtocol {
 
   public func listSpecs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Spec, Swift.Error> {
+  ) -> any AsyncSequence<Spec, Swift.Error> {
     let request = ListSpecsRequest().with {
       $0.parent = parent
     }
-    return try self.listSpecs(byItem: request)
+    return self.listSpecs(byItem: request)
   }
 
   public func updateSpec(request: UpdateSpecRequest) async throws -> GoogleCloudApiHubV1.Spec {
@@ -1983,13 +1983,13 @@ extension Clients.ApiHubProtocol {
 
   public func listApiOperations(
     byItem: ListApiOperationsRequest
-  ) throws -> any AsyncSequence<ApiOperation, Swift.Error> {
-    try self.listApiOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ApiOperation, Swift.Error> {
+    self.listApiOperations(byItem: byItem, options: .init())
   }
 
   public func listApiOperations(
     byItem: ListApiOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<ApiOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListApiOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1999,11 +1999,11 @@ extension Clients.ApiHubProtocol {
 
   public func listApiOperations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<ApiOperation, Swift.Error> {
     let request = ListApiOperationsRequest().with {
       $0.parent = parent
     }
-    return try self.listApiOperations(byItem: request)
+    return self.listApiOperations(byItem: request)
   }
 
   public func updateApiOperation(request: UpdateApiOperationRequest) async throws
@@ -2129,13 +2129,13 @@ extension Clients.ApiHubProtocol {
 
   public func listDeployments(
     byItem: ListDeploymentsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.listDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.listDeployments(byItem: byItem, options: .init())
   }
 
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListDeploymentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2145,11 +2145,11 @@ extension Clients.ApiHubProtocol {
 
   public func listDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeployments(byItem: request)
+    return self.listDeployments(byItem: request)
   }
 
   public func updateDeployment(request: UpdateDeploymentRequest) async throws
@@ -2296,13 +2296,13 @@ extension Clients.ApiHubProtocol {
 
   public func listAttributes(
     byItem: ListAttributesRequest
-  ) throws -> any AsyncSequence<Attribute, Swift.Error> {
-    try self.listAttributes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Attribute, Swift.Error> {
+    self.listAttributes(byItem: byItem, options: .init())
   }
 
   public func listAttributes(
     byItem: ListAttributesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Attribute, Swift.Error> {
+  ) -> any AsyncSequence<Attribute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListAttributesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2312,11 +2312,11 @@ extension Clients.ApiHubProtocol {
 
   public func listAttributes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Attribute, Swift.Error> {
+  ) -> any AsyncSequence<Attribute, Swift.Error> {
     let request = ListAttributesRequest().with {
       $0.parent = parent
     }
-    return try self.listAttributes(byItem: request)
+    return self.listAttributes(byItem: request)
   }
 
   public func searchResources(request: SearchResourcesRequest) async throws
@@ -2333,13 +2333,13 @@ extension Clients.ApiHubProtocol {
 
   public func searchResources(
     byItem: SearchResourcesRequest
-  ) throws -> any AsyncSequence<SearchResult, Swift.Error> {
-    try self.searchResources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchResult, Swift.Error> {
+    self.searchResources(byItem: byItem, options: .init())
   }
 
   public func searchResources(
     byItem: SearchResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.SearchResourcesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2350,12 +2350,12 @@ extension Clients.ApiHubProtocol {
   public func searchResources(
     location: Swift.String,
     query: Swift.String,
-  ) throws -> any AsyncSequence<SearchResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchResult, Swift.Error> {
     let request = SearchResourcesRequest().with {
       $0.location = location
       $0.query = query
     }
-    return try self.searchResources(byItem: request)
+    return self.searchResources(byItem: request)
   }
 
   public func createExternalApi(request: CreateExternalApiRequest) async throws
@@ -2460,13 +2460,13 @@ extension Clients.ApiHubProtocol {
 
   public func listExternalApis(
     byItem: ListExternalApisRequest
-  ) throws -> any AsyncSequence<ExternalApi, Swift.Error> {
-    try self.listExternalApis(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ExternalApi, Swift.Error> {
+    self.listExternalApis(byItem: byItem, options: .init())
   }
 
   public func listExternalApis(
     byItem: ListExternalApisRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ExternalApi, Swift.Error> {
+  ) -> any AsyncSequence<ExternalApi, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListExternalApisResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2476,11 +2476,11 @@ extension Clients.ApiHubProtocol {
 
   public func listExternalApis(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ExternalApi, Swift.Error> {
+  ) -> any AsyncSequence<ExternalApi, Swift.Error> {
     let request = ListExternalApisRequest().with {
       $0.parent = parent
     }
-    return try self.listExternalApis(byItem: request)
+    return self.listExternalApis(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -2497,13 +2497,13 @@ extension Clients.ApiHubProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2537,13 +2537,13 @@ extension Clients.ApiHubProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2554,12 +2554,12 @@ extension Clients.ApiHubProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -21,7 +21,7 @@ import GoogleCloudEssentialContactsV1
 import GoogleWKT
 
 func sample(client: EssentialContactsServiceClient) async throws {
-  let items = try client.computeContacts(
+  let items = client.computeContacts(
     byItem: ComputeContactsRequest()
       /* set fields using .with { $0... } */
   )

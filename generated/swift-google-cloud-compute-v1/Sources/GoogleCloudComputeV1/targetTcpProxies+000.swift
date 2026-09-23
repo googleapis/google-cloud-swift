@@ -63,7 +63,7 @@
     /// @Snippet(path: "targetTcpProxies_aggregatedList")
     public func aggregatedList(
       byItem: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "targetTcpProxies_list")
     public func list(
       byItem: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         var request = byItem
@@ -336,12 +336,12 @@
       /// See `TargetTcpProxiesClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetTcpProxiesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
 
       /// See `TargetTcpProxiesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
 
       /// See `TargetTcpProxiesClient.delete`.
       func delete(request: TargetTcpProxiesClient.DeleteRequest) async throws
@@ -368,12 +368,12 @@
       /// See `TargetTcpProxiesClient.list`.
       func list(
         byItem: TargetTcpProxiesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
 
       /// See `TargetTcpProxiesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
 
       /// See `TargetTcpProxiesClient.setBackendService`.
       func setBackendService(request: TargetTcpProxiesClient.SetBackendServiceRequest) async throws
@@ -402,7 +402,7 @@
       /// See `TargetTcpProxiesClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error>
 
       /// See `TargetTcpProxiesClient.delete`.
       func delete(
@@ -427,7 +427,7 @@
       /// See `TargetTcpProxiesClient.list`.
       func list(
         byItem: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
 
       /// See `TargetTcpProxiesClient.setBackendService`.
       func setBackendService(
@@ -462,13 +462,13 @@
 
     public func aggregatedList(
       byItem: TargetTcpProxiesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -478,11 +478,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> {
       let request = TargetTcpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: TargetTcpProxiesClient.DeleteRequest) async throws
@@ -602,13 +602,13 @@
 
     public func list(
       byItem: TargetTcpProxiesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         throw GoogleGax.RequestError.unimplemented
@@ -618,11 +618,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let request = TargetTcpProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setBackendService(request: TargetTcpProxiesClient.SetBackendServiceRequest)

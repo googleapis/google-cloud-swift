@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleWKT
 
 func sample(client: DataTransferServiceClient, projectId: String) async throws {
-  let items = try client.listTransferConfigs(
+  let items = client.listTransferConfigs(
     byItem: ListTransferConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)"

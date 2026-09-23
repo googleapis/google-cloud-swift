@@ -23,7 +23,7 @@ import GoogleWKT
 func sample(client: CloudQuotasClient, projectId: String, locationId: String, serviceId: String)
   async throws
 {
-  let items = try client.listQuotaInfos(
+  let items = client.listQuotaInfos(
     byItem: ListQuotaInfosRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"

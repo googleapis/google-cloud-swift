@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: AppGatewaysServiceClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAppGateways(
+  let items = client.listAppGateways(
     byItem: ListAppGatewaysRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

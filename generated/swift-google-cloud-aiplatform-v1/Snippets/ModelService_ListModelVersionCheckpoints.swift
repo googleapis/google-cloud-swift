@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient) async throws {
-    let items = try client.listModelVersionCheckpoints(
+    let items = client.listModelVersionCheckpoints(
       byItem: ListModelVersionCheckpointsRequest()
         /* set fields using .with { $0... } */
     )

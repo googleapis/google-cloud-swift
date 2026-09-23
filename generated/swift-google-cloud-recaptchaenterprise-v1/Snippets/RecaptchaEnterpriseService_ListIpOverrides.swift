@@ -21,7 +21,7 @@ import GoogleCloudRecaptchaEnterpriseV1
 import GoogleWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient) async throws {
-  let items = try client.listIpOverrides(
+  let items = client.listIpOverrides(
     byItem: ListIpOverridesRequest()
       /* set fields using .with { $0... } */
   )

@@ -292,7 +292,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_GroupFindings")
   public func groupFindings(
     byItem: GroupFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GroupResult, Swift.Error> {
+  ) -> any AsyncSequence<GroupResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse in
       var request = byItem
@@ -318,7 +318,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListAttackPaths")
   public func listAttackPaths(
     byItem: ListAttackPathsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AttackPath, Swift.Error> {
+  ) -> any AsyncSequence<AttackPath, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListAttackPathsResponse in
       var request = byItem
@@ -350,7 +350,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListBigQueryExports")
   public func listBigQueryExports(
     byItem: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BigQueryExport, Swift.Error> {
+  ) -> any AsyncSequence<BigQueryExport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListBigQueryExportsResponse
       in
@@ -391,7 +391,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListFindings")
   public func listFindings(
     byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
+  ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListFindingsResponse in
       var request = byItem
@@ -417,7 +417,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListMuteConfigs")
   public func listMuteConfigs(
     byItem: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MuteConfig, Swift.Error> {
+  ) -> any AsyncSequence<MuteConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListMuteConfigsResponse in
       var request = byItem
@@ -441,7 +441,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListNotificationConfigs")
   public func listNotificationConfigs(
     byItem: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationConfig, Swift.Error> {
+  ) -> any AsyncSequence<NotificationConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterV2.ListNotificationConfigsResponse in
@@ -466,7 +466,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListResourceValueConfigs")
   public func listResourceValueConfigs(
     byItem: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
+  ) -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterV2.ListResourceValueConfigsResponse in
@@ -491,7 +491,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListSources")
   public func listSources(
     byItem: ListSourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Source, Swift.Error> {
+  ) -> any AsyncSequence<Source, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListSourcesResponse in
       var request = byItem
@@ -515,7 +515,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListValuedResources")
   public func listValuedResources(
     byItem: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ValuedResource, Swift.Error> {
+  ) -> any AsyncSequence<ValuedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListValuedResourcesResponse
       in
@@ -661,7 +661,7 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// @Snippet(path: "SecurityCenter_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -898,13 +898,13 @@ extension Clients {
     /// See `SecurityCenterClient.groupFindings`.
     func groupFindings(
       byItem: GroupFindingsRequest
-    ) throws -> any AsyncSequence<GroupResult, Swift.Error>
+    ) -> any AsyncSequence<GroupResult, Swift.Error>
 
     /// See `SecurityCenterClient.groupFindings`.
     func groupFindings(
       parent: Swift.String,
       groupBy: Swift.String,
-    ) throws -> any AsyncSequence<GroupResult, Swift.Error>
+    ) -> any AsyncSequence<GroupResult, Swift.Error>
 
     /// See `SecurityCenterClient.listAttackPaths`.
     func listAttackPaths(request: ListAttackPathsRequest) async throws
@@ -913,12 +913,12 @@ extension Clients {
     /// See `SecurityCenterClient.listAttackPaths`.
     func listAttackPaths(
       byItem: ListAttackPathsRequest
-    ) throws -> any AsyncSequence<AttackPath, Swift.Error>
+    ) -> any AsyncSequence<AttackPath, Swift.Error>
 
     /// See `SecurityCenterClient.listAttackPaths`.
     func listAttackPaths(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AttackPath, Swift.Error>
+    ) -> any AsyncSequence<AttackPath, Swift.Error>
 
     /// See `SecurityCenterClient.listBigQueryExports`.
     func listBigQueryExports(request: ListBigQueryExportsRequest) async throws
@@ -927,12 +927,12 @@ extension Clients {
     /// See `SecurityCenterClient.listBigQueryExports`.
     func listBigQueryExports(
       byItem: ListBigQueryExportsRequest
-    ) throws -> any AsyncSequence<BigQueryExport, Swift.Error>
+    ) -> any AsyncSequence<BigQueryExport, Swift.Error>
 
     /// See `SecurityCenterClient.listBigQueryExports`.
     func listBigQueryExports(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BigQueryExport, Swift.Error>
+    ) -> any AsyncSequence<BigQueryExport, Swift.Error>
 
     /// See `SecurityCenterClient.listFindings`.
     func listFindings(request: ListFindingsRequest) async throws
@@ -941,12 +941,12 @@ extension Clients {
     /// See `SecurityCenterClient.listFindings`.
     func listFindings(
       byItem: ListFindingsRequest
-    ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
+    ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
 
     /// See `SecurityCenterClient.listFindings`.
     func listFindings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
+    ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
 
     /// See `SecurityCenterClient.listMuteConfigs`.
     func listMuteConfigs(request: ListMuteConfigsRequest) async throws
@@ -955,12 +955,12 @@ extension Clients {
     /// See `SecurityCenterClient.listMuteConfigs`.
     func listMuteConfigs(
       byItem: ListMuteConfigsRequest
-    ) throws -> any AsyncSequence<MuteConfig, Swift.Error>
+    ) -> any AsyncSequence<MuteConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listMuteConfigs`.
     func listMuteConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MuteConfig, Swift.Error>
+    ) -> any AsyncSequence<MuteConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listNotificationConfigs`.
     func listNotificationConfigs(request: ListNotificationConfigsRequest) async throws
@@ -969,12 +969,12 @@ extension Clients {
     /// See `SecurityCenterClient.listNotificationConfigs`.
     func listNotificationConfigs(
       byItem: ListNotificationConfigsRequest
-    ) throws -> any AsyncSequence<NotificationConfig, Swift.Error>
+    ) -> any AsyncSequence<NotificationConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listNotificationConfigs`.
     func listNotificationConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<NotificationConfig, Swift.Error>
+    ) -> any AsyncSequence<NotificationConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listResourceValueConfigs`.
     func listResourceValueConfigs(request: ListResourceValueConfigsRequest) async throws
@@ -983,12 +983,12 @@ extension Clients {
     /// See `SecurityCenterClient.listResourceValueConfigs`.
     func listResourceValueConfigs(
       byItem: ListResourceValueConfigsRequest
-    ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error>
+    ) -> any AsyncSequence<ResourceValueConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listResourceValueConfigs`.
     func listResourceValueConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error>
+    ) -> any AsyncSequence<ResourceValueConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listSources`.
     func listSources(request: ListSourcesRequest) async throws
@@ -997,12 +997,12 @@ extension Clients {
     /// See `SecurityCenterClient.listSources`.
     func listSources(
       byItem: ListSourcesRequest
-    ) throws -> any AsyncSequence<Source, Swift.Error>
+    ) -> any AsyncSequence<Source, Swift.Error>
 
     /// See `SecurityCenterClient.listSources`.
     func listSources(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Source, Swift.Error>
+    ) -> any AsyncSequence<Source, Swift.Error>
 
     /// See `SecurityCenterClient.listValuedResources`.
     func listValuedResources(request: ListValuedResourcesRequest) async throws
@@ -1011,12 +1011,12 @@ extension Clients {
     /// See `SecurityCenterClient.listValuedResources`.
     func listValuedResources(
       byItem: ListValuedResourcesRequest
-    ) throws -> any AsyncSequence<ValuedResource, Swift.Error>
+    ) -> any AsyncSequence<ValuedResource, Swift.Error>
 
     /// See `SecurityCenterClient.listValuedResources`.
     func listValuedResources(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ValuedResource, Swift.Error>
+    ) -> any AsyncSequence<ValuedResource, Swift.Error>
 
     /// See `SecurityCenterClient.setFindingState`.
     func setFindingState(request: SetFindingStateRequest) async throws
@@ -1143,13 +1143,13 @@ extension Clients {
     /// See `SecurityCenterClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SecurityCenterClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SecurityCenterClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1275,7 +1275,7 @@ extension Clients {
     /// See `SecurityCenterClient.groupFindings`.
     func groupFindings(
       byItem: GroupFindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GroupResult, Swift.Error>
+    ) -> any AsyncSequence<GroupResult, Swift.Error>
 
     /// See `SecurityCenterClient.listAttackPaths`.
     func listAttackPaths(
@@ -1285,7 +1285,7 @@ extension Clients {
     /// See `SecurityCenterClient.listAttackPaths`.
     func listAttackPaths(
       byItem: ListAttackPathsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AttackPath, Swift.Error>
+    ) -> any AsyncSequence<AttackPath, Swift.Error>
 
     /// See `SecurityCenterClient.listBigQueryExports`.
     func listBigQueryExports(
@@ -1295,7 +1295,7 @@ extension Clients {
     /// See `SecurityCenterClient.listBigQueryExports`.
     func listBigQueryExports(
       byItem: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BigQueryExport, Swift.Error>
+    ) -> any AsyncSequence<BigQueryExport, Swift.Error>
 
     /// See `SecurityCenterClient.listFindings`.
     func listFindings(
@@ -1305,7 +1305,7 @@ extension Clients {
     /// See `SecurityCenterClient.listFindings`.
     func listFindings(
       byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
+    ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error>
 
     /// See `SecurityCenterClient.listMuteConfigs`.
     func listMuteConfigs(
@@ -1315,7 +1315,7 @@ extension Clients {
     /// See `SecurityCenterClient.listMuteConfigs`.
     func listMuteConfigs(
       byItem: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MuteConfig, Swift.Error>
+    ) -> any AsyncSequence<MuteConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listNotificationConfigs`.
     func listNotificationConfigs(
@@ -1325,7 +1325,7 @@ extension Clients {
     /// See `SecurityCenterClient.listNotificationConfigs`.
     func listNotificationConfigs(
       byItem: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotificationConfig, Swift.Error>
+    ) -> any AsyncSequence<NotificationConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listResourceValueConfigs`.
     func listResourceValueConfigs(
@@ -1335,7 +1335,7 @@ extension Clients {
     /// See `SecurityCenterClient.listResourceValueConfigs`.
     func listResourceValueConfigs(
       byItem: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error>
+    ) -> any AsyncSequence<ResourceValueConfig, Swift.Error>
 
     /// See `SecurityCenterClient.listSources`.
     func listSources(
@@ -1345,7 +1345,7 @@ extension Clients {
     /// See `SecurityCenterClient.listSources`.
     func listSources(
       byItem: ListSourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Source, Swift.Error>
+    ) -> any AsyncSequence<Source, Swift.Error>
 
     /// See `SecurityCenterClient.listValuedResources`.
     func listValuedResources(
@@ -1355,7 +1355,7 @@ extension Clients {
     /// See `SecurityCenterClient.listValuedResources`.
     func listValuedResources(
       byItem: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ValuedResource, Swift.Error>
+    ) -> any AsyncSequence<ValuedResource, Swift.Error>
 
     /// See `SecurityCenterClient.setFindingState`.
     func setFindingState(
@@ -1425,7 +1425,7 @@ extension Clients {
     /// See `SecurityCenterClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SecurityCenterClient.deleteOperation`.
     func deleteOperation(
@@ -1883,13 +1883,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func groupFindings(
     byItem: GroupFindingsRequest
-  ) throws -> any AsyncSequence<GroupResult, Swift.Error> {
-    try self.groupFindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GroupResult, Swift.Error> {
+    self.groupFindings(byItem: byItem, options: .init())
   }
 
   public func groupFindings(
     byItem: GroupFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GroupResult, Swift.Error> {
+  ) -> any AsyncSequence<GroupResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1900,12 +1900,12 @@ extension Clients.SecurityCenterProtocol {
   public func groupFindings(
     parent: Swift.String,
     groupBy: Swift.String,
-  ) throws -> any AsyncSequence<GroupResult, Swift.Error> {
+  ) -> any AsyncSequence<GroupResult, Swift.Error> {
     let request = GroupFindingsRequest().with {
       $0.parent = parent
       $0.groupBy = groupBy
     }
-    return try self.groupFindings(byItem: request)
+    return self.groupFindings(byItem: request)
   }
 
   public func listAttackPaths(request: ListAttackPathsRequest) async throws
@@ -1922,13 +1922,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listAttackPaths(
     byItem: ListAttackPathsRequest
-  ) throws -> any AsyncSequence<AttackPath, Swift.Error> {
-    try self.listAttackPaths(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AttackPath, Swift.Error> {
+    self.listAttackPaths(byItem: byItem, options: .init())
   }
 
   public func listAttackPaths(
     byItem: ListAttackPathsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AttackPath, Swift.Error> {
+  ) -> any AsyncSequence<AttackPath, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListAttackPathsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1938,11 +1938,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listAttackPaths(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AttackPath, Swift.Error> {
+  ) -> any AsyncSequence<AttackPath, Swift.Error> {
     let request = ListAttackPathsRequest().with {
       $0.parent = parent
     }
-    return try self.listAttackPaths(byItem: request)
+    return self.listAttackPaths(byItem: request)
   }
 
   public func listBigQueryExports(request: ListBigQueryExportsRequest) async throws
@@ -1959,13 +1959,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listBigQueryExports(
     byItem: ListBigQueryExportsRequest
-  ) throws -> any AsyncSequence<BigQueryExport, Swift.Error> {
-    try self.listBigQueryExports(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BigQueryExport, Swift.Error> {
+    self.listBigQueryExports(byItem: byItem, options: .init())
   }
 
   public func listBigQueryExports(
     byItem: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BigQueryExport, Swift.Error> {
+  ) -> any AsyncSequence<BigQueryExport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListBigQueryExportsResponse
       in
@@ -1976,11 +1976,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listBigQueryExports(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BigQueryExport, Swift.Error> {
+  ) -> any AsyncSequence<BigQueryExport, Swift.Error> {
     let request = ListBigQueryExportsRequest().with {
       $0.parent = parent
     }
-    return try self.listBigQueryExports(byItem: request)
+    return self.listBigQueryExports(byItem: request)
   }
 
   public func listFindings(request: ListFindingsRequest) async throws
@@ -1997,13 +1997,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listFindings(
     byItem: ListFindingsRequest
-  ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
-    try self.listFindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
+    self.listFindings(byItem: byItem, options: .init())
   }
 
   public func listFindings(
     byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
+  ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListFindingsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2013,11 +2013,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listFindings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
+  ) -> any AsyncSequence<ListFindingsResponse.ListFindingsResult, Swift.Error> {
     let request = ListFindingsRequest().with {
       $0.parent = parent
     }
-    return try self.listFindings(byItem: request)
+    return self.listFindings(byItem: request)
   }
 
   public func listMuteConfigs(request: ListMuteConfigsRequest) async throws
@@ -2034,13 +2034,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listMuteConfigs(
     byItem: ListMuteConfigsRequest
-  ) throws -> any AsyncSequence<MuteConfig, Swift.Error> {
-    try self.listMuteConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MuteConfig, Swift.Error> {
+    self.listMuteConfigs(byItem: byItem, options: .init())
   }
 
   public func listMuteConfigs(
     byItem: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MuteConfig, Swift.Error> {
+  ) -> any AsyncSequence<MuteConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListMuteConfigsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2050,11 +2050,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listMuteConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MuteConfig, Swift.Error> {
+  ) -> any AsyncSequence<MuteConfig, Swift.Error> {
     let request = ListMuteConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listMuteConfigs(byItem: request)
+    return self.listMuteConfigs(byItem: request)
   }
 
   public func listNotificationConfigs(request: ListNotificationConfigsRequest) async throws
@@ -2071,13 +2071,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listNotificationConfigs(
     byItem: ListNotificationConfigsRequest
-  ) throws -> any AsyncSequence<NotificationConfig, Swift.Error> {
-    try self.listNotificationConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<NotificationConfig, Swift.Error> {
+    self.listNotificationConfigs(byItem: byItem, options: .init())
   }
 
   public func listNotificationConfigs(
     byItem: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NotificationConfig, Swift.Error> {
+  ) -> any AsyncSequence<NotificationConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterV2.ListNotificationConfigsResponse in
@@ -2088,11 +2088,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listNotificationConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<NotificationConfig, Swift.Error> {
+  ) -> any AsyncSequence<NotificationConfig, Swift.Error> {
     let request = ListNotificationConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listNotificationConfigs(byItem: request)
+    return self.listNotificationConfigs(byItem: request)
   }
 
   public func listResourceValueConfigs(request: ListResourceValueConfigsRequest) async throws
@@ -2109,13 +2109,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listResourceValueConfigs(
     byItem: ListResourceValueConfigsRequest
-  ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
-    try self.listResourceValueConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
+    self.listResourceValueConfigs(byItem: byItem, options: .init())
   }
 
   public func listResourceValueConfigs(
     byItem: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
+  ) -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterV2.ListResourceValueConfigsResponse in
@@ -2126,11 +2126,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listResourceValueConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
+  ) -> any AsyncSequence<ResourceValueConfig, Swift.Error> {
     let request = ListResourceValueConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listResourceValueConfigs(byItem: request)
+    return self.listResourceValueConfigs(byItem: request)
   }
 
   public func listSources(request: ListSourcesRequest) async throws
@@ -2147,13 +2147,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listSources(
     byItem: ListSourcesRequest
-  ) throws -> any AsyncSequence<Source, Swift.Error> {
-    try self.listSources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Source, Swift.Error> {
+    self.listSources(byItem: byItem, options: .init())
   }
 
   public func listSources(
     byItem: ListSourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Source, Swift.Error> {
+  ) -> any AsyncSequence<Source, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListSourcesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2163,11 +2163,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listSources(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Source, Swift.Error> {
+  ) -> any AsyncSequence<Source, Swift.Error> {
     let request = ListSourcesRequest().with {
       $0.parent = parent
     }
-    return try self.listSources(byItem: request)
+    return self.listSources(byItem: request)
   }
 
   public func listValuedResources(request: ListValuedResourcesRequest) async throws
@@ -2184,13 +2184,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listValuedResources(
     byItem: ListValuedResourcesRequest
-  ) throws -> any AsyncSequence<ValuedResource, Swift.Error> {
-    try self.listValuedResources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ValuedResource, Swift.Error> {
+    self.listValuedResources(byItem: byItem, options: .init())
   }
 
   public func listValuedResources(
     byItem: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ValuedResource, Swift.Error> {
+  ) -> any AsyncSequence<ValuedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityCenterV2.ListValuedResourcesResponse
       in
@@ -2201,11 +2201,11 @@ extension Clients.SecurityCenterProtocol {
 
   public func listValuedResources(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ValuedResource, Swift.Error> {
+  ) -> any AsyncSequence<ValuedResource, Swift.Error> {
     let request = ListValuedResourcesRequest().with {
       $0.parent = parent
     }
-    return try self.listValuedResources(byItem: request)
+    return self.listValuedResources(byItem: request)
   }
 
   public func setFindingState(request: SetFindingStateRequest) async throws
@@ -2496,13 +2496,13 @@ extension Clients.SecurityCenterProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2513,12 +2513,12 @@ extension Clients.SecurityCenterProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

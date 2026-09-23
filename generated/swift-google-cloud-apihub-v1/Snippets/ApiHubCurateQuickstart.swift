@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudApiHubV1.ApiHubCurateClient()
-  let items = try client.listCurations(
+  let items = client.listCurations(
     byItem: ListCurationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: ManagedKafkaClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let items = try client.listTopics(
+  let items = client.listTopics(
     byItem: ListTopicsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"

@@ -282,7 +282,7 @@
     /// @Snippet(path: "projects_getXpnResources")
     public func getXpnResources(
       byItem: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<XpnResourceId, Swift.Error> {
+    ) -> any AsyncSequence<XpnResourceId, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources in
         var request = byItem
@@ -306,7 +306,7 @@
     /// @Snippet(path: "projects_listXpnHosts")
     public func listXpnHosts(
       byItem: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Project, Swift.Error> {
+    ) -> any AsyncSequence<Project, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.XpnHostList in
         var request = byItem
         request.pageToken = token
@@ -719,12 +719,12 @@
       /// See `ProjectsClient.getXpnResources`.
       func getXpnResources(
         byItem: ProjectsClient.GetXpnResourcesRequest
-      ) throws -> any AsyncSequence<XpnResourceId, Swift.Error>
+      ) -> any AsyncSequence<XpnResourceId, Swift.Error>
 
       /// See `ProjectsClient.getXpnResources`.
       func getXpnResources(
         project: Swift.String,
-      ) throws -> any AsyncSequence<XpnResourceId, Swift.Error>
+      ) -> any AsyncSequence<XpnResourceId, Swift.Error>
 
       /// See `ProjectsClient.listXpnHosts`.
       func listXpnHosts(request: ProjectsClient.ListXpnHostsRequest) async throws
@@ -733,13 +733,13 @@
       /// See `ProjectsClient.listXpnHosts`.
       func listXpnHosts(
         byItem: ProjectsClient.ListXpnHostsRequest
-      ) throws -> any AsyncSequence<Project, Swift.Error>
+      ) -> any AsyncSequence<Project, Swift.Error>
 
       /// See `ProjectsClient.listXpnHosts`.
       func listXpnHosts(
         project: Swift.String,
         body: ProjectsListXpnHostsRequest?,
-      ) throws -> any AsyncSequence<Project, Swift.Error>
+      ) -> any AsyncSequence<Project, Swift.Error>
 
       /// See `ProjectsClient.moveDisk`.
       @available(*, deprecated)
@@ -805,7 +805,7 @@
       /// See `ProjectsClient.getXpnResources`.
       func getXpnResources(
         byItem: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<XpnResourceId, Swift.Error>
+      ) -> any AsyncSequence<XpnResourceId, Swift.Error>
 
       /// See `ProjectsClient.listXpnHosts`.
       func listXpnHosts(
@@ -815,7 +815,7 @@
       /// See `ProjectsClient.listXpnHosts`.
       func listXpnHosts(
         byItem: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Project, Swift.Error>
+      ) -> any AsyncSequence<Project, Swift.Error>
 
       /// See `ProjectsClient.moveDisk`.
       @available(*, deprecated)
@@ -1065,13 +1065,13 @@
 
     public func getXpnResources(
       byItem: ProjectsClient.GetXpnResourcesRequest
-    ) throws -> any AsyncSequence<XpnResourceId, Swift.Error> {
-      try self.getXpnResources(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<XpnResourceId, Swift.Error> {
+      self.getXpnResources(byItem: byItem, options: .init())
     }
 
     public func getXpnResources(
       byItem: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<XpnResourceId, Swift.Error> {
+    ) -> any AsyncSequence<XpnResourceId, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources in
         throw GoogleGax.RequestError.unimplemented
@@ -1081,11 +1081,11 @@
 
     public func getXpnResources(
       project: Swift.String,
-    ) throws -> any AsyncSequence<XpnResourceId, Swift.Error> {
+    ) -> any AsyncSequence<XpnResourceId, Swift.Error> {
       let request = ProjectsClient.GetXpnResourcesRequest().with {
         $0.project = project
       }
-      return try self.getXpnResources(byItem: request)
+      return self.getXpnResources(byItem: request)
     }
 
     public func listXpnHosts(request: ProjectsClient.ListXpnHostsRequest) async throws
@@ -1102,13 +1102,13 @@
 
     public func listXpnHosts(
       byItem: ProjectsClient.ListXpnHostsRequest
-    ) throws -> any AsyncSequence<Project, Swift.Error> {
-      try self.listXpnHosts(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Project, Swift.Error> {
+      self.listXpnHosts(byItem: byItem, options: .init())
     }
 
     public func listXpnHosts(
       byItem: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Project, Swift.Error> {
+    ) -> any AsyncSequence<Project, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.XpnHostList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -1118,12 +1118,12 @@
     public func listXpnHosts(
       project: Swift.String,
       body: ProjectsListXpnHostsRequest?,
-    ) throws -> any AsyncSequence<Project, Swift.Error> {
+    ) -> any AsyncSequence<Project, Swift.Error> {
       let request = ProjectsClient.ListXpnHostsRequest().with {
         $0.project = project
         $0.body = body
       }
-      return try self.listXpnHosts(byItem: request)
+      return self.listXpnHosts(byItem: request)
     }
 
     @available(*, deprecated)

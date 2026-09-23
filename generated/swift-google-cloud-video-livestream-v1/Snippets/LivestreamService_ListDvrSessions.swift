@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let items = try client.listDvrSessions(
+  let items = client.listDvrSessions(
     byItem: ListDvrSessionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"

@@ -22,7 +22,7 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionZonesClient()
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionZonesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

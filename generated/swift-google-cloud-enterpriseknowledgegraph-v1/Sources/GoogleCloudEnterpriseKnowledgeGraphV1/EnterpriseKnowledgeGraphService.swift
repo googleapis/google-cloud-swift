@@ -72,7 +72,7 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   /// @Snippet(path: "EnterpriseKnowledgeGraphService_ListEntityReconciliationJobs")
   public func listEntityReconciliationJobs(
     byItem: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
+  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse in
@@ -174,12 +174,12 @@ extension Clients {
     /// See `EnterpriseKnowledgeGraphServiceClient.listEntityReconciliationJobs`.
     func listEntityReconciliationJobs(
       byItem: ListEntityReconciliationJobsRequest
-    ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
+    ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
 
     /// See `EnterpriseKnowledgeGraphServiceClient.listEntityReconciliationJobs`.
     func listEntityReconciliationJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
+    ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
 
     /// See `EnterpriseKnowledgeGraphServiceClient.cancelEntityReconciliationJob`.
     func cancelEntityReconciliationJob(request: CancelEntityReconciliationJobRequest) async throws
@@ -255,7 +255,7 @@ extension Clients {
     /// See `EnterpriseKnowledgeGraphServiceClient.listEntityReconciliationJobs`.
     func listEntityReconciliationJobs(
       byItem: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
+    ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error>
 
     /// See `EnterpriseKnowledgeGraphServiceClient.cancelEntityReconciliationJob`.
     func cancelEntityReconciliationJob(
@@ -349,13 +349,13 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
 
   public func listEntityReconciliationJobs(
     byItem: ListEntityReconciliationJobsRequest
-  ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
-    try self.listEntityReconciliationJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
+    self.listEntityReconciliationJobs(byItem: byItem, options: .init())
   }
 
   public func listEntityReconciliationJobs(
     byItem: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
+  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse in
@@ -366,11 +366,11 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
 
   public func listEntityReconciliationJobs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
+  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
     let request = ListEntityReconciliationJobsRequest().with {
       $0.parent = parent
     }
-    return try self.listEntityReconciliationJobs(byItem: request)
+    return self.listEntityReconciliationJobs(byItem: request)
   }
 
   public func cancelEntityReconciliationJob(request: CancelEntityReconciliationJobRequest)

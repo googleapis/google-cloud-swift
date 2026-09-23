@@ -94,7 +94,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
   public func listCertificates(
     byItem: ListCertificatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Certificate, Swift.Error> {
+  ) -> any AsyncSequence<Certificate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
       in
@@ -374,7 +374,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
   public func listCertificateAuthorities(
     byItem: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
+  ) -> any AsyncSequence<CertificateAuthority, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse in
@@ -615,7 +615,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
   public func listCaPools(
     byItem: ListCaPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CaPool, Swift.Error> {
+  ) -> any AsyncSequence<CaPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse in
       var request = byItem
@@ -710,7 +710,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
   public func listCertificateRevocationLists(
     byItem: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
+  ) -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse in
@@ -880,7 +880,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
   public func listCertificateTemplates(
     byItem: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
+  ) -> any AsyncSequence<CertificateTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse in
@@ -980,7 +980,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -1055,7 +1055,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// @Snippet(path: "CertificateAuthorityService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -1133,12 +1133,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
       byItem: ListCertificatesRequest
-    ) throws -> any AsyncSequence<Certificate, Swift.Error>
+    ) -> any AsyncSequence<Certificate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Certificate, Swift.Error>
+    ) -> any AsyncSequence<Certificate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.revokeCertificate`.
     func revokeCertificate(request: RevokeCertificateRequest) async throws
@@ -1238,12 +1238,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
       byItem: ListCertificateAuthoritiesRequest
-    ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error>
+    ) -> any AsyncSequence<CertificateAuthority, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error>
+    ) -> any AsyncSequence<CertificateAuthority, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.undeleteCertificateAuthority`.
     func undeleteCertificateAuthority(request: UndeleteCertificateAuthorityRequest) async throws
@@ -1327,12 +1327,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
       byItem: ListCaPoolsRequest
-    ) throws -> any AsyncSequence<CaPool, Swift.Error>
+    ) -> any AsyncSequence<CaPool, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CaPool, Swift.Error>
+    ) -> any AsyncSequence<CaPool, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.deleteCaPool`.
     func deleteCaPool(request: DeleteCaPoolRequest) async throws -> GoogleLongRunning.Operation
@@ -1371,12 +1371,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
       byItem: ListCertificateRevocationListsRequest
-    ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error>
+    ) -> any AsyncSequence<CertificateRevocationList, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error>
+    ) -> any AsyncSequence<CertificateRevocationList, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.updateCertificateRevocationList`.
     func updateCertificateRevocationList(request: UpdateCertificateRevocationListRequest)
@@ -1436,12 +1436,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
       byItem: ListCertificateTemplatesRequest
-    ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error>
+    ) -> any AsyncSequence<CertificateTemplate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error>
+    ) -> any AsyncSequence<CertificateTemplate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.updateCertificateTemplate`.
     func updateCertificateTemplate(request: UpdateCertificateTemplateRequest) async throws
@@ -1464,7 +1464,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1487,13 +1487,13 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1529,7 +1529,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
       byItem: ListCertificatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Certificate, Swift.Error>
+    ) -> any AsyncSequence<Certificate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.revokeCertificate`.
     func revokeCertificate(
@@ -1599,7 +1599,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
       byItem: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error>
+    ) -> any AsyncSequence<CertificateAuthority, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.undeleteCertificateAuthority`.
     func undeleteCertificateAuthority(
@@ -1664,7 +1664,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
       byItem: ListCaPoolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CaPool, Swift.Error>
+    ) -> any AsyncSequence<CaPool, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.deleteCaPool`.
     func deleteCaPool(
@@ -1694,7 +1694,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
       byItem: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error>
+    ) -> any AsyncSequence<CertificateRevocationList, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.updateCertificateRevocationList`.
     func updateCertificateRevocationList(
@@ -1739,7 +1739,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
       byItem: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error>
+    ) -> any AsyncSequence<CertificateTemplate, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.updateCertificateTemplate`.
     func updateCertificateTemplate(
@@ -1759,7 +1759,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.getLocation`.
     func getLocation(
@@ -1789,7 +1789,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateAuthorityServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1865,13 +1865,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificates(
     byItem: ListCertificatesRequest
-  ) throws -> any AsyncSequence<Certificate, Swift.Error> {
-    try self.listCertificates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Certificate, Swift.Error> {
+    self.listCertificates(byItem: byItem, options: .init())
   }
 
   public func listCertificates(
     byItem: ListCertificatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Certificate, Swift.Error> {
+  ) -> any AsyncSequence<Certificate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
       in
@@ -1882,11 +1882,11 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificates(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Certificate, Swift.Error> {
+  ) -> any AsyncSequence<Certificate, Swift.Error> {
     let request = ListCertificatesRequest().with {
       $0.parent = parent
     }
-    return try self.listCertificates(byItem: request)
+    return self.listCertificates(byItem: request)
   }
 
   public func revokeCertificate(request: RevokeCertificateRequest) async throws
@@ -2141,13 +2141,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateAuthorities(
     byItem: ListCertificateAuthoritiesRequest
-  ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
-    try self.listCertificateAuthorities(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CertificateAuthority, Swift.Error> {
+    self.listCertificateAuthorities(byItem: byItem, options: .init())
   }
 
   public func listCertificateAuthorities(
     byItem: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
+  ) -> any AsyncSequence<CertificateAuthority, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse in
@@ -2158,11 +2158,11 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateAuthorities(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
+  ) -> any AsyncSequence<CertificateAuthority, Swift.Error> {
     let request = ListCertificateAuthoritiesRequest().with {
       $0.parent = parent
     }
-    return try self.listCertificateAuthorities(byItem: request)
+    return self.listCertificateAuthorities(byItem: request)
   }
 
   public func undeleteCertificateAuthority(request: UndeleteCertificateAuthorityRequest)
@@ -2391,13 +2391,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCaPools(
     byItem: ListCaPoolsRequest
-  ) throws -> any AsyncSequence<CaPool, Swift.Error> {
-    try self.listCaPools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CaPool, Swift.Error> {
+    self.listCaPools(byItem: byItem, options: .init())
   }
 
   public func listCaPools(
     byItem: ListCaPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CaPool, Swift.Error> {
+  ) -> any AsyncSequence<CaPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2407,11 +2407,11 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCaPools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CaPool, Swift.Error> {
+  ) -> any AsyncSequence<CaPool, Swift.Error> {
     let request = ListCaPoolsRequest().with {
       $0.parent = parent
     }
-    return try self.listCaPools(byItem: request)
+    return self.listCaPools(byItem: request)
   }
 
   public func deleteCaPool(request: DeleteCaPoolRequest) async throws -> GoogleLongRunning.Operation
@@ -2506,13 +2506,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateRevocationLists(
     byItem: ListCertificateRevocationListsRequest
-  ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
-    try self.listCertificateRevocationLists(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
+    self.listCertificateRevocationLists(byItem: byItem, options: .init())
   }
 
   public func listCertificateRevocationLists(
     byItem: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
+  ) -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse in
@@ -2523,11 +2523,11 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateRevocationLists(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
+  ) -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
     let request = ListCertificateRevocationListsRequest().with {
       $0.parent = parent
     }
-    return try self.listCertificateRevocationLists(byItem: request)
+    return self.listCertificateRevocationLists(byItem: request)
   }
 
   public func updateCertificateRevocationList(request: UpdateCertificateRevocationListRequest)
@@ -2683,13 +2683,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateTemplates(
     byItem: ListCertificateTemplatesRequest
-  ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
-    try self.listCertificateTemplates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CertificateTemplate, Swift.Error> {
+    self.listCertificateTemplates(byItem: byItem, options: .init())
   }
 
   public func listCertificateTemplates(
     byItem: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
+  ) -> any AsyncSequence<CertificateTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse in
@@ -2700,11 +2700,11 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listCertificateTemplates(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
+  ) -> any AsyncSequence<CertificateTemplate, Swift.Error> {
     let request = ListCertificateTemplatesRequest().with {
       $0.parent = parent
     }
-    return try self.listCertificateTemplates(byItem: request)
+    return self.listCertificateTemplates(byItem: request)
   }
 
   public func updateCertificateTemplate(request: UpdateCertificateTemplateRequest) async throws
@@ -2760,13 +2760,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2836,13 +2836,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2853,12 +2853,12 @@ extension Clients.CertificateAuthorityServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

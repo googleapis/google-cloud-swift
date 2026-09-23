@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudLoggingV2.ConfigServiceV2Client()
-  let items = try client.listBuckets(
+  let items = client.listBuckets(
     byItem: ListBucketsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

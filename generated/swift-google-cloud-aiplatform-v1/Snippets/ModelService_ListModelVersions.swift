@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient) async throws {
-    let items = try client.listModelVersions(
+    let items = client.listModelVersions(
       byItem: ListModelVersionsRequest()
         /* set fields using .with { $0... } */
     )

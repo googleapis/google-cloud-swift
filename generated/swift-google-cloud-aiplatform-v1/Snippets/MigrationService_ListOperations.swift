@@ -24,7 +24,7 @@
   import GoogleLongRunning
 
   func sample(client: MigrationServiceClient) async throws {
-    let items = try client.listOperations(
+    let items = client.listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest()
         /* set fields using .with { $0... } */
     )

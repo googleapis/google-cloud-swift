@@ -22,7 +22,7 @@ import GoogleCloudLocation
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudMaintenanceApiV1.MaintenanceClient()
-  let items = try client.listResourceMaintenances(
+  let items = client.listResourceMaintenances(
     byItem: ListResourceMaintenancesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

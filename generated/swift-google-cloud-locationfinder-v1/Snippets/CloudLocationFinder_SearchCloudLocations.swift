@@ -21,7 +21,7 @@ import GoogleCloudLocationFinderV1
 import GoogleCloudLocation
 
 func sample(client: CloudLocationFinderClient) async throws {
-  let items = try client.searchCloudLocations(
+  let items = client.searchCloudLocations(
     byItem: SearchCloudLocationsRequest()
       /* set fields using .with { $0... } */
   )

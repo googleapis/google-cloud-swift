@@ -137,7 +137,7 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// @Snippet(path: "ModelService_ListModels")
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRetailV2.ListModelsResponse in
       var request = byItem
       request.pageToken = token
@@ -211,7 +211,7 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// @Snippet(path: "ModelService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -292,12 +292,12 @@ extension Clients {
     /// See `ModelServiceClient.listModels`.
     func listModels(
       byItem: ListModelsRequest
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `ModelServiceClient.listModels`.
     func listModels(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `ModelServiceClient.updateModel`.
     func updateModel(request: UpdateModelRequest) async throws -> GoogleCloudRetailV2.Model
@@ -328,13 +328,13 @@ extension Clients {
     /// See `ModelServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ModelServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ModelServiceClient.createModel`.
     func createModel(
@@ -374,7 +374,7 @@ extension Clients {
     /// See `ModelServiceClient.listModels`.
     func listModels(
       byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `ModelServiceClient.updateModel`.
     func updateModel(
@@ -399,7 +399,7 @@ extension Clients {
     /// See `ModelServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -532,13 +532,13 @@ extension Clients.ModelServiceProtocol {
 
   public func listModels(
     byItem: ListModelsRequest
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
-    try self.listModels(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Model, Swift.Error> {
+    self.listModels(byItem: byItem, options: .init())
   }
 
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRetailV2.ListModelsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -547,11 +547,11 @@ extension Clients.ModelServiceProtocol {
 
   public func listModels(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let request = ListModelsRequest().with {
       $0.parent = parent
     }
-    return try self.listModels(byItem: request)
+    return self.listModels(byItem: request)
   }
 
   public func updateModel(request: UpdateModelRequest) async throws -> GoogleCloudRetailV2.Model {
@@ -624,13 +624,13 @@ extension Clients.ModelServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -641,12 +641,12 @@ extension Clients.ModelServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

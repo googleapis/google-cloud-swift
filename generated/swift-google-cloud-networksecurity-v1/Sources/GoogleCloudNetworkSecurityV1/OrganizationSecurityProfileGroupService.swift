@@ -61,7 +61,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_ListSecurityProfileGroups")
   public func listSecurityProfileGroups(
     byItem: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfileGroupsResponse in
@@ -200,7 +200,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_ListSecurityProfiles")
   public func listSecurityProfiles(
     byItem: ListSecurityProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SecurityProfile, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfilesResponse in
@@ -373,7 +373,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -448,7 +448,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -506,12 +506,12 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfileGroups`.
     func listSecurityProfileGroups(
       byItem: ListSecurityProfileGroupsRequest
-    ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfileGroups`.
     func listSecurityProfileGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getSecurityProfileGroup`.
     func getSecurityProfileGroup(request: GetSecurityProfileGroupRequest) async throws
@@ -571,12 +571,12 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(
       byItem: ListSecurityProfilesRequest
-    ) throws -> any AsyncSequence<SecurityProfile, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfile, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SecurityProfile, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfile, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getSecurityProfile`.
     func getSecurityProfile(request: GetSecurityProfileRequest) async throws
@@ -636,7 +636,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -659,13 +659,13 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -691,7 +691,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfileGroups`.
     func listSecurityProfileGroups(
       byItem: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getSecurityProfileGroup`.
     func getSecurityProfileGroup(
@@ -736,7 +736,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(
       byItem: ListSecurityProfilesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityProfile, Swift.Error>
+    ) -> any AsyncSequence<SecurityProfile, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getSecurityProfile`.
     func getSecurityProfile(
@@ -781,7 +781,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.getLocation`.
     func getLocation(
@@ -811,7 +811,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteOperation`.
     func deleteOperation(
@@ -841,13 +841,13 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfileGroups(
     byItem: ListSecurityProfileGroupsRequest
-  ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
-    try self.listSecurityProfileGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
+    self.listSecurityProfileGroups(byItem: byItem, options: .init())
   }
 
   public func listSecurityProfileGroups(
     byItem: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfileGroupsResponse in
@@ -858,11 +858,11 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfileGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfileGroup, Swift.Error> {
     let request = ListSecurityProfileGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listSecurityProfileGroups(byItem: request)
+    return self.listSecurityProfileGroups(byItem: request)
   }
 
   public func getSecurityProfileGroup(request: GetSecurityProfileGroupRequest) async throws
@@ -1017,13 +1017,13 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfiles(
     byItem: ListSecurityProfilesRequest
-  ) throws -> any AsyncSequence<SecurityProfile, Swift.Error> {
-    try self.listSecurityProfiles(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SecurityProfile, Swift.Error> {
+    self.listSecurityProfiles(byItem: byItem, options: .init())
   }
 
   public func listSecurityProfiles(
     byItem: ListSecurityProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SecurityProfile, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfilesResponse in
@@ -1034,11 +1034,11 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfiles(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SecurityProfile, Swift.Error> {
+  ) -> any AsyncSequence<SecurityProfile, Swift.Error> {
     let request = ListSecurityProfilesRequest().with {
       $0.parent = parent
     }
-    return try self.listSecurityProfiles(byItem: request)
+    return self.listSecurityProfiles(byItem: request)
   }
 
   public func getSecurityProfile(request: GetSecurityProfileRequest) async throws
@@ -1193,13 +1193,13 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1269,13 +1269,13 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1286,12 +1286,12 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

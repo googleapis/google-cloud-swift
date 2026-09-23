@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LineageClient) async throws {
-  let items = try client.searchLinks(
+  let items = client.searchLinks(
     byItem: SearchLinksRequest()
       /* set fields using .with { $0... } */
   )

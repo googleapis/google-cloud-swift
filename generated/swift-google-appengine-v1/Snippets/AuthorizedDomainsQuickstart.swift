@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.AuthorizedDomainsClient()
-  let items = try client.listAuthorizedDomains(
+  let items = client.listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest()
       /* set fields using .with { $0... } */
   )

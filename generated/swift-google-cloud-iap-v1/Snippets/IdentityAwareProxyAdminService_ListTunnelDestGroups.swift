@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: IdentityAwareProxyAdminServiceClient, parent: String) async throws {
-  let items = try client.listTunnelDestGroups(
+  let items = client.listTunnelDestGroups(
     byItem: ListTunnelDestGroupsRequest()
       .with {
         $0.parent = "\(parent)"

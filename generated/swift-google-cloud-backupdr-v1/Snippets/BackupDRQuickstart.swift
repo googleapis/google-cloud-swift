@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudBackupDRV1.BackupDRClient()
-  let items = try client.listManagementServers(
+  let items = client.listManagementServers(
     byItem: ListManagementServersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

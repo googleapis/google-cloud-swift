@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: DataScanServiceClient, projectId: String, locationId: String, dataScanId: String
 ) async throws {
-  let items = try client.listDataScanJobs(
+  let items = client.listDataScanJobs(
     byItem: ListDataScanJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataScans/\(dataScanId)"

@@ -99,7 +99,7 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
   public func listDocumentSchemas(
     byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DocumentSchema, Swift.Error> {
+  ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
@@ -173,12 +173,12 @@ extension Clients {
     /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
     func listDocumentSchemas(
       byItem: ListDocumentSchemasRequest
-    ) throws -> any AsyncSequence<DocumentSchema, Swift.Error>
+    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
 
     /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
     func listDocumentSchemas(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DocumentSchema, Swift.Error>
+    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
 
     /// See `DocumentSchemaServiceClient.createDocumentSchema`.
     func createDocumentSchema(
@@ -208,7 +208,7 @@ extension Clients {
     /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
     func listDocumentSchemas(
       byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DocumentSchema, Swift.Error>
+    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
   }
 }
 
@@ -314,13 +314,13 @@ extension Clients.DocumentSchemaServiceProtocol {
 
   public func listDocumentSchemas(
     byItem: ListDocumentSchemasRequest
-  ) throws -> any AsyncSequence<DocumentSchema, Swift.Error> {
-    try self.listDocumentSchemas(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
+    self.listDocumentSchemas(byItem: byItem, options: .init())
   }
 
   public func listDocumentSchemas(
     byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DocumentSchema, Swift.Error> {
+  ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
@@ -331,11 +331,11 @@ extension Clients.DocumentSchemaServiceProtocol {
 
   public func listDocumentSchemas(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DocumentSchema, Swift.Error> {
+  ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let request = ListDocumentSchemasRequest().with {
       $0.parent = parent
     }
-    return try self.listDocumentSchemas(byItem: request)
+    return self.listDocumentSchemas(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

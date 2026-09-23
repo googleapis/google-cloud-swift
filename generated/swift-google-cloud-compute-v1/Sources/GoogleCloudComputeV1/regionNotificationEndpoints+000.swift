@@ -62,7 +62,7 @@
     public func aggregatedList(
       byItem: RegionNotificationEndpointsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NotificationEndpointAggregatedList in
@@ -198,7 +198,7 @@
     /// @Snippet(path: "regionNotificationEndpoints_list")
     public func list(
       byItem: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
+    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NotificationEndpointList in
         var request = byItem
@@ -242,12 +242,12 @@
       /// See `RegionNotificationEndpointsClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionNotificationEndpointsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.delete`.
       func delete(request: RegionNotificationEndpointsClient.DeleteRequest) async throws
@@ -275,13 +275,13 @@
       /// See `RegionNotificationEndpointsClient.list`.
       func list(
         byItem: RegionNotificationEndpointsClient.ListRequest
-      ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error>
+      ) -> any AsyncSequence<NotificationEndpoint, Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error>
+      ) -> any AsyncSequence<NotificationEndpoint, Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.testIamPermissions`.
       func testIamPermissions(request: RegionNotificationEndpointsClient.TestIamPermissionsRequest)
@@ -305,7 +305,7 @@
       func aggregatedList(
         byItem: RegionNotificationEndpointsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.delete`.
       func delete(
@@ -330,7 +330,7 @@
       /// See `RegionNotificationEndpointsClient.list`.
       func list(
         byItem: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error>
+      ) -> any AsyncSequence<NotificationEndpoint, Swift.Error>
 
       /// See `RegionNotificationEndpointsClient.testIamPermissions`.
       func testIamPermissions(
@@ -357,14 +357,14 @@
 
     public func aggregatedList(
       byItem: RegionNotificationEndpointsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionNotificationEndpointsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NotificationEndpointAggregatedList in
@@ -375,11 +375,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> {
       let request = RegionNotificationEndpointsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: RegionNotificationEndpointsClient.DeleteRequest) async throws
@@ -507,13 +507,13 @@
 
     public func list(
       byItem: RegionNotificationEndpointsClient.ListRequest
-    ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
+    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NotificationEndpointList in
         throw GoogleGax.RequestError.unimplemented
@@ -524,12 +524,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
+    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> {
       let request = RegionNotificationEndpointsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func testIamPermissions(

@@ -29,7 +29,7 @@ func sample(
   client: DataCatalogClient, projectId: String, locationId: String, entryGroupId: String,
   entryId: String
 ) async throws {
-  let items = try client.listTags(
+  let items = client.listTags(
     byItem: ListTagsRequest()
       .with {
         $0.parent =

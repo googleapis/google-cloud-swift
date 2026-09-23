@@ -57,7 +57,7 @@
     /// @Snippet(path: "UserLicenseService_ListUserLicenses")
     public func listUserLicenses(
       byItem: ListUserLicensesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UserLicense, Swift.Error> {
+    ) -> any AsyncSequence<UserLicense, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse
         in
@@ -125,7 +125,7 @@
     /// @Snippet(path: "UserLicenseService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -172,12 +172,12 @@
       /// See `UserLicenseServiceClient.listUserLicenses`.
       func listUserLicenses(
         byItem: ListUserLicensesRequest
-      ) throws -> any AsyncSequence<UserLicense, Swift.Error>
+      ) -> any AsyncSequence<UserLicense, Swift.Error>
 
       /// See `UserLicenseServiceClient.listUserLicenses`.
       func listUserLicenses(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<UserLicense, Swift.Error>
+      ) -> any AsyncSequence<UserLicense, Swift.Error>
 
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
       func batchUpdateUserLicenses(request: BatchUpdateUserLicensesRequest) async throws
@@ -194,13 +194,13 @@
       /// See `UserLicenseServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `UserLicenseServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `UserLicenseServiceClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -218,7 +218,7 @@
       /// See `UserLicenseServiceClient.listUserLicenses`.
       func listUserLicenses(
         byItem: ListUserLicensesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<UserLicense, Swift.Error>
+      ) -> any AsyncSequence<UserLicense, Swift.Error>
 
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
       func batchUpdateUserLicenses(
@@ -238,7 +238,7 @@
       /// See `UserLicenseServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `UserLicenseServiceClient.cancelOperation`.
       func cancelOperation(
@@ -263,13 +263,13 @@
 
     public func listUserLicenses(
       byItem: ListUserLicensesRequest
-    ) throws -> any AsyncSequence<UserLicense, Swift.Error> {
-      try self.listUserLicenses(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<UserLicense, Swift.Error> {
+      self.listUserLicenses(byItem: byItem, options: .init())
     }
 
     public func listUserLicenses(
       byItem: ListUserLicensesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UserLicense, Swift.Error> {
+    ) -> any AsyncSequence<UserLicense, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse
         in
@@ -280,11 +280,11 @@
 
     public func listUserLicenses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<UserLicense, Swift.Error> {
+    ) -> any AsyncSequence<UserLicense, Swift.Error> {
       let request = ListUserLicensesRequest().with {
         $0.parent = parent
       }
-      return try self.listUserLicenses(byItem: request)
+      return self.listUserLicenses(byItem: request)
     }
 
     public func batchUpdateUserLicenses(request: BatchUpdateUserLicensesRequest) async throws
@@ -331,13 +331,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -348,12 +348,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

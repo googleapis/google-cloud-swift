@@ -89,7 +89,7 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// @Snippet(path: "CompanyService_ListCompanies")
   public func listCompanies(
     byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
       var request = byItem
@@ -159,12 +159,12 @@ extension Clients {
     /// See `CompanyServiceClient.listCompanies`.
     func listCompanies(
       byItem: ListCompaniesRequest
-    ) throws -> any AsyncSequence<Company, Swift.Error>
+    ) -> any AsyncSequence<Company, Swift.Error>
 
     /// See `CompanyServiceClient.listCompanies`.
     func listCompanies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Company, Swift.Error>
+    ) -> any AsyncSequence<Company, Swift.Error>
 
     /// See `CompanyServiceClient.createCompany`.
     func createCompany(
@@ -194,7 +194,7 @@ extension Clients {
     /// See `CompanyServiceClient.listCompanies`.
     func listCompanies(
       byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Company, Swift.Error>
+    ) -> any AsyncSequence<Company, Swift.Error>
   }
 }
 
@@ -298,13 +298,13 @@ extension Clients.CompanyServiceProtocol {
 
   public func listCompanies(
     byItem: ListCompaniesRequest
-  ) throws -> any AsyncSequence<Company, Swift.Error> {
-    try self.listCompanies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Company, Swift.Error> {
+    self.listCompanies(byItem: byItem, options: .init())
   }
 
   public func listCompanies(
     byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -314,11 +314,11 @@ extension Clients.CompanyServiceProtocol {
 
   public func listCompanies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> {
     let request = ListCompaniesRequest().with {
       $0.parent = parent
     }
-    return try self.listCompanies(byItem: request)
+    return self.listCompanies(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

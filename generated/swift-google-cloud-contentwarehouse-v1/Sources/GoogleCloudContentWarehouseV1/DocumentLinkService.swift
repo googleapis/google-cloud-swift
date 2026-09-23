@@ -62,7 +62,7 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
   public func listLinkedSources(
     byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DocumentLink, Swift.Error> {
+  ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
       in
@@ -126,12 +126,12 @@ extension Clients {
     /// See `DocumentLinkServiceClient.listLinkedSources`.
     func listLinkedSources(
       byItem: ListLinkedSourcesRequest
-    ) throws -> any AsyncSequence<DocumentLink, Swift.Error>
+    ) -> any AsyncSequence<DocumentLink, Swift.Error>
 
     /// See `DocumentLinkServiceClient.listLinkedSources`.
     func listLinkedSources(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DocumentLink, Swift.Error>
+    ) -> any AsyncSequence<DocumentLink, Swift.Error>
 
     /// See `DocumentLinkServiceClient.createDocumentLink`.
     func createDocumentLink(request: CreateDocumentLinkRequest) async throws
@@ -164,7 +164,7 @@ extension Clients {
     /// See `DocumentLinkServiceClient.listLinkedSources`.
     func listLinkedSources(
       byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DocumentLink, Swift.Error>
+    ) -> any AsyncSequence<DocumentLink, Swift.Error>
 
     /// See `DocumentLinkServiceClient.createDocumentLink`.
     func createDocumentLink(
@@ -215,13 +215,13 @@ extension Clients.DocumentLinkServiceProtocol {
 
   public func listLinkedSources(
     byItem: ListLinkedSourcesRequest
-  ) throws -> any AsyncSequence<DocumentLink, Swift.Error> {
-    try self.listLinkedSources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DocumentLink, Swift.Error> {
+    self.listLinkedSources(byItem: byItem, options: .init())
   }
 
   public func listLinkedSources(
     byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DocumentLink, Swift.Error> {
+  ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
       in
@@ -232,11 +232,11 @@ extension Clients.DocumentLinkServiceProtocol {
 
   public func listLinkedSources(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DocumentLink, Swift.Error> {
+  ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let request = ListLinkedSourcesRequest().with {
       $0.parent = parent
     }
-    return try self.listLinkedSources(byItem: request)
+    return self.listLinkedSources(byItem: request)
   }
 
   public func createDocumentLink(request: CreateDocumentLinkRequest) async throws

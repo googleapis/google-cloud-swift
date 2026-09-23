@@ -113,7 +113,7 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// @Snippet(path: "GSuiteAddOns_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
       var request = byItem
@@ -216,12 +216,12 @@ extension Clients {
     /// See `GSuiteAddOnsClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `GSuiteAddOnsClient.listDeployments`.
     func listDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `GSuiteAddOnsClient.deleteDeployment`.
     func deleteDeployment(request: DeleteDeploymentRequest) async throws
@@ -284,7 +284,7 @@ extension Clients {
     /// See `GSuiteAddOnsClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `GSuiteAddOnsClient.deleteDeployment`.
     func deleteDeployment(
@@ -412,13 +412,13 @@ extension Clients.GSuiteAddOnsProtocol {
 
   public func listDeployments(
     byItem: ListDeploymentsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.listDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.listDeployments(byItem: byItem, options: .init())
   }
 
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -428,11 +428,11 @@ extension Clients.GSuiteAddOnsProtocol {
 
   public func listDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeployments(byItem: request)
+    return self.listDeployments(byItem: request)
   }
 
   public func deleteDeployment(request: DeleteDeploymentRequest) async throws {

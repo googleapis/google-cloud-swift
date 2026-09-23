@@ -28,7 +28,7 @@
     client: FeaturestoreServiceClient, projectId: String, locationId: String,
     featurestoreId: String, entityTypeId: String
   ) async throws {
-    let items = try client.listFeatures(
+    let items = client.listFeatures(
       byItem: ListFeaturesRequest()
         .with {
           $0.parent =

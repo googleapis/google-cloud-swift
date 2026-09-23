@@ -24,7 +24,7 @@ func sample(
   client: MetastoreServiceClient, projectId: String, locationId: String, catalogId: String,
   databaseId: String
 ) async throws {
-  let items = try client.listTables(
+  let items = client.listTables(
     byItem: ListTablesRequest()
       .with {
         $0.parent =

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductSearchClient) async throws {
-  let items = try client.listProductsInProductSet(
+  let items = client.listProductsInProductSet(
     byItem: ListProductsInProductSetRequest()
       /* set fields using .with { $0... } */
   )

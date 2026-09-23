@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AnalyticsHubServiceClient) async throws {
-  let items = try client.listOrgDataExchanges(
+  let items = client.listOrgDataExchanges(
     byItem: ListOrgDataExchangesRequest()
       /* set fields using .with { $0... } */
   )

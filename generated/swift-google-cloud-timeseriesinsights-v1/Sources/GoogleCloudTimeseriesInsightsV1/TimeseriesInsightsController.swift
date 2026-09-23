@@ -64,7 +64,7 @@ public final class TimeseriesInsightsControllerClient: Clients.TimeseriesInsight
   /// @Snippet(path: "TimeseriesInsightsController_ListDataSets")
   public func listDataSets(
     byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
       var request = byItem
@@ -162,12 +162,12 @@ extension Clients {
     /// See `TimeseriesInsightsControllerClient.listDataSets`.
     func listDataSets(
       byItem: ListDataSetsRequest
-    ) throws -> any AsyncSequence<DataSet, Swift.Error>
+    ) -> any AsyncSequence<DataSet, Swift.Error>
 
     /// See `TimeseriesInsightsControllerClient.listDataSets`.
     func listDataSets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataSet, Swift.Error>
+    ) -> any AsyncSequence<DataSet, Swift.Error>
 
     /// See `TimeseriesInsightsControllerClient.createDataSet`.
     func createDataSet(request: CreateDataSetRequest) async throws
@@ -217,7 +217,7 @@ extension Clients {
     /// See `TimeseriesInsightsControllerClient.listDataSets`.
     func listDataSets(
       byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataSet, Swift.Error>
+    ) -> any AsyncSequence<DataSet, Swift.Error>
 
     /// See `TimeseriesInsightsControllerClient.createDataSet`.
     func createDataSet(
@@ -267,13 +267,13 @@ extension Clients.TimeseriesInsightsControllerProtocol {
 
   public func listDataSets(
     byItem: ListDataSetsRequest
-  ) throws -> any AsyncSequence<DataSet, Swift.Error> {
-    try self.listDataSets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataSet, Swift.Error> {
+    self.listDataSets(byItem: byItem, options: .init())
   }
 
   public func listDataSets(
     byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -283,11 +283,11 @@ extension Clients.TimeseriesInsightsControllerProtocol {
 
   public func listDataSets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> {
     let request = ListDataSetsRequest().with {
       $0.parent = parent
     }
-    return try self.listDataSets(byItem: request)
+    return self.listDataSets(byItem: request)
   }
 
   public func createDataSet(request: CreateDataSetRequest) async throws

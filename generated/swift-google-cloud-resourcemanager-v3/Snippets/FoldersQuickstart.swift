@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudResourceManagerV3.FoldersClient()
-  let items = try client.listFolders(
+  let items = client.listFolders(
     byItem: ListFoldersRequest()
       .with {
         $0.parent = "\(parent)"

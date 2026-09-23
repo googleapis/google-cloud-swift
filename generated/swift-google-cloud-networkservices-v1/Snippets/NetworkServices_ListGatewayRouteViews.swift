@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: NetworkServicesClient, projectId: String, locationId: String, gatewayId: String)
   async throws
 {
-  let items = try client.listGatewayRouteViews(
+  let items = client.listGatewayRouteViews(
     byItem: ListGatewayRouteViewsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/gateways/\(gatewayId)"

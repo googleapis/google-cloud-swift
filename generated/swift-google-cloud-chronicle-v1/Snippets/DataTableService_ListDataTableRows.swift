@@ -25,7 +25,7 @@ func sample(
   client: DataTableServiceClient, projectId: String, locationId: String, instanceId: String,
   dataTableId: String
 ) async throws {
-  let items = try client.listDataTableRows(
+  let items = client.listDataTableRows(
     byItem: ListDataTableRowsRequest()
       .with {
         $0.parent =

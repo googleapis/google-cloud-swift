@@ -100,7 +100,7 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// @Snippet(path: "BudgetService_ListBudgets")
   public func listBudgets(
     byItem: ListBudgetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Budget, Swift.Error> {
+  ) -> any AsyncSequence<Budget, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse in
       var request = byItem
@@ -162,12 +162,12 @@ extension Clients {
     /// See `BudgetServiceClient.listBudgets`.
     func listBudgets(
       byItem: ListBudgetsRequest
-    ) throws -> any AsyncSequence<Budget, Swift.Error>
+    ) -> any AsyncSequence<Budget, Swift.Error>
 
     /// See `BudgetServiceClient.listBudgets`.
     func listBudgets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Budget, Swift.Error>
+    ) -> any AsyncSequence<Budget, Swift.Error>
 
     /// See `BudgetServiceClient.deleteBudget`.
     func deleteBudget(request: DeleteBudgetRequest) async throws
@@ -200,7 +200,7 @@ extension Clients {
     /// See `BudgetServiceClient.listBudgets`.
     func listBudgets(
       byItem: ListBudgetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Budget, Swift.Error>
+    ) -> any AsyncSequence<Budget, Swift.Error>
 
     /// See `BudgetServiceClient.deleteBudget`.
     func deleteBudget(
@@ -292,13 +292,13 @@ extension Clients.BudgetServiceProtocol {
 
   public func listBudgets(
     byItem: ListBudgetsRequest
-  ) throws -> any AsyncSequence<Budget, Swift.Error> {
-    try self.listBudgets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Budget, Swift.Error> {
+    self.listBudgets(byItem: byItem, options: .init())
   }
 
   public func listBudgets(
     byItem: ListBudgetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Budget, Swift.Error> {
+  ) -> any AsyncSequence<Budget, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -308,11 +308,11 @@ extension Clients.BudgetServiceProtocol {
 
   public func listBudgets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Budget, Swift.Error> {
+  ) -> any AsyncSequence<Budget, Swift.Error> {
     let request = ListBudgetsRequest().with {
       $0.parent = parent
     }
-    return try self.listBudgets(byItem: request)
+    return self.listBudgets(byItem: request)
   }
 
   public func deleteBudget(request: DeleteBudgetRequest) async throws {

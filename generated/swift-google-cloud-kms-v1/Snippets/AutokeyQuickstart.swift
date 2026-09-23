@@ -24,7 +24,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSV1.AutokeyClient()
-  let items = try client.listKeyHandles(
+  let items = client.listKeyHandles(
     byItem: ListKeyHandlesRequest()
       .with {
         $0.parent = "\(parent)"

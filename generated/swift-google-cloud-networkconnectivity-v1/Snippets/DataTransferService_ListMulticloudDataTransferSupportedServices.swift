@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataTransferServiceClient, parent: String) async throws {
-  let items = try client.listMulticloudDataTransferSupportedServices(
+  let items = client.listMulticloudDataTransferSupportedServices(
     byItem: ListMulticloudDataTransferSupportedServicesRequest()
       .with {
         $0.parent = "\(parent)"

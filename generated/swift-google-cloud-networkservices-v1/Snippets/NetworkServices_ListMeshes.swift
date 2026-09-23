@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let items = try client.listMeshes(
+  let items = client.listMeshes(
     byItem: ListMeshesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

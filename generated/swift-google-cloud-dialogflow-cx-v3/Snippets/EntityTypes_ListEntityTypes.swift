@@ -26,7 +26,7 @@
   func sample(client: EntityTypesClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let items = try client.listEntityTypes(
+    let items = client.listEntityTypes(
       byItem: ListEntityTypesRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"

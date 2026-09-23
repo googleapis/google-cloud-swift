@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.MirroringClient()
-  let items = try client.listMirroringEndpointGroups(
+  let items = client.listMirroringEndpointGroups(
     byItem: ListMirroringEndpointGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -21,7 +21,7 @@ import GoogleCloudSupportV2
 import GoogleWKT
 
 func sample(client: CaseServiceClient) async throws {
-  let items = try client.searchCases(
+  let items = client.searchCases(
     byItem: SearchCasesRequest()
       /* set fields using .with { $0... } */
   )

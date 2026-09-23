@@ -204,7 +204,7 @@
     /// @Snippet(path: "licenses_list")
     public func list(
       byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<License, Swift.Error> {
+    ) -> any AsyncSequence<License, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
         var request = byItem
@@ -344,12 +344,12 @@
       /// See `LicensesClient.list`.
       func list(
         byItem: LicensesClient.ListRequest
-      ) throws -> any AsyncSequence<License, Swift.Error>
+      ) -> any AsyncSequence<License, Swift.Error>
 
       /// See `LicensesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<License, Swift.Error>
+      ) -> any AsyncSequence<License, Swift.Error>
 
       /// See `LicensesClient.setIamPolicy`.
       func setIamPolicy(request: LicensesClient.SetIamPolicyRequest) async throws
@@ -405,7 +405,7 @@
       /// See `LicensesClient.list`.
       func list(
         byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<License, Swift.Error>
+      ) -> any AsyncSequence<License, Swift.Error>
 
       /// See `LicensesClient.setIamPolicy`.
       func setIamPolicy(
@@ -566,13 +566,13 @@
 
     public func list(
       byItem: LicensesClient.ListRequest
-    ) throws -> any AsyncSequence<License, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<License, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<License, Swift.Error> {
+    ) -> any AsyncSequence<License, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -582,11 +582,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<License, Swift.Error> {
+    ) -> any AsyncSequence<License, Swift.Error> {
       let request = LicensesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: LicensesClient.SetIamPolicyRequest) async throws

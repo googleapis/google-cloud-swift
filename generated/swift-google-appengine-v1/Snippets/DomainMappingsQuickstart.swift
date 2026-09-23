@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.DomainMappingsClient()
-  let items = try client.listDomainMappings(
+  let items = client.listDomainMappings(
     byItem: ListDomainMappingsRequest()
       /* set fields using .with { $0... } */
   )

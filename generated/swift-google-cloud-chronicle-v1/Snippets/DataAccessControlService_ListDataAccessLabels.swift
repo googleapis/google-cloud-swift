@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: DataAccessControlServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = try client.listDataAccessLabels(
+  let items = client.listDataAccessLabels(
     byItem: ListDataAccessLabelsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

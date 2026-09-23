@@ -26,7 +26,7 @@ func sample(
   client: TelcoAutomationClient, projectId: String, locationId: String,
   orchestrationClusterId: String, deploymentId: String
 ) async throws {
-  let items = try client.listHydratedDeployments(
+  let items = client.listHydratedDeployments(
     byItem: ListHydratedDeploymentsRequest()
       .with {
         $0.parent =

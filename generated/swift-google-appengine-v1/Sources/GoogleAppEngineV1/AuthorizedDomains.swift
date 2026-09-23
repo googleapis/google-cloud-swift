@@ -53,7 +53,7 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
   /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
   public func listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse in
       var request = byItem
@@ -81,7 +81,7 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
   /// @Snippet(path: "AuthorizedDomains_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -117,7 +117,7 @@ extension Clients {
     /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
     func listAuthorizedDomains(
       byItem: ListAuthorizedDomainsRequest
-    ) throws -> any AsyncSequence<AuthorizedDomain, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedDomain, Swift.Error>
 
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -126,13 +126,13 @@ extension Clients {
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
     func listAuthorizedDomains(
@@ -142,7 +142,7 @@ extension Clients {
     /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
     func listAuthorizedDomains(
       byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AuthorizedDomain, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedDomain, Swift.Error>
 
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(
@@ -152,7 +152,7 @@ extension Clients {
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -172,13 +172,13 @@ extension Clients.AuthorizedDomainsProtocol {
 
   public func listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest
-  ) throws -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
-    try self.listAuthorizedDomains(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
+    self.listAuthorizedDomains(byItem: byItem, options: .init())
   }
 
   public func listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -200,13 +200,13 @@ extension Clients.AuthorizedDomainsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -217,12 +217,12 @@ extension Clients.AuthorizedDomainsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

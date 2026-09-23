@@ -66,7 +66,7 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// @Snippet(path: "SnoozeService_ListSnoozes")
   public func listSnoozes(
     byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
       var request = byItem
@@ -119,12 +119,12 @@ extension Clients {
     /// See `SnoozeServiceClient.listSnoozes`.
     func listSnoozes(
       byItem: ListSnoozesRequest
-    ) throws -> any AsyncSequence<Snooze, Swift.Error>
+    ) -> any AsyncSequence<Snooze, Swift.Error>
 
     /// See `SnoozeServiceClient.listSnoozes`.
     func listSnoozes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Snooze, Swift.Error>
+    ) -> any AsyncSequence<Snooze, Swift.Error>
 
     /// See `SnoozeServiceClient.getSnooze`.
     func getSnooze(request: GetSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze
@@ -156,7 +156,7 @@ extension Clients {
     /// See `SnoozeServiceClient.listSnoozes`.
     func listSnoozes(
       byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snooze, Swift.Error>
+    ) -> any AsyncSequence<Snooze, Swift.Error>
 
     /// See `SnoozeServiceClient.getSnooze`.
     func getSnooze(
@@ -209,13 +209,13 @@ extension Clients.SnoozeServiceProtocol {
 
   public func listSnoozes(
     byItem: ListSnoozesRequest
-  ) throws -> any AsyncSequence<Snooze, Swift.Error> {
-    try self.listSnoozes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Snooze, Swift.Error> {
+    self.listSnoozes(byItem: byItem, options: .init())
   }
 
   public func listSnoozes(
     byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -225,11 +225,11 @@ extension Clients.SnoozeServiceProtocol {
 
   public func listSnoozes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> {
     let request = ListSnoozesRequest().with {
       $0.parent = parent
     }
-    return try self.listSnoozes(byItem: request)
+    return self.listSnoozes(byItem: request)
   }
 
   public func getSnooze(request: GetSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze {

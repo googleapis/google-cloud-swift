@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudRunV2.WorkerPoolsClient()
-  let items = try client.listWorkerPools(
+  let items = client.listWorkerPools(
     byItem: ListWorkerPoolsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

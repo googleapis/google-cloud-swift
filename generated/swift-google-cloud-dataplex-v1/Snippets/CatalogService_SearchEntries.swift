@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient) async throws {
-  let items = try client.searchEntries(
+  let items = client.searchEntries(
     byItem: SearchEntriesRequest()
       /* set fields using .with { $0... } */
   )

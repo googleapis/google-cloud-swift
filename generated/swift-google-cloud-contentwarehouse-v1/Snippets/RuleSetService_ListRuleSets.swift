@@ -21,7 +21,7 @@ import GoogleCloudContentWarehouseV1
 import GoogleLongRunning
 
 func sample(client: RuleSetServiceClient, parent: String) async throws {
-  let items = try client.listRuleSets(
+  let items = client.listRuleSets(
     byItem: ListRuleSetsRequest()
       .with {
         $0.parent = "\(parent)"

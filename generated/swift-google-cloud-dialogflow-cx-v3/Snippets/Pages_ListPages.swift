@@ -26,7 +26,7 @@
   func sample(
     client: PagesClient, projectId: String, locationId: String, agentId: String, flowId: String
   ) async throws {
-    let items = try client.listPages(
+    let items = client.listPages(
       byItem: ListPagesRequest()
         .with {
           $0.parent =

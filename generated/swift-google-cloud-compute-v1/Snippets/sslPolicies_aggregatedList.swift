@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: SslPoliciesClient) async throws {
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: SslPoliciesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

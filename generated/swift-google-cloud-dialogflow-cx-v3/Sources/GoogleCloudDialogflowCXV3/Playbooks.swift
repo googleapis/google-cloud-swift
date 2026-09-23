@@ -78,7 +78,7 @@
     /// @Snippet(path: "Playbooks_ListPlaybooks")
     public func listPlaybooks(
       byItem: ListPlaybooksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Playbook, Swift.Error> {
+    ) -> any AsyncSequence<Playbook, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse in
         var request = byItem
@@ -226,7 +226,7 @@
     /// @Snippet(path: "Playbooks_ListPlaybookVersions")
     public func listPlaybookVersions(
       byItem: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error> {
+    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse
         in
@@ -294,7 +294,7 @@
     /// @Snippet(path: "Playbooks_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -331,7 +331,7 @@
     /// @Snippet(path: "Playbooks_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -396,12 +396,12 @@
       /// See `PlaybooksClient.listPlaybooks`.
       func listPlaybooks(
         byItem: ListPlaybooksRequest
-      ) throws -> any AsyncSequence<Playbook, Swift.Error>
+      ) -> any AsyncSequence<Playbook, Swift.Error>
 
       /// See `PlaybooksClient.listPlaybooks`.
       func listPlaybooks(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Playbook, Swift.Error>
+      ) -> any AsyncSequence<Playbook, Swift.Error>
 
       /// See `PlaybooksClient.getPlaybook`.
       func getPlaybook(request: GetPlaybookRequest) async throws
@@ -473,12 +473,12 @@
       /// See `PlaybooksClient.listPlaybookVersions`.
       func listPlaybookVersions(
         byItem: ListPlaybookVersionsRequest
-      ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error>
+      ) -> any AsyncSequence<PlaybookVersion, Swift.Error>
 
       /// See `PlaybooksClient.listPlaybookVersions`.
       func listPlaybookVersions(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error>
+      ) -> any AsyncSequence<PlaybookVersion, Swift.Error>
 
       /// See `PlaybooksClient.deletePlaybookVersion`.
       func deletePlaybookVersion(request: DeletePlaybookVersionRequest) async throws
@@ -495,7 +495,7 @@
       /// See `PlaybooksClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `PlaybooksClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -508,13 +508,13 @@
       /// See `PlaybooksClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PlaybooksClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PlaybooksClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -542,7 +542,7 @@
       /// See `PlaybooksClient.listPlaybooks`.
       func listPlaybooks(
         byItem: ListPlaybooksRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Playbook, Swift.Error>
+      ) -> any AsyncSequence<Playbook, Swift.Error>
 
       /// See `PlaybooksClient.getPlaybook`.
       func getPlaybook(
@@ -597,7 +597,7 @@
       /// See `PlaybooksClient.listPlaybookVersions`.
       func listPlaybookVersions(
         byItem: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error>
+      ) -> any AsyncSequence<PlaybookVersion, Swift.Error>
 
       /// See `PlaybooksClient.deletePlaybookVersion`.
       func deletePlaybookVersion(
@@ -612,7 +612,7 @@
       /// See `PlaybooksClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `PlaybooksClient.getLocation`.
       func getLocation(
@@ -627,7 +627,7 @@
       /// See `PlaybooksClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PlaybooksClient.cancelOperation`.
       func cancelOperation(
@@ -694,13 +694,13 @@
 
     public func listPlaybooks(
       byItem: ListPlaybooksRequest
-    ) throws -> any AsyncSequence<Playbook, Swift.Error> {
-      try self.listPlaybooks(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Playbook, Swift.Error> {
+      self.listPlaybooks(byItem: byItem, options: .init())
     }
 
     public func listPlaybooks(
       byItem: ListPlaybooksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Playbook, Swift.Error> {
+    ) -> any AsyncSequence<Playbook, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -710,11 +710,11 @@
 
     public func listPlaybooks(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Playbook, Swift.Error> {
+    ) -> any AsyncSequence<Playbook, Swift.Error> {
       let request = ListPlaybooksRequest().with {
         $0.parent = parent
       }
-      return try self.listPlaybooks(byItem: request)
+      return self.listPlaybooks(byItem: request)
     }
 
     public func getPlaybook(request: GetPlaybookRequest) async throws
@@ -898,13 +898,13 @@
 
     public func listPlaybookVersions(
       byItem: ListPlaybookVersionsRequest
-    ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error> {
-      try self.listPlaybookVersions(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> {
+      self.listPlaybookVersions(byItem: byItem, options: .init())
     }
 
     public func listPlaybookVersions(
       byItem: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error> {
+    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse
         in
@@ -915,11 +915,11 @@
 
     public func listPlaybookVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PlaybookVersion, Swift.Error> {
+    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> {
       let request = ListPlaybookVersionsRequest().with {
         $0.parent = parent
       }
-      return try self.listPlaybookVersions(byItem: request)
+      return self.listPlaybookVersions(byItem: request)
     }
 
     public func deletePlaybookVersion(request: DeletePlaybookVersionRequest) async throws {
@@ -955,13 +955,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -995,13 +995,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1012,12 +1012,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

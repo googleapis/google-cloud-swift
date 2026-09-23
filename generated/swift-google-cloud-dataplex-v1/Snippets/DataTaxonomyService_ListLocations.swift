@@ -27,7 +27,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataTaxonomyServiceClient) async throws {
-  let items = try client.listLocations(
+  let items = client.listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest()
       /* set fields using .with { $0... } */
   )

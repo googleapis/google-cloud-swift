@@ -24,7 +24,7 @@ func sample(
   client: OrgPolicyViolationsPreviewServiceClient, organizationId: String, locationId: String,
   orgPolicyViolationsPreviewId: String
 ) async throws {
-  let items = try client.listOrgPolicyViolations(
+  let items = client.listOrgPolicyViolations(
     byItem: ListOrgPolicyViolationsRequest()
       .with {
         $0.parent =

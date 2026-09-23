@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LineageClient) async throws {
-  let items = try client.batchSearchLinkProcesses(
+  let items = client.batchSearchLinkProcesses(
     byItem: BatchSearchLinkProcessesRequest()
       /* set fields using .with { $0... } */
   )

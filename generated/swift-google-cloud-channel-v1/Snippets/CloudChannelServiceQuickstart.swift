@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudChannelV1.CloudChannelServiceClient()
-  let items = try client.listCustomers(
+  let items = client.listCustomers(
     byItem: ListCustomersRequest()
       .with {
         $0.parent = "\(parent)"

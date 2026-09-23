@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let items = try client.listAutomationRuns(
+  let items = client.listAutomationRuns(
     byItem: ListAutomationRunsRequest()
       .with {
         $0.parent =

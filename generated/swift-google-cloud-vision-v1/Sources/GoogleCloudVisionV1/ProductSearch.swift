@@ -99,7 +99,7 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// @Snippet(path: "ProductSearch_ListProductSets")
   public func listProductSets(
     byItem: ListProductSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProductSet, Swift.Error> {
+  ) -> any AsyncSequence<ProductSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductSetsResponse in
       var request = byItem
@@ -188,7 +188,7 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// @Snippet(path: "ProductSearch_ListProducts")
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductsResponse in
       var request = byItem
@@ -315,7 +315,7 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// @Snippet(path: "ProductSearch_ListReferenceImages")
   public func listReferenceImages(
     byItem: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ReferenceImage, Swift.Error> {
+  ) -> any AsyncSequence<ReferenceImage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse in
       var request = byItem
@@ -389,7 +389,7 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
   public func listProductsInProductSet(
     byItem: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse in
       var request = byItem
@@ -583,12 +583,12 @@ extension Clients {
     /// See `ProductSearchClient.listProductSets`.
     func listProductSets(
       byItem: ListProductSetsRequest
-    ) throws -> any AsyncSequence<ProductSet, Swift.Error>
+    ) -> any AsyncSequence<ProductSet, Swift.Error>
 
     /// See `ProductSearchClient.listProductSets`.
     func listProductSets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ProductSet, Swift.Error>
+    ) -> any AsyncSequence<ProductSet, Swift.Error>
 
     /// See `ProductSearchClient.getProductSet`.
     func getProductSet(request: GetProductSetRequest) async throws -> GoogleCloudVisionV1.ProductSet
@@ -633,12 +633,12 @@ extension Clients {
     /// See `ProductSearchClient.listProducts`.
     func listProducts(
       byItem: ListProductsRequest
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.listProducts`.
     func listProducts(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.getProduct`.
     func getProduct(request: GetProductRequest) async throws -> GoogleCloudVisionV1.Product
@@ -691,12 +691,12 @@ extension Clients {
     /// See `ProductSearchClient.listReferenceImages`.
     func listReferenceImages(
       byItem: ListReferenceImagesRequest
-    ) throws -> any AsyncSequence<ReferenceImage, Swift.Error>
+    ) -> any AsyncSequence<ReferenceImage, Swift.Error>
 
     /// See `ProductSearchClient.listReferenceImages`.
     func listReferenceImages(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ReferenceImage, Swift.Error>
+    ) -> any AsyncSequence<ReferenceImage, Swift.Error>
 
     /// See `ProductSearchClient.getReferenceImage`.
     func getReferenceImage(request: GetReferenceImageRequest) async throws
@@ -732,12 +732,12 @@ extension Clients {
     /// See `ProductSearchClient.listProductsInProductSet`.
     func listProductsInProductSet(
       byItem: ListProductsInProductSetRequest
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.listProductsInProductSet`.
     func listProductsInProductSet(
       name: Swift.String,
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(request: ImportProductSetsRequest) async throws
@@ -778,7 +778,7 @@ extension Clients {
     /// See `ProductSearchClient.listProductSets`.
     func listProductSets(
       byItem: ListProductSetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ProductSet, Swift.Error>
+    ) -> any AsyncSequence<ProductSet, Swift.Error>
 
     /// See `ProductSearchClient.getProductSet`.
     func getProductSet(
@@ -808,7 +808,7 @@ extension Clients {
     /// See `ProductSearchClient.listProducts`.
     func listProducts(
       byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.getProduct`.
     func getProduct(
@@ -843,7 +843,7 @@ extension Clients {
     /// See `ProductSearchClient.listReferenceImages`.
     func listReferenceImages(
       byItem: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReferenceImage, Swift.Error>
+    ) -> any AsyncSequence<ReferenceImage, Swift.Error>
 
     /// See `ProductSearchClient.getReferenceImage`.
     func getReferenceImage(
@@ -868,7 +868,7 @@ extension Clients {
     /// See `ProductSearchClient.listProductsInProductSet`.
     func listProductsInProductSet(
       byItem: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(
@@ -933,13 +933,13 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductSets(
     byItem: ListProductSetsRequest
-  ) throws -> any AsyncSequence<ProductSet, Swift.Error> {
-    try self.listProductSets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ProductSet, Swift.Error> {
+    self.listProductSets(byItem: byItem, options: .init())
   }
 
   public func listProductSets(
     byItem: ListProductSetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProductSet, Swift.Error> {
+  ) -> any AsyncSequence<ProductSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductSetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -949,11 +949,11 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductSets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ProductSet, Swift.Error> {
+  ) -> any AsyncSequence<ProductSet, Swift.Error> {
     let request = ListProductSetsRequest().with {
       $0.parent = parent
     }
-    return try self.listProductSets(byItem: request)
+    return self.listProductSets(byItem: request)
   }
 
   public func getProductSet(request: GetProductSetRequest) async throws
@@ -1058,13 +1058,13 @@ extension Clients.ProductSearchProtocol {
 
   public func listProducts(
     byItem: ListProductsRequest
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
-    try self.listProducts(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Product, Swift.Error> {
+    self.listProducts(byItem: byItem, options: .init())
   }
 
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1074,11 +1074,11 @@ extension Clients.ProductSearchProtocol {
 
   public func listProducts(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let request = ListProductsRequest().with {
       $0.parent = parent
     }
-    return try self.listProducts(byItem: request)
+    return self.listProducts(byItem: request)
   }
 
   public func getProduct(request: GetProductRequest) async throws -> GoogleCloudVisionV1.Product {
@@ -1200,13 +1200,13 @@ extension Clients.ProductSearchProtocol {
 
   public func listReferenceImages(
     byItem: ListReferenceImagesRequest
-  ) throws -> any AsyncSequence<ReferenceImage, Swift.Error> {
-    try self.listReferenceImages(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ReferenceImage, Swift.Error> {
+    self.listReferenceImages(byItem: byItem, options: .init())
   }
 
   public func listReferenceImages(
     byItem: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ReferenceImage, Swift.Error> {
+  ) -> any AsyncSequence<ReferenceImage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1216,11 +1216,11 @@ extension Clients.ProductSearchProtocol {
 
   public func listReferenceImages(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ReferenceImage, Swift.Error> {
+  ) -> any AsyncSequence<ReferenceImage, Swift.Error> {
     let request = ListReferenceImagesRequest().with {
       $0.parent = parent
     }
-    return try self.listReferenceImages(byItem: request)
+    return self.listReferenceImages(byItem: request)
   }
 
   public func getReferenceImage(request: GetReferenceImageRequest) async throws
@@ -1301,13 +1301,13 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsInProductSet(
     byItem: ListProductsInProductSetRequest
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
-    try self.listProductsInProductSet(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Product, Swift.Error> {
+    self.listProductsInProductSet(byItem: byItem, options: .init())
   }
 
   public func listProductsInProductSet(
     byItem: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1317,11 +1317,11 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsInProductSet(
     name: Swift.String,
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let request = ListProductsInProductSetRequest().with {
       $0.name = name
     }
-    return try self.listProductsInProductSet(byItem: request)
+    return self.listProductsInProductSet(byItem: request)
   }
 
   public func importProductSets(request: ImportProductSetsRequest) async throws

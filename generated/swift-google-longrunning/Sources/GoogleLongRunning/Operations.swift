@@ -62,7 +62,7 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   /// @Snippet(path: "Operations_ListOperations")
   public func listOperations(
     byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operation, Swift.Error> {
+  ) -> any AsyncSequence<Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -133,13 +133,13 @@ extension Clients {
     /// See `OperationsClient.listOperations`.
     func listOperations(
       byItem: ListOperationsRequest
-    ) throws -> any AsyncSequence<Operation, Swift.Error>
+    ) -> any AsyncSequence<Operation, Swift.Error>
 
     /// See `OperationsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Operation, Swift.Error>
+    ) -> any AsyncSequence<Operation, Swift.Error>
 
     /// See `OperationsClient.getOperation`.
     func getOperation(request: GetOperationRequest) async throws -> GoogleLongRunning.Operation
@@ -173,7 +173,7 @@ extension Clients {
     /// See `OperationsClient.listOperations`.
     func listOperations(
       byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operation, Swift.Error>
+    ) -> any AsyncSequence<Operation, Swift.Error>
 
     /// See `OperationsClient.getOperation`.
     func getOperation(
@@ -208,13 +208,13 @@ extension Clients.OperationsProtocol {
 
   public func listOperations(
     byItem: ListOperationsRequest
-  ) throws -> any AsyncSequence<Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operation, Swift.Error> {
+  ) -> any AsyncSequence<Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -225,12 +225,12 @@ extension Clients.OperationsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Operation, Swift.Error> {
+  ) -> any AsyncSequence<Operation, Swift.Error> {
     let request = ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GetOperationRequest) async throws -> GoogleLongRunning.Operation

@@ -162,7 +162,7 @@
     /// @Snippet(path: "routes_list")
     public func list(
       byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Route, Swift.Error> {
+    ) -> any AsyncSequence<Route, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RouteList in
         var request = byItem
         request.pageToken = token
@@ -220,12 +220,12 @@
       /// See `RoutesClient.list`.
       func list(
         byItem: RoutesClient.ListRequest
-      ) throws -> any AsyncSequence<Route, Swift.Error>
+      ) -> any AsyncSequence<Route, Swift.Error>
 
       /// See `RoutesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Route, Swift.Error>
+      ) -> any AsyncSequence<Route, Swift.Error>
 
       /// See `RoutesClient.testIamPermissions`.
       func testIamPermissions(request: RoutesClient.TestIamPermissionsRequest) async throws
@@ -261,7 +261,7 @@
       /// See `RoutesClient.list`.
       func list(
         byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Route, Swift.Error>
+      ) -> any AsyncSequence<Route, Swift.Error>
 
       /// See `RoutesClient.testIamPermissions`.
       func testIamPermissions(
@@ -387,13 +387,13 @@
 
     public func list(
       byItem: RoutesClient.ListRequest
-    ) throws -> any AsyncSequence<Route, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Route, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Route, Swift.Error> {
+    ) -> any AsyncSequence<Route, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RouteList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -402,11 +402,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Route, Swift.Error> {
+    ) -> any AsyncSequence<Route, Swift.Error> {
       let request = RoutesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func testIamPermissions(request: RoutesClient.TestIamPermissionsRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PrivilegedAccessManagerClient) async throws {
-  let items = try client.searchEntitlements(
+  let items = client.searchEntitlements(
     byItem: SearchEntitlementsRequest()
       /* set fields using .with { $0... } */
   )

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String) async throws {
-  let items = try client.listSupportedDatabaseFlags(
+  let items = client.listSupportedDatabaseFlags(
     byItem: ListSupportedDatabaseFlagsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

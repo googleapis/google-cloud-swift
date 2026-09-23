@@ -24,7 +24,7 @@
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.ControlServiceClient()
-    let items = try client.listControls(
+    let items = client.listControls(
       byItem: ListControlsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"

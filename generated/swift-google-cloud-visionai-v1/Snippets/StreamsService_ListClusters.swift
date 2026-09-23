@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StreamsServiceClient, parent: String) async throws {
-  let items = try client.listClusters(
+  let items = client.listClusters(
     byItem: ListClustersRequest()
       .with {
         $0.parent = "\(parent)"

@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: ConnectionServiceClient, parent: String) async throws {
-  let items = try client.listConnections(
+  let items = client.listConnections(
     byItem: ListConnectionsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VpcFlowLogsServiceClient) async throws {
-  let items = try client.queryOrgVpcFlowLogsConfigs(
+  let items = client.queryOrgVpcFlowLogsConfigs(
     byItem: QueryOrgVpcFlowLogsConfigsRequest()
       /* set fields using .with { $0... } */
   )

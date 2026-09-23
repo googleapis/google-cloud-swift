@@ -73,7 +73,7 @@ public final class OrganizationsClient: Clients.OrganizationsProtocol, Sendable 
   /// @Snippet(path: "Organizations_SearchOrganizations")
   public func searchOrganizations(
     byItem: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse
       in
@@ -160,12 +160,12 @@ extension Clients {
     /// See `OrganizationsClient.searchOrganizations`.
     func searchOrganizations(
       byItem: SearchOrganizationsRequest
-    ) throws -> any AsyncSequence<Organization, Swift.Error>
+    ) -> any AsyncSequence<Organization, Swift.Error>
 
     /// See `OrganizationsClient.searchOrganizations`.
     func searchOrganizations(
       query: Swift.String,
-    ) throws -> any AsyncSequence<Organization, Swift.Error>
+    ) -> any AsyncSequence<Organization, Swift.Error>
 
     /// See `OrganizationsClient.getIamPolicy`.
     func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
@@ -206,7 +206,7 @@ extension Clients {
     /// See `OrganizationsClient.searchOrganizations`.
     func searchOrganizations(
       byItem: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Organization, Swift.Error>
+    ) -> any AsyncSequence<Organization, Swift.Error>
 
     /// See `OrganizationsClient.getIamPolicy`.
     func getIamPolicy(
@@ -262,13 +262,13 @@ extension Clients.OrganizationsProtocol {
 
   public func searchOrganizations(
     byItem: SearchOrganizationsRequest
-  ) throws -> any AsyncSequence<Organization, Swift.Error> {
-    try self.searchOrganizations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Organization, Swift.Error> {
+    self.searchOrganizations(byItem: byItem, options: .init())
   }
 
   public func searchOrganizations(
     byItem: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse
       in
@@ -279,11 +279,11 @@ extension Clients.OrganizationsProtocol {
 
   public func searchOrganizations(
     query: Swift.String,
-  ) throws -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> {
     let request = SearchOrganizationsRequest().with {
       $0.query = query
     }
-    return try self.searchOrganizations(byItem: request)
+    return self.searchOrganizations(byItem: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

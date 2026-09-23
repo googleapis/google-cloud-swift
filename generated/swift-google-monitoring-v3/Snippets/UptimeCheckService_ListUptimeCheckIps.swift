@@ -21,7 +21,7 @@ import GoogleCloudMonitoringV3
 import GoogleWKT
 
 func sample(client: UptimeCheckServiceClient) async throws {
-  let items = try client.listUptimeCheckIps(
+  let items = client.listUptimeCheckIps(
     byItem: ListUptimeCheckIpsRequest()
       /* set fields using .with { $0... } */
   )

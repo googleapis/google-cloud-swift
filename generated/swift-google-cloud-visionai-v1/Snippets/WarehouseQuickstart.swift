@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectNumberId: String, locationId: String, corpusId: String, ) async throws {
   let client = try GoogleCloudVideoAIV1.WarehouseClient()
-  let items = try client.listAssets(
+  let items = client.listAssets(
     byItem: ListAssetsRequest()
       .with {
         $0.parent = "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)"

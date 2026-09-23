@@ -190,7 +190,7 @@
     /// @Snippet(path: "regionSnapshots_list")
     public func list(
       byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
         var request = byItem
         request.pageToken = token
@@ -376,13 +376,13 @@
       /// See `RegionSnapshotsClient.list`.
       func list(
         byItem: RegionSnapshotsClient.ListRequest
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `RegionSnapshotsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `RegionSnapshotsClient.setIamPolicy`.
       func setIamPolicy(request: RegionSnapshotsClient.SetIamPolicyRequest) async throws
@@ -444,7 +444,7 @@
       /// See `RegionSnapshotsClient.list`.
       func list(
         byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `RegionSnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -618,13 +618,13 @@
 
     public func list(
       byItem: RegionSnapshotsClient.ListRequest
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -634,12 +634,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+    ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let request = RegionSnapshotsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: RegionSnapshotsClient.SetIamPolicyRequest) async throws

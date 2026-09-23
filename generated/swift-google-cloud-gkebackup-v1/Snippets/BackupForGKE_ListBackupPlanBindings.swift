@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, backupChannelId: String
 ) async throws {
-  let items = try client.listBackupPlanBindings(
+  let items = client.listBackupPlanBindings(
     byItem: ListBackupPlanBindingsRequest()
       .with {
         $0.parent =

@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkConnectivityV1.CrossNetworkAutomationServiceClient()
-  let items = try client.listServiceConnectionMaps(
+  let items = client.listServiceConnectionMaps(
     byItem: ListServiceConnectionMapsRequest()
       .with {
         $0.parent = "\(parent)"

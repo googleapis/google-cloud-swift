@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String) async throws {
-  let items = try client.listEdgeSlms(
+  let items = client.listEdgeSlms(
     byItem: ListEdgeSlmsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

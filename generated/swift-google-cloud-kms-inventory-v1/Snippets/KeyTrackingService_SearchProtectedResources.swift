@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudKMSInventoryV1
 
 func sample(client: KeyTrackingServiceClient) async throws {
-  let items = try client.searchProtectedResources(
+  let items = client.searchProtectedResources(
     byItem: SearchProtectedResourcesRequest()
       /* set fields using .with { $0... } */
   )

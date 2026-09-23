@@ -66,7 +66,7 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListExecutionsResponse in
       var request = byItem
       request.pageToken = token
@@ -163,7 +163,7 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// @Snippet(path: "Executions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -229,12 +229,12 @@ extension Clients {
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       byItem: ListExecutionsRequest
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.deleteExecution`.
     func deleteExecution(request: DeleteExecutionRequest) async throws
@@ -269,13 +269,13 @@ extension Clients {
     /// See `ExecutionsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ExecutionsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ExecutionsClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -302,7 +302,7 @@ extension Clients {
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.deleteExecution`.
     func deleteExecution(
@@ -332,7 +332,7 @@ extension Clients {
     /// See `ExecutionsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ExecutionsClient.deleteOperation`.
     func deleteOperation(
@@ -382,13 +382,13 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutions(
     byItem: ListExecutionsRequest
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
-    try self.listExecutions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Execution, Swift.Error> {
+    self.listExecutions(byItem: byItem, options: .init())
   }
 
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListExecutionsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -397,11 +397,11 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }
-    return try self.listExecutions(byItem: request)
+    return self.listExecutions(byItem: request)
   }
 
   public func deleteExecution(request: DeleteExecutionRequest) async throws
@@ -492,13 +492,13 @@ extension Clients.ExecutionsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -509,12 +509,12 @@ extension Clients.ExecutionsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

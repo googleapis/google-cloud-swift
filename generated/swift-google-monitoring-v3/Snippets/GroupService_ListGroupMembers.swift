@@ -21,7 +21,7 @@ import GoogleCloudMonitoringV3
 import GoogleApi
 
 func sample(client: GroupServiceClient) async throws {
-  let items = try client.listGroupMembers(
+  let items = client.listGroupMembers(
     byItem: ListGroupMembersRequest()
       /* set fields using .with { $0... } */
   )

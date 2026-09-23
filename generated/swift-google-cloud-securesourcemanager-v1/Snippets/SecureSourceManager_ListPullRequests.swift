@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let items = try client.listPullRequests(
+  let items = client.listPullRequests(
     byItem: ListPullRequestsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"

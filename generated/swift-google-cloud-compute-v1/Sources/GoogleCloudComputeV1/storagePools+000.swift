@@ -61,7 +61,7 @@
     /// @Snippet(path: "storagePools_aggregatedList")
     public func aggregatedList(
       byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList in
         var request = byItem
@@ -215,7 +215,7 @@
     /// @Snippet(path: "storagePools_list")
     public func list(
       byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+    ) -> any AsyncSequence<StoragePool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
         var request = byItem
         request.pageToken = token
@@ -238,7 +238,7 @@
     /// @Snippet(path: "storagePools_listDisks")
     public func listDisks(
       byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
+    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
         var request = byItem
@@ -348,12 +348,12 @@
       /// See `StoragePoolsClient.aggregatedList`.
       func aggregatedList(
         byItem: StoragePoolsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
 
       /// See `StoragePoolsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
 
       /// See `StoragePoolsClient.delete`.
       func delete(request: StoragePoolsClient.DeleteRequest) async throws
@@ -392,13 +392,13 @@
       /// See `StoragePoolsClient.list`.
       func list(
         byItem: StoragePoolsClient.ListRequest
-      ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+      ) -> any AsyncSequence<StoragePool, Swift.Error>
 
       /// See `StoragePoolsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+      ) -> any AsyncSequence<StoragePool, Swift.Error>
 
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(request: StoragePoolsClient.ListDisksRequest) async throws
@@ -407,14 +407,14 @@
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(
         byItem: StoragePoolsClient.ListDisksRequest
-      ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error>
+      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
 
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(
         project: Swift.String,
         zone: Swift.String,
         storagePool: Swift.String,
-      ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error>
+      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
 
       /// See `StoragePoolsClient.setIamPolicy`.
       func setIamPolicy(request: StoragePoolsClient.SetIamPolicyRequest) async throws
@@ -452,7 +452,7 @@
       /// See `StoragePoolsClient.aggregatedList`.
       func aggregatedList(
         byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
 
       /// See `StoragePoolsClient.delete`.
       func delete(
@@ -482,7 +482,7 @@
       /// See `StoragePoolsClient.list`.
       func list(
         byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<StoragePool, Swift.Error>
+      ) -> any AsyncSequence<StoragePool, Swift.Error>
 
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(
@@ -492,7 +492,7 @@
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(
         byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error>
+      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
 
       /// See `StoragePoolsClient.setIamPolicy`.
       func setIamPolicy(
@@ -527,13 +527,13 @@
 
     public func aggregatedList(
       byItem: StoragePoolsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -543,11 +543,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
       let request = StoragePoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: StoragePoolsClient.DeleteRequest) async throws
@@ -698,13 +698,13 @@
 
     public func list(
       byItem: StoragePoolsClient.ListRequest
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<StoragePool, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+    ) -> any AsyncSequence<StoragePool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -714,12 +714,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<StoragePool, Swift.Error> {
+    ) -> any AsyncSequence<StoragePool, Swift.Error> {
       let request = StoragePoolsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listDisks(request: StoragePoolsClient.ListDisksRequest) async throws
@@ -736,13 +736,13 @@
 
     public func listDisks(
       byItem: StoragePoolsClient.ListDisksRequest
-    ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
-      try self.listDisks(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
+      self.listDisks(byItem: byItem, options: .init())
     }
 
     public func listDisks(
       byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
+    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
         throw GoogleGax.RequestError.unimplemented
@@ -754,13 +754,13 @@
       project: Swift.String,
       zone: Swift.String,
       storagePool: Swift.String,
-    ) throws -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
+    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
       let request = StoragePoolsClient.ListDisksRequest().with {
         $0.project = project
         $0.zone = zone
         $0.storagePool = storagePool
       }
-      return try self.listDisks(byItem: request)
+      return self.listDisks(byItem: request)
     }
 
     public func setIamPolicy(request: StoragePoolsClient.SetIamPolicyRequest) async throws

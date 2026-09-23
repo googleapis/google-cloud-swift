@@ -26,7 +26,7 @@
 
   func sample(projectId: String, locationId: String, reasoningEngineId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.SessionServiceClient()
-    let items = try client.listSessions(
+    let items = client.listSessions(
       byItem: ListSessionsRequest()
         .with {
           $0.parent =

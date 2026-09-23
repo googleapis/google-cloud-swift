@@ -53,7 +53,7 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
   public func listDiscoveredApiObservations(
     byItem: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse in
@@ -90,7 +90,7 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
   public func listDiscoveredApiOperations(
     byItem: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse
       in
@@ -125,7 +125,7 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// @Snippet(path: "ApiHubDiscovery_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -162,7 +162,7 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// @Snippet(path: "ApiHubDiscovery_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -220,12 +220,12 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listDiscoveredApiObservations`.
     func listDiscoveredApiObservations(
       byItem: ListDiscoveredApiObservationsRequest
-    ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.listDiscoveredApiObservations`.
     func listDiscoveredApiObservations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getDiscoveredApiObservation`.
     func getDiscoveredApiObservation(request: GetDiscoveredApiObservationRequest) async throws
@@ -243,12 +243,12 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listDiscoveredApiOperations`.
     func listDiscoveredApiOperations(
       byItem: ListDiscoveredApiOperationsRequest
-    ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.listDiscoveredApiOperations`.
     func listDiscoveredApiOperations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getDiscoveredApiOperation`.
     func getDiscoveredApiOperation(request: GetDiscoveredApiOperationRequest) async throws
@@ -266,7 +266,7 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -279,13 +279,13 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -311,7 +311,7 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listDiscoveredApiObservations`.
     func listDiscoveredApiObservations(
       byItem: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getDiscoveredApiObservation`.
     func getDiscoveredApiObservation(
@@ -326,7 +326,7 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listDiscoveredApiOperations`.
     func listDiscoveredApiOperations(
       byItem: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
+    ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getDiscoveredApiOperation`.
     func getDiscoveredApiOperation(
@@ -341,7 +341,7 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.getLocation`.
     func getLocation(
@@ -356,7 +356,7 @@ extension Clients {
     /// See `ApiHubDiscoveryClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubDiscoveryClient.deleteOperation`.
     func deleteOperation(
@@ -386,13 +386,13 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiObservations(
     byItem: ListDiscoveredApiObservationsRequest
-  ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
-    try self.listDiscoveredApiObservations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
+    self.listDiscoveredApiObservations(byItem: byItem, options: .init())
   }
 
   public func listDiscoveredApiObservations(
     byItem: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse in
@@ -403,11 +403,11 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiObservations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiObservation, Swift.Error> {
     let request = ListDiscoveredApiObservationsRequest().with {
       $0.parent = parent
     }
-    return try self.listDiscoveredApiObservations(byItem: request)
+    return self.listDiscoveredApiObservations(byItem: request)
   }
 
   public func getDiscoveredApiObservation(request: GetDiscoveredApiObservationRequest) async throws
@@ -445,13 +445,13 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiOperations(
     byItem: ListDiscoveredApiOperationsRequest
-  ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
-    try self.listDiscoveredApiOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
+    self.listDiscoveredApiOperations(byItem: byItem, options: .init())
   }
 
   public func listDiscoveredApiOperations(
     byItem: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse
       in
@@ -462,11 +462,11 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiOperations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredApiOperation, Swift.Error> {
     let request = ListDiscoveredApiOperationsRequest().with {
       $0.parent = parent
     }
-    return try self.listDiscoveredApiOperations(byItem: request)
+    return self.listDiscoveredApiOperations(byItem: request)
   }
 
   public func getDiscoveredApiOperation(request: GetDiscoveredApiOperationRequest) async throws
@@ -504,13 +504,13 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -544,13 +544,13 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -561,12 +561,12 @@ extension Clients.ApiHubDiscoveryProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

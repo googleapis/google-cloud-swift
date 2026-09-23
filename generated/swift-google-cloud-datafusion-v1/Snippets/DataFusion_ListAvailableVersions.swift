@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataFusionClient) async throws {
-  let items = try client.listAvailableVersions(
+  let items = client.listAvailableVersions(
     byItem: ListAvailableVersionsRequest()
       /* set fields using .with { $0... } */
   )

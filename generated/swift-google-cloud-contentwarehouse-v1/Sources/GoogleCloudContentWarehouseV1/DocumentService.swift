@@ -99,7 +99,7 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// @Snippet(path: "DocumentService_SearchDocuments")
   public func searchDocuments(
     byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
+  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
       var request = byItem
@@ -202,12 +202,12 @@ extension Clients {
     /// See `DocumentServiceClient.searchDocuments`.
     func searchDocuments(
       byItem: SearchDocumentsRequest
-    ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
+    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
 
     /// See `DocumentServiceClient.searchDocuments`.
     func searchDocuments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
+    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
 
     /// See `DocumentServiceClient.lockDocument`.
     func lockDocument(request: LockDocumentRequest) async throws
@@ -264,7 +264,7 @@ extension Clients {
     /// See `DocumentServiceClient.searchDocuments`.
     func searchDocuments(
       byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
+    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
 
     /// See `DocumentServiceClient.lockDocument`.
     func lockDocument(
@@ -385,13 +385,13 @@ extension Clients.DocumentServiceProtocol {
 
   public func searchDocuments(
     byItem: SearchDocumentsRequest
-  ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
-    try self.searchDocuments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
+    self.searchDocuments(byItem: byItem, options: .init())
   }
 
   public func searchDocuments(
     byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
+  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -401,11 +401,11 @@ extension Clients.DocumentServiceProtocol {
 
   public func searchDocuments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
+  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let request = SearchDocumentsRequest().with {
       $0.parent = parent
     }
-    return try self.searchDocuments(byItem: request)
+    return self.searchDocuments(byItem: request)
   }
 
   public func lockDocument(request: LockDocumentRequest) async throws

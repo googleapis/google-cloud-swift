@@ -21,7 +21,7 @@ import GoogleCloudMonitoringV3
 import GoogleWKT
 
 func sample(client: SnoozeServiceClient, projectId: String) async throws {
-  let items = try client.listSnoozes(
+  let items = client.listSnoozes(
     byItem: ListSnoozesRequest()
       .with {
         $0.parent = "projects/\(projectId)"

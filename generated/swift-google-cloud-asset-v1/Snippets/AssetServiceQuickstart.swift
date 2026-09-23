@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudAssetV1.AssetServiceClient()
-  let items = try client.listAssets(
+  let items = client.listAssets(
     byItem: ListAssetsRequest()
       .with {
         $0.parent = "\(parent)"

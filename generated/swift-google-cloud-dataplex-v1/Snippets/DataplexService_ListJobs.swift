@@ -27,7 +27,7 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   taskId: String
 ) async throws {
-  let items = try client.listJobs(
+  let items = client.listJobs(
     byItem: ListJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/tasks/\(taskId)"

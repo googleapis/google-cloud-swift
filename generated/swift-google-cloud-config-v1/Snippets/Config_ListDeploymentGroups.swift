@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let items = try client.listDeploymentGroups(
+  let items = client.listDeploymentGroups(
     byItem: ListDeploymentGroupsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, hubId: String, routeTableId: String)
   async throws
 {
-  let items = try client.listRoutes(
+  let items = client.listRoutes(
     byItem: ListRoutesRequest()
       .with {
         $0.parent =

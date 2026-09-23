@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: SecurityProfileGroupServiceClient, organizationId: String, locationId: String)
   async throws
 {
-  let items = try client.listSecurityProfileGroups(
+  let items = client.listSecurityProfileGroups(
     byItem: ListSecurityProfileGroupsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

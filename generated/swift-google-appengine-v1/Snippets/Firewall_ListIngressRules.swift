@@ -21,7 +21,7 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: FirewallClient) async throws {
-  let items = try client.listIngressRules(
+  let items = client.listIngressRules(
     byItem: ListIngressRulesRequest()
       /* set fields using .with { $0... } */
   )

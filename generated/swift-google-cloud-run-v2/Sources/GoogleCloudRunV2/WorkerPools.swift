@@ -101,7 +101,7 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// @Snippet(path: "WorkerPools_ListWorkerPools")
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse in
       var request = byItem
@@ -230,7 +230,7 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// @Snippet(path: "WorkerPools_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -311,12 +311,12 @@ extension Clients {
     /// See `WorkerPoolsClient.listWorkerPools`.
     func listWorkerPools(
       byItem: ListWorkerPoolsRequest
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `WorkerPoolsClient.listWorkerPools`.
     func listWorkerPools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
@@ -367,13 +367,13 @@ extension Clients {
     /// See `WorkerPoolsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkerPoolsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkerPoolsClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -410,7 +410,7 @@ extension Clients {
     /// See `WorkerPoolsClient.listWorkerPools`.
     func listWorkerPools(
       byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(
@@ -455,7 +455,7 @@ extension Clients {
     /// See `WorkerPoolsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkerPoolsClient.deleteOperation`.
     func deleteOperation(
@@ -547,13 +547,13 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
-    try self.listWorkerPools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
+    self.listWorkerPools(byItem: byItem, options: .init())
   }
 
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -563,11 +563,11 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listWorkerPools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let request = ListWorkerPoolsRequest().with {
       $0.parent = parent
     }
-    return try self.listWorkerPools(byItem: request)
+    return self.listWorkerPools(byItem: request)
   }
 
   public func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
@@ -705,13 +705,13 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -722,12 +722,12 @@ extension Clients.WorkerPoolsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

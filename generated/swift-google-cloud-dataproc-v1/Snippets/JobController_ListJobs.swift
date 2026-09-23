@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: JobControllerClient) async throws {
-  let items = try client.listJobs(
+  let items = client.listJobs(
     byItem: ListJobsRequest()
       /* set fields using .with { $0... } */
   )

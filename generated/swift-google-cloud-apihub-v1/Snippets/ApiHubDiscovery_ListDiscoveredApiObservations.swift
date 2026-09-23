@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: ApiHubDiscoveryClient, projectId: String, locationId: String) async throws {
-  let items = try client.listDiscoveredApiObservations(
+  let items = client.listDiscoveredApiObservations(
     byItem: ListDiscoveredApiObservationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

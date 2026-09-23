@@ -22,7 +22,7 @@ import GoogleCloudSupportV2
 func sample(client: CaseAttachmentServiceClient, organizationId: String, caseId: String)
   async throws
 {
-  let items = try client.listAttachments(
+  let items = client.listAttachments(
     byItem: ListAttachmentsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/cases/\(caseId)"

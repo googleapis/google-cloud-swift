@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ReachabilityServiceClient, parent: String) async throws {
-  let items = try client.listConnectivityTests(
+  let items = client.listConnectivityTests(
     byItem: ListConnectivityTestsRequest()
       .with {
         $0.parent = "\(parent)"

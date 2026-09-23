@@ -22,7 +22,7 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.VpnGatewaysClient()
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: VpnGatewaysClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

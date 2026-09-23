@@ -62,7 +62,7 @@
     /// @Snippet(path: "futureReservations_aggregatedList")
     public func aggregatedList(
       byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
@@ -245,7 +245,7 @@
     /// @Snippet(path: "futureReservations_list")
     public func list(
       byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FutureReservation, Swift.Error> {
+    ) -> any AsyncSequence<FutureReservation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse in
         var request = byItem
@@ -328,12 +328,12 @@
       /// See `FutureReservationsClient.aggregatedList`.
       func aggregatedList(
         byItem: FutureReservationsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
 
       /// See `FutureReservationsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
 
       /// See `FutureReservationsClient.cancel`.
       func cancel(request: FutureReservationsClient.CancelRequest) async throws
@@ -365,13 +365,13 @@
       /// See `FutureReservationsClient.list`.
       func list(
         byItem: FutureReservationsClient.ListRequest
-      ) throws -> any AsyncSequence<FutureReservation, Swift.Error>
+      ) -> any AsyncSequence<FutureReservation, Swift.Error>
 
       /// See `FutureReservationsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<FutureReservation, Swift.Error>
+      ) -> any AsyncSequence<FutureReservation, Swift.Error>
 
       /// See `FutureReservationsClient.update`.
       func update(request: FutureReservationsClient.UpdateRequest) async throws
@@ -385,7 +385,7 @@
       /// See `FutureReservationsClient.aggregatedList`.
       func aggregatedList(
         byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
 
       /// See `FutureReservationsClient.cancel`.
       func cancel(
@@ -415,7 +415,7 @@
       /// See `FutureReservationsClient.list`.
       func list(
         byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<FutureReservation, Swift.Error>
+      ) -> any AsyncSequence<FutureReservation, Swift.Error>
 
       /// See `FutureReservationsClient.update`.
       func update(
@@ -440,13 +440,13 @@
 
     public func aggregatedList(
       byItem: FutureReservationsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
@@ -457,11 +457,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
       let request = FutureReservationsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func cancel(request: FutureReservationsClient.CancelRequest) async throws
@@ -629,13 +629,13 @@
 
     public func list(
       byItem: FutureReservationsClient.ListRequest
-    ) throws -> any AsyncSequence<FutureReservation, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<FutureReservation, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FutureReservation, Swift.Error> {
+    ) -> any AsyncSequence<FutureReservation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -646,12 +646,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<FutureReservation, Swift.Error> {
+    ) -> any AsyncSequence<FutureReservation, Swift.Error> {
       let request = FutureReservationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func update(request: FutureReservationsClient.UpdateRequest) async throws

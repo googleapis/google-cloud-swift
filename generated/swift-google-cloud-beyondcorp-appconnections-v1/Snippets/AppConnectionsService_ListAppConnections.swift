@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(client: AppConnectionsServiceClient, projectId: String, locationId: String) async throws
 {
-  let items = try client.listAppConnections(
+  let items = client.listAppConnections(
     byItem: ListAppConnectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

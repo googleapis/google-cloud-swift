@@ -27,7 +27,7 @@
   func sample(client: FeatureRegistryServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let items = try client.listFeatureGroups(
+    let items = client.listFeatureGroups(
       byItem: ListFeatureGroupsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String
 ) async throws {
-  let items = try client.listRestores(
+  let items = client.listRestores(
     byItem: ListRestoresRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/restorePlans/\(restorePlanId)"

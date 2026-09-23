@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FirewallActivationClient) async throws {
-  let items = try client.listProjectFirewallEndpoints(
+  let items = client.listProjectFirewallEndpoints(
     byItem: ListFirewallEndpointsRequest()
       /* set fields using .with { $0... } */
   )

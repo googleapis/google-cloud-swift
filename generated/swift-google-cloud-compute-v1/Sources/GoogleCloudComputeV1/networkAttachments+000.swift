@@ -64,7 +64,7 @@
     /// @Snippet(path: "networkAttachments_aggregatedList")
     public func aggregatedList(
       byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
         in
@@ -208,7 +208,7 @@
     /// @Snippet(path: "networkAttachments_list")
     public func list(
       byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error> {
+    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList in
         var request = byItem
@@ -316,12 +316,12 @@
       /// See `NetworkAttachmentsClient.aggregatedList`.
       func aggregatedList(
         byItem: NetworkAttachmentsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
 
       /// See `NetworkAttachmentsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
 
       /// See `NetworkAttachmentsClient.delete`.
       func delete(request: NetworkAttachmentsClient.DeleteRequest) async throws
@@ -360,13 +360,13 @@
       /// See `NetworkAttachmentsClient.list`.
       func list(
         byItem: NetworkAttachmentsClient.ListRequest
-      ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error>
+      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
 
       /// See `NetworkAttachmentsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error>
+      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
 
       /// See `NetworkAttachmentsClient.patch`.
       func patch(request: NetworkAttachmentsClient.PatchRequest) async throws
@@ -404,7 +404,7 @@
       /// See `NetworkAttachmentsClient.aggregatedList`.
       func aggregatedList(
         byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
 
       /// See `NetworkAttachmentsClient.delete`.
       func delete(
@@ -434,7 +434,7 @@
       /// See `NetworkAttachmentsClient.list`.
       func list(
         byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error>
+      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
 
       /// See `NetworkAttachmentsClient.patch`.
       func patch(
@@ -470,13 +470,13 @@
 
     public func aggregatedList(
       byItem: NetworkAttachmentsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
         in
@@ -487,11 +487,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
       let request = NetworkAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: NetworkAttachmentsClient.DeleteRequest) async throws
@@ -642,13 +642,13 @@
 
     public func list(
       byItem: NetworkAttachmentsClient.ListRequest
-    ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error> {
+    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList in
         throw GoogleGax.RequestError.unimplemented
@@ -659,12 +659,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<NetworkAttachment, Swift.Error> {
+    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
       let request = NetworkAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: NetworkAttachmentsClient.PatchRequest) async throws

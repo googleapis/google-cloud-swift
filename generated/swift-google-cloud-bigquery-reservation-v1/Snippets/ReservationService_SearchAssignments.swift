@@ -25,7 +25,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: ReservationServiceClient) async throws {
-  let items = try client.searchAssignments(
+  let items = client.searchAssignments(
     byItem: SearchAssignmentsRequest()
       /* set fields using .with { $0... } */
   )

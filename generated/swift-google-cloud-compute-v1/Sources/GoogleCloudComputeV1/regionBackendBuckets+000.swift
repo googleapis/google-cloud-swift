@@ -177,7 +177,7 @@
     /// @Snippet(path: "regionBackendBuckets_list")
     public func list(
       byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = byItem
@@ -203,7 +203,7 @@
     /// @Snippet(path: "regionBackendBuckets_listUsable")
     public func listUsable(
       byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
         var request = byItem
@@ -342,13 +342,13 @@
       /// See `RegionBackendBucketsClient.list`.
       func list(
         byItem: RegionBackendBucketsClient.ListRequest
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(request: RegionBackendBucketsClient.ListUsableRequest) async throws
@@ -357,13 +357,13 @@
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(
         byItem: RegionBackendBucketsClient.ListUsableRequest
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.patch`.
       func patch(request: RegionBackendBucketsClient.PatchRequest) async throws
@@ -421,7 +421,7 @@
       /// See `RegionBackendBucketsClient.list`.
       func list(
         byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(
@@ -431,7 +431,7 @@
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(
         byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<BackendBucket, Swift.Error>
+      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.patch`.
       func patch(
@@ -601,13 +601,13 @@
 
     public func list(
       byItem: RegionBackendBucketsClient.ListRequest
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         throw GoogleGax.RequestError.unimplemented
@@ -618,12 +618,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let request = RegionBackendBucketsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listUsable(request: RegionBackendBucketsClient.ListUsableRequest) async throws
@@ -640,13 +640,13 @@
 
     public func listUsable(
       byItem: RegionBackendBucketsClient.ListUsableRequest
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
-      try self.listUsable(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+      self.listUsable(byItem: byItem, options: .init())
     }
 
     public func listUsable(
       byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
         throw GoogleGax.RequestError.unimplemented
@@ -657,12 +657,12 @@
     public func listUsable(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let request = RegionBackendBucketsClient.ListUsableRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.listUsable(byItem: request)
+      return self.listUsable(byItem: request)
     }
 
     public func patch(request: RegionBackendBucketsClient.PatchRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let items = try client.listSources(
+  let items = client.listSources(
     byItem: ListSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

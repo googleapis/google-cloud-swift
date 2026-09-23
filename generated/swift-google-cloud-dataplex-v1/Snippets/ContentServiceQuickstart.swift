@@ -24,7 +24,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudDataplexV1.ContentServiceClient()
-  let items = try client.listLocations(
+  let items = client.listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest()
       /* set fields using .with { $0... } */
   )

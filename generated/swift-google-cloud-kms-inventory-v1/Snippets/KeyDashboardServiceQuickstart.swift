@@ -22,7 +22,7 @@ import GoogleCloudKMSV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSInventoryV1.KeyDashboardServiceClient()
-  let items = try client.listCryptoKeys(
+  let items = client.listCryptoKeys(
     byItem: ListCryptoKeysRequest()
       .with {
         $0.parent = "\(parent)"

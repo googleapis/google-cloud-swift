@@ -167,7 +167,7 @@
     /// @Snippet(path: "regionHealthChecks_list")
     public func list(
       byItem: RegionHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
         var request = byItem
         request.pageToken = token
@@ -334,13 +334,13 @@
       /// See `RegionHealthChecksClient.list`.
       func list(
         byItem: RegionHealthChecksClient.ListRequest
-      ) throws -> any AsyncSequence<HealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HealthCheck, Swift.Error>
 
       /// See `RegionHealthChecksClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<HealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HealthCheck, Swift.Error>
 
       /// See `RegionHealthChecksClient.patch`.
       func patch(request: RegionHealthChecksClient.PatchRequest) async throws
@@ -385,7 +385,7 @@
       /// See `RegionHealthChecksClient.list`.
       func list(
         byItem: RegionHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<HealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HealthCheck, Swift.Error>
 
       /// See `RegionHealthChecksClient.patch`.
       func patch(
@@ -530,13 +530,13 @@
 
     public func list(
       byItem: RegionHealthChecksClient.ListRequest
-    ) throws -> any AsyncSequence<HealthCheck, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -546,12 +546,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<HealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let request = RegionHealthChecksClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionHealthChecksClient.PatchRequest) async throws

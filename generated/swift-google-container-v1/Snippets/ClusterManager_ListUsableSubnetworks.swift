@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudContainerV1
 
 func sample(client: ClusterManagerClient) async throws {
-  let items = try client.listUsableSubnetworks(
+  let items = client.listUsableSubnetworks(
     byItem: ListUsableSubnetworksRequest()
       /* set fields using .with { $0... } */
   )

@@ -57,7 +57,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListServers")
   public func listServers(
     byItem: ListServersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Server, Swift.Error> {
+  ) -> any AsyncSequence<Server, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListServersResponse in
       var request = byItem
       request.pageToken = token
@@ -192,7 +192,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListUsers")
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<User, Swift.Error> {
+  ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListUsersResponse in
       var request = byItem
       request.pageToken = token
@@ -429,7 +429,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -466,7 +466,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -524,12 +524,12 @@ extension Clients {
     /// See `CloudFtpClient.listServers`.
     func listServers(
       byItem: ListServersRequest
-    ) throws -> any AsyncSequence<Server, Swift.Error>
+    ) -> any AsyncSequence<Server, Swift.Error>
 
     /// See `CloudFtpClient.listServers`.
     func listServers(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Server, Swift.Error>
+    ) -> any AsyncSequence<Server, Swift.Error>
 
     /// See `CloudFtpClient.getServer`.
     func getServer(request: GetServerRequest) async throws -> GoogleCloudFTPV1.Server
@@ -584,12 +584,12 @@ extension Clients {
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
       byItem: ListUsersRequest
-    ) throws -> any AsyncSequence<User, Swift.Error>
+    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<User, Swift.Error>
+    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `CloudFtpClient.getUser`.
     func getUser(request: GetUserRequest) async throws -> GoogleCloudFTPV1.User
@@ -673,7 +673,7 @@ extension Clients {
     /// See `CloudFtpClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudFtpClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -686,13 +686,13 @@ extension Clients {
     /// See `CloudFtpClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFtpClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFtpClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -718,7 +718,7 @@ extension Clients {
     /// See `CloudFtpClient.listServers`.
     func listServers(
       byItem: ListServersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Server, Swift.Error>
+    ) -> any AsyncSequence<Server, Swift.Error>
 
     /// See `CloudFtpClient.getServer`.
     func getServer(
@@ -763,7 +763,7 @@ extension Clients {
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
       byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<User, Swift.Error>
+    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `CloudFtpClient.getUser`.
     func getUser(
@@ -828,7 +828,7 @@ extension Clients {
     /// See `CloudFtpClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudFtpClient.getLocation`.
     func getLocation(
@@ -843,7 +843,7 @@ extension Clients {
     /// See `CloudFtpClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFtpClient.deleteOperation`.
     func deleteOperation(
@@ -873,13 +873,13 @@ extension Clients.CloudFtpProtocol {
 
   public func listServers(
     byItem: ListServersRequest
-  ) throws -> any AsyncSequence<Server, Swift.Error> {
-    try self.listServers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Server, Swift.Error> {
+    self.listServers(byItem: byItem, options: .init())
   }
 
   public func listServers(
     byItem: ListServersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Server, Swift.Error> {
+  ) -> any AsyncSequence<Server, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListServersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -888,11 +888,11 @@ extension Clients.CloudFtpProtocol {
 
   public func listServers(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Server, Swift.Error> {
+  ) -> any AsyncSequence<Server, Swift.Error> {
     let request = ListServersRequest().with {
       $0.parent = parent
     }
-    return try self.listServers(byItem: request)
+    return self.listServers(byItem: request)
   }
 
   public func getServer(request: GetServerRequest) async throws -> GoogleCloudFTPV1.Server {
@@ -1042,13 +1042,13 @@ extension Clients.CloudFtpProtocol {
 
   public func listUsers(
     byItem: ListUsersRequest
-  ) throws -> any AsyncSequence<User, Swift.Error> {
-    try self.listUsers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<User, Swift.Error> {
+    self.listUsers(byItem: byItem, options: .init())
   }
 
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<User, Swift.Error> {
+  ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListUsersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1057,11 +1057,11 @@ extension Clients.CloudFtpProtocol {
 
   public func listUsers(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<User, Swift.Error> {
+  ) -> any AsyncSequence<User, Swift.Error> {
     let request = ListUsersRequest().with {
       $0.parent = parent
     }
-    return try self.listUsers(byItem: request)
+    return self.listUsers(byItem: request)
   }
 
   public func getUser(request: GetUserRequest) async throws -> GoogleCloudFTPV1.User {
@@ -1278,13 +1278,13 @@ extension Clients.CloudFtpProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1318,13 +1318,13 @@ extension Clients.CloudFtpProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1335,12 +1335,12 @@ extension Clients.CloudFtpProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

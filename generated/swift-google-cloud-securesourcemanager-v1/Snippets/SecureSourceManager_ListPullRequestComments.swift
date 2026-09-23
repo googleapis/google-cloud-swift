@@ -27,7 +27,7 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   pullRequestId: String
 ) async throws {
-  let items = try client.listPullRequestComments(
+  let items = client.listPullRequestComments(
     byItem: ListPullRequestCommentsRequest()
       .with {
         $0.parent =

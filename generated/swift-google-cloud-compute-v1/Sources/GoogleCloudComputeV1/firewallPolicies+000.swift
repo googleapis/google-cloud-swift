@@ -331,7 +331,7 @@
     /// @Snippet(path: "firewallPolicies_list")
     public func list(
       byItem: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = byItem
@@ -686,7 +686,7 @@
       /// See `FirewallPoliciesClient.list`.
       func list(
         byItem: FirewallPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `FirewallPoliciesClient.listAssociations`.
       func listAssociations(request: FirewallPoliciesClient.ListAssociationsRequest) async throws
@@ -785,7 +785,7 @@
       /// See `FirewallPoliciesClient.list`.
       func list(
         byItem: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `FirewallPoliciesClient.listAssociations`.
       func listAssociations(
@@ -1114,13 +1114,13 @@
 
     public func list(
       byItem: FirewallPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         throw GoogleGax.RequestError.unimplemented

@@ -21,7 +21,7 @@ import GoogleCloudRecommenderV1
 import GoogleWKT
 
 func sample(client: RecommenderClient, parent: String) async throws {
-  let items = try client.listRecommendations(
+  let items = client.listRecommendations(
     byItem: ListRecommendationsRequest()
       .with {
         $0.parent = "\(parent)"

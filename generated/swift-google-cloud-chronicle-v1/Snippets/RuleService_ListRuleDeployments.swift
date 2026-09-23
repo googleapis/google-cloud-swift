@@ -25,7 +25,7 @@ func sample(
   client: RuleServiceClient, projectId: String, locationId: String, instanceId: String,
   ruleId: String
 ) async throws {
-  let items = try client.listRuleDeployments(
+  let items = client.listRuleDeployments(
     byItem: ListRuleDeploymentsRequest()
       .with {
         $0.parent =

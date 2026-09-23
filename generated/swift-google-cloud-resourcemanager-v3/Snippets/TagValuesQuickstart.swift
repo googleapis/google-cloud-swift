@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudResourceManagerV3.TagValuesClient()
-  let items = try client.listTagValues(
+  let items = client.listTagValues(
     byItem: ListTagValuesRequest()
       .with {
         $0.parent = "\(parent)"

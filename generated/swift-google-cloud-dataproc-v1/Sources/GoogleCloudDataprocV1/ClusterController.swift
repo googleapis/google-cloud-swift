@@ -270,7 +270,7 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// @Snippet(path: "ClusterController_ListClusters")
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListClustersResponse in
       var request = byItem
@@ -390,7 +390,7 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// @Snippet(path: "ClusterController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -516,20 +516,20 @@ extension Clients {
     /// See `ClusterControllerClient.listClusters`.
     func listClusters(
       byItem: ListClustersRequest
-    ) throws -> any AsyncSequence<Cluster, Swift.Error>
+    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `ClusterControllerClient.listClusters`.
     func listClusters(
       projectId: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<Cluster, Swift.Error>
+    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `ClusterControllerClient.listClusters`.
     func listClusters(
       projectId: Swift.String,
       region: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Cluster, Swift.Error>
+    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `ClusterControllerClient.diagnoseCluster`.
     func diagnoseCluster(request: DiagnoseClusterRequest) async throws
@@ -563,13 +563,13 @@ extension Clients {
     /// See `ClusterControllerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ClusterControllerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ClusterControllerClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -650,7 +650,7 @@ extension Clients {
     /// See `ClusterControllerClient.listClusters`.
     func listClusters(
       byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Cluster, Swift.Error>
+    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `ClusterControllerClient.diagnoseCluster`.
     func diagnoseCluster(
@@ -685,7 +685,7 @@ extension Clients {
     /// See `ClusterControllerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ClusterControllerClient.deleteOperation`.
     func deleteOperation(
@@ -918,13 +918,13 @@ extension Clients.ClusterControllerProtocol {
 
   public func listClusters(
     byItem: ListClustersRequest
-  ) throws -> any AsyncSequence<Cluster, Swift.Error> {
-    try self.listClusters(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Cluster, Swift.Error> {
+    self.listClusters(byItem: byItem, options: .init())
   }
 
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListClustersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -935,25 +935,25 @@ extension Clients.ClusterControllerProtocol {
   public func listClusters(
     projectId: Swift.String,
     region: Swift.String,
-  ) throws -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> {
     let request = ListClustersRequest().with {
       $0.projectId = projectId
       $0.region = region
     }
-    return try self.listClusters(byItem: request)
+    return self.listClusters(byItem: request)
   }
 
   public func listClusters(
     projectId: Swift.String,
     region: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> {
     let request = ListClustersRequest().with {
       $0.projectId = projectId
       $0.region = region
       $0.filter = filter
     }
-    return try self.listClusters(byItem: request)
+    return self.listClusters(byItem: request)
   }
 
   public func diagnoseCluster(request: DiagnoseClusterRequest) async throws
@@ -1048,13 +1048,13 @@ extension Clients.ClusterControllerProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1065,12 +1065,12 @@ extension Clients.ClusterControllerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

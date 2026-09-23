@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient) async throws {
-  let items = try client.searchAllIamPolicies(
+  let items = client.searchAllIamPolicies(
     byItem: SearchAllIamPoliciesRequest()
       /* set fields using .with { $0... } */
   )

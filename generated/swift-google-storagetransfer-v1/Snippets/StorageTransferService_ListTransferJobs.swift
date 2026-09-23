@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageTransferServiceClient) async throws {
-  let items = try client.listTransferJobs(
+  let items = client.listTransferJobs(
     byItem: ListTransferJobsRequest()
       /* set fields using .with { $0... } */
   )

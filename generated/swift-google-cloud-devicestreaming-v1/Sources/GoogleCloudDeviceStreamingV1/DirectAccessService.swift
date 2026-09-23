@@ -70,7 +70,7 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
   /// @Snippet(path: "DirectAccessService_ListDeviceSessions")
   public func listDeviceSessions(
     byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeviceSession, Swift.Error> {
+  ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
       in
@@ -141,12 +141,12 @@ extension Clients {
     /// See `DirectAccessServiceClient.listDeviceSessions`.
     func listDeviceSessions(
       byItem: ListDeviceSessionsRequest
-    ) throws -> any AsyncSequence<DeviceSession, Swift.Error>
+    ) -> any AsyncSequence<DeviceSession, Swift.Error>
 
     /// See `DirectAccessServiceClient.listDeviceSessions`.
     func listDeviceSessions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DeviceSession, Swift.Error>
+    ) -> any AsyncSequence<DeviceSession, Swift.Error>
 
     /// See `DirectAccessServiceClient.getDeviceSession`.
     func getDeviceSession(request: GetDeviceSessionRequest) async throws
@@ -183,7 +183,7 @@ extension Clients {
     /// See `DirectAccessServiceClient.listDeviceSessions`.
     func listDeviceSessions(
       byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DeviceSession, Swift.Error>
+    ) -> any AsyncSequence<DeviceSession, Swift.Error>
 
     /// See `DirectAccessServiceClient.getDeviceSession`.
     func getDeviceSession(
@@ -243,13 +243,13 @@ extension Clients.DirectAccessServiceProtocol {
 
   public func listDeviceSessions(
     byItem: ListDeviceSessionsRequest
-  ) throws -> any AsyncSequence<DeviceSession, Swift.Error> {
-    try self.listDeviceSessions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DeviceSession, Swift.Error> {
+    self.listDeviceSessions(byItem: byItem, options: .init())
   }
 
   public func listDeviceSessions(
     byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeviceSession, Swift.Error> {
+  ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
       in
@@ -260,11 +260,11 @@ extension Clients.DirectAccessServiceProtocol {
 
   public func listDeviceSessions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DeviceSession, Swift.Error> {
+  ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let request = ListDeviceSessionsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeviceSessions(byItem: request)
+    return self.listDeviceSessions(byItem: request)
   }
 
   public func getDeviceSession(request: GetDeviceSessionRequest) async throws

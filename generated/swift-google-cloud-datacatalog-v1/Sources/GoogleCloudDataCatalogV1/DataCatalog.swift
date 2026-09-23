@@ -91,7 +91,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse in
       var request = byItem
@@ -193,7 +193,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
       var request = byItem
@@ -309,7 +309,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse in
       var request = byItem
@@ -550,7 +550,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
       var request = byItem
@@ -864,7 +864,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// @Snippet(path: "DataCatalog_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -925,14 +925,14 @@ extension Clients {
     @available(*, deprecated)
     func searchCatalog(
       byItem: SearchCatalogRequest
-    ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error>
+    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
 
     /// See `DataCatalogClient.searchCatalog`.
     @available(*, deprecated)
     func searchCatalog(
       scope: SearchCatalogRequest.Scope?,
       query: Swift.String,
-    ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error>
+    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
 
     /// See `DataCatalogClient.createEntryGroup`.
     @available(*, deprecated)
@@ -1002,13 +1002,13 @@ extension Clients {
     @available(*, deprecated)
     func listEntryGroups(
       byItem: ListEntryGroupsRequest
-    ) throws -> any AsyncSequence<EntryGroup, Swift.Error>
+    ) -> any AsyncSequence<EntryGroup, Swift.Error>
 
     /// See `DataCatalogClient.listEntryGroups`.
     @available(*, deprecated)
     func listEntryGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EntryGroup, Swift.Error>
+    ) -> any AsyncSequence<EntryGroup, Swift.Error>
 
     /// See `DataCatalogClient.createEntry`.
     @available(*, deprecated)
@@ -1072,13 +1072,13 @@ extension Clients {
     @available(*, deprecated)
     func listEntries(
       byItem: ListEntriesRequest
-    ) throws -> any AsyncSequence<Entry, Swift.Error>
+    ) -> any AsyncSequence<Entry, Swift.Error>
 
     /// See `DataCatalogClient.listEntries`.
     @available(*, deprecated)
     func listEntries(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Entry, Swift.Error>
+    ) -> any AsyncSequence<Entry, Swift.Error>
 
     /// See `DataCatalogClient.modifyEntryOverview`.
     @available(*, deprecated)
@@ -1258,13 +1258,13 @@ extension Clients {
     @available(*, deprecated)
     func listTags(
       byItem: ListTagsRequest
-    ) throws -> any AsyncSequence<Tag, Swift.Error>
+    ) -> any AsyncSequence<Tag, Swift.Error>
 
     /// See `DataCatalogClient.listTags`.
     @available(*, deprecated)
     func listTags(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Tag, Swift.Error>
+    ) -> any AsyncSequence<Tag, Swift.Error>
 
     /// See `DataCatalogClient.reconcileTags`.
     @available(*, deprecated)
@@ -1354,13 +1354,13 @@ extension Clients {
     /// See `DataCatalogClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataCatalogClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataCatalogClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1388,7 +1388,7 @@ extension Clients {
     @available(*, deprecated)
     func searchCatalog(
       byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error>
+    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
 
     /// See `DataCatalogClient.createEntryGroup`.
     @available(*, deprecated)
@@ -1424,7 +1424,7 @@ extension Clients {
     @available(*, deprecated)
     func listEntryGroups(
       byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EntryGroup, Swift.Error>
+    ) -> any AsyncSequence<EntryGroup, Swift.Error>
 
     /// See `DataCatalogClient.createEntry`.
     @available(*, deprecated)
@@ -1466,7 +1466,7 @@ extension Clients {
     @available(*, deprecated)
     func listEntries(
       byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Entry, Swift.Error>
+    ) -> any AsyncSequence<Entry, Swift.Error>
 
     /// See `DataCatalogClient.modifyEntryOverview`.
     @available(*, deprecated)
@@ -1562,7 +1562,7 @@ extension Clients {
     @available(*, deprecated)
     func listTags(
       byItem: ListTagsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Tag, Swift.Error>
+    ) -> any AsyncSequence<Tag, Swift.Error>
 
     /// See `DataCatalogClient.reconcileTags`.
     @available(*, deprecated)
@@ -1644,7 +1644,7 @@ extension Clients {
     /// See `DataCatalogClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataCatalogClient.deleteOperation`.
     func deleteOperation(
@@ -1678,14 +1678,14 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest
-  ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
-    try self.searchCatalog(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+    self.searchCatalog(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1697,12 +1697,12 @@ extension Clients.DataCatalogProtocol {
   public func searchCatalog(
     scope: SearchCatalogRequest.Scope?,
     query: Swift.String,
-  ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
     let request = SearchCatalogRequest().with {
       $0.scope = scope
       $0.query = query
     }
-    return try self.searchCatalog(byItem: request)
+    return self.searchCatalog(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1844,14 +1844,14 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest
-  ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
-    try self.listEntryGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
+    self.listEntryGroups(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1862,11 +1862,11 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntryGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
     let request = ListEntryGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listEntryGroups(byItem: request)
+    return self.listEntryGroups(byItem: request)
   }
 
   @available(*, deprecated)
@@ -2008,14 +2008,14 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest
-  ) throws -> any AsyncSequence<Entry, Swift.Error> {
-    try self.listEntries(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Entry, Swift.Error> {
+    self.listEntries(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2026,11 +2026,11 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntries(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> {
     let request = ListEntriesRequest().with {
       $0.parent = parent
     }
-    return try self.listEntries(byItem: request)
+    return self.listEntries(byItem: request)
   }
 
   @available(*, deprecated)
@@ -2414,14 +2414,14 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest
-  ) throws -> any AsyncSequence<Tag, Swift.Error> {
-    try self.listTags(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Tag, Swift.Error> {
+    self.listTags(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2432,11 +2432,11 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listTags(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> {
     let request = ListTagsRequest().with {
       $0.parent = parent
     }
-    return try self.listTags(byItem: request)
+    return self.listTags(byItem: request)
   }
 
   @available(*, deprecated)
@@ -2671,13 +2671,13 @@ extension Clients.DataCatalogProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2688,12 +2688,12 @@ extension Clients.DataCatalogProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

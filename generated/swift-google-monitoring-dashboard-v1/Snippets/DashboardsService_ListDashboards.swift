@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudMonitoringDashboardV1
 
 func sample(client: DashboardsServiceClient, parent: String) async throws {
-  let items = try client.listDashboards(
+  let items = client.listDashboards(
     byItem: ListDashboardsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, caPoolId: String, ) async throws {
   let client = try GoogleCloudSecurityPrivateCAV1.CertificateAuthorityServiceClient()
-  let items = try client.listCertificates(
+  let items = client.listCertificates(
     byItem: ListCertificatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/caPools/\(caPoolId)"

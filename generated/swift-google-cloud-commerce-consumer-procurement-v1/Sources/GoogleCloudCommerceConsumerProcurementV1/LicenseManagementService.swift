@@ -91,7 +91,7 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
   public func enumerateLicensedUsers(
     byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LicensedUser, Swift.Error> {
+  ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse in
@@ -167,12 +167,12 @@ extension Clients {
     /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
     func enumerateLicensedUsers(
       byItem: EnumerateLicensedUsersRequest
-    ) throws -> any AsyncSequence<LicensedUser, Swift.Error>
+    ) -> any AsyncSequence<LicensedUser, Swift.Error>
 
     /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
     func enumerateLicensedUsers(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<LicensedUser, Swift.Error>
+    ) -> any AsyncSequence<LicensedUser, Swift.Error>
 
     /// See `LicenseManagementServiceClient.getLicensePool`.
     func getLicensePool(
@@ -202,7 +202,7 @@ extension Clients {
     /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
     func enumerateLicensedUsers(
       byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<LicensedUser, Swift.Error>
+    ) -> any AsyncSequence<LicensedUser, Swift.Error>
   }
 }
 
@@ -312,13 +312,13 @@ extension Clients.LicenseManagementServiceProtocol {
 
   public func enumerateLicensedUsers(
     byItem: EnumerateLicensedUsersRequest
-  ) throws -> any AsyncSequence<LicensedUser, Swift.Error> {
-    try self.enumerateLicensedUsers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<LicensedUser, Swift.Error> {
+    self.enumerateLicensedUsers(byItem: byItem, options: .init())
   }
 
   public func enumerateLicensedUsers(
     byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<LicensedUser, Swift.Error> {
+  ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse in
@@ -329,11 +329,11 @@ extension Clients.LicenseManagementServiceProtocol {
 
   public func enumerateLicensedUsers(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<LicensedUser, Swift.Error> {
+  ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let request = EnumerateLicensedUsersRequest().with {
       $0.parent = parent
     }
-    return try self.enumerateLicensedUsers(byItem: request)
+    return self.enumerateLicensedUsers(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

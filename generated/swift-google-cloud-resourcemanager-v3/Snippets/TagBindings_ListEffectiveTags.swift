@@ -21,7 +21,7 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagBindingsClient) async throws {
-  let items = try client.listEffectiveTags(
+  let items = client.listEffectiveTags(
     byItem: ListEffectiveTagsRequest()
       /* set fields using .with { $0... } */
   )

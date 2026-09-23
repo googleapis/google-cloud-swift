@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, jobId: String)
   async throws
 {
-  let items = try client.listImageImportJobs(
+  let items = client.listImageImportJobs(
     byItem: ListImageImportJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/imageImports/\(jobId)"

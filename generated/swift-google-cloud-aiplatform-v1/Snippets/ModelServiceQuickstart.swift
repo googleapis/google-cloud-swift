@@ -26,7 +26,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.ModelServiceClient()
-    let items = try client.listModels(
+    let items = client.listModels(
       byItem: ListModelsRequest()
         .with {
           $0.parent = "\(parent)"

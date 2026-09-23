@@ -90,7 +90,7 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// @Snippet(path: "MetadataService_ListEntities")
   public func listEntities(
     byItem: ListEntitiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entity, Swift.Error> {
+  ) -> any AsyncSequence<Entity, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntitiesResponse in
       var request = byItem
@@ -141,7 +141,7 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// @Snippet(path: "MetadataService_ListPartitions")
   public func listPartitions(
     byItem: ListPartitionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Partition, Swift.Error> {
+  ) -> any AsyncSequence<Partition, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListPartitionsResponse in
       var request = byItem
@@ -199,7 +199,7 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// @Snippet(path: "MetadataService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -274,7 +274,7 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// @Snippet(path: "MetadataService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -360,12 +360,12 @@ extension Clients {
     /// See `MetadataServiceClient.listEntities`.
     func listEntities(
       byItem: ListEntitiesRequest
-    ) throws -> any AsyncSequence<Entity, Swift.Error>
+    ) -> any AsyncSequence<Entity, Swift.Error>
 
     /// See `MetadataServiceClient.listEntities`.
     func listEntities(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Entity, Swift.Error>
+    ) -> any AsyncSequence<Entity, Swift.Error>
 
     /// See `MetadataServiceClient.createPartition`.
     func createPartition(request: CreatePartitionRequest) async throws
@@ -403,12 +403,12 @@ extension Clients {
     /// See `MetadataServiceClient.listPartitions`.
     func listPartitions(
       byItem: ListPartitionsRequest
-    ) throws -> any AsyncSequence<Partition, Swift.Error>
+    ) -> any AsyncSequence<Partition, Swift.Error>
 
     /// See `MetadataServiceClient.listPartitions`.
     func listPartitions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Partition, Swift.Error>
+    ) -> any AsyncSequence<Partition, Swift.Error>
 
     /// See `MetadataServiceClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -417,7 +417,7 @@ extension Clients {
     /// See `MetadataServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MetadataServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -440,13 +440,13 @@ extension Clients {
     /// See `MetadataServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MetadataServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MetadataServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -492,7 +492,7 @@ extension Clients {
     /// See `MetadataServiceClient.listEntities`.
     func listEntities(
       byItem: ListEntitiesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Entity, Swift.Error>
+    ) -> any AsyncSequence<Entity, Swift.Error>
 
     /// See `MetadataServiceClient.createPartition`.
     func createPartition(
@@ -517,7 +517,7 @@ extension Clients {
     /// See `MetadataServiceClient.listPartitions`.
     func listPartitions(
       byItem: ListPartitionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Partition, Swift.Error>
+    ) -> any AsyncSequence<Partition, Swift.Error>
 
     /// See `MetadataServiceClient.listLocations`.
     func listLocations(
@@ -527,7 +527,7 @@ extension Clients {
     /// See `MetadataServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MetadataServiceClient.getLocation`.
     func getLocation(
@@ -557,7 +557,7 @@ extension Clients {
     /// See `MetadataServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MetadataServiceClient.deleteOperation`.
     func deleteOperation(
@@ -660,13 +660,13 @@ extension Clients.MetadataServiceProtocol {
 
   public func listEntities(
     byItem: ListEntitiesRequest
-  ) throws -> any AsyncSequence<Entity, Swift.Error> {
-    try self.listEntities(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Entity, Swift.Error> {
+    self.listEntities(byItem: byItem, options: .init())
   }
 
   public func listEntities(
     byItem: ListEntitiesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entity, Swift.Error> {
+  ) -> any AsyncSequence<Entity, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntitiesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -676,11 +676,11 @@ extension Clients.MetadataServiceProtocol {
 
   public func listEntities(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Entity, Swift.Error> {
+  ) -> any AsyncSequence<Entity, Swift.Error> {
     let request = ListEntitiesRequest().with {
       $0.parent = parent
     }
-    return try self.listEntities(byItem: request)
+    return self.listEntities(byItem: request)
   }
 
   public func createPartition(request: CreatePartitionRequest) async throws
@@ -763,13 +763,13 @@ extension Clients.MetadataServiceProtocol {
 
   public func listPartitions(
     byItem: ListPartitionsRequest
-  ) throws -> any AsyncSequence<Partition, Swift.Error> {
-    try self.listPartitions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Partition, Swift.Error> {
+    self.listPartitions(byItem: byItem, options: .init())
   }
 
   public func listPartitions(
     byItem: ListPartitionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Partition, Swift.Error> {
+  ) -> any AsyncSequence<Partition, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListPartitionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -779,11 +779,11 @@ extension Clients.MetadataServiceProtocol {
 
   public func listPartitions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Partition, Swift.Error> {
+  ) -> any AsyncSequence<Partition, Swift.Error> {
     let request = ListPartitionsRequest().with {
       $0.parent = parent
     }
-    return try self.listPartitions(byItem: request)
+    return self.listPartitions(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -800,13 +800,13 @@ extension Clients.MetadataServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -876,13 +876,13 @@ extension Clients.MetadataServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -893,12 +893,12 @@ extension Clients.MetadataServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

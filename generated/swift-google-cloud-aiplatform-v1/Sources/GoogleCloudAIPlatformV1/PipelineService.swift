@@ -79,7 +79,7 @@
     /// @Snippet(path: "PipelineService_ListTrainingPipelines")
     public func listTrainingPipelines(
       byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error> {
+    ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
         in
@@ -184,7 +184,7 @@
     /// @Snippet(path: "PipelineService_ListPipelineJobs")
     public func listPipelineJobs(
       byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PipelineJob, Swift.Error> {
+    ) -> any AsyncSequence<PipelineJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse in
         var request = byItem
@@ -359,7 +359,7 @@
     /// @Snippet(path: "PipelineService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -434,7 +434,7 @@
     /// @Snippet(path: "PipelineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -522,12 +522,12 @@
       /// See `PipelineServiceClient.listTrainingPipelines`.
       func listTrainingPipelines(
         byItem: ListTrainingPipelinesRequest
-      ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error>
+      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
 
       /// See `PipelineServiceClient.listTrainingPipelines`.
       func listTrainingPipelines(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error>
+      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(request: DeleteTrainingPipelineRequest) async throws
@@ -577,12 +577,12 @@
       /// See `PipelineServiceClient.listPipelineJobs`.
       func listPipelineJobs(
         byItem: ListPipelineJobsRequest
-      ) throws -> any AsyncSequence<PipelineJob, Swift.Error>
+      ) -> any AsyncSequence<PipelineJob, Swift.Error>
 
       /// See `PipelineServiceClient.listPipelineJobs`.
       func listPipelineJobs(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<PipelineJob, Swift.Error>
+      ) -> any AsyncSequence<PipelineJob, Swift.Error>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(request: DeletePipelineJobRequest) async throws
@@ -640,7 +640,7 @@
       /// See `PipelineServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `PipelineServiceClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -663,13 +663,13 @@
       /// See `PipelineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PipelineServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PipelineServiceClient.deleteOperation`.
       func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -709,7 +709,7 @@
       /// See `PipelineServiceClient.listTrainingPipelines`.
       func listTrainingPipelines(
         byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error>
+      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(
@@ -744,7 +744,7 @@
       /// See `PipelineServiceClient.listPipelineJobs`.
       func listPipelineJobs(
         byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PipelineJob, Swift.Error>
+      ) -> any AsyncSequence<PipelineJob, Swift.Error>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(
@@ -789,7 +789,7 @@
       /// See `PipelineServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `PipelineServiceClient.getLocation`.
       func getLocation(
@@ -819,7 +819,7 @@
       /// See `PipelineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PipelineServiceClient.deleteOperation`.
       func deleteOperation(
@@ -898,13 +898,13 @@
 
     public func listTrainingPipelines(
       byItem: ListTrainingPipelinesRequest
-    ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error> {
-      try self.listTrainingPipelines(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
+      self.listTrainingPipelines(byItem: byItem, options: .init())
     }
 
     public func listTrainingPipelines(
       byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error> {
+    ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
         in
@@ -915,11 +915,11 @@
 
     public func listTrainingPipelines(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TrainingPipeline, Swift.Error> {
+    ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
       let request = ListTrainingPipelinesRequest().with {
         $0.parent = parent
       }
-      return try self.listTrainingPipelines(byItem: request)
+      return self.listTrainingPipelines(byItem: request)
     }
 
     public func deleteTrainingPipeline(request: DeleteTrainingPipelineRequest) async throws
@@ -1038,13 +1038,13 @@
 
     public func listPipelineJobs(
       byItem: ListPipelineJobsRequest
-    ) throws -> any AsyncSequence<PipelineJob, Swift.Error> {
-      try self.listPipelineJobs(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PipelineJob, Swift.Error> {
+      self.listPipelineJobs(byItem: byItem, options: .init())
     }
 
     public func listPipelineJobs(
       byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PipelineJob, Swift.Error> {
+    ) -> any AsyncSequence<PipelineJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1054,11 +1054,11 @@
 
     public func listPipelineJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PipelineJob, Swift.Error> {
+    ) -> any AsyncSequence<PipelineJob, Swift.Error> {
       let request = ListPipelineJobsRequest().with {
         $0.parent = parent
       }
-      return try self.listPipelineJobs(byItem: request)
+      return self.listPipelineJobs(byItem: request)
     }
 
     public func deletePipelineJob(request: DeletePipelineJobRequest) async throws
@@ -1213,13 +1213,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1289,13 +1289,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1306,12 +1306,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

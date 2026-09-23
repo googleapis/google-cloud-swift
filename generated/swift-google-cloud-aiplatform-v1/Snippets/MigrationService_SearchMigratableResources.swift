@@ -24,7 +24,7 @@
   import GoogleLongRunning
 
   func sample(client: MigrationServiceClient) async throws {
-    let items = try client.searchMigratableResources(
+    let items = client.searchMigratableResources(
       byItem: SearchMigratableResourcesRequest()
         /* set fields using .with { $0... } */
     )

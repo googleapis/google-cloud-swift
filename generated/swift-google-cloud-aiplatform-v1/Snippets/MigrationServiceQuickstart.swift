@@ -25,7 +25,7 @@
 
   func sample() async throws {
     let client = try GoogleCloudAIPlatformV1.MigrationServiceClient()
-    let items = try client.searchMigratableResources(
+    let items = client.searchMigratableResources(
       byItem: SearchMigratableResourcesRequest()
         /* set fields using .with { $0... } */
     )

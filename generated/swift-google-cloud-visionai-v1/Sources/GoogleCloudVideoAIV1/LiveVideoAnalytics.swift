@@ -58,7 +58,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
   public func listPublicOperators(
     byItem: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse in
       var request = byItem
@@ -91,7 +91,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
   public func listOperators(
     byItem: ListOperatorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListOperatorsResponse in
       var request = byItem
@@ -229,7 +229,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
   public func listAnalyses(
     byItem: ListAnalysesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnalysesResponse in
       var request = byItem
@@ -367,7 +367,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
   public func listProcesses(
     byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessesResponse in
       var request = byItem
@@ -541,7 +541,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -578,7 +578,7 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -636,12 +636,12 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listPublicOperators`.
     func listPublicOperators(
       byItem: ListPublicOperatorsRequest
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.listPublicOperators`.
     func listPublicOperators(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.resolveOperatorInfo`.
     func resolveOperatorInfo(request: ResolveOperatorInfoRequest) async throws
@@ -660,12 +660,12 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listOperators`.
     func listOperators(
       byItem: ListOperatorsRequest
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.listOperators`.
     func listOperators(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getOperator`.
     func getOperator(request: GetOperatorRequest) async throws -> GoogleCloudVideoAIV1.Operator
@@ -721,12 +721,12 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listAnalyses`.
     func listAnalyses(
       byItem: ListAnalysesRequest
-    ) throws -> any AsyncSequence<Analysis, Swift.Error>
+    ) -> any AsyncSequence<Analysis, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.listAnalyses`.
     func listAnalyses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Analysis, Swift.Error>
+    ) -> any AsyncSequence<Analysis, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getAnalysis`.
     func getAnalysis(request: GetAnalysisRequest) async throws -> GoogleCloudVideoAIV1.Analysis
@@ -782,12 +782,12 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listProcesses`.
     func listProcesses(
       byItem: ListProcessesRequest
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.listProcesses`.
     func listProcesses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getProcess`.
     func getProcess(request: GetProcessRequest) async throws -> GoogleCloudVideoAIV1.Process
@@ -857,7 +857,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -870,13 +870,13 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -902,7 +902,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listPublicOperators`.
     func listPublicOperators(
       byItem: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.resolveOperatorInfo`.
     func resolveOperatorInfo(
@@ -917,7 +917,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listOperators`.
     func listOperators(
       byItem: ListOperatorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Operator, Swift.Error>
+    ) -> any AsyncSequence<Operator, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getOperator`.
     func getOperator(
@@ -962,7 +962,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listAnalyses`.
     func listAnalyses(
       byItem: ListAnalysesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Analysis, Swift.Error>
+    ) -> any AsyncSequence<Analysis, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getAnalysis`.
     func getAnalysis(
@@ -1007,7 +1007,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listProcesses`.
     func listProcesses(
       byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Process, Swift.Error>
+    ) -> any AsyncSequence<Process, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getProcess`.
     func getProcess(
@@ -1062,7 +1062,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.getLocation`.
     func getLocation(
@@ -1077,7 +1077,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LiveVideoAnalyticsClient.deleteOperation`.
     func deleteOperation(
@@ -1107,13 +1107,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listPublicOperators(
     byItem: ListPublicOperatorsRequest
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
-    try self.listPublicOperators(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Operator, Swift.Error> {
+    self.listPublicOperators(byItem: byItem, options: .init())
   }
 
   public func listPublicOperators(
     byItem: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1123,11 +1123,11 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listPublicOperators(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let request = ListPublicOperatorsRequest().with {
       $0.parent = parent
     }
-    return try self.listPublicOperators(byItem: request)
+    return self.listPublicOperators(byItem: request)
   }
 
   public func resolveOperatorInfo(request: ResolveOperatorInfoRequest) async throws
@@ -1167,13 +1167,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperators(
     byItem: ListOperatorsRequest
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
-    try self.listOperators(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Operator, Swift.Error> {
+    self.listOperators(byItem: byItem, options: .init())
   }
 
   public func listOperators(
     byItem: ListOperatorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListOperatorsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1183,11 +1183,11 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperators(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Operator, Swift.Error> {
+  ) -> any AsyncSequence<Operator, Swift.Error> {
     let request = ListOperatorsRequest().with {
       $0.parent = parent
     }
-    return try self.listOperators(byItem: request)
+    return self.listOperators(byItem: request)
   }
 
   public func getOperator(request: GetOperatorRequest) async throws -> GoogleCloudVideoAIV1.Operator
@@ -1341,13 +1341,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listAnalyses(
     byItem: ListAnalysesRequest
-  ) throws -> any AsyncSequence<Analysis, Swift.Error> {
-    try self.listAnalyses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Analysis, Swift.Error> {
+    self.listAnalyses(byItem: byItem, options: .init())
   }
 
   public func listAnalyses(
     byItem: ListAnalysesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnalysesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1357,11 +1357,11 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listAnalyses(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> {
     let request = ListAnalysesRequest().with {
       $0.parent = parent
     }
-    return try self.listAnalyses(byItem: request)
+    return self.listAnalyses(byItem: request)
   }
 
   public func getAnalysis(request: GetAnalysisRequest) async throws -> GoogleCloudVideoAIV1.Analysis
@@ -1515,13 +1515,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listProcesses(
     byItem: ListProcessesRequest
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
-    try self.listProcesses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Process, Swift.Error> {
+    self.listProcesses(byItem: byItem, options: .init())
   }
 
   public func listProcesses(
     byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1531,11 +1531,11 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listProcesses(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Process, Swift.Error> {
+  ) -> any AsyncSequence<Process, Swift.Error> {
     let request = ListProcessesRequest().with {
       $0.parent = parent
     }
-    return try self.listProcesses(byItem: request)
+    return self.listProcesses(byItem: request)
   }
 
   public func getProcess(request: GetProcessRequest) async throws -> GoogleCloudVideoAIV1.Process {
@@ -1728,13 +1728,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1768,13 +1768,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1785,12 +1785,12 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

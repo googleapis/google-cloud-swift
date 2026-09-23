@@ -26,7 +26,7 @@ func sample(
   client: HsmManagementClient, projectId: String, locationId: String,
   singleTenantHsmInstanceId: String
 ) async throws {
-  let items = try client.listSingleTenantHsmInstanceProposals(
+  let items = client.listSingleTenantHsmInstanceProposals(
     byItem: ListSingleTenantHsmInstanceProposalsRequest()
       .with {
         $0.parent =

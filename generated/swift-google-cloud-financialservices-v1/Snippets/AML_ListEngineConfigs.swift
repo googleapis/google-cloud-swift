@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = try client.listEngineConfigs(
+  let items = client.listEngineConfigs(
     byItem: ListEngineConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

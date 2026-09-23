@@ -61,7 +61,7 @@
     /// @Snippet(path: "autoscalers_aggregatedList")
     public func aggregatedList(
       byItem: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "autoscalers_list")
     public func list(
       byItem: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Autoscaler, Swift.Error> {
+    ) -> any AsyncSequence<Autoscaler, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerList in
         var request = byItem
         request.pageToken = token
@@ -344,12 +344,12 @@
       /// See `AutoscalersClient.aggregatedList`.
       func aggregatedList(
         byItem: AutoscalersClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
 
       /// See `AutoscalersClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
 
       /// See `AutoscalersClient.delete`.
       func delete(request: AutoscalersClient.DeleteRequest) async throws
@@ -377,13 +377,13 @@
       /// See `AutoscalersClient.list`.
       func list(
         byItem: AutoscalersClient.ListRequest
-      ) throws -> any AsyncSequence<Autoscaler, Swift.Error>
+      ) -> any AsyncSequence<Autoscaler, Swift.Error>
 
       /// See `AutoscalersClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<Autoscaler, Swift.Error>
+      ) -> any AsyncSequence<Autoscaler, Swift.Error>
 
       /// See `AutoscalersClient.patch`.
       func patch(request: AutoscalersClient.PatchRequest) async throws
@@ -413,7 +413,7 @@
       /// See `AutoscalersClient.aggregatedList`.
       func aggregatedList(
         byItem: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error>
 
       /// See `AutoscalersClient.delete`.
       func delete(
@@ -438,7 +438,7 @@
       /// See `AutoscalersClient.list`.
       func list(
         byItem: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Autoscaler, Swift.Error>
+      ) -> any AsyncSequence<Autoscaler, Swift.Error>
 
       /// See `AutoscalersClient.patch`.
       func patch(
@@ -473,13 +473,13 @@
 
     public func aggregatedList(
       byItem: AutoscalersClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -489,11 +489,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
       let request = AutoscalersClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: AutoscalersClient.DeleteRequest) async throws
@@ -619,13 +619,13 @@
 
     public func list(
       byItem: AutoscalersClient.ListRequest
-    ) throws -> any AsyncSequence<Autoscaler, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Autoscaler, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Autoscaler, Swift.Error> {
+    ) -> any AsyncSequence<Autoscaler, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -635,12 +635,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<Autoscaler, Swift.Error> {
+    ) -> any AsyncSequence<Autoscaler, Swift.Error> {
       let request = AutoscalersClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: AutoscalersClient.PatchRequest) async throws

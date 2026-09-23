@@ -65,7 +65,7 @@
     /// @Snippet(path: "interconnectAttachments_aggregatedList")
     public func aggregatedList(
       byItem: InterconnectAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList in
@@ -201,7 +201,7 @@
     /// @Snippet(path: "interconnectAttachments_list")
     public func list(
       byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList in
         var request = byItem
@@ -343,12 +343,12 @@
       /// See `InterconnectAttachmentsClient.aggregatedList`.
       func aggregatedList(
         byItem: InterconnectAttachmentsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
 
       /// See `InterconnectAttachmentsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
 
       /// See `InterconnectAttachmentsClient.delete`.
       func delete(request: InterconnectAttachmentsClient.DeleteRequest) async throws
@@ -376,13 +376,13 @@
       /// See `InterconnectAttachmentsClient.list`.
       func list(
         byItem: InterconnectAttachmentsClient.ListRequest
-      ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
 
       /// See `InterconnectAttachmentsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
 
       /// See `InterconnectAttachmentsClient.patch`.
       func patch(request: InterconnectAttachmentsClient.PatchRequest) async throws
@@ -402,7 +402,7 @@
       func aggregatedList(
         byItem: InterconnectAttachmentsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
 
       /// See `InterconnectAttachmentsClient.delete`.
       func delete(
@@ -427,7 +427,7 @@
       /// See `InterconnectAttachmentsClient.list`.
       func list(
         byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
 
       /// See `InterconnectAttachmentsClient.patch`.
       func patch(
@@ -458,13 +458,13 @@
 
     public func aggregatedList(
       byItem: InterconnectAttachmentsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: InterconnectAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList in
@@ -475,11 +475,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
       let request = InterconnectAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: InterconnectAttachmentsClient.DeleteRequest) async throws
@@ -605,13 +605,13 @@
 
     public func list(
       byItem: InterconnectAttachmentsClient.ListRequest
-    ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList in
         throw GoogleGax.RequestError.unimplemented
@@ -622,12 +622,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
       let request = InterconnectAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: InterconnectAttachmentsClient.PatchRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let items = try client.listActiveDirectories(
+  let items = client.listActiveDirectories(
     byItem: ListActiveDirectoriesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

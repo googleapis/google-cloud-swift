@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AddressGroupServiceClient, parent: String) async throws {
-  let items = try client.listAddressGroups(
+  let items = client.listAddressGroups(
     byItem: ListAddressGroupsRequest()
       .with {
         $0.parent = "\(parent)"

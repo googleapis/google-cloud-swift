@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: ApiHubClient, projectId: String, locationId: String, apiId: String, versionId: String
 ) async throws {
-  let items = try client.listSpecs(
+  let items = client.listSpecs(
     byItem: ListSpecsRequest()
       .with {
         $0.parent =

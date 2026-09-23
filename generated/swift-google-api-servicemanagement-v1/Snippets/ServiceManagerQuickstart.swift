@@ -28,7 +28,7 @@ import GoogleWKT
 #endif
 func sample() async throws {
   let client = try GoogleApiServiceManagementV1.ServiceManagerClient()
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       /* set fields using .with { $0... } */
   )

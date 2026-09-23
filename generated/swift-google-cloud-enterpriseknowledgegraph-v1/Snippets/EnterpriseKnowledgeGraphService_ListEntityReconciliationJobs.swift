@@ -22,7 +22,7 @@ import GoogleCloudEnterpriseKnowledgeGraphV1
 func sample(client: EnterpriseKnowledgeGraphServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let items = try client.listEntityReconciliationJobs(
+  let items = client.listEntityReconciliationJobs(
     byItem: ListEntityReconciliationJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

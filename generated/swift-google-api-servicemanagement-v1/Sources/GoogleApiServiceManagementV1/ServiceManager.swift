@@ -70,7 +70,7 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   #endif
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedService, Swift.Error> {
+  ) -> any AsyncSequence<ManagedService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServicesResponse in
       var request = byItem
@@ -260,7 +260,7 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// @Snippet(path: "ServiceManager_ListServiceConfigs")
   public func listServiceConfigs(
     byItem: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServiceConfigsResponse
       in
@@ -380,7 +380,7 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// @Snippet(path: "ServiceManager_ListServiceRollouts")
   public func listServiceRollouts(
     byItem: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServiceRolloutsResponse
       in
@@ -534,7 +534,7 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// @Snippet(path: "ServiceManager_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -570,7 +570,7 @@ extension Clients {
     /// See `ServiceManagerClient.listServices`.
     func listServices(
       byItem: ListServicesRequest
-    ) throws -> any AsyncSequence<ManagedService, Swift.Error>
+    ) -> any AsyncSequence<ManagedService, Swift.Error>
 
     /// See `ServiceManagerClient.listServices`.
     #if hasAttribute(diagnose)
@@ -579,7 +579,7 @@ extension Clients {
     func listServices(
       producerProjectId: Swift.String,
       consumerId: Swift.String,
-    ) throws -> any AsyncSequence<ManagedService, Swift.Error>
+    ) -> any AsyncSequence<ManagedService, Swift.Error>
 
     /// See `ServiceManagerClient.getService`.
     func getService(request: GetServiceRequest) async throws
@@ -634,12 +634,12 @@ extension Clients {
     /// See `ServiceManagerClient.listServiceConfigs`.
     func listServiceConfigs(
       byItem: ListServiceConfigsRequest
-    ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error>
+    ) -> any AsyncSequence<GoogleApi.Service, Swift.Error>
 
     /// See `ServiceManagerClient.listServiceConfigs`.
     func listServiceConfigs(
       serviceName: Swift.String,
-    ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error>
+    ) -> any AsyncSequence<GoogleApi.Service, Swift.Error>
 
     /// See `ServiceManagerClient.getServiceConfig`.
     func getServiceConfig(request: GetServiceConfigRequest) async throws -> GoogleApi.Service
@@ -682,13 +682,13 @@ extension Clients {
     /// See `ServiceManagerClient.listServiceRollouts`.
     func listServiceRollouts(
       byItem: ListServiceRolloutsRequest
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `ServiceManagerClient.listServiceRollouts`.
     func listServiceRollouts(
       serviceName: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `ServiceManagerClient.getServiceRollout`.
     func getServiceRollout(request: GetServiceRolloutRequest) async throws
@@ -741,13 +741,13 @@ extension Clients {
     /// See `ServiceManagerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServiceManagerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServiceManagerClient.listServices`.
     func listServices(
@@ -757,7 +757,7 @@ extension Clients {
     /// See `ServiceManagerClient.listServices`.
     func listServices(
       byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ManagedService, Swift.Error>
+    ) -> any AsyncSequence<ManagedService, Swift.Error>
 
     /// See `ServiceManagerClient.getService`.
     func getService(
@@ -802,7 +802,7 @@ extension Clients {
     /// See `ServiceManagerClient.listServiceConfigs`.
     func listServiceConfigs(
       byItem: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error>
+    ) -> any AsyncSequence<GoogleApi.Service, Swift.Error>
 
     /// See `ServiceManagerClient.getServiceConfig`.
     func getServiceConfig(
@@ -832,7 +832,7 @@ extension Clients {
     /// See `ServiceManagerClient.listServiceRollouts`.
     func listServiceRollouts(
       byItem: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Rollout, Swift.Error>
+    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `ServiceManagerClient.getServiceRollout`.
     func getServiceRollout(
@@ -877,7 +877,7 @@ extension Clients {
     /// See `ServiceManagerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -897,13 +897,13 @@ extension Clients.ServiceManagerProtocol {
 
   public func listServices(
     byItem: ListServicesRequest
-  ) throws -> any AsyncSequence<ManagedService, Swift.Error> {
-    try self.listServices(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ManagedService, Swift.Error> {
+    self.listServices(byItem: byItem, options: .init())
   }
 
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedService, Swift.Error> {
+  ) -> any AsyncSequence<ManagedService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServicesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -917,12 +917,12 @@ extension Clients.ServiceManagerProtocol {
   public func listServices(
     producerProjectId: Swift.String,
     consumerId: Swift.String,
-  ) throws -> any AsyncSequence<ManagedService, Swift.Error> {
+  ) -> any AsyncSequence<ManagedService, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.producerProjectId = producerProjectId
       $0.consumerId = consumerId
     }
-    return try self.listServices(byItem: request)
+    return self.listServices(byItem: request)
   }
 
   public func getService(request: GetServiceRequest) async throws
@@ -1072,13 +1072,13 @@ extension Clients.ServiceManagerProtocol {
 
   public func listServiceConfigs(
     byItem: ListServiceConfigsRequest
-  ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
-    try self.listServiceConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
+    self.listServiceConfigs(byItem: byItem, options: .init())
   }
 
   public func listServiceConfigs(
     byItem: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServiceConfigsResponse
       in
@@ -1089,11 +1089,11 @@ extension Clients.ServiceManagerProtocol {
 
   public func listServiceConfigs(
     serviceName: Swift.String,
-  ) throws -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.Service, Swift.Error> {
     let request = ListServiceConfigsRequest().with {
       $0.serviceName = serviceName
     }
-    return try self.listServiceConfigs(byItem: request)
+    return self.listServiceConfigs(byItem: request)
   }
 
   public func getServiceConfig(request: GetServiceConfigRequest) async throws -> GoogleApi.Service {
@@ -1198,13 +1198,13 @@ extension Clients.ServiceManagerProtocol {
 
   public func listServiceRollouts(
     byItem: ListServiceRolloutsRequest
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
-    try self.listServiceRollouts(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
+    self.listServiceRollouts(byItem: byItem, options: .init())
   }
 
   public func listServiceRollouts(
     byItem: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceManagementV1.ListServiceRolloutsResponse
       in
@@ -1216,12 +1216,12 @@ extension Clients.ServiceManagerProtocol {
   public func listServiceRollouts(
     serviceName: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+  ) -> any AsyncSequence<Rollout, Swift.Error> {
     let request = ListServiceRolloutsRequest().with {
       $0.serviceName = serviceName
       $0.filter = filter
     }
-    return try self.listServiceRollouts(byItem: request)
+    return self.listServiceRollouts(byItem: request)
   }
 
   public func getServiceRollout(request: GetServiceRolloutRequest) async throws
@@ -1359,13 +1359,13 @@ extension Clients.ServiceManagerProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1376,12 +1376,12 @@ extension Clients.ServiceManagerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

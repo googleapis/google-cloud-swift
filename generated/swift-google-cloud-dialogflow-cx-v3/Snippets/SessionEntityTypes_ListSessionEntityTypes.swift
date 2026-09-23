@@ -27,7 +27,7 @@
     client: SessionEntityTypesClient, projectId: String, locationId: String, agentId: String,
     sessionId: String
   ) async throws {
-    let items = try client.listSessionEntityTypes(
+    let items = client.listSessionEntityTypes(
       byItem: ListSessionEntityTypesRequest()
         .with {
           $0.parent =

@@ -27,7 +27,7 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   gatewaySecurityPolicyId: String
 ) async throws {
-  let items = try client.listGatewaySecurityPolicyRules(
+  let items = client.listGatewaySecurityPolicyRules(
     byItem: ListGatewaySecurityPolicyRulesRequest()
       .with {
         $0.parent =

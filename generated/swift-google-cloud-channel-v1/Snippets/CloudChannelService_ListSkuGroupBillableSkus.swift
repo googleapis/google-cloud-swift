@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = try client.listSkuGroupBillableSkus(
+  let items = client.listSkuGroupBillableSkus(
     byItem: ListSkuGroupBillableSkusRequest()
       /* set fields using .with { $0... } */
   )

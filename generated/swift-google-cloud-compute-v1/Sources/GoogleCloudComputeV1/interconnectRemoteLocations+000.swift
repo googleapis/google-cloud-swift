@@ -66,7 +66,7 @@
     /// @Snippet(path: "interconnectRemoteLocations_list")
     public func list(
       byItem: InterconnectRemoteLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectRemoteLocationList in
         var request = byItem
@@ -101,12 +101,12 @@
       /// See `InterconnectRemoteLocationsClient.list`.
       func list(
         byItem: InterconnectRemoteLocationsClient.ListRequest
-      ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
+      ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
 
       /// See `InterconnectRemoteLocationsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
+      ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
 
       /// See `InterconnectRemoteLocationsClient.`get``.
       func `get`(
@@ -121,7 +121,7 @@
       /// See `InterconnectRemoteLocationsClient.list`.
       func list(
         byItem: InterconnectRemoteLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
+      ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error>
     }
   }
 
@@ -164,13 +164,13 @@
 
     public func list(
       byItem: InterconnectRemoteLocationsClient.ListRequest
-    ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InterconnectRemoteLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectRemoteLocationList in
         throw GoogleGax.RequestError.unimplemented
@@ -180,11 +180,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectRemoteLocation, Swift.Error> {
       let request = InterconnectRemoteLocationsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

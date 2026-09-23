@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient, parent: String) async throws {
-  let items = try client.listFolders(
+  let items = client.listFolders(
     byItem: ListFoldersRequest()
       .with {
         $0.parent = "\(parent)"

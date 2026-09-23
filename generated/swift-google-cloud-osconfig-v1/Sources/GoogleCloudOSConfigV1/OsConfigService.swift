@@ -84,7 +84,7 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// @Snippet(path: "OsConfigService_ListPatchJobs")
   public func listPatchJobs(
     byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchJob, Swift.Error> {
+  ) -> any AsyncSequence<PatchJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse in
       var request = byItem
@@ -108,7 +108,7 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
   public func listPatchJobInstanceDetails(
     byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
+  ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse in
@@ -151,7 +151,7 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// @Snippet(path: "OsConfigService_ListPatchDeployments")
   public func listPatchDeployments(
     byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchDeployment, Swift.Error> {
+  ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse in
       var request = byItem
@@ -252,12 +252,12 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchJobs`.
     func listPatchJobs(
       byItem: ListPatchJobsRequest
-    ) throws -> any AsyncSequence<PatchJob, Swift.Error>
+    ) -> any AsyncSequence<PatchJob, Swift.Error>
 
     /// See `OsConfigServiceClient.listPatchJobs`.
     func listPatchJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PatchJob, Swift.Error>
+    ) -> any AsyncSequence<PatchJob, Swift.Error>
 
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(request: ListPatchJobInstanceDetailsRequest) async throws
@@ -266,12 +266,12 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(
       byItem: ListPatchJobInstanceDetailsRequest
-    ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
+    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
 
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
+    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
 
     /// See `OsConfigServiceClient.createPatchDeployment`.
     func createPatchDeployment(request: CreatePatchDeploymentRequest) async throws
@@ -300,12 +300,12 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchDeployments`.
     func listPatchDeployments(
       byItem: ListPatchDeploymentsRequest
-    ) throws -> any AsyncSequence<PatchDeployment, Swift.Error>
+    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
 
     /// See `OsConfigServiceClient.listPatchDeployments`.
     func listPatchDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PatchDeployment, Swift.Error>
+    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
 
     /// See `OsConfigServiceClient.deletePatchDeployment`.
     func deletePatchDeployment(request: DeletePatchDeploymentRequest) async throws
@@ -374,7 +374,7 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchJobs`.
     func listPatchJobs(
       byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PatchJob, Swift.Error>
+    ) -> any AsyncSequence<PatchJob, Swift.Error>
 
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(
@@ -384,7 +384,7 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(
       byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
+    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
 
     /// See `OsConfigServiceClient.createPatchDeployment`.
     func createPatchDeployment(
@@ -404,7 +404,7 @@ extension Clients {
     /// See `OsConfigServiceClient.listPatchDeployments`.
     func listPatchDeployments(
       byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PatchDeployment, Swift.Error>
+    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
 
     /// See `OsConfigServiceClient.deletePatchDeployment`.
     func deletePatchDeployment(
@@ -494,13 +494,13 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchJobs(
     byItem: ListPatchJobsRequest
-  ) throws -> any AsyncSequence<PatchJob, Swift.Error> {
-    try self.listPatchJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PatchJob, Swift.Error> {
+    self.listPatchJobs(byItem: byItem, options: .init())
   }
 
   public func listPatchJobs(
     byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchJob, Swift.Error> {
+  ) -> any AsyncSequence<PatchJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -510,11 +510,11 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchJobs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PatchJob, Swift.Error> {
+  ) -> any AsyncSequence<PatchJob, Swift.Error> {
     let request = ListPatchJobsRequest().with {
       $0.parent = parent
     }
-    return try self.listPatchJobs(byItem: request)
+    return self.listPatchJobs(byItem: request)
   }
 
   public func listPatchJobInstanceDetails(request: ListPatchJobInstanceDetailsRequest) async throws
@@ -531,13 +531,13 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchJobInstanceDetails(
     byItem: ListPatchJobInstanceDetailsRequest
-  ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
-    try self.listPatchJobInstanceDetails(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
+    self.listPatchJobInstanceDetails(byItem: byItem, options: .init())
   }
 
   public func listPatchJobInstanceDetails(
     byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
+  ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse in
@@ -548,11 +548,11 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchJobInstanceDetails(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
+  ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
     let request = ListPatchJobInstanceDetailsRequest().with {
       $0.parent = parent
     }
-    return try self.listPatchJobInstanceDetails(byItem: request)
+    return self.listPatchJobInstanceDetails(byItem: request)
   }
 
   public func createPatchDeployment(request: CreatePatchDeploymentRequest) async throws
@@ -615,13 +615,13 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchDeployments(
     byItem: ListPatchDeploymentsRequest
-  ) throws -> any AsyncSequence<PatchDeployment, Swift.Error> {
-    try self.listPatchDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
+    self.listPatchDeployments(byItem: byItem, options: .init())
   }
 
   public func listPatchDeployments(
     byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PatchDeployment, Swift.Error> {
+  ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -631,11 +631,11 @@ extension Clients.OsConfigServiceProtocol {
 
   public func listPatchDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PatchDeployment, Swift.Error> {
+  ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
     let request = ListPatchDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listPatchDeployments(byItem: request)
+    return self.listPatchDeployments(byItem: request)
   }
 
   public func deletePatchDeployment(request: DeletePatchDeploymentRequest) async throws {

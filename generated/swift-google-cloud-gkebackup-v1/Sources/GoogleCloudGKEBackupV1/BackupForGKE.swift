@@ -94,7 +94,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListBackupPlans")
   public func listBackupPlans(
     byItem: ListBackupPlansRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupPlansResponse in
       var request = byItem
@@ -232,7 +232,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListBackupChannels")
   public func listBackupChannels(
     byItem: ListBackupChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupChannel, Swift.Error> {
+  ) -> any AsyncSequence<BackupChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupChannelsResponse in
       var request = byItem
@@ -335,7 +335,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListBackupPlanBindings")
   public func listBackupPlanBindings(
     byItem: ListBackupPlanBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupPlanBindingsResponse in
       var request = byItem
@@ -402,7 +402,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupsResponse in
       var request = byItem
@@ -504,7 +504,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListVolumeBackups")
   public func listVolumeBackups(
     byItem: ListVolumeBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<VolumeBackup, Swift.Error> {
+  ) -> any AsyncSequence<VolumeBackup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListVolumeBackupsResponse in
       var request = byItem
@@ -572,7 +572,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListRestorePlans")
   public func listRestorePlans(
     byItem: ListRestorePlansRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestorePlan, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlan, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestorePlansResponse in
       var request = byItem
@@ -710,7 +710,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListRestoreChannels")
   public func listRestoreChannels(
     byItem: ListRestoreChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestoreChannel, Swift.Error> {
+  ) -> any AsyncSequence<RestoreChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestoreChannelsResponse in
       var request = byItem
@@ -813,7 +813,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListRestorePlanBindings")
   public func listRestorePlanBindings(
     byItem: ListRestorePlanBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestorePlanBindingsResponse
       in
@@ -881,7 +881,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListRestores")
   public func listRestores(
     byItem: ListRestoresRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Restore, Swift.Error> {
+  ) -> any AsyncSequence<Restore, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestoresResponse in
       var request = byItem
@@ -983,7 +983,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListVolumeRestores")
   public func listVolumeRestores(
     byItem: ListVolumeRestoresRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<VolumeRestore, Swift.Error> {
+  ) -> any AsyncSequence<VolumeRestore, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListVolumeRestoresResponse in
       var request = byItem
@@ -1025,7 +1025,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -1100,7 +1100,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -1173,12 +1173,12 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupPlans`.
     func listBackupPlans(
       byItem: ListBackupPlansRequest
-    ) throws -> any AsyncSequence<BackupPlan, Swift.Error>
+    ) -> any AsyncSequence<BackupPlan, Swift.Error>
 
     /// See `BackupForGKEClient.listBackupPlans`.
     func listBackupPlans(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BackupPlan, Swift.Error>
+    ) -> any AsyncSequence<BackupPlan, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupPlan`.
     func getBackupPlan(request: GetBackupPlanRequest) async throws
@@ -1238,12 +1238,12 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupChannels`.
     func listBackupChannels(
       byItem: ListBackupChannelsRequest
-    ) throws -> any AsyncSequence<BackupChannel, Swift.Error>
+    ) -> any AsyncSequence<BackupChannel, Swift.Error>
 
     /// See `BackupForGKEClient.listBackupChannels`.
     func listBackupChannels(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BackupChannel, Swift.Error>
+    ) -> any AsyncSequence<BackupChannel, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupChannel`.
     func getBackupChannel(request: GetBackupChannelRequest) async throws
@@ -1288,12 +1288,12 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupPlanBindings`.
     func listBackupPlanBindings(
       byItem: ListBackupPlanBindingsRequest
-    ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error>
+    ) -> any AsyncSequence<BackupPlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.listBackupPlanBindings`.
     func listBackupPlanBindings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error>
+    ) -> any AsyncSequence<BackupPlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupPlanBinding`.
     func getBackupPlanBinding(request: GetBackupPlanBindingRequest) async throws
@@ -1325,12 +1325,12 @@ extension Clients {
     /// See `BackupForGKEClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BackupForGKEClient.listBackups`.
     func listBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BackupForGKEClient.getBackup`.
     func getBackup(request: GetBackupRequest) async throws -> GoogleCloudGKEBackupV1.Backup
@@ -1372,12 +1372,12 @@ extension Clients {
     /// See `BackupForGKEClient.listVolumeBackups`.
     func listVolumeBackups(
       byItem: ListVolumeBackupsRequest
-    ) throws -> any AsyncSequence<VolumeBackup, Swift.Error>
+    ) -> any AsyncSequence<VolumeBackup, Swift.Error>
 
     /// See `BackupForGKEClient.listVolumeBackups`.
     func listVolumeBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<VolumeBackup, Swift.Error>
+    ) -> any AsyncSequence<VolumeBackup, Swift.Error>
 
     /// See `BackupForGKEClient.getVolumeBackup`.
     func getVolumeBackup(request: GetVolumeBackupRequest) async throws
@@ -1410,12 +1410,12 @@ extension Clients {
     /// See `BackupForGKEClient.listRestorePlans`.
     func listRestorePlans(
       byItem: ListRestorePlansRequest
-    ) throws -> any AsyncSequence<RestorePlan, Swift.Error>
+    ) -> any AsyncSequence<RestorePlan, Swift.Error>
 
     /// See `BackupForGKEClient.listRestorePlans`.
     func listRestorePlans(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<RestorePlan, Swift.Error>
+    ) -> any AsyncSequence<RestorePlan, Swift.Error>
 
     /// See `BackupForGKEClient.getRestorePlan`.
     func getRestorePlan(request: GetRestorePlanRequest) async throws
@@ -1475,12 +1475,12 @@ extension Clients {
     /// See `BackupForGKEClient.listRestoreChannels`.
     func listRestoreChannels(
       byItem: ListRestoreChannelsRequest
-    ) throws -> any AsyncSequence<RestoreChannel, Swift.Error>
+    ) -> any AsyncSequence<RestoreChannel, Swift.Error>
 
     /// See `BackupForGKEClient.listRestoreChannels`.
     func listRestoreChannels(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<RestoreChannel, Swift.Error>
+    ) -> any AsyncSequence<RestoreChannel, Swift.Error>
 
     /// See `BackupForGKEClient.getRestoreChannel`.
     func getRestoreChannel(request: GetRestoreChannelRequest) async throws
@@ -1525,12 +1525,12 @@ extension Clients {
     /// See `BackupForGKEClient.listRestorePlanBindings`.
     func listRestorePlanBindings(
       byItem: ListRestorePlanBindingsRequest
-    ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error>
+    ) -> any AsyncSequence<RestorePlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.listRestorePlanBindings`.
     func listRestorePlanBindings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error>
+    ) -> any AsyncSequence<RestorePlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.getRestorePlanBinding`.
     func getRestorePlanBinding(request: GetRestorePlanBindingRequest) async throws
@@ -1562,12 +1562,12 @@ extension Clients {
     /// See `BackupForGKEClient.listRestores`.
     func listRestores(
       byItem: ListRestoresRequest
-    ) throws -> any AsyncSequence<Restore, Swift.Error>
+    ) -> any AsyncSequence<Restore, Swift.Error>
 
     /// See `BackupForGKEClient.listRestores`.
     func listRestores(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Restore, Swift.Error>
+    ) -> any AsyncSequence<Restore, Swift.Error>
 
     /// See `BackupForGKEClient.getRestore`.
     func getRestore(request: GetRestoreRequest) async throws -> GoogleCloudGKEBackupV1.Restore
@@ -1609,12 +1609,12 @@ extension Clients {
     /// See `BackupForGKEClient.listVolumeRestores`.
     func listVolumeRestores(
       byItem: ListVolumeRestoresRequest
-    ) throws -> any AsyncSequence<VolumeRestore, Swift.Error>
+    ) -> any AsyncSequence<VolumeRestore, Swift.Error>
 
     /// See `BackupForGKEClient.listVolumeRestores`.
     func listVolumeRestores(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<VolumeRestore, Swift.Error>
+    ) -> any AsyncSequence<VolumeRestore, Swift.Error>
 
     /// See `BackupForGKEClient.getVolumeRestore`.
     func getVolumeRestore(request: GetVolumeRestoreRequest) async throws
@@ -1641,7 +1641,7 @@ extension Clients {
     /// See `BackupForGKEClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `BackupForGKEClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1664,13 +1664,13 @@ extension Clients {
     /// See `BackupForGKEClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BackupForGKEClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BackupForGKEClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1706,7 +1706,7 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupPlans`.
     func listBackupPlans(
       byItem: ListBackupPlansRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupPlan, Swift.Error>
+    ) -> any AsyncSequence<BackupPlan, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupPlan`.
     func getBackupPlan(
@@ -1751,7 +1751,7 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupChannels`.
     func listBackupChannels(
       byItem: ListBackupChannelsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupChannel, Swift.Error>
+    ) -> any AsyncSequence<BackupChannel, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupChannel`.
     func getBackupChannel(
@@ -1786,7 +1786,7 @@ extension Clients {
     /// See `BackupForGKEClient.listBackupPlanBindings`.
     func listBackupPlanBindings(
       byItem: ListBackupPlanBindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error>
+    ) -> any AsyncSequence<BackupPlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.getBackupPlanBinding`.
     func getBackupPlanBinding(
@@ -1811,7 +1811,7 @@ extension Clients {
     /// See `BackupForGKEClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BackupForGKEClient.getBackup`.
     func getBackup(
@@ -1846,7 +1846,7 @@ extension Clients {
     /// See `BackupForGKEClient.listVolumeBackups`.
     func listVolumeBackups(
       byItem: ListVolumeBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VolumeBackup, Swift.Error>
+    ) -> any AsyncSequence<VolumeBackup, Swift.Error>
 
     /// See `BackupForGKEClient.getVolumeBackup`.
     func getVolumeBackup(
@@ -1871,7 +1871,7 @@ extension Clients {
     /// See `BackupForGKEClient.listRestorePlans`.
     func listRestorePlans(
       byItem: ListRestorePlansRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RestorePlan, Swift.Error>
+    ) -> any AsyncSequence<RestorePlan, Swift.Error>
 
     /// See `BackupForGKEClient.getRestorePlan`.
     func getRestorePlan(
@@ -1916,7 +1916,7 @@ extension Clients {
     /// See `BackupForGKEClient.listRestoreChannels`.
     func listRestoreChannels(
       byItem: ListRestoreChannelsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RestoreChannel, Swift.Error>
+    ) -> any AsyncSequence<RestoreChannel, Swift.Error>
 
     /// See `BackupForGKEClient.getRestoreChannel`.
     func getRestoreChannel(
@@ -1951,7 +1951,7 @@ extension Clients {
     /// See `BackupForGKEClient.listRestorePlanBindings`.
     func listRestorePlanBindings(
       byItem: ListRestorePlanBindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error>
+    ) -> any AsyncSequence<RestorePlanBinding, Swift.Error>
 
     /// See `BackupForGKEClient.getRestorePlanBinding`.
     func getRestorePlanBinding(
@@ -1976,7 +1976,7 @@ extension Clients {
     /// See `BackupForGKEClient.listRestores`.
     func listRestores(
       byItem: ListRestoresRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Restore, Swift.Error>
+    ) -> any AsyncSequence<Restore, Swift.Error>
 
     /// See `BackupForGKEClient.getRestore`.
     func getRestore(
@@ -2011,7 +2011,7 @@ extension Clients {
     /// See `BackupForGKEClient.listVolumeRestores`.
     func listVolumeRestores(
       byItem: ListVolumeRestoresRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VolumeRestore, Swift.Error>
+    ) -> any AsyncSequence<VolumeRestore, Swift.Error>
 
     /// See `BackupForGKEClient.getVolumeRestore`.
     func getVolumeRestore(
@@ -2031,7 +2031,7 @@ extension Clients {
     /// See `BackupForGKEClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `BackupForGKEClient.getLocation`.
     func getLocation(
@@ -2061,7 +2061,7 @@ extension Clients {
     /// See `BackupForGKEClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BackupForGKEClient.deleteOperation`.
     func deleteOperation(
@@ -2132,13 +2132,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupPlans(
     byItem: ListBackupPlansRequest
-  ) throws -> any AsyncSequence<BackupPlan, Swift.Error> {
-    try self.listBackupPlans(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
+    self.listBackupPlans(byItem: byItem, options: .init())
   }
 
   public func listBackupPlans(
     byItem: ListBackupPlansRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupPlansResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2148,11 +2148,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupPlans(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
     let request = ListBackupPlansRequest().with {
       $0.parent = parent
     }
-    return try self.listBackupPlans(byItem: request)
+    return self.listBackupPlans(byItem: request)
   }
 
   public func getBackupPlan(request: GetBackupPlanRequest) async throws
@@ -2307,13 +2307,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupChannels(
     byItem: ListBackupChannelsRequest
-  ) throws -> any AsyncSequence<BackupChannel, Swift.Error> {
-    try self.listBackupChannels(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BackupChannel, Swift.Error> {
+    self.listBackupChannels(byItem: byItem, options: .init())
   }
 
   public func listBackupChannels(
     byItem: ListBackupChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupChannel, Swift.Error> {
+  ) -> any AsyncSequence<BackupChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupChannelsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2323,11 +2323,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupChannels(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BackupChannel, Swift.Error> {
+  ) -> any AsyncSequence<BackupChannel, Swift.Error> {
     let request = ListBackupChannelsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackupChannels(byItem: request)
+    return self.listBackupChannels(byItem: request)
   }
 
   public func getBackupChannel(request: GetBackupChannelRequest) async throws
@@ -2441,13 +2441,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupPlanBindings(
     byItem: ListBackupPlanBindingsRequest
-  ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
-    try self.listBackupPlanBindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
+    self.listBackupPlanBindings(byItem: byItem, options: .init())
   }
 
   public func listBackupPlanBindings(
     byItem: ListBackupPlanBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupPlanBindingsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2457,11 +2457,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackupPlanBindings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanBinding, Swift.Error> {
     let request = ListBackupPlanBindingsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackupPlanBindings(byItem: request)
+    return self.listBackupPlanBindings(byItem: request)
   }
 
   public func getBackupPlanBinding(request: GetBackupPlanBindingRequest) async throws
@@ -2539,13 +2539,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackups(
     byItem: ListBackupsRequest
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
-    try self.listBackups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Backup, Swift.Error> {
+    self.listBackups(byItem: byItem, options: .init())
   }
 
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListBackupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2555,11 +2555,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listBackups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackups(byItem: request)
+    return self.listBackups(byItem: request)
   }
 
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudGKEBackupV1.Backup {
@@ -2669,13 +2669,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listVolumeBackups(
     byItem: ListVolumeBackupsRequest
-  ) throws -> any AsyncSequence<VolumeBackup, Swift.Error> {
-    try self.listVolumeBackups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<VolumeBackup, Swift.Error> {
+    self.listVolumeBackups(byItem: byItem, options: .init())
   }
 
   public func listVolumeBackups(
     byItem: ListVolumeBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<VolumeBackup, Swift.Error> {
+  ) -> any AsyncSequence<VolumeBackup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListVolumeBackupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2685,11 +2685,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listVolumeBackups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<VolumeBackup, Swift.Error> {
+  ) -> any AsyncSequence<VolumeBackup, Swift.Error> {
     let request = ListVolumeBackupsRequest().with {
       $0.parent = parent
     }
-    return try self.listVolumeBackups(byItem: request)
+    return self.listVolumeBackups(byItem: request)
   }
 
   public func getVolumeBackup(request: GetVolumeBackupRequest) async throws
@@ -2768,13 +2768,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestorePlans(
     byItem: ListRestorePlansRequest
-  ) throws -> any AsyncSequence<RestorePlan, Swift.Error> {
-    try self.listRestorePlans(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RestorePlan, Swift.Error> {
+    self.listRestorePlans(byItem: byItem, options: .init())
   }
 
   public func listRestorePlans(
     byItem: ListRestorePlansRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestorePlan, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlan, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestorePlansResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2784,11 +2784,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestorePlans(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<RestorePlan, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlan, Swift.Error> {
     let request = ListRestorePlansRequest().with {
       $0.parent = parent
     }
-    return try self.listRestorePlans(byItem: request)
+    return self.listRestorePlans(byItem: request)
   }
 
   public func getRestorePlan(request: GetRestorePlanRequest) async throws
@@ -2943,13 +2943,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestoreChannels(
     byItem: ListRestoreChannelsRequest
-  ) throws -> any AsyncSequence<RestoreChannel, Swift.Error> {
-    try self.listRestoreChannels(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RestoreChannel, Swift.Error> {
+    self.listRestoreChannels(byItem: byItem, options: .init())
   }
 
   public func listRestoreChannels(
     byItem: ListRestoreChannelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestoreChannel, Swift.Error> {
+  ) -> any AsyncSequence<RestoreChannel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestoreChannelsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2959,11 +2959,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestoreChannels(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<RestoreChannel, Swift.Error> {
+  ) -> any AsyncSequence<RestoreChannel, Swift.Error> {
     let request = ListRestoreChannelsRequest().with {
       $0.parent = parent
     }
-    return try self.listRestoreChannels(byItem: request)
+    return self.listRestoreChannels(byItem: request)
   }
 
   public func getRestoreChannel(request: GetRestoreChannelRequest) async throws
@@ -3077,13 +3077,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestorePlanBindings(
     byItem: ListRestorePlanBindingsRequest
-  ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
-    try self.listRestorePlanBindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
+    self.listRestorePlanBindings(byItem: byItem, options: .init())
   }
 
   public func listRestorePlanBindings(
     byItem: ListRestorePlanBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestorePlanBindingsResponse
       in
@@ -3094,11 +3094,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestorePlanBindings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
+  ) -> any AsyncSequence<RestorePlanBinding, Swift.Error> {
     let request = ListRestorePlanBindingsRequest().with {
       $0.parent = parent
     }
-    return try self.listRestorePlanBindings(byItem: request)
+    return self.listRestorePlanBindings(byItem: request)
   }
 
   public func getRestorePlanBinding(request: GetRestorePlanBindingRequest) async throws
@@ -3177,13 +3177,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestores(
     byItem: ListRestoresRequest
-  ) throws -> any AsyncSequence<Restore, Swift.Error> {
-    try self.listRestores(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Restore, Swift.Error> {
+    self.listRestores(byItem: byItem, options: .init())
   }
 
   public func listRestores(
     byItem: ListRestoresRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Restore, Swift.Error> {
+  ) -> any AsyncSequence<Restore, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListRestoresResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3193,11 +3193,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listRestores(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Restore, Swift.Error> {
+  ) -> any AsyncSequence<Restore, Swift.Error> {
     let request = ListRestoresRequest().with {
       $0.parent = parent
     }
-    return try self.listRestores(byItem: request)
+    return self.listRestores(byItem: request)
   }
 
   public func getRestore(request: GetRestoreRequest) async throws -> GoogleCloudGKEBackupV1.Restore
@@ -3310,13 +3310,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listVolumeRestores(
     byItem: ListVolumeRestoresRequest
-  ) throws -> any AsyncSequence<VolumeRestore, Swift.Error> {
-    try self.listVolumeRestores(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<VolumeRestore, Swift.Error> {
+    self.listVolumeRestores(byItem: byItem, options: .init())
   }
 
   public func listVolumeRestores(
     byItem: ListVolumeRestoresRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<VolumeRestore, Swift.Error> {
+  ) -> any AsyncSequence<VolumeRestore, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEBackupV1.ListVolumeRestoresResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3326,11 +3326,11 @@ extension Clients.BackupForGKEProtocol {
 
   public func listVolumeRestores(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<VolumeRestore, Swift.Error> {
+  ) -> any AsyncSequence<VolumeRestore, Swift.Error> {
     let request = ListVolumeRestoresRequest().with {
       $0.parent = parent
     }
-    return try self.listVolumeRestores(byItem: request)
+    return self.listVolumeRestores(byItem: request)
   }
 
   public func getVolumeRestore(request: GetVolumeRestoreRequest) async throws
@@ -3389,13 +3389,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3465,13 +3465,13 @@ extension Clients.BackupForGKEProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3482,12 +3482,12 @@ extension Clients.BackupForGKEProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -26,7 +26,7 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String,
   cloudExadataInfrastructureId: String
 ) async throws {
-  let items = try client.listDbServers(
+  let items = client.listDbServers(
     byItem: ListDbServersRequest()
       .with {
         $0.parent =

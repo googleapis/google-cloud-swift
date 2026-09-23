@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: ReservationServiceClient) async throws {
-  let items = try client.searchAllAssignments(
+  let items = client.searchAllAssignments(
     byItem: SearchAllAssignmentsRequest()
       /* set fields using .with { $0... } */
   )

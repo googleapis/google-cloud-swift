@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AnalyticsHubServiceClient) async throws {
-  let items = try client.listSharedResourceSubscriptions(
+  let items = client.listSharedResourceSubscriptions(
     byItem: ListSharedResourceSubscriptionsRequest()
       /* set fields using .with { $0... } */
   )

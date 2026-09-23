@@ -25,7 +25,7 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let items = try client.listTargetSites(
+    let items = client.listTargetSites(
       byItem: ListTargetSitesRequest()
         .with {
           $0.parent =

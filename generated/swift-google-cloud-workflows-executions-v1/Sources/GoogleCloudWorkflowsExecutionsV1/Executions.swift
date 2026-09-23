@@ -57,7 +57,7 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
       in
@@ -110,12 +110,12 @@ extension Clients {
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       byItem: ListExecutionsRequest
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.createExecution`.
     func createExecution(request: CreateExecutionRequest) async throws
@@ -153,7 +153,7 @@ extension Clients {
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Execution, Swift.Error>
+    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.createExecution`.
     func createExecution(
@@ -188,13 +188,13 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutions(
     byItem: ListExecutionsRequest
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
-    try self.listExecutions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Execution, Swift.Error> {
+    self.listExecutions(byItem: byItem, options: .init())
   }
 
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
       in
@@ -205,11 +205,11 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Execution, Swift.Error> {
+  ) -> any AsyncSequence<Execution, Swift.Error> {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }
-    return try self.listExecutions(byItem: request)
+    return self.listExecutions(byItem: request)
   }
 
   public func createExecution(request: CreateExecutionRequest) async throws

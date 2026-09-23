@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, parent: String) async throws {
-  let items = try client.listFleets(
+  let items = client.listFleets(
     byItem: ListFleetsRequest()
       .with {
         $0.parent = "\(parent)"

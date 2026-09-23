@@ -26,7 +26,7 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.GenAiCacheServiceClient()
-    let items = try client.listCachedContents(
+    let items = client.listCachedContents(
       byItem: ListCachedContentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

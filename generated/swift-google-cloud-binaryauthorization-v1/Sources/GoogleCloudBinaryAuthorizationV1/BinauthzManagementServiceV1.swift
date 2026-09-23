@@ -148,7 +148,7 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
   public func listAttestors(
     byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
       in
@@ -272,12 +272,12 @@ extension Clients {
     /// See `BinauthzManagementServiceV1Client.listAttestors`.
     func listAttestors(
       byItem: ListAttestorsRequest
-    ) throws -> any AsyncSequence<Attestor, Swift.Error>
+    ) -> any AsyncSequence<Attestor, Swift.Error>
 
     /// See `BinauthzManagementServiceV1Client.listAttestors`.
     func listAttestors(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Attestor, Swift.Error>
+    ) -> any AsyncSequence<Attestor, Swift.Error>
 
     /// See `BinauthzManagementServiceV1Client.deleteAttestor`.
     func deleteAttestor(request: DeleteAttestorRequest) async throws
@@ -330,7 +330,7 @@ extension Clients {
     /// See `BinauthzManagementServiceV1Client.listAttestors`.
     func listAttestors(
       byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Attestor, Swift.Error>
+    ) -> any AsyncSequence<Attestor, Swift.Error>
 
     /// See `BinauthzManagementServiceV1Client.deleteAttestor`.
     func deleteAttestor(
@@ -479,13 +479,13 @@ extension Clients.BinauthzManagementServiceV1Protocol {
 
   public func listAttestors(
     byItem: ListAttestorsRequest
-  ) throws -> any AsyncSequence<Attestor, Swift.Error> {
-    try self.listAttestors(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Attestor, Swift.Error> {
+    self.listAttestors(byItem: byItem, options: .init())
   }
 
   public func listAttestors(
     byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
       in
@@ -496,11 +496,11 @@ extension Clients.BinauthzManagementServiceV1Protocol {
 
   public func listAttestors(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> {
     let request = ListAttestorsRequest().with {
       $0.parent = parent
     }
-    return try self.listAttestors(byItem: request)
+    return self.listAttestors(byItem: request)
   }
 
   public func deleteAttestor(request: DeleteAttestorRequest) async throws {

@@ -64,7 +64,7 @@
     /// @Snippet(path: "regionHealthSources_aggregatedList")
     public func aggregatedList(
       byItem: RegionHealthSourcesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthSourceAggregatedList in
         var request = byItem
@@ -207,7 +207,7 @@
     /// @Snippet(path: "regionHealthSources_list")
     public func list(
       byItem: RegionHealthSourcesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthSource, Swift.Error> {
+    ) -> any AsyncSequence<HealthSource, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthSourceList in
         var request = byItem
         request.pageToken = token
@@ -305,12 +305,12 @@
       /// See `RegionHealthSourcesClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionHealthSourcesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
 
       /// See `RegionHealthSourcesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
 
       /// See `RegionHealthSourcesClient.delete`.
       func delete(request: RegionHealthSourcesClient.DeleteRequest) async throws
@@ -349,13 +349,13 @@
       /// See `RegionHealthSourcesClient.list`.
       func list(
         byItem: RegionHealthSourcesClient.ListRequest
-      ) throws -> any AsyncSequence<HealthSource, Swift.Error>
+      ) -> any AsyncSequence<HealthSource, Swift.Error>
 
       /// See `RegionHealthSourcesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<HealthSource, Swift.Error>
+      ) -> any AsyncSequence<HealthSource, Swift.Error>
 
       /// See `RegionHealthSourcesClient.patch`.
       func patch(request: RegionHealthSourcesClient.PatchRequest) async throws
@@ -381,7 +381,7 @@
       /// See `RegionHealthSourcesClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionHealthSourcesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error>
 
       /// See `RegionHealthSourcesClient.delete`.
       func delete(
@@ -411,7 +411,7 @@
       /// See `RegionHealthSourcesClient.list`.
       func list(
         byItem: RegionHealthSourcesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<HealthSource, Swift.Error>
+      ) -> any AsyncSequence<HealthSource, Swift.Error>
 
       /// See `RegionHealthSourcesClient.patch`.
       func patch(
@@ -442,13 +442,13 @@
 
     public func aggregatedList(
       byItem: RegionHealthSourcesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionHealthSourcesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthSourceAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -458,11 +458,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> {
       let request = RegionHealthSourcesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: RegionHealthSourcesClient.DeleteRequest) async throws
@@ -613,13 +613,13 @@
 
     public func list(
       byItem: RegionHealthSourcesClient.ListRequest
-    ) throws -> any AsyncSequence<HealthSource, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<HealthSource, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionHealthSourcesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HealthSource, Swift.Error> {
+    ) -> any AsyncSequence<HealthSource, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthSourceList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -629,12 +629,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<HealthSource, Swift.Error> {
+    ) -> any AsyncSequence<HealthSource, Swift.Error> {
       let request = RegionHealthSourcesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionHealthSourcesClient.PatchRequest) async throws

@@ -24,7 +24,7 @@
   import GoogleLongRunning
 
   func sample(client: GenAiTuningServiceClient, parent: String) async throws {
-    let items = try client.listTuningJobs(
+    let items = client.listTuningJobs(
       byItem: ListTuningJobsRequest()
         .with {
           $0.parent = "\(parent)"

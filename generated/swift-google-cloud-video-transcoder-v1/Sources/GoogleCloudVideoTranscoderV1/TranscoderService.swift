@@ -64,7 +64,7 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// @Snippet(path: "TranscoderService_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse in
       var request = byItem
@@ -115,7 +115,7 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// @Snippet(path: "TranscoderService_ListJobTemplates")
   public func listJobTemplates(
     byItem: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse in
       var request = byItem
@@ -167,12 +167,12 @@ extension Clients {
     /// See `TranscoderServiceClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `TranscoderServiceClient.listJobs`.
     func listJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `TranscoderServiceClient.getJob`.
     func getJob(request: GetJobRequest) async throws -> GoogleCloudVideoTranscoderV1.Job
@@ -208,12 +208,12 @@ extension Clients {
     /// See `TranscoderServiceClient.listJobTemplates`.
     func listJobTemplates(
       byItem: ListJobTemplatesRequest
-    ) throws -> any AsyncSequence<JobTemplate, Swift.Error>
+    ) -> any AsyncSequence<JobTemplate, Swift.Error>
 
     /// See `TranscoderServiceClient.listJobTemplates`.
     func listJobTemplates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<JobTemplate, Swift.Error>
+    ) -> any AsyncSequence<JobTemplate, Swift.Error>
 
     /// See `TranscoderServiceClient.getJobTemplate`.
     func getJobTemplate(request: GetJobTemplateRequest) async throws
@@ -245,7 +245,7 @@ extension Clients {
     /// See `TranscoderServiceClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `TranscoderServiceClient.getJob`.
     func getJob(
@@ -270,7 +270,7 @@ extension Clients {
     /// See `TranscoderServiceClient.listJobTemplates`.
     func listJobTemplates(
       byItem: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<JobTemplate, Swift.Error>
+    ) -> any AsyncSequence<JobTemplate, Swift.Error>
 
     /// See `TranscoderServiceClient.getJobTemplate`.
     func getJobTemplate(
@@ -322,13 +322,13 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobs(
     byItem: ListJobsRequest
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
-    try self.listJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Job, Swift.Error> {
+    self.listJobs(byItem: byItem, options: .init())
   }
 
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -338,11 +338,11 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
-    return try self.listJobs(byItem: request)
+    return self.listJobs(byItem: request)
   }
 
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -422,13 +422,13 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplates(
     byItem: ListJobTemplatesRequest
-  ) throws -> any AsyncSequence<JobTemplate, Swift.Error> {
-    try self.listJobTemplates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
+    self.listJobTemplates(byItem: byItem, options: .init())
   }
 
   public func listJobTemplates(
     byItem: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -438,11 +438,11 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplates(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
     let request = ListJobTemplatesRequest().with {
       $0.parent = parent
     }
-    return try self.listJobTemplates(byItem: request)
+    return self.listJobTemplates(byItem: request)
   }
 
   public func getJobTemplate(request: GetJobTemplateRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RapidMigrationAssessmentClient, parent: String) async throws {
-  let items = try client.listCollectors(
+  let items = client.listCollectors(
     byItem: ListCollectorsRequest()
       .with {
         $0.parent = "\(parent)"

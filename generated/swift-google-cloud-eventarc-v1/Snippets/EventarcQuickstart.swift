@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudEventarcV1.EventarcClient()
-  let items = try client.listTriggers(
+  let items = client.listTriggers(
     byItem: ListTriggersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

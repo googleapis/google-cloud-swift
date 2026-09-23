@@ -21,7 +21,7 @@ import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
 
 func sample(client: DatastoreAdminClient) async throws {
-  let items = try client.listIndexes(
+  let items = client.listIndexes(
     byItem: ListIndexesRequest()
       /* set fields using .with { $0... } */
   )

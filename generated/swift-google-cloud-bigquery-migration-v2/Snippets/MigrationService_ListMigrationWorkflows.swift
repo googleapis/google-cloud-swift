@@ -20,7 +20,7 @@ import Foundation
 import GoogleBigQueryMigrationV2
 
 func sample(client: MigrationServiceClient, parent: String) async throws {
-  let items = try client.listMigrationWorkflows(
+  let items = client.listMigrationWorkflows(
     byItem: ListMigrationWorkflowsRequest()
       .with {
         $0.parent = "\(parent)"

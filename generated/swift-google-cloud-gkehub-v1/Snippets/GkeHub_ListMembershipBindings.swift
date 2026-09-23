@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)
   async throws
 {
-  let items = try client.listMembershipBindings(
+  let items = client.listMembershipBindings(
     byItem: ListMembershipBindingsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)"

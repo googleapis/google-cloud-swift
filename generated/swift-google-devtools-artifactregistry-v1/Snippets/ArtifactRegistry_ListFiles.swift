@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let items = try client.listFiles(
+  let items = client.listFiles(
     byItem: ListFilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"

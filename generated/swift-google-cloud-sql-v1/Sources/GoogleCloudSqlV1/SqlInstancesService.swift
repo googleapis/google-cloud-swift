@@ -194,7 +194,7 @@
     /// @Snippet(path: "SqlInstancesService_List")
     public func list(
       byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ApiWarning, Swift.Error> {
+    ) -> any AsyncSequence<ApiWarning, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
         var request = byItem
@@ -554,7 +554,7 @@
       /// See `SqlInstancesServiceClient.list`.
       func list(
         byItem: SqlInstancesListRequest
-      ) throws -> any AsyncSequence<ApiWarning, Swift.Error>
+      ) -> any AsyncSequence<ApiWarning, Swift.Error>
 
       /// See `SqlInstancesServiceClient.listServerCas`.
       func listServerCas(request: SqlInstancesListServerCasRequest) async throws
@@ -742,7 +742,7 @@
       /// See `SqlInstancesServiceClient.list`.
       func list(
         byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ApiWarning, Swift.Error>
+      ) -> any AsyncSequence<ApiWarning, Swift.Error>
 
       /// See `SqlInstancesServiceClient.listServerCas`.
       func listServerCas(
@@ -1062,13 +1062,13 @@
 
     public func list(
       byItem: SqlInstancesListRequest
-    ) throws -> any AsyncSequence<ApiWarning, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ApiWarning, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ApiWarning, Swift.Error> {
+    ) -> any AsyncSequence<ApiWarning, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
         throw GoogleGax.RequestError.unimplemented

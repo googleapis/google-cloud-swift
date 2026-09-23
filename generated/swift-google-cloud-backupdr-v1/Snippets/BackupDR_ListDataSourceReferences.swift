@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient, projectId: String, locationId: String) async throws {
-  let items = try client.listDataSourceReferences(
+  let items = client.listDataSourceReferences(
     byItem: ListDataSourceReferencesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -120,7 +120,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListTables")
   public func listTables(
     byItem: ListTablesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListTablesResponse in
       var request = byItem
@@ -265,7 +265,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListAuthorizedViews")
   public func listAuthorizedViews(
     byItem: ListAuthorizedViewsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedView, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListAuthorizedViewsResponse
       in
@@ -465,7 +465,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListSnapshots")
   public func listSnapshots(
     byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListSnapshotsResponse in
       var request = byItem
@@ -593,7 +593,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListBackupsResponse in
       var request = byItem
@@ -821,7 +821,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListSchemaBundles")
   public func listSchemaBundles(
     byItem: ListSchemaBundlesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SchemaBundle, Swift.Error> {
+  ) -> any AsyncSequence<SchemaBundle, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListSchemaBundlesResponse in
       var request = byItem
@@ -858,7 +858,7 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// @Snippet(path: "BigtableTableAdmin_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -941,12 +941,12 @@ extension Clients {
     /// See `BigtableTableAdminClient.listTables`.
     func listTables(
       byItem: ListTablesRequest
-    ) throws -> any AsyncSequence<Table, Swift.Error>
+    ) -> any AsyncSequence<Table, Swift.Error>
 
     /// See `BigtableTableAdminClient.listTables`.
     func listTables(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Table, Swift.Error>
+    ) -> any AsyncSequence<Table, Swift.Error>
 
     /// See `BigtableTableAdminClient.getTable`.
     func getTable(request: GetTableRequest) async throws -> GoogleCloudBigtableAdminV2.Table
@@ -1011,12 +1011,12 @@ extension Clients {
     /// See `BigtableTableAdminClient.listAuthorizedViews`.
     func listAuthorizedViews(
       byItem: ListAuthorizedViewsRequest
-    ) throws -> any AsyncSequence<AuthorizedView, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedView, Swift.Error>
 
     /// See `BigtableTableAdminClient.listAuthorizedViews`.
     func listAuthorizedViews(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AuthorizedView, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedView, Swift.Error>
 
     /// See `BigtableTableAdminClient.getAuthorizedView`.
     func getAuthorizedView(request: GetAuthorizedViewRequest) async throws
@@ -1112,12 +1112,12 @@ extension Clients {
     /// See `BigtableTableAdminClient.listSnapshots`.
     func listSnapshots(
       byItem: ListSnapshotsRequest
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `BigtableTableAdminClient.listSnapshots`.
     func listSnapshots(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteSnapshot`.
     func deleteSnapshot(request: DeleteSnapshotRequest) async throws
@@ -1174,12 +1174,12 @@ extension Clients {
     /// See `BigtableTableAdminClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BigtableTableAdminClient.listBackups`.
     func listBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BigtableTableAdminClient.restoreTable`.
     func restoreTable(request: RestoreTableRequest) async throws -> GoogleLongRunning.Operation
@@ -1276,12 +1276,12 @@ extension Clients {
     /// See `BigtableTableAdminClient.listSchemaBundles`.
     func listSchemaBundles(
       byItem: ListSchemaBundlesRequest
-    ) throws -> any AsyncSequence<SchemaBundle, Swift.Error>
+    ) -> any AsyncSequence<SchemaBundle, Swift.Error>
 
     /// See `BigtableTableAdminClient.listSchemaBundles`.
     func listSchemaBundles(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SchemaBundle, Swift.Error>
+    ) -> any AsyncSequence<SchemaBundle, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteSchemaBundle`.
     func deleteSchemaBundle(request: DeleteSchemaBundleRequest) async throws
@@ -1298,13 +1298,13 @@ extension Clients {
     /// See `BigtableTableAdminClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BigtableTableAdminClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1345,7 +1345,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listTables`.
     func listTables(
       byItem: ListTablesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Table, Swift.Error>
+    ) -> any AsyncSequence<Table, Swift.Error>
 
     /// See `BigtableTableAdminClient.getTable`.
     func getTable(
@@ -1395,7 +1395,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listAuthorizedViews`.
     func listAuthorizedViews(
       byItem: ListAuthorizedViewsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AuthorizedView, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedView, Swift.Error>
 
     /// See `BigtableTableAdminClient.getAuthorizedView`.
     func getAuthorizedView(
@@ -1460,7 +1460,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listSnapshots`.
     func listSnapshots(
       byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Snapshot, Swift.Error>
+    ) -> any AsyncSequence<Snapshot, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteSnapshot`.
     func deleteSnapshot(
@@ -1500,7 +1500,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `BigtableTableAdminClient.restoreTable`.
     func restoreTable(
@@ -1570,7 +1570,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listSchemaBundles`.
     func listSchemaBundles(
       byItem: ListSchemaBundlesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SchemaBundle, Swift.Error>
+    ) -> any AsyncSequence<SchemaBundle, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteSchemaBundle`.
     func deleteSchemaBundle(
@@ -1585,7 +1585,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BigtableTableAdminClient.deleteOperation`.
     func deleteOperation(
@@ -1681,13 +1681,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listTables(
     byItem: ListTablesRequest
-  ) throws -> any AsyncSequence<Table, Swift.Error> {
-    try self.listTables(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Table, Swift.Error> {
+    self.listTables(byItem: byItem, options: .init())
   }
 
   public func listTables(
     byItem: ListTablesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListTablesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1697,11 +1697,11 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listTables(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> {
     let request = ListTablesRequest().with {
       $0.parent = parent
     }
-    return try self.listTables(byItem: request)
+    return self.listTables(byItem: request)
   }
 
   public func getTable(request: GetTableRequest) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -1871,13 +1871,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listAuthorizedViews(
     byItem: ListAuthorizedViewsRequest
-  ) throws -> any AsyncSequence<AuthorizedView, Swift.Error> {
-    try self.listAuthorizedViews(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AuthorizedView, Swift.Error> {
+    self.listAuthorizedViews(byItem: byItem, options: .init())
   }
 
   public func listAuthorizedViews(
     byItem: ListAuthorizedViewsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedView, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListAuthorizedViewsResponse
       in
@@ -1888,11 +1888,11 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listAuthorizedViews(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AuthorizedView, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedView, Swift.Error> {
     let request = ListAuthorizedViewsRequest().with {
       $0.parent = parent
     }
-    return try self.listAuthorizedViews(byItem: request)
+    return self.listAuthorizedViews(byItem: request)
   }
 
   public func getAuthorizedView(request: GetAuthorizedViewRequest) async throws
@@ -2129,13 +2129,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listSnapshots(
     byItem: ListSnapshotsRequest
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
-    try self.listSnapshots(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
+    self.listSnapshots(byItem: byItem, options: .init())
   }
 
   public func listSnapshots(
     byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListSnapshotsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2145,11 +2145,11 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listSnapshots(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Snapshot, Swift.Error> {
+  ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let request = ListSnapshotsRequest().with {
       $0.parent = parent
     }
-    return try self.listSnapshots(byItem: request)
+    return self.listSnapshots(byItem: request)
   }
 
   public func deleteSnapshot(request: DeleteSnapshotRequest) async throws {
@@ -2287,13 +2287,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listBackups(
     byItem: ListBackupsRequest
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
-    try self.listBackups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Backup, Swift.Error> {
+    self.listBackups(byItem: byItem, options: .init())
   }
 
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListBackupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2303,11 +2303,11 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listBackups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackups(byItem: request)
+    return self.listBackups(byItem: request)
   }
 
   public func restoreTable(request: RestoreTableRequest) async throws -> GoogleLongRunning.Operation
@@ -2560,13 +2560,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listSchemaBundles(
     byItem: ListSchemaBundlesRequest
-  ) throws -> any AsyncSequence<SchemaBundle, Swift.Error> {
-    try self.listSchemaBundles(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SchemaBundle, Swift.Error> {
+    self.listSchemaBundles(byItem: byItem, options: .init())
   }
 
   public func listSchemaBundles(
     byItem: ListSchemaBundlesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SchemaBundle, Swift.Error> {
+  ) -> any AsyncSequence<SchemaBundle, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListSchemaBundlesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2576,11 +2576,11 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listSchemaBundles(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SchemaBundle, Swift.Error> {
+  ) -> any AsyncSequence<SchemaBundle, Swift.Error> {
     let request = ListSchemaBundlesRequest().with {
       $0.parent = parent
     }
-    return try self.listSchemaBundles(byItem: request)
+    return self.listSchemaBundles(byItem: request)
   }
 
   public func deleteSchemaBundle(request: DeleteSchemaBundleRequest) async throws {
@@ -2616,13 +2616,13 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2633,12 +2633,12 @@ extension Clients.BigtableTableAdminProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

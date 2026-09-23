@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageTransferServiceClient) async throws {
-  let items = try client.listAgentPools(
+  let items = client.listAgentPools(
     byItem: ListAgentPoolsRequest()
       /* set fields using .with { $0... } */
   )

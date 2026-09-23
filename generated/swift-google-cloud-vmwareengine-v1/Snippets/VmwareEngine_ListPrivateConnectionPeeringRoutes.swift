@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient) async throws {
-  let items = try client.listPrivateConnectionPeeringRoutes(
+  let items = client.listPrivateConnectionPeeringRoutes(
     byItem: ListPrivateConnectionPeeringRoutesRequest()
       /* set fields using .with { $0... } */
   )

@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceTemplatesClient) async throws {
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: InstanceTemplatesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

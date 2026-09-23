@@ -166,7 +166,7 @@
     /// @Snippet(path: "globalForwardingRules_list")
     public func list(
       byItem: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         var request = byItem
@@ -376,12 +376,12 @@
       /// See `GlobalForwardingRulesClient.list`.
       func list(
         byItem: GlobalForwardingRulesClient.ListRequest
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `GlobalForwardingRulesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `GlobalForwardingRulesClient.patch`.
       func patch(request: GlobalForwardingRulesClient.PatchRequest) async throws
@@ -418,7 +418,7 @@
       /// See `GlobalForwardingRulesClient.list`.
       func list(
         byItem: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ForwardingRule, Swift.Error>
+      ) -> any AsyncSequence<ForwardingRule, Swift.Error>
 
       /// See `GlobalForwardingRulesClient.patch`.
       func patch(
@@ -556,13 +556,13 @@
 
     public func list(
       byItem: GlobalForwardingRulesClient.ListRequest
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         throw GoogleGax.RequestError.unimplemented
@@ -572,11 +572,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
       let request = GlobalForwardingRulesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: GlobalForwardingRulesClient.PatchRequest) async throws

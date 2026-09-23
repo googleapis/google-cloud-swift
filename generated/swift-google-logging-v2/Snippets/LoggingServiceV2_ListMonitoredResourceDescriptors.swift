@@ -22,7 +22,7 @@ import GoogleApi
 import GoogleLongRunning
 
 func sample(client: LoggingServiceV2Client) async throws {
-  let items = try client.listMonitoredResourceDescriptors(
+  let items = client.listMonitoredResourceDescriptors(
     byItem: ListMonitoredResourceDescriptorsRequest()
       /* set fields using .with { $0... } */
   )

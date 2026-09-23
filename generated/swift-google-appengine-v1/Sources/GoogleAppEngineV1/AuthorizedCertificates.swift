@@ -53,7 +53,7 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// @Snippet(path: "AuthorizedCertificates_ListAuthorizedCertificates")
   public func listAuthorizedCertificates(
     byItem: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse in
       var request = byItem
@@ -121,7 +121,7 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// @Snippet(path: "AuthorizedCertificates_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -157,7 +157,7 @@ extension Clients {
     /// See `AuthorizedCertificatesClient.listAuthorizedCertificates`.
     func listAuthorizedCertificates(
       byItem: ListAuthorizedCertificatesRequest
-    ) throws -> any AsyncSequence<AuthorizedCertificate, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedCertificate, Swift.Error>
 
     /// See `AuthorizedCertificatesClient.getAuthorizedCertificate`.
     func getAuthorizedCertificate(request: GetAuthorizedCertificateRequest) async throws
@@ -181,13 +181,13 @@ extension Clients {
     /// See `AuthorizedCertificatesClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuthorizedCertificatesClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuthorizedCertificatesClient.listAuthorizedCertificates`.
     func listAuthorizedCertificates(
@@ -197,7 +197,7 @@ extension Clients {
     /// See `AuthorizedCertificatesClient.listAuthorizedCertificates`.
     func listAuthorizedCertificates(
       byItem: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AuthorizedCertificate, Swift.Error>
+    ) -> any AsyncSequence<AuthorizedCertificate, Swift.Error>
 
     /// See `AuthorizedCertificatesClient.getAuthorizedCertificate`.
     func getAuthorizedCertificate(
@@ -227,7 +227,7 @@ extension Clients {
     /// See `AuthorizedCertificatesClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -247,13 +247,13 @@ extension Clients.AuthorizedCertificatesProtocol {
 
   public func listAuthorizedCertificates(
     byItem: ListAuthorizedCertificatesRequest
-  ) throws -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
-    try self.listAuthorizedCertificates(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
+    self.listAuthorizedCertificates(byItem: byItem, options: .init())
   }
 
   public func listAuthorizedCertificates(
     byItem: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
+  ) -> any AsyncSequence<AuthorizedCertificate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -322,13 +322,13 @@ extension Clients.AuthorizedCertificatesProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -339,12 +339,12 @@ extension Clients.AuthorizedCertificatesProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

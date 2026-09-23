@@ -26,7 +26,7 @@ func sample(
   client: MemorystoreClient, projectId: String, locationId: String, instanceId: String,
   tokenAuthUserId: String
 ) async throws {
-  let items = try client.listAuthTokens(
+  let items = client.listAuthTokens(
     byItem: ListAuthTokensRequest()
       .with {
         $0.parent =

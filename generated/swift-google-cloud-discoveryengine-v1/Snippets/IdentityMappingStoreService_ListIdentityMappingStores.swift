@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient, parent: String) async throws {
-    let items = try client.listIdentityMappingStores(
+    let items = client.listIdentityMappingStores(
       byItem: ListIdentityMappingStoresRequest()
         .with {
           $0.parent = "\(parent)"

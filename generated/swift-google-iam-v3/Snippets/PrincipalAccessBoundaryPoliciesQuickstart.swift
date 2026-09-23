@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleIAMV3.PrincipalAccessBoundaryPoliciesClient()
-  let items = try client.listPrincipalAccessBoundaryPolicies(
+  let items = client.listPrincipalAccessBoundaryPolicies(
     byItem: ListPrincipalAccessBoundaryPoliciesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

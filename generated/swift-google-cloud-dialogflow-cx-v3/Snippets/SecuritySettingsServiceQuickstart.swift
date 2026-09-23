@@ -25,7 +25,7 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudDialogflowCXV3.SecuritySettingsServiceClient()
-    let items = try client.listSecuritySettings(
+    let items = client.listSecuritySettings(
       byItem: ListSecuritySettingsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

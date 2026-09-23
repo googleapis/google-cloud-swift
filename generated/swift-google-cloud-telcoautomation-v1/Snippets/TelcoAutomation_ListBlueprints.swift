@@ -26,7 +26,7 @@ func sample(
   client: TelcoAutomationClient, projectId: String, locationId: String,
   orchestrationClusterId: String
 ) async throws {
-  let items = try client.listBlueprints(
+  let items = client.listBlueprints(
     byItem: ListBlueprintsRequest()
       .with {
         $0.parent =

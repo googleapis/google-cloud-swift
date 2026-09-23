@@ -100,7 +100,7 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// @Snippet(path: "Environments_ListEnvironments")
   public func listEnvironments(
     byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Environment, Swift.Error> {
+  ) -> any AsyncSequence<Environment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse in
@@ -230,7 +230,7 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// @Snippet(path: "Environments_ListWorkloads")
   public func listWorkloads(
     byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
+  ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse in
@@ -325,7 +325,7 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// @Snippet(path: "Environments_ListUserWorkloadsSecrets")
   public func listUserWorkloadsSecrets(
     byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse in
@@ -404,7 +404,7 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// @Snippet(path: "Environments_ListUserWorkloadsConfigMaps")
   public func listUserWorkloadsConfigMaps(
     byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse in
@@ -584,7 +584,7 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// @Snippet(path: "Environments_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -654,12 +654,12 @@ extension Clients {
     /// See `EnvironmentsClient.listEnvironments`.
     func listEnvironments(
       byItem: ListEnvironmentsRequest
-    ) throws -> any AsyncSequence<Environment, Swift.Error>
+    ) -> any AsyncSequence<Environment, Swift.Error>
 
     /// See `EnvironmentsClient.listEnvironments`.
     func listEnvironments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Environment, Swift.Error>
+    ) -> any AsyncSequence<Environment, Swift.Error>
 
     /// See `EnvironmentsClient.updateEnvironment`.
     func updateEnvironment(request: UpdateEnvironmentRequest) async throws
@@ -708,12 +708,12 @@ extension Clients {
     /// See `EnvironmentsClient.listWorkloads`.
     func listWorkloads(
       byItem: ListWorkloadsRequest
-    ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
+    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
 
     /// See `EnvironmentsClient.listWorkloads`.
     func listWorkloads(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
+    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
 
     /// See `EnvironmentsClient.checkUpgrade`.
     func checkUpgrade(request: CheckUpgradeRequest) async throws -> GoogleLongRunning.Operation
@@ -748,12 +748,12 @@ extension Clients {
     /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
     func listUserWorkloadsSecrets(
       byItem: ListUserWorkloadsSecretsRequest
-    ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
 
     /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
     func listUserWorkloadsSecrets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
 
     /// See `EnvironmentsClient.updateUserWorkloadsSecret`.
     func updateUserWorkloadsSecret(request: UpdateUserWorkloadsSecretRequest) async throws
@@ -798,12 +798,12 @@ extension Clients {
     /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
     func listUserWorkloadsConfigMaps(
       byItem: ListUserWorkloadsConfigMapsRequest
-    ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
 
     /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
     func listUserWorkloadsConfigMaps(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
 
     /// See `EnvironmentsClient.updateUserWorkloadsConfigMap`.
     func updateUserWorkloadsConfigMap(request: UpdateUserWorkloadsConfigMapRequest) async throws
@@ -855,13 +855,13 @@ extension Clients {
     /// See `EnvironmentsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EnvironmentsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EnvironmentsClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -894,7 +894,7 @@ extension Clients {
     /// See `EnvironmentsClient.listEnvironments`.
     func listEnvironments(
       byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Environment, Swift.Error>
+    ) -> any AsyncSequence<Environment, Swift.Error>
 
     /// See `EnvironmentsClient.updateEnvironment`.
     func updateEnvironment(
@@ -939,7 +939,7 @@ extension Clients {
     /// See `EnvironmentsClient.listWorkloads`.
     func listWorkloads(
       byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
+    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
 
     /// See `EnvironmentsClient.checkUpgrade`.
     func checkUpgrade(
@@ -969,7 +969,7 @@ extension Clients {
     /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
     func listUserWorkloadsSecrets(
       byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
 
     /// See `EnvironmentsClient.updateUserWorkloadsSecret`.
     func updateUserWorkloadsSecret(
@@ -999,7 +999,7 @@ extension Clients {
     /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
     func listUserWorkloadsConfigMaps(
       byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
+    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
 
     /// See `EnvironmentsClient.updateUserWorkloadsConfigMap`.
     func updateUserWorkloadsConfigMap(
@@ -1054,7 +1054,7 @@ extension Clients {
     /// See `EnvironmentsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EnvironmentsClient.deleteOperation`.
     func deleteOperation(
@@ -1139,13 +1139,13 @@ extension Clients.EnvironmentsProtocol {
 
   public func listEnvironments(
     byItem: ListEnvironmentsRequest
-  ) throws -> any AsyncSequence<Environment, Swift.Error> {
-    try self.listEnvironments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Environment, Swift.Error> {
+    self.listEnvironments(byItem: byItem, options: .init())
   }
 
   public func listEnvironments(
     byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Environment, Swift.Error> {
+  ) -> any AsyncSequence<Environment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse in
@@ -1156,11 +1156,11 @@ extension Clients.EnvironmentsProtocol {
 
   public func listEnvironments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Environment, Swift.Error> {
+  ) -> any AsyncSequence<Environment, Swift.Error> {
     let request = ListEnvironmentsRequest().with {
       $0.parent = parent
     }
-    return try self.listEnvironments(byItem: request)
+    return self.listEnvironments(byItem: request)
   }
 
   public func updateEnvironment(request: UpdateEnvironmentRequest) async throws
@@ -1291,13 +1291,13 @@ extension Clients.EnvironmentsProtocol {
 
   public func listWorkloads(
     byItem: ListWorkloadsRequest
-  ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
-    try self.listWorkloads(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
+    self.listWorkloads(byItem: byItem, options: .init())
   }
 
   public func listWorkloads(
     byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
+  ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse in
@@ -1308,11 +1308,11 @@ extension Clients.EnvironmentsProtocol {
 
   public func listWorkloads(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
+  ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
-    return try self.listWorkloads(byItem: request)
+    return self.listWorkloads(byItem: request)
   }
 
   public func checkUpgrade(request: CheckUpgradeRequest) async throws -> GoogleLongRunning.Operation
@@ -1400,13 +1400,13 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsSecrets(
     byItem: ListUserWorkloadsSecretsRequest
-  ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
-    try self.listUserWorkloadsSecrets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
+    self.listUserWorkloadsSecrets(byItem: byItem, options: .init())
   }
 
   public func listUserWorkloadsSecrets(
     byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse in
@@ -1417,11 +1417,11 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsSecrets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
     let request = ListUserWorkloadsSecretsRequest().with {
       $0.parent = parent
     }
-    return try self.listUserWorkloadsSecrets(byItem: request)
+    return self.listUserWorkloadsSecrets(byItem: request)
   }
 
   public func updateUserWorkloadsSecret(request: UpdateUserWorkloadsSecretRequest) async throws
@@ -1522,13 +1522,13 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsConfigMaps(
     byItem: ListUserWorkloadsConfigMapsRequest
-  ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
-    try self.listUserWorkloadsConfigMaps(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
+    self.listUserWorkloadsConfigMaps(byItem: byItem, options: .init())
   }
 
   public func listUserWorkloadsConfigMaps(
     byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse in
@@ -1539,11 +1539,11 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsConfigMaps(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
+  ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
     let request = ListUserWorkloadsConfigMapsRequest().with {
       $0.parent = parent
     }
-    return try self.listUserWorkloadsConfigMaps(byItem: request)
+    return self.listUserWorkloadsConfigMaps(byItem: request)
   }
 
   public func updateUserWorkloadsConfigMap(request: UpdateUserWorkloadsConfigMapRequest)
@@ -1697,13 +1697,13 @@ extension Clients.EnvironmentsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1714,12 +1714,12 @@ extension Clients.EnvironmentsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

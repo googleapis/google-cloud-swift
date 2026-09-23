@@ -24,7 +24,7 @@
   import GoogleWKT
 
   func sample(client: IntentsClient, projectId: String) async throws {
-    let items = try client.listIntents(
+    let items = client.listIntents(
       byItem: ListIntentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent"

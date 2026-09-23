@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, parent: String) async throws {
-  let items = try client.listApis(
+  let items = client.listApis(
     byItem: ListApisRequest()
       .with {
         $0.parent = "\(parent)"

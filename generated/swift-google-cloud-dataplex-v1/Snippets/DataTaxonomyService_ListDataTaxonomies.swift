@@ -27,7 +27,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataTaxonomyServiceClient, parent: String) async throws {
-  let items = try client.listDataTaxonomies(
+  let items = client.listDataTaxonomies(
     byItem: ListDataTaxonomiesRequest()
       .with {
         $0.parent = "\(parent)"

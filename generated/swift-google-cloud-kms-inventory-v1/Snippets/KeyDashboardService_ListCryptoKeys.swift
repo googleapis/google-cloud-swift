@@ -21,7 +21,7 @@ import GoogleCloudKMSInventoryV1
 import GoogleCloudKMSV1
 
 func sample(client: KeyDashboardServiceClient, parent: String) async throws {
-  let items = try client.listCryptoKeys(
+  let items = client.listCryptoKeys(
     byItem: ListCryptoKeysRequest()
       .with {
         $0.parent = "\(parent)"

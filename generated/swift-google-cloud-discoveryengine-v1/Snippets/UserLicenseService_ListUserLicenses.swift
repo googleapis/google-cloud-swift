@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: UserLicenseServiceClient) async throws {
-    let items = try client.listUserLicenses(
+    let items = client.listUserLicenses(
       byItem: ListUserLicensesRequest()
         /* set fields using .with { $0... } */
     )

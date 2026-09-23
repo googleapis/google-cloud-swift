@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: DataformClient, projectId: String, locationId: String, repositoryId: String)
   async throws
 {
-  let items = try client.listCompilationResults(
+  let items = client.listCompilationResults(
     byItem: ListCompilationResultsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"

@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleBigQueryAnalyticsHubV1.AnalyticsHubServiceClient()
-  let items = try client.listDataExchanges(
+  let items = client.listDataExchanges(
     byItem: ListDataExchangesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

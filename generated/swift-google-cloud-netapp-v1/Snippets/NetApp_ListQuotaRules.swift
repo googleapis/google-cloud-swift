@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, volumeId: String)
   async throws
 {
-  let items = try client.listQuotaRules(
+  let items = client.listQuotaRules(
     byItem: ListQuotaRulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"

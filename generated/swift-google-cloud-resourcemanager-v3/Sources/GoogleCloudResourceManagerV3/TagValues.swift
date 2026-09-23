@@ -57,7 +57,7 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   /// @Snippet(path: "TagValues_ListTagValues")
   public func listTagValues(
     byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagValue, Swift.Error> {
+  ) -> any AsyncSequence<TagValue, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse in
       var request = byItem
@@ -267,12 +267,12 @@ extension Clients {
     /// See `TagValuesClient.listTagValues`.
     func listTagValues(
       byItem: ListTagValuesRequest
-    ) throws -> any AsyncSequence<TagValue, Swift.Error>
+    ) -> any AsyncSequence<TagValue, Swift.Error>
 
     /// See `TagValuesClient.listTagValues`.
     func listTagValues(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TagValue, Swift.Error>
+    ) -> any AsyncSequence<TagValue, Swift.Error>
 
     /// See `TagValuesClient.getTagValue`.
     func getTagValue(request: GetTagValueRequest) async throws
@@ -364,7 +364,7 @@ extension Clients {
     /// See `TagValuesClient.listTagValues`.
     func listTagValues(
       byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TagValue, Swift.Error>
+    ) -> any AsyncSequence<TagValue, Swift.Error>
 
     /// See `TagValuesClient.getTagValue`.
     func getTagValue(
@@ -439,13 +439,13 @@ extension Clients.TagValuesProtocol {
 
   public func listTagValues(
     byItem: ListTagValuesRequest
-  ) throws -> any AsyncSequence<TagValue, Swift.Error> {
-    try self.listTagValues(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TagValue, Swift.Error> {
+    self.listTagValues(byItem: byItem, options: .init())
   }
 
   public func listTagValues(
     byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagValue, Swift.Error> {
+  ) -> any AsyncSequence<TagValue, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -455,11 +455,11 @@ extension Clients.TagValuesProtocol {
 
   public func listTagValues(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<TagValue, Swift.Error> {
+  ) -> any AsyncSequence<TagValue, Swift.Error> {
     let request = ListTagValuesRequest().with {
       $0.parent = parent
     }
-    return try self.listTagValues(byItem: request)
+    return self.listTagValues(byItem: request)
   }
 
   public func getTagValue(request: GetTagValueRequest) async throws

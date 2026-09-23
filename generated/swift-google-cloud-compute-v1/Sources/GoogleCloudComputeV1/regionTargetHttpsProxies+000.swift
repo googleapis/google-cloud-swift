@@ -169,7 +169,7 @@
     /// @Snippet(path: "regionTargetHttpsProxies_list")
     public func list(
       byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
         var request = byItem
@@ -378,13 +378,13 @@
       /// See `RegionTargetHttpsProxiesClient.list`.
       func list(
         byItem: RegionTargetHttpsProxiesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
 
       /// See `RegionTargetHttpsProxiesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
 
       /// See `RegionTargetHttpsProxiesClient.patch`.
       func patch(request: RegionTargetHttpsProxiesClient.PatchRequest) async throws
@@ -421,7 +421,7 @@
       /// See `RegionTargetHttpsProxiesClient.list`.
       func list(
         byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
 
       /// See `RegionTargetHttpsProxiesClient.patch`.
       func patch(
@@ -566,13 +566,13 @@
 
     public func list(
       byItem: RegionTargetHttpsProxiesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
         throw GoogleGax.RequestError.unimplemented
@@ -583,12 +583,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
       let request = RegionTargetHttpsProxiesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionTargetHttpsProxiesClient.PatchRequest) async throws

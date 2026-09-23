@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudContentWarehouseV1.DocumentSchemaServiceClient()
-  let items = try client.listDocumentSchemas(
+  let items = client.listDocumentSchemas(
     byItem: ListDocumentSchemasRequest()
       .with {
         $0.parent = "\(parent)"

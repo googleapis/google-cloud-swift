@@ -72,7 +72,7 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
   public func listAppConnectors(
     byItem: ListAppConnectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AppConnector, Swift.Error> {
+  ) -> any AsyncSequence<AppConnector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudBeyondCorpAppConnectorsV1.ListAppConnectorsResponse in
@@ -246,7 +246,7 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// @Snippet(path: "AppConnectorsService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -321,7 +321,7 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// @Snippet(path: "AppConnectorsService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -379,12 +379,12 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listAppConnectors`.
     func listAppConnectors(
       byItem: ListAppConnectorsRequest
-    ) throws -> any AsyncSequence<AppConnector, Swift.Error>
+    ) -> any AsyncSequence<AppConnector, Swift.Error>
 
     /// See `AppConnectorsServiceClient.listAppConnectors`.
     func listAppConnectors(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AppConnector, Swift.Error>
+    ) -> any AsyncSequence<AppConnector, Swift.Error>
 
     /// See `AppConnectorsServiceClient.getAppConnector`.
     func getAppConnector(request: GetAppConnectorRequest) async throws
@@ -457,7 +457,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AppConnectorsServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -480,13 +480,13 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -512,7 +512,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listAppConnectors`.
     func listAppConnectors(
       byItem: ListAppConnectorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AppConnector, Swift.Error>
+    ) -> any AsyncSequence<AppConnector, Swift.Error>
 
     /// See `AppConnectorsServiceClient.getAppConnector`.
     func getAppConnector(
@@ -567,7 +567,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AppConnectorsServiceClient.getLocation`.
     func getLocation(
@@ -597,7 +597,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.deleteOperation`.
     func deleteOperation(
@@ -627,13 +627,13 @@ extension Clients.AppConnectorsServiceProtocol {
 
   public func listAppConnectors(
     byItem: ListAppConnectorsRequest
-  ) throws -> any AsyncSequence<AppConnector, Swift.Error> {
-    try self.listAppConnectors(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AppConnector, Swift.Error> {
+    self.listAppConnectors(byItem: byItem, options: .init())
   }
 
   public func listAppConnectors(
     byItem: ListAppConnectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AppConnector, Swift.Error> {
+  ) -> any AsyncSequence<AppConnector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudBeyondCorpAppConnectorsV1.ListAppConnectorsResponse in
@@ -644,11 +644,11 @@ extension Clients.AppConnectorsServiceProtocol {
 
   public func listAppConnectors(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AppConnector, Swift.Error> {
+  ) -> any AsyncSequence<AppConnector, Swift.Error> {
     let request = ListAppConnectorsRequest().with {
       $0.parent = parent
     }
-    return try self.listAppConnectors(byItem: request)
+    return self.listAppConnectors(byItem: request)
   }
 
   public func getAppConnector(request: GetAppConnectorRequest) async throws
@@ -841,13 +841,13 @@ extension Clients.AppConnectorsServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -917,13 +917,13 @@ extension Clients.AppConnectorsServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -934,12 +934,12 @@ extension Clients.AppConnectorsServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

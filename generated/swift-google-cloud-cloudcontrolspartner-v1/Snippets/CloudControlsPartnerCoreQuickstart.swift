@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, customerId: String, ) async throws {
   let client = try GoogleCloudControlsPartnerV1.CloudControlsPartnerCoreClient()
-  let items = try client.listWorkloads(
+  let items = client.listWorkloads(
     byItem: ListWorkloadsRequest()
       .with {
         $0.parent =

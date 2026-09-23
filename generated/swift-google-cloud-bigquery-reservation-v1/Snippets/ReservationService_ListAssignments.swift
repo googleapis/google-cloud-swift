@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: ReservationServiceClient, projectId: String, locationId: String, reservationId: String
 ) async throws {
-  let items = try client.listAssignments(
+  let items = client.listAssignments(
     byItem: ListAssignmentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/reservations/\(reservationId)"

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudUniversalLedgerV1
 
 func sample(client: UniversalLedgerClient, projectId: String, locationId: String) async throws {
-  let items = try client.listEndpoints(
+  let items = client.listEndpoints(
     byItem: ListEndpointsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

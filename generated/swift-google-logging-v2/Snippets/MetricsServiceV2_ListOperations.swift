@@ -21,7 +21,7 @@ import GoogleCloudLoggingV2
 import GoogleLongRunning
 
 func sample(client: MetricsServiceV2Client) async throws {
-  let items = try client.listOperations(
+  let items = client.listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )

@@ -74,7 +74,7 @@
     /// @Snippet(path: "Examples_ListExamples")
     public func listExamples(
       byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Example, Swift.Error> {
+    ) -> any AsyncSequence<Example, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListExamplesResponse in
         var request = byItem
@@ -150,7 +150,7 @@
     /// @Snippet(path: "Examples_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -187,7 +187,7 @@
     /// @Snippet(path: "Examples_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -252,12 +252,12 @@
       /// See `ExamplesClient.listExamples`.
       func listExamples(
         byItem: ListExamplesRequest
-      ) throws -> any AsyncSequence<Example, Swift.Error>
+      ) -> any AsyncSequence<Example, Swift.Error>
 
       /// See `ExamplesClient.listExamples`.
       func listExamples(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Example, Swift.Error>
+      ) -> any AsyncSequence<Example, Swift.Error>
 
       /// See `ExamplesClient.getExample`.
       func getExample(request: GetExampleRequest) async throws -> GoogleCloudDialogflowCXV3.Example
@@ -284,7 +284,7 @@
       /// See `ExamplesClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `ExamplesClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -297,13 +297,13 @@
       /// See `ExamplesClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ExamplesClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ExamplesClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -331,7 +331,7 @@
       /// See `ExamplesClient.listExamples`.
       func listExamples(
         byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Example, Swift.Error>
+      ) -> any AsyncSequence<Example, Swift.Error>
 
       /// See `ExamplesClient.getExample`.
       func getExample(
@@ -351,7 +351,7 @@
       /// See `ExamplesClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `ExamplesClient.getLocation`.
       func getLocation(
@@ -366,7 +366,7 @@
       /// See `ExamplesClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ExamplesClient.cancelOperation`.
       func cancelOperation(
@@ -433,13 +433,13 @@
 
     public func listExamples(
       byItem: ListExamplesRequest
-    ) throws -> any AsyncSequence<Example, Swift.Error> {
-      try self.listExamples(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Example, Swift.Error> {
+      self.listExamples(byItem: byItem, options: .init())
     }
 
     public func listExamples(
       byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Example, Swift.Error> {
+    ) -> any AsyncSequence<Example, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListExamplesResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -449,11 +449,11 @@
 
     public func listExamples(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Example, Swift.Error> {
+    ) -> any AsyncSequence<Example, Swift.Error> {
       let request = ListExamplesRequest().with {
         $0.parent = parent
       }
-      return try self.listExamples(byItem: request)
+      return self.listExamples(byItem: request)
     }
 
     public func getExample(request: GetExampleRequest) async throws
@@ -514,13 +514,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -554,13 +554,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -571,12 +571,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -23,7 +23,7 @@
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.SiteSearchEngineServiceClient()
-    let items = try client.listTargetSites(
+    let items = client.listTargetSites(
       byItem: ListTargetSitesRequest()
         .with {
           $0.parent =

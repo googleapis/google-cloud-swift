@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, organizationId: String, locationId: String) async throws {
-  let items = try client.listCloudControls(
+  let items = client.listCloudControls(
     byItem: ListCloudControlsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

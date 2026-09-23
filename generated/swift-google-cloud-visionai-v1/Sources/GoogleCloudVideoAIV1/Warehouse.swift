@@ -84,7 +84,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListAssets")
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
       var request = byItem
       request.pageToken = token
@@ -316,7 +316,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ViewIndexedAssets")
   public func viewIndexedAssets(
     byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IndexedAsset, Swift.Error> {
+  ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse in
       var request = byItem
@@ -421,7 +421,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListIndexes")
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
       var request = byItem
@@ -534,7 +534,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListCorpora")
   public func listCorpora(
     byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Corpus, Swift.Error> {
+  ) -> any AsyncSequence<Corpus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
       var request = byItem
@@ -639,7 +639,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListDataSchemas")
   public func listDataSchemas(
     byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataSchema, Swift.Error> {
+  ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse in
       var request = byItem
@@ -681,7 +681,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListAnnotations")
   public func listAnnotations(
     byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Annotation, Swift.Error> {
+  ) -> any AsyncSequence<Annotation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse in
       var request = byItem
@@ -853,7 +853,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListSearchConfigs")
   public func listSearchConfigs(
     byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchConfig, Swift.Error> {
+  ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse in
       var request = byItem
@@ -913,7 +913,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListSearchHypernyms")
   public func listSearchHypernyms(
     byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchHypernym, Swift.Error> {
+  ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
       var request = byItem
@@ -937,7 +937,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_SearchAssets")
   public func searchAssets(
     byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
       var request = byItem
@@ -961,7 +961,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
   public func searchIndexEndpoint(
     byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
       var request = byItem
@@ -1029,7 +1029,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListIndexEndpoints")
   public func listIndexEndpoints(
     byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error> {
+  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
       var request = byItem
@@ -1281,7 +1281,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListCollections")
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse in
       var request = byItem
@@ -1323,7 +1323,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ViewCollectionItems")
   public func viewCollectionItems(
     byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CollectionItem, Swift.Error> {
+  ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
       var request = byItem
@@ -1347,7 +1347,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -1384,7 +1384,7 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// @Snippet(path: "Warehouse_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -1469,12 +1469,12 @@ extension Clients {
     /// See `WarehouseClient.listAssets`.
     func listAssets(
       byItem: ListAssetsRequest
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `WarehouseClient.listAssets`.
     func listAssets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `WarehouseClient.deleteAsset`.
     func deleteAsset(request: DeleteAssetRequest) async throws -> GoogleLongRunning.Operation
@@ -1529,12 +1529,12 @@ extension Clients {
     /// See `WarehouseClient.viewIndexedAssets`.
     func viewIndexedAssets(
       byItem: ViewIndexedAssetsRequest
-    ) throws -> any AsyncSequence<IndexedAsset, Swift.Error>
+    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
 
     /// See `WarehouseClient.viewIndexedAssets`.
     func viewIndexedAssets(
       index: Swift.String,
-    ) throws -> any AsyncSequence<IndexedAsset, Swift.Error>
+    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
 
     /// See `WarehouseClient.createIndex`.
     func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation
@@ -1578,12 +1578,12 @@ extension Clients {
     /// See `WarehouseClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `WarehouseClient.listIndexes`.
     func listIndexes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `WarehouseClient.deleteIndex`.
     func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
@@ -1634,12 +1634,12 @@ extension Clients {
     /// See `WarehouseClient.listCorpora`.
     func listCorpora(
       byItem: ListCorporaRequest
-    ) throws -> any AsyncSequence<Corpus, Swift.Error>
+    ) -> any AsyncSequence<Corpus, Swift.Error>
 
     /// See `WarehouseClient.listCorpora`.
     func listCorpora(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Corpus, Swift.Error>
+    ) -> any AsyncSequence<Corpus, Swift.Error>
 
     /// See `WarehouseClient.deleteCorpus`.
     func deleteCorpus(request: DeleteCorpusRequest) async throws
@@ -1700,12 +1700,12 @@ extension Clients {
     /// See `WarehouseClient.listDataSchemas`.
     func listDataSchemas(
       byItem: ListDataSchemasRequest
-    ) throws -> any AsyncSequence<DataSchema, Swift.Error>
+    ) -> any AsyncSequence<DataSchema, Swift.Error>
 
     /// See `WarehouseClient.listDataSchemas`.
     func listDataSchemas(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataSchema, Swift.Error>
+    ) -> any AsyncSequence<DataSchema, Swift.Error>
 
     /// See `WarehouseClient.createAnnotation`.
     func createAnnotation(request: CreateAnnotationRequest) async throws
@@ -1734,12 +1734,12 @@ extension Clients {
     /// See `WarehouseClient.listAnnotations`.
     func listAnnotations(
       byItem: ListAnnotationsRequest
-    ) throws -> any AsyncSequence<Annotation, Swift.Error>
+    ) -> any AsyncSequence<Annotation, Swift.Error>
 
     /// See `WarehouseClient.listAnnotations`.
     func listAnnotations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Annotation, Swift.Error>
+    ) -> any AsyncSequence<Annotation, Swift.Error>
 
     /// See `WarehouseClient.updateAnnotation`.
     func updateAnnotation(request: UpdateAnnotationRequest) async throws
@@ -1818,12 +1818,12 @@ extension Clients {
     /// See `WarehouseClient.listSearchConfigs`.
     func listSearchConfigs(
       byItem: ListSearchConfigsRequest
-    ) throws -> any AsyncSequence<SearchConfig, Swift.Error>
+    ) -> any AsyncSequence<SearchConfig, Swift.Error>
 
     /// See `WarehouseClient.listSearchConfigs`.
     func listSearchConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SearchConfig, Swift.Error>
+    ) -> any AsyncSequence<SearchConfig, Swift.Error>
 
     /// See `WarehouseClient.createSearchHypernym`.
     func createSearchHypernym(request: CreateSearchHypernymRequest) async throws
@@ -1870,12 +1870,12 @@ extension Clients {
     /// See `WarehouseClient.listSearchHypernyms`.
     func listSearchHypernyms(
       byItem: ListSearchHypernymsRequest
-    ) throws -> any AsyncSequence<SearchHypernym, Swift.Error>
+    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
 
     /// See `WarehouseClient.listSearchHypernyms`.
     func listSearchHypernyms(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SearchHypernym, Swift.Error>
+    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
 
     /// See `WarehouseClient.searchAssets`.
     func searchAssets(request: SearchAssetsRequest) async throws
@@ -1884,7 +1884,7 @@ extension Clients {
     /// See `WarehouseClient.searchAssets`.
     func searchAssets(
       byItem: SearchAssetsRequest
-    ) throws -> any AsyncSequence<SearchResultItem, Swift.Error>
+    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
 
     /// See `WarehouseClient.searchIndexEndpoint`.
     func searchIndexEndpoint(request: SearchIndexEndpointRequest) async throws
@@ -1893,7 +1893,7 @@ extension Clients {
     /// See `WarehouseClient.searchIndexEndpoint`.
     func searchIndexEndpoint(
       byItem: SearchIndexEndpointRequest
-    ) throws -> any AsyncSequence<SearchResultItem, Swift.Error>
+    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
 
     /// See `WarehouseClient.createIndexEndpoint`.
     func createIndexEndpoint(request: CreateIndexEndpointRequest) async throws
@@ -1926,12 +1926,12 @@ extension Clients {
     /// See `WarehouseClient.listIndexEndpoints`.
     func listIndexEndpoints(
       byItem: ListIndexEndpointsRequest
-    ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error>
+    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
 
     /// See `WarehouseClient.listIndexEndpoints`.
     func listIndexEndpoints(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error>
+    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
 
     /// See `WarehouseClient.updateIndexEndpoint`.
     func updateIndexEndpoint(request: UpdateIndexEndpointRequest) async throws
@@ -2028,12 +2028,12 @@ extension Clients {
     /// See `WarehouseClient.listCollections`.
     func listCollections(
       byItem: ListCollectionsRequest
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `WarehouseClient.listCollections`.
     func listCollections(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `WarehouseClient.addCollectionItem`.
     func addCollectionItem(request: AddCollectionItemRequest) async throws
@@ -2060,12 +2060,12 @@ extension Clients {
     /// See `WarehouseClient.viewCollectionItems`.
     func viewCollectionItems(
       byItem: ViewCollectionItemsRequest
-    ) throws -> any AsyncSequence<CollectionItem, Swift.Error>
+    ) -> any AsyncSequence<CollectionItem, Swift.Error>
 
     /// See `WarehouseClient.viewCollectionItems`.
     func viewCollectionItems(
       collection: Swift.String,
-    ) throws -> any AsyncSequence<CollectionItem, Swift.Error>
+    ) -> any AsyncSequence<CollectionItem, Swift.Error>
 
     /// See `WarehouseClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -2074,7 +2074,7 @@ extension Clients {
     /// See `WarehouseClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `WarehouseClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2087,13 +2087,13 @@ extension Clients {
     /// See `WarehouseClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WarehouseClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WarehouseClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -2134,7 +2134,7 @@ extension Clients {
     /// See `WarehouseClient.listAssets`.
     func listAssets(
       byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `WarehouseClient.deleteAsset`.
     func deleteAsset(
@@ -2199,7 +2199,7 @@ extension Clients {
     /// See `WarehouseClient.viewIndexedAssets`.
     func viewIndexedAssets(
       byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<IndexedAsset, Swift.Error>
+    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
 
     /// See `WarehouseClient.createIndex`.
     func createIndex(
@@ -2234,7 +2234,7 @@ extension Clients {
     /// See `WarehouseClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `WarehouseClient.deleteIndex`.
     func deleteIndex(
@@ -2274,7 +2274,7 @@ extension Clients {
     /// See `WarehouseClient.listCorpora`.
     func listCorpora(
       byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Corpus, Swift.Error>
+    ) -> any AsyncSequence<Corpus, Swift.Error>
 
     /// See `WarehouseClient.deleteCorpus`.
     func deleteCorpus(
@@ -2319,7 +2319,7 @@ extension Clients {
     /// See `WarehouseClient.listDataSchemas`.
     func listDataSchemas(
       byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataSchema, Swift.Error>
+    ) -> any AsyncSequence<DataSchema, Swift.Error>
 
     /// See `WarehouseClient.createAnnotation`.
     func createAnnotation(
@@ -2339,7 +2339,7 @@ extension Clients {
     /// See `WarehouseClient.listAnnotations`.
     func listAnnotations(
       byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Annotation, Swift.Error>
+    ) -> any AsyncSequence<Annotation, Swift.Error>
 
     /// See `WarehouseClient.updateAnnotation`.
     func updateAnnotation(
@@ -2399,7 +2399,7 @@ extension Clients {
     /// See `WarehouseClient.listSearchConfigs`.
     func listSearchConfigs(
       byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchConfig, Swift.Error>
+    ) -> any AsyncSequence<SearchConfig, Swift.Error>
 
     /// See `WarehouseClient.createSearchHypernym`.
     func createSearchHypernym(
@@ -2429,7 +2429,7 @@ extension Clients {
     /// See `WarehouseClient.listSearchHypernyms`.
     func listSearchHypernyms(
       byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchHypernym, Swift.Error>
+    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
 
     /// See `WarehouseClient.searchAssets`.
     func searchAssets(
@@ -2439,7 +2439,7 @@ extension Clients {
     /// See `WarehouseClient.searchAssets`.
     func searchAssets(
       byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchResultItem, Swift.Error>
+    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
 
     /// See `WarehouseClient.searchIndexEndpoint`.
     func searchIndexEndpoint(
@@ -2449,7 +2449,7 @@ extension Clients {
     /// See `WarehouseClient.searchIndexEndpoint`.
     func searchIndexEndpoint(
       byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SearchResultItem, Swift.Error>
+    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
 
     /// See `WarehouseClient.createIndexEndpoint`.
     func createIndexEndpoint(
@@ -2474,7 +2474,7 @@ extension Clients {
     /// See `WarehouseClient.listIndexEndpoints`.
     func listIndexEndpoints(
       byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error>
+    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
 
     /// See `WarehouseClient.updateIndexEndpoint`.
     func updateIndexEndpoint(
@@ -2554,7 +2554,7 @@ extension Clients {
     /// See `WarehouseClient.listCollections`.
     func listCollections(
       byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `WarehouseClient.addCollectionItem`.
     func addCollectionItem(
@@ -2574,7 +2574,7 @@ extension Clients {
     /// See `WarehouseClient.viewCollectionItems`.
     func viewCollectionItems(
       byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CollectionItem, Swift.Error>
+    ) -> any AsyncSequence<CollectionItem, Swift.Error>
 
     /// See `WarehouseClient.listLocations`.
     func listLocations(
@@ -2584,7 +2584,7 @@ extension Clients {
     /// See `WarehouseClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `WarehouseClient.getLocation`.
     func getLocation(
@@ -2599,7 +2599,7 @@ extension Clients {
     /// See `WarehouseClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WarehouseClient.deleteOperation`.
     func deleteOperation(
@@ -2692,13 +2692,13 @@ extension Clients.WarehouseProtocol {
 
   public func listAssets(
     byItem: ListAssetsRequest
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
-    try self.listAssets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Asset, Swift.Error> {
+    self.listAssets(byItem: byItem, options: .init())
   }
 
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2707,11 +2707,11 @@ extension Clients.WarehouseProtocol {
 
   public func listAssets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let request = ListAssetsRequest().with {
       $0.parent = parent
     }
-    return try self.listAssets(byItem: request)
+    return self.listAssets(byItem: request)
   }
 
   public func deleteAsset(request: DeleteAssetRequest) async throws -> GoogleLongRunning.Operation {
@@ -2883,13 +2883,13 @@ extension Clients.WarehouseProtocol {
 
   public func viewIndexedAssets(
     byItem: ViewIndexedAssetsRequest
-  ) throws -> any AsyncSequence<IndexedAsset, Swift.Error> {
-    try self.viewIndexedAssets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
+    self.viewIndexedAssets(byItem: byItem, options: .init())
   }
 
   public func viewIndexedAssets(
     byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IndexedAsset, Swift.Error> {
+  ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2899,11 +2899,11 @@ extension Clients.WarehouseProtocol {
 
   public func viewIndexedAssets(
     index: Swift.String,
-  ) throws -> any AsyncSequence<IndexedAsset, Swift.Error> {
+  ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let request = ViewIndexedAssetsRequest().with {
       $0.index = index
     }
-    return try self.viewIndexedAssets(byItem: request)
+    return self.viewIndexedAssets(byItem: request)
   }
 
   public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -3015,13 +3015,13 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexes(
     byItem: ListIndexesRequest
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
-    try self.listIndexes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Index, Swift.Error> {
+    self.listIndexes(byItem: byItem, options: .init())
   }
 
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3031,11 +3031,11 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let request = ListIndexesRequest().with {
       $0.parent = parent
     }
-    return try self.listIndexes(byItem: request)
+    return self.listIndexes(byItem: request)
   }
 
   public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -3166,13 +3166,13 @@ extension Clients.WarehouseProtocol {
 
   public func listCorpora(
     byItem: ListCorporaRequest
-  ) throws -> any AsyncSequence<Corpus, Swift.Error> {
-    try self.listCorpora(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Corpus, Swift.Error> {
+    self.listCorpora(byItem: byItem, options: .init())
   }
 
   public func listCorpora(
     byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Corpus, Swift.Error> {
+  ) -> any AsyncSequence<Corpus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3182,11 +3182,11 @@ extension Clients.WarehouseProtocol {
 
   public func listCorpora(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Corpus, Swift.Error> {
+  ) -> any AsyncSequence<Corpus, Swift.Error> {
     let request = ListCorporaRequest().with {
       $0.parent = parent
     }
-    return try self.listCorpora(byItem: request)
+    return self.listCorpora(byItem: request)
   }
 
   public func deleteCorpus(request: DeleteCorpusRequest) async throws {
@@ -3336,13 +3336,13 @@ extension Clients.WarehouseProtocol {
 
   public func listDataSchemas(
     byItem: ListDataSchemasRequest
-  ) throws -> any AsyncSequence<DataSchema, Swift.Error> {
-    try self.listDataSchemas(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataSchema, Swift.Error> {
+    self.listDataSchemas(byItem: byItem, options: .init())
   }
 
   public func listDataSchemas(
     byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataSchema, Swift.Error> {
+  ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3352,11 +3352,11 @@ extension Clients.WarehouseProtocol {
 
   public func listDataSchemas(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataSchema, Swift.Error> {
+  ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let request = ListDataSchemasRequest().with {
       $0.parent = parent
     }
-    return try self.listDataSchemas(byItem: request)
+    return self.listDataSchemas(byItem: request)
   }
 
   public func createAnnotation(request: CreateAnnotationRequest) async throws
@@ -3419,13 +3419,13 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotations(
     byItem: ListAnnotationsRequest
-  ) throws -> any AsyncSequence<Annotation, Swift.Error> {
-    try self.listAnnotations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Annotation, Swift.Error> {
+    self.listAnnotations(byItem: byItem, options: .init())
   }
 
   public func listAnnotations(
     byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Annotation, Swift.Error> {
+  ) -> any AsyncSequence<Annotation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3435,11 +3435,11 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Annotation, Swift.Error> {
+  ) -> any AsyncSequence<Annotation, Swift.Error> {
     let request = ListAnnotationsRequest().with {
       $0.parent = parent
     }
-    return try self.listAnnotations(byItem: request)
+    return self.listAnnotations(byItem: request)
   }
 
   public func updateAnnotation(request: UpdateAnnotationRequest) async throws
@@ -3637,13 +3637,13 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchConfigs(
     byItem: ListSearchConfigsRequest
-  ) throws -> any AsyncSequence<SearchConfig, Swift.Error> {
-    try self.listSearchConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchConfig, Swift.Error> {
+    self.listSearchConfigs(byItem: byItem, options: .init())
   }
 
   public func listSearchConfigs(
     byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchConfig, Swift.Error> {
+  ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3653,11 +3653,11 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SearchConfig, Swift.Error> {
+  ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let request = ListSearchConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listSearchConfigs(byItem: request)
+    return self.listSearchConfigs(byItem: request)
   }
 
   public func createSearchHypernym(request: CreateSearchHypernymRequest) async throws
@@ -3762,13 +3762,13 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchHypernyms(
     byItem: ListSearchHypernymsRequest
-  ) throws -> any AsyncSequence<SearchHypernym, Swift.Error> {
-    try self.listSearchHypernyms(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
+    self.listSearchHypernyms(byItem: byItem, options: .init())
   }
 
   public func listSearchHypernyms(
     byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchHypernym, Swift.Error> {
+  ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3778,11 +3778,11 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchHypernyms(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SearchHypernym, Swift.Error> {
+  ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let request = ListSearchHypernymsRequest().with {
       $0.parent = parent
     }
-    return try self.listSearchHypernyms(byItem: request)
+    return self.listSearchHypernyms(byItem: request)
   }
 
   public func searchAssets(request: SearchAssetsRequest) async throws
@@ -3799,13 +3799,13 @@ extension Clients.WarehouseProtocol {
 
   public func searchAssets(
     byItem: SearchAssetsRequest
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    try self.searchAssets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
+    self.searchAssets(byItem: byItem, options: .init())
   }
 
   public func searchAssets(
     byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3827,13 +3827,13 @@ extension Clients.WarehouseProtocol {
 
   public func searchIndexEndpoint(
     byItem: SearchIndexEndpointRequest
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    try self.searchIndexEndpoint(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
+    self.searchIndexEndpoint(byItem: byItem, options: .init())
   }
 
   public func searchIndexEndpoint(
     byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SearchResultItem, Swift.Error> {
+  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3917,13 +3917,13 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexEndpoints(
     byItem: ListIndexEndpointsRequest
-  ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error> {
-    try self.listIndexEndpoints(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
+    self.listIndexEndpoints(byItem: byItem, options: .init())
   }
 
   public func listIndexEndpoints(
     byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error> {
+  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3933,11 +3933,11 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexEndpoints(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<IndexEndpoint, Swift.Error> {
+  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let request = ListIndexEndpointsRequest().with {
       $0.parent = parent
     }
-    return try self.listIndexEndpoints(byItem: request)
+    return self.listIndexEndpoints(byItem: request)
   }
 
   public func updateIndexEndpoint(request: UpdateIndexEndpointRequest) async throws
@@ -4206,13 +4206,13 @@ extension Clients.WarehouseProtocol {
 
   public func listCollections(
     byItem: ListCollectionsRequest
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
-    try self.listCollections(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Collection, Swift.Error> {
+    self.listCollections(byItem: byItem, options: .init())
   }
 
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4222,11 +4222,11 @@ extension Clients.WarehouseProtocol {
 
   public func listCollections(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let request = ListCollectionsRequest().with {
       $0.parent = parent
     }
-    return try self.listCollections(byItem: request)
+    return self.listCollections(byItem: request)
   }
 
   public func addCollectionItem(request: AddCollectionItemRequest) async throws
@@ -4285,13 +4285,13 @@ extension Clients.WarehouseProtocol {
 
   public func viewCollectionItems(
     byItem: ViewCollectionItemsRequest
-  ) throws -> any AsyncSequence<CollectionItem, Swift.Error> {
-    try self.viewCollectionItems(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CollectionItem, Swift.Error> {
+    self.viewCollectionItems(byItem: byItem, options: .init())
   }
 
   public func viewCollectionItems(
     byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CollectionItem, Swift.Error> {
+  ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4301,11 +4301,11 @@ extension Clients.WarehouseProtocol {
 
   public func viewCollectionItems(
     collection: Swift.String,
-  ) throws -> any AsyncSequence<CollectionItem, Swift.Error> {
+  ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let request = ViewCollectionItemsRequest().with {
       $0.collection = collection
     }
-    return try self.viewCollectionItems(byItem: request)
+    return self.viewCollectionItems(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -4322,13 +4322,13 @@ extension Clients.WarehouseProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4362,13 +4362,13 @@ extension Clients.WarehouseProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4379,12 +4379,12 @@ extension Clients.WarehouseProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

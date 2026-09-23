@@ -105,7 +105,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
     public func listReasoningEngines(
       byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error> {
+    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
         in
@@ -200,7 +200,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -275,7 +275,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -367,12 +367,12 @@
       /// See `ReasoningEngineServiceClient.listReasoningEngines`.
       func listReasoningEngines(
         byItem: ListReasoningEnginesRequest
-      ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error>
+      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.listReasoningEngines`.
       func listReasoningEngines(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error>
+      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(request: UpdateReasoningEngineRequest) async throws
@@ -408,7 +408,7 @@
       /// See `ReasoningEngineServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -431,13 +431,13 @@
       /// See `ReasoningEngineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.deleteOperation`.
       func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -482,7 +482,7 @@
       /// See `ReasoningEngineServiceClient.listReasoningEngines`.
       func listReasoningEngines(
         byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error>
+      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(
@@ -512,7 +512,7 @@
       /// See `ReasoningEngineServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.getLocation`.
       func getLocation(
@@ -542,7 +542,7 @@
       /// See `ReasoningEngineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.deleteOperation`.
       func deleteOperation(
@@ -637,13 +637,13 @@
 
     public func listReasoningEngines(
       byItem: ListReasoningEnginesRequest
-    ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error> {
-      try self.listReasoningEngines(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
+      self.listReasoningEngines(byItem: byItem, options: .init())
     }
 
     public func listReasoningEngines(
       byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error> {
+    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
         in
@@ -654,11 +654,11 @@
 
     public func listReasoningEngines(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ReasoningEngine, Swift.Error> {
+    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
       let request = ListReasoningEnginesRequest().with {
         $0.parent = parent
       }
-      return try self.listReasoningEngines(byItem: request)
+      return self.listReasoningEngines(byItem: request)
     }
 
     public func updateReasoningEngine(request: UpdateReasoningEngineRequest) async throws
@@ -751,13 +751,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -827,13 +827,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -844,12 +844,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -62,7 +62,7 @@
     /// @Snippet(path: "networkProfiles_list")
     public func list(
       byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NetworkProfile, Swift.Error> {
+    ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse in
         var request = byItem
@@ -97,12 +97,12 @@
       /// See `NetworkProfilesClient.list`.
       func list(
         byItem: NetworkProfilesClient.ListRequest
-      ) throws -> any AsyncSequence<NetworkProfile, Swift.Error>
+      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
 
       /// See `NetworkProfilesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<NetworkProfile, Swift.Error>
+      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
 
       /// See `NetworkProfilesClient.`get``.
       func `get`(
@@ -117,7 +117,7 @@
       /// See `NetworkProfilesClient.list`.
       func list(
         byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NetworkProfile, Swift.Error>
+      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
     }
   }
 
@@ -160,13 +160,13 @@
 
     public func list(
       byItem: NetworkProfilesClient.ListRequest
-    ) throws -> any AsyncSequence<NetworkProfile, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NetworkProfile, Swift.Error> {
+    ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -176,11 +176,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<NetworkProfile, Swift.Error> {
+    ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
       let request = NetworkProfilesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

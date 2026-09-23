@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String
 ) async throws {
-  let items = try client.listWorkstationConfigs(
+  let items = client.listWorkstationConfigs(
     byItem: ListWorkstationConfigsRequest()
       .with {
         $0.parent =

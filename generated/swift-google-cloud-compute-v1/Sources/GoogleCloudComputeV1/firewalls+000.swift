@@ -164,7 +164,7 @@
     /// @Snippet(path: "firewalls_list")
     public func list(
       byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Firewall, Swift.Error> {
+    ) -> any AsyncSequence<Firewall, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
         var request = byItem
         request.pageToken = token
@@ -331,12 +331,12 @@
       /// See `FirewallsClient.list`.
       func list(
         byItem: FirewallsClient.ListRequest
-      ) throws -> any AsyncSequence<Firewall, Swift.Error>
+      ) -> any AsyncSequence<Firewall, Swift.Error>
 
       /// See `FirewallsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Firewall, Swift.Error>
+      ) -> any AsyncSequence<Firewall, Swift.Error>
 
       /// See `FirewallsClient.patch`.
       func patch(request: FirewallsClient.PatchRequest) async throws
@@ -380,7 +380,7 @@
       /// See `FirewallsClient.list`.
       func list(
         byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Firewall, Swift.Error>
+      ) -> any AsyncSequence<Firewall, Swift.Error>
 
       /// See `FirewallsClient.patch`.
       func patch(
@@ -518,13 +518,13 @@
 
     public func list(
       byItem: FirewallsClient.ListRequest
-    ) throws -> any AsyncSequence<Firewall, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Firewall, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Firewall, Swift.Error> {
+    ) -> any AsyncSequence<Firewall, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -533,11 +533,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Firewall, Swift.Error> {
+    ) -> any AsyncSequence<Firewall, Swift.Error> {
       let request = FirewallsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: FirewallsClient.PatchRequest) async throws

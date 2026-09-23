@@ -27,7 +27,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: ServiceManagerClient) async throws {
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       /* set fields using .with { $0... } */
   )

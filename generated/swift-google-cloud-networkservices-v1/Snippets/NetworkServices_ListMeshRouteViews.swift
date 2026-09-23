@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: NetworkServicesClient, projectId: String, locationId: String, meshId: String)
   async throws
 {
-  let items = try client.listMeshRouteViews(
+  let items = client.listMeshRouteViews(
     byItem: ListMeshRouteViewsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/meshes/\(meshId)"

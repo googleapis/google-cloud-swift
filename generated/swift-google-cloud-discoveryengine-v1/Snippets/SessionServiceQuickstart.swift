@@ -24,7 +24,7 @@
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.SessionServiceClient()
-    let items = try client.listSessions(
+    let items = client.listSessions(
       byItem: ListSessionsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"

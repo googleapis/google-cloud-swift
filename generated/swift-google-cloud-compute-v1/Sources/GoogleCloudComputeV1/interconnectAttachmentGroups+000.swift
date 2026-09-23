@@ -191,7 +191,7 @@
     /// @Snippet(path: "interconnectAttachmentGroups_list")
     public func list(
       byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse in
@@ -343,12 +343,12 @@
       /// See `InterconnectAttachmentGroupsClient.list`.
       func list(
         byItem: InterconnectAttachmentGroupsClient.ListRequest
-      ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
 
       /// See `InterconnectAttachmentGroupsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
 
       /// See `InterconnectAttachmentGroupsClient.patch`.
       func patch(request: InterconnectAttachmentGroupsClient.PatchRequest) async throws
@@ -412,7 +412,7 @@
       /// See `InterconnectAttachmentGroupsClient.list`.
       func list(
         byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
+      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
 
       /// See `InterconnectAttachmentGroupsClient.patch`.
       func patch(
@@ -605,13 +605,13 @@
 
     public func list(
       byItem: InterconnectAttachmentGroupsClient.ListRequest
-    ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse in
@@ -622,11 +622,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
       let request = InterconnectAttachmentGroupsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: InterconnectAttachmentGroupsClient.PatchRequest) async throws

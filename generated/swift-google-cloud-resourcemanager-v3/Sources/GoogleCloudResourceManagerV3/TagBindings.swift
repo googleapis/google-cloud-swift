@@ -64,7 +64,7 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// @Snippet(path: "TagBindings_ListTagBindings")
   public func listTagBindings(
     byItem: ListTagBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagBinding, Swift.Error> {
+  ) -> any AsyncSequence<TagBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse in
       var request = byItem
@@ -160,7 +160,7 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// @Snippet(path: "TagBindings_ListEffectiveTags")
   public func listEffectiveTags(
     byItem: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EffectiveTag, Swift.Error> {
+  ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListEffectiveTagsResponse
       in
@@ -197,12 +197,12 @@ extension Clients {
     /// See `TagBindingsClient.listTagBindings`.
     func listTagBindings(
       byItem: ListTagBindingsRequest
-    ) throws -> any AsyncSequence<TagBinding, Swift.Error>
+    ) -> any AsyncSequence<TagBinding, Swift.Error>
 
     /// See `TagBindingsClient.listTagBindings`.
     func listTagBindings(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TagBinding, Swift.Error>
+    ) -> any AsyncSequence<TagBinding, Swift.Error>
 
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(request: CreateTagBindingRequest) async throws
@@ -237,12 +237,12 @@ extension Clients {
     /// See `TagBindingsClient.listEffectiveTags`.
     func listEffectiveTags(
       byItem: ListEffectiveTagsRequest
-    ) throws -> any AsyncSequence<EffectiveTag, Swift.Error>
+    ) -> any AsyncSequence<EffectiveTag, Swift.Error>
 
     /// See `TagBindingsClient.listEffectiveTags`.
     func listEffectiveTags(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EffectiveTag, Swift.Error>
+    ) -> any AsyncSequence<EffectiveTag, Swift.Error>
 
     /// See `TagBindingsClient.listTagBindings`.
     func listTagBindings(
@@ -252,7 +252,7 @@ extension Clients {
     /// See `TagBindingsClient.listTagBindings`.
     func listTagBindings(
       byItem: ListTagBindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TagBinding, Swift.Error>
+    ) -> any AsyncSequence<TagBinding, Swift.Error>
 
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(
@@ -282,7 +282,7 @@ extension Clients {
     /// See `TagBindingsClient.listEffectiveTags`.
     func listEffectiveTags(
       byItem: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EffectiveTag, Swift.Error>
+    ) -> any AsyncSequence<EffectiveTag, Swift.Error>
   }
 }
 
@@ -302,13 +302,13 @@ extension Clients.TagBindingsProtocol {
 
   public func listTagBindings(
     byItem: ListTagBindingsRequest
-  ) throws -> any AsyncSequence<TagBinding, Swift.Error> {
-    try self.listTagBindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TagBinding, Swift.Error> {
+    self.listTagBindings(byItem: byItem, options: .init())
   }
 
   public func listTagBindings(
     byItem: ListTagBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagBinding, Swift.Error> {
+  ) -> any AsyncSequence<TagBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -318,11 +318,11 @@ extension Clients.TagBindingsProtocol {
 
   public func listTagBindings(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<TagBinding, Swift.Error> {
+  ) -> any AsyncSequence<TagBinding, Swift.Error> {
     let request = ListTagBindingsRequest().with {
       $0.parent = parent
     }
-    return try self.listTagBindings(byItem: request)
+    return self.listTagBindings(byItem: request)
   }
 
   public func createTagBinding(request: CreateTagBindingRequest) async throws
@@ -413,13 +413,13 @@ extension Clients.TagBindingsProtocol {
 
   public func listEffectiveTags(
     byItem: ListEffectiveTagsRequest
-  ) throws -> any AsyncSequence<EffectiveTag, Swift.Error> {
-    try self.listEffectiveTags(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
+    self.listEffectiveTags(byItem: byItem, options: .init())
   }
 
   public func listEffectiveTags(
     byItem: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EffectiveTag, Swift.Error> {
+  ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListEffectiveTagsResponse
       in
@@ -430,11 +430,11 @@ extension Clients.TagBindingsProtocol {
 
   public func listEffectiveTags(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EffectiveTag, Swift.Error> {
+  ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
     let request = ListEffectiveTagsRequest().with {
       $0.parent = parent
     }
-    return try self.listEffectiveTags(byItem: request)
+    return self.listEffectiveTags(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

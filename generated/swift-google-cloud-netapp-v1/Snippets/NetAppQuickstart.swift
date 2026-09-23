@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetAppV1.NetAppClient()
-  let items = try client.listStoragePools(
+  let items = client.listStoragePools(
     byItem: ListStoragePoolsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -60,7 +60,7 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// @Snippet(path: "StorageBatchOperations_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudStorageBatchOperationsV1.ListJobsResponse in
       var request = byItem
@@ -145,7 +145,7 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// @Snippet(path: "StorageBatchOperations_ListBucketOperations")
   public func listBucketOperations(
     byItem: ListBucketOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BucketOperation, Swift.Error> {
+  ) -> any AsyncSequence<BucketOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudStorageBatchOperationsV1.ListBucketOperationsResponse in
@@ -179,7 +179,7 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// @Snippet(path: "StorageBatchOperations_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -216,7 +216,7 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// @Snippet(path: "StorageBatchOperations_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -274,12 +274,12 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `StorageBatchOperationsClient.listJobs`.
     func listJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getJob`.
     func getJob(request: GetJobRequest) async throws -> GoogleCloudStorageBatchOperationsV1.Job
@@ -328,12 +328,12 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listBucketOperations`.
     func listBucketOperations(
       byItem: ListBucketOperationsRequest
-    ) throws -> any AsyncSequence<BucketOperation, Swift.Error>
+    ) -> any AsyncSequence<BucketOperation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.listBucketOperations`.
     func listBucketOperations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BucketOperation, Swift.Error>
+    ) -> any AsyncSequence<BucketOperation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getBucketOperation`.
     func getBucketOperation(request: GetBucketOperationRequest) async throws
@@ -351,7 +351,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -364,13 +364,13 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -396,7 +396,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getJob`.
     func getJob(
@@ -431,7 +431,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listBucketOperations`.
     func listBucketOperations(
       byItem: ListBucketOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BucketOperation, Swift.Error>
+    ) -> any AsyncSequence<BucketOperation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getBucketOperation`.
     func getBucketOperation(
@@ -446,7 +446,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `StorageBatchOperationsClient.getLocation`.
     func getLocation(
@@ -461,7 +461,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `StorageBatchOperationsClient.deleteOperation`.
     func deleteOperation(
@@ -491,13 +491,13 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listJobs(
     byItem: ListJobsRequest
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
-    try self.listJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Job, Swift.Error> {
+    self.listJobs(byItem: byItem, options: .init())
   }
 
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudStorageBatchOperationsV1.ListJobsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -507,11 +507,11 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listJobs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
-    return try self.listJobs(byItem: request)
+    return self.listJobs(byItem: request)
   }
 
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudStorageBatchOperationsV1.Job
@@ -627,13 +627,13 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listBucketOperations(
     byItem: ListBucketOperationsRequest
-  ) throws -> any AsyncSequence<BucketOperation, Swift.Error> {
-    try self.listBucketOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BucketOperation, Swift.Error> {
+    self.listBucketOperations(byItem: byItem, options: .init())
   }
 
   public func listBucketOperations(
     byItem: ListBucketOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BucketOperation, Swift.Error> {
+  ) -> any AsyncSequence<BucketOperation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudStorageBatchOperationsV1.ListBucketOperationsResponse in
@@ -644,11 +644,11 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listBucketOperations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BucketOperation, Swift.Error> {
+  ) -> any AsyncSequence<BucketOperation, Swift.Error> {
     let request = ListBucketOperationsRequest().with {
       $0.parent = parent
     }
-    return try self.listBucketOperations(byItem: request)
+    return self.listBucketOperations(byItem: request)
   }
 
   public func getBucketOperation(request: GetBucketOperationRequest) async throws
@@ -686,13 +686,13 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -726,13 +726,13 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -743,12 +743,12 @@ extension Clients.StorageBatchOperationsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

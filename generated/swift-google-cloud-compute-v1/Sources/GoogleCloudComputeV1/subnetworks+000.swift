@@ -61,7 +61,7 @@
     /// @Snippet(path: "subnetworks_aggregatedList")
     public func aggregatedList(
       byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList in
         var request = byItem
@@ -255,7 +255,7 @@
     /// @Snippet(path: "subnetworks_list")
     public func list(
       byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Subnetwork, Swift.Error> {
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
         var request = byItem
         request.pageToken = token
@@ -278,7 +278,7 @@
     /// @Snippet(path: "subnetworks_listUsable")
     public func listUsable(
       byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
         in
@@ -441,12 +441,12 @@
       /// See `SubnetworksClient.aggregatedList`.
       func aggregatedList(
         byItem: SubnetworksClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
 
       /// See `SubnetworksClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
 
       /// See `SubnetworksClient.delete`.
       func delete(request: SubnetworksClient.DeleteRequest) async throws
@@ -489,13 +489,13 @@
       /// See `SubnetworksClient.list`.
       func list(
         byItem: SubnetworksClient.ListRequest
-      ) throws -> any AsyncSequence<Subnetwork, Swift.Error>
+      ) -> any AsyncSequence<Subnetwork, Swift.Error>
 
       /// See `SubnetworksClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<Subnetwork, Swift.Error>
+      ) -> any AsyncSequence<Subnetwork, Swift.Error>
 
       /// See `SubnetworksClient.listUsable`.
       func listUsable(request: SubnetworksClient.ListUsableRequest) async throws
@@ -504,12 +504,12 @@
       /// See `SubnetworksClient.listUsable`.
       func listUsable(
         byItem: SubnetworksClient.ListUsableRequest
-      ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error>
+      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
       /// See `SubnetworksClient.listUsable`.
       func listUsable(
         project: Swift.String,
-      ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error>
+      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
       /// See `SubnetworksClient.patch`.
       func patch(request: SubnetworksClient.PatchRequest) async throws
@@ -551,7 +551,7 @@
       /// See `SubnetworksClient.aggregatedList`.
       func aggregatedList(
         byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
 
       /// See `SubnetworksClient.delete`.
       func delete(
@@ -586,7 +586,7 @@
       /// See `SubnetworksClient.list`.
       func list(
         byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Subnetwork, Swift.Error>
+      ) -> any AsyncSequence<Subnetwork, Swift.Error>
 
       /// See `SubnetworksClient.listUsable`.
       func listUsable(
@@ -596,7 +596,7 @@
       /// See `SubnetworksClient.listUsable`.
       func listUsable(
         byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error>
+      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
       /// See `SubnetworksClient.patch`.
       func patch(
@@ -637,13 +637,13 @@
 
     public func aggregatedList(
       byItem: SubnetworksClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -653,11 +653,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
       let request = SubnetworksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: SubnetworksClient.DeleteRequest) async throws
@@ -852,13 +852,13 @@
 
     public func list(
       byItem: SubnetworksClient.ListRequest
-    ) throws -> any AsyncSequence<Subnetwork, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Subnetwork, Swift.Error> {
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -868,12 +868,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<Subnetwork, Swift.Error> {
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
       let request = SubnetworksClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listUsable(request: SubnetworksClient.ListUsableRequest) async throws
@@ -890,13 +890,13 @@
 
     public func listUsable(
       byItem: SubnetworksClient.ListUsableRequest
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
-      try self.listUsable(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+      self.listUsable(byItem: byItem, options: .init())
     }
 
     public func listUsable(
       byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
         in
@@ -907,11 +907,11 @@
 
     public func listUsable(
       project: Swift.String,
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
       let request = SubnetworksClient.ListUsableRequest().with {
         $0.project = project
       }
-      return try self.listUsable(byItem: request)
+      return self.listUsable(byItem: request)
     }
 
     public func patch(request: SubnetworksClient.PatchRequest) async throws

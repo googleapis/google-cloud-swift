@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RepositoryManagerClient) async throws {
-  let items = try client.fetchLinkableRepositories(
+  let items = client.fetchLinkableRepositories(
     byItem: FetchLinkableRepositoriesRequest()
       /* set fields using .with { $0... } */
   )

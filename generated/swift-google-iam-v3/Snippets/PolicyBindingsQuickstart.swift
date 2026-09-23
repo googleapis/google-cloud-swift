@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleIAMV3.PolicyBindingsClient()
-  let items = try client.listPolicyBindings(
+  let items = client.listPolicyBindings(
     byItem: ListPolicyBindingsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

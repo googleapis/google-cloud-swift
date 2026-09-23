@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = try client.listTransferableSkus(
+  let items = client.listTransferableSkus(
     byItem: ListTransferableSkusRequest()
       /* set fields using .with { $0... } */
   )

@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudHypercomputeClusterV1.HypercomputeClusterClient()
-  let items = try client.listClusters(
+  let items = client.listClusters(
     byItem: ListClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

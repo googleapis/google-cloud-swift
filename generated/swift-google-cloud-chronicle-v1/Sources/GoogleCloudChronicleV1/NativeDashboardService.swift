@@ -71,7 +71,7 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   /// @Snippet(path: "NativeDashboardService_ListNativeDashboards")
   public func listNativeDashboards(
     byItem: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse in
       var request = byItem
@@ -180,7 +180,7 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   /// @Snippet(path: "NativeDashboardService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -257,12 +257,12 @@ extension Clients {
     /// See `NativeDashboardServiceClient.listNativeDashboards`.
     func listNativeDashboards(
       byItem: ListNativeDashboardsRequest
-    ) throws -> any AsyncSequence<NativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<NativeDashboard, Swift.Error>
 
     /// See `NativeDashboardServiceClient.listNativeDashboards`.
     func listNativeDashboards(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<NativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<NativeDashboard, Swift.Error>
 
     /// See `NativeDashboardServiceClient.updateNativeDashboard`.
     func updateNativeDashboard(request: UpdateNativeDashboardRequest) async throws
@@ -359,13 +359,13 @@ extension Clients {
     /// See `NativeDashboardServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NativeDashboardServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NativeDashboardServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -401,7 +401,7 @@ extension Clients {
     /// See `NativeDashboardServiceClient.listNativeDashboards`.
     func listNativeDashboards(
       byItem: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<NativeDashboard, Swift.Error>
 
     /// See `NativeDashboardServiceClient.updateNativeDashboard`.
     func updateNativeDashboard(
@@ -456,7 +456,7 @@ extension Clients {
     /// See `NativeDashboardServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NativeDashboardServiceClient.deleteOperation`.
     func deleteOperation(
@@ -530,13 +530,13 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listNativeDashboards(
     byItem: ListNativeDashboardsRequest
-  ) throws -> any AsyncSequence<NativeDashboard, Swift.Error> {
-    try self.listNativeDashboards(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
+    self.listNativeDashboards(byItem: byItem, options: .init())
   }
 
   public func listNativeDashboards(
     byItem: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<NativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -546,11 +546,11 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listNativeDashboards(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<NativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
     let request = ListNativeDashboardsRequest().with {
       $0.parent = parent
     }
-    return try self.listNativeDashboards(byItem: request)
+    return self.listNativeDashboards(byItem: request)
   }
 
   public func updateNativeDashboard(request: UpdateNativeDashboardRequest) async throws
@@ -772,13 +772,13 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -789,12 +789,12 @@ extension Clients.NativeDashboardServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

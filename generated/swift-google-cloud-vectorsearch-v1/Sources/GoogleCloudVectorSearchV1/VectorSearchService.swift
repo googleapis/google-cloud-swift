@@ -62,7 +62,7 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// @Snippet(path: "VectorSearchService_ListCollections")
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
       var request = byItem
@@ -200,7 +200,7 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// @Snippet(path: "VectorSearchService_ListIndexes")
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse in
       var request = byItem
@@ -442,7 +442,7 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// @Snippet(path: "VectorSearchService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -479,7 +479,7 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// @Snippet(path: "VectorSearchService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -537,12 +537,12 @@ extension Clients {
     /// See `VectorSearchServiceClient.listCollections`.
     func listCollections(
       byItem: ListCollectionsRequest
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `VectorSearchServiceClient.listCollections`.
     func listCollections(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `VectorSearchServiceClient.getCollection`.
     func getCollection(request: GetCollectionRequest) async throws
@@ -602,12 +602,12 @@ extension Clients {
     /// See `VectorSearchServiceClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `VectorSearchServiceClient.listIndexes`.
     func listIndexes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `VectorSearchServiceClient.getIndex`.
     func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVectorSearchV1.Index
@@ -679,7 +679,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `VectorSearchServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -692,13 +692,13 @@ extension Clients {
     /// See `VectorSearchServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VectorSearchServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VectorSearchServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -724,7 +724,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.listCollections`.
     func listCollections(
       byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Collection, Swift.Error>
+    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `VectorSearchServiceClient.getCollection`.
     func getCollection(
@@ -769,7 +769,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.listIndexes`.
     func listIndexes(
       byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Index, Swift.Error>
+    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `VectorSearchServiceClient.getIndex`.
     func getIndex(
@@ -834,7 +834,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `VectorSearchServiceClient.getLocation`.
     func getLocation(
@@ -849,7 +849,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VectorSearchServiceClient.deleteOperation`.
     func deleteOperation(
@@ -879,13 +879,13 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listCollections(
     byItem: ListCollectionsRequest
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
-    try self.listCollections(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Collection, Swift.Error> {
+    self.listCollections(byItem: byItem, options: .init())
   }
 
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -895,11 +895,11 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listCollections(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> {
     let request = ListCollectionsRequest().with {
       $0.parent = parent
     }
-    return try self.listCollections(byItem: request)
+    return self.listCollections(byItem: request)
   }
 
   public func getCollection(request: GetCollectionRequest) async throws
@@ -1054,13 +1054,13 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listIndexes(
     byItem: ListIndexesRequest
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
-    try self.listIndexes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Index, Swift.Error> {
+    self.listIndexes(byItem: byItem, options: .init())
   }
 
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1070,11 +1070,11 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listIndexes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> {
     let request = ListIndexesRequest().with {
       $0.parent = parent
     }
-    return try self.listIndexes(byItem: request)
+    return self.listIndexes(byItem: request)
   }
 
   public func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVectorSearchV1.Index {
@@ -1279,13 +1279,13 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1319,13 +1319,13 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1336,12 +1336,12 @@ extension Clients.VectorSearchServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

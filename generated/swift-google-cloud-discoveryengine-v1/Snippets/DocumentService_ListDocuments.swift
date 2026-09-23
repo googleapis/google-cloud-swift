@@ -23,7 +23,7 @@
   import GoogleWKT
 
   func sample(client: DocumentServiceClient, parent: String) async throws {
-    let items = try client.listDocuments(
+    let items = client.listDocuments(
       byItem: ListDocumentsRequest()
         .with {
           $0.parent = "\(parent)"

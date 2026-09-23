@@ -24,7 +24,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkConnectivityV1.PolicyBasedRoutingServiceClient()
-  let items = try client.listPolicyBasedRoutes(
+  let items = client.listPolicyBasedRoutes(
     byItem: ListPolicyBasedRoutesRequest()
       .with {
         $0.parent = "\(parent)"

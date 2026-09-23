@@ -228,7 +228,7 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// @Snippet(path: "Domains_ListRegistrations")
   public func listRegistrations(
     byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Registration, Swift.Error> {
+  ) -> any AsyncSequence<Registration, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse in
       var request = byItem
@@ -564,7 +564,7 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// @Snippet(path: "Domains_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -659,12 +659,12 @@ extension Clients {
     /// See `DomainsClient.listRegistrations`.
     func listRegistrations(
       byItem: ListRegistrationsRequest
-    ) throws -> any AsyncSequence<Registration, Swift.Error>
+    ) -> any AsyncSequence<Registration, Swift.Error>
 
     /// See `DomainsClient.listRegistrations`.
     func listRegistrations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Registration, Swift.Error>
+    ) -> any AsyncSequence<Registration, Swift.Error>
 
     /// See `DomainsClient.getRegistration`.
     func getRegistration(request: GetRegistrationRequest) async throws
@@ -785,13 +785,13 @@ extension Clients {
     /// See `DomainsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainsClient.searchDomains`.
     func searchDomains(
@@ -836,7 +836,7 @@ extension Clients {
     /// See `DomainsClient.listRegistrations`.
     func listRegistrations(
       byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Registration, Swift.Error>
+    ) -> any AsyncSequence<Registration, Swift.Error>
 
     /// See `DomainsClient.getRegistration`.
     func getRegistration(
@@ -921,7 +921,7 @@ extension Clients {
     /// See `DomainsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -1094,13 +1094,13 @@ extension Clients.DomainsProtocol {
 
   public func listRegistrations(
     byItem: ListRegistrationsRequest
-  ) throws -> any AsyncSequence<Registration, Swift.Error> {
-    try self.listRegistrations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Registration, Swift.Error> {
+    self.listRegistrations(byItem: byItem, options: .init())
   }
 
   public func listRegistrations(
     byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Registration, Swift.Error> {
+  ) -> any AsyncSequence<Registration, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1110,11 +1110,11 @@ extension Clients.DomainsProtocol {
 
   public func listRegistrations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Registration, Swift.Error> {
+  ) -> any AsyncSequence<Registration, Swift.Error> {
     let request = ListRegistrationsRequest().with {
       $0.parent = parent
     }
-    return try self.listRegistrations(byItem: request)
+    return self.listRegistrations(byItem: request)
   }
 
   public func getRegistration(request: GetRegistrationRequest) async throws
@@ -1430,13 +1430,13 @@ extension Clients.DomainsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1447,12 +1447,12 @@ extension Clients.DomainsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

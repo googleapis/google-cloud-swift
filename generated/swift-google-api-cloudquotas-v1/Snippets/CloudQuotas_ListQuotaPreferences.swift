@@ -21,7 +21,7 @@ import GoogleApiCloudQuotasV1
 import GoogleWKT
 
 func sample(client: CloudQuotasClient, projectId: String, locationId: String) async throws {
-  let items = try client.listQuotaPreferences(
+  let items = client.listQuotaPreferences(
     byItem: ListQuotaPreferencesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

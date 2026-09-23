@@ -23,7 +23,7 @@
   import GoogleLongRunning
 
   func sample(client: ConversationModelsClient) async throws {
-    let items = try client.listLocations(
+    let items = client.listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest()
         /* set fields using .with { $0... } */
     )

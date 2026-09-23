@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RuleServiceClient) async throws {
-  let items = try client.listRuleRevisions(
+  let items = client.listRuleRevisions(
     byItem: ListRuleRevisionsRequest()
       /* set fields using .with { $0... } */
   )

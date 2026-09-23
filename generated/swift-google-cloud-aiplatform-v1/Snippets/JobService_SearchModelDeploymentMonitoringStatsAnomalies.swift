@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: JobServiceClient) async throws {
-    let items = try client.searchModelDeploymentMonitoringStatsAnomalies(
+    let items = client.searchModelDeploymentMonitoringStatsAnomalies(
       byItem: SearchModelDeploymentMonitoringStatsAnomaliesRequest()
         /* set fields using .with { $0... } */
     )

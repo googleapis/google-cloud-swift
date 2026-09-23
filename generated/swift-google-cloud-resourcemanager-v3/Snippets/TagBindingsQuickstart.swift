@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudResourceManagerV3.TagBindingsClient()
-  let items = try client.listTagBindings(
+  let items = client.listTagBindings(
     byItem: ListTagBindingsRequest()
       .with {
         $0.parent = "\(parent)"

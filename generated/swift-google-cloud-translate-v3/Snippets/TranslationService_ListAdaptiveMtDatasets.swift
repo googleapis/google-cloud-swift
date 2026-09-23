@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient, parent: String) async throws {
-  let items = try client.listAdaptiveMtDatasets(
+  let items = client.listAdaptiveMtDatasets(
     byItem: ListAdaptiveMtDatasetsRequest()
       .with {
         $0.parent = "\(parent)"

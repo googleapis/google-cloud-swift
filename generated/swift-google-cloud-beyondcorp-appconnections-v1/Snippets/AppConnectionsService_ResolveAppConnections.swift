@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppConnectionsServiceClient) async throws {
-  let items = try client.resolveAppConnections(
+  let items = client.resolveAppConnections(
     byItem: ResolveAppConnectionsRequest()
       /* set fields using .with { $0... } */
   )

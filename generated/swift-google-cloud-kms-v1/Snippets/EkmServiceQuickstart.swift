@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSV1.EkmServiceClient()
-  let items = try client.listEkmConnections(
+  let items = client.listEkmConnections(
     byItem: ListEkmConnectionsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient) async throws {
-  let items = try client.listBoundMemberships(
+  let items = client.listBoundMemberships(
     byItem: ListBoundMembershipsRequest()
       /* set fields using .with { $0... } */
   )

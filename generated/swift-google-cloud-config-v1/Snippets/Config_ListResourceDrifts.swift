@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, previewId: String)
   async throws
 {
-  let items = try client.listResourceDrifts(
+  let items = client.listResourceDrifts(
     byItem: ListResourceDriftsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/previews/\(previewId)"

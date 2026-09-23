@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiHubClient) async throws {
-  let items = try client.searchResources(
+  let items = client.searchResources(
     byItem: SearchResourcesRequest()
       /* set fields using .with { $0... } */
   )

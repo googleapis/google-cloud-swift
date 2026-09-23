@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: LineageClient, projectId: String, locationId: String, processId: String, runId: String
 ) async throws {
-  let items = try client.listLineageEvents(
+  let items = client.listLineageEvents(
     byItem: ListLineageEventsRequest()
       .with {
         $0.parent =

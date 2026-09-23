@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let items = try client.listNetworks(
+  let items = client.listNetworks(
     byItem: ListNetworksRequest()
       .with {
         $0.parent = "\(parent)"

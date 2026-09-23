@@ -65,7 +65,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_ListInsightsConfigs")
   public func listInsightsConfigs(
     byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<InsightsConfig, Swift.Error> {
+  ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse in
@@ -213,7 +213,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_ListDeploymentEvents")
   public func listDeploymentEvents(
     byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error> {
+  ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse in
@@ -252,7 +252,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -289,7 +289,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -347,12 +347,12 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listInsightsConfigs`.
     func listInsightsConfigs(
       byItem: ListInsightsConfigsRequest
-    ) throws -> any AsyncSequence<InsightsConfig, Swift.Error>
+    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
 
     /// See `InsightsConfigServiceClient.listInsightsConfigs`.
     func listInsightsConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<InsightsConfig, Swift.Error>
+    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
 
     /// See `InsightsConfigServiceClient.createInsightsConfig`.
     func createInsightsConfig(request: CreateInsightsConfigRequest) async throws
@@ -415,12 +415,12 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listDeploymentEvents`.
     func listDeploymentEvents(
       byItem: ListDeploymentEventsRequest
-    ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error>
+    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
 
     /// See `InsightsConfigServiceClient.listDeploymentEvents`.
     func listDeploymentEvents(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error>
+    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
 
     /// See `InsightsConfigServiceClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -429,7 +429,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `InsightsConfigServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -442,13 +442,13 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InsightsConfigServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InsightsConfigServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -474,7 +474,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listInsightsConfigs`.
     func listInsightsConfigs(
       byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InsightsConfig, Swift.Error>
+    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
 
     /// See `InsightsConfigServiceClient.createInsightsConfig`.
     func createInsightsConfig(
@@ -524,7 +524,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listDeploymentEvents`.
     func listDeploymentEvents(
       byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error>
+    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
 
     /// See `InsightsConfigServiceClient.listLocations`.
     func listLocations(
@@ -534,7 +534,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `InsightsConfigServiceClient.getLocation`.
     func getLocation(
@@ -549,7 +549,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InsightsConfigServiceClient.deleteOperation`.
     func deleteOperation(
@@ -579,13 +579,13 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listInsightsConfigs(
     byItem: ListInsightsConfigsRequest
-  ) throws -> any AsyncSequence<InsightsConfig, Swift.Error> {
-    try self.listInsightsConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
+    self.listInsightsConfigs(byItem: byItem, options: .init())
   }
 
   public func listInsightsConfigs(
     byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<InsightsConfig, Swift.Error> {
+  ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse in
@@ -596,11 +596,11 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listInsightsConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<InsightsConfig, Swift.Error> {
+  ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
     let request = ListInsightsConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listInsightsConfigs(byItem: request)
+    return self.listInsightsConfigs(byItem: request)
   }
 
   public func createInsightsConfig(request: CreateInsightsConfigRequest) async throws
@@ -765,13 +765,13 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listDeploymentEvents(
     byItem: ListDeploymentEventsRequest
-  ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error> {
-    try self.listDeploymentEvents(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
+    self.listDeploymentEvents(byItem: byItem, options: .init())
   }
 
   public func listDeploymentEvents(
     byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error> {
+  ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse in
@@ -782,11 +782,11 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listDeploymentEvents(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DeploymentEvent, Swift.Error> {
+  ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
     let request = ListDeploymentEventsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeploymentEvents(byItem: request)
+    return self.listDeploymentEvents(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -803,13 +803,13 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -843,13 +843,13 @@ extension Clients.InsightsConfigServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -860,12 +860,12 @@ extension Clients.InsightsConfigServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

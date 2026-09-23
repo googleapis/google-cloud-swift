@@ -99,7 +99,7 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// @Snippet(path: "DataPolicyService_ListDataPolicies")
   public func listDataPolicies(
     byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DataPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse in
       var request = byItem
@@ -198,12 +198,12 @@ extension Clients {
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
       byItem: ListDataPoliciesRequest
-    ) throws -> any AsyncSequence<DataPolicy, Swift.Error>
+    ) -> any AsyncSequence<DataPolicy, Swift.Error>
 
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<DataPolicy, Swift.Error>
+    ) -> any AsyncSequence<DataPolicy, Swift.Error>
 
     /// See `DataPolicyServiceClient.getIamPolicy`.
     func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
@@ -248,7 +248,7 @@ extension Clients {
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
       byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DataPolicy, Swift.Error>
+    ) -> any AsyncSequence<DataPolicy, Swift.Error>
 
     /// See `DataPolicyServiceClient.getIamPolicy`.
     func getIamPolicy(
@@ -392,13 +392,13 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func listDataPolicies(
     byItem: ListDataPoliciesRequest
-  ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
-    try self.listDataPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DataPolicy, Swift.Error> {
+    self.listDataPolicies(byItem: byItem, options: .init())
   }
 
   public func listDataPolicies(
     byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DataPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -408,11 +408,11 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func listDataPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
+  ) -> any AsyncSequence<DataPolicy, Swift.Error> {
     let request = ListDataPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listDataPolicies(byItem: request)
+    return self.listDataPolicies(byItem: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

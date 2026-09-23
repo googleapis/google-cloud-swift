@@ -55,7 +55,7 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// @Snippet(path: "Versions_ListVersions")
   public func listVersions(
     byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
+  ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleAppEngineV1.ListVersionsResponse in
       var request = byItem
       request.pageToken = token
@@ -266,7 +266,7 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// @Snippet(path: "Versions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -302,7 +302,7 @@ extension Clients {
     /// See `VersionsClient.listVersions`.
     func listVersions(
       byItem: ListVersionsRequest
-    ) throws -> any AsyncSequence<Version, Swift.Error>
+    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `VersionsClient.getVersion`.
     func getVersion(request: GetVersionRequest) async throws -> GoogleAppEngineV1.Version
@@ -335,13 +335,13 @@ extension Clients {
     /// See `VersionsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VersionsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VersionsClient.listVersions`.
     func listVersions(
@@ -351,7 +351,7 @@ extension Clients {
     /// See `VersionsClient.listVersions`.
     func listVersions(
       byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Version, Swift.Error>
+    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `VersionsClient.getVersion`.
     func getVersion(
@@ -396,7 +396,7 @@ extension Clients {
     /// See `VersionsClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -416,13 +416,13 @@ extension Clients.VersionsProtocol {
 
   public func listVersions(
     byItem: ListVersionsRequest
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
-    try self.listVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Version, Swift.Error> {
+    self.listVersions(byItem: byItem, options: .init())
   }
 
   public func listVersions(
     byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Version, Swift.Error> {
+  ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleAppEngineV1.ListVersionsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -537,13 +537,13 @@ extension Clients.VersionsProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -554,12 +554,12 @@ extension Clients.VersionsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

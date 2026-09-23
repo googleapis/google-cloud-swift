@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleApiApiKeysV1.ApiKeysClient()
-  let items = try client.listKeys(
+  let items = client.listKeys(
     byItem: ListKeysRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

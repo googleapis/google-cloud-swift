@@ -220,7 +220,7 @@
     /// @Snippet(path: "instances_aggregatedList")
     public func aggregatedList(
       byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList in
         var request = byItem
@@ -675,7 +675,7 @@
     /// @Snippet(path: "instances_list")
     public func list(
       byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Instance, Swift.Error> {
+    ) -> any AsyncSequence<Instance, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
         var request = byItem
         request.pageToken = token
@@ -706,7 +706,7 @@
     /// @Snippet(path: "instances_listReferrers")
     public func listReferrers(
       byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Reference, Swift.Error> {
+    ) -> any AsyncSequence<Reference, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers in
         var request = byItem
@@ -2271,12 +2271,12 @@
       /// See `InstancesClient.aggregatedList`.
       func aggregatedList(
         byItem: InstancesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
 
       /// See `InstancesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
 
       /// See `InstancesClient.attachDisk`.
       func attachDisk(request: InstancesClient.AttachDiskRequest) async throws
@@ -2390,13 +2390,13 @@
       /// See `InstancesClient.list`.
       func list(
         byItem: InstancesClient.ListRequest
-      ) throws -> any AsyncSequence<Instance, Swift.Error>
+      ) -> any AsyncSequence<Instance, Swift.Error>
 
       /// See `InstancesClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<Instance, Swift.Error>
+      ) -> any AsyncSequence<Instance, Swift.Error>
 
       /// See `InstancesClient.listReferrers`.
       func listReferrers(request: InstancesClient.ListReferrersRequest) async throws
@@ -2405,14 +2405,14 @@
       /// See `InstancesClient.listReferrers`.
       func listReferrers(
         byItem: InstancesClient.ListReferrersRequest
-      ) throws -> any AsyncSequence<Reference, Swift.Error>
+      ) -> any AsyncSequence<Reference, Swift.Error>
 
       /// See `InstancesClient.listReferrers`.
       func listReferrers(
         project: Swift.String,
         zone: Swift.String,
         instance: Swift.String,
-      ) throws -> any AsyncSequence<Reference, Swift.Error>
+      ) -> any AsyncSequence<Reference, Swift.Error>
 
       /// See `InstancesClient.performMaintenance`.
       func performMaintenance(request: InstancesClient.PerformMaintenanceRequest) async throws
@@ -2585,7 +2585,7 @@
       /// See `InstancesClient.aggregatedList`.
       func aggregatedList(
         byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
 
       /// See `InstancesClient.attachDisk`.
       func attachDisk(
@@ -2666,7 +2666,7 @@
       /// See `InstancesClient.list`.
       func list(
         byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Instance, Swift.Error>
+      ) -> any AsyncSequence<Instance, Swift.Error>
 
       /// See `InstancesClient.listReferrers`.
       func listReferrers(
@@ -2676,7 +2676,7 @@
       /// See `InstancesClient.listReferrers`.
       func listReferrers(
         byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Reference, Swift.Error>
+      ) -> any AsyncSequence<Reference, Swift.Error>
 
       /// See `InstancesClient.performMaintenance`.
       func performMaintenance(
@@ -2987,13 +2987,13 @@
 
     public func aggregatedList(
       byItem: InstancesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -3003,11 +3003,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let request = InstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func attachDisk(request: InstancesClient.AttachDiskRequest) async throws
@@ -3505,13 +3505,13 @@
 
     public func list(
       byItem: InstancesClient.ListRequest
-    ) throws -> any AsyncSequence<Instance, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Instance, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Instance, Swift.Error> {
+    ) -> any AsyncSequence<Instance, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -3521,12 +3521,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<Instance, Swift.Error> {
+    ) -> any AsyncSequence<Instance, Swift.Error> {
       let request = InstancesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listReferrers(request: InstancesClient.ListReferrersRequest) async throws
@@ -3543,13 +3543,13 @@
 
     public func listReferrers(
       byItem: InstancesClient.ListReferrersRequest
-    ) throws -> any AsyncSequence<Reference, Swift.Error> {
-      try self.listReferrers(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Reference, Swift.Error> {
+      self.listReferrers(byItem: byItem, options: .init())
     }
 
     public func listReferrers(
       byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Reference, Swift.Error> {
+    ) -> any AsyncSequence<Reference, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers in
         throw GoogleGax.RequestError.unimplemented
@@ -3561,13 +3561,13 @@
       project: Swift.String,
       zone: Swift.String,
       instance: Swift.String,
-    ) throws -> any AsyncSequence<Reference, Swift.Error> {
+    ) -> any AsyncSequence<Reference, Swift.Error> {
       let request = InstancesClient.ListReferrersRequest().with {
         $0.project = project
         $0.zone = zone
         $0.instance = instance
       }
-      return try self.listReferrers(byItem: request)
+      return self.listReferrers(byItem: request)
     }
 
     public func performMaintenance(request: InstancesClient.PerformMaintenanceRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFtpClient, projectId: String, locationId: String) async throws {
-  let items = try client.listServers(
+  let items = client.listServers(
     byItem: ListServersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleCloudAssuredWorkloadsV1.AssuredWorkloadsServiceClient()
-  let items = try client.listWorkloads(
+  let items = client.listWorkloads(
     byItem: ListWorkloadsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

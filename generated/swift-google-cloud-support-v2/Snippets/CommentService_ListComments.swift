@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudSupportV2
 
 func sample(client: CommentServiceClient, organizationId: String, caseId: String) async throws {
-  let items = try client.listComments(
+  let items = client.listComments(
     byItem: ListCommentsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/cases/\(caseId)"

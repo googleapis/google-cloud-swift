@@ -59,7 +59,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListConnectionProfiles")
   public func listConnectionProfiles(
     byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error> {
+  ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
       in
@@ -210,7 +210,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListStreams")
   public func listStreams(
     byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Stream, Swift.Error> {
+  ) -> any AsyncSequence<Stream, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse in
       var request = byItem
@@ -400,7 +400,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListStreamObjects")
   public func listStreamObjects(
     byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<StreamObject, Swift.Error> {
+  ) -> any AsyncSequence<StreamObject, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse in
       var request = byItem
@@ -498,7 +498,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListPrivateConnections")
   public func listPrivateConnections(
     byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
       in
@@ -605,7 +605,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListRoutes")
   public func listRoutes(
     byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Route, Swift.Error> {
+  ) -> any AsyncSequence<Route, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse in
       var request = byItem
@@ -664,7 +664,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -701,7 +701,7 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// @Snippet(path: "Datastream_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -759,12 +759,12 @@ extension Clients {
     /// See `DatastreamClient.listConnectionProfiles`.
     func listConnectionProfiles(
       byItem: ListConnectionProfilesRequest
-    ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error>
+    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
 
     /// See `DatastreamClient.listConnectionProfiles`.
     func listConnectionProfiles(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error>
+    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
 
     /// See `DatastreamClient.getConnectionProfile`.
     func getConnectionProfile(request: GetConnectionProfileRequest) async throws
@@ -828,12 +828,12 @@ extension Clients {
     /// See `DatastreamClient.listStreams`.
     func listStreams(
       byItem: ListStreamsRequest
-    ) throws -> any AsyncSequence<Stream, Swift.Error>
+    ) -> any AsyncSequence<Stream, Swift.Error>
 
     /// See `DatastreamClient.listStreams`.
     func listStreams(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Stream, Swift.Error>
+    ) -> any AsyncSequence<Stream, Swift.Error>
 
     /// See `DatastreamClient.getStream`.
     func getStream(request: GetStreamRequest) async throws -> GoogleCloudDatastreamV1.Stream
@@ -910,12 +910,12 @@ extension Clients {
     /// See `DatastreamClient.listStreamObjects`.
     func listStreamObjects(
       byItem: ListStreamObjectsRequest
-    ) throws -> any AsyncSequence<StreamObject, Swift.Error>
+    ) -> any AsyncSequence<StreamObject, Swift.Error>
 
     /// See `DatastreamClient.listStreamObjects`.
     func listStreamObjects(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<StreamObject, Swift.Error>
+    ) -> any AsyncSequence<StreamObject, Swift.Error>
 
     /// See `DatastreamClient.startBackfillJob`.
     func startBackfillJob(request: StartBackfillJobRequest) async throws
@@ -975,12 +975,12 @@ extension Clients {
     /// See `DatastreamClient.listPrivateConnections`.
     func listPrivateConnections(
       byItem: ListPrivateConnectionsRequest
-    ) throws -> any AsyncSequence<PrivateConnection, Swift.Error>
+    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
 
     /// See `DatastreamClient.listPrivateConnections`.
     func listPrivateConnections(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PrivateConnection, Swift.Error>
+    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
 
     /// See `DatastreamClient.deletePrivateConnection`.
     func deletePrivateConnection(request: DeletePrivateConnectionRequest) async throws
@@ -1024,12 +1024,12 @@ extension Clients {
     /// See `DatastreamClient.listRoutes`.
     func listRoutes(
       byItem: ListRoutesRequest
-    ) throws -> any AsyncSequence<Route, Swift.Error>
+    ) -> any AsyncSequence<Route, Swift.Error>
 
     /// See `DatastreamClient.listRoutes`.
     func listRoutes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Route, Swift.Error>
+    ) -> any AsyncSequence<Route, Swift.Error>
 
     /// See `DatastreamClient.deleteRoute`.
     func deleteRoute(request: DeleteRouteRequest) async throws -> GoogleLongRunning.Operation
@@ -1050,7 +1050,7 @@ extension Clients {
     /// See `DatastreamClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DatastreamClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1063,13 +1063,13 @@ extension Clients {
     /// See `DatastreamClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastreamClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastreamClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1095,7 +1095,7 @@ extension Clients {
     /// See `DatastreamClient.listConnectionProfiles`.
     func listConnectionProfiles(
       byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error>
+    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
 
     /// See `DatastreamClient.getConnectionProfile`.
     func getConnectionProfile(
@@ -1145,7 +1145,7 @@ extension Clients {
     /// See `DatastreamClient.listStreams`.
     func listStreams(
       byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Stream, Swift.Error>
+    ) -> any AsyncSequence<Stream, Swift.Error>
 
     /// See `DatastreamClient.getStream`.
     func getStream(
@@ -1210,7 +1210,7 @@ extension Clients {
     /// See `DatastreamClient.listStreamObjects`.
     func listStreamObjects(
       byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<StreamObject, Swift.Error>
+    ) -> any AsyncSequence<StreamObject, Swift.Error>
 
     /// See `DatastreamClient.startBackfillJob`.
     func startBackfillJob(
@@ -1250,7 +1250,7 @@ extension Clients {
     /// See `DatastreamClient.listPrivateConnections`.
     func listPrivateConnections(
       byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PrivateConnection, Swift.Error>
+    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
 
     /// See `DatastreamClient.deletePrivateConnection`.
     func deletePrivateConnection(
@@ -1285,7 +1285,7 @@ extension Clients {
     /// See `DatastreamClient.listRoutes`.
     func listRoutes(
       byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Route, Swift.Error>
+    ) -> any AsyncSequence<Route, Swift.Error>
 
     /// See `DatastreamClient.deleteRoute`.
     func deleteRoute(
@@ -1305,7 +1305,7 @@ extension Clients {
     /// See `DatastreamClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DatastreamClient.getLocation`.
     func getLocation(
@@ -1320,7 +1320,7 @@ extension Clients {
     /// See `DatastreamClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastreamClient.deleteOperation`.
     func deleteOperation(
@@ -1350,13 +1350,13 @@ extension Clients.DatastreamProtocol {
 
   public func listConnectionProfiles(
     byItem: ListConnectionProfilesRequest
-  ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error> {
-    try self.listConnectionProfiles(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
+    self.listConnectionProfiles(byItem: byItem, options: .init())
   }
 
   public func listConnectionProfiles(
     byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error> {
+  ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
       in
@@ -1367,11 +1367,11 @@ extension Clients.DatastreamProtocol {
 
   public func listConnectionProfiles(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ConnectionProfile, Swift.Error> {
+  ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let request = ListConnectionProfilesRequest().with {
       $0.parent = parent
     }
-    return try self.listConnectionProfiles(byItem: request)
+    return self.listConnectionProfiles(byItem: request)
   }
 
   public func getConnectionProfile(request: GetConnectionProfileRequest) async throws
@@ -1538,13 +1538,13 @@ extension Clients.DatastreamProtocol {
 
   public func listStreams(
     byItem: ListStreamsRequest
-  ) throws -> any AsyncSequence<Stream, Swift.Error> {
-    try self.listStreams(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Stream, Swift.Error> {
+    self.listStreams(byItem: byItem, options: .init())
   }
 
   public func listStreams(
     byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Stream, Swift.Error> {
+  ) -> any AsyncSequence<Stream, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1554,11 +1554,11 @@ extension Clients.DatastreamProtocol {
 
   public func listStreams(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Stream, Swift.Error> {
+  ) -> any AsyncSequence<Stream, Swift.Error> {
     let request = ListStreamsRequest().with {
       $0.parent = parent
     }
-    return try self.listStreams(byItem: request)
+    return self.listStreams(byItem: request)
   }
 
   public func getStream(request: GetStreamRequest) async throws -> GoogleCloudDatastreamV1.Stream {
@@ -1767,13 +1767,13 @@ extension Clients.DatastreamProtocol {
 
   public func listStreamObjects(
     byItem: ListStreamObjectsRequest
-  ) throws -> any AsyncSequence<StreamObject, Swift.Error> {
-    try self.listStreamObjects(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<StreamObject, Swift.Error> {
+    self.listStreamObjects(byItem: byItem, options: .init())
   }
 
   public func listStreamObjects(
     byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<StreamObject, Swift.Error> {
+  ) -> any AsyncSequence<StreamObject, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1783,11 +1783,11 @@ extension Clients.DatastreamProtocol {
 
   public func listStreamObjects(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<StreamObject, Swift.Error> {
+  ) -> any AsyncSequence<StreamObject, Swift.Error> {
     let request = ListStreamObjectsRequest().with {
       $0.parent = parent
     }
-    return try self.listStreamObjects(byItem: request)
+    return self.listStreamObjects(byItem: request)
   }
 
   public func startBackfillJob(request: StartBackfillJobRequest) async throws
@@ -1929,13 +1929,13 @@ extension Clients.DatastreamProtocol {
 
   public func listPrivateConnections(
     byItem: ListPrivateConnectionsRequest
-  ) throws -> any AsyncSequence<PrivateConnection, Swift.Error> {
-    try self.listPrivateConnections(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
+    self.listPrivateConnections(byItem: byItem, options: .init())
   }
 
   public func listPrivateConnections(
     byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
       in
@@ -1946,11 +1946,11 @@ extension Clients.DatastreamProtocol {
 
   public func listPrivateConnections(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let request = ListPrivateConnectionsRequest().with {
       $0.parent = parent
     }
-    return try self.listPrivateConnections(byItem: request)
+    return self.listPrivateConnections(byItem: request)
   }
 
   public func deletePrivateConnection(request: DeletePrivateConnectionRequest) async throws
@@ -2062,13 +2062,13 @@ extension Clients.DatastreamProtocol {
 
   public func listRoutes(
     byItem: ListRoutesRequest
-  ) throws -> any AsyncSequence<Route, Swift.Error> {
-    try self.listRoutes(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Route, Swift.Error> {
+    self.listRoutes(byItem: byItem, options: .init())
   }
 
   public func listRoutes(
     byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Route, Swift.Error> {
+  ) -> any AsyncSequence<Route, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2078,11 +2078,11 @@ extension Clients.DatastreamProtocol {
 
   public func listRoutes(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Route, Swift.Error> {
+  ) -> any AsyncSequence<Route, Swift.Error> {
     let request = ListRoutesRequest().with {
       $0.parent = parent
     }
-    return try self.listRoutes(byItem: request)
+    return self.listRoutes(byItem: request)
   }
 
   public func deleteRoute(request: DeleteRouteRequest) async throws -> GoogleLongRunning.Operation {
@@ -2134,13 +2134,13 @@ extension Clients.DatastreamProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2174,13 +2174,13 @@ extension Clients.DatastreamProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2191,12 +2191,12 @@ extension Clients.DatastreamProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

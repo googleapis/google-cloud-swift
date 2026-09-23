@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.ServicesClient()
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       /* set fields using .with { $0... } */
   )

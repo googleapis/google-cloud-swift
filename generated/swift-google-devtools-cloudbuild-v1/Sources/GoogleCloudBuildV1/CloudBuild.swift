@@ -123,7 +123,7 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// @Snippet(path: "CloudBuild_ListBuilds")
   public func listBuilds(
     byItem: ListBuildsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Build, Swift.Error> {
+  ) -> any AsyncSequence<Build, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildsResponse in
       var request = byItem
       request.pageToken = token
@@ -303,7 +303,7 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// @Snippet(path: "CloudBuild_ListBuildTriggers")
   public func listBuildTriggers(
     byItem: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BuildTrigger, Swift.Error> {
+  ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse in
       var request = byItem
@@ -515,7 +515,7 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// @Snippet(path: "CloudBuild_ListWorkerPools")
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse in
       var request = byItem
@@ -603,13 +603,13 @@ extension Clients {
     /// See `CloudBuildClient.listBuilds`.
     func listBuilds(
       byItem: ListBuildsRequest
-    ) throws -> any AsyncSequence<Build, Swift.Error>
+    ) -> any AsyncSequence<Build, Swift.Error>
 
     /// See `CloudBuildClient.listBuilds`.
     func listBuilds(
       projectId: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Build, Swift.Error>
+    ) -> any AsyncSequence<Build, Swift.Error>
 
     /// See `CloudBuildClient.cancelBuild`.
     func cancelBuild(request: CancelBuildRequest) async throws -> GoogleCloudBuildV1.Build
@@ -694,12 +694,12 @@ extension Clients {
     /// See `CloudBuildClient.listBuildTriggers`.
     func listBuildTriggers(
       byItem: ListBuildTriggersRequest
-    ) throws -> any AsyncSequence<BuildTrigger, Swift.Error>
+    ) -> any AsyncSequence<BuildTrigger, Swift.Error>
 
     /// See `CloudBuildClient.listBuildTriggers`.
     func listBuildTriggers(
       projectId: Swift.String,
-    ) throws -> any AsyncSequence<BuildTrigger, Swift.Error>
+    ) -> any AsyncSequence<BuildTrigger, Swift.Error>
 
     /// See `CloudBuildClient.deleteBuildTrigger`.
     func deleteBuildTrigger(request: DeleteBuildTriggerRequest) async throws
@@ -802,12 +802,12 @@ extension Clients {
     /// See `CloudBuildClient.listWorkerPools`.
     func listWorkerPools(
       byItem: ListWorkerPoolsRequest
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `CloudBuildClient.listWorkerPools`.
     func listWorkerPools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `CloudBuildClient.getDefaultServiceAccount`.
     func getDefaultServiceAccount(request: GetDefaultServiceAccountRequest) async throws
@@ -849,7 +849,7 @@ extension Clients {
     /// See `CloudBuildClient.listBuilds`.
     func listBuilds(
       byItem: ListBuildsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Build, Swift.Error>
+    ) -> any AsyncSequence<Build, Swift.Error>
 
     /// See `CloudBuildClient.cancelBuild`.
     func cancelBuild(
@@ -894,7 +894,7 @@ extension Clients {
     /// See `CloudBuildClient.listBuildTriggers`.
     func listBuildTriggers(
       byItem: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BuildTrigger, Swift.Error>
+    ) -> any AsyncSequence<BuildTrigger, Swift.Error>
 
     /// See `CloudBuildClient.deleteBuildTrigger`.
     func deleteBuildTrigger(
@@ -964,7 +964,7 @@ extension Clients {
     /// See `CloudBuildClient.listWorkerPools`.
     func listWorkerPools(
       byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<WorkerPool, Swift.Error>
+    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `CloudBuildClient.getDefaultServiceAccount`.
     func getDefaultServiceAccount(
@@ -1070,13 +1070,13 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuilds(
     byItem: ListBuildsRequest
-  ) throws -> any AsyncSequence<Build, Swift.Error> {
-    try self.listBuilds(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Build, Swift.Error> {
+    self.listBuilds(byItem: byItem, options: .init())
   }
 
   public func listBuilds(
     byItem: ListBuildsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Build, Swift.Error> {
+  ) -> any AsyncSequence<Build, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1086,12 +1086,12 @@ extension Clients.CloudBuildProtocol {
   public func listBuilds(
     projectId: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Build, Swift.Error> {
+  ) -> any AsyncSequence<Build, Swift.Error> {
     let request = ListBuildsRequest().with {
       $0.projectId = projectId
       $0.filter = filter
     }
-    return try self.listBuilds(byItem: request)
+    return self.listBuilds(byItem: request)
   }
 
   public func cancelBuild(request: CancelBuildRequest) async throws -> GoogleCloudBuildV1.Build {
@@ -1286,13 +1286,13 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuildTriggers(
     byItem: ListBuildTriggersRequest
-  ) throws -> any AsyncSequence<BuildTrigger, Swift.Error> {
-    try self.listBuildTriggers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
+    self.listBuildTriggers(byItem: byItem, options: .init())
   }
 
   public func listBuildTriggers(
     byItem: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BuildTrigger, Swift.Error> {
+  ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1302,11 +1302,11 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuildTriggers(
     projectId: Swift.String,
-  ) throws -> any AsyncSequence<BuildTrigger, Swift.Error> {
+  ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
     let request = ListBuildTriggersRequest().with {
       $0.projectId = projectId
     }
-    return try self.listBuildTriggers(byItem: request)
+    return self.listBuildTriggers(byItem: request)
   }
 
   public func deleteBuildTrigger(request: DeleteBuildTriggerRequest) async throws {
@@ -1569,13 +1569,13 @@ extension Clients.CloudBuildProtocol {
 
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
-    try self.listWorkerPools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
+    self.listWorkerPools(byItem: byItem, options: .init())
   }
 
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1585,11 +1585,11 @@ extension Clients.CloudBuildProtocol {
 
   public func listWorkerPools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<WorkerPool, Swift.Error> {
+  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let request = ListWorkerPoolsRequest().with {
       $0.parent = parent
     }
-    return try self.listWorkerPools(byItem: request)
+    return self.listWorkerPools(byItem: request)
   }
 
   public func getDefaultServiceAccount(request: GetDefaultServiceAccountRequest) async throws

@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, parent: String) async throws {
-  let items = try client.listUrlLists(
+  let items = client.listUrlLists(
     byItem: ListUrlListsRequest()
       .with {
         $0.parent = "\(parent)"

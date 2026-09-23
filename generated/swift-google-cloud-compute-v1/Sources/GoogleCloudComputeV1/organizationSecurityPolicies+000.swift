@@ -405,7 +405,7 @@
     /// @Snippet(path: "organizationSecurityPolicies_list")
     public func list(
       byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         var request = byItem
@@ -801,7 +801,7 @@
       /// See `OrganizationSecurityPoliciesClient.list`.
       func list(
         byItem: OrganizationSecurityPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `OrganizationSecurityPoliciesClient.listAssociations`.
       func listAssociations(request: OrganizationSecurityPoliciesClient.ListAssociationsRequest)
@@ -885,7 +885,7 @@
       /// See `OrganizationSecurityPoliciesClient.list`.
       func list(
         byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `OrganizationSecurityPoliciesClient.listAssociations`.
       func listAssociations(
@@ -1201,13 +1201,13 @@
 
     public func list(
       byItem: OrganizationSecurityPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         throw GoogleGax.RequestError.unimplemented

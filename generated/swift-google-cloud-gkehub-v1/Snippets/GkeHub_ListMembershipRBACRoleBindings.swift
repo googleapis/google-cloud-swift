@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let items = try client.listMembershipRbacroleBindings(
+  let items = client.listMembershipRbacroleBindings(
     byItem: ListMembershipRBACRoleBindingsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"

@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: SiteSearchEngineServiceClient) async throws {
-    let items = try client.fetchDomainVerificationStatus(
+    let items = client.fetchDomainVerificationStatus(
       byItem: FetchDomainVerificationStatusRequest()
         /* set fields using .with { $0... } */
     )

@@ -510,7 +510,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_list")
     public func list(
       byItem: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagerList in
         var request = byItem
@@ -537,7 +537,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
     public func listErrors(
       byItem: RegionInstanceGroupManagersClient.ListErrorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
+    ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListErrorsResponse in
@@ -574,7 +574,7 @@
     public func listManagedInstances(
       byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ManagedInstance, Swift.Error> {
+    ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstancesResponse in
@@ -603,7 +603,7 @@
     public func listPerInstanceConfigs(
       byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
+    ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstanceConfigsResp in
@@ -1481,13 +1481,13 @@
       /// See `RegionInstanceGroupManagersClient.list`.
       func list(
         byItem: RegionInstanceGroupManagersClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManager, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManager, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listErrors`.
       func listErrors(request: RegionInstanceGroupManagersClient.ListErrorsRequest) async throws
@@ -1496,14 +1496,14 @@
       /// See `RegionInstanceGroupManagersClient.listErrors`.
       func listErrors(
         byItem: RegionInstanceGroupManagersClient.ListErrorsRequest
-      ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
+      ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listErrors`.
       func listErrors(
         project: Swift.String,
         region: Swift.String,
         instanceGroupManager: Swift.String,
-      ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
+      ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listManagedInstances`.
       func listManagedInstances(
@@ -1513,14 +1513,14 @@
       /// See `RegionInstanceGroupManagersClient.listManagedInstances`.
       func listManagedInstances(
         byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
-      ) throws -> any AsyncSequence<ManagedInstance, Swift.Error>
+      ) -> any AsyncSequence<ManagedInstance, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listManagedInstances`.
       func listManagedInstances(
         project: Swift.String,
         region: Swift.String,
         instanceGroupManager: Swift.String,
-      ) throws -> any AsyncSequence<ManagedInstance, Swift.Error>
+      ) -> any AsyncSequence<ManagedInstance, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listPerInstanceConfigs`.
       func listPerInstanceConfigs(
@@ -1530,14 +1530,14 @@
       /// See `RegionInstanceGroupManagersClient.listPerInstanceConfigs`.
       func listPerInstanceConfigs(
         byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
-      ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error>
+      ) -> any AsyncSequence<PerInstanceConfig, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listPerInstanceConfigs`.
       func listPerInstanceConfigs(
         project: Swift.String,
         region: Swift.String,
         instanceGroupManager: Swift.String,
-      ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error>
+      ) -> any AsyncSequence<PerInstanceConfig, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.patch`.
       func patch(request: RegionInstanceGroupManagersClient.PatchRequest) async throws
@@ -1639,7 +1639,7 @@
       /// See `RegionInstanceGroupManagersClient.list`.
       func list(
         byItem: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroupManager, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listErrors`.
       func listErrors(
@@ -1651,7 +1651,7 @@
       func listErrors(
         byItem: RegionInstanceGroupManagersClient.ListErrorsRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
+      ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listManagedInstances`.
       func listManagedInstances(
@@ -1663,7 +1663,7 @@
       func listManagedInstances(
         byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ManagedInstance, Swift.Error>
+      ) -> any AsyncSequence<ManagedInstance, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.listPerInstanceConfigs`.
       func listPerInstanceConfigs(
@@ -1675,7 +1675,7 @@
       func listPerInstanceConfigs(
         byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error>
+      ) -> any AsyncSequence<PerInstanceConfig, Swift.Error>
 
       /// See `RegionInstanceGroupManagersClient.patch`.
       func patch(
@@ -2100,13 +2100,13 @@
 
     public func list(
       byItem: RegionInstanceGroupManagersClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagerList in
         throw GoogleGax.RequestError.unimplemented
@@ -2117,12 +2117,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
       let request = RegionInstanceGroupManagersClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listErrors(request: RegionInstanceGroupManagersClient.ListErrorsRequest)
@@ -2140,13 +2140,13 @@
 
     public func listErrors(
       byItem: RegionInstanceGroupManagersClient.ListErrorsRequest
-    ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
-      try self.listErrors(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
+      self.listErrors(byItem: byItem, options: .init())
     }
 
     public func listErrors(
       byItem: RegionInstanceGroupManagersClient.ListErrorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
+    ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListErrorsResponse in
@@ -2159,13 +2159,13 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) throws -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
+    ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
       let request = RegionInstanceGroupManagersClient.ListErrorsRequest().with {
         $0.project = project
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return try self.listErrors(byItem: request)
+      return self.listErrors(byItem: request)
     }
 
     public func listManagedInstances(
@@ -2183,14 +2183,14 @@
 
     public func listManagedInstances(
       byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
-    ) throws -> any AsyncSequence<ManagedInstance, Swift.Error> {
-      try self.listManagedInstances(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
+      self.listManagedInstances(byItem: byItem, options: .init())
     }
 
     public func listManagedInstances(
       byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ManagedInstance, Swift.Error> {
+    ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstancesResponse in
@@ -2203,13 +2203,13 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) throws -> any AsyncSequence<ManagedInstance, Swift.Error> {
+    ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
       let request = RegionInstanceGroupManagersClient.ListManagedInstancesRequest().with {
         $0.project = project
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return try self.listManagedInstances(byItem: request)
+      return self.listManagedInstances(byItem: request)
     }
 
     public func listPerInstanceConfigs(
@@ -2227,14 +2227,14 @@
 
     public func listPerInstanceConfigs(
       byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
-    ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
-      try self.listPerInstanceConfigs(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
+      self.listPerInstanceConfigs(byItem: byItem, options: .init())
     }
 
     public func listPerInstanceConfigs(
       byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
+    ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstanceConfigsResp in
@@ -2247,13 +2247,13 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) throws -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
+    ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
       let request = RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest().with {
         $0.project = project
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return try self.listPerInstanceConfigs(byItem: request)
+      return self.listPerInstanceConfigs(byItem: request)
     }
 
     public func patch(request: RegionInstanceGroupManagersClient.PatchRequest) async throws

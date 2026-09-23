@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudRetailV2.CatalogServiceClient()
-  let items = try client.listCatalogs(
+  let items = client.listCatalogs(
     byItem: ListCatalogsRequest()
       .with {
         $0.parent = "\(parent)"

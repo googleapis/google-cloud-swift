@@ -58,7 +58,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListApps")
   public func listApps(
     byItem: ListAppsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<App, Swift.Error> {
+  ) -> any AsyncSequence<App, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListAppsResponse in
       var request = byItem
       request.pageToken = token
@@ -238,7 +238,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListAgents")
   public func listAgents(
     byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Agent, Swift.Error> {
+  ) -> any AsyncSequence<Agent, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListAgentsResponse in
       var request = byItem
       request.pageToken = token
@@ -297,7 +297,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListExamples")
   public func listExamples(
     byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Example, Swift.Error> {
+  ) -> any AsyncSequence<Example, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListExamplesResponse in
       var request = byItem
       request.pageToken = token
@@ -356,7 +356,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListTools")
   public func listTools(
     byItem: ListToolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Tool, Swift.Error> {
+  ) -> any AsyncSequence<Tool, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListToolsResponse in
       var request = byItem
       request.pageToken = token
@@ -388,7 +388,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListConversations")
   public func listConversations(
     byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListConversationsResponse in
       var request = byItem
@@ -493,7 +493,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListGuardrails")
   public func listGuardrails(
     byItem: ListGuardrailsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Guardrail, Swift.Error> {
+  ) -> any AsyncSequence<Guardrail, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListGuardrailsResponse in
       var request = byItem
       request.pageToken = token
@@ -552,7 +552,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListDeploymentsResponse in
       var request = byItem
@@ -612,7 +612,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListToolsets")
   public func listToolsets(
     byItem: ListToolsetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Toolset, Swift.Error> {
+  ) -> any AsyncSequence<Toolset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListToolsetsResponse in
       var request = byItem
       request.pageToken = token
@@ -671,7 +671,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListAppVersions")
   public func listAppVersions(
     byItem: ListAppVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AppVersion, Swift.Error> {
+  ) -> any AsyncSequence<AppVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListAppVersionsResponse in
       var request = byItem
@@ -762,7 +762,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListChangelogs")
   public func listChangelogs(
     byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Changelog, Swift.Error> {
+  ) -> any AsyncSequence<Changelog, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListChangelogsResponse in
       var request = byItem
       request.pageToken = token
@@ -828,7 +828,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -865,7 +865,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -922,12 +922,12 @@ extension Clients {
     /// See `AgentServiceClient.listApps`.
     func listApps(
       byItem: ListAppsRequest
-    ) throws -> any AsyncSequence<App, Swift.Error>
+    ) -> any AsyncSequence<App, Swift.Error>
 
     /// See `AgentServiceClient.listApps`.
     func listApps(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<App, Swift.Error>
+    ) -> any AsyncSequence<App, Swift.Error>
 
     /// See `AgentServiceClient.getApp`.
     func getApp(request: GetAppRequest) async throws -> GoogleCloudCESV1.App
@@ -1014,12 +1014,12 @@ extension Clients {
     /// See `AgentServiceClient.listAgents`.
     func listAgents(
       byItem: ListAgentsRequest
-    ) throws -> any AsyncSequence<Agent, Swift.Error>
+    ) -> any AsyncSequence<Agent, Swift.Error>
 
     /// See `AgentServiceClient.listAgents`.
     func listAgents(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Agent, Swift.Error>
+    ) -> any AsyncSequence<Agent, Swift.Error>
 
     /// See `AgentServiceClient.getAgent`.
     func getAgent(request: GetAgentRequest) async throws -> GoogleCloudCESV1.Agent
@@ -1069,12 +1069,12 @@ extension Clients {
     /// See `AgentServiceClient.listExamples`.
     func listExamples(
       byItem: ListExamplesRequest
-    ) throws -> any AsyncSequence<Example, Swift.Error>
+    ) -> any AsyncSequence<Example, Swift.Error>
 
     /// See `AgentServiceClient.listExamples`.
     func listExamples(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Example, Swift.Error>
+    ) -> any AsyncSequence<Example, Swift.Error>
 
     /// See `AgentServiceClient.getExample`.
     func getExample(request: GetExampleRequest) async throws -> GoogleCloudCESV1.Example
@@ -1123,12 +1123,12 @@ extension Clients {
     /// See `AgentServiceClient.listTools`.
     func listTools(
       byItem: ListToolsRequest
-    ) throws -> any AsyncSequence<Tool, Swift.Error>
+    ) -> any AsyncSequence<Tool, Swift.Error>
 
     /// See `AgentServiceClient.listTools`.
     func listTools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Tool, Swift.Error>
+    ) -> any AsyncSequence<Tool, Swift.Error>
 
     /// See `AgentServiceClient.getTool`.
     func getTool(request: GetToolRequest) async throws -> GoogleCloudCESV1.Tool
@@ -1145,12 +1145,12 @@ extension Clients {
     /// See `AgentServiceClient.listConversations`.
     func listConversations(
       byItem: ListConversationsRequest
-    ) throws -> any AsyncSequence<Conversation, Swift.Error>
+    ) -> any AsyncSequence<Conversation, Swift.Error>
 
     /// See `AgentServiceClient.listConversations`.
     func listConversations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Conversation, Swift.Error>
+    ) -> any AsyncSequence<Conversation, Swift.Error>
 
     /// See `AgentServiceClient.getConversation`.
     func getConversation(request: GetConversationRequest) async throws
@@ -1228,12 +1228,12 @@ extension Clients {
     /// See `AgentServiceClient.listGuardrails`.
     func listGuardrails(
       byItem: ListGuardrailsRequest
-    ) throws -> any AsyncSequence<Guardrail, Swift.Error>
+    ) -> any AsyncSequence<Guardrail, Swift.Error>
 
     /// See `AgentServiceClient.listGuardrails`.
     func listGuardrails(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Guardrail, Swift.Error>
+    ) -> any AsyncSequence<Guardrail, Swift.Error>
 
     /// See `AgentServiceClient.getGuardrail`.
     func getGuardrail(request: GetGuardrailRequest) async throws -> GoogleCloudCESV1.Guardrail
@@ -1283,12 +1283,12 @@ extension Clients {
     /// See `AgentServiceClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `AgentServiceClient.listDeployments`.
     func listDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `AgentServiceClient.getDeployment`.
     func getDeployment(request: GetDeploymentRequest) async throws -> GoogleCloudCESV1.Deployment
@@ -1340,12 +1340,12 @@ extension Clients {
     /// See `AgentServiceClient.listToolsets`.
     func listToolsets(
       byItem: ListToolsetsRequest
-    ) throws -> any AsyncSequence<Toolset, Swift.Error>
+    ) -> any AsyncSequence<Toolset, Swift.Error>
 
     /// See `AgentServiceClient.listToolsets`.
     func listToolsets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Toolset, Swift.Error>
+    ) -> any AsyncSequence<Toolset, Swift.Error>
 
     /// See `AgentServiceClient.getToolset`.
     func getToolset(request: GetToolsetRequest) async throws -> GoogleCloudCESV1.Toolset
@@ -1395,12 +1395,12 @@ extension Clients {
     /// See `AgentServiceClient.listAppVersions`.
     func listAppVersions(
       byItem: ListAppVersionsRequest
-    ) throws -> any AsyncSequence<AppVersion, Swift.Error>
+    ) -> any AsyncSequence<AppVersion, Swift.Error>
 
     /// See `AgentServiceClient.listAppVersions`.
     func listAppVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AppVersion, Swift.Error>
+    ) -> any AsyncSequence<AppVersion, Swift.Error>
 
     /// See `AgentServiceClient.getAppVersion`.
     func getAppVersion(request: GetAppVersionRequest) async throws -> GoogleCloudCESV1.AppVersion
@@ -1455,12 +1455,12 @@ extension Clients {
     /// See `AgentServiceClient.listChangelogs`.
     func listChangelogs(
       byItem: ListChangelogsRequest
-    ) throws -> any AsyncSequence<Changelog, Swift.Error>
+    ) -> any AsyncSequence<Changelog, Swift.Error>
 
     /// See `AgentServiceClient.listChangelogs`.
     func listChangelogs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Changelog, Swift.Error>
+    ) -> any AsyncSequence<Changelog, Swift.Error>
 
     /// See `AgentServiceClient.getChangelog`.
     func getChangelog(request: GetChangelogRequest) async throws -> GoogleCloudCESV1.Changelog
@@ -1477,7 +1477,7 @@ extension Clients {
     /// See `AgentServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AgentServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1490,13 +1490,13 @@ extension Clients {
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1522,7 +1522,7 @@ extension Clients {
     /// See `AgentServiceClient.listApps`.
     func listApps(
       byItem: ListAppsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<App, Swift.Error>
+    ) -> any AsyncSequence<App, Swift.Error>
 
     /// See `AgentServiceClient.getApp`.
     func getApp(
@@ -1582,7 +1582,7 @@ extension Clients {
     /// See `AgentServiceClient.listAgents`.
     func listAgents(
       byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Agent, Swift.Error>
+    ) -> any AsyncSequence<Agent, Swift.Error>
 
     /// See `AgentServiceClient.getAgent`.
     func getAgent(
@@ -1612,7 +1612,7 @@ extension Clients {
     /// See `AgentServiceClient.listExamples`.
     func listExamples(
       byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Example, Swift.Error>
+    ) -> any AsyncSequence<Example, Swift.Error>
 
     /// See `AgentServiceClient.getExample`.
     func getExample(
@@ -1642,7 +1642,7 @@ extension Clients {
     /// See `AgentServiceClient.listTools`.
     func listTools(
       byItem: ListToolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Tool, Swift.Error>
+    ) -> any AsyncSequence<Tool, Swift.Error>
 
     /// See `AgentServiceClient.getTool`.
     func getTool(
@@ -1657,7 +1657,7 @@ extension Clients {
     /// See `AgentServiceClient.listConversations`.
     func listConversations(
       byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Conversation, Swift.Error>
+    ) -> any AsyncSequence<Conversation, Swift.Error>
 
     /// See `AgentServiceClient.getConversation`.
     func getConversation(
@@ -1702,7 +1702,7 @@ extension Clients {
     /// See `AgentServiceClient.listGuardrails`.
     func listGuardrails(
       byItem: ListGuardrailsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Guardrail, Swift.Error>
+    ) -> any AsyncSequence<Guardrail, Swift.Error>
 
     /// See `AgentServiceClient.getGuardrail`.
     func getGuardrail(
@@ -1732,7 +1732,7 @@ extension Clients {
     /// See `AgentServiceClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `AgentServiceClient.getDeployment`.
     func getDeployment(
@@ -1762,7 +1762,7 @@ extension Clients {
     /// See `AgentServiceClient.listToolsets`.
     func listToolsets(
       byItem: ListToolsetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Toolset, Swift.Error>
+    ) -> any AsyncSequence<Toolset, Swift.Error>
 
     /// See `AgentServiceClient.getToolset`.
     func getToolset(
@@ -1792,7 +1792,7 @@ extension Clients {
     /// See `AgentServiceClient.listAppVersions`.
     func listAppVersions(
       byItem: ListAppVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AppVersion, Swift.Error>
+    ) -> any AsyncSequence<AppVersion, Swift.Error>
 
     /// See `AgentServiceClient.getAppVersion`.
     func getAppVersion(
@@ -1827,7 +1827,7 @@ extension Clients {
     /// See `AgentServiceClient.listChangelogs`.
     func listChangelogs(
       byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Changelog, Swift.Error>
+    ) -> any AsyncSequence<Changelog, Swift.Error>
 
     /// See `AgentServiceClient.getChangelog`.
     func getChangelog(
@@ -1842,7 +1842,7 @@ extension Clients {
     /// See `AgentServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AgentServiceClient.getLocation`.
     func getLocation(
@@ -1857,7 +1857,7 @@ extension Clients {
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1885,13 +1885,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listApps(
     byItem: ListAppsRequest
-  ) throws -> any AsyncSequence<App, Swift.Error> {
-    try self.listApps(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<App, Swift.Error> {
+    self.listApps(byItem: byItem, options: .init())
   }
 
   public func listApps(
     byItem: ListAppsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<App, Swift.Error> {
+  ) -> any AsyncSequence<App, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListAppsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1900,11 +1900,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listApps(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<App, Swift.Error> {
+  ) -> any AsyncSequence<App, Swift.Error> {
     let request = ListAppsRequest().with {
       $0.parent = parent
     }
-    return try self.listApps(byItem: request)
+    return self.listApps(byItem: request)
   }
 
   public func getApp(request: GetAppRequest) async throws -> GoogleCloudCESV1.App {
@@ -2120,13 +2120,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listAgents(
     byItem: ListAgentsRequest
-  ) throws -> any AsyncSequence<Agent, Swift.Error> {
-    try self.listAgents(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Agent, Swift.Error> {
+    self.listAgents(byItem: byItem, options: .init())
   }
 
   public func listAgents(
     byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Agent, Swift.Error> {
+  ) -> any AsyncSequence<Agent, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListAgentsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2135,11 +2135,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listAgents(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Agent, Swift.Error> {
+  ) -> any AsyncSequence<Agent, Swift.Error> {
     let request = ListAgentsRequest().with {
       $0.parent = parent
     }
-    return try self.listAgents(byItem: request)
+    return self.listAgents(byItem: request)
   }
 
   public func getAgent(request: GetAgentRequest) async throws -> GoogleCloudCESV1.Agent {
@@ -2249,13 +2249,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listExamples(
     byItem: ListExamplesRequest
-  ) throws -> any AsyncSequence<Example, Swift.Error> {
-    try self.listExamples(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Example, Swift.Error> {
+    self.listExamples(byItem: byItem, options: .init())
   }
 
   public func listExamples(
     byItem: ListExamplesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Example, Swift.Error> {
+  ) -> any AsyncSequence<Example, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListExamplesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2264,11 +2264,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listExamples(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Example, Swift.Error> {
+  ) -> any AsyncSequence<Example, Swift.Error> {
     let request = ListExamplesRequest().with {
       $0.parent = parent
     }
-    return try self.listExamples(byItem: request)
+    return self.listExamples(byItem: request)
   }
 
   public func getExample(request: GetExampleRequest) async throws -> GoogleCloudCESV1.Example {
@@ -2380,13 +2380,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listTools(
     byItem: ListToolsRequest
-  ) throws -> any AsyncSequence<Tool, Swift.Error> {
-    try self.listTools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Tool, Swift.Error> {
+    self.listTools(byItem: byItem, options: .init())
   }
 
   public func listTools(
     byItem: ListToolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Tool, Swift.Error> {
+  ) -> any AsyncSequence<Tool, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListToolsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2395,11 +2395,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listTools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Tool, Swift.Error> {
+  ) -> any AsyncSequence<Tool, Swift.Error> {
     let request = ListToolsRequest().with {
       $0.parent = parent
     }
-    return try self.listTools(byItem: request)
+    return self.listTools(byItem: request)
   }
 
   public func getTool(request: GetToolRequest) async throws -> GoogleCloudCESV1.Tool {
@@ -2435,13 +2435,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listConversations(
     byItem: ListConversationsRequest
-  ) throws -> any AsyncSequence<Conversation, Swift.Error> {
-    try self.listConversations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Conversation, Swift.Error> {
+    self.listConversations(byItem: byItem, options: .init())
   }
 
   public func listConversations(
     byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListConversationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2451,11 +2451,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listConversations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> {
     let request = ListConversationsRequest().with {
       $0.parent = parent
     }
-    return try self.listConversations(byItem: request)
+    return self.listConversations(byItem: request)
   }
 
   public func getConversation(request: GetConversationRequest) async throws
@@ -2630,13 +2630,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listGuardrails(
     byItem: ListGuardrailsRequest
-  ) throws -> any AsyncSequence<Guardrail, Swift.Error> {
-    try self.listGuardrails(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Guardrail, Swift.Error> {
+    self.listGuardrails(byItem: byItem, options: .init())
   }
 
   public func listGuardrails(
     byItem: ListGuardrailsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Guardrail, Swift.Error> {
+  ) -> any AsyncSequence<Guardrail, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListGuardrailsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2645,11 +2645,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listGuardrails(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Guardrail, Swift.Error> {
+  ) -> any AsyncSequence<Guardrail, Swift.Error> {
     let request = ListGuardrailsRequest().with {
       $0.parent = parent
     }
-    return try self.listGuardrails(byItem: request)
+    return self.listGuardrails(byItem: request)
   }
 
   public func getGuardrail(request: GetGuardrailRequest) async throws -> GoogleCloudCESV1.Guardrail
@@ -2764,13 +2764,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listDeployments(
     byItem: ListDeploymentsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.listDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.listDeployments(byItem: byItem, options: .init())
   }
 
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListDeploymentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2780,11 +2780,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeployments(byItem: request)
+    return self.listDeployments(byItem: request)
   }
 
   public func getDeployment(request: GetDeploymentRequest) async throws
@@ -2900,13 +2900,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listToolsets(
     byItem: ListToolsetsRequest
-  ) throws -> any AsyncSequence<Toolset, Swift.Error> {
-    try self.listToolsets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Toolset, Swift.Error> {
+    self.listToolsets(byItem: byItem, options: .init())
   }
 
   public func listToolsets(
     byItem: ListToolsetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Toolset, Swift.Error> {
+  ) -> any AsyncSequence<Toolset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListToolsetsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2915,11 +2915,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listToolsets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Toolset, Swift.Error> {
+  ) -> any AsyncSequence<Toolset, Swift.Error> {
     let request = ListToolsetsRequest().with {
       $0.parent = parent
     }
-    return try self.listToolsets(byItem: request)
+    return self.listToolsets(byItem: request)
   }
 
   public func getToolset(request: GetToolsetRequest) async throws -> GoogleCloudCESV1.Toolset {
@@ -3031,13 +3031,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listAppVersions(
     byItem: ListAppVersionsRequest
-  ) throws -> any AsyncSequence<AppVersion, Swift.Error> {
-    try self.listAppVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AppVersion, Swift.Error> {
+    self.listAppVersions(byItem: byItem, options: .init())
   }
 
   public func listAppVersions(
     byItem: ListAppVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AppVersion, Swift.Error> {
+  ) -> any AsyncSequence<AppVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudCESV1.ListAppVersionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3047,11 +3047,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listAppVersions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AppVersion, Swift.Error> {
+  ) -> any AsyncSequence<AppVersion, Swift.Error> {
     let request = ListAppVersionsRequest().with {
       $0.parent = parent
     }
-    return try self.listAppVersions(byItem: request)
+    return self.listAppVersions(byItem: request)
   }
 
   public func getAppVersion(request: GetAppVersionRequest) async throws
@@ -3182,13 +3182,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listChangelogs(
     byItem: ListChangelogsRequest
-  ) throws -> any AsyncSequence<Changelog, Swift.Error> {
-    try self.listChangelogs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Changelog, Swift.Error> {
+    self.listChangelogs(byItem: byItem, options: .init())
   }
 
   public func listChangelogs(
     byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Changelog, Swift.Error> {
+  ) -> any AsyncSequence<Changelog, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudCESV1.ListChangelogsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -3197,11 +3197,11 @@ extension Clients.AgentServiceProtocol {
 
   public func listChangelogs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Changelog, Swift.Error> {
+  ) -> any AsyncSequence<Changelog, Swift.Error> {
     let request = ListChangelogsRequest().with {
       $0.parent = parent
     }
-    return try self.listChangelogs(byItem: request)
+    return self.listChangelogs(byItem: request)
   }
 
   public func getChangelog(request: GetChangelogRequest) async throws -> GoogleCloudCESV1.Changelog
@@ -3238,13 +3238,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3278,13 +3278,13 @@ extension Clients.AgentServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3295,12 +3295,12 @@ extension Clients.AgentServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -124,7 +124,7 @@
     /// @Snippet(path: "ConversationalSearchService_ListConversations")
     public func listConversations(
       byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+    ) -> any AsyncSequence<Conversation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
         in
@@ -243,7 +243,7 @@
     /// @Snippet(path: "ConversationalSearchService_ListSessions")
     public func listSessions(
       byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Session, Swift.Error> {
+    ) -> any AsyncSequence<Session, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse in
         var request = byItem
@@ -271,7 +271,7 @@
     /// @Snippet(path: "ConversationalSearchService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -365,12 +365,12 @@
       /// See `ConversationalSearchServiceClient.listConversations`.
       func listConversations(
         byItem: ListConversationsRequest
-      ) throws -> any AsyncSequence<Conversation, Swift.Error>
+      ) -> any AsyncSequence<Conversation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.listConversations`.
       func listConversations(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Conversation, Swift.Error>
+      ) -> any AsyncSequence<Conversation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.answerQuery`.
       func answerQuery(request: AnswerQueryRequest) async throws
@@ -432,12 +432,12 @@
       /// See `ConversationalSearchServiceClient.listSessions`.
       func listSessions(
         byItem: ListSessionsRequest
-      ) throws -> any AsyncSequence<Session, Swift.Error>
+      ) -> any AsyncSequence<Session, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.listSessions`.
       func listSessions(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Session, Swift.Error>
+      ) -> any AsyncSequence<Session, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -446,13 +446,13 @@
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -495,7 +495,7 @@
       /// See `ConversationalSearchServiceClient.listConversations`.
       func listConversations(
         byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Conversation, Swift.Error>
+      ) -> any AsyncSequence<Conversation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.answerQuery`.
       func answerQuery(
@@ -540,7 +540,7 @@
       /// See `ConversationalSearchServiceClient.listSessions`.
       func listSessions(
         byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Session, Swift.Error>
+      ) -> any AsyncSequence<Session, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(
@@ -550,7 +550,7 @@
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.cancelOperation`.
       func cancelOperation(
@@ -684,13 +684,13 @@
 
     public func listConversations(
       byItem: ListConversationsRequest
-    ) throws -> any AsyncSequence<Conversation, Swift.Error> {
-      try self.listConversations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Conversation, Swift.Error> {
+      self.listConversations(byItem: byItem, options: .init())
     }
 
     public func listConversations(
       byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+    ) -> any AsyncSequence<Conversation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
         in
@@ -701,11 +701,11 @@
 
     public func listConversations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Conversation, Swift.Error> {
+    ) -> any AsyncSequence<Conversation, Swift.Error> {
       let request = ListConversationsRequest().with {
         $0.parent = parent
       }
-      return try self.listConversations(byItem: request)
+      return self.listConversations(byItem: request)
     }
 
     public func answerQuery(request: AnswerQueryRequest) async throws
@@ -853,13 +853,13 @@
 
     public func listSessions(
       byItem: ListSessionsRequest
-    ) throws -> any AsyncSequence<Session, Swift.Error> {
-      try self.listSessions(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Session, Swift.Error> {
+      self.listSessions(byItem: byItem, options: .init())
     }
 
     public func listSessions(
       byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Session, Swift.Error> {
+    ) -> any AsyncSequence<Session, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -869,11 +869,11 @@
 
     public func listSessions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Session, Swift.Error> {
+    ) -> any AsyncSequence<Session, Swift.Error> {
       let request = ListSessionsRequest().with {
         $0.parent = parent
       }
-      return try self.listSessions(byItem: request)
+      return self.listSessions(byItem: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -890,13 +890,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -907,12 +907,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

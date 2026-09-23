@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, datasetId: String
 ) async throws {
-  let items = try client.listExamples(
+  let items = client.listExamples(
     byItem: ListExamplesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)"

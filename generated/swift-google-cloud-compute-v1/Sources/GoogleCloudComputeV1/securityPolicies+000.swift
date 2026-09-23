@@ -111,7 +111,7 @@
     /// @Snippet(path: "securityPolicies_aggregatedList")
     public func aggregatedList(
       byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList in
         var request = byItem
@@ -251,7 +251,7 @@
     /// @Snippet(path: "securityPolicies_list")
     public func list(
       byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         var request = byItem
@@ -506,12 +506,12 @@
       /// See `SecurityPoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: SecurityPoliciesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
 
       /// See `SecurityPoliciesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
 
       /// See `SecurityPoliciesClient.delete`.
       func delete(request: SecurityPoliciesClient.DeleteRequest) async throws
@@ -548,12 +548,12 @@
       /// See `SecurityPoliciesClient.list`.
       func list(
         byItem: SecurityPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `SecurityPoliciesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `SecurityPoliciesClient.listPreconfiguredExpressionSets`.
       func listPreconfiguredExpressionSets(
@@ -594,7 +594,7 @@
       /// See `SecurityPoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
 
       /// See `SecurityPoliciesClient.delete`.
       func delete(
@@ -624,7 +624,7 @@
       /// See `SecurityPoliciesClient.list`.
       func list(
         byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error>
+      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `SecurityPoliciesClient.listPreconfiguredExpressionSets`.
       func listPreconfiguredExpressionSets(
@@ -712,13 +712,13 @@
 
     public func aggregatedList(
       byItem: SecurityPoliciesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -728,11 +728,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let request = SecurityPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: SecurityPoliciesClient.DeleteRequest) async throws
@@ -875,13 +875,13 @@
 
     public func list(
       byItem: SecurityPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -891,11 +891,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<SecurityPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let request = SecurityPoliciesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listPreconfiguredExpressionSets(

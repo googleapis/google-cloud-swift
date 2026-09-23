@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudIDSV1.IDSClient()
-  let items = try client.listEndpoints(
+  let items = client.listEndpoints(
     byItem: ListEndpointsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

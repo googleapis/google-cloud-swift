@@ -26,7 +26,7 @@
   func sample(client: WebhooksClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let items = try client.listWebhooks(
+    let items = client.listWebhooks(
       byItem: ListWebhooksRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"

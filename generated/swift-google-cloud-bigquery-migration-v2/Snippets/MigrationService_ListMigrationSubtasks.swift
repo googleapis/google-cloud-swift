@@ -22,7 +22,7 @@ import GoogleBigQueryMigrationV2
 func sample(
   client: MigrationServiceClient, projectId: String, locationId: String, workflowId: String
 ) async throws {
-  let items = try client.listMigrationSubtasks(
+  let items = client.listMigrationSubtasks(
     byItem: ListMigrationSubtasksRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/workflows/\(workflowId)"

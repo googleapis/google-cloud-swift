@@ -23,7 +23,7 @@ import GoogleLongRunning
 func sample(
   client: DocumentLinkServiceClient, projectId: String, locationId: String, documentId: String
 ) async throws {
-  let items = try client.listLinkedSources(
+  let items = client.listLinkedSources(
     byItem: ListLinkedSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/documents/\(documentId)"

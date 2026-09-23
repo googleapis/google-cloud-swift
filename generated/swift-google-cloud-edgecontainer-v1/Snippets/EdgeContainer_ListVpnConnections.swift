@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EdgeContainerClient, projectId: String, locationId: String) async throws {
-  let items = try client.listVpnConnections(
+  let items = client.listVpnConnections(
     byItem: ListVpnConnectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

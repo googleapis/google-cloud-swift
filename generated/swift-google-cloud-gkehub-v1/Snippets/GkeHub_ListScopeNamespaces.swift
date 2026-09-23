@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let items = try client.listScopeNamespaces(
+  let items = client.listScopeNamespaces(
     byItem: ListScopeNamespacesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"

@@ -57,7 +57,7 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// @Snippet(path: "TagKeys_ListTagKeys")
   public func listTagKeys(
     byItem: ListTagKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
       var request = byItem
@@ -264,12 +264,12 @@ extension Clients {
     /// See `TagKeysClient.listTagKeys`.
     func listTagKeys(
       byItem: ListTagKeysRequest
-    ) throws -> any AsyncSequence<TagKey, Swift.Error>
+    ) -> any AsyncSequence<TagKey, Swift.Error>
 
     /// See `TagKeysClient.listTagKeys`.
     func listTagKeys(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TagKey, Swift.Error>
+    ) -> any AsyncSequence<TagKey, Swift.Error>
 
     /// See `TagKeysClient.getTagKey`.
     func getTagKey(request: GetTagKeyRequest) async throws -> GoogleCloudResourceManagerV3.TagKey
@@ -360,7 +360,7 @@ extension Clients {
     /// See `TagKeysClient.listTagKeys`.
     func listTagKeys(
       byItem: ListTagKeysRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TagKey, Swift.Error>
+    ) -> any AsyncSequence<TagKey, Swift.Error>
 
     /// See `TagKeysClient.getTagKey`.
     func getTagKey(
@@ -435,13 +435,13 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeys(
     byItem: ListTagKeysRequest
-  ) throws -> any AsyncSequence<TagKey, Swift.Error> {
-    try self.listTagKeys(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TagKey, Swift.Error> {
+    self.listTagKeys(byItem: byItem, options: .init())
   }
 
   public func listTagKeys(
     byItem: ListTagKeysRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -451,11 +451,11 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeys(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> {
     let request = ListTagKeysRequest().with {
       $0.parent = parent
     }
-    return try self.listTagKeys(byItem: request)
+    return self.listTagKeys(byItem: request)
   }
 
   public func getTagKey(request: GetTagKeyRequest) async throws

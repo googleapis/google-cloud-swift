@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient) async throws {
-  let items = try client.listBlueprintRevisions(
+  let items = client.listBlueprintRevisions(
     byItem: ListBlueprintRevisionsRequest()
       /* set fields using .with { $0... } */
   )

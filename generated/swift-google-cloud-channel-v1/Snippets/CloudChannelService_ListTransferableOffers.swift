@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = try client.listTransferableOffers(
+  let items = client.listTransferableOffers(
     byItem: ListTransferableOffersRequest()
       /* set fields using .with { $0... } */
   )

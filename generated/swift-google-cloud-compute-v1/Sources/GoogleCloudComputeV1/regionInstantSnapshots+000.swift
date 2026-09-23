@@ -190,7 +190,7 @@
     /// @Snippet(path: "regionInstantSnapshots_list")
     public func list(
       byItem: RegionInstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         var request = byItem
@@ -327,13 +327,13 @@
       /// See `RegionInstantSnapshotsClient.list`.
       func list(
         byItem: RegionInstantSnapshotsClient.ListRequest
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `RegionInstantSnapshotsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `RegionInstantSnapshotsClient.setIamPolicy`.
       func setIamPolicy(request: RegionInstantSnapshotsClient.SetIamPolicyRequest) async throws
@@ -391,7 +391,7 @@
       /// See `RegionInstantSnapshotsClient.list`.
       func list(
         byItem: RegionInstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error>
+      ) -> any AsyncSequence<InstantSnapshot, Swift.Error>
 
       /// See `RegionInstantSnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -561,13 +561,13 @@
 
     public func list(
       byItem: RegionInstantSnapshotsClient.ListRequest
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionInstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         throw GoogleGax.RequestError.unimplemented
@@ -578,12 +578,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let request = RegionInstantSnapshotsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setIamPolicy(request: RegionInstantSnapshotsClient.SetIamPolicyRequest) async throws

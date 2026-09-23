@@ -61,7 +61,7 @@
     /// @Snippet(path: "resourcePolicies_aggregatedList")
     public func aggregatedList(
       byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList in
         var request = byItem
@@ -204,7 +204,7 @@
     /// @Snippet(path: "resourcePolicies_list")
     public func list(
       byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error> {
+    ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyList in
         var request = byItem
@@ -306,12 +306,12 @@
       /// See `ResourcePoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: ResourcePoliciesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
 
       /// See `ResourcePoliciesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
 
       /// See `ResourcePoliciesClient.delete`.
       func delete(request: ResourcePoliciesClient.DeleteRequest) async throws
@@ -350,13 +350,13 @@
       /// See `ResourcePoliciesClient.list`.
       func list(
         byItem: ResourcePoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error>
+      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
 
       /// See `ResourcePoliciesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error>
+      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
 
       /// See `ResourcePoliciesClient.patch`.
       func patch(request: ResourcePoliciesClient.PatchRequest) async throws
@@ -394,7 +394,7 @@
       /// See `ResourcePoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
 
       /// See `ResourcePoliciesClient.delete`.
       func delete(
@@ -424,7 +424,7 @@
       /// See `ResourcePoliciesClient.list`.
       func list(
         byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error>
+      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
 
       /// See `ResourcePoliciesClient.patch`.
       func patch(
@@ -459,13 +459,13 @@
 
     public func aggregatedList(
       byItem: ResourcePoliciesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -475,11 +475,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
       let request = ResourcePoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: ResourcePoliciesClient.DeleteRequest) async throws
@@ -630,13 +630,13 @@
 
     public func list(
       byItem: ResourcePoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error> {
+    ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -647,12 +647,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<ResourcePolicy, Swift.Error> {
+    ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
       let request = ResourcePoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: ResourcePoliciesClient.PatchRequest) async throws

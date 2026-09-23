@@ -26,7 +26,7 @@
   func sample(
     client: VertexRagDataServiceClient, projectId: String, locationId: String, ragCorpusId: String
   ) async throws {
-    let items = try client.listRagFiles(
+    let items = client.listRagFiles(
       byItem: ListRagFilesRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/ragCorpora/\(ragCorpusId)"

@@ -82,7 +82,7 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolationsPreviews")
   public func listOrgPolicyViolationsPreviews(
     byItem: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse in
@@ -177,7 +177,7 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolations")
   public func listOrgPolicyViolations(
     byItem: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse in
@@ -206,7 +206,7 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -242,12 +242,12 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolationsPreviews`.
     func listOrgPolicyViolationsPreviews(
       byItem: ListOrgPolicyViolationsPreviewsRequest
-    ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolationsPreviews`.
     func listOrgPolicyViolationsPreviews(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.getOrgPolicyViolationsPreview`.
     func getOrgPolicyViolationsPreview(request: GetOrgPolicyViolationsPreviewRequest) async throws
@@ -280,12 +280,12 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolations`.
     func listOrgPolicyViolations(
       byItem: ListOrgPolicyViolationsRequest
-    ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolations`.
     func listOrgPolicyViolations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -294,13 +294,13 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolationsPreviews`.
     func listOrgPolicyViolationsPreviews(
@@ -310,7 +310,7 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolationsPreviews`.
     func listOrgPolicyViolationsPreviews(
       byItem: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.getOrgPolicyViolationsPreview`.
     func getOrgPolicyViolationsPreview(
@@ -335,7 +335,7 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolations`.
     func listOrgPolicyViolations(
       byItem: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
+    ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error>
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOperations`.
     func listOperations(
@@ -345,7 +345,7 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -365,13 +365,13 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsPreviews(
     byItem: ListOrgPolicyViolationsPreviewsRequest
-  ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
-    try self.listOrgPolicyViolationsPreviews(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
+    self.listOrgPolicyViolationsPreviews(byItem: byItem, options: .init())
   }
 
   public func listOrgPolicyViolationsPreviews(
     byItem: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse in
@@ -382,11 +382,11 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsPreviews(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
     let request = ListOrgPolicyViolationsPreviewsRequest().with {
       $0.parent = parent
     }
-    return try self.listOrgPolicyViolationsPreviews(byItem: request)
+    return self.listOrgPolicyViolationsPreviews(byItem: request)
   }
 
   public func getOrgPolicyViolationsPreview(request: GetOrgPolicyViolationsPreviewRequest)
@@ -466,13 +466,13 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolations(
     byItem: ListOrgPolicyViolationsRequest
-  ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
-    try self.listOrgPolicyViolations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
+    self.listOrgPolicyViolations(byItem: byItem, options: .init())
   }
 
   public func listOrgPolicyViolations(
     byItem: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse in
@@ -483,11 +483,11 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
+  ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
     let request = ListOrgPolicyViolationsRequest().with {
       $0.parent = parent
     }
-    return try self.listOrgPolicyViolations(byItem: request)
+    return self.listOrgPolicyViolations(byItem: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -504,13 +504,13 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -521,12 +521,12 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

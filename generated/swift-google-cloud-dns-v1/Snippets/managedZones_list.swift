@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ManagedZonesClient) async throws {
-  let items = try client.list(
+  let items = client.list(
     byItem: ManagedZonesClient.ListRequest()
       /* set fields using .with { $0... } */
   )

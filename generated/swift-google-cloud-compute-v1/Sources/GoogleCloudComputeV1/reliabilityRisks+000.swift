@@ -60,7 +60,7 @@
     /// @Snippet(path: "reliabilityRisks_list")
     public func list(
       byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
+    ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
         var request = byItem
@@ -95,12 +95,12 @@
       /// See `ReliabilityRisksClient.list`.
       func list(
         byItem: ReliabilityRisksClient.ListRequest
-      ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error>
+      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
 
       /// See `ReliabilityRisksClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error>
+      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
 
       /// See `ReliabilityRisksClient.`get``.
       func `get`(
@@ -115,7 +115,7 @@
       /// See `ReliabilityRisksClient.list`.
       func list(
         byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error>
+      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
     }
   }
 
@@ -158,13 +158,13 @@
 
     public func list(
       byItem: ReliabilityRisksClient.ListRequest
-    ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
+    ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -174,11 +174,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
+    ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let request = ReliabilityRisksClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

@@ -24,7 +24,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.SSERealmServiceClient()
-  let items = try client.listSacrealms(
+  let items = client.listSacrealms(
     byItem: ListSACRealmsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

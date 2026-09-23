@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: String) async throws
 {
-  let items = try client.listAppProfiles(
+  let items = client.listAppProfiles(
     byItem: ListAppProfilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"

@@ -59,7 +59,7 @@ public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   /// @Snippet(path: "dnsKeys_list")
   public func list(
     byItem: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DnsKey, Swift.Error> {
+  ) -> any AsyncSequence<DnsKey, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> DnsKeysListResponse in
       var request = byItem
       request.pageToken = token
@@ -92,13 +92,13 @@ extension Clients {
     /// See `DnsKeysClient.list`.
     func list(
       byItem: DnsKeysClient.ListRequest
-    ) throws -> any AsyncSequence<DnsKey, Swift.Error>
+    ) -> any AsyncSequence<DnsKey, Swift.Error>
 
     /// See `DnsKeysClient.list`.
     func list(
       project: Swift.String,
       managedZone: Swift.String,
-    ) throws -> any AsyncSequence<DnsKey, Swift.Error>
+    ) -> any AsyncSequence<DnsKey, Swift.Error>
 
     /// See `DnsKeysClient.`get``.
     func `get`(
@@ -113,7 +113,7 @@ extension Clients {
     /// See `DnsKeysClient.list`.
     func list(
       byItem: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<DnsKey, Swift.Error>
+    ) -> any AsyncSequence<DnsKey, Swift.Error>
   }
 }
 
@@ -154,13 +154,13 @@ extension Clients.DnsKeysProtocol {
 
   public func list(
     byItem: DnsKeysClient.ListRequest
-  ) throws -> any AsyncSequence<DnsKey, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<DnsKey, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<DnsKey, Swift.Error> {
+  ) -> any AsyncSequence<DnsKey, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> DnsKeysListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -170,11 +170,11 @@ extension Clients.DnsKeysProtocol {
   public func list(
     project: Swift.String,
     managedZone: Swift.String,
-  ) throws -> any AsyncSequence<DnsKey, Swift.Error> {
+  ) -> any AsyncSequence<DnsKey, Swift.Error> {
     let request = DnsKeysClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 }

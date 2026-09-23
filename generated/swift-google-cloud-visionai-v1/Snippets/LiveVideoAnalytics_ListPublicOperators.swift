@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LiveVideoAnalyticsClient, parent: String) async throws {
-  let items = try client.listPublicOperators(
+  let items = client.listPublicOperators(
     byItem: ListPublicOperatorsRequest()
       .with {
         $0.parent = "\(parent)"

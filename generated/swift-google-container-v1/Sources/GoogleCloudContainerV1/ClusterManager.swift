@@ -373,7 +373,7 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
   public func listUsableSubnetworks(
     byItem: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse in
       var request = byItem
@@ -1000,7 +1000,7 @@ extension Clients {
     /// See `ClusterManagerClient.listUsableSubnetworks`.
     func listUsableSubnetworks(
       byItem: ListUsableSubnetworksRequest
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error>
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
     /// See `ClusterManagerClient.checkAutopilotCompatibility`.
     func checkAutopilotCompatibility(request: CheckAutopilotCompatibilityRequest) async throws
@@ -1197,7 +1197,7 @@ extension Clients {
     /// See `ClusterManagerClient.listUsableSubnetworks`.
     func listUsableSubnetworks(
       byItem: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error>
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
     /// See `ClusterManagerClient.checkAutopilotCompatibility`.
     func checkAutopilotCompatibility(
@@ -2321,13 +2321,13 @@ extension Clients.ClusterManagerProtocol {
 
   public func listUsableSubnetworks(
     byItem: ListUsableSubnetworksRequest
-  ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
-    try self.listUsableSubnetworks(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    self.listUsableSubnetworks(byItem: byItem, options: .init())
   }
 
   public func listUsableSubnetworks(
     byItem: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse in
       throw GoogleGax.RequestError.unimplemented

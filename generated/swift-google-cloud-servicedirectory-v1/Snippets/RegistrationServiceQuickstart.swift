@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudServiceDirectoryV1.RegistrationServiceClient()
-  let items = try client.listNamespaces(
+  let items = client.listNamespaces(
     byItem: ListNamespacesRequest()
       .with {
         $0.parent = "\(parent)"

@@ -21,7 +21,7 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagHoldsClient, tagValueId: String) async throws {
-  let items = try client.listTagHolds(
+  let items = client.listTagHolds(
     byItem: ListTagHoldsRequest()
       .with {
         $0.parent = "tagValues/\(tagValueId)"

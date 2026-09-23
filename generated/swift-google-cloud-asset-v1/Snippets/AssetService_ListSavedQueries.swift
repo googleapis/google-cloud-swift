@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient, projectId: String) async throws {
-  let items = try client.listSavedQueries(
+  let items = client.listSavedQueries(
     byItem: ListSavedQueriesRequest()
       .with {
         $0.parent = "projects/\(projectId)"

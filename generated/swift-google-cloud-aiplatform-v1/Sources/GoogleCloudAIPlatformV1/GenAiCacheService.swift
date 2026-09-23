@@ -92,7 +92,7 @@
     /// @Snippet(path: "GenAiCacheService_ListCachedContents")
     public func listCachedContents(
       byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CachedContent, Swift.Error> {
+    ) -> any AsyncSequence<CachedContent, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse in
         var request = byItem
@@ -116,7 +116,7 @@
     /// @Snippet(path: "GenAiCacheService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -191,7 +191,7 @@
     /// @Snippet(path: "GenAiCacheService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -297,12 +297,12 @@
       /// See `GenAiCacheServiceClient.listCachedContents`.
       func listCachedContents(
         byItem: ListCachedContentsRequest
-      ) throws -> any AsyncSequence<CachedContent, Swift.Error>
+      ) -> any AsyncSequence<CachedContent, Swift.Error>
 
       /// See `GenAiCacheServiceClient.listCachedContents`.
       func listCachedContents(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<CachedContent, Swift.Error>
+      ) -> any AsyncSequence<CachedContent, Swift.Error>
 
       /// See `GenAiCacheServiceClient.listLocations`.
       func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -311,7 +311,7 @@
       /// See `GenAiCacheServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiCacheServiceClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -334,13 +334,13 @@
       /// See `GenAiCacheServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiCacheServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiCacheServiceClient.deleteOperation`.
       func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -390,7 +390,7 @@
       /// See `GenAiCacheServiceClient.listCachedContents`.
       func listCachedContents(
         byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<CachedContent, Swift.Error>
+      ) -> any AsyncSequence<CachedContent, Swift.Error>
 
       /// See `GenAiCacheServiceClient.listLocations`.
       func listLocations(
@@ -400,7 +400,7 @@
       /// See `GenAiCacheServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiCacheServiceClient.getLocation`.
       func getLocation(
@@ -430,7 +430,7 @@
       /// See `GenAiCacheServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiCacheServiceClient.deleteOperation`.
       func deleteOperation(
@@ -551,13 +551,13 @@
 
     public func listCachedContents(
       byItem: ListCachedContentsRequest
-    ) throws -> any AsyncSequence<CachedContent, Swift.Error> {
-      try self.listCachedContents(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<CachedContent, Swift.Error> {
+      self.listCachedContents(byItem: byItem, options: .init())
     }
 
     public func listCachedContents(
       byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CachedContent, Swift.Error> {
+    ) -> any AsyncSequence<CachedContent, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -567,11 +567,11 @@
 
     public func listCachedContents(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CachedContent, Swift.Error> {
+    ) -> any AsyncSequence<CachedContent, Swift.Error> {
       let request = ListCachedContentsRequest().with {
         $0.parent = parent
       }
-      return try self.listCachedContents(byItem: request)
+      return self.listCachedContents(byItem: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -588,13 +588,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -664,13 +664,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -681,12 +681,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

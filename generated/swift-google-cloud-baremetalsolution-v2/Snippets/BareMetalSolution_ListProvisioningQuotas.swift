@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let items = try client.listProvisioningQuotas(
+  let items = client.listProvisioningQuotas(
     byItem: ListProvisioningQuotasRequest()
       .with {
         $0.parent = "\(parent)"

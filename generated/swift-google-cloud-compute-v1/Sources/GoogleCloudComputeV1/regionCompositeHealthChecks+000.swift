@@ -68,7 +68,7 @@
     public func aggregatedList(
       byItem: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.CompositeHealthCheckAggregatedList in
@@ -214,7 +214,7 @@
     /// @Snippet(path: "regionCompositeHealthChecks_list")
     public func list(
       byItem: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList in
         var request = byItem
@@ -313,12 +313,12 @@
       /// See `RegionCompositeHealthChecksClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionCompositeHealthChecksClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.delete`.
       func delete(request: RegionCompositeHealthChecksClient.DeleteRequest) async throws
@@ -357,13 +357,13 @@
       /// See `RegionCompositeHealthChecksClient.list`.
       func list(
         byItem: RegionCompositeHealthChecksClient.ListRequest
-      ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.patch`.
       func patch(request: RegionCompositeHealthChecksClient.PatchRequest) async throws
@@ -391,7 +391,7 @@
       func aggregatedList(
         byItem: RegionCompositeHealthChecksClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.delete`.
       func delete(
@@ -422,7 +422,7 @@
       /// See `RegionCompositeHealthChecksClient.list`.
       func list(
         byItem: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error>
 
       /// See `RegionCompositeHealthChecksClient.patch`.
       func patch(
@@ -454,14 +454,14 @@
 
     public func aggregatedList(
       byItem: RegionCompositeHealthChecksClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.CompositeHealthCheckAggregatedList in
@@ -472,11 +472,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
       let request = RegionCompositeHealthChecksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: RegionCompositeHealthChecksClient.DeleteRequest) async throws
@@ -629,13 +629,13 @@
 
     public func list(
       byItem: RegionCompositeHealthChecksClient.ListRequest
-    ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList in
         throw GoogleGax.RequestError.unimplemented
@@ -646,12 +646,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
       let request = RegionCompositeHealthChecksClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionCompositeHealthChecksClient.PatchRequest) async throws

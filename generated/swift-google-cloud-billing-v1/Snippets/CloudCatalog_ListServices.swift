@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudBillingV1
 
 func sample(client: CloudCatalogClient) async throws {
-  let items = try client.listServices(
+  let items = client.listServices(
     byItem: ListServicesRequest()
       /* set fields using .with { $0... } */
   )

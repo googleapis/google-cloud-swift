@@ -164,7 +164,7 @@
     /// @Snippet(path: "httpHealthChecks_list")
     public func list(
       byItem: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HttpHealthCheckList in
         var request = byItem
@@ -329,12 +329,12 @@
       /// See `HttpHealthChecksClient.list`.
       func list(
         byItem: HttpHealthChecksClient.ListRequest
-      ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HttpHealthCheck, Swift.Error>
 
       /// See `HttpHealthChecksClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HttpHealthCheck, Swift.Error>
 
       /// See `HttpHealthChecksClient.patch`.
       func patch(request: HttpHealthChecksClient.PatchRequest) async throws
@@ -378,7 +378,7 @@
       /// See `HttpHealthChecksClient.list`.
       func list(
         byItem: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error>
+      ) -> any AsyncSequence<HttpHealthCheck, Swift.Error>
 
       /// See `HttpHealthChecksClient.patch`.
       func patch(
@@ -516,13 +516,13 @@
 
     public func list(
       byItem: HttpHealthChecksClient.ListRequest
-    ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HttpHealthCheckList in
         throw GoogleGax.RequestError.unimplemented
@@ -532,11 +532,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HttpHealthCheck, Swift.Error> {
       let request = HttpHealthChecksClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: HttpHealthChecksClient.PatchRequest) async throws

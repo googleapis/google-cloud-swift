@@ -22,7 +22,7 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.TargetInstancesClient()
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: TargetInstancesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

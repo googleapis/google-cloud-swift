@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataplexV1.CmekServiceClient()
-  let items = try client.listEncryptionConfigs(
+  let items = client.listEncryptionConfigs(
     byItem: ListEncryptionConfigsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

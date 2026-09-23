@@ -25,7 +25,7 @@ func sample(
   client: DocumentProcessorServiceClient, projectId: String, locationId: String,
   processorId: String, processorVersionId: String
 ) async throws {
-  let items = try client.listEvaluations(
+  let items = client.listEvaluations(
     byItem: ListEvaluationsRequest()
       .with {
         $0.parent =

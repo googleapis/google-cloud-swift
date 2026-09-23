@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkEdgeSecurityServicesClient) async throws {
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

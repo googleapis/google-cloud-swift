@@ -25,7 +25,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.VizierServiceClient()
-    let items = try client.listStudies(
+    let items = client.listStudies(
       byItem: ListStudiesRequest()
         .with {
           $0.parent = "\(parent)"

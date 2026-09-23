@@ -67,7 +67,7 @@
     /// @Snippet(path: "regionInstanceGroups_list")
     public func list(
       byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
         var request = byItem
@@ -97,7 +97,7 @@
     /// @Snippet(path: "regionInstanceGroups_listInstances")
     public func listInstances(
       byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
         in
@@ -203,13 +203,13 @@
       /// See `RegionInstanceGroupsClient.list`.
       func list(
         byItem: RegionInstanceGroupsClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(request: RegionInstanceGroupsClient.ListInstancesRequest) async throws
@@ -218,7 +218,7 @@
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(
         byItem: RegionInstanceGroupsClient.ListInstancesRequest
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(
@@ -226,7 +226,7 @@
         region: Swift.String,
         instanceGroup: Swift.String,
         body: RegionInstanceGroupsListInstancesRequest?,
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.setNamedPorts`.
       func setNamedPorts(request: RegionInstanceGroupsClient.SetNamedPortsRequest) async throws
@@ -257,7 +257,7 @@
       /// See `RegionInstanceGroupsClient.list`.
       func list(
         byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceGroup, Swift.Error>
+      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(
@@ -267,7 +267,7 @@
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(
         byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
+      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.setNamedPorts`.
       func setNamedPorts(
@@ -323,13 +323,13 @@
 
     public func list(
       byItem: RegionInstanceGroupsClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
         throw GoogleGax.RequestError.unimplemented
@@ -340,12 +340,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let request = RegionInstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func listInstances(request: RegionInstanceGroupsClient.ListInstancesRequest) async throws
@@ -362,13 +362,13 @@
 
     public func listInstances(
       byItem: RegionInstanceGroupsClient.ListInstancesRequest
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
-      try self.listInstances(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+      self.listInstances(byItem: byItem, options: .init())
     }
 
     public func listInstances(
       byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
         in
@@ -382,14 +382,14 @@
       region: Swift.String,
       instanceGroup: Swift.String,
       body: RegionInstanceGroupsListInstancesRequest?,
-    ) throws -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let request = RegionInstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.region = region
         $0.instanceGroup = instanceGroup
         $0.body = body
       }
-      return try self.listInstances(byItem: request)
+      return self.listInstances(byItem: request)
     }
 
     public func setNamedPorts(request: RegionInstanceGroupsClient.SetNamedPortsRequest) async throws

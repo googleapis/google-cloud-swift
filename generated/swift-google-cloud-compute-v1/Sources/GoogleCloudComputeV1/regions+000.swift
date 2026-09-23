@@ -113,7 +113,7 @@
     /// @Snippet(path: "regions_list")
     public func list(
       byItem: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Region, Swift.Error> {
+    ) -> any AsyncSequence<Region, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionList in
         var request = byItem
         request.pageToken = token
@@ -145,12 +145,12 @@
       /// See `RegionsClient.list`.
       func list(
         byItem: RegionsClient.ListRequest
-      ) throws -> any AsyncSequence<Region, Swift.Error>
+      ) -> any AsyncSequence<Region, Swift.Error>
 
       /// See `RegionsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Region, Swift.Error>
+      ) -> any AsyncSequence<Region, Swift.Error>
 
       /// See `RegionsClient.`get``.
       func `get`(
@@ -165,7 +165,7 @@
       /// See `RegionsClient.list`.
       func list(
         byItem: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Region, Swift.Error>
+      ) -> any AsyncSequence<Region, Swift.Error>
     }
   }
 
@@ -207,13 +207,13 @@
 
     public func list(
       byItem: RegionsClient.ListRequest
-    ) throws -> any AsyncSequence<Region, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Region, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Region, Swift.Error> {
+    ) -> any AsyncSequence<Region, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -222,11 +222,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Region, Swift.Error> {
+    ) -> any AsyncSequence<Region, Swift.Error> {
       let request = RegionsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

@@ -133,7 +133,7 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
   public func listDomains(
     byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Domain, Swift.Error> {
+  ) -> any AsyncSequence<Domain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
       var request = byItem
@@ -377,7 +377,7 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -459,12 +459,12 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.listDomains`.
     func listDomains(
       byItem: ListDomainsRequest
-    ) throws -> any AsyncSequence<Domain, Swift.Error>
+    ) -> any AsyncSequence<Domain, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.listDomains`.
     func listDomains(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Domain, Swift.Error>
+    ) -> any AsyncSequence<Domain, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.getDomain`.
     func getDomain(request: GetDomainRequest) async throws -> GoogleCloudManagedIdentitiesV1.Domain
@@ -560,13 +560,13 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -607,7 +607,7 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.listDomains`.
     func listDomains(
       byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Domain, Swift.Error>
+    ) -> any AsyncSequence<Domain, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.getDomain`.
     func getDomain(
@@ -682,7 +682,7 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.deleteOperation`.
     func deleteOperation(
@@ -774,13 +774,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listDomains(
     byItem: ListDomainsRequest
-  ) throws -> any AsyncSequence<Domain, Swift.Error> {
-    try self.listDomains(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Domain, Swift.Error> {
+    self.listDomains(byItem: byItem, options: .init())
   }
 
   public func listDomains(
     byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Domain, Swift.Error> {
+  ) -> any AsyncSequence<Domain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -790,11 +790,11 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listDomains(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Domain, Swift.Error> {
+  ) -> any AsyncSequence<Domain, Swift.Error> {
     let request = ListDomainsRequest().with {
       $0.parent = parent
     }
-    return try self.listDomains(byItem: request)
+    return self.listDomains(byItem: request)
   }
 
   public func getDomain(request: GetDomainRequest) async throws
@@ -1060,13 +1060,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1077,12 +1077,12 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -28,7 +28,7 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String, featureViewId: String
   ) async throws {
-    let items = try client.listFeatureViewSyncs(
+    let items = client.listFeatureViewSyncs(
       byItem: ListFeatureViewSyncsRequest()
         .with {
           $0.parent =

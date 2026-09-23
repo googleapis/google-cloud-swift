@@ -141,7 +141,7 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// @Snippet(path: "RapidMigrationAssessment_ListCollectors")
   public func listCollectors(
     byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collector, Swift.Error> {
+  ) -> any AsyncSequence<Collector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse in
@@ -352,7 +352,7 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// @Snippet(path: "RapidMigrationAssessment_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -389,7 +389,7 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// @Snippet(path: "RapidMigrationAssessment_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -485,12 +485,12 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listCollectors`.
     func listCollectors(
       byItem: ListCollectorsRequest
-    ) throws -> any AsyncSequence<Collector, Swift.Error>
+    ) -> any AsyncSequence<Collector, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.listCollectors`.
     func listCollectors(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Collector, Swift.Error>
+    ) -> any AsyncSequence<Collector, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.getCollector`.
     func getCollector(request: GetCollectorRequest) async throws
@@ -573,7 +573,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -586,13 +586,13 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -643,7 +643,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listCollectors`.
     func listCollectors(
       byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Collector, Swift.Error>
+    ) -> any AsyncSequence<Collector, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.getCollector`.
     func getCollector(
@@ -708,7 +708,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.getLocation`.
     func getLocation(
@@ -723,7 +723,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.deleteOperation`.
     func deleteOperation(
@@ -854,13 +854,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func listCollectors(
     byItem: ListCollectorsRequest
-  ) throws -> any AsyncSequence<Collector, Swift.Error> {
-    try self.listCollectors(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Collector, Swift.Error> {
+    self.listCollectors(byItem: byItem, options: .init())
   }
 
   public func listCollectors(
     byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Collector, Swift.Error> {
+  ) -> any AsyncSequence<Collector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse in
@@ -871,11 +871,11 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func listCollectors(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Collector, Swift.Error> {
+  ) -> any AsyncSequence<Collector, Swift.Error> {
     let request = ListCollectorsRequest().with {
       $0.parent = parent
     }
-    return try self.listCollectors(byItem: request)
+    return self.listCollectors(byItem: request)
   }
 
   public func getCollector(request: GetCollectorRequest) async throws
@@ -1100,13 +1100,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1140,13 +1140,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1157,12 +1157,12 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

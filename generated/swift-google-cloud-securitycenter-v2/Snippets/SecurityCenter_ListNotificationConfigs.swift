@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityCenterClient, organizationId: String, locationId: String) async throws {
-  let items = try client.listNotificationConfigs(
+  let items = client.listNotificationConfigs(
     byItem: ListNotificationConfigsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

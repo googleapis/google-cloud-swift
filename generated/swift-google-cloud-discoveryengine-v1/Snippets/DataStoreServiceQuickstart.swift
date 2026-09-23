@@ -24,7 +24,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.DataStoreServiceClient()
-    let items = try client.listDataStores(
+    let items = client.listDataStores(
       byItem: ListDataStoresRequest()
         .with {
           $0.parent = "\(parent)"

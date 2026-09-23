@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworksClient) async throws {
-    let items = try client.listPeeringRoutes(
+    let items = client.listPeeringRoutes(
       byItem: NetworksClient.ListPeeringRoutesRequest()
         /* set fields using .with { $0... } */
     )

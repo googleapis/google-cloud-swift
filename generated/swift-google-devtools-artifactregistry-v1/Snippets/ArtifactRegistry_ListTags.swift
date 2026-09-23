@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient, parent: String) async throws {
-  let items = try client.listTags(
+  let items = client.listTags(
     byItem: ListTagsRequest()
       .with {
         $0.parent = "\(parent)"

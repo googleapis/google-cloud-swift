@@ -147,7 +147,7 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// @Snippet(path: "Autokey_ListKeyHandles")
   public func listKeyHandles(
     byItem: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KeyHandle, Swift.Error> {
+  ) -> any AsyncSequence<KeyHandle, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse in
       var request = byItem
       request.pageToken = token
@@ -204,7 +204,7 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// @Snippet(path: "Autokey_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -310,12 +310,12 @@ extension Clients {
     /// See `AutokeyClient.listKeyHandles`.
     func listKeyHandles(
       byItem: ListKeyHandlesRequest
-    ) throws -> any AsyncSequence<KeyHandle, Swift.Error>
+    ) -> any AsyncSequence<KeyHandle, Swift.Error>
 
     /// See `AutokeyClient.listKeyHandles`.
     func listKeyHandles(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<KeyHandle, Swift.Error>
+    ) -> any AsyncSequence<KeyHandle, Swift.Error>
 
     /// See `AutokeyClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -324,7 +324,7 @@ extension Clients {
     /// See `AutokeyClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AutokeyClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -363,7 +363,7 @@ extension Clients {
     /// See `AutokeyClient.listKeyHandles`.
     func listKeyHandles(
       byItem: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<KeyHandle, Swift.Error>
+    ) -> any AsyncSequence<KeyHandle, Swift.Error>
 
     /// See `AutokeyClient.listLocations`.
     func listLocations(
@@ -373,7 +373,7 @@ extension Clients {
     /// See `AutokeyClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AutokeyClient.getLocation`.
     func getLocation(
@@ -474,13 +474,13 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandles(
     byItem: ListKeyHandlesRequest
-  ) throws -> any AsyncSequence<KeyHandle, Swift.Error> {
-    try self.listKeyHandles(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<KeyHandle, Swift.Error> {
+    self.listKeyHandles(byItem: byItem, options: .init())
   }
 
   public func listKeyHandles(
     byItem: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<KeyHandle, Swift.Error> {
+  ) -> any AsyncSequence<KeyHandle, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -489,11 +489,11 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandles(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<KeyHandle, Swift.Error> {
+  ) -> any AsyncSequence<KeyHandle, Swift.Error> {
     let request = ListKeyHandlesRequest().with {
       $0.parent = parent
     }
-    return try self.listKeyHandles(byItem: request)
+    return self.listKeyHandles(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -510,13 +510,13 @@ extension Clients.AutokeyProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

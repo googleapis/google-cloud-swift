@@ -26,7 +26,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.ScheduleServiceClient()
-    let items = try client.listSchedules(
+    let items = client.listSchedules(
       byItem: ListSchedulesRequest()
         .with {
           $0.parent = "\(parent)"

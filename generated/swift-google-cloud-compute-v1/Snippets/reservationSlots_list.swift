@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: ReservationSlotsClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: ReservationSlotsClient.ListRequest()
         /* set fields using .with { $0... } */
     )

@@ -103,7 +103,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListCustomers")
   public func listCustomers(
     byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Customer, Swift.Error> {
+  ) -> any AsyncSequence<Customer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListCustomersResponse in
       var request = byItem
@@ -387,7 +387,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListEntitlements")
   public func listEntitlements(
     byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entitlement, Swift.Error> {
+  ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse in
       var request = byItem
@@ -451,7 +451,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
   public func listTransferableSkus(
     byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TransferableSku, Swift.Error> {
+  ) -> any AsyncSequence<TransferableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse in
       var request = byItem
@@ -521,7 +521,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
   public func listTransferableOffers(
     byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TransferableOffer, Swift.Error> {
+  ) -> any AsyncSequence<TransferableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse in
       var request = byItem
@@ -1493,7 +1493,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
   public func listChannelPartnerLinks(
     byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
+  ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse in
       var request = byItem
@@ -1692,7 +1692,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
   public func listCustomerRepricingConfigs(
     byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse in
@@ -1925,7 +1925,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
   public func listChannelPartnerRepricingConfigs(
     byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse in
@@ -2120,7 +2120,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListSkuGroups")
   public func listSkuGroups(
     byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SkuGroup, Swift.Error> {
+  ) -> any AsyncSequence<SkuGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse in
       var request = byItem
@@ -2188,7 +2188,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
   public func listSkuGroupBillableSkus(
     byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BillableSku, Swift.Error> {
+  ) -> any AsyncSequence<BillableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse in
       var request = byItem
@@ -2240,7 +2240,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListProducts")
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListProductsResponse in
       var request = byItem
@@ -2272,7 +2272,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListSkus")
   public func listSkus(
     byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
+  ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkusResponse in
       var request = byItem
       request.pageToken = token
@@ -2303,7 +2303,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListOffers")
   public func listOffers(
     byItem: ListOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Offer, Swift.Error> {
+  ) -> any AsyncSequence<Offer, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListOffersResponse in
       var request = byItem
       request.pageToken = token
@@ -2342,7 +2342,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
   public func listPurchasableSkus(
     byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PurchasableSku, Swift.Error> {
+  ) -> any AsyncSequence<PurchasableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse in
       var request = byItem
@@ -2388,7 +2388,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
   public func listPurchasableOffers(
     byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PurchasableOffer, Swift.Error> {
+  ) -> any AsyncSequence<PurchasableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse in
       var request = byItem
@@ -2548,7 +2548,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
   public func listEntitlementChanges(
     byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntitlementChange, Swift.Error> {
+  ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse in
       var request = byItem
@@ -2576,7 +2576,7 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// @Snippet(path: "CloudChannelService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -2634,7 +2634,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listCustomers`.
     func listCustomers(
       byItem: ListCustomersRequest
-    ) throws -> any AsyncSequence<Customer, Swift.Error>
+    ) -> any AsyncSequence<Customer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getCustomer`.
     func getCustomer(request: GetCustomerRequest) async throws -> GoogleCloudChannelV1.Customer
@@ -2683,7 +2683,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listEntitlements`.
     func listEntitlements(
       byItem: ListEntitlementsRequest
-    ) throws -> any AsyncSequence<Entitlement, Swift.Error>
+    ) -> any AsyncSequence<Entitlement, Swift.Error>
 
     /// See `CloudChannelServiceClient.listTransferableSkus`.
     func listTransferableSkus(request: ListTransferableSkusRequest) async throws
@@ -2692,7 +2692,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listTransferableSkus`.
     func listTransferableSkus(
       byItem: ListTransferableSkusRequest
-    ) throws -> any AsyncSequence<TransferableSku, Swift.Error>
+    ) -> any AsyncSequence<TransferableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listTransferableOffers`.
     func listTransferableOffers(request: ListTransferableOffersRequest) async throws
@@ -2701,7 +2701,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listTransferableOffers`.
     func listTransferableOffers(
       byItem: ListTransferableOffersRequest
-    ) throws -> any AsyncSequence<TransferableOffer, Swift.Error>
+    ) -> any AsyncSequence<TransferableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getEntitlement`.
     func getEntitlement(request: GetEntitlementRequest) async throws
@@ -2793,7 +2793,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listChannelPartnerLinks`.
     func listChannelPartnerLinks(
       byItem: ListChannelPartnerLinksRequest
-    ) throws -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
+    ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
 
     /// See `CloudChannelServiceClient.getChannelPartnerLink`.
     func getChannelPartnerLink(request: GetChannelPartnerLinkRequest) async throws
@@ -2823,12 +2823,12 @@ extension Clients {
     /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
     func listCustomerRepricingConfigs(
       byItem: ListCustomerRepricingConfigsRequest
-    ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
     func listCustomerRepricingConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.createCustomerRepricingConfig`.
     func createCustomerRepricingConfig(request: CreateCustomerRepricingConfigRequest) async throws
@@ -2873,12 +2873,12 @@ extension Clients {
     /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
     func listChannelPartnerRepricingConfigs(
       byItem: ListChannelPartnerRepricingConfigsRequest
-    ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
     func listChannelPartnerRepricingConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.createChannelPartnerRepricingConfig`.
     func createChannelPartnerRepricingConfig(request: CreateChannelPartnerRepricingConfigRequest)
@@ -2915,12 +2915,12 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkuGroups`.
     func listSkuGroups(
       byItem: ListSkuGroupsRequest
-    ) throws -> any AsyncSequence<SkuGroup, Swift.Error>
+    ) -> any AsyncSequence<SkuGroup, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkuGroups`.
     func listSkuGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SkuGroup, Swift.Error>
+    ) -> any AsyncSequence<SkuGroup, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(request: ListSkuGroupBillableSkusRequest) async throws
@@ -2929,12 +2929,12 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(
       byItem: ListSkuGroupBillableSkusRequest
-    ) throws -> any AsyncSequence<BillableSku, Swift.Error>
+    ) -> any AsyncSequence<BillableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BillableSku, Swift.Error>
+    ) -> any AsyncSequence<BillableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.lookupOffer`.
     func lookupOffer(request: LookupOfferRequest) async throws -> GoogleCloudChannelV1.Offer
@@ -2946,7 +2946,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listProducts`.
     func listProducts(
       byItem: ListProductsRequest
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkus`.
     func listSkus(request: ListSkusRequest) async throws -> GoogleCloudChannelV1.ListSkusResponse
@@ -2954,7 +2954,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkus`.
     func listSkus(
       byItem: ListSkusRequest
-    ) throws -> any AsyncSequence<Sku, Swift.Error>
+    ) -> any AsyncSequence<Sku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOffers`.
     func listOffers(request: ListOffersRequest) async throws
@@ -2963,7 +2963,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listOffers`.
     func listOffers(
       byItem: ListOffersRequest
-    ) throws -> any AsyncSequence<Offer, Swift.Error>
+    ) -> any AsyncSequence<Offer, Swift.Error>
 
     /// See `CloudChannelServiceClient.listPurchasableSkus`.
     func listPurchasableSkus(request: ListPurchasableSkusRequest) async throws
@@ -2972,7 +2972,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listPurchasableSkus`.
     func listPurchasableSkus(
       byItem: ListPurchasableSkusRequest
-    ) throws -> any AsyncSequence<PurchasableSku, Swift.Error>
+    ) -> any AsyncSequence<PurchasableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listPurchasableOffers`.
     func listPurchasableOffers(request: ListPurchasableOffersRequest) async throws
@@ -2981,7 +2981,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listPurchasableOffers`.
     func listPurchasableOffers(
       byItem: ListPurchasableOffersRequest
-    ) throws -> any AsyncSequence<PurchasableOffer, Swift.Error>
+    ) -> any AsyncSequence<PurchasableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.queryEligibleBillingAccounts`.
     func queryEligibleBillingAccounts(request: QueryEligibleBillingAccountsRequest) async throws
@@ -3006,12 +3006,12 @@ extension Clients {
     /// See `CloudChannelServiceClient.listEntitlementChanges`.
     func listEntitlementChanges(
       byItem: ListEntitlementChangesRequest
-    ) throws -> any AsyncSequence<EntitlementChange, Swift.Error>
+    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
 
     /// See `CloudChannelServiceClient.listEntitlementChanges`.
     func listEntitlementChanges(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EntitlementChange, Swift.Error>
+    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -3020,13 +3020,13 @@ extension Clients {
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudChannelServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -3052,7 +3052,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listCustomers`.
     func listCustomers(
       byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Customer, Swift.Error>
+    ) -> any AsyncSequence<Customer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getCustomer`.
     func getCustomer(
@@ -3102,7 +3102,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listEntitlements`.
     func listEntitlements(
       byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Entitlement, Swift.Error>
+    ) -> any AsyncSequence<Entitlement, Swift.Error>
 
     /// See `CloudChannelServiceClient.listTransferableSkus`.
     func listTransferableSkus(
@@ -3112,7 +3112,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listTransferableSkus`.
     func listTransferableSkus(
       byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TransferableSku, Swift.Error>
+    ) -> any AsyncSequence<TransferableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listTransferableOffers`.
     func listTransferableOffers(
@@ -3122,7 +3122,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listTransferableOffers`.
     func listTransferableOffers(
       byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TransferableOffer, Swift.Error>
+    ) -> any AsyncSequence<TransferableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getEntitlement`.
     func getEntitlement(
@@ -3237,7 +3237,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listChannelPartnerLinks`.
     func listChannelPartnerLinks(
       byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
+    ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
 
     /// See `CloudChannelServiceClient.getChannelPartnerLink`.
     func getChannelPartnerLink(
@@ -3267,7 +3267,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
     func listCustomerRepricingConfigs(
       byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.createCustomerRepricingConfig`.
     func createCustomerRepricingConfig(
@@ -3297,7 +3297,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
     func listChannelPartnerRepricingConfigs(
       byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
+    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.createChannelPartnerRepricingConfig`.
     func createChannelPartnerRepricingConfig(
@@ -3322,7 +3322,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkuGroups`.
     func listSkuGroups(
       byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SkuGroup, Swift.Error>
+    ) -> any AsyncSequence<SkuGroup, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(
@@ -3332,7 +3332,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(
       byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BillableSku, Swift.Error>
+    ) -> any AsyncSequence<BillableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.lookupOffer`.
     func lookupOffer(
@@ -3347,7 +3347,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listProducts`.
     func listProducts(
       byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Product, Swift.Error>
+    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `CloudChannelServiceClient.listSkus`.
     func listSkus(
@@ -3357,7 +3357,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listSkus`.
     func listSkus(
       byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Sku, Swift.Error>
+    ) -> any AsyncSequence<Sku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOffers`.
     func listOffers(
@@ -3367,7 +3367,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listOffers`.
     func listOffers(
       byItem: ListOffersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Offer, Swift.Error>
+    ) -> any AsyncSequence<Offer, Swift.Error>
 
     /// See `CloudChannelServiceClient.listPurchasableSkus`.
     func listPurchasableSkus(
@@ -3377,7 +3377,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listPurchasableSkus`.
     func listPurchasableSkus(
       byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PurchasableSku, Swift.Error>
+    ) -> any AsyncSequence<PurchasableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listPurchasableOffers`.
     func listPurchasableOffers(
@@ -3387,7 +3387,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listPurchasableOffers`.
     func listPurchasableOffers(
       byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PurchasableOffer, Swift.Error>
+    ) -> any AsyncSequence<PurchasableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.queryEligibleBillingAccounts`.
     func queryEligibleBillingAccounts(
@@ -3417,7 +3417,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listEntitlementChanges`.
     func listEntitlementChanges(
       byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EntitlementChange, Swift.Error>
+    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(
@@ -3427,7 +3427,7 @@ extension Clients {
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudChannelServiceClient.deleteOperation`.
     func deleteOperation(
@@ -3457,13 +3457,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listCustomers(
     byItem: ListCustomersRequest
-  ) throws -> any AsyncSequence<Customer, Swift.Error> {
-    try self.listCustomers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Customer, Swift.Error> {
+    self.listCustomers(byItem: byItem, options: .init())
   }
 
   public func listCustomers(
     byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Customer, Swift.Error> {
+  ) -> any AsyncSequence<Customer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListCustomersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3600,13 +3600,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listEntitlements(
     byItem: ListEntitlementsRequest
-  ) throws -> any AsyncSequence<Entitlement, Swift.Error> {
-    try self.listEntitlements(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Entitlement, Swift.Error> {
+    self.listEntitlements(byItem: byItem, options: .init())
   }
 
   public func listEntitlements(
     byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Entitlement, Swift.Error> {
+  ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3628,13 +3628,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listTransferableSkus(
     byItem: ListTransferableSkusRequest
-  ) throws -> any AsyncSequence<TransferableSku, Swift.Error> {
-    try self.listTransferableSkus(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TransferableSku, Swift.Error> {
+    self.listTransferableSkus(byItem: byItem, options: .init())
   }
 
   public func listTransferableSkus(
     byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TransferableSku, Swift.Error> {
+  ) -> any AsyncSequence<TransferableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3656,13 +3656,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listTransferableOffers(
     byItem: ListTransferableOffersRequest
-  ) throws -> any AsyncSequence<TransferableOffer, Swift.Error> {
-    try self.listTransferableOffers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<TransferableOffer, Swift.Error> {
+    self.listTransferableOffers(byItem: byItem, options: .init())
   }
 
   public func listTransferableOffers(
     byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<TransferableOffer, Swift.Error> {
+  ) -> any AsyncSequence<TransferableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3975,13 +3975,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listChannelPartnerLinks(
     byItem: ListChannelPartnerLinksRequest
-  ) throws -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
-    try self.listChannelPartnerLinks(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
+    self.listChannelPartnerLinks(byItem: byItem, options: .init())
   }
 
   public func listChannelPartnerLinks(
     byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
+  ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4060,13 +4060,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listCustomerRepricingConfigs(
     byItem: ListCustomerRepricingConfigsRequest
-  ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
-    try self.listCustomerRepricingConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
+    self.listCustomerRepricingConfigs(byItem: byItem, options: .init())
   }
 
   public func listCustomerRepricingConfigs(
     byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse in
@@ -4077,11 +4077,11 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listCustomerRepricingConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
     let request = ListCustomerRepricingConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listCustomerRepricingConfigs(byItem: request)
+    return self.listCustomerRepricingConfigs(byItem: request)
   }
 
   public func createCustomerRepricingConfig(request: CreateCustomerRepricingConfigRequest)
@@ -4184,13 +4184,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listChannelPartnerRepricingConfigs(
     byItem: ListChannelPartnerRepricingConfigsRequest
-  ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
-    try self.listChannelPartnerRepricingConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
+    self.listChannelPartnerRepricingConfigs(byItem: byItem, options: .init())
   }
 
   public func listChannelPartnerRepricingConfigs(
     byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse in
@@ -4201,11 +4201,11 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listChannelPartnerRepricingConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
+  ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
     let request = ListChannelPartnerRepricingConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listChannelPartnerRepricingConfigs(byItem: request)
+    return self.listChannelPartnerRepricingConfigs(byItem: request)
   }
 
   public func createChannelPartnerRepricingConfig(
@@ -4287,13 +4287,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listSkuGroups(
     byItem: ListSkuGroupsRequest
-  ) throws -> any AsyncSequence<SkuGroup, Swift.Error> {
-    try self.listSkuGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SkuGroup, Swift.Error> {
+    self.listSkuGroups(byItem: byItem, options: .init())
   }
 
   public func listSkuGroups(
     byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SkuGroup, Swift.Error> {
+  ) -> any AsyncSequence<SkuGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4303,11 +4303,11 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listSkuGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SkuGroup, Swift.Error> {
+  ) -> any AsyncSequence<SkuGroup, Swift.Error> {
     let request = ListSkuGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listSkuGroups(byItem: request)
+    return self.listSkuGroups(byItem: request)
   }
 
   public func listSkuGroupBillableSkus(request: ListSkuGroupBillableSkusRequest) async throws
@@ -4324,13 +4324,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listSkuGroupBillableSkus(
     byItem: ListSkuGroupBillableSkusRequest
-  ) throws -> any AsyncSequence<BillableSku, Swift.Error> {
-    try self.listSkuGroupBillableSkus(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BillableSku, Swift.Error> {
+    self.listSkuGroupBillableSkus(byItem: byItem, options: .init())
   }
 
   public func listSkuGroupBillableSkus(
     byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BillableSku, Swift.Error> {
+  ) -> any AsyncSequence<BillableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4340,11 +4340,11 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listSkuGroupBillableSkus(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BillableSku, Swift.Error> {
+  ) -> any AsyncSequence<BillableSku, Swift.Error> {
     let request = ListSkuGroupBillableSkusRequest().with {
       $0.parent = parent
     }
-    return try self.listSkuGroupBillableSkus(byItem: request)
+    return self.listSkuGroupBillableSkus(byItem: request)
   }
 
   public func lookupOffer(request: LookupOfferRequest) async throws -> GoogleCloudChannelV1.Offer {
@@ -4371,13 +4371,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listProducts(
     byItem: ListProductsRequest
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
-    try self.listProducts(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Product, Swift.Error> {
+    self.listProducts(byItem: byItem, options: .init())
   }
 
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Product, Swift.Error> {
+  ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListProductsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4399,13 +4399,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listSkus(
     byItem: ListSkusRequest
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
-    try self.listSkus(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Sku, Swift.Error> {
+    self.listSkus(byItem: byItem, options: .init())
   }
 
   public func listSkus(
     byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
+  ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkusResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -4426,13 +4426,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listOffers(
     byItem: ListOffersRequest
-  ) throws -> any AsyncSequence<Offer, Swift.Error> {
-    try self.listOffers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Offer, Swift.Error> {
+    self.listOffers(byItem: byItem, options: .init())
   }
 
   public func listOffers(
     byItem: ListOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Offer, Swift.Error> {
+  ) -> any AsyncSequence<Offer, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListOffersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -4453,13 +4453,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listPurchasableSkus(
     byItem: ListPurchasableSkusRequest
-  ) throws -> any AsyncSequence<PurchasableSku, Swift.Error> {
-    try self.listPurchasableSkus(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PurchasableSku, Swift.Error> {
+    self.listPurchasableSkus(byItem: byItem, options: .init())
   }
 
   public func listPurchasableSkus(
     byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PurchasableSku, Swift.Error> {
+  ) -> any AsyncSequence<PurchasableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4481,13 +4481,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listPurchasableOffers(
     byItem: ListPurchasableOffersRequest
-  ) throws -> any AsyncSequence<PurchasableOffer, Swift.Error> {
-    try self.listPurchasableOffers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PurchasableOffer, Swift.Error> {
+    self.listPurchasableOffers(byItem: byItem, options: .init())
   }
 
   public func listPurchasableOffers(
     byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PurchasableOffer, Swift.Error> {
+  ) -> any AsyncSequence<PurchasableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4557,13 +4557,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listEntitlementChanges(
     byItem: ListEntitlementChangesRequest
-  ) throws -> any AsyncSequence<EntitlementChange, Swift.Error> {
-    try self.listEntitlementChanges(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
+    self.listEntitlementChanges(byItem: byItem, options: .init())
   }
 
   public func listEntitlementChanges(
     byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EntitlementChange, Swift.Error> {
+  ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4573,11 +4573,11 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listEntitlementChanges(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EntitlementChange, Swift.Error> {
+  ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
     let request = ListEntitlementChangesRequest().with {
       $0.parent = parent
     }
-    return try self.listEntitlementChanges(byItem: request)
+    return self.listEntitlementChanges(byItem: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -4594,13 +4594,13 @@ extension Clients.CloudChannelServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -4611,12 +4611,12 @@ extension Clients.CloudChannelServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

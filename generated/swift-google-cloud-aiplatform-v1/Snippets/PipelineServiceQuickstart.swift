@@ -25,7 +25,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.PipelineServiceClient()
-    let items = try client.listTrainingPipelines(
+    let items = client.listTrainingPipelines(
       byItem: ListTrainingPipelinesRequest()
         .with {
           $0.parent = "\(parent)"

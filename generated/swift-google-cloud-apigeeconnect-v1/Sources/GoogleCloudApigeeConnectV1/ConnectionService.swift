@@ -52,7 +52,7 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse in
       var request = byItem
@@ -77,12 +77,12 @@ extension Clients {
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
       byItem: ListConnectionsRequest
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
@@ -92,7 +92,7 @@ extension Clients {
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
       byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Connection, Swift.Error>
+    ) -> any AsyncSequence<Connection, Swift.Error>
   }
 }
 
@@ -112,13 +112,13 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnections(
     byItem: ListConnectionsRequest
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
-    try self.listConnections(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Connection, Swift.Error> {
+    self.listConnections(byItem: byItem, options: .init())
   }
 
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -128,10 +128,10 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnections(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Connection, Swift.Error> {
+  ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
-    return try self.listConnections(byItem: request)
+    return self.listConnections(byItem: request)
   }
 }

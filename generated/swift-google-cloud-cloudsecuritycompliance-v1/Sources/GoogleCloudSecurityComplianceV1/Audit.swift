@@ -100,7 +100,7 @@ public final class AuditClient: Clients.AuditProtocol, Sendable {
   /// @Snippet(path: "Audit_ListFrameworkAudits")
   public func listFrameworkAudits(
     byItem: ListFrameworkAuditsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkAudit, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworkAuditsResponse in
@@ -168,7 +168,7 @@ public final class AuditClient: Clients.AuditProtocol, Sendable {
   /// @Snippet(path: "Audit_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -205,7 +205,7 @@ public final class AuditClient: Clients.AuditProtocol, Sendable {
   /// @Snippet(path: "Audit_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -289,12 +289,12 @@ extension Clients {
     /// See `AuditClient.listFrameworkAudits`.
     func listFrameworkAudits(
       byItem: ListFrameworkAuditsRequest
-    ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error>
+    ) -> any AsyncSequence<FrameworkAudit, Swift.Error>
 
     /// See `AuditClient.listFrameworkAudits`.
     func listFrameworkAudits(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error>
+    ) -> any AsyncSequence<FrameworkAudit, Swift.Error>
 
     /// See `AuditClient.getFrameworkAudit`.
     func getFrameworkAudit(request: GetFrameworkAuditRequest) async throws
@@ -312,7 +312,7 @@ extension Clients {
     /// See `AuditClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AuditClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -325,13 +325,13 @@ extension Clients {
     /// See `AuditClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -372,7 +372,7 @@ extension Clients {
     /// See `AuditClient.listFrameworkAudits`.
     func listFrameworkAudits(
       byItem: ListFrameworkAuditsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error>
+    ) -> any AsyncSequence<FrameworkAudit, Swift.Error>
 
     /// See `AuditClient.getFrameworkAudit`.
     func getFrameworkAudit(
@@ -387,7 +387,7 @@ extension Clients {
     /// See `AuditClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AuditClient.getLocation`.
     func getLocation(
@@ -402,7 +402,7 @@ extension Clients {
     /// See `AuditClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditClient.deleteOperation`.
     func deleteOperation(
@@ -498,13 +498,13 @@ extension Clients.AuditProtocol {
 
   public func listFrameworkAudits(
     byItem: ListFrameworkAuditsRequest
-  ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error> {
-    try self.listFrameworkAudits(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FrameworkAudit, Swift.Error> {
+    self.listFrameworkAudits(byItem: byItem, options: .init())
   }
 
   public func listFrameworkAudits(
     byItem: ListFrameworkAuditsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkAudit, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworkAuditsResponse in
@@ -515,11 +515,11 @@ extension Clients.AuditProtocol {
 
   public func listFrameworkAudits(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FrameworkAudit, Swift.Error> {
+  ) -> any AsyncSequence<FrameworkAudit, Swift.Error> {
     let request = ListFrameworkAuditsRequest().with {
       $0.parent = parent
     }
-    return try self.listFrameworkAudits(byItem: request)
+    return self.listFrameworkAudits(byItem: request)
   }
 
   public func getFrameworkAudit(request: GetFrameworkAuditRequest) async throws
@@ -557,13 +557,13 @@ extension Clients.AuditProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -597,13 +597,13 @@ extension Clients.AuditProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -614,12 +614,12 @@ extension Clients.AuditProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

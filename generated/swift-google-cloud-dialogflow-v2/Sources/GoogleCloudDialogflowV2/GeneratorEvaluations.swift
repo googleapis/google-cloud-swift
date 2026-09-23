@@ -102,7 +102,7 @@
     /// @Snippet(path: "GeneratorEvaluations_ListGeneratorEvaluations")
     public func listGeneratorEvaluations(
       byItem: ListGeneratorEvaluationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
+    ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListGeneratorEvaluationsResponse in
@@ -170,7 +170,7 @@
     /// @Snippet(path: "GeneratorEvaluations_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -207,7 +207,7 @@
     /// @Snippet(path: "GeneratorEvaluations_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -277,12 +277,12 @@
       /// See `GeneratorEvaluationsClient.listGeneratorEvaluations`.
       func listGeneratorEvaluations(
         byItem: ListGeneratorEvaluationsRequest
-      ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
+      ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.listGeneratorEvaluations`.
       func listGeneratorEvaluations(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
+      ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.deleteGeneratorEvaluation`.
       func deleteGeneratorEvaluation(request: DeleteGeneratorEvaluationRequest) async throws
@@ -299,7 +299,7 @@
       /// See `GeneratorEvaluationsClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -312,13 +312,13 @@
       /// See `GeneratorEvaluationsClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -351,7 +351,7 @@
       /// See `GeneratorEvaluationsClient.listGeneratorEvaluations`.
       func listGeneratorEvaluations(
         byItem: ListGeneratorEvaluationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
+      ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.deleteGeneratorEvaluation`.
       func deleteGeneratorEvaluation(
@@ -366,7 +366,7 @@
       /// See `GeneratorEvaluationsClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.getLocation`.
       func getLocation(
@@ -381,7 +381,7 @@
       /// See `GeneratorEvaluationsClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GeneratorEvaluationsClient.cancelOperation`.
       func cancelOperation(
@@ -466,13 +466,13 @@
 
     public func listGeneratorEvaluations(
       byItem: ListGeneratorEvaluationsRequest
-    ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
-      try self.listGeneratorEvaluations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
+      self.listGeneratorEvaluations(byItem: byItem, options: .init())
     }
 
     public func listGeneratorEvaluations(
       byItem: ListGeneratorEvaluationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
+    ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListGeneratorEvaluationsResponse in
@@ -483,11 +483,11 @@
 
     public func listGeneratorEvaluations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
+    ) -> any AsyncSequence<GeneratorEvaluation, Swift.Error> {
       let request = ListGeneratorEvaluationsRequest().with {
         $0.parent = parent
       }
-      return try self.listGeneratorEvaluations(byItem: request)
+      return self.listGeneratorEvaluations(byItem: request)
     }
 
     public func deleteGeneratorEvaluation(request: DeleteGeneratorEvaluationRequest) async throws {
@@ -523,13 +523,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -563,13 +563,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -580,12 +580,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

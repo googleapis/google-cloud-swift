@@ -210,7 +210,7 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// @Snippet(path: "JobService_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
       var request = byItem
       request.pageToken = token
@@ -361,13 +361,13 @@ extension Clients {
     /// See `JobServiceClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `JobServiceClient.listJobs`.
     func listJobs(
       parent: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `JobServiceClient.searchJobs`.
     func searchJobs(request: SearchJobsRequest) async throws
@@ -435,7 +435,7 @@ extension Clients {
     /// See `JobServiceClient.listJobs`.
     func listJobs(
       byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Job, Swift.Error>
+    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `JobServiceClient.searchJobs`.
     func searchJobs(
@@ -665,13 +665,13 @@ extension Clients.JobServiceProtocol {
 
   public func listJobs(
     byItem: ListJobsRequest
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
-    try self.listJobs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Job, Swift.Error> {
+    self.listJobs(byItem: byItem, options: .init())
   }
 
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -681,12 +681,12 @@ extension Clients.JobServiceProtocol {
   public func listJobs(
     parent: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> {
     let request = ListJobsRequest().with {
       $0.parent = parent
       $0.filter = filter
     }
-    return try self.listJobs(byItem: request)
+    return self.listJobs(byItem: request)
   }
 
   public func searchJobs(request: SearchJobsRequest) async throws

@@ -52,7 +52,7 @@ public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   /// @Snippet(path: "CloudCatalog_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListServicesResponse in
       var request = byItem
@@ -76,7 +76,7 @@ public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   /// @Snippet(path: "CloudCatalog_ListSkus")
   public func listSkus(
     byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
+  ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBillingV1.ListSkusResponse in
       var request = byItem
       request.pageToken = token
@@ -100,7 +100,7 @@ extension Clients {
     /// See `CloudCatalogClient.listServices`.
     func listServices(
       byItem: ListServicesRequest
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `CloudCatalogClient.listSkus`.
     func listSkus(request: ListSkusRequest) async throws -> GoogleCloudBillingV1.ListSkusResponse
@@ -108,12 +108,12 @@ extension Clients {
     /// See `CloudCatalogClient.listSkus`.
     func listSkus(
       byItem: ListSkusRequest
-    ) throws -> any AsyncSequence<Sku, Swift.Error>
+    ) -> any AsyncSequence<Sku, Swift.Error>
 
     /// See `CloudCatalogClient.listSkus`.
     func listSkus(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Sku, Swift.Error>
+    ) -> any AsyncSequence<Sku, Swift.Error>
 
     /// See `CloudCatalogClient.listServices`.
     func listServices(
@@ -123,7 +123,7 @@ extension Clients {
     /// See `CloudCatalogClient.listServices`.
     func listServices(
       byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `CloudCatalogClient.listSkus`.
     func listSkus(
@@ -133,7 +133,7 @@ extension Clients {
     /// See `CloudCatalogClient.listSkus`.
     func listSkus(
       byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Sku, Swift.Error>
+    ) -> any AsyncSequence<Sku, Swift.Error>
   }
 }
 
@@ -153,13 +153,13 @@ extension Clients.CloudCatalogProtocol {
 
   public func listServices(
     byItem: ListServicesRequest
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
-    try self.listServices(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Service, Swift.Error> {
+    self.listServices(byItem: byItem, options: .init())
   }
 
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListServicesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -181,13 +181,13 @@ extension Clients.CloudCatalogProtocol {
 
   public func listSkus(
     byItem: ListSkusRequest
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
-    try self.listSkus(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Sku, Swift.Error> {
+    self.listSkus(byItem: byItem, options: .init())
   }
 
   public func listSkus(
     byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
+  ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBillingV1.ListSkusResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -196,10 +196,10 @@ extension Clients.CloudCatalogProtocol {
 
   public func listSkus(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Sku, Swift.Error> {
+  ) -> any AsyncSequence<Sku, Swift.Error> {
     let request = ListSkusRequest().with {
       $0.parent = parent
     }
-    return try self.listSkus(byItem: request)
+    return self.listSkus(byItem: request)
   }
 }

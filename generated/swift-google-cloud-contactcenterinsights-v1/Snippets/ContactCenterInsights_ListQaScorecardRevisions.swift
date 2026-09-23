@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, qaScorecardId: String
 ) async throws {
-  let items = try client.listQaScorecardRevisions(
+  let items = client.listQaScorecardRevisions(
     byItem: ListQaScorecardRevisionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/qaScorecards/\(qaScorecardId)"

@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudDLPV2.DlpServiceClient()
-  let items = try client.listDlpJobs(
+  let items = client.listDlpJobs(
     byItem: ListDlpJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)"

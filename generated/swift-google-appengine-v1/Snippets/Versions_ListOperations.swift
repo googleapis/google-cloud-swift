@@ -21,7 +21,7 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: VersionsClient) async throws {
-  let items = try client.listOperations(
+  let items = client.listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )

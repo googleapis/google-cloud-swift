@@ -166,7 +166,7 @@
     /// @Snippet(path: "externalVpnGateways_list")
     public func list(
       byItem: ExternalVpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ExternalVpnGatewayList in
         var request = byItem
@@ -280,12 +280,12 @@
       /// See `ExternalVpnGatewaysClient.list`.
       func list(
         byItem: ExternalVpnGatewaysClient.ListRequest
-      ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
+      ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
 
       /// See `ExternalVpnGatewaysClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
+      ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
 
       /// See `ExternalVpnGatewaysClient.setLabels`.
       func setLabels(request: ExternalVpnGatewaysClient.SetLabelsRequest) async throws
@@ -325,7 +325,7 @@
       /// See `ExternalVpnGatewaysClient.list`.
       func list(
         byItem: ExternalVpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
+      ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error>
 
       /// See `ExternalVpnGatewaysClient.setLabels`.
       func setLabels(
@@ -459,13 +459,13 @@
 
     public func list(
       byItem: ExternalVpnGatewaysClient.ListRequest
-    ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ExternalVpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ExternalVpnGatewayList in
         throw GoogleGax.RequestError.unimplemented
@@ -475,11 +475,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<ExternalVpnGateway, Swift.Error> {
       let request = ExternalVpnGatewaysClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setLabels(request: ExternalVpnGatewaysClient.SetLabelsRequest) async throws

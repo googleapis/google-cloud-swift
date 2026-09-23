@@ -21,7 +21,7 @@ import GoogleIAMAdminV1
 import GoogleIAMV1
 
 func sample(client: IAMClient) async throws {
-  let items = try client.queryGrantableRoles(
+  let items = client.queryGrantableRoles(
     byItem: QueryGrantableRolesRequest()
       /* set fields using .with { $0... } */
   )

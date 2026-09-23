@@ -67,7 +67,7 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// @Snippet(path: "CloudBilling_ListBillingAccounts")
   public func listBillingAccounts(
     byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BillingAccount, Swift.Error> {
+  ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse in
       var request = byItem
@@ -134,7 +134,7 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
   public func listProjectBillingInfo(
     byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
+  ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
       var request = byItem
@@ -266,12 +266,12 @@ extension Clients {
     /// See `CloudBillingClient.listBillingAccounts`.
     func listBillingAccounts(
       byItem: ListBillingAccountsRequest
-    ) throws -> any AsyncSequence<BillingAccount, Swift.Error>
+    ) -> any AsyncSequence<BillingAccount, Swift.Error>
 
     /// See `CloudBillingClient.listBillingAccounts`.
     func listBillingAccounts(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BillingAccount, Swift.Error>
+    ) -> any AsyncSequence<BillingAccount, Swift.Error>
 
     /// See `CloudBillingClient.updateBillingAccount`.
     func updateBillingAccount(request: UpdateBillingAccountRequest) async throws
@@ -305,12 +305,12 @@ extension Clients {
     /// See `CloudBillingClient.listProjectBillingInfo`.
     func listProjectBillingInfo(
       byItem: ListProjectBillingInfoRequest
-    ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
+    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
 
     /// See `CloudBillingClient.listProjectBillingInfo`.
     func listProjectBillingInfo(
       name: Swift.String,
-    ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
+    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
 
     /// See `CloudBillingClient.getProjectBillingInfo`.
     func getProjectBillingInfo(request: GetProjectBillingInfoRequest) async throws
@@ -375,7 +375,7 @@ extension Clients {
     /// See `CloudBillingClient.listBillingAccounts`.
     func listBillingAccounts(
       byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BillingAccount, Swift.Error>
+    ) -> any AsyncSequence<BillingAccount, Swift.Error>
 
     /// See `CloudBillingClient.updateBillingAccount`.
     func updateBillingAccount(
@@ -395,7 +395,7 @@ extension Clients {
     /// See `CloudBillingClient.listProjectBillingInfo`.
     func listProjectBillingInfo(
       byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
+    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
 
     /// See `CloudBillingClient.getProjectBillingInfo`.
     func getProjectBillingInfo(
@@ -466,13 +466,13 @@ extension Clients.CloudBillingProtocol {
 
   public func listBillingAccounts(
     byItem: ListBillingAccountsRequest
-  ) throws -> any AsyncSequence<BillingAccount, Swift.Error> {
-    try self.listBillingAccounts(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BillingAccount, Swift.Error> {
+    self.listBillingAccounts(byItem: byItem, options: .init())
   }
 
   public func listBillingAccounts(
     byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BillingAccount, Swift.Error> {
+  ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -482,11 +482,11 @@ extension Clients.CloudBillingProtocol {
 
   public func listBillingAccounts(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BillingAccount, Swift.Error> {
+  ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let request = ListBillingAccountsRequest().with {
       $0.parent = parent
     }
-    return try self.listBillingAccounts(byItem: request)
+    return self.listBillingAccounts(byItem: request)
   }
 
   public func updateBillingAccount(request: UpdateBillingAccountRequest) async throws
@@ -558,13 +558,13 @@ extension Clients.CloudBillingProtocol {
 
   public func listProjectBillingInfo(
     byItem: ListProjectBillingInfoRequest
-  ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
-    try self.listProjectBillingInfo(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
+    self.listProjectBillingInfo(byItem: byItem, options: .init())
   }
 
   public func listProjectBillingInfo(
     byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
+  ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -574,11 +574,11 @@ extension Clients.CloudBillingProtocol {
 
   public func listProjectBillingInfo(
     name: Swift.String,
-  ) throws -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
+  ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let request = ListProjectBillingInfoRequest().with {
       $0.name = name
     }
-    return try self.listProjectBillingInfo(byItem: request)
+    return self.listProjectBillingInfo(byItem: request)
   }
 
   public func getProjectBillingInfo(request: GetProjectBillingInfoRequest) async throws

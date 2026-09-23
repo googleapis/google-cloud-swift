@@ -28,7 +28,7 @@
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String,
     sessionId: String
   ) async throws {
-    let items = try client.listEvents(
+    let items = client.listEvents(
       byItem: ListEventsRequest()
         .with {
           $0.parent =

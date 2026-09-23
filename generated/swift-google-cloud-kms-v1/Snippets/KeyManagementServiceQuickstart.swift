@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSV1.KeyManagementServiceClient()
-  let items = try client.listKeyRings(
+  let items = client.listKeyRings(
     byItem: ListKeyRingsRequest()
       .with {
         $0.parent = "\(parent)"

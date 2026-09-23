@@ -229,7 +229,7 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// @Snippet(path: "AttachedClusters_ListAttachedClusters")
   public func listAttachedClusters(
     byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AttachedCluster, Swift.Error> {
+  ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
       in
@@ -337,7 +337,7 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// @Snippet(path: "AttachedClusters_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -447,12 +447,12 @@ extension Clients {
     /// See `AttachedClustersClient.listAttachedClusters`.
     func listAttachedClusters(
       byItem: ListAttachedClustersRequest
-    ) throws -> any AsyncSequence<AttachedCluster, Swift.Error>
+    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
 
     /// See `AttachedClustersClient.listAttachedClusters`.
     func listAttachedClusters(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AttachedCluster, Swift.Error>
+    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
 
     /// See `AttachedClustersClient.deleteAttachedCluster`.
     func deleteAttachedCluster(request: DeleteAttachedClusterRequest) async throws
@@ -498,13 +498,13 @@ extension Clients {
     /// See `AttachedClustersClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AttachedClustersClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AttachedClustersClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -565,7 +565,7 @@ extension Clients {
     /// See `AttachedClustersClient.listAttachedClusters`.
     func listAttachedClusters(
       byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AttachedCluster, Swift.Error>
+    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
 
     /// See `AttachedClustersClient.deleteAttachedCluster`.
     func deleteAttachedCluster(
@@ -600,7 +600,7 @@ extension Clients {
     /// See `AttachedClustersClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AttachedClustersClient.deleteOperation`.
     func deleteOperation(
@@ -770,13 +770,13 @@ extension Clients.AttachedClustersProtocol {
 
   public func listAttachedClusters(
     byItem: ListAttachedClustersRequest
-  ) throws -> any AsyncSequence<AttachedCluster, Swift.Error> {
-    try self.listAttachedClusters(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
+    self.listAttachedClusters(byItem: byItem, options: .init())
   }
 
   public func listAttachedClusters(
     byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AttachedCluster, Swift.Error> {
+  ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
       in
@@ -787,11 +787,11 @@ extension Clients.AttachedClustersProtocol {
 
   public func listAttachedClusters(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AttachedCluster, Swift.Error> {
+  ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
     let request = ListAttachedClustersRequest().with {
       $0.parent = parent
     }
-    return try self.listAttachedClusters(byItem: request)
+    return self.listAttachedClusters(byItem: request)
   }
 
   public func deleteAttachedCluster(request: DeleteAttachedClusterRequest) async throws
@@ -901,13 +901,13 @@ extension Clients.AttachedClustersProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -918,12 +918,12 @@ extension Clients.AttachedClustersProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

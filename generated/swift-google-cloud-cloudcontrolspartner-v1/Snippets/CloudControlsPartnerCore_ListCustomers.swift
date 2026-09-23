@@ -23,7 +23,7 @@ import GoogleWKT
 func sample(client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String)
   async throws
 {
-  let items = try client.listCustomers(
+  let items = client.listCustomers(
     byItem: ListCustomersRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

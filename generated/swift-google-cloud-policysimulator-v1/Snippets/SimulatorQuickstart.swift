@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, replayId: String, ) async throws {
   let client = try GoogleCloudPolicySimulatorV1.SimulatorClient()
-  let items = try client.listReplayResults(
+  let items = client.listReplayResults(
     byItem: ListReplayResultsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/replays/\(replayId)"

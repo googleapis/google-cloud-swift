@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: EnvironmentsClient, projectId: String, locationId: String, environmentId: String
 ) async throws {
-  let items = try client.listUserWorkloadsConfigMaps(
+  let items = client.listUserWorkloadsConfigMaps(
     byItem: ListUserWorkloadsConfigMapsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/environments/\(environmentId)"

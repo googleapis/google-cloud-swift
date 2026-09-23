@@ -23,7 +23,7 @@
 
   func sample() async throws {
     let client = try GoogleCloudDiscoveryEngineV1.SearchServiceClient()
-    let items = try client.search(
+    let items = client.search(
       byItem: SearchRequest()
         /* set fields using .with { $0... } */
     )

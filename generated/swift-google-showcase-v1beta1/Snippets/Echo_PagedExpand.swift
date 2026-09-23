@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: EchoClient) async throws {
-  let items = try client.pagedExpand(
+  let items = client.pagedExpand(
     byItem: PagedExpandRequest()
       /* set fields using .with { $0... } */
   )

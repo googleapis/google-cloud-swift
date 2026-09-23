@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: DataprocMetastoreFederationClient, projectId: String, locationId: String)
   async throws
 {
-  let items = try client.listFederations(
+  let items = client.listFederations(
     byItem: ListFederationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

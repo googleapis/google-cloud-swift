@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudContentWarehouseV1.RuleSetServiceClient()
-  let items = try client.listRuleSets(
+  let items = client.listRuleSets(
     byItem: ListRuleSetsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -21,7 +21,7 @@ import GoogleCloudApiRegistryV1
 import GoogleCloudLocation
 
 func sample(client: CloudApiRegistryClient, parent: String) async throws {
-  let items = try client.listMcpServers(
+  let items = client.listMcpServers(
     byItem: ListMcpServersRequest()
       .with {
         $0.parent = "\(parent)"

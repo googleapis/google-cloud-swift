@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAcceleratorTypes(
+  let items = client.listAcceleratorTypes(
     byItem: ListAcceleratorTypesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

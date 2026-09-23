@@ -26,7 +26,7 @@ func sample(
   client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String,
   assetId: String
 ) async throws {
-  let items = try client.listAnnotations(
+  let items = client.listAnnotations(
     byItem: ListAnnotationsRequest()
       .with {
         $0.parent =

@@ -167,7 +167,7 @@
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
     public func list(
       byItem: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
         var request = byItem
@@ -274,12 +274,12 @@
       /// See `GlobalPublicDelegatedPrefixesClient.list`.
       func list(
         byItem: GlobalPublicDelegatedPrefixesClient.ListRequest
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `GlobalPublicDelegatedPrefixesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `GlobalPublicDelegatedPrefixesClient.patch`.
       func patch(request: GlobalPublicDelegatedPrefixesClient.PatchRequest) async throws
@@ -310,7 +310,7 @@
       /// See `GlobalPublicDelegatedPrefixesClient.list`.
       func list(
         byItem: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `GlobalPublicDelegatedPrefixesClient.patch`.
       func patch(
@@ -440,13 +440,13 @@
 
     public func list(
       byItem: GlobalPublicDelegatedPrefixesClient.ListRequest
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
         throw GoogleGax.RequestError.unimplemented
@@ -456,11 +456,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let request = GlobalPublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: GlobalPublicDelegatedPrefixesClient.PatchRequest) async throws

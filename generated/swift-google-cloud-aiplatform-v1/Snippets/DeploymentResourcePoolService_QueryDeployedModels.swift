@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: DeploymentResourcePoolServiceClient) async throws {
-    let items = try client.queryDeployedModels(
+    let items = client.queryDeployedModels(
       byItem: QueryDeployedModelsRequest()
         /* set fields using .with { $0... } */
     )

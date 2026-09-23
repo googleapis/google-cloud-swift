@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient, parent: String) async throws {
-  let items = try client.listLakes(
+  let items = client.listLakes(
     byItem: ListLakesRequest()
       .with {
         $0.parent = "\(parent)"

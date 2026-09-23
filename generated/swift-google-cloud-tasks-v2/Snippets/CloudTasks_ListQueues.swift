@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: CloudTasksClient, projectId: String, locationId: String) async throws {
-  let items = try client.listQueues(
+  let items = client.listQueues(
     byItem: ListQueuesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

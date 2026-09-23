@@ -162,7 +162,7 @@
     /// @Snippet(path: "targetGrpcProxies_list")
     public func list(
       byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
         var request = byItem
@@ -268,12 +268,12 @@
       /// See `TargetGrpcProxiesClient.list`.
       func list(
         byItem: TargetGrpcProxiesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
 
       /// See `TargetGrpcProxiesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
 
       /// See `TargetGrpcProxiesClient.patch`.
       func patch(request: TargetGrpcProxiesClient.PatchRequest) async throws
@@ -302,7 +302,7 @@
       /// See `TargetGrpcProxiesClient.list`.
       func list(
         byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
+      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
 
       /// See `TargetGrpcProxiesClient.patch`.
       func patch(
@@ -430,13 +430,13 @@
 
     public func list(
       byItem: TargetGrpcProxiesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
         throw GoogleGax.RequestError.unimplemented
@@ -446,11 +446,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let request = TargetGrpcProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: TargetGrpcProxiesClient.PatchRequest) async throws

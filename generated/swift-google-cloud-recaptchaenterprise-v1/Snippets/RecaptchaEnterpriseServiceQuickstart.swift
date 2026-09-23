@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudRecaptchaEnterpriseV1.RecaptchaEnterpriseServiceClient()
-  let items = try client.listKeys(
+  let items = client.listKeys(
     byItem: ListKeysRequest()
       .with {
         $0.parent = "\(parent)"

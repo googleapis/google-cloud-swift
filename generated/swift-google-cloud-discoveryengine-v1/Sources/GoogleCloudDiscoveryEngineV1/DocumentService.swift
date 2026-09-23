@@ -75,7 +75,7 @@
     /// @Snippet(path: "DocumentService_ListDocuments")
     public func listDocuments(
       byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Document, Swift.Error> {
+    ) -> any AsyncSequence<Document, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse in
         var request = byItem
@@ -277,7 +277,7 @@
     /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -333,12 +333,12 @@
       /// See `DocumentServiceClient.listDocuments`.
       func listDocuments(
         byItem: ListDocumentsRequest
-      ) throws -> any AsyncSequence<Document, Swift.Error>
+      ) -> any AsyncSequence<Document, Swift.Error>
 
       /// See `DocumentServiceClient.listDocuments`.
       func listDocuments(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<Document, Swift.Error>
+      ) -> any AsyncSequence<Document, Swift.Error>
 
       /// See `DocumentServiceClient.createDocument`.
       func createDocument(request: CreateDocumentRequest) async throws
@@ -401,13 +401,13 @@
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -430,7 +430,7 @@
       /// See `DocumentServiceClient.listDocuments`.
       func listDocuments(
         byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Document, Swift.Error>
+      ) -> any AsyncSequence<Document, Swift.Error>
 
       /// See `DocumentServiceClient.createDocument`.
       func createDocument(
@@ -480,7 +480,7 @@
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.cancelOperation`.
       func cancelOperation(
@@ -526,13 +526,13 @@
 
     public func listDocuments(
       byItem: ListDocumentsRequest
-    ) throws -> any AsyncSequence<Document, Swift.Error> {
-      try self.listDocuments(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Document, Swift.Error> {
+      self.listDocuments(byItem: byItem, options: .init())
     }
 
     public func listDocuments(
       byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Document, Swift.Error> {
+    ) -> any AsyncSequence<Document, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -542,11 +542,11 @@
 
     public func listDocuments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Document, Swift.Error> {
+    ) -> any AsyncSequence<Document, Swift.Error> {
       let request = ListDocumentsRequest().with {
         $0.parent = parent
       }
-      return try self.listDocuments(byItem: request)
+      return self.listDocuments(byItem: request)
     }
 
     public func createDocument(request: CreateDocumentRequest) async throws
@@ -709,13 +709,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -726,12 +726,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

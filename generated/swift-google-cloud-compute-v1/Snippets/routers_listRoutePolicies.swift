@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let items = try client.listRoutePolicies(
+    let items = client.listRoutePolicies(
       byItem: RoutersClient.ListRoutePoliciesRequest()
         /* set fields using .with { $0... } */
     )

@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: NativeDashboardServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = try client.listNativeDashboards(
+  let items = client.listNativeDashboards(
     byItem: ListNativeDashboardsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

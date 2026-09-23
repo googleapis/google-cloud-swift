@@ -24,7 +24,7 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.ConversationModelsClient()
-    let items = try client.listConversationModels(
+    let items = client.listConversationModels(
       byItem: ListConversationModelsRequest()
         .with {
           $0.parent = "\(parent)"

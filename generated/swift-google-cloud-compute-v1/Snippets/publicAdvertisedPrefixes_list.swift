@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: PublicAdvertisedPrefixesClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: PublicAdvertisedPrefixesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

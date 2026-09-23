@@ -162,7 +162,7 @@
     /// @Snippet(path: "crossSiteNetworks_list")
     public func list(
       byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
         var request = byItem
@@ -268,12 +268,12 @@
       /// See `CrossSiteNetworksClient.list`.
       func list(
         byItem: CrossSiteNetworksClient.ListRequest
-      ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
+      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
 
       /// See `CrossSiteNetworksClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
+      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
 
       /// See `CrossSiteNetworksClient.patch`.
       func patch(request: CrossSiteNetworksClient.PatchRequest) async throws
@@ -302,7 +302,7 @@
       /// See `CrossSiteNetworksClient.list`.
       func list(
         byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
+      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
 
       /// See `CrossSiteNetworksClient.patch`.
       func patch(
@@ -430,13 +430,13 @@
 
     public func list(
       byItem: CrossSiteNetworksClient.ListRequest
-    ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
         throw GoogleGax.RequestError.unimplemented
@@ -446,11 +446,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
       let request = CrossSiteNetworksClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: CrossSiteNetworksClient.PatchRequest) async throws

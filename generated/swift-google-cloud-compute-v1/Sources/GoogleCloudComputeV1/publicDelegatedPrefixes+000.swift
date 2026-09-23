@@ -67,7 +67,7 @@
     /// @Snippet(path: "publicDelegatedPrefixes_aggregatedList")
     public func aggregatedList(
       byItem: PublicDelegatedPrefixesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList in
@@ -250,7 +250,7 @@
     /// @Snippet(path: "publicDelegatedPrefixes_list")
     public func list(
       byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
         var request = byItem
@@ -388,12 +388,12 @@
       /// See `PublicDelegatedPrefixesClient.aggregatedList`.
       func aggregatedList(
         byItem: PublicDelegatedPrefixesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.announce`.
       func announce(request: PublicDelegatedPrefixesClient.AnnounceRequest) async throws
@@ -425,13 +425,13 @@
       /// See `PublicDelegatedPrefixesClient.list`.
       func list(
         byItem: PublicDelegatedPrefixesClient.ListRequest
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.patch`.
       func patch(request: PublicDelegatedPrefixesClient.PatchRequest) async throws
@@ -451,7 +451,7 @@
       func aggregatedList(
         byItem: PublicDelegatedPrefixesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.announce`.
       func announce(
@@ -481,7 +481,7 @@
       /// See `PublicDelegatedPrefixesClient.list`.
       func list(
         byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
+      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.patch`.
       func patch(
@@ -512,13 +512,13 @@
 
     public func aggregatedList(
       byItem: PublicDelegatedPrefixesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: PublicDelegatedPrefixesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList in
@@ -529,11 +529,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
       let request = PublicDelegatedPrefixesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func announce(request: PublicDelegatedPrefixesClient.AnnounceRequest) async throws
@@ -701,13 +701,13 @@
 
     public func list(
       byItem: PublicDelegatedPrefixesClient.ListRequest
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
         throw GoogleGax.RequestError.unimplemented
@@ -718,12 +718,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
+    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let request = PublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: PublicDelegatedPrefixesClient.PatchRequest) async throws

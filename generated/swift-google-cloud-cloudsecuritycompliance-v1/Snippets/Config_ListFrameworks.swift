@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, organizationId: String, locationId: String) async throws {
-  let items = try client.listFrameworks(
+  let items = client.listFrameworks(
     byItem: ListFrameworksRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

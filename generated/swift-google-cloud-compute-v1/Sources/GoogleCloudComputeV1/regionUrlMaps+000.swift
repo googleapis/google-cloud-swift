@@ -166,7 +166,7 @@
     /// @Snippet(path: "regionUrlMaps_list")
     public func list(
       byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = byItem
         request.pageToken = token
@@ -335,13 +335,13 @@
       /// See `RegionUrlMapsClient.list`.
       func list(
         byItem: RegionUrlMapsClient.ListRequest
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `RegionUrlMapsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `RegionUrlMapsClient.patch`.
       func patch(request: RegionUrlMapsClient.PatchRequest) async throws
@@ -386,7 +386,7 @@
       /// See `RegionUrlMapsClient.list`.
       func list(
         byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<UrlMap, Swift.Error>
+      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `RegionUrlMapsClient.patch`.
       func patch(
@@ -530,13 +530,13 @@
 
     public func list(
       byItem: RegionUrlMapsClient.ListRequest
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -546,12 +546,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let request = RegionUrlMapsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionUrlMapsClient.PatchRequest) async throws

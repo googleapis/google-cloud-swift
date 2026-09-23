@@ -80,7 +80,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_ListProjects")
   public func listProjects(
     byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
       var request = byItem
@@ -126,7 +126,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
     byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
       var request = byItem
@@ -546,12 +546,12 @@ extension Clients {
     /// See `ProjectsClient.listProjects`.
     func listProjects(
       byItem: ListProjectsRequest
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.listProjects`.
     func listProjects(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(request: SearchProjectsRequest) async throws
@@ -560,12 +560,12 @@ extension Clients {
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(
       byItem: SearchProjectsRequest
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(
       query: Swift.String,
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.createProject`.
     func createProject(request: CreateProjectRequest) async throws -> GoogleLongRunning.Operation
@@ -670,7 +670,7 @@ extension Clients {
     /// See `ProjectsClient.listProjects`.
     func listProjects(
       byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(
@@ -680,7 +680,7 @@ extension Clients {
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(
       byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Project, Swift.Error>
+    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.createProject`.
     func createProject(
@@ -786,13 +786,13 @@ extension Clients.ProjectsProtocol {
 
   public func listProjects(
     byItem: ListProjectsRequest
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
-    try self.listProjects(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Project, Swift.Error> {
+    self.listProjects(byItem: byItem, options: .init())
   }
 
   public func listProjects(
     byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -802,11 +802,11 @@ extension Clients.ProjectsProtocol {
 
   public func listProjects(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let request = ListProjectsRequest().with {
       $0.parent = parent
     }
-    return try self.listProjects(byItem: request)
+    return self.listProjects(byItem: request)
   }
 
   public func searchProjects(request: SearchProjectsRequest) async throws
@@ -823,13 +823,13 @@ extension Clients.ProjectsProtocol {
 
   public func searchProjects(
     byItem: SearchProjectsRequest
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
-    try self.searchProjects(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Project, Swift.Error> {
+    self.searchProjects(byItem: byItem, options: .init())
   }
 
   public func searchProjects(
     byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -839,11 +839,11 @@ extension Clients.ProjectsProtocol {
 
   public func searchProjects(
     query: Swift.String,
-  ) throws -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> {
     let request = SearchProjectsRequest().with {
       $0.query = query
     }
-    return try self.searchProjects(byItem: request)
+    return self.searchProjects(byItem: request)
   }
 
   public func createProject(request: CreateProjectRequest) async throws

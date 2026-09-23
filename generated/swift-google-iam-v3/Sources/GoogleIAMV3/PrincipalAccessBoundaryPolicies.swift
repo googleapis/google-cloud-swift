@@ -181,7 +181,7 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_ListPrincipalAccessBoundaryPolicies")
   public func listPrincipalAccessBoundaryPolicies(
     byItem: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
+  ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse
       in
@@ -209,7 +209,7 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_SearchPrincipalAccessBoundaryPolicyBindings")
   public func searchPrincipalAccessBoundaryPolicyBindings(
     byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse in
@@ -301,12 +301,12 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.listPrincipalAccessBoundaryPolicies`.
     func listPrincipalAccessBoundaryPolicies(
       byItem: ListPrincipalAccessBoundaryPoliciesRequest
-    ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
+    ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.listPrincipalAccessBoundaryPolicies`.
     func listPrincipalAccessBoundaryPolicies(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
+    ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.searchPrincipalAccessBoundaryPolicyBindings`.
     func searchPrincipalAccessBoundaryPolicyBindings(
@@ -316,12 +316,12 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.searchPrincipalAccessBoundaryPolicyBindings`.
     func searchPrincipalAccessBoundaryPolicyBindings(
       byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest
-    ) throws -> any AsyncSequence<PolicyBinding, Swift.Error>
+    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.searchPrincipalAccessBoundaryPolicyBindings`.
     func searchPrincipalAccessBoundaryPolicyBindings(
       name: Swift.String,
-    ) throws -> any AsyncSequence<PolicyBinding, Swift.Error>
+    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(
@@ -366,7 +366,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.listPrincipalAccessBoundaryPolicies`.
     func listPrincipalAccessBoundaryPolicies(
       byItem: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
+    ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.searchPrincipalAccessBoundaryPolicyBindings`.
     func searchPrincipalAccessBoundaryPolicyBindings(
@@ -376,7 +376,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.searchPrincipalAccessBoundaryPolicyBindings`.
     func searchPrincipalAccessBoundaryPolicyBindings(
       byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PolicyBinding, Swift.Error>
+    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
   }
 }
 
@@ -536,13 +536,13 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func listPrincipalAccessBoundaryPolicies(
     byItem: ListPrincipalAccessBoundaryPoliciesRequest
-  ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
-    try self.listPrincipalAccessBoundaryPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
+    self.listPrincipalAccessBoundaryPolicies(byItem: byItem, options: .init())
   }
 
   public func listPrincipalAccessBoundaryPolicies(
     byItem: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
+  ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse
       in
@@ -553,11 +553,11 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func listPrincipalAccessBoundaryPolicies(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
+  ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
     let request = ListPrincipalAccessBoundaryPoliciesRequest().with {
       $0.parent = parent
     }
-    return try self.listPrincipalAccessBoundaryPolicies(byItem: request)
+    return self.listPrincipalAccessBoundaryPolicies(byItem: request)
   }
 
   public func searchPrincipalAccessBoundaryPolicyBindings(
@@ -574,13 +574,13 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func searchPrincipalAccessBoundaryPolicyBindings(
     byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest
-  ) throws -> any AsyncSequence<PolicyBinding, Swift.Error> {
-    try self.searchPrincipalAccessBoundaryPolicyBindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
+    self.searchPrincipalAccessBoundaryPolicyBindings(byItem: byItem, options: .init())
   }
 
   public func searchPrincipalAccessBoundaryPolicyBindings(
     byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse in
@@ -591,11 +591,11 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func searchPrincipalAccessBoundaryPolicyBindings(
     name: Swift.String,
-  ) throws -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let request = SearchPrincipalAccessBoundaryPolicyBindingsRequest().with {
       $0.name = name
     }
-    return try self.searchPrincipalAccessBoundaryPolicyBindings(byItem: request)
+    return self.searchPrincipalAccessBoundaryPolicyBindings(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

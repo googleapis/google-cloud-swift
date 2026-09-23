@@ -23,7 +23,7 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudVPCAccessV1.VpcAccessServiceClient()
-  let items = try client.listConnectors(
+  let items = client.listConnectors(
     byItem: ListConnectorsRequest()
       .with {
         $0.parent = "\(parent)"

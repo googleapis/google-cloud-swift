@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, vodSessionId: String
 ) async throws {
-  let items = try client.listVodStitchDetails(
+  let items = client.listVodStitchDetails(
     byItem: ListVodStitchDetailsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/vodSessions/\(vodSessionId)"

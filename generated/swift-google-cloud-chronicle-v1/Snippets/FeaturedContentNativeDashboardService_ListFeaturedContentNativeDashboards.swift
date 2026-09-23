@@ -24,7 +24,7 @@ func sample(
   client: FeaturedContentNativeDashboardServiceClient, projectId: String, locationId: String,
   instanceId: String
 ) async throws {
-  let items = try client.listFeaturedContentNativeDashboards(
+  let items = client.listFeaturedContentNativeDashboards(
     byItem: ListFeaturedContentNativeDashboardsRequest()
       .with {
         $0.parent =

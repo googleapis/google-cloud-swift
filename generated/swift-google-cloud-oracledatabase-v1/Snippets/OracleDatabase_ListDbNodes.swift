@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, cloudVmClusterId: String
 ) async throws {
-  let items = try client.listDbNodes(
+  let items = client.listDbNodes(
     byItem: ListDbNodesRequest()
       .with {
         $0.parent =

@@ -245,7 +245,7 @@
     /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
     public func listTargetSites(
       byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
         in
@@ -514,7 +514,7 @@
     /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
     public func fetchDomainVerificationStatus(
       byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse in
@@ -543,7 +543,7 @@
     /// @Snippet(path: "SiteSearchEngineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -656,12 +656,12 @@
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
       func listTargetSites(
         byItem: ListTargetSitesRequest
-      ) throws -> any AsyncSequence<TargetSite, Swift.Error>
+      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
       func listTargetSites(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<TargetSite, Swift.Error>
+      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
       func createSitemap(request: CreateSitemapRequest) async throws -> GoogleLongRunning.Operation
@@ -735,7 +735,7 @@
       /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
       func fetchDomainVerificationStatus(
         byItem: FetchDomainVerificationStatusRequest
-      ) throws -> any AsyncSequence<TargetSite, Swift.Error>
+      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -744,13 +744,13 @@
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -818,7 +818,7 @@
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
       func listTargetSites(
         byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetSite, Swift.Error>
+      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
       func createSitemap(
@@ -893,7 +893,7 @@
       /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
       func fetchDomainVerificationStatus(
         byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetSite, Swift.Error>
+      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(
@@ -903,7 +903,7 @@
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.cancelOperation`.
       func cancelOperation(
@@ -1112,13 +1112,13 @@
 
     public func listTargetSites(
       byItem: ListTargetSitesRequest
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
-      try self.listTargetSites(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
+      self.listTargetSites(byItem: byItem, options: .init())
     }
 
     public func listTargetSites(
       byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
         in
@@ -1129,11 +1129,11 @@
 
     public func listTargetSites(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let request = ListTargetSitesRequest().with {
         $0.parent = parent
       }
-      return try self.listTargetSites(byItem: request)
+      return self.listTargetSites(byItem: request)
     }
 
     public func createSitemap(request: CreateSitemapRequest) async throws
@@ -1363,13 +1363,13 @@
 
     public func fetchDomainVerificationStatus(
       byItem: FetchDomainVerificationStatusRequest
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
-      try self.fetchDomainVerificationStatus(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
+      self.fetchDomainVerificationStatus(byItem: byItem, options: .init())
     }
 
     public func fetchDomainVerificationStatus(
       byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetSite, Swift.Error> {
+    ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse in
@@ -1392,13 +1392,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1409,12 +1409,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

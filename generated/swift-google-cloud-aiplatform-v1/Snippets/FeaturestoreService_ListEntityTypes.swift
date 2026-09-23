@@ -27,7 +27,7 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let items = try client.listEntityTypes(
+    let items = client.listEntityTypes(
       byItem: ListEntityTypesRequest()
         .with {
           $0.parent =

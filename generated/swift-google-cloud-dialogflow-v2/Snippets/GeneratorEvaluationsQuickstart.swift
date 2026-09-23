@@ -24,7 +24,7 @@
 
   func sample(projectId: String, locationId: String, generatorId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.GeneratorEvaluationsClient()
-    let items = try client.listGeneratorEvaluations(
+    let items = client.listGeneratorEvaluations(
       byItem: ListGeneratorEvaluationsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/generators/\(generatorId)"

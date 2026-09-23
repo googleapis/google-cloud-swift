@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: CloudChannelServiceClient, accountId: String, channelPartnerLinkId: String)
   async throws
 {
-  let items = try client.listChannelPartnerRepricingConfigs(
+  let items = client.listChannelPartnerRepricingConfigs(
     byItem: ListChannelPartnerRepricingConfigsRequest()
       .with {
         $0.parent = "accounts/\(accountId)/channelPartnerLinks/\(channelPartnerLinkId)"

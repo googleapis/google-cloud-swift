@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ServiceManagerClient) async throws {
-  let items = try client.listServiceConfigs(
+  let items = client.listServiceConfigs(
     byItem: ListServiceConfigsRequest()
       /* set fields using .with { $0... } */
   )

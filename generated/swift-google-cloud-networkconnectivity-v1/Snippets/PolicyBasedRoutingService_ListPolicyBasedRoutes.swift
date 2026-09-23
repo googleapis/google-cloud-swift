@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: PolicyBasedRoutingServiceClient, parent: String) async throws {
-  let items = try client.listPolicyBasedRoutes(
+  let items = client.listPolicyBasedRoutes(
     byItem: ListPolicyBasedRoutesRequest()
       .with {
         $0.parent = "\(parent)"

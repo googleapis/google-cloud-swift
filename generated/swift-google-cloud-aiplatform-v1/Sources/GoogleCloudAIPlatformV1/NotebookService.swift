@@ -105,7 +105,7 @@
     /// @Snippet(path: "NotebookService_ListNotebookRuntimeTemplates")
     public func listNotebookRuntimeTemplates(
       byItem: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookRuntimeTemplatesResponse in
@@ -221,7 +221,7 @@
     /// @Snippet(path: "NotebookService_ListNotebookRuntimes")
     public func listNotebookRuntimes(
       byItem: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimesResponse
         in
@@ -434,7 +434,7 @@
     /// @Snippet(path: "NotebookService_ListNotebookExecutionJobs")
     public func listNotebookExecutionJobs(
       byItem: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
+    ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookExecutionJobsResponse in
@@ -494,7 +494,7 @@
     /// @Snippet(path: "NotebookService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -569,7 +569,7 @@
     /// @Snippet(path: "NotebookService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -662,12 +662,12 @@
       /// See `NotebookServiceClient.listNotebookRuntimeTemplates`.
       func listNotebookRuntimeTemplates(
         byItem: ListNotebookRuntimeTemplatesRequest
-      ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
 
       /// See `NotebookServiceClient.listNotebookRuntimeTemplates`.
       func listNotebookRuntimeTemplates(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookRuntimeTemplate`.
       func deleteNotebookRuntimeTemplate(request: DeleteNotebookRuntimeTemplateRequest) async throws
@@ -724,12 +724,12 @@
       /// See `NotebookServiceClient.listNotebookRuntimes`.
       func listNotebookRuntimes(
         byItem: ListNotebookRuntimesRequest
-      ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntime, Swift.Error>
 
       /// See `NotebookServiceClient.listNotebookRuntimes`.
       func listNotebookRuntimes(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntime, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookRuntime`.
       func deleteNotebookRuntime(request: DeleteNotebookRuntimeRequest) async throws
@@ -814,12 +814,12 @@
       /// See `NotebookServiceClient.listNotebookExecutionJobs`.
       func listNotebookExecutionJobs(
         byItem: ListNotebookExecutionJobsRequest
-      ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
+      ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
 
       /// See `NotebookServiceClient.listNotebookExecutionJobs`.
       func listNotebookExecutionJobs(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
+      ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookExecutionJob`.
       func deleteNotebookExecutionJob(request: DeleteNotebookExecutionJobRequest) async throws
@@ -841,7 +841,7 @@
       /// See `NotebookServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `NotebookServiceClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -864,13 +864,13 @@
       /// See `NotebookServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `NotebookServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `NotebookServiceClient.deleteOperation`.
       func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -915,7 +915,7 @@
       /// See `NotebookServiceClient.listNotebookRuntimeTemplates`.
       func listNotebookRuntimeTemplates(
         byItem: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookRuntimeTemplate`.
       func deleteNotebookRuntimeTemplate(
@@ -955,7 +955,7 @@
       /// See `NotebookServiceClient.listNotebookRuntimes`.
       func listNotebookRuntimes(
         byItem: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error>
+      ) -> any AsyncSequence<NotebookRuntime, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookRuntime`.
       func deleteNotebookRuntime(
@@ -1020,7 +1020,7 @@
       /// See `NotebookServiceClient.listNotebookExecutionJobs`.
       func listNotebookExecutionJobs(
         byItem: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
+      ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error>
 
       /// See `NotebookServiceClient.deleteNotebookExecutionJob`.
       func deleteNotebookExecutionJob(
@@ -1040,7 +1040,7 @@
       /// See `NotebookServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `NotebookServiceClient.getLocation`.
       func getLocation(
@@ -1070,7 +1070,7 @@
       /// See `NotebookServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `NotebookServiceClient.deleteOperation`.
       func deleteOperation(
@@ -1168,13 +1168,13 @@
 
     public func listNotebookRuntimeTemplates(
       byItem: ListNotebookRuntimeTemplatesRequest
-    ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
-      try self.listNotebookRuntimeTemplates(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
+      self.listNotebookRuntimeTemplates(byItem: byItem, options: .init())
     }
 
     public func listNotebookRuntimeTemplates(
       byItem: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookRuntimeTemplatesResponse in
@@ -1185,11 +1185,11 @@
 
     public func listNotebookRuntimeTemplates(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
       let request = ListNotebookRuntimeTemplatesRequest().with {
         $0.parent = parent
       }
-      return try self.listNotebookRuntimeTemplates(byItem: request)
+      return self.listNotebookRuntimeTemplates(byItem: request)
     }
 
     public func deleteNotebookRuntimeTemplate(request: DeleteNotebookRuntimeTemplateRequest)
@@ -1330,13 +1330,13 @@
 
     public func listNotebookRuntimes(
       byItem: ListNotebookRuntimesRequest
-    ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error> {
-      try self.listNotebookRuntimes(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
+      self.listNotebookRuntimes(byItem: byItem, options: .init())
     }
 
     public func listNotebookRuntimes(
       byItem: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimesResponse
         in
@@ -1347,11 +1347,11 @@
 
     public func listNotebookRuntimes(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<NotebookRuntime, Swift.Error> {
+    ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
       let request = ListNotebookRuntimesRequest().with {
         $0.parent = parent
       }
-      return try self.listNotebookRuntimes(byItem: request)
+      return self.listNotebookRuntimes(byItem: request)
     }
 
     public func deleteNotebookRuntime(request: DeleteNotebookRuntimeRequest) async throws
@@ -1582,13 +1582,13 @@
 
     public func listNotebookExecutionJobs(
       byItem: ListNotebookExecutionJobsRequest
-    ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
-      try self.listNotebookExecutionJobs(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
+      self.listNotebookExecutionJobs(byItem: byItem, options: .init())
     }
 
     public func listNotebookExecutionJobs(
       byItem: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
+    ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookExecutionJobsResponse in
@@ -1599,11 +1599,11 @@
 
     public func listNotebookExecutionJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
+    ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
       let request = ListNotebookExecutionJobsRequest().with {
         $0.parent = parent
       }
-      return try self.listNotebookExecutionJobs(byItem: request)
+      return self.listNotebookExecutionJobs(byItem: request)
     }
 
     public func deleteNotebookExecutionJob(request: DeleteNotebookExecutionJobRequest) async throws
@@ -1657,13 +1657,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1733,13 +1733,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -1750,12 +1750,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

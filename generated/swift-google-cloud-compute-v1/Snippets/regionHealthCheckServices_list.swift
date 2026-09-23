@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionHealthCheckServicesClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionHealthCheckServicesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

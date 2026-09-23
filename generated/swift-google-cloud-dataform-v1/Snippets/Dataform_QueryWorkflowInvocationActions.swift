@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let items = try client.queryWorkflowInvocationActions(
+  let items = client.queryWorkflowInvocationActions(
     byItem: QueryWorkflowInvocationActionsRequest()
       /* set fields using .with { $0... } */
   )

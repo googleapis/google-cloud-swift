@@ -27,7 +27,7 @@ func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String,
   cryptoKeyId: String
 ) async throws {
-  let items = try client.listCryptoKeyVersions(
+  let items = client.listCryptoKeyVersions(
     byItem: ListCryptoKeyVersionsRequest()
       .with {
         $0.parent =

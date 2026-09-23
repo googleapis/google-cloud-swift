@@ -58,7 +58,7 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// @Snippet(path: "CloudTasks_ListQueues")
   public func listQueues(
     byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Queue, Swift.Error> {
+  ) -> any AsyncSequence<Queue, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListQueuesResponse in
       var request = byItem
       request.pageToken = token
@@ -295,7 +295,7 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// @Snippet(path: "CloudTasks_ListTasks")
   public func listTasks(
     byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Task, Swift.Error> {
+  ) -> any AsyncSequence<Task, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListTasksResponse in
       var request = byItem
       request.pageToken = token
@@ -393,7 +393,7 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// @Snippet(path: "CloudTasks_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -427,12 +427,12 @@ extension Clients {
     /// See `CloudTasksClient.listQueues`.
     func listQueues(
       byItem: ListQueuesRequest
-    ) throws -> any AsyncSequence<Queue, Swift.Error>
+    ) -> any AsyncSequence<Queue, Swift.Error>
 
     /// See `CloudTasksClient.listQueues`.
     func listQueues(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Queue, Swift.Error>
+    ) -> any AsyncSequence<Queue, Swift.Error>
 
     /// See `CloudTasksClient.getQueue`.
     func getQueue(request: GetQueueRequest) async throws -> GoogleCloudTasksV2.Queue
@@ -525,12 +525,12 @@ extension Clients {
     /// See `CloudTasksClient.listTasks`.
     func listTasks(
       byItem: ListTasksRequest
-    ) throws -> any AsyncSequence<Task, Swift.Error>
+    ) -> any AsyncSequence<Task, Swift.Error>
 
     /// See `CloudTasksClient.listTasks`.
     func listTasks(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Task, Swift.Error>
+    ) -> any AsyncSequence<Task, Swift.Error>
 
     /// See `CloudTasksClient.getTask`.
     func getTask(request: GetTaskRequest) async throws -> GoogleCloudTasksV2.Task
@@ -572,7 +572,7 @@ extension Clients {
     /// See `CloudTasksClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudTasksClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -586,7 +586,7 @@ extension Clients {
     /// See `CloudTasksClient.listQueues`.
     func listQueues(
       byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Queue, Swift.Error>
+    ) -> any AsyncSequence<Queue, Swift.Error>
 
     /// See `CloudTasksClient.getQueue`.
     func getQueue(
@@ -646,7 +646,7 @@ extension Clients {
     /// See `CloudTasksClient.listTasks`.
     func listTasks(
       byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Task, Swift.Error>
+    ) -> any AsyncSequence<Task, Swift.Error>
 
     /// See `CloudTasksClient.getTask`.
     func getTask(
@@ -676,7 +676,7 @@ extension Clients {
     /// See `CloudTasksClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudTasksClient.getLocation`.
     func getLocation(
@@ -701,13 +701,13 @@ extension Clients.CloudTasksProtocol {
 
   public func listQueues(
     byItem: ListQueuesRequest
-  ) throws -> any AsyncSequence<Queue, Swift.Error> {
-    try self.listQueues(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Queue, Swift.Error> {
+    self.listQueues(byItem: byItem, options: .init())
   }
 
   public func listQueues(
     byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Queue, Swift.Error> {
+  ) -> any AsyncSequence<Queue, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListQueuesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -716,11 +716,11 @@ extension Clients.CloudTasksProtocol {
 
   public func listQueues(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Queue, Swift.Error> {
+  ) -> any AsyncSequence<Queue, Swift.Error> {
     let request = ListQueuesRequest().with {
       $0.parent = parent
     }
-    return try self.listQueues(byItem: request)
+    return self.listQueues(byItem: request)
   }
 
   public func getQueue(request: GetQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
@@ -941,13 +941,13 @@ extension Clients.CloudTasksProtocol {
 
   public func listTasks(
     byItem: ListTasksRequest
-  ) throws -> any AsyncSequence<Task, Swift.Error> {
-    try self.listTasks(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Task, Swift.Error> {
+    self.listTasks(byItem: byItem, options: .init())
   }
 
   public func listTasks(
     byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Task, Swift.Error> {
+  ) -> any AsyncSequence<Task, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListTasksResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -956,11 +956,11 @@ extension Clients.CloudTasksProtocol {
 
   public func listTasks(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Task, Swift.Error> {
+  ) -> any AsyncSequence<Task, Swift.Error> {
     let request = ListTasksRequest().with {
       $0.parent = parent
     }
-    return try self.listTasks(byItem: request)
+    return self.listTasks(byItem: request)
   }
 
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudTasksV2.Task {
@@ -1055,13 +1055,13 @@ extension Clients.CloudTasksProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

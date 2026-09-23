@@ -59,7 +59,7 @@ public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol,
   /// @Snippet(path: "AlertPolicyService_ListAlertPolicies")
   public func listAlertPolicies(
     byItem: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AlertPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AlertPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse in
       var request = byItem
@@ -135,12 +135,12 @@ extension Clients {
     /// See `AlertPolicyServiceClient.listAlertPolicies`.
     func listAlertPolicies(
       byItem: ListAlertPoliciesRequest
-    ) throws -> any AsyncSequence<AlertPolicy, Swift.Error>
+    ) -> any AsyncSequence<AlertPolicy, Swift.Error>
 
     /// See `AlertPolicyServiceClient.listAlertPolicies`.
     func listAlertPolicies(
       name: Swift.String,
-    ) throws -> any AsyncSequence<AlertPolicy, Swift.Error>
+    ) -> any AsyncSequence<AlertPolicy, Swift.Error>
 
     /// See `AlertPolicyServiceClient.getAlertPolicy`.
     func getAlertPolicy(request: GetAlertPolicyRequest) async throws
@@ -187,7 +187,7 @@ extension Clients {
     /// See `AlertPolicyServiceClient.listAlertPolicies`.
     func listAlertPolicies(
       byItem: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AlertPolicy, Swift.Error>
+    ) -> any AsyncSequence<AlertPolicy, Swift.Error>
 
     /// See `AlertPolicyServiceClient.getAlertPolicy`.
     func getAlertPolicy(
@@ -227,13 +227,13 @@ extension Clients.AlertPolicyServiceProtocol {
 
   public func listAlertPolicies(
     byItem: ListAlertPoliciesRequest
-  ) throws -> any AsyncSequence<AlertPolicy, Swift.Error> {
-    try self.listAlertPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AlertPolicy, Swift.Error> {
+    self.listAlertPolicies(byItem: byItem, options: .init())
   }
 
   public func listAlertPolicies(
     byItem: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AlertPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AlertPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -243,11 +243,11 @@ extension Clients.AlertPolicyServiceProtocol {
 
   public func listAlertPolicies(
     name: Swift.String,
-  ) throws -> any AsyncSequence<AlertPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AlertPolicy, Swift.Error> {
     let request = ListAlertPoliciesRequest().with {
       $0.name = name
     }
-    return try self.listAlertPolicies(byItem: request)
+    return self.listAlertPolicies(byItem: request)
   }
 
   public func getAlertPolicy(request: GetAlertPolicyRequest) async throws

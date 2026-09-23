@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let items = try client.listReferrers(
+    let items = client.listReferrers(
       byItem: InstancesClient.ListReferrersRequest()
         /* set fields using .with { $0... } */
     )

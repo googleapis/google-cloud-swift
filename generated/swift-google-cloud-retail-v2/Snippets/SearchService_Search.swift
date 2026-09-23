@@ -24,7 +24,7 @@ import GoogleLongRunning
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: SearchServiceClient) async throws {
-  let items = try client.search(
+  let items = client.search(
     byItem: SearchRequest()
       /* set fields using .with { $0... } */
   )

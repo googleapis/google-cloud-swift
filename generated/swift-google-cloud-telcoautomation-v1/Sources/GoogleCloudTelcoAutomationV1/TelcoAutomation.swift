@@ -61,7 +61,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListOrchestrationClusters")
   public func listOrchestrationClusters(
     byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse in
@@ -165,7 +165,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListEdgeSlms")
   public func listEdgeSlms(
     byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
       var request = byItem
@@ -303,7 +303,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListBlueprints")
   public func listBlueprints(
     byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
       var request = byItem
@@ -354,7 +354,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListBlueprintRevisions")
   public func listBlueprintRevisions(
     byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse in
@@ -379,7 +379,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_SearchBlueprintRevisions")
   public func searchBlueprintRevisions(
     byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse in
@@ -404,7 +404,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_SearchDeploymentRevisions")
   public func searchDeploymentRevisions(
     byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse in
@@ -442,7 +442,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListPublicBlueprints")
   public func listPublicBlueprints(
     byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse in
@@ -513,7 +513,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
       var request = byItem
@@ -537,7 +537,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListDeploymentRevisions")
   public func listDeploymentRevisions(
     byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse in
@@ -610,7 +610,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListHydratedDeployments")
   public func listHydratedDeployments(
     byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse in
@@ -653,7 +653,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -690,7 +690,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -748,12 +748,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listOrchestrationClusters`.
     func listOrchestrationClusters(
       byItem: ListOrchestrationClustersRequest
-    ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error>
+    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
 
     /// See `TelcoAutomationClient.listOrchestrationClusters`.
     func listOrchestrationClusters(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error>
+    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
 
     /// See `TelcoAutomationClient.getOrchestrationCluster`.
     func getOrchestrationCluster(request: GetOrchestrationClusterRequest) async throws
@@ -799,12 +799,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listEdgeSlms`.
     func listEdgeSlms(
       byItem: ListEdgeSlmsRequest
-    ) throws -> any AsyncSequence<EdgeSlm, Swift.Error>
+    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
 
     /// See `TelcoAutomationClient.listEdgeSlms`.
     func listEdgeSlms(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EdgeSlm, Swift.Error>
+    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
 
     /// See `TelcoAutomationClient.getEdgeSlm`.
     func getEdgeSlm(request: GetEdgeSlmRequest) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm
@@ -885,12 +885,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listBlueprints`.
     func listBlueprints(
       byItem: ListBlueprintsRequest
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.listBlueprints`.
     func listBlueprints(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.approveBlueprint`.
     func approveBlueprint(request: ApproveBlueprintRequest) async throws
@@ -926,12 +926,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listBlueprintRevisions`.
     func listBlueprintRevisions(
       byItem: ListBlueprintRevisionsRequest
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.listBlueprintRevisions`.
     func listBlueprintRevisions(
       name: Swift.String,
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(request: SearchBlueprintRevisionsRequest) async throws
@@ -940,13 +940,13 @@ extension Clients {
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(
       byItem: SearchBlueprintRevisionsRequest
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(
       parent: Swift.String,
       query: Swift.String,
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(request: SearchDeploymentRevisionsRequest) async throws
@@ -955,13 +955,13 @@ extension Clients {
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(
       byItem: SearchDeploymentRevisionsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(
       parent: Swift.String,
       query: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardBlueprintChanges`.
     func discardBlueprintChanges(request: DiscardBlueprintChangesRequest) async throws
@@ -979,12 +979,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listPublicBlueprints`.
     func listPublicBlueprints(
       byItem: ListPublicBlueprintsRequest
-    ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error>
+    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.listPublicBlueprints`.
     func listPublicBlueprints(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error>
+    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.getPublicBlueprint`.
     func getPublicBlueprint(request: GetPublicBlueprintRequest) async throws
@@ -1040,12 +1040,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.listDeployments`.
     func listDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(request: ListDeploymentRevisionsRequest) async throws
@@ -1054,12 +1054,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(
       byItem: ListDeploymentRevisionsRequest
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(
       name: Swift.String,
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardDeploymentChanges`.
     func discardDeploymentChanges(request: DiscardDeploymentChangesRequest) async throws
@@ -1114,12 +1114,12 @@ extension Clients {
     /// See `TelcoAutomationClient.listHydratedDeployments`.
     func listHydratedDeployments(
       byItem: ListHydratedDeploymentsRequest
-    ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error>
+    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
 
     /// See `TelcoAutomationClient.listHydratedDeployments`.
     func listHydratedDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error>
+    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
 
     /// See `TelcoAutomationClient.updateHydratedDeployment`.
     func updateHydratedDeployment(request: UpdateHydratedDeploymentRequest) async throws
@@ -1147,7 +1147,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `TelcoAutomationClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1160,13 +1160,13 @@ extension Clients {
     /// See `TelcoAutomationClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TelcoAutomationClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TelcoAutomationClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1192,7 +1192,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listOrchestrationClusters`.
     func listOrchestrationClusters(
       byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error>
+    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
 
     /// See `TelcoAutomationClient.getOrchestrationCluster`.
     func getOrchestrationCluster(
@@ -1227,7 +1227,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listEdgeSlms`.
     func listEdgeSlms(
       byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EdgeSlm, Swift.Error>
+    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
 
     /// See `TelcoAutomationClient.getEdgeSlm`.
     func getEdgeSlm(
@@ -1282,7 +1282,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listBlueprints`.
     func listBlueprints(
       byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.approveBlueprint`.
     func approveBlueprint(
@@ -1307,7 +1307,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listBlueprintRevisions`.
     func listBlueprintRevisions(
       byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(
@@ -1317,7 +1317,7 @@ extension Clients {
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(
       byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Blueprint, Swift.Error>
+    ) -> any AsyncSequence<Blueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(
@@ -1327,7 +1327,7 @@ extension Clients {
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(
       byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardBlueprintChanges`.
     func discardBlueprintChanges(
@@ -1342,7 +1342,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listPublicBlueprints`.
     func listPublicBlueprints(
       byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error>
+    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.getPublicBlueprint`.
     func getPublicBlueprint(
@@ -1377,7 +1377,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listDeployments`.
     func listDeployments(
       byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(
@@ -1387,7 +1387,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(
       byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Deployment, Swift.Error>
+    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardDeploymentChanges`.
     func discardDeploymentChanges(
@@ -1422,7 +1422,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listHydratedDeployments`.
     func listHydratedDeployments(
       byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error>
+    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
 
     /// See `TelcoAutomationClient.updateHydratedDeployment`.
     func updateHydratedDeployment(
@@ -1442,7 +1442,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `TelcoAutomationClient.getLocation`.
     func getLocation(
@@ -1457,7 +1457,7 @@ extension Clients {
     /// See `TelcoAutomationClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TelcoAutomationClient.deleteOperation`.
     func deleteOperation(
@@ -1487,13 +1487,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOrchestrationClusters(
     byItem: ListOrchestrationClustersRequest
-  ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
-    try self.listOrchestrationClusters(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+    self.listOrchestrationClusters(byItem: byItem, options: .init())
   }
 
   public func listOrchestrationClusters(
     byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse in
@@ -1504,11 +1504,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOrchestrationClusters(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
     let request = ListOrchestrationClustersRequest().with {
       $0.parent = parent
     }
-    return try self.listOrchestrationClusters(byItem: request)
+    return self.listOrchestrationClusters(byItem: request)
   }
 
   public func getOrchestrationCluster(request: GetOrchestrationClusterRequest) async throws
@@ -1624,13 +1624,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listEdgeSlms(
     byItem: ListEdgeSlmsRequest
-  ) throws -> any AsyncSequence<EdgeSlm, Swift.Error> {
-    try self.listEdgeSlms(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
+    self.listEdgeSlms(byItem: byItem, options: .init())
   }
 
   public func listEdgeSlms(
     byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1640,11 +1640,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listEdgeSlms(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
     let request = ListEdgeSlmsRequest().with {
       $0.parent = parent
     }
-    return try self.listEdgeSlms(byItem: request)
+    return self.listEdgeSlms(byItem: request)
   }
 
   public func getEdgeSlm(request: GetEdgeSlmRequest) async throws
@@ -1848,13 +1848,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprints(
     byItem: ListBlueprintsRequest
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
-    try self.listBlueprints(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+    self.listBlueprints(byItem: byItem, options: .init())
   }
 
   public func listBlueprints(
     byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1864,11 +1864,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprints(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let request = ListBlueprintsRequest().with {
       $0.parent = parent
     }
-    return try self.listBlueprints(byItem: request)
+    return self.listBlueprints(byItem: request)
   }
 
   public func approveBlueprint(request: ApproveBlueprintRequest) async throws
@@ -1948,13 +1948,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintRevisions(
     byItem: ListBlueprintRevisionsRequest
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
-    try self.listBlueprintRevisions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+    self.listBlueprintRevisions(byItem: byItem, options: .init())
   }
 
   public func listBlueprintRevisions(
     byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse in
@@ -1965,11 +1965,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintRevisions(
     name: Swift.String,
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let request = ListBlueprintRevisionsRequest().with {
       $0.name = name
     }
-    return try self.listBlueprintRevisions(byItem: request)
+    return self.listBlueprintRevisions(byItem: request)
   }
 
   public func searchBlueprintRevisions(request: SearchBlueprintRevisionsRequest) async throws
@@ -1986,13 +1986,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func searchBlueprintRevisions(
     byItem: SearchBlueprintRevisionsRequest
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
-    try self.searchBlueprintRevisions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+    self.searchBlueprintRevisions(byItem: byItem, options: .init())
   }
 
   public func searchBlueprintRevisions(
     byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse in
@@ -2004,12 +2004,12 @@ extension Clients.TelcoAutomationProtocol {
   public func searchBlueprintRevisions(
     parent: Swift.String,
     query: Swift.String,
-  ) throws -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let request = SearchBlueprintRevisionsRequest().with {
       $0.parent = parent
       $0.query = query
     }
-    return try self.searchBlueprintRevisions(byItem: request)
+    return self.searchBlueprintRevisions(byItem: request)
   }
 
   public func searchDeploymentRevisions(request: SearchDeploymentRevisionsRequest) async throws
@@ -2026,13 +2026,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func searchDeploymentRevisions(
     byItem: SearchDeploymentRevisionsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.searchDeploymentRevisions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.searchDeploymentRevisions(byItem: byItem, options: .init())
   }
 
   public func searchDeploymentRevisions(
     byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse in
@@ -2044,12 +2044,12 @@ extension Clients.TelcoAutomationProtocol {
   public func searchDeploymentRevisions(
     parent: Swift.String,
     query: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = SearchDeploymentRevisionsRequest().with {
       $0.parent = parent
       $0.query = query
     }
-    return try self.searchDeploymentRevisions(byItem: request)
+    return self.searchDeploymentRevisions(byItem: request)
   }
 
   public func discardBlueprintChanges(request: DiscardBlueprintChangesRequest) async throws
@@ -2087,13 +2087,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listPublicBlueprints(
     byItem: ListPublicBlueprintsRequest
-  ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error> {
-    try self.listPublicBlueprints(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+    self.listPublicBlueprints(byItem: byItem, options: .init())
   }
 
   public func listPublicBlueprints(
     byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse in
@@ -2104,11 +2104,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listPublicBlueprints(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
     let request = ListPublicBlueprintsRequest().with {
       $0.parent = parent
     }
-    return try self.listPublicBlueprints(byItem: request)
+    return self.listPublicBlueprints(byItem: request)
   }
 
   public func getPublicBlueprint(request: GetPublicBlueprintRequest) async throws
@@ -2234,13 +2234,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeployments(
     byItem: ListDeploymentsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.listDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.listDeployments(byItem: byItem, options: .init())
   }
 
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2250,11 +2250,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listDeployments(byItem: request)
+    return self.listDeployments(byItem: request)
   }
 
   public func listDeploymentRevisions(request: ListDeploymentRevisionsRequest) async throws
@@ -2271,13 +2271,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentRevisions(
     byItem: ListDeploymentRevisionsRequest
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
-    try self.listDeploymentRevisions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
+    self.listDeploymentRevisions(byItem: byItem, options: .init())
   }
 
   public func listDeploymentRevisions(
     byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse in
@@ -2288,11 +2288,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentRevisions(
     name: Swift.String,
-  ) throws -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentRevisionsRequest().with {
       $0.name = name
     }
-    return try self.listDeploymentRevisions(byItem: request)
+    return self.listDeploymentRevisions(byItem: request)
   }
 
   public func discardDeploymentChanges(request: DiscardDeploymentChangesRequest) async throws
@@ -2416,13 +2416,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listHydratedDeployments(
     byItem: ListHydratedDeploymentsRequest
-  ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error> {
-    try self.listHydratedDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+    self.listHydratedDeployments(byItem: byItem, options: .init())
   }
 
   public func listHydratedDeployments(
     byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse in
@@ -2433,11 +2433,11 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listHydratedDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
     let request = ListHydratedDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listHydratedDeployments(byItem: request)
+    return self.listHydratedDeployments(byItem: request)
   }
 
   public func updateHydratedDeployment(request: UpdateHydratedDeploymentRequest) async throws
@@ -2498,13 +2498,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2538,13 +2538,13 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2555,12 +2555,12 @@ extension Clients.TelcoAutomationProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

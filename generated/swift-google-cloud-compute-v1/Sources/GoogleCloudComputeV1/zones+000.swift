@@ -60,7 +60,7 @@
     /// @Snippet(path: "zones_list")
     public func list(
       byItem: ZonesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Zone, Swift.Error> {
+    ) -> any AsyncSequence<Zone, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ZoneList in
         var request = byItem
         request.pageToken = token
@@ -92,12 +92,12 @@
       /// See `ZonesClient.list`.
       func list(
         byItem: ZonesClient.ListRequest
-      ) throws -> any AsyncSequence<Zone, Swift.Error>
+      ) -> any AsyncSequence<Zone, Swift.Error>
 
       /// See `ZonesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Zone, Swift.Error>
+      ) -> any AsyncSequence<Zone, Swift.Error>
 
       /// See `ZonesClient.`get``.
       func `get`(
@@ -112,7 +112,7 @@
       /// See `ZonesClient.list`.
       func list(
         byItem: ZonesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Zone, Swift.Error>
+      ) -> any AsyncSequence<Zone, Swift.Error>
     }
   }
 
@@ -152,13 +152,13 @@
 
     public func list(
       byItem: ZonesClient.ListRequest
-    ) throws -> any AsyncSequence<Zone, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Zone, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ZonesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Zone, Swift.Error> {
+    ) -> any AsyncSequence<Zone, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ZoneList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -167,11 +167,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Zone, Swift.Error> {
+    ) -> any AsyncSequence<Zone, Swift.Error> {
       let request = ZonesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
   }
 #else

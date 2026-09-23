@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: TestingClient, sessionId: String) async throws {
-  let items = try client.listTests(
+  let items = client.listTests(
     byItem: ListTestsRequest()
       .with {
         $0.parent = "sessions/\(sessionId)"

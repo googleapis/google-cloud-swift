@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client, parent: String) async throws {
-  let items = try client.listViews(
+  let items = client.listViews(
     byItem: ListViewsRequest()
       .with {
         $0.parent = "\(parent)"

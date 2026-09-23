@@ -74,7 +74,7 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   /// @Snippet(path: "ServiceMonitoringService_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse in
       var request = byItem
@@ -134,7 +134,7 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   /// @Snippet(path: "ServiceMonitoringService_ListServiceLevelObjectives")
   public func listServiceLevelObjectives(
     byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse in
@@ -196,12 +196,12 @@ extension Clients {
     /// See `ServiceMonitoringServiceClient.listServices`.
     func listServices(
       byItem: ListServicesRequest
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.listServices`.
     func listServices(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateService`.
     func updateService(request: UpdateServiceRequest) async throws
@@ -246,12 +246,12 @@ extension Clients {
     /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
     func listServiceLevelObjectives(
       byItem: ListServiceLevelObjectivesRequest
-    ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
+    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
     func listServiceLevelObjectives(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
+    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateServiceLevelObjective`.
     func updateServiceLevelObjective(request: UpdateServiceLevelObjectiveRequest) async throws
@@ -288,7 +288,7 @@ extension Clients {
     /// See `ServiceMonitoringServiceClient.listServices`.
     func listServices(
       byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateService`.
     func updateService(
@@ -318,7 +318,7 @@ extension Clients {
     /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
     func listServiceLevelObjectives(
       byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
+    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateServiceLevelObjective`.
     func updateServiceLevelObjective(
@@ -391,13 +391,13 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServices(
     byItem: ListServicesRequest
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
-    try self.listServices(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Service, Swift.Error> {
+    self.listServices(byItem: byItem, options: .init())
   }
 
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -407,11 +407,11 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServices(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
-    return try self.listServices(byItem: request)
+    return self.listServices(byItem: request)
   }
 
   public func updateService(request: UpdateServiceRequest) async throws
@@ -512,13 +512,13 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServiceLevelObjectives(
     byItem: ListServiceLevelObjectivesRequest
-  ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
-    try self.listServiceLevelObjectives(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+    self.listServiceLevelObjectives(byItem: byItem, options: .init())
   }
 
   public func listServiceLevelObjectives(
     byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse in
@@ -529,11 +529,11 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServiceLevelObjectives(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
     let request = ListServiceLevelObjectivesRequest().with {
       $0.parent = parent
     }
-    return try self.listServiceLevelObjectives(byItem: request)
+    return self.listServiceLevelObjectives(byItem: request)
   }
 
   public func updateServiceLevelObjective(request: UpdateServiceLevelObjectiveRequest) async throws

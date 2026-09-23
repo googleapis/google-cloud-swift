@@ -173,7 +173,7 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   @available(*, deprecated)
   public func listAwsClusters(
     byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AwsCluster, Swift.Error> {
+  ) -> any AsyncSequence<AwsCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse in
       var request = byItem
@@ -453,7 +453,7 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   @available(*, deprecated)
   public func listAwsNodePools(
     byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AwsNodePool, Swift.Error> {
+  ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse in
       var request = byItem
@@ -570,7 +570,7 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// @Snippet(path: "AwsClusters_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -677,13 +677,13 @@ extension Clients {
     @available(*, deprecated)
     func listAwsClusters(
       byItem: ListAwsClustersRequest
-    ) throws -> any AsyncSequence<AwsCluster, Swift.Error>
+    ) -> any AsyncSequence<AwsCluster, Swift.Error>
 
     /// See `AwsClustersClient.listAwsClusters`.
     @available(*, deprecated)
     func listAwsClusters(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AwsCluster, Swift.Error>
+    ) -> any AsyncSequence<AwsCluster, Swift.Error>
 
     /// See `AwsClustersClient.deleteAwsCluster`.
     @available(*, deprecated)
@@ -782,13 +782,13 @@ extension Clients {
     @available(*, deprecated)
     func listAwsNodePools(
       byItem: ListAwsNodePoolsRequest
-    ) throws -> any AsyncSequence<AwsNodePool, Swift.Error>
+    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
 
     /// See `AwsClustersClient.listAwsNodePools`.
     @available(*, deprecated)
     func listAwsNodePools(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AwsNodePool, Swift.Error>
+    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
 
     /// See `AwsClustersClient.deleteAwsNodePool`.
     @available(*, deprecated)
@@ -834,13 +834,13 @@ extension Clients {
     /// See `AwsClustersClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AwsClustersClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AwsClustersClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -898,7 +898,7 @@ extension Clients {
     @available(*, deprecated)
     func listAwsClusters(
       byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AwsCluster, Swift.Error>
+    ) -> any AsyncSequence<AwsCluster, Swift.Error>
 
     /// See `AwsClustersClient.deleteAwsCluster`.
     @available(*, deprecated)
@@ -976,7 +976,7 @@ extension Clients {
     @available(*, deprecated)
     func listAwsNodePools(
       byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AwsNodePool, Swift.Error>
+    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
 
     /// See `AwsClustersClient.deleteAwsNodePool`.
     @available(*, deprecated)
@@ -1016,7 +1016,7 @@ extension Clients {
     /// See `AwsClustersClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AwsClustersClient.deleteOperation`.
     func deleteOperation(
@@ -1164,14 +1164,14 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsClusters(
     byItem: ListAwsClustersRequest
-  ) throws -> any AsyncSequence<AwsCluster, Swift.Error> {
-    try self.listAwsClusters(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AwsCluster, Swift.Error> {
+    self.listAwsClusters(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listAwsClusters(
     byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AwsCluster, Swift.Error> {
+  ) -> any AsyncSequence<AwsCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1182,11 +1182,11 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsClusters(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AwsCluster, Swift.Error> {
+  ) -> any AsyncSequence<AwsCluster, Swift.Error> {
     let request = ListAwsClustersRequest().with {
       $0.parent = parent
     }
-    return try self.listAwsClusters(byItem: request)
+    return self.listAwsClusters(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1432,14 +1432,14 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsNodePools(
     byItem: ListAwsNodePoolsRequest
-  ) throws -> any AsyncSequence<AwsNodePool, Swift.Error> {
-    try self.listAwsNodePools(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
+    self.listAwsNodePools(byItem: byItem, options: .init())
   }
 
   @available(*, deprecated)
   public func listAwsNodePools(
     byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AwsNodePool, Swift.Error> {
+  ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1450,11 +1450,11 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsNodePools(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AwsNodePool, Swift.Error> {
+  ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
     let request = ListAwsNodePoolsRequest().with {
       $0.parent = parent
     }
-    return try self.listAwsNodePools(byItem: request)
+    return self.listAwsNodePools(byItem: request)
   }
 
   @available(*, deprecated)
@@ -1565,13 +1565,13 @@ extension Clients.AwsClustersProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1582,12 +1582,12 @@ extension Clients.AwsClustersProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

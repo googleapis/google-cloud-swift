@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let items = try client.listEvents(
+  let items = client.listEvents(
     byItem: ListEventsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"

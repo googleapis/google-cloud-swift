@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, parent: String) async throws {
-  let items = try client.listNodeTypes(
+  let items = client.listNodeTypes(
     byItem: ListNodeTypesRequest()
       .with {
         $0.parent = "\(parent)"

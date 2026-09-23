@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String
 ) async throws {
-  let items = try client.listCertificateMapEntries(
+  let items = client.listCertificateMapEntries(
     byItem: ListCertificateMapEntriesRequest()
       .with {
         $0.parent =

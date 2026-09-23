@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let items = try client.listPreviews(
+  let items = client.listPreviews(
     byItem: ListPreviewsRequest()
       .with {
         $0.parent = "\(parent)"

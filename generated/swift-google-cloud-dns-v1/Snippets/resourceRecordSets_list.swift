@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ResourceRecordSetsClient) async throws {
-  let items = try client.list(
+  let items = client.list(
     byItem: ResourceRecordSetsClient.ListRequest()
       /* set fields using .with { $0... } */
   )

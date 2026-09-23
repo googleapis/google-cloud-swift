@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: EchoClient) async throws {
-  let items = try client.listLocations(
+  let items = client.listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest()
       /* set fields using .with { $0... } */
   )

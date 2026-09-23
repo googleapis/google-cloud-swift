@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, fleetPackageId: String
 ) async throws {
-  let items = try client.listRollouts(
+  let items = client.listRollouts(
     byItem: ListRolloutsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/fleetPackages/\(fleetPackageId)"

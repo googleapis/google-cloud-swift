@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkConnectivityV1.InternalRangeServiceClient()
-  let items = try client.listInternalRanges(
+  let items = client.listInternalRanges(
     byItem: ListInternalRangesRequest()
       .with {
         $0.parent = "\(parent)"

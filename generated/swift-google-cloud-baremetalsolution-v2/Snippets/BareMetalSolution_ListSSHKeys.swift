@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let items = try client.listSshkeys(
+  let items = client.listSshkeys(
     byItem: ListSSHKeysRequest()
       .with {
         $0.parent = "\(parent)"

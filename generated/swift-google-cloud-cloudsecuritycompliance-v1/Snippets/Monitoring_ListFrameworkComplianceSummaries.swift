@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: MonitoringClient, projectId: String, locationId: String) async throws {
-  let items = try client.listFrameworkComplianceSummaries(
+  let items = client.listFrameworkComplianceSummaries(
     byItem: ListFrameworkComplianceSummariesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

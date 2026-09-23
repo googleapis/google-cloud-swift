@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, parent: String) async throws {
-  let items = try client.listPhraseMatchers(
+  let items = client.listPhraseMatchers(
     byItem: ListPhraseMatchersRequest()
       .with {
         $0.parent = "\(parent)"

@@ -363,7 +363,7 @@
     /// @Snippet(path: "regionNetworkFirewallPolicies_list")
     public func list(
       byItem: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = byItem
@@ -699,13 +699,13 @@
       /// See `RegionNetworkFirewallPoliciesClient.list`.
       func list(
         byItem: RegionNetworkFirewallPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `RegionNetworkFirewallPoliciesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `RegionNetworkFirewallPoliciesClient.patch`.
       func patch(request: RegionNetworkFirewallPoliciesClient.PatchRequest) async throws
@@ -816,7 +816,7 @@
       /// See `RegionNetworkFirewallPoliciesClient.list`.
       func list(
         byItem: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `RegionNetworkFirewallPoliciesClient.patch`.
       func patch(
@@ -1226,13 +1226,13 @@
 
     public func list(
       byItem: RegionNetworkFirewallPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -1243,12 +1243,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let request = RegionNetworkFirewallPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: RegionNetworkFirewallPoliciesClient.PatchRequest) async throws

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient, parent: String) async throws {
-  let items = try client.listBackups(
+  let items = client.listBackups(
     byItem: ListBackupsRequest()
       .with {
         $0.parent = "\(parent)"

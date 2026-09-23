@@ -25,7 +25,7 @@
   import GoogleWKT
 
   func sample(client: DeploymentResourcePoolServiceClient, parent: String) async throws {
-    let items = try client.listDeploymentResourcePools(
+    let items = client.listDeploymentResourcePools(
       byItem: ListDeploymentResourcePoolsRequest()
         .with {
           $0.parent = "\(parent)"

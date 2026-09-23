@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient, projectId: String, locationId: String) async throws {
-  let items = try client.listGroups(
+  let items = client.listGroups(
     byItem: ListGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

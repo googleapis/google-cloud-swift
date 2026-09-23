@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient) async throws {
-    let items = try client.listIdentityMappings(
+    let items = client.listIdentityMappings(
       byItem: ListIdentityMappingsRequest()
         /* set fields using .with { $0... } */
     )

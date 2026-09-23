@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDataplexV1.BusinessGlossaryServiceClient()
-  let items = try client.listGlossaries(
+  let items = client.listGlossaries(
     byItem: ListGlossariesRequest()
       .with {
         $0.parent = "\(parent)"

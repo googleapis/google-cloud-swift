@@ -28,7 +28,7 @@
     client: TensorboardServiceClient, projectId: String, locationId: String, tensorboardId: String,
     experimentId: String
   ) async throws {
-    let items = try client.listTensorboardRuns(
+    let items = client.listTensorboardRuns(
       byItem: ListTensorboardRunsRequest()
         .with {
           $0.parent =

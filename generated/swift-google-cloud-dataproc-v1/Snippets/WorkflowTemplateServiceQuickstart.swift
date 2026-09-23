@@ -23,7 +23,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, regionId: String, ) async throws {
   let client = try GoogleCloudDataprocV1.WorkflowTemplateServiceClient()
-  let items = try client.listWorkflowTemplates(
+  let items = client.listWorkflowTemplates(
     byItem: ListWorkflowTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/regions/\(regionId)"

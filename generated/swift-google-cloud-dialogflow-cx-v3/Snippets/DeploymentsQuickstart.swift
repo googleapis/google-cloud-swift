@@ -26,7 +26,7 @@
     async throws
   {
     let client = try GoogleCloudDialogflowCXV3.DeploymentsClient()
-    let items = try client.listDeployments(
+    let items = client.listDeployments(
       byItem: ListDeploymentsRequest()
         .with {
           $0.parent =

@@ -25,7 +25,7 @@
   func sample(client: ConversationDatasetsClient, projectId: String, locationId: String)
     async throws
   {
-    let items = try client.listConversationDatasets(
+    let items = client.listConversationDatasets(
       byItem: ListConversationDatasetsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

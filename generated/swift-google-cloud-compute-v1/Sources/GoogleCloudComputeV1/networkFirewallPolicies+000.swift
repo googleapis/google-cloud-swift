@@ -217,7 +217,7 @@
     /// @Snippet(path: "networkFirewallPolicies_aggregatedList")
     public func aggregatedList(
       byItem: NetworkFirewallPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkFirewallPolicyAggregatedList in
@@ -437,7 +437,7 @@
     /// @Snippet(path: "networkFirewallPolicies_list")
     public func list(
       byItem: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = byItem
@@ -799,12 +799,12 @@
       /// See `NetworkFirewallPoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: NetworkFirewallPoliciesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.cloneRules`.
       func cloneRules(request: NetworkFirewallPoliciesClient.CloneRulesRequest) async throws
@@ -876,12 +876,12 @@
       /// See `NetworkFirewallPoliciesClient.list`.
       func list(
         byItem: NetworkFirewallPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.patch`.
       func patch(request: NetworkFirewallPoliciesClient.PatchRequest) async throws
@@ -958,7 +958,7 @@
       func aggregatedList(
         byItem: NetworkFirewallPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.cloneRules`.
       func cloneRules(
@@ -1011,7 +1011,7 @@
       /// See `NetworkFirewallPoliciesClient.list`.
       func list(
         byItem: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error>
+      ) -> any AsyncSequence<FirewallPolicy, Swift.Error>
 
       /// See `NetworkFirewallPoliciesClient.patch`.
       func patch(
@@ -1207,13 +1207,13 @@
 
     public func aggregatedList(
       byItem: NetworkFirewallPoliciesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: NetworkFirewallPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkFirewallPolicyAggregatedList in
@@ -1224,11 +1224,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> {
       let request = NetworkFirewallPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func cloneRules(request: NetworkFirewallPoliciesClient.CloneRulesRequest) async throws
@@ -1483,13 +1483,13 @@
 
     public func list(
       byItem: NetworkFirewallPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -1499,11 +1499,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
       let request = NetworkFirewallPoliciesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func patch(request: NetworkFirewallPoliciesClient.PatchRequest) async throws

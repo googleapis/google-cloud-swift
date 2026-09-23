@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudGKEBackupV1.BackupForGKEClient()
-  let items = try client.listBackupPlans(
+  let items = client.listBackupPlans(
     byItem: ListBackupPlansRequest()
       .with {
         $0.parent = "\(parent)"

@@ -23,7 +23,7 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDeveloperConnectV1.InsightsConfigServiceClient()
-  let items = try client.listInsightsConfigs(
+  let items = client.listInsightsConfigs(
     byItem: ListInsightsConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

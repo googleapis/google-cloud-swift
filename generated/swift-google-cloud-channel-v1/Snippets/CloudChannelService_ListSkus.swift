@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, productId: String) async throws {
-  let items = try client.listSkus(
+  let items = client.listSkus(
     byItem: ListSkusRequest()
       .with {
         $0.parent = "products/\(productId)"

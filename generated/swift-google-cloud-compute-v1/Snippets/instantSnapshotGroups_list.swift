@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstantSnapshotGroupsClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: InstantSnapshotGroupsClient.ListRequest()
         /* set fields using .with { $0... } */
     )

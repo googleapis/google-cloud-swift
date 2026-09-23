@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudGKEMultiCloudV1.AttachedClustersClient()
-  let items = try client.listAttachedClusters(
+  let items = client.listAttachedClusters(
     byItem: ListAttachedClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

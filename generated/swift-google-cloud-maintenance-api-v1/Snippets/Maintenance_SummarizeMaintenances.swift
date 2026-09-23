@@ -21,7 +21,7 @@ import GoogleCloudMaintenanceApiV1
 import GoogleCloudLocation
 
 func sample(client: MaintenanceClient) async throws {
-  let items = try client.summarizeMaintenances(
+  let items = client.summarizeMaintenances(
     byItem: SummarizeMaintenancesRequest()
       /* set fields using .with { $0... } */
   )

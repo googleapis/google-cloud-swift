@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudBuildV2.RepositoryManagerClient()
-  let items = try client.listConnections(
+  let items = client.listConnections(
     byItem: ListConnectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

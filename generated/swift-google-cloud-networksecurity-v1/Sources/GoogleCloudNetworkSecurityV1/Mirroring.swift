@@ -60,7 +60,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
   public func listMirroringEndpointGroups(
     byItem: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse in
@@ -210,7 +210,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
   public func listMirroringEndpointGroupAssociations(
     byItem: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse in
@@ -366,7 +366,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
   public func listMirroringDeploymentGroups(
     byItem: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse in
@@ -519,7 +519,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListMirroringDeployments")
   public func listMirroringDeployments(
     byItem: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse in
@@ -699,7 +699,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -774,7 +774,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// @Snippet(path: "Mirroring_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -832,12 +832,12 @@ extension Clients {
     /// See `MirroringClient.listMirroringEndpointGroups`.
     func listMirroringEndpointGroups(
       byItem: ListMirroringEndpointGroupsRequest
-    ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
 
     /// See `MirroringClient.listMirroringEndpointGroups`.
     func listMirroringEndpointGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
 
     /// See `MirroringClient.getMirroringEndpointGroup`.
     func getMirroringEndpointGroup(request: GetMirroringEndpointGroupRequest) async throws
@@ -898,12 +898,12 @@ extension Clients {
     /// See `MirroringClient.listMirroringEndpointGroupAssociations`.
     func listMirroringEndpointGroupAssociations(
       byItem: ListMirroringEndpointGroupAssociationsRequest
-    ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
 
     /// See `MirroringClient.listMirroringEndpointGroupAssociations`.
     func listMirroringEndpointGroupAssociations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
 
     /// See `MirroringClient.getMirroringEndpointGroupAssociation`.
     func getMirroringEndpointGroupAssociation(request: GetMirroringEndpointGroupAssociationRequest)
@@ -969,12 +969,12 @@ extension Clients {
     /// See `MirroringClient.listMirroringDeploymentGroups`.
     func listMirroringDeploymentGroups(
       byItem: ListMirroringDeploymentGroupsRequest
-    ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
 
     /// See `MirroringClient.listMirroringDeploymentGroups`.
     func listMirroringDeploymentGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
 
     /// See `MirroringClient.getMirroringDeploymentGroup`.
     func getMirroringDeploymentGroup(request: GetMirroringDeploymentGroupRequest) async throws
@@ -1034,12 +1034,12 @@ extension Clients {
     /// See `MirroringClient.listMirroringDeployments`.
     func listMirroringDeployments(
       byItem: ListMirroringDeploymentsRequest
-    ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeployment, Swift.Error>
 
     /// See `MirroringClient.listMirroringDeployments`.
     func listMirroringDeployments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeployment, Swift.Error>
 
     /// See `MirroringClient.getMirroringDeployment`.
     func getMirroringDeployment(request: GetMirroringDeploymentRequest) async throws
@@ -1099,7 +1099,7 @@ extension Clients {
     /// See `MirroringClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MirroringClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1122,13 +1122,13 @@ extension Clients {
     /// See `MirroringClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MirroringClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MirroringClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1154,7 +1154,7 @@ extension Clients {
     /// See `MirroringClient.listMirroringEndpointGroups`.
     func listMirroringEndpointGroups(
       byItem: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error>
 
     /// See `MirroringClient.getMirroringEndpointGroup`.
     func getMirroringEndpointGroup(
@@ -1199,7 +1199,7 @@ extension Clients {
     /// See `MirroringClient.listMirroringEndpointGroupAssociations`.
     func listMirroringEndpointGroupAssociations(
       byItem: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
+    ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error>
 
     /// See `MirroringClient.getMirroringEndpointGroupAssociation`.
     func getMirroringEndpointGroupAssociation(
@@ -1244,7 +1244,7 @@ extension Clients {
     /// See `MirroringClient.listMirroringDeploymentGroups`.
     func listMirroringDeploymentGroups(
       byItem: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error>
 
     /// See `MirroringClient.getMirroringDeploymentGroup`.
     func getMirroringDeploymentGroup(
@@ -1289,7 +1289,7 @@ extension Clients {
     /// See `MirroringClient.listMirroringDeployments`.
     func listMirroringDeployments(
       byItem: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error>
+    ) -> any AsyncSequence<MirroringDeployment, Swift.Error>
 
     /// See `MirroringClient.getMirroringDeployment`.
     func getMirroringDeployment(
@@ -1334,7 +1334,7 @@ extension Clients {
     /// See `MirroringClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MirroringClient.getLocation`.
     func getLocation(
@@ -1364,7 +1364,7 @@ extension Clients {
     /// See `MirroringClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MirroringClient.deleteOperation`.
     func deleteOperation(
@@ -1394,13 +1394,13 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroups(
     byItem: ListMirroringEndpointGroupsRequest
-  ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
-    try self.listMirroringEndpointGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
+    self.listMirroringEndpointGroups(byItem: byItem, options: .init())
   }
 
   public func listMirroringEndpointGroups(
     byItem: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse in
@@ -1411,11 +1411,11 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroup, Swift.Error> {
     let request = ListMirroringEndpointGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listMirroringEndpointGroups(byItem: request)
+    return self.listMirroringEndpointGroups(byItem: request)
   }
 
   public func getMirroringEndpointGroup(request: GetMirroringEndpointGroupRequest) async throws
@@ -1572,13 +1572,13 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupAssociations(
     byItem: ListMirroringEndpointGroupAssociationsRequest
-  ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
-    try self.listMirroringEndpointGroupAssociations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
+    self.listMirroringEndpointGroupAssociations(byItem: byItem, options: .init())
   }
 
   public func listMirroringEndpointGroupAssociations(
     byItem: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse in
@@ -1589,11 +1589,11 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupAssociations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
+  ) -> any AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> {
     let request = ListMirroringEndpointGroupAssociationsRequest().with {
       $0.parent = parent
     }
-    return try self.listMirroringEndpointGroupAssociations(byItem: request)
+    return self.listMirroringEndpointGroupAssociations(byItem: request)
   }
 
   public func getMirroringEndpointGroupAssociation(
@@ -1755,13 +1755,13 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentGroups(
     byItem: ListMirroringDeploymentGroupsRequest
-  ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
-    try self.listMirroringDeploymentGroups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
+    self.listMirroringDeploymentGroups(byItem: byItem, options: .init())
   }
 
   public func listMirroringDeploymentGroups(
     byItem: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse in
@@ -1772,11 +1772,11 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentGroups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeploymentGroup, Swift.Error> {
     let request = ListMirroringDeploymentGroupsRequest().with {
       $0.parent = parent
     }
-    return try self.listMirroringDeploymentGroups(byItem: request)
+    return self.listMirroringDeploymentGroups(byItem: request)
   }
 
   public func getMirroringDeploymentGroup(request: GetMirroringDeploymentGroupRequest) async throws
@@ -1933,13 +1933,13 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeployments(
     byItem: ListMirroringDeploymentsRequest
-  ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error> {
-    try self.listMirroringDeployments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MirroringDeployment, Swift.Error> {
+    self.listMirroringDeployments(byItem: byItem, options: .init())
   }
 
   public func listMirroringDeployments(
     byItem: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse in
@@ -1950,11 +1950,11 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeployments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MirroringDeployment, Swift.Error> {
+  ) -> any AsyncSequence<MirroringDeployment, Swift.Error> {
     let request = ListMirroringDeploymentsRequest().with {
       $0.parent = parent
     }
-    return try self.listMirroringDeployments(byItem: request)
+    return self.listMirroringDeployments(byItem: request)
   }
 
   public func getMirroringDeployment(request: GetMirroringDeploymentRequest) async throws
@@ -2109,13 +2109,13 @@ extension Clients.MirroringProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2185,13 +2185,13 @@ extension Clients.MirroringProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2202,12 +2202,12 @@ extension Clients.MirroringProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

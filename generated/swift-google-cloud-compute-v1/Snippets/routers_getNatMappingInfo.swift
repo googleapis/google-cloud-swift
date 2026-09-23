@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let items = try client.getNatMappingInfo(
+    let items = client.getNatMappingInfo(
       byItem: RoutersClient.GetNatMappingInfoRequest()
         /* set fields using .with { $0... } */
     )

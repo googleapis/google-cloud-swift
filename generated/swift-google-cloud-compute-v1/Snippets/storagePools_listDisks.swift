@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: StoragePoolsClient) async throws {
-    let items = try client.listDisks(
+    let items = client.listDisks(
       byItem: StoragePoolsClient.ListDisksRequest()
         /* set fields using .with { $0... } */
     )

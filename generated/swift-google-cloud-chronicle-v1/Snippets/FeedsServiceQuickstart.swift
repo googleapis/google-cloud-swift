@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.FeedsServiceClient()
-  let items = try client.listFeeds(
+  let items = client.listFeeds(
     byItem: ListFeedsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

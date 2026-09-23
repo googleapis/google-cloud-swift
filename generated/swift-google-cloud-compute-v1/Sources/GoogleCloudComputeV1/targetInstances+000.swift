@@ -61,7 +61,7 @@
     /// @Snippet(path: "targetInstances_aggregatedList")
     public func aggregatedList(
       byItem: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetInstanceAggregatedList in
         var request = byItem
@@ -196,7 +196,7 @@
     /// @Snippet(path: "targetInstances_list")
     public func list(
       byItem: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetInstance, Swift.Error> {
+    ) -> any AsyncSequence<TargetInstance, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetInstanceList in
         var request = byItem
@@ -292,12 +292,12 @@
       /// See `TargetInstancesClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetInstancesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
 
       /// See `TargetInstancesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
 
       /// See `TargetInstancesClient.delete`.
       func delete(request: TargetInstancesClient.DeleteRequest) async throws
@@ -325,13 +325,13 @@
       /// See `TargetInstancesClient.list`.
       func list(
         byItem: TargetInstancesClient.ListRequest
-      ) throws -> any AsyncSequence<TargetInstance, Swift.Error>
+      ) -> any AsyncSequence<TargetInstance, Swift.Error>
 
       /// See `TargetInstancesClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<TargetInstance, Swift.Error>
+      ) -> any AsyncSequence<TargetInstance, Swift.Error>
 
       /// See `TargetInstancesClient.setSecurityPolicy`.
       func setSecurityPolicy(request: TargetInstancesClient.SetSecurityPolicyRequest) async throws
@@ -357,7 +357,7 @@
       /// See `TargetInstancesClient.aggregatedList`.
       func aggregatedList(
         byItem: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error>
 
       /// See `TargetInstancesClient.delete`.
       func delete(
@@ -382,7 +382,7 @@
       /// See `TargetInstancesClient.list`.
       func list(
         byItem: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TargetInstance, Swift.Error>
+      ) -> any AsyncSequence<TargetInstance, Swift.Error>
 
       /// See `TargetInstancesClient.setSecurityPolicy`.
       func setSecurityPolicy(
@@ -412,13 +412,13 @@
 
     public func aggregatedList(
       byItem: TargetInstancesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetInstanceAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -428,11 +428,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> {
       let request = TargetInstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: TargetInstancesClient.DeleteRequest) async throws
@@ -558,13 +558,13 @@
 
     public func list(
       byItem: TargetInstancesClient.ListRequest
-    ) throws -> any AsyncSequence<TargetInstance, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TargetInstance, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TargetInstance, Swift.Error> {
+    ) -> any AsyncSequence<TargetInstance, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetInstanceList in
         throw GoogleGax.RequestError.unimplemented
@@ -575,12 +575,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<TargetInstance, Swift.Error> {
+    ) -> any AsyncSequence<TargetInstance, Swift.Error> {
       let request = TargetInstancesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func setSecurityPolicy(request: TargetInstancesClient.SetSecurityPolicyRequest)

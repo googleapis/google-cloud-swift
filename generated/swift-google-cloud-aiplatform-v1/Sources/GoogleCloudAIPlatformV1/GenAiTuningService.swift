@@ -78,7 +78,7 @@
     /// @Snippet(path: "GenAiTuningService_ListTuningJobs")
     public func listTuningJobs(
       byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TuningJob, Swift.Error> {
+    ) -> any AsyncSequence<TuningJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse in
         var request = byItem
@@ -162,7 +162,7 @@
     /// @Snippet(path: "GenAiTuningService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -237,7 +237,7 @@
     /// @Snippet(path: "GenAiTuningService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -325,12 +325,12 @@
       /// See `GenAiTuningServiceClient.listTuningJobs`.
       func listTuningJobs(
         byItem: ListTuningJobsRequest
-      ) throws -> any AsyncSequence<TuningJob, Swift.Error>
+      ) -> any AsyncSequence<TuningJob, Swift.Error>
 
       /// See `GenAiTuningServiceClient.listTuningJobs`.
       func listTuningJobs(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<TuningJob, Swift.Error>
+      ) -> any AsyncSequence<TuningJob, Swift.Error>
 
       /// See `GenAiTuningServiceClient.cancelTuningJob`.
       func cancelTuningJob(request: CancelTuningJobRequest) async throws
@@ -361,7 +361,7 @@
       /// See `GenAiTuningServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiTuningServiceClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -384,13 +384,13 @@
       /// See `GenAiTuningServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiTuningServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiTuningServiceClient.deleteOperation`.
       func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -430,7 +430,7 @@
       /// See `GenAiTuningServiceClient.listTuningJobs`.
       func listTuningJobs(
         byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TuningJob, Swift.Error>
+      ) -> any AsyncSequence<TuningJob, Swift.Error>
 
       /// See `GenAiTuningServiceClient.cancelTuningJob`.
       func cancelTuningJob(
@@ -455,7 +455,7 @@
       /// See `GenAiTuningServiceClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiTuningServiceClient.getLocation`.
       func getLocation(
@@ -485,7 +485,7 @@
       /// See `GenAiTuningServiceClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiTuningServiceClient.deleteOperation`.
       func deleteOperation(
@@ -564,13 +564,13 @@
 
     public func listTuningJobs(
       byItem: ListTuningJobsRequest
-    ) throws -> any AsyncSequence<TuningJob, Swift.Error> {
-      try self.listTuningJobs(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TuningJob, Swift.Error> {
+      self.listTuningJobs(byItem: byItem, options: .init())
     }
 
     public func listTuningJobs(
       byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TuningJob, Swift.Error> {
+    ) -> any AsyncSequence<TuningJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -580,11 +580,11 @@
 
     public func listTuningJobs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TuningJob, Swift.Error> {
+    ) -> any AsyncSequence<TuningJob, Swift.Error> {
       let request = ListTuningJobsRequest().with {
         $0.parent = parent
       }
-      return try self.listTuningJobs(byItem: request)
+      return self.listTuningJobs(byItem: request)
     }
 
     public func cancelTuningJob(request: CancelTuningJobRequest) async throws {
@@ -659,13 +659,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -735,13 +735,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -752,12 +752,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

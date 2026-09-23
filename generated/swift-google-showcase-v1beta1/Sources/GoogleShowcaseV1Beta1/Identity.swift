@@ -89,7 +89,7 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// @Snippet(path: "Identity_ListUsers")
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<User, Swift.Error> {
+  ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse in
       var request = byItem
       request.pageToken = token
@@ -116,7 +116,7 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// @Snippet(path: "Identity_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -188,7 +188,7 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// @Snippet(path: "Identity_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -268,7 +268,7 @@ extension Clients {
     /// See `IdentityClient.listUsers`.
     func listUsers(
       byItem: ListUsersRequest
-    ) throws -> any AsyncSequence<User, Swift.Error>
+    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `IdentityClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -277,7 +277,7 @@ extension Clients {
     /// See `IdentityClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `IdentityClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -300,13 +300,13 @@ extension Clients {
     /// See `IdentityClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `IdentityClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `IdentityClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -352,7 +352,7 @@ extension Clients {
     /// See `IdentityClient.listUsers`.
     func listUsers(
       byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<User, Swift.Error>
+    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `IdentityClient.listLocations`.
     func listLocations(
@@ -362,7 +362,7 @@ extension Clients {
     /// See `IdentityClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `IdentityClient.getLocation`.
     func getLocation(
@@ -392,7 +392,7 @@ extension Clients {
     /// See `IdentityClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `IdentityClient.deleteOperation`.
     func deleteOperation(
@@ -480,13 +480,13 @@ extension Clients.IdentityProtocol {
 
   public func listUsers(
     byItem: ListUsersRequest
-  ) throws -> any AsyncSequence<User, Swift.Error> {
-    try self.listUsers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<User, Swift.Error> {
+    self.listUsers(byItem: byItem, options: .init())
   }
 
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<User, Swift.Error> {
+  ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -507,13 +507,13 @@ extension Clients.IdentityProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -583,13 +583,13 @@ extension Clients.IdentityProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -600,12 +600,12 @@ extension Clients.IdentityProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

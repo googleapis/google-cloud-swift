@@ -24,7 +24,7 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: RecaptchaEnterpriseServiceClient) async throws {
-  let items = try client.searchRelatedAccountGroupMemberships(
+  let items = client.searchRelatedAccountGroupMemberships(
     byItem: SearchRelatedAccountGroupMembershipsRequest()
       /* set fields using .with { $0... } */
   )

@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionDiskTypesClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionDiskTypesClient.ListRequest()
         /* set fields using .with { $0... } */
     )

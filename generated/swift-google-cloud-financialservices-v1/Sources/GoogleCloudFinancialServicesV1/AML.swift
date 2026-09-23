@@ -58,7 +58,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
       var request = byItem
@@ -280,7 +280,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListDatasets")
   public func listDatasets(
     byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
       var request = byItem
@@ -416,7 +416,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListModels")
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
       var request = byItem
@@ -594,7 +594,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListEngineConfigs")
   public func listEngineConfigs(
     byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
       in
@@ -785,7 +785,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListEngineVersions")
   public func listEngineVersions(
     byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
@@ -810,7 +810,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListPredictionResults")
   public func listPredictionResults(
     byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
@@ -993,7 +993,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListBacktestResults")
   public func listBacktestResults(
     byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
@@ -1175,7 +1175,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -1212,7 +1212,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -1270,12 +1270,12 @@ extension Clients {
     /// See `AMLClient.listInstances`.
     func listInstances(
       byItem: ListInstancesRequest
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `AMLClient.listInstances`.
     func listInstances(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `AMLClient.getInstance`.
     func getInstance(request: GetInstanceRequest) async throws
@@ -1363,12 +1363,12 @@ extension Clients {
     /// See `AMLClient.listDatasets`.
     func listDatasets(
       byItem: ListDatasetsRequest
-    ) throws -> any AsyncSequence<Dataset, Swift.Error>
+    ) -> any AsyncSequence<Dataset, Swift.Error>
 
     /// See `AMLClient.listDatasets`.
     func listDatasets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Dataset, Swift.Error>
+    ) -> any AsyncSequence<Dataset, Swift.Error>
 
     /// See `AMLClient.getDataset`.
     func getDataset(request: GetDatasetRequest) async throws
@@ -1425,12 +1425,12 @@ extension Clients {
     /// See `AMLClient.listModels`.
     func listModels(
       byItem: ListModelsRequest
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `AMLClient.listModels`.
     func listModels(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `AMLClient.getModel`.
     func getModel(request: GetModelRequest) async throws -> GoogleCloudFinancialServicesV1.Model
@@ -1500,12 +1500,12 @@ extension Clients {
     /// See `AMLClient.listEngineConfigs`.
     func listEngineConfigs(
       byItem: ListEngineConfigsRequest
-    ) throws -> any AsyncSequence<EngineConfig, Swift.Error>
+    ) -> any AsyncSequence<EngineConfig, Swift.Error>
 
     /// See `AMLClient.listEngineConfigs`.
     func listEngineConfigs(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EngineConfig, Swift.Error>
+    ) -> any AsyncSequence<EngineConfig, Swift.Error>
 
     /// See `AMLClient.getEngineConfig`.
     func getEngineConfig(request: GetEngineConfigRequest) async throws
@@ -1588,12 +1588,12 @@ extension Clients {
     /// See `AMLClient.listEngineVersions`.
     func listEngineVersions(
       byItem: ListEngineVersionsRequest
-    ) throws -> any AsyncSequence<EngineVersion, Swift.Error>
+    ) -> any AsyncSequence<EngineVersion, Swift.Error>
 
     /// See `AMLClient.listEngineVersions`.
     func listEngineVersions(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<EngineVersion, Swift.Error>
+    ) -> any AsyncSequence<EngineVersion, Swift.Error>
 
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(request: ListPredictionResultsRequest) async throws
@@ -1602,12 +1602,12 @@ extension Clients {
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(
       byItem: ListPredictionResultsRequest
-    ) throws -> any AsyncSequence<PredictionResult, Swift.Error>
+    ) -> any AsyncSequence<PredictionResult, Swift.Error>
 
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<PredictionResult, Swift.Error>
+    ) -> any AsyncSequence<PredictionResult, Swift.Error>
 
     /// See `AMLClient.getPredictionResult`.
     func getPredictionResult(request: GetPredictionResultRequest) async throws
@@ -1681,12 +1681,12 @@ extension Clients {
     /// See `AMLClient.listBacktestResults`.
     func listBacktestResults(
       byItem: ListBacktestResultsRequest
-    ) throws -> any AsyncSequence<BacktestResult, Swift.Error>
+    ) -> any AsyncSequence<BacktestResult, Swift.Error>
 
     /// See `AMLClient.listBacktestResults`.
     func listBacktestResults(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<BacktestResult, Swift.Error>
+    ) -> any AsyncSequence<BacktestResult, Swift.Error>
 
     /// See `AMLClient.getBacktestResult`.
     func getBacktestResult(request: GetBacktestResultRequest) async throws
@@ -1760,7 +1760,7 @@ extension Clients {
     /// See `AMLClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AMLClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1773,13 +1773,13 @@ extension Clients {
     /// See `AMLClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AMLClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AMLClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -1805,7 +1805,7 @@ extension Clients {
     /// See `AMLClient.listInstances`.
     func listInstances(
       byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Instance, Swift.Error>
+    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `AMLClient.getInstance`.
     func getInstance(
@@ -1870,7 +1870,7 @@ extension Clients {
     /// See `AMLClient.listDatasets`.
     func listDatasets(
       byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Dataset, Swift.Error>
+    ) -> any AsyncSequence<Dataset, Swift.Error>
 
     /// See `AMLClient.getDataset`.
     func getDataset(
@@ -1915,7 +1915,7 @@ extension Clients {
     /// See `AMLClient.listModels`.
     func listModels(
       byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Model, Swift.Error>
+    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `AMLClient.getModel`.
     func getModel(
@@ -1970,7 +1970,7 @@ extension Clients {
     /// See `AMLClient.listEngineConfigs`.
     func listEngineConfigs(
       byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EngineConfig, Swift.Error>
+    ) -> any AsyncSequence<EngineConfig, Swift.Error>
 
     /// See `AMLClient.getEngineConfig`.
     func getEngineConfig(
@@ -2030,7 +2030,7 @@ extension Clients {
     /// See `AMLClient.listEngineVersions`.
     func listEngineVersions(
       byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<EngineVersion, Swift.Error>
+    ) -> any AsyncSequence<EngineVersion, Swift.Error>
 
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(
@@ -2040,7 +2040,7 @@ extension Clients {
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(
       byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<PredictionResult, Swift.Error>
+    ) -> any AsyncSequence<PredictionResult, Swift.Error>
 
     /// See `AMLClient.getPredictionResult`.
     func getPredictionResult(
@@ -2095,7 +2095,7 @@ extension Clients {
     /// See `AMLClient.listBacktestResults`.
     func listBacktestResults(
       byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<BacktestResult, Swift.Error>
+    ) -> any AsyncSequence<BacktestResult, Swift.Error>
 
     /// See `AMLClient.getBacktestResult`.
     func getBacktestResult(
@@ -2150,7 +2150,7 @@ extension Clients {
     /// See `AMLClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AMLClient.getLocation`.
     func getLocation(
@@ -2165,7 +2165,7 @@ extension Clients {
     /// See `AMLClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AMLClient.deleteOperation`.
     func deleteOperation(
@@ -2195,13 +2195,13 @@ extension Clients.AMLProtocol {
 
   public func listInstances(
     byItem: ListInstancesRequest
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
-    try self.listInstances(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Instance, Swift.Error> {
+    self.listInstances(byItem: byItem, options: .init())
   }
 
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2211,11 +2211,11 @@ extension Clients.AMLProtocol {
 
   public func listInstances(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
-    return try self.listInstances(byItem: request)
+    return self.listInstances(byItem: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
@@ -2456,13 +2456,13 @@ extension Clients.AMLProtocol {
 
   public func listDatasets(
     byItem: ListDatasetsRequest
-  ) throws -> any AsyncSequence<Dataset, Swift.Error> {
-    try self.listDatasets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Dataset, Swift.Error> {
+    self.listDatasets(byItem: byItem, options: .init())
   }
 
   public func listDatasets(
     byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2472,11 +2472,11 @@ extension Clients.AMLProtocol {
 
   public func listDatasets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> {
     let request = ListDatasetsRequest().with {
       $0.parent = parent
     }
-    return try self.listDatasets(byItem: request)
+    return self.listDatasets(byItem: request)
   }
 
   public func getDataset(request: GetDatasetRequest) async throws
@@ -2631,13 +2631,13 @@ extension Clients.AMLProtocol {
 
   public func listModels(
     byItem: ListModelsRequest
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
-    try self.listModels(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Model, Swift.Error> {
+    self.listModels(byItem: byItem, options: .init())
   }
 
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -2647,11 +2647,11 @@ extension Clients.AMLProtocol {
 
   public func listModels(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> {
     let request = ListModelsRequest().with {
       $0.parent = parent
     }
-    return try self.listModels(byItem: request)
+    return self.listModels(byItem: request)
   }
 
   public func getModel(request: GetModelRequest) async throws
@@ -2840,13 +2840,13 @@ extension Clients.AMLProtocol {
 
   public func listEngineConfigs(
     byItem: ListEngineConfigsRequest
-  ) throws -> any AsyncSequence<EngineConfig, Swift.Error> {
-    try self.listEngineConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
+    self.listEngineConfigs(byItem: byItem, options: .init())
   }
 
   public func listEngineConfigs(
     byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
       in
@@ -2857,11 +2857,11 @@ extension Clients.AMLProtocol {
 
   public func listEngineConfigs(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let request = ListEngineConfigsRequest().with {
       $0.parent = parent
     }
-    return try self.listEngineConfigs(byItem: request)
+    return self.listEngineConfigs(byItem: request)
   }
 
   public func getEngineConfig(request: GetEngineConfigRequest) async throws
@@ -3078,13 +3078,13 @@ extension Clients.AMLProtocol {
 
   public func listEngineVersions(
     byItem: ListEngineVersionsRequest
-  ) throws -> any AsyncSequence<EngineVersion, Swift.Error> {
-    try self.listEngineVersions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
+    self.listEngineVersions(byItem: byItem, options: .init())
   }
 
   public func listEngineVersions(
     byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
@@ -3095,11 +3095,11 @@ extension Clients.AMLProtocol {
 
   public func listEngineVersions(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let request = ListEngineVersionsRequest().with {
       $0.parent = parent
     }
-    return try self.listEngineVersions(byItem: request)
+    return self.listEngineVersions(byItem: request)
   }
 
   public func listPredictionResults(request: ListPredictionResultsRequest) async throws
@@ -3116,13 +3116,13 @@ extension Clients.AMLProtocol {
 
   public func listPredictionResults(
     byItem: ListPredictionResultsRequest
-  ) throws -> any AsyncSequence<PredictionResult, Swift.Error> {
-    try self.listPredictionResults(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
+    self.listPredictionResults(byItem: byItem, options: .init())
   }
 
   public func listPredictionResults(
     byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
@@ -3133,11 +3133,11 @@ extension Clients.AMLProtocol {
 
   public func listPredictionResults(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let request = ListPredictionResultsRequest().with {
       $0.parent = parent
     }
-    return try self.listPredictionResults(byItem: request)
+    return self.listPredictionResults(byItem: request)
   }
 
   public func getPredictionResult(request: GetPredictionResultRequest) async throws
@@ -3333,13 +3333,13 @@ extension Clients.AMLProtocol {
 
   public func listBacktestResults(
     byItem: ListBacktestResultsRequest
-  ) throws -> any AsyncSequence<BacktestResult, Swift.Error> {
-    try self.listBacktestResults(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
+    self.listBacktestResults(byItem: byItem, options: .init())
   }
 
   public func listBacktestResults(
     byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
@@ -3350,11 +3350,11 @@ extension Clients.AMLProtocol {
 
   public func listBacktestResults(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let request = ListBacktestResultsRequest().with {
       $0.parent = parent
     }
-    return try self.listBacktestResults(byItem: request)
+    return self.listBacktestResults(byItem: request)
   }
 
   public func getBacktestResult(request: GetBacktestResultRequest) async throws
@@ -3550,13 +3550,13 @@ extension Clients.AMLProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3590,13 +3590,13 @@ extension Clients.AMLProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -3607,12 +3607,12 @@ extension Clients.AMLProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

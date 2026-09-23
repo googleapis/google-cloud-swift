@@ -165,7 +165,7 @@
     /// @Snippet(path: "zoneVmExtensionPolicies_list")
     public func list(
       byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList in
         var request = byItem
@@ -267,13 +267,13 @@
       /// See `ZoneVmExtensionPoliciesClient.list`.
       func list(
         byItem: ZoneVmExtensionPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
 
       /// See `ZoneVmExtensionPoliciesClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
-      ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
 
       /// See `ZoneVmExtensionPoliciesClient.update`.
       func update(request: ZoneVmExtensionPoliciesClient.UpdateRequest) async throws
@@ -302,7 +302,7 @@
       /// See `ZoneVmExtensionPoliciesClient.list`.
       func list(
         byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
 
       /// See `ZoneVmExtensionPoliciesClient.update`.
       func update(
@@ -436,13 +436,13 @@
 
     public func list(
       byItem: ZoneVmExtensionPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -453,12 +453,12 @@
     public func list(
       project: Swift.String,
       zone: Swift.String,
-    ) throws -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
       let request = ZoneVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func update(request: ZoneVmExtensionPoliciesClient.UpdateRequest) async throws

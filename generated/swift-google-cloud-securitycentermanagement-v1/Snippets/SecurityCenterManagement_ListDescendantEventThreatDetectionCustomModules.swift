@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: SecurityCenterManagementClient, organizationId: String, locationId: String)
   async throws
 {
-  let items = try client.listDescendantEventThreatDetectionCustomModules(
+  let items = client.listDescendantEventThreatDetectionCustomModules(
     byItem: ListDescendantEventThreatDetectionCustomModulesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

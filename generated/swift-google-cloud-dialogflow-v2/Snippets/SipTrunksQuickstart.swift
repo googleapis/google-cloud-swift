@@ -25,7 +25,7 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.SipTrunksClient()
-    let items = try client.listSipTrunks(
+    let items = client.listSipTrunks(
       byItem: ListSipTrunksRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

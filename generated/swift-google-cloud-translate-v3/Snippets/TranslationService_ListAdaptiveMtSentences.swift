@@ -26,7 +26,7 @@ func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, datasetId: String,
   fileId: String
 ) async throws {
-  let items = try client.listAdaptiveMtSentences(
+  let items = client.listAdaptiveMtSentences(
     byItem: ListAdaptiveMtSentencesRequest()
       .with {
         $0.parent =

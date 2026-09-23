@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudWorkflowsV1.WorkflowsClient()
-  let items = try client.listWorkflows(
+  let items = client.listWorkflows(
     byItem: ListWorkflowsRequest()
       .with {
         $0.parent = "\(parent)"

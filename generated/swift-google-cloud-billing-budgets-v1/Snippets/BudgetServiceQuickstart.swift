@@ -22,7 +22,7 @@ import GoogleWKT
 
 func sample(billingAccountId: String, ) async throws {
   let client = try GoogleCloudBillingBudgetsV1.BudgetServiceClient()
-  let items = try client.listBudgets(
+  let items = client.listBudgets(
     byItem: ListBudgetsRequest()
       .with {
         $0.parent = "billingAccounts/\(billingAccountId)"

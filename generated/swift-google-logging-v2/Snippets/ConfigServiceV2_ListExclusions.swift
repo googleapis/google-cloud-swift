@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client, projectId: String) async throws {
-  let items = try client.listExclusions(
+  let items = client.listExclusions(
     byItem: ListExclusionsRequest()
       .with {
         $0.parent = "projects/\(projectId)"

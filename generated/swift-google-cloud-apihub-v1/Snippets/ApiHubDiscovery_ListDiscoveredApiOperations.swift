@@ -25,7 +25,7 @@ func sample(
   client: ApiHubDiscoveryClient, projectId: String, locationId: String,
   discoveredApiObservationId: String
 ) async throws {
-  let items = try client.listDiscoveredApiOperations(
+  let items = client.listDiscoveredApiOperations(
     byItem: ListDiscoveredApiOperationsRequest()
       .with {
         $0.parent =

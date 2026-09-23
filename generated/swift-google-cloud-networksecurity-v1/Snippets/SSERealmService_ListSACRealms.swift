@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SSERealmServiceClient, projectId: String, locationId: String) async throws {
-  let items = try client.listSacrealms(
+  let items = client.listSacrealms(
     byItem: ListSACRealmsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

@@ -81,7 +81,7 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// @Snippet(path: "RegistrationService_ListNamespaces")
   public func listNamespaces(
     byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Namespace, Swift.Error> {
+  ) -> any AsyncSequence<Namespace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
       var request = byItem
@@ -142,7 +142,7 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// @Snippet(path: "RegistrationService_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
       var request = byItem
@@ -203,7 +203,7 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// @Snippet(path: "RegistrationService_ListEndpoints")
   public func listEndpoints(
     byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
       var request = byItem
@@ -281,7 +281,7 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// @Snippet(path: "RegistrationService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -326,12 +326,12 @@ extension Clients {
     /// See `RegistrationServiceClient.listNamespaces`.
     func listNamespaces(
       byItem: ListNamespacesRequest
-    ) throws -> any AsyncSequence<Namespace, Swift.Error>
+    ) -> any AsyncSequence<Namespace, Swift.Error>
 
     /// See `RegistrationServiceClient.listNamespaces`.
     func listNamespaces(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Namespace, Swift.Error>
+    ) -> any AsyncSequence<Namespace, Swift.Error>
 
     /// See `RegistrationServiceClient.getNamespace`.
     func getNamespace(request: GetNamespaceRequest) async throws
@@ -378,12 +378,12 @@ extension Clients {
     /// See `RegistrationServiceClient.listServices`.
     func listServices(
       byItem: ListServicesRequest
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `RegistrationServiceClient.listServices`.
     func listServices(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `RegistrationServiceClient.getService`.
     func getService(request: GetServiceRequest) async throws
@@ -430,12 +430,12 @@ extension Clients {
     /// See `RegistrationServiceClient.listEndpoints`.
     func listEndpoints(
       byItem: ListEndpointsRequest
-    ) throws -> any AsyncSequence<Endpoint, Swift.Error>
+    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `RegistrationServiceClient.listEndpoints`.
     func listEndpoints(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Endpoint, Swift.Error>
+    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `RegistrationServiceClient.getEndpoint`.
     func getEndpoint(request: GetEndpointRequest) async throws
@@ -481,7 +481,7 @@ extension Clients {
     /// See `RegistrationServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `RegistrationServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -500,7 +500,7 @@ extension Clients {
     /// See `RegistrationServiceClient.listNamespaces`.
     func listNamespaces(
       byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Namespace, Swift.Error>
+    ) -> any AsyncSequence<Namespace, Swift.Error>
 
     /// See `RegistrationServiceClient.getNamespace`.
     func getNamespace(
@@ -530,7 +530,7 @@ extension Clients {
     /// See `RegistrationServiceClient.listServices`.
     func listServices(
       byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `RegistrationServiceClient.getService`.
     func getService(
@@ -560,7 +560,7 @@ extension Clients {
     /// See `RegistrationServiceClient.listEndpoints`.
     func listEndpoints(
       byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Endpoint, Swift.Error>
+    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `RegistrationServiceClient.getEndpoint`.
     func getEndpoint(
@@ -600,7 +600,7 @@ extension Clients {
     /// See `RegistrationServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `RegistrationServiceClient.getLocation`.
     func getLocation(
@@ -650,13 +650,13 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listNamespaces(
     byItem: ListNamespacesRequest
-  ) throws -> any AsyncSequence<Namespace, Swift.Error> {
-    try self.listNamespaces(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Namespace, Swift.Error> {
+    self.listNamespaces(byItem: byItem, options: .init())
   }
 
   public func listNamespaces(
     byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Namespace, Swift.Error> {
+  ) -> any AsyncSequence<Namespace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -666,11 +666,11 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listNamespaces(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Namespace, Swift.Error> {
+  ) -> any AsyncSequence<Namespace, Swift.Error> {
     let request = ListNamespacesRequest().with {
       $0.parent = parent
     }
-    return try self.listNamespaces(byItem: request)
+    return self.listNamespaces(byItem: request)
   }
 
   public func getNamespace(request: GetNamespaceRequest) async throws
@@ -775,13 +775,13 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listServices(
     byItem: ListServicesRequest
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
-    try self.listServices(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Service, Swift.Error> {
+    self.listServices(byItem: byItem, options: .init())
   }
 
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -791,11 +791,11 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listServices(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
-    return try self.listServices(byItem: request)
+    return self.listServices(byItem: request)
   }
 
   public func getService(request: GetServiceRequest) async throws
@@ -900,13 +900,13 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listEndpoints(
     byItem: ListEndpointsRequest
-  ) throws -> any AsyncSequence<Endpoint, Swift.Error> {
-    try self.listEndpoints(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+    self.listEndpoints(byItem: byItem, options: .init())
   }
 
   public func listEndpoints(
     byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -916,11 +916,11 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listEndpoints(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let request = ListEndpointsRequest().with {
       $0.parent = parent
     }
-    return try self.listEndpoints(byItem: request)
+    return self.listEndpoints(byItem: request)
   }
 
   public func getEndpoint(request: GetEndpointRequest) async throws
@@ -1036,13 +1036,13 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

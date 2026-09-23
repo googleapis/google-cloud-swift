@@ -64,7 +64,7 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   /// @Snippet(path: "FeaturedContentNativeDashboardService_ListFeaturedContentNativeDashboards")
   public func listFeaturedContentNativeDashboards(
     byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse in
@@ -102,7 +102,7 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   /// @Snippet(path: "FeaturedContentNativeDashboardService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -169,12 +169,12 @@ extension Clients {
     /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
     func listFeaturedContentNativeDashboards(
       byItem: ListFeaturedContentNativeDashboardsRequest
-    ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
     func listFeaturedContentNativeDashboards(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.installFeaturedContentNativeDashboard`.
     func installFeaturedContentNativeDashboard(
@@ -193,13 +193,13 @@ extension Clients {
     /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -230,7 +230,7 @@ extension Clients {
     /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
     func listFeaturedContentNativeDashboards(
       byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
+    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.installFeaturedContentNativeDashboard`.
     func installFeaturedContentNativeDashboard(
@@ -245,7 +245,7 @@ extension Clients {
     /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.deleteOperation`.
     func deleteOperation(
@@ -296,13 +296,13 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
 
   public func listFeaturedContentNativeDashboards(
     byItem: ListFeaturedContentNativeDashboardsRequest
-  ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
-    try self.listFeaturedContentNativeDashboards(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
+    self.listFeaturedContentNativeDashboards(byItem: byItem, options: .init())
   }
 
   public func listFeaturedContentNativeDashboards(
     byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse in
@@ -313,11 +313,11 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
 
   public func listFeaturedContentNativeDashboards(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
+  ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
     let request = ListFeaturedContentNativeDashboardsRequest().with {
       $0.parent = parent
     }
-    return try self.listFeaturedContentNativeDashboards(byItem: request)
+    return self.listFeaturedContentNativeDashboards(byItem: request)
   }
 
   public func installFeaturedContentNativeDashboard(
@@ -355,13 +355,13 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -372,12 +372,12 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

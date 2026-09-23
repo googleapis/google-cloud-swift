@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String
 ) async throws {
-  let items = try client.listSchemaBundles(
+  let items = client.listSchemaBundles(
     byItem: ListSchemaBundlesRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/tables/\(tableId)"

@@ -208,7 +208,7 @@
     /// @Snippet(path: "rollouts_list")
     public func list(
       byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+    ) -> any AsyncSequence<Rollout, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutsListResponse in
         var request = byItem
@@ -359,12 +359,12 @@
       /// See `RolloutsClient.list`.
       func list(
         byItem: RolloutsClient.ListRequest
-      ) throws -> any AsyncSequence<Rollout, Swift.Error>
+      ) -> any AsyncSequence<Rollout, Swift.Error>
 
       /// See `RolloutsClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<Rollout, Swift.Error>
+      ) -> any AsyncSequence<Rollout, Swift.Error>
 
       /// See `RolloutsClient.pause`.
       func pause(request: RolloutsClient.PauseRequest) async throws
@@ -402,7 +402,7 @@
       /// See `RolloutsClient.list`.
       func list(
         byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Rollout, Swift.Error>
+      ) -> any AsyncSequence<Rollout, Swift.Error>
 
       /// See `RolloutsClient.pause`.
       func pause(
@@ -575,13 +575,13 @@
 
     public func list(
       byItem: RolloutsClient.ListRequest
-    ) throws -> any AsyncSequence<Rollout, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Rollout, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+    ) -> any AsyncSequence<Rollout, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutsListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -591,11 +591,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<Rollout, Swift.Error> {
+    ) -> any AsyncSequence<Rollout, Swift.Error> {
       let request = RolloutsClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func pause(request: RolloutsClient.PauseRequest) async throws

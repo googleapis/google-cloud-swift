@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient) async throws {
-  let items = try client.analyzeOrgPolicyGovernedContainers(
+  let items = client.analyzeOrgPolicyGovernedContainers(
     byItem: AnalyzeOrgPolicyGovernedContainersRequest()
       /* set fields using .with { $0... } */
   )

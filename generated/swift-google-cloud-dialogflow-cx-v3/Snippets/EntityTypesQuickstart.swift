@@ -25,7 +25,7 @@
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
     let client = try GoogleCloudDialogflowCXV3.EntityTypesClient()
-    let items = try client.listEntityTypes(
+    let items = client.listEntityTypes(
       byItem: ListEntityTypesRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"

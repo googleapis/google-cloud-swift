@@ -25,7 +25,7 @@ import GoogleLongRunning
 #endif
 func sample() async throws {
   let client = try GoogleCloudRetailV2.SearchServiceClient()
-  let items = try client.search(
+  let items = client.search(
     byItem: SearchRequest()
       /* set fields using .with { $0... } */
   )

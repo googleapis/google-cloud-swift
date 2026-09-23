@@ -68,9 +68,7 @@
     public func aggregatedList(
       byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<
-      (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-    > {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
@@ -265,16 +263,12 @@
       /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
       func aggregatedList(
         byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<
-        (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
 
       /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<
-        (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
 
       /// See `NetworkEdgeSecurityServicesClient.delete`.
       func delete(request: NetworkEdgeSecurityServicesClient.DeleteRequest) async throws
@@ -309,9 +303,7 @@
       func aggregatedList(
         byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<
-        (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-      >
+      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
 
       /// See `NetworkEdgeSecurityServicesClient.delete`.
       func delete(
@@ -352,18 +344,14 @@
 
     public func aggregatedList(
       byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<
-      (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-    > {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<
-      (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-    > {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
@@ -374,13 +362,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<
-      (Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error
-    > {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
       let request = NetworkEdgeSecurityServicesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: NetworkEdgeSecurityServicesClient.DeleteRequest) async throws

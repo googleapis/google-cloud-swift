@@ -119,7 +119,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_ListAssets")
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
       var request = byItem
       request.pageToken = token
@@ -209,7 +209,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_SearchAllResources")
   public func searchAllResources(
     byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse in
       var request = byItem
@@ -239,7 +239,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_SearchAllIamPolicies")
   public func searchAllIamPolicies(
     byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
       var request = byItem
@@ -385,7 +385,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_ListSavedQueries")
   public func listSavedQueries(
     byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
       var request = byItem
@@ -436,7 +436,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
   public func analyzeOrgPolicies(
     byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse in
       var request = byItem
@@ -462,9 +462,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
   public func analyzeOrgPolicyGovernedContainers(
     byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<
-    AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-  > {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+  {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse in
@@ -585,7 +584,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
   public func analyzeOrgPolicyGovernedAssets(
     byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse in
@@ -629,12 +628,12 @@ extension Clients {
     /// See `AssetServiceClient.listAssets`.
     func listAssets(
       byItem: ListAssetsRequest
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `AssetServiceClient.listAssets`.
     func listAssets(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `AssetServiceClient.batchGetAssetsHistory`.
     func batchGetAssetsHistory(request: BatchGetAssetsHistoryRequest) async throws
@@ -687,14 +686,14 @@ extension Clients {
     /// See `AssetServiceClient.searchAllResources`.
     func searchAllResources(
       byItem: SearchAllResourcesRequest
-    ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error>
+    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
 
     /// See `AssetServiceClient.searchAllResources`.
     func searchAllResources(
       scope: Swift.String,
       query: Swift.String,
       assetTypes: [Swift.String],
-    ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error>
+    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
 
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(request: SearchAllIamPoliciesRequest) async throws
@@ -703,13 +702,13 @@ extension Clients {
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(
       byItem: SearchAllIamPoliciesRequest
-    ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
+    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
 
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(
       scope: Swift.String,
       query: Swift.String,
-    ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
+    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeIamPolicy`.
     func analyzeIamPolicy(request: AnalyzeIamPolicyRequest) async throws
@@ -757,12 +756,12 @@ extension Clients {
     /// See `AssetServiceClient.listSavedQueries`.
     func listSavedQueries(
       byItem: ListSavedQueriesRequest
-    ) throws -> any AsyncSequence<SavedQuery, Swift.Error>
+    ) -> any AsyncSequence<SavedQuery, Swift.Error>
 
     /// See `AssetServiceClient.listSavedQueries`.
     func listSavedQueries(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SavedQuery, Swift.Error>
+    ) -> any AsyncSequence<SavedQuery, Swift.Error>
 
     /// See `AssetServiceClient.updateSavedQuery`.
     func updateSavedQuery(request: UpdateSavedQueryRequest) async throws
@@ -793,14 +792,14 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicies`.
     func analyzeOrgPolicies(
       byItem: AnalyzeOrgPoliciesRequest
-    ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeOrgPolicies`.
     func analyzeOrgPolicies(
       scope: Swift.String,
       constraint: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
     func analyzeOrgPolicyGovernedContainers(request: AnalyzeOrgPolicyGovernedContainersRequest)
@@ -809,7 +808,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
     func analyzeOrgPolicyGovernedContainers(
       byItem: AnalyzeOrgPolicyGovernedContainersRequest
-    ) throws -> any AsyncSequence<
+    ) -> any AsyncSequence<
       AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
     >
 
@@ -818,7 +817,7 @@ extension Clients {
       scope: Swift.String,
       constraint: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<
+    ) -> any AsyncSequence<
       AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
     >
 
@@ -829,14 +828,14 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
     func analyzeOrgPolicyGovernedAssets(
       byItem: AnalyzeOrgPolicyGovernedAssetsRequest
-    ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
 
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
     func analyzeOrgPolicyGovernedAssets(
       scope: Swift.String,
       constraint: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
 
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(
@@ -856,7 +855,7 @@ extension Clients {
     /// See `AssetServiceClient.listAssets`.
     func listAssets(
       byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Asset, Swift.Error>
+    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `AssetServiceClient.batchGetAssetsHistory`.
     func batchGetAssetsHistory(
@@ -896,7 +895,7 @@ extension Clients {
     /// See `AssetServiceClient.searchAllResources`.
     func searchAllResources(
       byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error>
+    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
 
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(
@@ -906,7 +905,7 @@ extension Clients {
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(
       byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
+    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeIamPolicy`.
     func analyzeIamPolicy(
@@ -951,7 +950,7 @@ extension Clients {
     /// See `AssetServiceClient.listSavedQueries`.
     func listSavedQueries(
       byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SavedQuery, Swift.Error>
+    ) -> any AsyncSequence<SavedQuery, Swift.Error>
 
     /// See `AssetServiceClient.updateSavedQuery`.
     func updateSavedQuery(
@@ -976,7 +975,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicies`.
     func analyzeOrgPolicies(
       byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
     func analyzeOrgPolicyGovernedContainers(
@@ -986,7 +985,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
     func analyzeOrgPolicyGovernedContainers(
       byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<
+    ) -> any AsyncSequence<
       AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
     >
 
@@ -998,7 +997,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
     func analyzeOrgPolicyGovernedAssets(
       byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
   }
 }
 
@@ -1045,13 +1044,13 @@ extension Clients.AssetServiceProtocol {
 
   public func listAssets(
     byItem: ListAssetsRequest
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
-    try self.listAssets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Asset, Swift.Error> {
+    self.listAssets(byItem: byItem, options: .init())
   }
 
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1060,11 +1059,11 @@ extension Clients.AssetServiceProtocol {
 
   public func listAssets(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> {
     let request = ListAssetsRequest().with {
       $0.parent = parent
     }
-    return try self.listAssets(byItem: request)
+    return self.listAssets(byItem: request)
   }
 
   public func batchGetAssetsHistory(request: BatchGetAssetsHistoryRequest) async throws
@@ -1190,13 +1189,13 @@ extension Clients.AssetServiceProtocol {
 
   public func searchAllResources(
     byItem: SearchAllResourcesRequest
-  ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
-    try self.searchAllResources(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+    self.searchAllResources(byItem: byItem, options: .init())
   }
 
   public func searchAllResources(
     byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1208,13 +1207,13 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     query: Swift.String,
     assetTypes: [Swift.String],
-  ) throws -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
     let request = SearchAllResourcesRequest().with {
       $0.scope = scope
       $0.query = query
       $0.assetTypes = assetTypes
     }
-    return try self.searchAllResources(byItem: request)
+    return self.searchAllResources(byItem: request)
   }
 
   public func searchAllIamPolicies(request: SearchAllIamPoliciesRequest) async throws
@@ -1231,13 +1230,13 @@ extension Clients.AssetServiceProtocol {
 
   public func searchAllIamPolicies(
     byItem: SearchAllIamPoliciesRequest
-  ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
-    try self.searchAllIamPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+    self.searchAllIamPolicies(byItem: byItem, options: .init())
   }
 
   public func searchAllIamPolicies(
     byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1248,12 +1247,12 @@ extension Clients.AssetServiceProtocol {
   public func searchAllIamPolicies(
     scope: Swift.String,
     query: Swift.String,
-  ) throws -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
     let request = SearchAllIamPoliciesRequest().with {
       $0.scope = scope
       $0.query = query
     }
-    return try self.searchAllIamPolicies(byItem: request)
+    return self.searchAllIamPolicies(byItem: request)
   }
 
   public func analyzeIamPolicy(request: AnalyzeIamPolicyRequest) async throws
@@ -1382,13 +1381,13 @@ extension Clients.AssetServiceProtocol {
 
   public func listSavedQueries(
     byItem: ListSavedQueriesRequest
-  ) throws -> any AsyncSequence<SavedQuery, Swift.Error> {
-    try self.listSavedQueries(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
+    self.listSavedQueries(byItem: byItem, options: .init())
   }
 
   public func listSavedQueries(
     byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1398,11 +1397,11 @@ extension Clients.AssetServiceProtocol {
 
   public func listSavedQueries(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
     let request = ListSavedQueriesRequest().with {
       $0.parent = parent
     }
-    return try self.listSavedQueries(byItem: request)
+    return self.listSavedQueries(byItem: request)
   }
 
   public func updateSavedQuery(request: UpdateSavedQueryRequest) async throws
@@ -1473,13 +1472,13 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeOrgPolicies(
     byItem: AnalyzeOrgPoliciesRequest
-  ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
-    try self.analyzeOrgPolicies(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+    self.analyzeOrgPolicies(byItem: byItem, options: .init())
   }
 
   public func analyzeOrgPolicies(
     byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1491,13 +1490,13 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     constraint: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
     let request = AnalyzeOrgPoliciesRequest().with {
       $0.scope = scope
       $0.constraint = constraint
       $0.filter = filter
     }
-    return try self.analyzeOrgPolicies(byItem: request)
+    return self.analyzeOrgPolicies(byItem: request)
   }
 
   public func analyzeOrgPolicyGovernedContainers(request: AnalyzeOrgPolicyGovernedContainersRequest)
@@ -1514,17 +1513,15 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeOrgPolicyGovernedContainers(
     byItem: AnalyzeOrgPolicyGovernedContainersRequest
-  ) throws -> any AsyncSequence<
-    AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-  > {
-    try self.analyzeOrgPolicyGovernedContainers(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+  {
+    self.analyzeOrgPolicyGovernedContainers(byItem: byItem, options: .init())
   }
 
   public func analyzeOrgPolicyGovernedContainers(
     byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<
-    AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-  > {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+  {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse in
@@ -1537,15 +1534,14 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     constraint: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<
-    AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-  > {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+  {
     let request = AnalyzeOrgPolicyGovernedContainersRequest().with {
       $0.scope = scope
       $0.constraint = constraint
       $0.filter = filter
     }
-    return try self.analyzeOrgPolicyGovernedContainers(byItem: request)
+    return self.analyzeOrgPolicyGovernedContainers(byItem: request)
   }
 
   public func analyzeOrgPolicyGovernedAssets(request: AnalyzeOrgPolicyGovernedAssetsRequest)
@@ -1562,13 +1558,13 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeOrgPolicyGovernedAssets(
     byItem: AnalyzeOrgPolicyGovernedAssetsRequest
-  ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
-    try self.analyzeOrgPolicyGovernedAssets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+    self.analyzeOrgPolicyGovernedAssets(byItem: byItem, options: .init())
   }
 
   public func analyzeOrgPolicyGovernedAssets(
     byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse in
@@ -1581,13 +1577,13 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     constraint: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
     let request = AnalyzeOrgPolicyGovernedAssetsRequest().with {
       $0.scope = scope
       $0.constraint = constraint
       $0.filter = filter
     }
-    return try self.analyzeOrgPolicyGovernedAssets(byItem: request)
+    return self.analyzeOrgPolicyGovernedAssets(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

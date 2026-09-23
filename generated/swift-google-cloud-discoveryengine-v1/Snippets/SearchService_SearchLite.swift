@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: SearchServiceClient) async throws {
-    let items = try client.searchLite(
+    let items = client.searchLite(
       byItem: SearchRequest()
         /* set fields using .with { $0... } */
     )

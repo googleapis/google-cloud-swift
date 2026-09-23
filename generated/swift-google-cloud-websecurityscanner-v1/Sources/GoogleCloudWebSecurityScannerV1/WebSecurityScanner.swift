@@ -79,7 +79,7 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
   public func listScanConfigs(
     byItem: ListScanConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ScanConfig, Swift.Error> {
+  ) -> any AsyncSequence<ScanConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse
       in
@@ -133,7 +133,7 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
   public func listScanRuns(
     byItem: ListScanRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ScanRun, Swift.Error> {
+  ) -> any AsyncSequence<ScanRun, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
       var request = byItem
@@ -166,7 +166,7 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
   public func listCrawledUrls(
     byItem: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CrawledUrl, Swift.Error> {
+  ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse
       in
@@ -200,7 +200,7 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
   public func listFindings(
     byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Finding, Swift.Error> {
+  ) -> any AsyncSequence<Finding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in
       var request = byItem
@@ -245,7 +245,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listScanConfigs`.
     func listScanConfigs(
       byItem: ListScanConfigsRequest
-    ) throws -> any AsyncSequence<ScanConfig, Swift.Error>
+    ) -> any AsyncSequence<ScanConfig, Swift.Error>
 
     /// See `WebSecurityScannerClient.updateScanConfig`.
     func updateScanConfig(request: UpdateScanConfigRequest) async throws
@@ -266,7 +266,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listScanRuns`.
     func listScanRuns(
       byItem: ListScanRunsRequest
-    ) throws -> any AsyncSequence<ScanRun, Swift.Error>
+    ) -> any AsyncSequence<ScanRun, Swift.Error>
 
     /// See `WebSecurityScannerClient.stopScanRun`.
     func stopScanRun(request: StopScanRunRequest) async throws
@@ -279,7 +279,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listCrawledUrls`.
     func listCrawledUrls(
       byItem: ListCrawledUrlsRequest
-    ) throws -> any AsyncSequence<CrawledUrl, Swift.Error>
+    ) -> any AsyncSequence<CrawledUrl, Swift.Error>
 
     /// See `WebSecurityScannerClient.getFinding`.
     func getFinding(request: GetFindingRequest) async throws
@@ -292,7 +292,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listFindings`.
     func listFindings(
       byItem: ListFindingsRequest
-    ) throws -> any AsyncSequence<Finding, Swift.Error>
+    ) -> any AsyncSequence<Finding, Swift.Error>
 
     /// See `WebSecurityScannerClient.listFindingTypeStats`.
     func listFindingTypeStats(request: ListFindingTypeStatsRequest) async throws
@@ -321,7 +321,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listScanConfigs`.
     func listScanConfigs(
       byItem: ListScanConfigsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ScanConfig, Swift.Error>
+    ) -> any AsyncSequence<ScanConfig, Swift.Error>
 
     /// See `WebSecurityScannerClient.updateScanConfig`.
     func updateScanConfig(
@@ -346,7 +346,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listScanRuns`.
     func listScanRuns(
       byItem: ListScanRunsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ScanRun, Swift.Error>
+    ) -> any AsyncSequence<ScanRun, Swift.Error>
 
     /// See `WebSecurityScannerClient.stopScanRun`.
     func stopScanRun(
@@ -361,7 +361,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listCrawledUrls`.
     func listCrawledUrls(
       byItem: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<CrawledUrl, Swift.Error>
+    ) -> any AsyncSequence<CrawledUrl, Swift.Error>
 
     /// See `WebSecurityScannerClient.getFinding`.
     func getFinding(
@@ -376,7 +376,7 @@ extension Clients {
     /// See `WebSecurityScannerClient.listFindings`.
     func listFindings(
       byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Finding, Swift.Error>
+    ) -> any AsyncSequence<Finding, Swift.Error>
 
     /// See `WebSecurityScannerClient.listFindingTypeStats`.
     func listFindingTypeStats(
@@ -435,13 +435,13 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanConfigs(
     byItem: ListScanConfigsRequest
-  ) throws -> any AsyncSequence<ScanConfig, Swift.Error> {
-    try self.listScanConfigs(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ScanConfig, Swift.Error> {
+    self.listScanConfigs(byItem: byItem, options: .init())
   }
 
   public func listScanConfigs(
     byItem: ListScanConfigsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ScanConfig, Swift.Error> {
+  ) -> any AsyncSequence<ScanConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse
       in
@@ -500,13 +500,13 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanRuns(
     byItem: ListScanRunsRequest
-  ) throws -> any AsyncSequence<ScanRun, Swift.Error> {
-    try self.listScanRuns(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ScanRun, Swift.Error> {
+    self.listScanRuns(byItem: byItem, options: .init())
   }
 
   public func listScanRuns(
     byItem: ListScanRunsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ScanRun, Swift.Error> {
+  ) -> any AsyncSequence<ScanRun, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -540,13 +540,13 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listCrawledUrls(
     byItem: ListCrawledUrlsRequest
-  ) throws -> any AsyncSequence<CrawledUrl, Swift.Error> {
-    try self.listCrawledUrls(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
+    self.listCrawledUrls(byItem: byItem, options: .init())
   }
 
   public func listCrawledUrls(
     byItem: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<CrawledUrl, Swift.Error> {
+  ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse
       in
@@ -581,13 +581,13 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listFindings(
     byItem: ListFindingsRequest
-  ) throws -> any AsyncSequence<Finding, Swift.Error> {
-    try self.listFindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Finding, Swift.Error> {
+    self.listFindings(byItem: byItem, options: .init())
   }
 
   public func listFindings(
     byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Finding, Swift.Error> {
+  ) -> any AsyncSequence<Finding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in
       throw GoogleGax.RequestError.unimplemented

@@ -22,7 +22,7 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleIAMV2.PoliciesClient()
-  let items = try client.listPolicies(
+  let items = client.listPolicies(
     byItem: ListPoliciesRequest()
       /* set fields using .with { $0... } */
   )

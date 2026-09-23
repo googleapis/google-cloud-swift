@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, volumeId: String
 ) async throws {
-  let items = try client.listVolumeSnapshots(
+  let items = client.listVolumeSnapshots(
     byItem: ListVolumeSnapshotsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"

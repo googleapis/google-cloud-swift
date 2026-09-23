@@ -27,7 +27,7 @@ func sample(
   client: DataTransferServiceClient, projectId: String, locationId: String,
   multicloudDataTransferConfigId: String
 ) async throws {
-  let items = try client.listDestinations(
+  let items = client.listDestinations(
     byItem: ListDestinationsRequest()
       .with {
         $0.parent =

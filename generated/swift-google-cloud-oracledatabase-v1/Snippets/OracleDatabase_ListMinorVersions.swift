@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, giVersionId: String
 ) async throws {
-  let items = try client.listMinorVersions(
+  let items = client.listMinorVersions(
     byItem: ListMinorVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/giVersions/\(giVersionId)"

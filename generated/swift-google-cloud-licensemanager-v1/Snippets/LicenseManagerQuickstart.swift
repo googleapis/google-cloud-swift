@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudLicenseManagerV1.LicenseManagerClient()
-  let items = try client.listConfigurations(
+  let items = client.listConfigurations(
     byItem: ListConfigurationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

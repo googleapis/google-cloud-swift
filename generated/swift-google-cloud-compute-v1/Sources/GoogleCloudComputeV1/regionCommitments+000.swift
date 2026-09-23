@@ -61,7 +61,7 @@
     /// @Snippet(path: "regionCommitments_aggregatedList")
     public func aggregatedList(
       byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList in
         var request = byItem
@@ -147,7 +147,7 @@
     /// @Snippet(path: "regionCommitments_list")
     public func list(
       byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Commitment, Swift.Error> {
+    ) -> any AsyncSequence<Commitment, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentList in
         var request = byItem
         request.pageToken = token
@@ -233,12 +233,12 @@
       /// See `RegionCommitmentsClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionCommitmentsClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
 
       /// See `RegionCommitmentsClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
 
       /// See `RegionCommitmentsClient.`get``.
       func `get`(request: RegionCommitmentsClient.GetRequest) async throws
@@ -262,13 +262,13 @@
       /// See `RegionCommitmentsClient.list`.
       func list(
         byItem: RegionCommitmentsClient.ListRequest
-      ) throws -> any AsyncSequence<Commitment, Swift.Error>
+      ) -> any AsyncSequence<Commitment, Swift.Error>
 
       /// See `RegionCommitmentsClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<Commitment, Swift.Error>
+      ) -> any AsyncSequence<Commitment, Swift.Error>
 
       /// See `RegionCommitmentsClient.update`.
       func update(request: RegionCommitmentsClient.UpdateRequest) async throws
@@ -282,7 +282,7 @@
       /// See `RegionCommitmentsClient.aggregatedList`.
       func aggregatedList(
         byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
 
       /// See `RegionCommitmentsClient.`get``.
       func `get`(
@@ -302,7 +302,7 @@
       /// See `RegionCommitmentsClient.list`.
       func list(
         byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Commitment, Swift.Error>
+      ) -> any AsyncSequence<Commitment, Swift.Error>
 
       /// See `RegionCommitmentsClient.update`.
       func update(
@@ -327,13 +327,13 @@
 
     public func aggregatedList(
       byItem: RegionCommitmentsClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList in
         throw GoogleGax.RequestError.unimplemented
@@ -343,11 +343,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
       let request = RegionCommitmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func `get`(request: RegionCommitmentsClient.GetRequest) async throws
@@ -431,13 +431,13 @@
 
     public func list(
       byItem: RegionCommitmentsClient.ListRequest
-    ) throws -> any AsyncSequence<Commitment, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Commitment, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Commitment, Swift.Error> {
+    ) -> any AsyncSequence<Commitment, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentList in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -447,12 +447,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<Commitment, Swift.Error> {
+    ) -> any AsyncSequence<Commitment, Swift.Error> {
       let request = RegionCommitmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func update(request: RegionCommitmentsClient.UpdateRequest) async throws

@@ -23,7 +23,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSchedulerV1.CloudSchedulerClient()
-  let items = try client.listJobs(
+  let items = client.listJobs(
     byItem: ListJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

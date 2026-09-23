@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionInstanceGroupsClient) async throws {
-    let items = try client.list(
+    let items = client.list(
       byItem: RegionInstanceGroupsClient.ListRequest()
         /* set fields using .with { $0... } */
     )

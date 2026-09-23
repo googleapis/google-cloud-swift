@@ -84,7 +84,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListAuditSchedules")
   public func listAuditSchedules(
     byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
       var request = byItem
@@ -178,7 +178,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListAuditReports")
   public func listAuditReports(
     byItem: ListAuditReportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
       var request = byItem
@@ -222,7 +222,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
   public func listResourceEnrollmentStatuses(
     byItem: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse in
@@ -249,7 +249,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListControls")
   public func listControls(
     byItem: ListControlsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse in
       var request = byItem
@@ -307,7 +307,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -344,7 +344,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -432,12 +432,12 @@ extension Clients {
     /// See `AuditManagerClient.listAuditSchedules`.
     func listAuditSchedules(
       byItem: ListAuditSchedulesRequest
-    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+    ) -> any AsyncSequence<AuditSchedule, Swift.Error>
 
     /// See `AuditManagerClient.listAuditSchedules`.
     func listAuditSchedules(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+    ) -> any AsyncSequence<AuditSchedule, Swift.Error>
 
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(request: EnrollResourceRequest) async throws
@@ -489,12 +489,12 @@ extension Clients {
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
       byItem: ListAuditReportsRequest
-    ) throws -> any AsyncSequence<AuditReport, Swift.Error>
+    ) -> any AsyncSequence<AuditReport, Swift.Error>
 
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<AuditReport, Swift.Error>
+    ) -> any AsyncSequence<AuditReport, Swift.Error>
 
     /// See `AuditManagerClient.getAuditReport`.
     func getAuditReport(request: GetAuditReportRequest) async throws
@@ -521,12 +521,12 @@ extension Clients {
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
       byItem: ListResourceEnrollmentStatusesRequest
-    ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
+    ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
 
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
+    ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
 
     /// See `AuditManagerClient.listControls`.
     func listControls(request: ListControlsRequest) async throws
@@ -535,12 +535,12 @@ extension Clients {
     /// See `AuditManagerClient.listControls`.
     func listControls(
       byItem: ListControlsRequest
-    ) throws -> any AsyncSequence<Control, Swift.Error>
+    ) -> any AsyncSequence<Control, Swift.Error>
 
     /// See `AuditManagerClient.listControls`.
     func listControls(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Control, Swift.Error>
+    ) -> any AsyncSequence<Control, Swift.Error>
 
     /// See `AuditManagerClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -549,7 +549,7 @@ extension Clients {
     /// See `AuditManagerClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AuditManagerClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -562,13 +562,13 @@ extension Clients {
     /// See `AuditManagerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditManagerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditManagerClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -609,7 +609,7 @@ extension Clients {
     /// See `AuditManagerClient.listAuditSchedules`.
     func listAuditSchedules(
       byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AuditSchedule, Swift.Error>
+    ) -> any AsyncSequence<AuditSchedule, Swift.Error>
 
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(
@@ -639,7 +639,7 @@ extension Clients {
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
       byItem: ListAuditReportsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<AuditReport, Swift.Error>
+    ) -> any AsyncSequence<AuditReport, Swift.Error>
 
     /// See `AuditManagerClient.getAuditReport`.
     func getAuditReport(
@@ -659,7 +659,7 @@ extension Clients {
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
       byItem: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
+    ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error>
 
     /// See `AuditManagerClient.listControls`.
     func listControls(
@@ -669,7 +669,7 @@ extension Clients {
     /// See `AuditManagerClient.listControls`.
     func listControls(
       byItem: ListControlsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Control, Swift.Error>
+    ) -> any AsyncSequence<Control, Swift.Error>
 
     /// See `AuditManagerClient.listLocations`.
     func listLocations(
@@ -679,7 +679,7 @@ extension Clients {
     /// See `AuditManagerClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AuditManagerClient.getLocation`.
     func getLocation(
@@ -694,7 +694,7 @@ extension Clients {
     /// See `AuditManagerClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AuditManagerClient.deleteOperation`.
     func deleteOperation(
@@ -793,13 +793,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditSchedules(
     byItem: ListAuditSchedulesRequest
-  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
-    try self.listAuditSchedules(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
+    self.listAuditSchedules(byItem: byItem, options: .init())
   }
 
   public func listAuditSchedules(
     byItem: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -809,11 +809,11 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditSchedules(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
     let request = ListAuditSchedulesRequest().with {
       $0.parent = parent
     }
-    return try self.listAuditSchedules(byItem: request)
+    return self.listAuditSchedules(byItem: request)
   }
 
   public func enrollResource(request: EnrollResourceRequest) async throws
@@ -927,13 +927,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditReports(
     byItem: ListAuditReportsRequest
-  ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
-    try self.listAuditReports(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AuditReport, Swift.Error> {
+    self.listAuditReports(byItem: byItem, options: .init())
   }
 
   public func listAuditReports(
     byItem: ListAuditReportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -943,11 +943,11 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditReports(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> {
     let request = ListAuditReportsRequest().with {
       $0.parent = parent
     }
-    return try self.listAuditReports(byItem: request)
+    return self.listAuditReports(byItem: request)
   }
 
   public func getAuditReport(request: GetAuditReportRequest) async throws
@@ -1006,13 +1006,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listResourceEnrollmentStatuses(
     byItem: ListResourceEnrollmentStatusesRequest
-  ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
-    try self.listResourceEnrollmentStatuses(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+    self.listResourceEnrollmentStatuses(byItem: byItem, options: .init())
   }
 
   public func listResourceEnrollmentStatuses(
     byItem: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse in
@@ -1023,11 +1023,11 @@ extension Clients.AuditManagerProtocol {
 
   public func listResourceEnrollmentStatuses(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
     let request = ListResourceEnrollmentStatusesRequest().with {
       $0.parent = parent
     }
-    return try self.listResourceEnrollmentStatuses(byItem: request)
+    return self.listResourceEnrollmentStatuses(byItem: request)
   }
 
   public func listControls(request: ListControlsRequest) async throws
@@ -1044,13 +1044,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listControls(
     byItem: ListControlsRequest
-  ) throws -> any AsyncSequence<Control, Swift.Error> {
-    try self.listControls(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Control, Swift.Error> {
+    self.listControls(byItem: byItem, options: .init())
   }
 
   public func listControls(
     byItem: ListControlsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1060,11 +1060,11 @@ extension Clients.AuditManagerProtocol {
 
   public func listControls(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> {
     let request = ListControlsRequest().with {
       $0.parent = parent
     }
-    return try self.listControls(byItem: request)
+    return self.listControls(byItem: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -1081,13 +1081,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1121,13 +1121,13 @@ extension Clients.AuditManagerProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1138,12 +1138,12 @@ extension Clients.AuditManagerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

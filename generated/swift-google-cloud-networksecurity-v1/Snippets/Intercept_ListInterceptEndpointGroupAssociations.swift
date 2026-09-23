@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: InterceptClient, projectId: String, locationId: String) async throws {
-  let items = try client.listInterceptEndpointGroupAssociations(
+  let items = client.listInterceptEndpointGroupAssociations(
     byItem: ListInterceptEndpointGroupAssociationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

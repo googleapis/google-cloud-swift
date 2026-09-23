@@ -27,7 +27,7 @@
   func sample(client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let items = try client.listFeatureOnlineStores(
+    let items = client.listFeatureOnlineStores(
       byItem: ListFeatureOnlineStoresRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"

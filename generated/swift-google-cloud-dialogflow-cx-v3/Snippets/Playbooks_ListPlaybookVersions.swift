@@ -27,7 +27,7 @@
     client: PlaybooksClient, projectId: String, locationId: String, agentId: String,
     playbookId: String
   ) async throws {
-    let items = try client.listPlaybookVersions(
+    let items = client.listPlaybookVersions(
       byItem: ListPlaybookVersionsRequest()
         .with {
           $0.parent =

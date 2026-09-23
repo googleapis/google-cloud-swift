@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleWKT
 
 func sample(client: DataTransferServiceClient) async throws {
-  let items = try client.listTransferLogs(
+  let items = client.listTransferLogs(
     byItem: ListTransferLogsRequest()
       /* set fields using .with { $0... } */
   )

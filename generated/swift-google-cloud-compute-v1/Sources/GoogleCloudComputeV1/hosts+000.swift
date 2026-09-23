@@ -113,7 +113,7 @@
     /// @Snippet(path: "hosts_list")
     public func list(
       byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Host, Swift.Error> {
+    ) -> any AsyncSequence<Host, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HostsListResponse in
         var request = byItem
@@ -162,14 +162,14 @@
       /// See `HostsClient.list`.
       func list(
         byItem: HostsClient.ListRequest
-      ) throws -> any AsyncSequence<Host, Swift.Error>
+      ) -> any AsyncSequence<Host, Swift.Error>
 
       /// See `HostsClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
         association: Swift.String,
-      ) throws -> any AsyncSequence<Host, Swift.Error>
+      ) -> any AsyncSequence<Host, Swift.Error>
 
       /// See `HostsClient.`get``.
       func `get`(
@@ -189,7 +189,7 @@
       /// See `HostsClient.list`.
       func list(
         byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<Host, Swift.Error>
+      ) -> any AsyncSequence<Host, Swift.Error>
     }
   }
 
@@ -280,13 +280,13 @@
 
     public func list(
       byItem: HostsClient.ListRequest
-    ) throws -> any AsyncSequence<Host, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<Host, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Host, Swift.Error> {
+    ) -> any AsyncSequence<Host, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HostsListResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -298,13 +298,13 @@
       project: Swift.String,
       zone: Swift.String,
       association: Swift.String,
-    ) throws -> any AsyncSequence<Host, Swift.Error> {
+    ) -> any AsyncSequence<Host, Swift.Error> {
       let request = HostsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
         $0.association = association
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws

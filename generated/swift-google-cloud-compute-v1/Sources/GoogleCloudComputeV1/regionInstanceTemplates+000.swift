@@ -171,7 +171,7 @@
     /// @Snippet(path: "regionInstanceTemplates_list")
     public func list(
       byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = byItem
@@ -224,13 +224,13 @@
       /// See `RegionInstanceTemplatesClient.list`.
       func list(
         byItem: RegionInstanceTemplatesClient.ListRequest
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `RegionInstanceTemplatesClient.list`.
       func list(
         project: Swift.String,
         region: Swift.String,
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `RegionInstanceTemplatesClient.delete`.
       func delete(
@@ -255,7 +255,7 @@
       /// See `RegionInstanceTemplatesClient.list`.
       func list(
         byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error>
+      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
     }
   }
 
@@ -384,13 +384,13 @@
 
     public func list(
       byItem: RegionInstanceTemplatesClient.ListRequest
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         throw GoogleGax.RequestError.unimplemented
@@ -401,12 +401,12 @@
     public func list(
       project: Swift.String,
       region: Swift.String,
-    ) throws -> any AsyncSequence<InstanceTemplate, Swift.Error> {
+    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let request = RegionInstanceTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

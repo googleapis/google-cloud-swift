@@ -74,7 +74,7 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// @Snippet(path: "DataprocMetastore_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListServicesResponse in
       var request = byItem
@@ -210,7 +210,7 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// @Snippet(path: "DataprocMetastore_ListMetadataImports")
   public func listMetadataImports(
     byItem: ListMetadataImportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MetadataImport, Swift.Error> {
+  ) -> any AsyncSequence<MetadataImport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListMetadataImportsResponse in
       var request = byItem
@@ -384,7 +384,7 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// @Snippet(path: "DataprocMetastore_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListBackupsResponse in
       var request = byItem
@@ -600,7 +600,7 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// @Snippet(path: "DataprocMetastore_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -675,7 +675,7 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// @Snippet(path: "DataprocMetastore_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -733,12 +733,12 @@ extension Clients {
     /// See `DataprocMetastoreClient.listServices`.
     func listServices(
       byItem: ListServicesRequest
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `DataprocMetastoreClient.listServices`.
     func listServices(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `DataprocMetastoreClient.getService`.
     func getService(request: GetServiceRequest) async throws -> GoogleCloudMetastoreV1.Service
@@ -794,12 +794,12 @@ extension Clients {
     /// See `DataprocMetastoreClient.listMetadataImports`.
     func listMetadataImports(
       byItem: ListMetadataImportsRequest
-    ) throws -> any AsyncSequence<MetadataImport, Swift.Error>
+    ) -> any AsyncSequence<MetadataImport, Swift.Error>
 
     /// See `DataprocMetastoreClient.listMetadataImports`.
     func listMetadataImports(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MetadataImport, Swift.Error>
+    ) -> any AsyncSequence<MetadataImport, Swift.Error>
 
     /// See `DataprocMetastoreClient.getMetadataImport`.
     func getMetadataImport(request: GetMetadataImportRequest) async throws
@@ -866,12 +866,12 @@ extension Clients {
     /// See `DataprocMetastoreClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `DataprocMetastoreClient.listBackups`.
     func listBackups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `DataprocMetastoreClient.getBackup`.
     func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMetastoreV1.Backup
@@ -937,7 +937,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataprocMetastoreClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -960,13 +960,13 @@ extension Clients {
     /// See `DataprocMetastoreClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -992,7 +992,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listServices`.
     func listServices(
       byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Service, Swift.Error>
+    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `DataprocMetastoreClient.getService`.
     func getService(
@@ -1037,7 +1037,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listMetadataImports`.
     func listMetadataImports(
       byItem: ListMetadataImportsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MetadataImport, Swift.Error>
+    ) -> any AsyncSequence<MetadataImport, Swift.Error>
 
     /// See `DataprocMetastoreClient.getMetadataImport`.
     func getMetadataImport(
@@ -1092,7 +1092,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listBackups`.
     func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Backup, Swift.Error>
+    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `DataprocMetastoreClient.getBackup`.
     func getBackup(
@@ -1157,7 +1157,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DataprocMetastoreClient.getLocation`.
     func getLocation(
@@ -1187,7 +1187,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreClient.deleteOperation`.
     func deleteOperation(
@@ -1217,13 +1217,13 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listServices(
     byItem: ListServicesRequest
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
-    try self.listServices(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Service, Swift.Error> {
+    self.listServices(byItem: byItem, options: .init())
   }
 
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListServicesResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1233,11 +1233,11 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listServices(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
-    return try self.listServices(byItem: request)
+    return self.listServices(byItem: request)
   }
 
   public func getService(request: GetServiceRequest) async throws -> GoogleCloudMetastoreV1.Service
@@ -1391,13 +1391,13 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listMetadataImports(
     byItem: ListMetadataImportsRequest
-  ) throws -> any AsyncSequence<MetadataImport, Swift.Error> {
-    try self.listMetadataImports(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MetadataImport, Swift.Error> {
+    self.listMetadataImports(byItem: byItem, options: .init())
   }
 
   public func listMetadataImports(
     byItem: ListMetadataImportsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MetadataImport, Swift.Error> {
+  ) -> any AsyncSequence<MetadataImport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListMetadataImportsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1407,11 +1407,11 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listMetadataImports(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MetadataImport, Swift.Error> {
+  ) -> any AsyncSequence<MetadataImport, Swift.Error> {
     let request = ListMetadataImportsRequest().with {
       $0.parent = parent
     }
-    return try self.listMetadataImports(byItem: request)
+    return self.listMetadataImports(byItem: request)
   }
 
   public func getMetadataImport(request: GetMetadataImportRequest) async throws
@@ -1596,13 +1596,13 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listBackups(
     byItem: ListBackupsRequest
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
-    try self.listBackups(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Backup, Swift.Error> {
+    self.listBackups(byItem: byItem, options: .init())
   }
 
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListBackupsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1612,11 +1612,11 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listBackups(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
-    return try self.listBackups(byItem: request)
+    return self.listBackups(byItem: request)
   }
 
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMetastoreV1.Backup {
@@ -1815,13 +1815,13 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1891,13 +1891,13 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1908,12 +1908,12 @@ extension Clients.DataprocMetastoreProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

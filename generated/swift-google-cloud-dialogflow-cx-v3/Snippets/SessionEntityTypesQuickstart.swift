@@ -27,7 +27,7 @@
     async throws
   {
     let client = try GoogleCloudDialogflowCXV3.SessionEntityTypesClient()
-    let items = try client.listSessionEntityTypes(
+    let items = client.listSessionEntityTypes(
       byItem: ListSessionEntityTypesRequest()
         .with {
           $0.parent =

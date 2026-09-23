@@ -51,7 +51,7 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// @Snippet(path: "Maintenance_SummarizeMaintenances")
   public func summarizeMaintenances(
     byItem: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
+  ) -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse in
@@ -76,7 +76,7 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// @Snippet(path: "Maintenance_ListResourceMaintenances")
   public func listResourceMaintenances(
     byItem: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
+  ) -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse in
@@ -110,7 +110,7 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// @Snippet(path: "Maintenance_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -144,12 +144,12 @@ extension Clients {
     /// See `MaintenanceClient.summarizeMaintenances`.
     func summarizeMaintenances(
       byItem: SummarizeMaintenancesRequest
-    ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error>
+    ) -> any AsyncSequence<MaintenanceSummary, Swift.Error>
 
     /// See `MaintenanceClient.summarizeMaintenances`.
     func summarizeMaintenances(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error>
+    ) -> any AsyncSequence<MaintenanceSummary, Swift.Error>
 
     /// See `MaintenanceClient.listResourceMaintenances`.
     func listResourceMaintenances(request: ListResourceMaintenancesRequest) async throws
@@ -158,12 +158,12 @@ extension Clients {
     /// See `MaintenanceClient.listResourceMaintenances`.
     func listResourceMaintenances(
       byItem: ListResourceMaintenancesRequest
-    ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error>
+    ) -> any AsyncSequence<ResourceMaintenance, Swift.Error>
 
     /// See `MaintenanceClient.listResourceMaintenances`.
     func listResourceMaintenances(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error>
+    ) -> any AsyncSequence<ResourceMaintenance, Swift.Error>
 
     /// See `MaintenanceClient.getResourceMaintenance`.
     func getResourceMaintenance(request: GetResourceMaintenanceRequest) async throws
@@ -181,7 +181,7 @@ extension Clients {
     /// See `MaintenanceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MaintenanceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -195,7 +195,7 @@ extension Clients {
     /// See `MaintenanceClient.summarizeMaintenances`.
     func summarizeMaintenances(
       byItem: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error>
+    ) -> any AsyncSequence<MaintenanceSummary, Swift.Error>
 
     /// See `MaintenanceClient.listResourceMaintenances`.
     func listResourceMaintenances(
@@ -205,7 +205,7 @@ extension Clients {
     /// See `MaintenanceClient.listResourceMaintenances`.
     func listResourceMaintenances(
       byItem: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error>
+    ) -> any AsyncSequence<ResourceMaintenance, Swift.Error>
 
     /// See `MaintenanceClient.getResourceMaintenance`.
     func getResourceMaintenance(
@@ -220,7 +220,7 @@ extension Clients {
     /// See `MaintenanceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `MaintenanceClient.getLocation`.
     func getLocation(
@@ -245,13 +245,13 @@ extension Clients.MaintenanceProtocol {
 
   public func summarizeMaintenances(
     byItem: SummarizeMaintenancesRequest
-  ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
-    try self.summarizeMaintenances(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
+    self.summarizeMaintenances(byItem: byItem, options: .init())
   }
 
   public func summarizeMaintenances(
     byItem: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
+  ) -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse in
@@ -262,11 +262,11 @@ extension Clients.MaintenanceProtocol {
 
   public func summarizeMaintenances(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
+  ) -> any AsyncSequence<MaintenanceSummary, Swift.Error> {
     let request = SummarizeMaintenancesRequest().with {
       $0.parent = parent
     }
-    return try self.summarizeMaintenances(byItem: request)
+    return self.summarizeMaintenances(byItem: request)
   }
 
   public func listResourceMaintenances(request: ListResourceMaintenancesRequest) async throws
@@ -283,13 +283,13 @@ extension Clients.MaintenanceProtocol {
 
   public func listResourceMaintenances(
     byItem: ListResourceMaintenancesRequest
-  ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
-    try self.listResourceMaintenances(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
+    self.listResourceMaintenances(byItem: byItem, options: .init())
   }
 
   public func listResourceMaintenances(
     byItem: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
+  ) -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse in
@@ -300,11 +300,11 @@ extension Clients.MaintenanceProtocol {
 
   public func listResourceMaintenances(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
+  ) -> any AsyncSequence<ResourceMaintenance, Swift.Error> {
     let request = ListResourceMaintenancesRequest().with {
       $0.parent = parent
     }
-    return try self.listResourceMaintenances(byItem: request)
+    return self.listResourceMaintenances(byItem: request)
   }
 
   public func getResourceMaintenance(request: GetResourceMaintenanceRequest) async throws
@@ -342,13 +342,13 @@ extension Clients.MaintenanceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented

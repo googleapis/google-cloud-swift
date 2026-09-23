@@ -27,7 +27,7 @@ func sample(
   client: ConfigClient, projectId: String, locationId: String, deploymentId: String,
   revisionId: String
 ) async throws {
-  let items = try client.listResources(
+  let items = client.listResources(
     byItem: ListResourcesRequest()
       .with {
         $0.parent =

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AuditManagerClient) async throws {
-  let items = try client.listControls(
+  let items = client.listControls(
     byItem: ListControlsRequest()
       /* set fields using .with { $0... } */
   )

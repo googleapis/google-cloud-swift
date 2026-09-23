@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(client: KeyManagementServiceClient, projectId: String, locationId: String) async throws
 {
-  let items = try client.listRetiredResources(
+  let items = client.listRetiredResources(
     byItem: ListRetiredResourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

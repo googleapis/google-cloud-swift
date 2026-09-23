@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PolicyBindingsClient, organizationId: String, locationId: String) async throws {
-  let items = try client.listPolicyBindings(
+  let items = client.listPolicyBindings(
     byItem: ListPolicyBindingsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"

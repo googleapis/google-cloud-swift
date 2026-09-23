@@ -58,7 +58,7 @@
     /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
     public func listTransitionRouteGroups(
       byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
+    ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse in
@@ -178,7 +178,7 @@
     /// @Snippet(path: "TransitionRouteGroups_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = byItem
@@ -215,7 +215,7 @@
     /// @Snippet(path: "TransitionRouteGroups_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
@@ -262,12 +262,12 @@
       /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
       func listTransitionRouteGroups(
         byItem: ListTransitionRouteGroupsRequest
-      ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
+      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
       func listTransitionRouteGroups(
         parent: Swift.String,
-      ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
+      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.getTransitionRouteGroup`.
       func getTransitionRouteGroup(request: GetTransitionRouteGroupRequest) async throws
@@ -313,7 +313,7 @@
       /// See `TransitionRouteGroupsClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.getLocation`.
       func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -326,13 +326,13 @@
       /// See `TransitionRouteGroupsClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.cancelOperation`.
       func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
@@ -350,7 +350,7 @@
       /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
       func listTransitionRouteGroups(
         byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
+      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.getTransitionRouteGroup`.
       func getTransitionRouteGroup(
@@ -380,7 +380,7 @@
       /// See `TransitionRouteGroupsClient.listLocations`.
       func listLocations(
         byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.getLocation`.
       func getLocation(
@@ -395,7 +395,7 @@
       /// See `TransitionRouteGroupsClient.listOperations`.
       func listOperations(
         byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.cancelOperation`.
       func cancelOperation(
@@ -420,13 +420,13 @@
 
     public func listTransitionRouteGroups(
       byItem: ListTransitionRouteGroupsRequest
-    ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
-      try self.listTransitionRouteGroups(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
+      self.listTransitionRouteGroups(byItem: byItem, options: .init())
     }
 
     public func listTransitionRouteGroups(
       byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
+    ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse in
@@ -437,11 +437,11 @@
 
     public func listTransitionRouteGroups(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
+    ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
       let request = ListTransitionRouteGroupsRequest().with {
         $0.parent = parent
       }
-      return try self.listTransitionRouteGroups(byItem: request)
+      return self.listTransitionRouteGroups(byItem: request)
     }
 
     public func getTransitionRouteGroup(request: GetTransitionRouteGroupRequest) async throws
@@ -545,13 +545,13 @@
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      try self.listLocations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+      self.listLocations(byItem: byItem, options: .init())
     }
 
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -585,13 +585,13 @@
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      try self.listOperations(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleGax.RequestError.unimplemented
@@ -602,12 +602,12 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
-      return try self.listOperations(byItem: request)
+      return self.listOperations(byItem: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

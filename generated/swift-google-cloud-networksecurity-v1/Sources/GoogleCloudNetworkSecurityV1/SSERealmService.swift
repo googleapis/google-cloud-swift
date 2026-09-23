@@ -57,7 +57,7 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// @Snippet(path: "SSERealmService_ListSACRealms")
   public func listSacrealms(
     byItem: ListSACRealmsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SACRealm, Swift.Error> {
+  ) -> any AsyncSequence<SACRealm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse in
       var request = byItem
@@ -160,7 +160,7 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// @Snippet(path: "SSERealmService_ListSACAttachments")
   public func listSacattachments(
     byItem: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SACAttachment, Swift.Error> {
+  ) -> any AsyncSequence<SACAttachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListSACAttachmentsResponse
       in
@@ -298,7 +298,7 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// @Snippet(path: "SSERealmService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -373,7 +373,7 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// @Snippet(path: "SSERealmService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -431,12 +431,12 @@ extension Clients {
     /// See `SSERealmServiceClient.listSacrealms`.
     func listSacrealms(
       byItem: ListSACRealmsRequest
-    ) throws -> any AsyncSequence<SACRealm, Swift.Error>
+    ) -> any AsyncSequence<SACRealm, Swift.Error>
 
     /// See `SSERealmServiceClient.listSacrealms`.
     func listSacrealms(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SACRealm, Swift.Error>
+    ) -> any AsyncSequence<SACRealm, Swift.Error>
 
     /// See `SSERealmServiceClient.getSacrealm`.
     func getSacrealm(request: GetSACRealmRequest) async throws
@@ -480,12 +480,12 @@ extension Clients {
     /// See `SSERealmServiceClient.listSacattachments`.
     func listSacattachments(
       byItem: ListSACAttachmentsRequest
-    ) throws -> any AsyncSequence<SACAttachment, Swift.Error>
+    ) -> any AsyncSequence<SACAttachment, Swift.Error>
 
     /// See `SSERealmServiceClient.listSacattachments`.
     func listSacattachments(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<SACAttachment, Swift.Error>
+    ) -> any AsyncSequence<SACAttachment, Swift.Error>
 
     /// See `SSERealmServiceClient.getSacattachment`.
     func getSacattachment(request: GetSACAttachmentRequest) async throws
@@ -531,7 +531,7 @@ extension Clients {
     /// See `SSERealmServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `SSERealmServiceClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -554,13 +554,13 @@ extension Clients {
     /// See `SSERealmServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SSERealmServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SSERealmServiceClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -586,7 +586,7 @@ extension Clients {
     /// See `SSERealmServiceClient.listSacrealms`.
     func listSacrealms(
       byItem: ListSACRealmsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SACRealm, Swift.Error>
+    ) -> any AsyncSequence<SACRealm, Swift.Error>
 
     /// See `SSERealmServiceClient.getSacrealm`.
     func getSacrealm(
@@ -621,7 +621,7 @@ extension Clients {
     /// See `SSERealmServiceClient.listSacattachments`.
     func listSacattachments(
       byItem: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<SACAttachment, Swift.Error>
+    ) -> any AsyncSequence<SACAttachment, Swift.Error>
 
     /// See `SSERealmServiceClient.getSacattachment`.
     func getSacattachment(
@@ -656,7 +656,7 @@ extension Clients {
     /// See `SSERealmServiceClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `SSERealmServiceClient.getLocation`.
     func getLocation(
@@ -686,7 +686,7 @@ extension Clients {
     /// See `SSERealmServiceClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SSERealmServiceClient.deleteOperation`.
     func deleteOperation(
@@ -716,13 +716,13 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listSacrealms(
     byItem: ListSACRealmsRequest
-  ) throws -> any AsyncSequence<SACRealm, Swift.Error> {
-    try self.listSacrealms(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SACRealm, Swift.Error> {
+    self.listSacrealms(byItem: byItem, options: .init())
   }
 
   public func listSacrealms(
     byItem: ListSACRealmsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SACRealm, Swift.Error> {
+  ) -> any AsyncSequence<SACRealm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -732,11 +732,11 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listSacrealms(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SACRealm, Swift.Error> {
+  ) -> any AsyncSequence<SACRealm, Swift.Error> {
     let request = ListSACRealmsRequest().with {
       $0.parent = parent
     }
-    return try self.listSacrealms(byItem: request)
+    return self.listSacrealms(byItem: request)
   }
 
   public func getSacrealm(request: GetSACRealmRequest) async throws
@@ -852,13 +852,13 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listSacattachments(
     byItem: ListSACAttachmentsRequest
-  ) throws -> any AsyncSequence<SACAttachment, Swift.Error> {
-    try self.listSacattachments(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<SACAttachment, Swift.Error> {
+    self.listSacattachments(byItem: byItem, options: .init())
   }
 
   public func listSacattachments(
     byItem: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<SACAttachment, Swift.Error> {
+  ) -> any AsyncSequence<SACAttachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListSACAttachmentsResponse
       in
@@ -869,11 +869,11 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listSacattachments(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<SACAttachment, Swift.Error> {
+  ) -> any AsyncSequence<SACAttachment, Swift.Error> {
     let request = ListSACAttachmentsRequest().with {
       $0.parent = parent
     }
-    return try self.listSacattachments(byItem: request)
+    return self.listSacattachments(byItem: request)
   }
 
   public func getSacattachment(request: GetSACAttachmentRequest) async throws
@@ -989,13 +989,13 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1065,13 +1065,13 @@ extension Clients.SSERealmServiceProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -1082,12 +1082,12 @@ extension Clients.SSERealmServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

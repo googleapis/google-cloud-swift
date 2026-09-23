@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AnalyticsHubServiceClient, projectId: String, locationId: String) async throws {
-  let items = try client.listDataExchanges(
+  let items = client.listDataExchanges(
     byItem: ListDataExchangesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

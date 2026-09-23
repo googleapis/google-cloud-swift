@@ -27,7 +27,7 @@
     client: ExamplesClient, projectId: String, locationId: String, agentId: String,
     playbookId: String
   ) async throws {
-    let items = try client.listExamples(
+    let items = client.listExamples(
       byItem: ListExamplesRequest()
         .with {
           $0.parent =

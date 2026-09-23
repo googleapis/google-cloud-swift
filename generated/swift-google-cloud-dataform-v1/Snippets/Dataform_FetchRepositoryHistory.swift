@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let items = try client.fetchRepositoryHistory(
+  let items = client.fetchRepositoryHistory(
     byItem: FetchRepositoryHistoryRequest()
       /* set fields using .with { $0... } */
   )

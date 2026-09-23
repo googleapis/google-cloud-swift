@@ -21,7 +21,7 @@
   import GoogleCloudComputeV1
 
   func sample(client: ReservationsClient) async throws {
-    let items = try client.aggregatedList(
+    let items = client.aggregatedList(
       byItem: ReservationsClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )

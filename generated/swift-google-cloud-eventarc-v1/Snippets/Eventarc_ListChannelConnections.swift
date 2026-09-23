@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let items = try client.listChannelConnections(
+  let items = client.listChannelConnections(
     byItem: ListChannelConnectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

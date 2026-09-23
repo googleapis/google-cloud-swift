@@ -27,7 +27,7 @@
   func sample(
     client: MetadataServiceClient, projectId: String, locationId: String, metadataStoreId: String
   ) async throws {
-    let items = try client.listArtifacts(
+    let items = client.listArtifacts(
       byItem: ListArtifactsRequest()
         .with {
           $0.parent =

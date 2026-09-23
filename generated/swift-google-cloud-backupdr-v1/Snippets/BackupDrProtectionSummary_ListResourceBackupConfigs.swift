@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: BackupDrProtectionSummaryClient, parent: String) async throws {
-  let items = try client.listResourceBackupConfigs(
+  let items = client.listResourceBackupConfigs(
     byItem: ListResourceBackupConfigsRequest()
       .with {
         $0.parent = "\(parent)"

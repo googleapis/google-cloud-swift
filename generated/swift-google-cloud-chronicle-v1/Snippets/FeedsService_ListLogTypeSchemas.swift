@@ -26,7 +26,7 @@ func sample(
   client: FeedsServiceClient, projectId: String, locationId: String, instanceId: String,
   feedSourceTypeId: String
 ) async throws {
-  let items = try client.listLogTypeSchemas(
+  let items = client.listLogTypeSchemas(
     byItem: ListLogTypeSchemasRequest()
       .with {
         $0.parent =

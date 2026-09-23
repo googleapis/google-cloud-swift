@@ -23,7 +23,7 @@
   import GoogleLongRunning
 
   func sample(client: AgentsClient) async throws {
-    let items = try client.searchAgents(
+    let items = client.searchAgents(
       byItem: SearchAgentsRequest()
         /* set fields using .with { $0... } */
     )

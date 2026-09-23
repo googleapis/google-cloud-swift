@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient, parent: String) async throws {
-  let items = try client.listCorpora(
+  let items = client.listCorpora(
     byItem: ListCorporaRequest()
       .with {
         $0.parent = "\(parent)"

@@ -24,7 +24,7 @@ import GoogleCloudMonitoringV3
 #endif
 func sample() async throws {
   let client = try GoogleCloudMonitoringV3.QueryServiceClient()
-  let items = try client.queryTimeSeries(
+  let items = client.queryTimeSeries(
     byItem: QueryTimeSeriesRequest()
       /* set fields using .with { $0... } */
   )

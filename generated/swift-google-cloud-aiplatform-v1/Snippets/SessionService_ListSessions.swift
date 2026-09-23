@@ -27,7 +27,7 @@
   func sample(
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String
   ) async throws {
-    let items = try client.listSessions(
+    let items = client.listSessions(
       byItem: ListSessionsRequest()
         .with {
           $0.parent =

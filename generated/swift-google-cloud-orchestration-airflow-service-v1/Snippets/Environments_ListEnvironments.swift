@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EnvironmentsClient, parent: String) async throws {
-  let items = try client.listEnvironments(
+  let items = client.listEnvironments(
     byItem: ListEnvironmentsRequest()
       .with {
         $0.parent = "\(parent)"

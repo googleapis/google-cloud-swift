@@ -21,7 +21,7 @@ import GoogleCloudIDSV1
 import GoogleLongRunning
 
 func sample(client: IDSClient, projectId: String, locationId: String) async throws {
-  let items = try client.listEndpoints(
+  let items = client.listEndpoints(
     byItem: ListEndpointsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

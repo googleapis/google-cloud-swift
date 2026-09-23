@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudCertificateManagerV1.CertificateManagerClient()
-  let items = try client.listCertificates(
+  let items = client.listCertificates(
     byItem: ListCertificatesRequest()
       .with {
         $0.parent = "\(parent)"

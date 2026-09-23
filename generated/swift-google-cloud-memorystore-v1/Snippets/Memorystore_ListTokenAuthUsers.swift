@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: MemorystoreClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = try client.listTokenAuthUsers(
+  let items = client.listTokenAuthUsers(
     byItem: ListTokenAuthUsersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

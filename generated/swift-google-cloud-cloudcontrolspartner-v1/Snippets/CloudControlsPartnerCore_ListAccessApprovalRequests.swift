@@ -27,7 +27,7 @@ func sample(
   client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String,
   customerId: String, workloadId: String
 ) async throws {
-  let items = try client.listAccessApprovalRequests(
+  let items = client.listAccessApprovalRequests(
     byItem: ListAccessApprovalRequestsRequest()
       .with {
         $0.parent =

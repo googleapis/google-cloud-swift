@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.AddressGroupServiceClient()
-  let items = try client.listAddressGroups(
+  let items = client.listAddressGroups(
     byItem: ListAddressGroupsRequest()
       .with {
         $0.parent = "\(parent)"

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagementServiceClient) async throws {
-  let items = try client.enumerateLicensedUsers(
+  let items = client.enumerateLicensedUsers(
     byItem: EnumerateLicensedUsersRequest()
       /* set fields using .with { $0... } */
   )

@@ -77,7 +77,7 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// @Snippet(path: "resourceRecordSets_list")
   public func list(
     byItem: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
+  ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ResourceRecordSetsListResponse in
       var request = byItem
       request.pageToken = token
@@ -143,13 +143,13 @@ extension Clients {
     /// See `ResourceRecordSetsClient.list`.
     func list(
       byItem: ResourceRecordSetsClient.ListRequest
-    ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error>
+    ) -> any AsyncSequence<ResourceRecordSet, Swift.Error>
 
     /// See `ResourceRecordSetsClient.list`.
     func list(
       project: Swift.String,
       managedZone: Swift.String,
-    ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error>
+    ) -> any AsyncSequence<ResourceRecordSet, Swift.Error>
 
     /// See `ResourceRecordSetsClient.patch`.
     func patch(request: ResourceRecordSetsClient.PatchRequest) async throws -> ResourceRecordSet
@@ -186,7 +186,7 @@ extension Clients {
     /// See `ResourceRecordSetsClient.list`.
     func list(
       byItem: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error>
+    ) -> any AsyncSequence<ResourceRecordSet, Swift.Error>
 
     /// See `ResourceRecordSetsClient.patch`.
     func patch(
@@ -289,13 +289,13 @@ extension Clients.ResourceRecordSetsProtocol {
 
   public func list(
     byItem: ResourceRecordSetsClient.ListRequest
-  ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
-    try self.list(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
+    self.list(byItem: byItem, options: .init())
   }
 
   public func list(
     byItem: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
+  ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ResourceRecordSetsListResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -305,12 +305,12 @@ extension Clients.ResourceRecordSetsProtocol {
   public func list(
     project: Swift.String,
     managedZone: Swift.String,
-  ) throws -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
+  ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
     let request = ResourceRecordSetsClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone
     }
-    return try self.list(byItem: request)
+    return self.list(byItem: request)
   }
 
   public func patch(request: ResourceRecordSetsClient.PatchRequest) async throws

@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudVectorSearchV1.VectorSearchServiceClient()
-  let items = try client.listCollections(
+  let items = client.listCollections(
     byItem: ListCollectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

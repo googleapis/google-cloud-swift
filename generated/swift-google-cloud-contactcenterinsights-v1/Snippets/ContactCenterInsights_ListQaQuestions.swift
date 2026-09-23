@@ -25,7 +25,7 @@ func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, qaScorecardId: String,
   revisionId: String
 ) async throws {
-  let items = try client.listQaQuestions(
+  let items = client.listQaQuestions(
     byItem: ListQaQuestionsRequest()
       .with {
         $0.parent =

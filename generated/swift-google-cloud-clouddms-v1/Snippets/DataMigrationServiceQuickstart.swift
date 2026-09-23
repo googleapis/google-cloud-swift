@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDMSV1.DataMigrationServiceClient()
-  let items = try client.listMigrationJobs(
+  let items = client.listMigrationJobs(
     byItem: ListMigrationJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

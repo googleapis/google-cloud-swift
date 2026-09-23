@@ -124,7 +124,7 @@
     /// @Snippet(path: "reservationSubBlocks_list")
     public func list(
       byItem: ReservationSubBlocksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
+    ) -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationSubBlocksListResponse
         in
@@ -307,14 +307,14 @@
       /// See `ReservationSubBlocksClient.list`.
       func list(
         byItem: ReservationSubBlocksClient.ListRequest
-      ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error>
+      ) -> any AsyncSequence<ReservationSubBlock, Swift.Error>
 
       /// See `ReservationSubBlocksClient.list`.
       func list(
         project: Swift.String,
         zone: Swift.String,
         parentName: Swift.String,
-      ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error>
+      ) -> any AsyncSequence<ReservationSubBlock, Swift.Error>
 
       /// See `ReservationSubBlocksClient.performMaintenance`.
       func performMaintenance(request: ReservationSubBlocksClient.PerformMaintenanceRequest)
@@ -373,7 +373,7 @@
       /// See `ReservationSubBlocksClient.list`.
       func list(
         byItem: ReservationSubBlocksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error>
+      ) -> any AsyncSequence<ReservationSubBlock, Swift.Error>
 
       /// See `ReservationSubBlocksClient.performMaintenance`.
       func performMaintenance(
@@ -515,13 +515,13 @@
 
     public func list(
       byItem: ReservationSubBlocksClient.ListRequest
-    ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: ReservationSubBlocksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
+    ) -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationSubBlocksListResponse
         in
@@ -534,13 +534,13 @@
       project: Swift.String,
       zone: Swift.String,
       parentName: Swift.String,
-    ) throws -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
+    ) -> any AsyncSequence<ReservationSubBlock, Swift.Error> {
       let request = ReservationSubBlocksClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
         $0.parentName = parentName
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func performMaintenance(request: ReservationSubBlocksClient.PerformMaintenanceRequest)

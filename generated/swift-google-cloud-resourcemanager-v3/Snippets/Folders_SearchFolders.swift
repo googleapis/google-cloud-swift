@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient) async throws {
-  let items = try client.searchFolders(
+  let items = client.searchFolders(
     byItem: SearchFoldersRequest()
       /* set fields using .with { $0... } */
   )

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = try client.listAutonomousDbVersions(
+  let items = client.listAutonomousDbVersions(
     byItem: ListAutonomousDbVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

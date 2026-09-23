@@ -68,7 +68,7 @@
     public func aggregatedList(
       byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse in
@@ -208,7 +208,7 @@
     /// @Snippet(path: "globalVmExtensionPolicies_list")
     public func list(
       byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
         var request = byItem
@@ -290,12 +290,12 @@
       /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
       func aggregatedList(
         byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest
-      ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
       func aggregatedList(
         project: Swift.String,
-      ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.delete`.
       func delete(request: GlobalVmExtensionPoliciesClient.DeleteRequest) async throws
@@ -322,12 +322,12 @@
       /// See `GlobalVmExtensionPoliciesClient.list`.
       func list(
         byItem: GlobalVmExtensionPoliciesClient.ListRequest
-      ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.list`.
       func list(
         project: Swift.String,
-      ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.update`.
       func update(request: GlobalVmExtensionPoliciesClient.UpdateRequest) async throws
@@ -343,7 +343,7 @@
       func aggregatedList(
         byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
+      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.delete`.
       func delete(
@@ -368,7 +368,7 @@
       /// See `GlobalVmExtensionPoliciesClient.list`.
       func list(
         byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
+      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.update`.
       func update(
@@ -394,14 +394,14 @@
 
     public func aggregatedList(
       byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest
-    ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
-      try self.aggregatedList(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+      self.aggregatedList(byItem: byItem, options: .init())
     }
 
     public func aggregatedList(
       byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse in
@@ -412,11 +412,11 @@
 
     public func aggregatedList(
       project: Swift.String,
-    ) throws -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
       let request = GlobalVmExtensionPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return try self.aggregatedList(byItem: request)
+      return self.aggregatedList(byItem: request)
     }
 
     public func delete(request: GlobalVmExtensionPoliciesClient.DeleteRequest) async throws
@@ -538,13 +538,13 @@
 
     public func list(
       byItem: GlobalVmExtensionPoliciesClient.ListRequest
-    ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
-      try self.list(byItem: byItem, options: .init())
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+      self.list(byItem: byItem, options: .init())
     }
 
     public func list(
       byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
         throw GoogleGax.RequestError.unimplemented
@@ -554,11 +554,11 @@
 
     public func list(
       project: Swift.String,
-    ) throws -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
       let request = GlobalVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
       }
-      return try self.list(byItem: request)
+      return self.list(byItem: request)
     }
 
     public func update(request: GlobalVmExtensionPoliciesClient.UpdateRequest) async throws

@@ -24,7 +24,7 @@
   import GoogleWKT
 
   func sample(client: EnvironmentsClient) async throws {
-    let items = try client.getEnvironmentHistory(
+    let items = client.getEnvironmentHistory(
       byItem: GetEnvironmentHistoryRequest()
         /* set fields using .with { $0... } */
     )

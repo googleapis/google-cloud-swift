@@ -25,7 +25,7 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.InterceptClient()
-  let items = try client.listInterceptEndpointGroups(
+  let items = client.listInterceptEndpointGroups(
     byItem: ListInterceptEndpointGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"

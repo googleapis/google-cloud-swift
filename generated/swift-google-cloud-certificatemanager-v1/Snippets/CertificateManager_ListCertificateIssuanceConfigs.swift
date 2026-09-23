@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let items = try client.listCertificateIssuanceConfigs(
+  let items = client.listCertificateIssuanceConfigs(
     byItem: ListCertificateIssuanceConfigsRequest()
       .with {
         $0.parent = "\(parent)"

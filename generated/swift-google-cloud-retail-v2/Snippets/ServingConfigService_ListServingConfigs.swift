@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: ServingConfigServiceClient, projectId: String, locationId: String, catalogId: String
 ) async throws {
-  let items = try client.listServingConfigs(
+  let items = client.listServingConfigs(
     byItem: ListServingConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"

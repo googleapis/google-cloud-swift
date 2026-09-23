@@ -73,7 +73,7 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   /// @Snippet(path: "ApiHubCurate_ListCurations")
   public func listCurations(
     byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Curation, Swift.Error> {
+  ) -> any AsyncSequence<Curation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListCurationsResponse in
       var request = byItem
@@ -129,7 +129,7 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   /// @Snippet(path: "ApiHubCurate_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = byItem
@@ -166,7 +166,7 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   /// @Snippet(path: "ApiHubCurate_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
@@ -242,12 +242,12 @@ extension Clients {
     /// See `ApiHubCurateClient.listCurations`.
     func listCurations(
       byItem: ListCurationsRequest
-    ) throws -> any AsyncSequence<Curation, Swift.Error>
+    ) -> any AsyncSequence<Curation, Swift.Error>
 
     /// See `ApiHubCurateClient.listCurations`.
     func listCurations(
       parent: Swift.String,
-    ) throws -> any AsyncSequence<Curation, Swift.Error>
+    ) -> any AsyncSequence<Curation, Swift.Error>
 
     /// See `ApiHubCurateClient.updateCuration`.
     func updateCuration(request: UpdateCurationRequest) async throws -> GoogleCloudApiHubV1.Curation
@@ -273,7 +273,7 @@ extension Clients {
     /// See `ApiHubCurateClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubCurateClient.getLocation`.
     func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -286,13 +286,13 @@ extension Clients {
     /// See `ApiHubCurateClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubCurateClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubCurateClient.deleteOperation`.
     func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
@@ -328,7 +328,7 @@ extension Clients {
     /// See `ApiHubCurateClient.listCurations`.
     func listCurations(
       byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<Curation, Swift.Error>
+    ) -> any AsyncSequence<Curation, Swift.Error>
 
     /// See `ApiHubCurateClient.updateCuration`.
     func updateCuration(
@@ -348,7 +348,7 @@ extension Clients {
     /// See `ApiHubCurateClient.listLocations`.
     func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ApiHubCurateClient.getLocation`.
     func getLocation(
@@ -363,7 +363,7 @@ extension Clients {
     /// See `ApiHubCurateClient.listOperations`.
     func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubCurateClient.deleteOperation`.
     func deleteOperation(
@@ -438,13 +438,13 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listCurations(
     byItem: ListCurationsRequest
-  ) throws -> any AsyncSequence<Curation, Swift.Error> {
-    try self.listCurations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Curation, Swift.Error> {
+    self.listCurations(byItem: byItem, options: .init())
   }
 
   public func listCurations(
     byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Curation, Swift.Error> {
+  ) -> any AsyncSequence<Curation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListCurationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -454,11 +454,11 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listCurations(
     parent: Swift.String,
-  ) throws -> any AsyncSequence<Curation, Swift.Error> {
+  ) -> any AsyncSequence<Curation, Swift.Error> {
     let request = ListCurationsRequest().with {
       $0.parent = parent
     }
-    return try self.listCurations(byItem: request)
+    return self.listCurations(byItem: request)
   }
 
   public func updateCuration(request: UpdateCurationRequest) async throws
@@ -517,13 +517,13 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    try self.listLocations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    self.listLocations(byItem: byItem, options: .init())
   }
 
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -557,13 +557,13 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    try self.listOperations(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleGax.RequestError.unimplemented
@@ -574,12 +574,12 @@ extension Clients.ApiHubCurateProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
-    return try self.listOperations(byItem: request)
+    return self.listOperations(byItem: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String
 ) async throws {
-  let items = try client.listImportJobs(
+  let items = client.listImportJobs(
     byItem: ListImportJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/keyRings/\(keyRingId)"
