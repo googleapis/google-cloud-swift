@@ -22,16 +22,17 @@ public struct StopOnConsecutiveErrors<P: Sendable>: Sendable {
   public let inner: P
 
   /// The maximum number of consecutive errors permitted before the transfer is abandoned.
-  public let maxConsecutiveErrors: UInt32
+  public let maxConsecutiveErrors: Int
 
   /// Creates a new `StopOnConsecutiveErrors` instance.
   ///
   /// - Parameters:
   ///   - inner: The underlying resume policy.
-  ///   - maxConsecutiveErrors: The maximum number of consecutive errors without forward progress. Defaults to 3.
-  public init(inner: P, maxConsecutiveErrors: UInt32 = 3) {
+  ///   - maxConsecutiveErrors: The maximum number of consecutive errors without forward progress.
+  ///     Clamped to be non-negative (`max(0, maxConsecutiveErrors)`). Defaults to 3.
+  public init(inner: P, maxConsecutiveErrors: Int = 3) {
     self.inner = inner
-    self.maxConsecutiveErrors = maxConsecutiveErrors
+    self.maxConsecutiveErrors = max(0, maxConsecutiveErrors)
   }
 }
 
@@ -66,9 +67,10 @@ extension StopOnConsecutiveErrors: Equatable where P: Equatable {}
 extension ResumePolicy {
   /// Decorates a `ResumePolicy` to halt when consecutive errors exceed a threshold without forward progress.
   ///
-  /// - Parameter maxConsecutiveErrors: The maximum consecutive error threshold. Defaults to 3.
+  /// - Parameter maxConsecutiveErrors: The maximum consecutive error threshold.
+  ///   Clamped to be non-negative (`max(0, maxConsecutiveErrors)`). Defaults to 3.
   /// - Returns: A decorated resume policy.
-  public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: UInt32 = 3)
+  public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: Int = 3)
     -> StopOnConsecutiveErrors<Self>
   {
     StopOnConsecutiveErrors(inner: self, maxConsecutiveErrors: maxConsecutiveErrors)

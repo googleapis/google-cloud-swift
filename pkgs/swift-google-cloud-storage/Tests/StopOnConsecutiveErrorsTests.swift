@@ -89,4 +89,19 @@ import Testing
 
     #expect(policy.remainingTime(state: state) == .seconds(42))
   }
+
+  @Test func clampingZeroAndNegativeLimits() {
+    let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
+    let policyZero = mock.stopOnConsecutiveErrors(0)
+    #expect(policyZero.maxConsecutiveErrors == 0)
+
+    let policyNegative = mock.stopOnConsecutiveErrors(-5)
+    #expect(policyNegative.maxConsecutiveErrors == 0)
+
+    let error = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
+    let state = ResumeState()
+
+    #expect(policyZero.onError(state: state, error: error) == .exhausted(error))
+    #expect(policyNegative.onError(state: state, error: error) == .exhausted(error))
+  }
 }

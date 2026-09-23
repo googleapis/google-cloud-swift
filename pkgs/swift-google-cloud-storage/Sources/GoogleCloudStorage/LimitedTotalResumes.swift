@@ -21,16 +21,17 @@ public struct LimitedTotalResumes<P: Sendable>: Sendable {
   public let inner: P
 
   /// The maximum number of total resume attempts allowed across the transfer.
-  public let maxTotalResumes: UInt32
+  public let maxTotalResumes: Int
 
   /// Creates a new `LimitedTotalResumes` instance.
   ///
   /// - Parameters:
   ///   - inner: The underlying resume policy.
-  ///   - maxTotalResumes: The maximum total resume count. Defaults to 10.
-  public init(inner: P, maxTotalResumes: UInt32 = 10) {
+  ///   - maxTotalResumes: The maximum total resume count.
+  ///     Clamped to be non-negative (`max(0, maxTotalResumes)`). Defaults to 10.
+  public init(inner: P, maxTotalResumes: Int = 10) {
     self.inner = inner
-    self.maxTotalResumes = maxTotalResumes
+    self.maxTotalResumes = max(0, maxTotalResumes)
   }
 }
 
@@ -65,9 +66,10 @@ extension LimitedTotalResumes: Equatable where P: Equatable {}
 extension ResumePolicy {
   /// Decorates a `ResumePolicy` to limit total resume attempts.
   ///
-  /// - Parameter maxTotalResumes: The maximum total resume count allowed. Defaults to 10.
+  /// - Parameter maxTotalResumes: The maximum total resume count allowed.
+  ///   Clamped to be non-negative (`max(0, maxTotalResumes)`). Defaults to 10.
   /// - Returns: A decorated resume policy.
-  public func withTotalResumeLimit(_ maxTotalResumes: UInt32 = 10) -> LimitedTotalResumes<Self> {
+  public func withTotalResumeLimit(_ maxTotalResumes: Int = 10) -> LimitedTotalResumes<Self> {
     LimitedTotalResumes(inner: self, maxTotalResumes: maxTotalResumes)
   }
 }

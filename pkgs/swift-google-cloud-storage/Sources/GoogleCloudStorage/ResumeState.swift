@@ -17,10 +17,10 @@ import Foundation
 /// State tracked across attempts during a resumable transfer operation.
 public struct ResumeState<Details: Sendable>: Sendable {
   /// The consecutive number of errors encountered without making forward progress.
-  public var consecutiveErrorCount: UInt32
+  public var consecutiveErrorCount: Int
 
   /// The total number of resume attempts made across the entire operation.
-  public var totalResumeCount: UInt32
+  public var totalResumeCount: Int
 
   /// The timestamp when the transfer operation began.
   public var start: ContinuousClock.Instant
@@ -35,17 +35,27 @@ public struct ResumeState<Details: Sendable>: Sendable {
   public var idempotent: Bool
 
   /// Creates a new `ResumeState` instance.
+  ///
+  /// - Parameters:
+  ///   - details: Domain-specific details.
+  ///   - consecutiveErrorCount: Consecutive errors without forward progress.
+  ///     Clamped to be non-negative (`max(0, consecutiveErrorCount)`). Defaults to 0.
+  ///   - totalResumeCount: Total resume attempts made.
+  ///     Clamped to be non-negative (`max(0, totalResumeCount)`). Defaults to 0.
+  ///   - start: Timestamp when transfer began. Defaults to `.now`.
+  ///   - lastProgressTime: Timestamp when forward progress was last recorded. Defaults to `start`.
+  ///   - idempotent: Whether the operation is idempotent. Defaults to `true`.
   public init(
     details: Details,
-    consecutiveErrorCount: UInt32 = 0,
-    totalResumeCount: UInt32 = 0,
+    consecutiveErrorCount: Int = 0,
+    totalResumeCount: Int = 0,
     start: ContinuousClock.Instant = .now,
     lastProgressTime: ContinuousClock.Instant? = nil,
     idempotent: Bool = true
   ) {
     self.details = details
-    self.consecutiveErrorCount = consecutiveErrorCount
-    self.totalResumeCount = totalResumeCount
+    self.consecutiveErrorCount = max(0, consecutiveErrorCount)
+    self.totalResumeCount = max(0, totalResumeCount)
     self.start = start
     self.lastProgressTime = lastProgressTime ?? start
     self.idempotent = idempotent
@@ -61,9 +71,18 @@ public struct ResumeState<Details: Sendable>: Sendable {
 
 extension ResumeState where Details == Void {
   /// Creates a new `ResumeState` with default `Void` details.
+  ///
+  /// - Parameters:
+  ///   - consecutiveErrorCount: Consecutive errors without forward progress.
+  ///     Clamped to be non-negative (`max(0, consecutiveErrorCount)`). Defaults to 0.
+  ///   - totalResumeCount: Total resume attempts made.
+  ///     Clamped to be non-negative (`max(0, totalResumeCount)`). Defaults to 0.
+  ///   - start: Timestamp when transfer began. Defaults to `.now`.
+  ///   - lastProgressTime: Timestamp when forward progress was last recorded. Defaults to `start`.
+  ///   - idempotent: Whether the operation is idempotent. Defaults to `true`.
   public init(
-    consecutiveErrorCount: UInt32 = 0,
-    totalResumeCount: UInt32 = 0,
+    consecutiveErrorCount: Int = 0,
+    totalResumeCount: Int = 0,
     start: ContinuousClock.Instant = .now,
     lastProgressTime: ContinuousClock.Instant? = nil,
     idempotent: Bool = true

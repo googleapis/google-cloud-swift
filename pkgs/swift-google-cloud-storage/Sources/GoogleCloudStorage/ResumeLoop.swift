@@ -69,8 +69,7 @@ package struct _ResumeLoop<Details: Sendable>: Sendable {
       throw e
     case .resume(let e):
       let retryState = RetryState().with {
-        // TODO(#1093) - use the `Int` in storage too.
-        $0.attemptCount = Int(state.consecutiveErrorCount)
+        $0.attemptCount = state.consecutiveErrorCount
       }
       let delay = backoffPolicy.backoffDelayFor(retryState)
       if let remaining = remainingTime, remaining < delay {

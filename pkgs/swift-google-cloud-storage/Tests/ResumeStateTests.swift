@@ -82,4 +82,14 @@ import Testing
     copy.lastProgressTime = state.lastProgressTime
     #expect(state == copy)
   }
+
+  @Test func negativeCountsClamped() {
+    let state = ResumeState(consecutiveErrorCount: -5, totalResumeCount: -10)
+    #expect(state.consecutiveErrorCount == 0)
+    #expect(state.totalResumeCount == 0)
+
+    let genericState = ResumeState(details: "test", consecutiveErrorCount: -2, totalResumeCount: -3)
+    #expect(genericState.consecutiveErrorCount == 0)
+    #expect(genericState.totalResumeCount == 0)
+  }
 }
