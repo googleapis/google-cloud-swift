@@ -69,16 +69,16 @@ public enum RequestError: Error, Sendable {
   /// Check the error type, error message, and error details. Then consult the documentation for the service.
   case service(ServiceError)
 
-  /// The retry policy is exhausted before sending a request.
+  /// The retry or polling policy is exhausted before the operation could complete.
   ///
   /// ## Troubleshooting
   ///
-  /// You have configured a retry policy with a time limit (generally a good idea), which expired
-  /// before any request was sent. Most likely the retry policy time limit is too short. Increase
-  /// the policy time limit as needed. Rarely, the CPU in your machine is overloaded and the task
-  /// was suspended before the request could be sent. Review your application deployment and CPU
-  /// requirements to match the needs of your application.
-  indirect case exhausted(LimitedElapsedTimeError)
+  /// You have configured a retry or polling policy with a limit (such as a time limit or attempt
+  /// count), which expired before the operation could complete. Increase the policy limit as
+  /// needed. Rarely, the CPU in your machine is overloaded and the task was suspended before the
+  /// request could be sent. Review your application deployment and CPU requirements to match the
+  /// needs of your application.
+  indirect case exhausted(PolicyExhaustedError)
 
   /// The method is not implemented.
   ///
@@ -137,16 +137,33 @@ public struct HTTPDetails: Sendable {
 }
 
 /// The details for ``RequestError/exhausted(_:)``.
-public struct LimitedElapsedTimeError: Error, Sendable {
-  /// The maximum duration allowed by the policy.
-  public let maximumDuration: Duration
+public enum PolicyExhaustedError: Error, Sendable, CustomStringConvertible {
+  /// The retry or polling policy exceeded its maximum elapsed time.
+  case elapsedTime(maximumDuration: Duration, source: RequestError? = nil)
 
-  /// The last error before the policy was exhausted.
-  public let source: RequestError
+  /// The retry or polling policy exceeded its maximum attempt count.
+  case attemptCount(maximumAttempts: UInt32)
 
-  /// Create a new `LimitedElapsedTimeError`.
-  public init(maximumDuration: Duration, source: RequestError) {
-    self.maximumDuration = maximumDuration
-    self.source = source
+  /// The last error before the policy was exhausted, if any.
+  public var source: RequestError? {
+    switch self {
+    case .elapsedTime(_, let source):
+      return source
+    case .attemptCount:
+      return nil
+    }
+  }
+
+  public var description: String {
+    switch self {
+    case .elapsedTime(let maxDuration, let source):
+      if let source = source {
+        return
+          "policy exhausted: elapsed time limit of \(maxDuration) exceeded; last error: \(source)"
+      }
+      return "policy exhausted: elapsed time limit of \(maxDuration) exceeded"
+    case .attemptCount(let maxAttempts):
+      return "policy exhausted: attempt count limit of \(maxAttempts) exceeded"
+    }
   }
 }

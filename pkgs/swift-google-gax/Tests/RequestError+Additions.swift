@@ -41,8 +41,15 @@ extension HTTPDetails: Equatable {
   }
 }
 
-extension LimitedElapsedTimeError: Equatable {
-  static func == (lhs: LimitedElapsedTimeError, rhs: LimitedElapsedTimeError) -> Bool {
-    return lhs.maximumDuration == rhs.maximumDuration && lhs.source == rhs.source
+extension PolicyExhaustedError: Equatable {
+  static func == (lhs: PolicyExhaustedError, rhs: PolicyExhaustedError) -> Bool {
+    switch (lhs, rhs) {
+    case (.elapsedTime(let ld, let ls), .elapsedTime(let rd, let rs)):
+      return ld == rd && ls == rs
+    case (.attemptCount(let l), .attemptCount(let r)):
+      return l == r
+    default:
+      return false
+    }
   }
 }

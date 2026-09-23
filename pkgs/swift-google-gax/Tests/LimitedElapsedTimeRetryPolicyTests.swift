@@ -17,12 +17,19 @@ import GoogleGax
 import Testing
 
 @Suite struct LimitedElapsedTimeTests {
-  @Test func limitedElapsedTimeError() {
+  @Test func policyExhaustedError() {
     let limit = Duration.seconds(123) + .milliseconds(567)
     let source = mockIOError()
-    let err = LimitedElapsedTimeError(maximumDuration: limit, source: source)
-    #expect(err.maximumDuration == limit)
-    #expect(err.source == source)
+    let errWithSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit, source: source)
+    #expect(errWithSource.source == source)
+    #expect(errWithSource.description.contains("123"))
+
+    let errWithoutSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit)
+    #expect(errWithoutSource.source == nil)
+
+    let errAttempts = PolicyExhaustedError.attemptCount(maximumAttempts: 5)
+    #expect(errAttempts.source == nil)
+    #expect(errAttempts.description.contains("5"))
   }
 
   @Test func testLimitedTimeForwards() {
@@ -59,7 +66,7 @@ import Testing
       $0.start = .now - .seconds(70)
     }
     let expectedError = RequestError.exhausted(
-      LimitedElapsedTimeError(maximumDuration: limit, source: error))
+      .elapsedTime(maximumDuration: limit, source: error))
     #expect(policy.onThrottle(state: stateAfter, error: error) == .exhausted(expectedError))
   }
 

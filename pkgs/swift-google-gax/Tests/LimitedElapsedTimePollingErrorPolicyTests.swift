@@ -69,7 +69,7 @@ import Testing
     #expect(policy.onError(state: stateAfter, error: error) == .exhausted(error))
   }
 
-  @Test func testLimitedTimeOnInProgress() throws {
+  @Test func testLimitedTimeOnInProgressBeforeDeadline() throws {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
@@ -77,7 +77,29 @@ import Testing
     let limit = Duration.seconds(60)
     let policy = mock.withTimeLimit(limit)
 
-    try policy.onInProgress(state: PollingState())
+    let state = PollingState().with { $0.start = .now - .seconds(10) }
+    try policy.onInProgress(state: state)
     #expect(called.withLock { $0 })
+  }
+
+  @Test func testLimitedTimeOnInProgressAfterDeadline() throws {
+    let mock = MockPollingPolicy()
+    let limit = Duration.seconds(60)
+    let policy = mock.withTimeLimit(limit)
+
+    let state = PollingState().with { $0.start = .now - .seconds(70) }
+    #expect(throws: RequestError.exhausted(.elapsedTime(maximumDuration: limit))) {
+      try policy.onInProgress(state: state)
+    }
+  }
+
+  @Test func testLimitedTimeOnInProgressInnerThrows() throws {
+    struct CustomError: Error, Equatable {}
+    let mock = MockPollingPolicy(onInProgress: { _ in throw CustomError() })
+    let policy = mock.withTimeLimit(.seconds(60))
+
+    #expect(throws: CustomError()) {
+      try policy.onInProgress(state: PollingState())
+    }
   }
 }

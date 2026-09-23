@@ -50,15 +50,45 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: error) == .exhausted(error))
   }
 
-  @Test func testLimitedAttemptCountOnInProgress() throws {
+  @Test func testLimitedAttemptCountOnInProgressBeforeLimit() throws {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
     })
-    let policy = mock.withAttemptLimit(2)
+    let policy = mock.withAttemptLimit(3)
 
-    try policy.onInProgress(state: PollingState())
+    let state = PollingState().with { $0.attemptCount = 2 }
+    try policy.onInProgress(state: state)
     #expect(called.withLock { $0 })
+  }
+
+  @Test func testLimitedAttemptCountOnInProgressAtLimit() throws {
+    let mock = MockPollingPolicy()
+    let policy = mock.withAttemptLimit(3)
+
+    let state = PollingState().with { $0.attemptCount = 3 }
+    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 3))) {
+      try policy.onInProgress(state: state)
+    }
+  }
+
+  @Test func testLimitedAttemptCountOnInProgressZeroLimit() throws {
+    let mock = MockPollingPolicy()
+    let policy = mock.withAttemptLimit(0)
+
+    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 0))) {
+      try policy.onInProgress(state: PollingState())
+    }
+  }
+
+  @Test func testLimitedAttemptCountOnInProgressInnerThrows() throws {
+    struct CustomError: Error, Equatable {}
+    let mock = MockPollingPolicy(onInProgress: { _ in throw CustomError() })
+    let policy = mock.withAttemptLimit(3)
+
+    #expect(throws: CustomError()) {
+      try policy.onInProgress(state: PollingState())
+    }
   }
 
   func transient() -> RequestError {

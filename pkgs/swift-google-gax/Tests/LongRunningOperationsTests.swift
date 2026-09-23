@@ -305,4 +305,57 @@ import GoogleRpc
     }
     #expect(onErrorCalled.load(ordering: .sequentiallyConsistent) == false)
   }
+
+  @Test func waitWithLimitedElapsedTimeExpires() async throws {
+    let limit = Duration.milliseconds(50)
+    let pollingPolicy = MockPollingPolicy().withTimeLimit(limit)
+    let pollProvider = MockPoller<String>()
+    pollProvider.responses = [
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+    ]
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(),
+      poll: pollProvider.poll,
+      sleep: { _ in
+        try await Task.sleep(for: .milliseconds(60))
+      }
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == RequestError.exhausted(.elapsedTime(maximumDuration: limit)))
+  }
+
+  @Test func waitWithLimitedAttemptCountExpires() async throws {
+    let pollingPolicy = MockPollingPolicy().withAttemptLimit(3)
+    let pollProvider = MockPoller<String>()
+    pollProvider.responses = [
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+    ]
+    let sleepProvider = MockSleeper()
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(),
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == RequestError.exhausted(.attemptCount(maximumAttempts: 3)))
+    #expect(pollProvider.pollCount == 3)
+    #expect(sleepProvider.sleepCount == 3)
+  }
 }

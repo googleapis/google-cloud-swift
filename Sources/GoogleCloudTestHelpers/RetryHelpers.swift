@@ -30,7 +30,7 @@ extension RequestError {
     case .http(let details):
       return details.httpStatusCode == 409
     case .exhausted(let details):
-      return details.source.isAlreadyExists
+      return details.source?.isAlreadyExists ?? false
     default:
       return false
     }
@@ -43,7 +43,7 @@ extension RequestError {
     case .http(let details):
       return details.httpStatusCode == 404
     case .exhausted(let details):
-      return details.source.isNotFound
+      return details.source?.isNotFound ?? false
     default:
       return false
     }
@@ -57,7 +57,7 @@ extension RequestError {
     case .http(let details):
       return details.httpStatusCode == 412 || details.httpStatusCode == 409
     case .exhausted(let details):
-      return details.source.isFailedPreconditionOrAborted
+      return details.source?.isFailedPreconditionOrAborted ?? false
     default:
       return false
     }
